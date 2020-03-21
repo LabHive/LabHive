@@ -1,0 +1,22 @@
+## Inspiration
+Durch die Pandemie des SARS-CoV-2 ist der Bedarf an RT-PCR Labortests auf das Virus extrem hoch. 
+Der limitierende Faktor dabei ist die Durchführung der Tests der für einen Satz Proben ca. 6 h braucht. 
+
+## What it does
+LabShare optimiert die Nutzung von freien Ressourcen. 
+Zum Beispiel laborerfahrene Menschen im Home-Office oder ungenutzte Geräte in Forschungseinrichtungen.
+
+## How we built it
+
+
+## Challenges we ran into
+
+
+## Accomplishments that we are proud of
+
+
+## What we learned
+
+
+## What's next for 1_020_corona_testprozesse_LabShare
+
