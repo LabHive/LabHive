@@ -2,8 +2,8 @@
   <div class="login">
     <h1>Login</h1>
     <span class="p-float-label">
-      <InputText id="username" type="text" v-model="user.username" />
-      <label for="username">Username</label>
+      <InputText id="email" type="text" v-model="user.email" />
+      <label for="email">Email</label>
     </span>
     <span class="p-float-label">
       <InputText id="password" type="password" v-model="user.password" />
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       user: {
-        username: "",
+        email: "",
         password: ""
       }
     };
@@ -32,7 +32,13 @@ export default {
       login: function () {
           if(this.user.username !== '' && this.user.password !== '') {
             console.log("Logged in");
-            this.$router.push('/')
+            this.$http.post('login', { email: this.user.email, password: this.user.password })
+                .then(response => {
+                    this.$store.dispatch('login', response.body.sessionToken);
+                    this.$router.push('/')
+                }, error => {
+                    console.log("error", error);
+                });
           } else {
               console.log("Error loggin in.");
           }
@@ -47,11 +53,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.p-float-label {
-  margin-bottom: 1rem;
-}
 
-.p-float-label input {
-  width: 100%;
-}
 </style>
