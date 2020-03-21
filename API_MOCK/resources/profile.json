@@ -1,0 +1,23 @@
+{
+    "location": {
+        "type": "Point",
+        "coordinates": [20.111, 60.2234]
+    },
+    "address": {
+        "city": "Berlin",
+        "zipcode": "12312"
+    },
+    "firstname": "Harry",
+    "lastname": "Potter",
+    "contact": {
+        "email": "gryffindor.rocks@gmail.com",
+        "phone": "0178235236"
+    },
+    "description": "Expelliarmus",
+    "details": {
+        "RNA-Extraction": 0,
+        "RT-PCR": 45,
+        "hoursPerWeek": 10
+     },
+     "available": true
+}

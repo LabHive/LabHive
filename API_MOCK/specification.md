@@ -4,24 +4,24 @@
 ## Registrierung
 
 ### Request (Human)
-POST https://labshare.de/registration?type=human
-```json
+POST https://labshare.de/registration?role=human
+```jsonc
 {
     "address": {
-        "city": "", // ^[A-Za-z -]+$
+        "city": "", // ^[A-Za-zäöüÄÖÜß -]+$
         "zipcode": "58455", // ^[0-9]{5}$
     },
-    "firstname": "", // ^[A-Za-z -.]+$
-    "lastname": "",  // ^[A-Za-z -.]+$
+    "firstname": "", // ^[A-Za-zäöüÄÖÜß -.]+$
+    "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     "contact": {
-        "email": "",     // ^[A-Za-z.]+$
+        "email": "",     // ^[A-Za-z.@]+$
         "telephone": "", // ^[0-9+]+$
     },
     "description": "",
     "details": {
-       "question1": "",
-       "question2": true,
-       "question3": 20,
+       "RNA-Extraction": 29,
+       "RT-PCR": 0,
+       "hoursPerWeek": 20,
     },
     "available": true,
     "password": ""
@@ -29,13 +29,13 @@ POST https://labshare.de/registration?type=human
 ```
 
 ### Response
-```json
+```jsonc
 {
     "success": true
 }
 ```
 
-```json
+```jsonc
 {
     "success": false,
     "errorDescription": ""
@@ -44,13 +44,13 @@ POST https://labshare.de/registration?type=human
 
 
 ### Request (Lab)
-POST https://labshare.de/registration?type=lab
+POST https://labshare.de/registration?role=lab
 
 Unique Identifier (kein Labor kann sich 2x registrieren):
 * address
 * name
 
-```json
+```jsonc
 {
     "location": {
         "type": "Point",
@@ -74,13 +74,13 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
 ```
 
 ### Response
-```json
+```jsonc
 {
     "success": true
 }
 ```
 
-```json
+```jsonc
 {
     "success": false,
     "errorDescription": ""
@@ -97,21 +97,28 @@ POST https://labshare.de/password-forgotten
 
 Verschickt eine Mail mit Link auf Passwort neu setzen
 
-```json
+```jsonc
 {
     "email": ""
 }
 ```
 
 ### Request
-POST https://labshare.de/password-reset?token="token"
+POST https://labshare.de/password-reset?token=token
 
-```json
+```jsonc
 {
-    "password": ""
+    "newPassword": ""
 }
 ```
 
+POST https://labshare.de/password-reset
+```jsonc
+{
+    "oldPassword": "",
+    "newPassword": ""
+}
+```
 
 
 
@@ -131,6 +138,21 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
     * LabContact
     * Name
     * Description
+    * Bedarfsanfrage erstellen/löschen etc.
+        ```jsonc
+        "lookingFor": {
+            "humanRessources": true,
+            "devices": {
+                "RNA-Exctraction": true,
+                "TestingKit": true
+            },
+            "advice": {
+                "RNA-Exctraction": true,
+                "testingKit": true,
+                "dataEvaluation": true
+            }
+        }
+        ```
 
 ### POST Request
 Gleiche Struktur wie bei Registrierung
@@ -141,37 +163,8 @@ Kein Body, Standard Response
 
 
 
-
-## Login
-POST https://labshare.de/login
-
-```json
-{
-    "email": "",
-    "password": ""
-}
-
-```
-
-### Response
-```json
-{
-    "success": true
-}
-```
-
-```json
-{
-    "success": false,
-    "errorDescription": ""
-}
-```
-
-
-
-
 ## Search
-GET https://labshare.de/search?type="human|lab"&search_type="equipment|human_ressources"&filter1=""&filter2=true&filter3=21&page=2
+GET https://labshare.de/search?role="human|lab"&search_type="equipment|human_ressources"&filter1=""&filter2=true&filter3=21&page=2
 
 ### Get Parameter
 * `type`
@@ -195,7 +188,7 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
     * Contact
     * Available
 
-```json
+```jsonc
 {
     "_embedded": [
         {
@@ -233,7 +226,10 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
 
 
 
-## Session Token JWT
+## Session Management
+
+### Session token
+
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
@@ -241,20 +237,48 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 `eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.` (Payload)  
 `SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c` (HMAC über den Payload)
 
-### Header
-```json
+#### Header
+```jsonc
 {
   "alg": "HS256",
   "typ": "JWT"
 }
 ```
 
-### Payload: 
-```json
+#### Payload: 
+```jsonc
 {
-  "sub": "1234567890",
-  "name": "John Doe",
-  "iat": 1516239022
+  "sub": "1234567890", // ID
+  "iat": 1516239022,
+  "name": "email",
+  "role": "lab|human"
+}
+```
+
+### Login
+#### Request
+POST https://labshare.de/login
+
+```jsonc
+{
+    "email": "",
+    "password": ""
+}
+
+```
+
+#### Response
+```jsonc
+{
+    "success": true,
+    "sessionToken": "JWT (s. unten)"
+}
+```
+
+```jsonc
+{
+    "success": false,
+    "errorDescription": ""
 }
 ```
 

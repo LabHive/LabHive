@@ -1,0 +1,20 @@
+{
+    "address": {
+        "city": "Berlin",
+        "zipcode": "10115",
+        "street": "Hauptstraße 1"
+    },
+    "labContact": {
+        "firstname": "Spongebob",
+        "lastname": "Schwammkopf",
+        "email": "sponge@schwamm.de",
+        "phone": "+493045050"
+    },
+    "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+    "details": {
+        "RNA-Extraction": 29,
+        "RT-PCR": 0,
+        "hoursPerWeek": 20
+    },
+    "password": "password"
+}

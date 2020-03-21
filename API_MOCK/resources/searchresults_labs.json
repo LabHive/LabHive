@@ -1,0 +1,106 @@
+{
+    "_embedded": [
+        {
+            "data": {
+                "location": {
+                    "type": "Point",
+                    "coordinates": [10.111, 10.2234]
+                },
+                "address": {
+                    "city": "Nürnberg",
+                    "zipcode": "58455",
+                    "street": "Hauptstraße 12"
+                },
+                "labContact": {
+                    "firstname": "Spongebob",
+                    "lastname": "Schwammkopf",
+                    "email": "sponge@schwamm.de",
+                    "phone": "093134654"
+                },
+                "lookingFor": {
+                    "humanRessources": true,
+                    "devices": {
+                        "RNA-Exctraction": true,
+                        "TestingKit": true
+                    },
+                    "advice": {
+                        "RNA-Exctraction": true,
+                        "testingKit": true,
+                        "dataEvaluation": true
+                    }
+                },
+                "description": "Tolles Labor, meldet euch!"
+            },
+            "distance": "2km"
+        },
+        {
+            "data": {
+                "location": {
+                    "type": "Point",
+                    "coordinates": [50.111, 10.2234]
+                },
+                "address": {
+                    "city": "Freiburg",
+                    "zipcode": "14155",
+                    "street": "Tolle Straße 12"
+                },
+                "labContact": {
+                    "firstname": "Thaddäus",
+                    "lastname": "Wieauchimmer",
+                    "email": "thad@eus.de",
+                    "phone": "12356346"
+                },
+                "lookingFor": {
+                    "humanRessources": false,
+                    "devices": {
+                        "RNA-Exctraction": true,
+                        "TestingKit": true
+                    },
+                    "advice": {
+                        "RNA-Exctraction": true,
+                        "testingKit": true,
+                        "dataEvaluation": false
+                    }
+                },
+                "description": "Brauchen Mitarbeiter und Geräte!"
+            },
+            "distance": "67km"
+        },
+        {
+            "data": {
+                "location": {
+                    "type": "Point",
+                    "coordinates": [10.111, 10.2234]
+                },
+                "address": {
+                    "city": "Stuttgart",
+                    "zipcode": "235325",
+                    "street": "Eichhörnchenstraße 123"
+                },
+                "labContact": {
+                    "firstname": "Sandy",
+                    "lastname": "Eichhörnchen",
+                    "email": "ichliebesauerstoff@gmail.com",
+                    "phone": "+4912423532"
+                },
+                "lookingFor": {
+                    "humanRessources": true,
+                    "devices": {
+                        "RNA-Exctraction": false,
+                        "TestingKit": true
+                    },
+                    "advice": {
+                        "RNA-Exctraction": false,
+                        "testingKit": true,
+                        "dataEvaluation": true
+                    }
+                },
+                "description": "Meldet euch, wir bezaheln in Nüssen!"
+            },
+            "distance": "90km"
+        }
+    ],
+    "_links": {
+        "next": "https://labshare.de/search?role=lab&filter2=true&page=2"
+    }
+}

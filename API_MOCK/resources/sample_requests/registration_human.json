@@ -1,0 +1,19 @@
+{
+    "address": {
+        "city": "Würzburg",
+        "zipcode": "97070"
+    },
+    "firstname": "Sabine",
+    "lastname": "Juschkat",
+    "contact": {
+        "email": "juschkat.sabine@gmail.com",
+        "telephone": "01701234556"
+    },
+    "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
+    "details": {
+       "question1": "",
+       "question2": true,
+       "question3": 20
+    },
+    "password": "password"
+}
