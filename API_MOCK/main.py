@@ -20,7 +20,7 @@ def read_file(relPath):
 
     return Response(content, content_type="application/json")
 
-@app.route('/registration', methods=['POST'])
+@app.route('/api/v1/registration', methods=['POST'])
 def registration():
     if not request.args.get("role"):
         return fail("'role' as GET parameter expected")
@@ -31,14 +31,14 @@ def registration():
     if request.args.get("role") == "lab":
         return fail("nothing is wrong, just return an error to test errors")
     
-@app.route('/password-forgotten', methods=['POST'])
+@app.route('/api/v1/password-forgotten', methods=['POST'])
 def pw_forgotten():
     if not request.get_json().get("email"):
         return fail("'email' in body expected")
 
     return success()
 
-@app.route('/password-reset', methods=['POST'])
+@app.route('/api/v1/password-reset', methods=['POST'])
 def pw_reset():
     if request.args.get('token') and not request.get_json().get('newPassword'):
         return fail()
@@ -49,7 +49,7 @@ def pw_reset():
 
         return success()
 
-@app.route('/profile', methods=['GET'])
+@app.route('/api/v1/profile', methods=['GET'])
 def profile():
     return read_file('resources/profile.json')
 

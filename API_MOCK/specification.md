@@ -4,7 +4,7 @@
 ## Registrierung
 
 ### Request (Human)
-POST https://labshare.de/registration?role=human
+POST https://labshare.de/api/v1/registration?role=human
 ```jsonc
 {
     "address": {
@@ -15,7 +15,7 @@ POST https://labshare.de/registration?role=human
     "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     "contact": {
         "email": "",     // ^[A-Za-z.@]+$
-        "telephone": "", // ^[0-9+]+$
+        "phone": "", // ^[0-9+]+$
     },
     "description": "",
     "details": {
@@ -44,7 +44,7 @@ POST https://labshare.de/registration?role=human
 
 
 ### Request (Lab)
-POST https://labshare.de/registration?role=lab
+POST https://labshare.de/api/v1/registration?role=lab
 
 Unique Identifier (kein Labor kann sich 2x registrieren):
 * address
@@ -52,10 +52,6 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
 
 ```jsonc
 {
-    "location": {
-        "type": "Point",
-        "coordinates": [10.111, 10.2234] // longitude, latitude
-    },
     "address": {
         "city": "", // ^[A-Za-z -]+$
         "zipcode": "58455", // ^[0-9]{5}$
@@ -93,7 +89,7 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
 
 ## Passwort vergessen
 ### Request
-POST https://labshare.de/password-forgotten
+POST https://labshare.de/api/v1/password-forgotten
 
 Verschickt eine Mail mit Link auf Passwort neu setzen
 
@@ -104,7 +100,7 @@ Verschickt eine Mail mit Link auf Passwort neu setzen
 ```
 
 ### Request
-POST https://labshare.de/password-reset?token=token
+POST https://labshare.de/api/v1/password-reset?token=token
 
 ```jsonc
 {
@@ -112,7 +108,7 @@ POST https://labshare.de/password-reset?token=token
 }
 ```
 
-POST https://labshare.de/password-reset
+POST https://labshare.de/api/v1/password-reset
 ```jsonc
 {
     "oldPassword": "",
@@ -123,9 +119,9 @@ POST https://labshare.de/password-reset
 
 
 ## User management
-GET https://labshare.de/profile
-POST https://labshare.de/profile
-DELETE https://labshare.de/profile
+GET https://labshare.de/api/v1/profile
+POST https://labshare.de/api/v1/profile
+DELETE https://labshare.de/api/v1/profile
 
 Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editiert werden können:
 * Person:
@@ -164,15 +160,22 @@ Kein Body, Standard Response
 
 
 ## Search
-GET https://labshare.de/search?role="human|lab"&search_type="equipment|human_ressources"&filter1=""&filter2=true&filter3=21&page=2
+GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|human_ressources|advice"&filter=""&page=2
 
 ### Get Parameter
 * `type`
     * Required: True
-    * `human|lab`
+    * `human|lab`    
 * `search_type`
-    * 
-    * "
+    * `equipment|human_ressources|advice`
+* `page`
+    * Default : 1
+*  `filter`
+    * Kommaseperierte Liste, mögliche Werte abhängig von search_type
+    * human_ressources: keine filter
+    * device: rna,testkit
+    * advice: rna,testkit,dataevaluation 
+
 
 * filter und page sind optional
 * Menschen können nach Labore und nach Equipment suchen
@@ -216,7 +219,7 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
         }
     ],
     "_links": {
-        "next": "https://labshare.de/search?filter1=""&filter2=true&filter3=21&page=3"
+        "next": "https://labshare.de/api/v1/search?filter1=""&filter2=true&filter3=21&page=3"
     }
 }
 
@@ -257,7 +260,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 ### Login
 #### Request
-POST https://labshare.de/login
+POST https://labshare.de/api/v1/login
 
 ```jsonc
 {
