@@ -12,6 +12,12 @@
 import 'primevue/resources/themes/nova-dark/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
+
+// TODO: remove this
+// just an example
+import a from './lib/validation'
+a.validateFirstname("test")
+
 export default {
   name: 'App',
   components: {

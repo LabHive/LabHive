@@ -3,3 +3,5 @@
 .DS_Store
 __pycache__
 .venv
+labshare-client/src/backend/**/*.js
+labshare-client/src/lib/**/*.js
