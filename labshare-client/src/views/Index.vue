@@ -3,6 +3,15 @@
       <div class="container">
         <div class="row">
           <div class="col-sm">
+            <h1 class="display-4">Wilkommen bei LabShare !</h1>
+        <p class="lead">Wir unterstützen diagnostischen Labore, Wissenschaftler und technische Mitarbeiter bei der Verbesserung ihrer COVID-19 Diagnostik.
+    LabShare fördert die Kommunikation und verbindet</p>
+          <ul>
+            <li>Hilfsbereite Wissenschaftler und Technische Mitarbeiter mit dem nächstgelegenen Labor, welches Unterstützung sucht </li>
+            <lI>Labore mit Laboren zum Austausch von Geräten</li>
+            <li>Labore mit Wissenschaftlern mit spezialisiertem Know-How </li>
+          </ul>
+        <hr class="my-4">
           </div>
           <div class="col-sm">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -18,7 +27,7 @@
           </div>
         </div>
       </div>
-      
+
   </div>
 </template>
 

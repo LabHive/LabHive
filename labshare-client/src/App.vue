@@ -19,18 +19,9 @@
     </nav>
     <div class="content container-fluid">
       <div class="weclome_text" id="app">
-        <h1 class="display-4">Wilkommen bei LabShare !</h1>
-        <p class="lead">Wir unterstützen diagnostischen Labore, Wissenschaftler und technische Mitarbeiter bei der Verbesserung ihrer COVID-19 Diagnostik. 
-    LabShare fördert die Kommunikation und verbindet</p>
-          <ul>
-            <li>Hilfsbereite Wissenschaftler und Technische Mitarbeiter mit dem nächstgelegenen Labor, welches Unterstützung sucht </li>
-            <lI>Labore mit Laboren zum Austausch von Geräten</li>
-            <li>Labore mit Wissenschaftlern mit spezialisiertem Know-How </li>
-          </ul>
-        <hr class="my-4">
         <router-view ></router-view>
       </div>
-    </div>    
+    </div>
     <!-- Footer -->
     <footer class="footer-custom">
 
