@@ -197,3 +197,39 @@ export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
     }
 }
 
+export async function getUsers(filter: any): Promise<Optional<IUserCommon[]>> {
+    try {
+
+        // TODO: Liefert keine Ergebnisse
+        let options = {near: [9.932, 49.792], maxDistance: 100000000};
+
+        let human_test = await User_Human.geoSearch({available: true}, options);
+        console.log(human_test);
+
+        // TODO: Liefert auch keine Ergebnisse -.-
+        let humans = await User_Human.find(
+            {
+                    available: true,
+                    location:
+                        { $near :
+                                {
+                                    $geometry: { type: "Point",  coordinates: [ 9.932, 49.792 ] }
+                                }
+                        }
+
+                },
+        {"password": 0}).exec()
+
+        return humans
+    } catch { }
+
+    try {
+        let lab = await User_Lab.find().exec()
+        if (!lab) {
+            throw new Error("not found")
+        }
+        return lab
+    } catch {
+        return undefined
+    }
+}

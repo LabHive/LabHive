@@ -31,7 +31,7 @@ app.use('/api/v1', router)
 
 router.post('/registration', async function (req, res, next) {
     let body = req.body
-    
+
     if (req.query.role && req.query.role === "human") {
         if (!validateSchema(body, schemas.registration_human)) {
             return utils.badRequest(res)
@@ -232,7 +232,7 @@ router.post("/change-password", async function(req, res, nex){
     let password = await argon2.hash(body.newPassword)
     user.password = password
     user.save().then((doc) => {
-        if (!doc) 
+        if (!doc)
             return utils.internalError(res)
         return utils.successResponse(res)
     }).catch(err => {
@@ -248,6 +248,31 @@ router.get("/profile", function(req, res, next){
 
 }).delete("/profile", function(req, res, next) {
 
+})
+
+router.get("/search", async function(req, res, next){
+	try {
+		v.validateRole(req.query.role)
+	} catch(error) {
+		return utils.handleError(res, error)
+	}
+
+	if(req.query.role === "human")
+	{
+        let users = await getUsers("test")
+
+        res.send(users);
+	}
+	else
+	{
+
+		try {
+			v.validateSearchType(req.query.searchtype)
+		} catch(error) {
+			return utils.handleError(res, error)
+		}
+
+	}
 })
 
 

@@ -173,8 +173,10 @@ GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|hu
 *  `filter`
     * Kommaseperierte Liste, mögliche Werte abhängig von search_type
     * human_ressources: keine filter
-    * device: rna,testkit
-    * advice: rna,testkit,dataevaluation 
+    * device: rnaextraction,testkitrna,testkitrtpcr,rtpcr
+    * advice: devicerna,devicertpcr,testkitrna,testkitrtpcr,primerdesign,dataevaluationrtpcr
+*   `rtpcr_mincapacity`, `rtpcr_maxcapacity`
+    * Zahl
 
 
 * filter und page sind optional
