@@ -6,6 +6,7 @@
     "configurations": [
 
 
+
         {
             "type": "node",
             "request": "launch",
@@ -14,10 +15,10 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/labshare-client/dist-backend/backend/main.js",
-            "cwd": "${workspaceFolder}/labshare-client/src/backend/",
+            "cwd": "${workspaceFolder}/labshare-client/",
             "preLaunchTask": "buildTsc",
             "outFiles": [
-                "${workspaceFolder}/labshare-client/dist/**/*.js"
+                "${workspaceFolder}/labshare-client/dist-backend/**/*.js"
             ]
         }
     ]

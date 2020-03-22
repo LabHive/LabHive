@@ -10,18 +10,24 @@ import { readFileSync } from 'fs'
 import { User_Human, User_Lab, getUserForMail, Reset_Token, getUser } from './database'
 import { Schema, Mongoose, Document } from 'mongoose'
 import { v4 as uuid } from 'uuid'
+import cors from 'cors'
 
 let app = express()
 let router = express.Router()
+
+let HMAC_KEY: string
+if (process.env.PRODUCTION) {
+    app.use(express.static('dist'));
+    HMAC_KEY = readFileSync('./secret/jsonwebtoken_hmacKey.txt', { encoding: 'utf8' })
+}
+else {
+    app.use(cors())
+    HMAC_KEY = "randomHmacKey"
+}
+
 app.use(express.json());
 app.use('/api/v1', router)
 
-let HMAC_KEY: string
-try {
-    HMAC_KEY = readFileSync('./secret/jsonwebtoken_hmacKey.txt', { encoding: 'utf8' })
-} catch {
-    HMAC_KEY = "randomHmacKey"
-}
 
 router.post('/registration', async function (req, res, next) {
     let body = req.body

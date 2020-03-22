@@ -1,8 +1,15 @@
 import mongoose, { Schema, Document } from "mongoose"
 
-mongoose.connect("mongodb://localhost:27017/labshare", { useNewUrlParser: true }, err => {
-    console.log(err)
-})
+if (!process.env.PRODUCTION) {
+    mongoose.connect("mongodb://localhost:27017/labshare", { useNewUrlParser: true }, err => {
+        console.log(err)
+    })
+} else {
+    mongoose.connect("mongodb://mongodb:27017/labshare", { useNewUrlParser: true }, err => {
+        console.log(err)
+    })
+}
+
 
 
 const pointSchema = new mongoose.Schema({

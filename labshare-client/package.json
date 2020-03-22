@@ -9,6 +9,7 @@
     "backend": "tsc && node dist-backend/backend/main.js"
   },
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/mongoose": "^5.7.7",
     "@types/uuid": "^7.0.2",
@@ -16,6 +17,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-status-codes": "^1.4.0",
     "jquery": "^3.4.1",

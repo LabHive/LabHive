@@ -16,7 +16,13 @@ Vue.config.productionTip = false
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Vuex);
-Vue.http.options.root = 'http://0.0.0.0:5000/api/v1';
+if (process.env.NODE_ENV == 'production') {
+  Vue.http.options.root = '/api/v1';
+}
+else {
+  Vue.http.options.root = 'http://localhost:5000/api/v1';
+}
+
 
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
