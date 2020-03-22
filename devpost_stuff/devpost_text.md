@@ -1,5 +1,5 @@
 ## Inspiration
-Die Pandemie des sich schnell ausbreitenden SARS-CoV-2 hat das potential die Gesundheitssysteme entwickelter Länder zu überfordern. Um die Ausbreitung zu verlangsamen müssen Infizierte Personen unter Quarantäne gestellt und bei Bedarf adäquat therapiert werden.  
+Die Pandemie des sich schnell ausbreitenden SARS-CoV-2 hat das Potential die Gesundheitssysteme entwickelter Länder zu überfordern. Um die Ausbreitung zu verlangsamen müssen Infizierte unter Quarantäne gestellt und bei Bedarf adäquat therapiert werden.  
 Um eine Infektion festzustellen steht zurzeit ein RT-PCR Test auf das Virus zur Verfügung. Leider übersteigt der Bedarf an Tests die Kapazität bei weitem. Ohne diese Tests, ist unklar wer wirklich infiziert ist, und wann eine Quarantäne wieder aufgehoben werden kann.
 
 ## What it does
