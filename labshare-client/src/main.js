@@ -23,7 +23,7 @@ else {
   Vue.http.options.root = 'http://localhost:5000/api/v1';
 }
 
-
+/*
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
     next()
