@@ -9,8 +9,6 @@ export class Validator {
     }
 
     static validateFirstname(firstname: string) {
-        console.log("test")
-        console.log(new ValidationError("d"))
         this.validateTextShort(firstname);
     }
 

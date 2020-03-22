@@ -1,5 +1,7 @@
 import jsonschema from 'jsonschema'
 
+interface ISchema { }
+
 const names = {
     address: "/address",
     contact: "/contact",
@@ -10,7 +12,7 @@ const names = {
     login: "/login"
 }
 
-let address = {
+let address: ISchema = {
     id: names.address,
     type: "object",
     properties: {
@@ -22,7 +24,7 @@ let address = {
 }
 
 
-let password_forgotton = {
+let password_forgotton: ISchema = {
     id: names.password_forgotton,
     type: "object",
     properties: {
@@ -31,7 +33,7 @@ let password_forgotton = {
     required: [ "email" ]
 }
 
-let password_reset = {
+let password_reset: ISchema = {
     id: names.password_reset,
     type: "object",
     properties: {
@@ -41,7 +43,7 @@ let password_reset = {
     required: [ "newPassword" ]
 }
 
-let contact = {
+let contact: ISchema = {
     id: names.contact,
     type: "object",
     properties: {
@@ -53,7 +55,7 @@ let contact = {
     required: [ "email", "phone" ]
 }
 
-let registration_human = {
+let registration_human: ISchema = {
     id: "/registration_human",
     type: "object",
     properties: {
@@ -74,11 +76,11 @@ let registration_human = {
             required: ["RNA-Extraction", "RT-PCR", "hoursPerWeek"]
         },
     },
-    required: ["address", "firstname", "lastname", "contact", "description", "password", "available", "details"]
+    required: ["address", "firstname", "lastname", "contact", "description", "password", "details"]
 }
 
 
-let registration_lab = {
+let registration_lab: ISchema = {
     id: names.registration_lab,
     type: "object",
     properties: {
@@ -92,17 +94,14 @@ let registration_lab = {
 }
 
 
-let login = {
+let login: ISchema = {
     id: names.login,
     type: "object",
     properties: {
-        address: { "$ref": names.address },
-        labContact: { "$ref": names.contact },
-        name: { type: "string" },
-        description: { type: "string" },
+        email: { type: "string" },
         password: { type: "string" },
     },
-    required: ["address", "labContact", "description", "password"]
+    required: ["email", "password"]
 }
 
 
@@ -111,7 +110,7 @@ let validator = new jsonschema.Validator()
 validator.addSchema(address, names.address)
 validator.addSchema(contact, names.contact)
 
-let schemas = {
+export let schemas = {
     registration_human,
     registration_lab,
     password_forgotton,
@@ -120,6 +119,11 @@ let schemas = {
 }
 
 
-export { validator, schemas } 
+
+export function validateSchema(obj: any, schema: ISchema) {
+    let result = validator.validate(obj, schema)
+    console.log(result.toString())
+    return result.valid
+}
 
 

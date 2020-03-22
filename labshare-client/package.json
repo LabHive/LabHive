@@ -8,6 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/mongoose": "^5.7.7",
+    "@types/uuid": "^7.0.2",
     "argon2": "^0.26.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
@@ -16,10 +19,13 @@
     "http-status-codes": "^1.4.0",
     "jquery": "^3.4.1",
     "jsonschema": "^1.2.5",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.5",
     "popper.js": "^1.16.1",
     "primeicons": "^2.0.0",
     "primevue": "^1.1.0",
     "typescript": "^3.8.3",
+    "uuid": "^7.0.2",
     "vue": "^2.6.11",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.1.6",

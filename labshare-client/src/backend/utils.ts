@@ -32,8 +32,8 @@ export function addressToCoordinates(address: Address) {
                 type: "Point",
                 coordinates: [lon, lat]
             }
-        }).catch(() => {
-            throw new Error("Invalid location")
+        }).catch((err) => {
+            throw err
         })
 }
 
@@ -66,4 +66,8 @@ export function handleError(res: express.Response, error: Error) {
     else {
         errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "Etwas ist schiefgelaufen...")
     }
+}
+
+export function internalError(res:express.Response) {
+    errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "Es ist etwas schiefgelaufen.")
 }

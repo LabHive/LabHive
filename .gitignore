@@ -7,3 +7,4 @@ labshare-client/src/backend/**/*.js
 labshare-client/src/lib/**/*.js
 dist*/
 /venv
+secret/

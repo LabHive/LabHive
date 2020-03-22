@@ -14,7 +14,9 @@
                 "node_modules/*",
                 "src/types/*"
             ]
-        }
+        },
+        "strict": true,
+        "noImplicitReturns": true
     },
     "include": [
         "src/**/*"
