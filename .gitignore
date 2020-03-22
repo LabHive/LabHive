@@ -8,3 +8,5 @@ labshare-client/src/lib/**/*.js
 dist*/
 /venv
 secret/
+
+docker-compose.yml
