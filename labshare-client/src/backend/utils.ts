@@ -1,7 +1,8 @@
 import axios from 'axios'
 import express from 'express'
-import { LocationNotFoundError, ValidationError } from './errors'
+import { LocationNotFoundError, ValidationError, UnauthorizedError } from './errors'
 import HttpStatusCodes from 'http-status-codes'
+import jsonwebtoken from 'jsonwebtoken'
 
 interface Address {
     city: string,
@@ -70,4 +71,28 @@ export function handleError(res: express.Response, error: Error) {
 
 export function internalError(res:express.Response) {
     errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "Es ist etwas schiefgelaufen.")
+}
+
+
+
+export interface Token {
+    role: string
+    email: string
+    iss: string
+    sub: string
+}
+
+export function getJWTToken(req: express.Request) {
+    if (!req.headers.authorization) {
+        throw new UnauthorizedError()
+    }
+
+    let token = req.headers.authorization
+    token = token.replace("Bearer", "").trim()
+    return token
+}
+
+export function getDecodedJWT(req: express.Request): Token {
+    let token = getJWTToken(req)
+    return <Token>jsonwebtoken.decode(token)
 }

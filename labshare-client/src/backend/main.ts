@@ -7,7 +7,7 @@ import * as utils from './utils'
 import { ValidationError, LocationNotFoundError } from './errors'
 import jsonwebtoken from "jsonwebtoken"
 import { readFileSync } from 'fs'
-import { User_Human, User_Lab, getUserForMail, Reset_Token, getUser } from './database'
+import { User_Human, User_Lab, getUserForMail, Reset_Token, getUser, IUserHuman, IUserLab } from './database'
 import { Schema, Mongoose, Document } from 'mongoose'
 import { v4 as uuid } from 'uuid'
 import cors from 'cors'
@@ -174,6 +174,7 @@ router.post("/login", async function(req, res, next){
     let userID: string = user._id.toString() // Database ID
     let payload = {
         role: user.role,
+        email: user.role === "human" ? (<IUserHuman>user).contact.email : (<IUserLab>user).labContact.email
     }
     let options = {
         issuer: "labshare",
@@ -190,7 +191,22 @@ router.post("/login", async function(req, res, next){
 })
 
 
-// TODO: insert authentication middleware here
+router.use('*', function(req, res, next){
+    let token = utils.getJWTToken(req)
+
+    try {
+        jsonwebtoken.verify(token, HMAC_KEY, {
+            algorithms: [ "HS256" ],
+            clockTolerance: 300,
+            issuer: "labshare"
+        })
+    }
+    catch {
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Nicht authorisiert!")
+    }
+
+    next()
+});
 
 
 
@@ -201,15 +217,28 @@ router.post("/change-password", async function(req, res, nex){
         return utils.badRequest(res)
     }
 
-    // TODO: Get hash from database
-    let hash: string = ""
+    let token = utils.getDecodedJWT(req)
+    let user = await getUser({_id: token.sub})
+    if (!user) {
+        return utils.internalError(res)
+    }
+
+    let hash = user.password
     let validPassword = await argon2.verify(hash, body.oldPassword)
     if (!validPassword) {
         return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "Ungültiges Passwort")
     }
 
     let password = await argon2.hash(body.newPassword)
-    // TODO: Update password hash of user in DB
+    user.password = password
+    user.save().then((doc) => {
+        if (!doc) 
+            return utils.internalError(res)
+        return utils.successResponse(res)
+    }).catch(err => {
+        console.log(err)
+        return utils.internalError(res)
+    })
 })
 
 
@@ -219,6 +248,11 @@ router.get("/profile", function(req, res, next){
 
 }).delete("/profile", function(req, res, next) {
 
+})
+
+
+app.use(function(err: any, _req: express.Request, res: express.Response, next: express.NextFunction) {
+    return utils.handleError(res, err)
 })
 
 app.listen(5000, function () {

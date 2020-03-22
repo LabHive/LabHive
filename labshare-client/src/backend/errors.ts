@@ -13,3 +13,10 @@ export class ValidationError extends Error {
         Object.setPrototypeOf(this, ValidationError.prototype)
     }
 }
+
+export class UnauthorizedError extends Error {
+    constructor() {
+        super("Nicht authentisiert!")
+        Object.setPrototypeOf(this, UnauthorizedError.prototype)
+    }
+}
