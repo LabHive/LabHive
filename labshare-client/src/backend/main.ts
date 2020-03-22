@@ -1,16 +1,15 @@
-import express from "express"
-import { Validator as v } from "../lib/validation"
-import { validateSchema, schemas } from "./jsonschemas"
-import HttpStatus, { BAD_REQUEST } from 'http-status-codes'
 import argon2 from "argon2"
-import * as utils from './utils'
-import { ValidationError, LocationNotFoundError } from './errors'
-import jsonwebtoken from "jsonwebtoken"
-import { readFileSync } from 'fs'
-import { User_Human, User_Lab, getUserForMail, Reset_Token, getUser, IUserHuman, IUserLab } from './database'
-import { Schema, Mongoose, Document } from 'mongoose'
-import { v4 as uuid } from 'uuid'
 import cors from 'cors'
+import express from "express"
+import { readFileSync } from 'fs'
+import HttpStatus from 'http-status-codes'
+import jsonwebtoken from "jsonwebtoken"
+import mongoose, { Document } from 'mongoose'
+import { v4 as uuid } from 'uuid'
+import { Validator as v } from "../lib/validation"
+import { getUser, getUserForMail, IUserHuman, IUserLab, Reset_Token, User_Human, User_Lab } from './database'
+import { schemas, validateSchema } from "./schemas/jsonschemas"
+import * as utils from './utils'
 
 let app = express()
 let router = express.Router()
@@ -37,8 +36,8 @@ router.post('/registration', async function (req, res, next) {
             return utils.badRequest(res)
         }
     }
-    else if (req.query.role && req.query.role === "lab" ) {
-        if (!validateSchema(body, schemas.registration_lab)) {
+    else if (req.query.role && req.query.role === "lab") {
+        if (!validateSchema(body, schemas.registration_lab)) {
             return utils.badRequest(res)
         }
     }
@@ -48,7 +47,7 @@ router.post('/registration', async function (req, res, next) {
 
     try {
         v.validateProfileFields(body, req.query.role)
-    } catch(error) {
+    } catch (error) {
         return utils.handleError(res, error)
     }
 
@@ -88,9 +87,9 @@ router.post('/registration', async function (req, res, next) {
 
 
 
-router.post('/forgot-password', async function(req, res, next){
+router.post('/forgot-password', async function (req, res, next) {
     let body = req.body
-    
+
     try {
         v.validateEmail(body.email)
     } catch (error) {
@@ -105,34 +104,34 @@ router.post('/forgot-password', async function(req, res, next){
     Reset_Token.deleteMany({ objectId: user._id }).exec()
 
     let token = uuid()
-    let token_doc = new Reset_Token({token: token, objectId: user._id})
+    let token_doc = new Reset_Token({ token: token, objectId: user._id })
 
     token_doc.save().then(() => {
         // TODO: Send mail
-        return utils.successResponse(res)    
+        return utils.successResponse(res)
     }).catch(() => {
         return utils.errorResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, "Es ist etwas schiefgelaufen.")
     })
 })
 
 
-router.post("/reset-password", async function(req, res, next){
+router.post("/reset-password", async function (req, res, next) {
     let body = req.body
     if (!validateSchema(body, schemas.password_reset)) {
         return utils.badRequest(res)
     }
-    
+
     if (!req.query.token) {
         return utils.badRequest(res)
     }
-    
+
     let token_doc = await Reset_Token.findOneAndDelete({ token: req.query.token }).exec()
     if (!token_doc) {
         return utils.badRequest(res)
     }
 
     let password = await argon2.hash(body.newPassword)
-    let user = await getUser({_id: token_doc.objectId})
+    let user = await getUser({ _id: token_doc.objectId })
     if (!user) {
         return utils.internalError(res)
     }
@@ -150,7 +149,7 @@ router.post("/reset-password", async function(req, res, next){
 })
 
 
-router.post("/login", async function(req, res, next){
+router.post("/login", async function (req, res, next) {
     let body = req.body
     if (!validateSchema(body, schemas.login)) {
         return utils.badRequest(res)
@@ -158,8 +157,8 @@ router.post("/login", async function(req, res, next){
 
     let mail = body.email
     let user = await getUserForMail(mail)
-    if (!user) { 
-        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Ungülige Login-Daten!") 
+    if (!user) {
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Ungülige Login-Daten!")
     }
 
     let hash: string = user.password
@@ -191,15 +190,18 @@ router.post("/login", async function(req, res, next){
 })
 
 
-router.use('*', function(req, res, next){
-    let token = utils.getJWTToken(req)
-
+router.use('*', async function (req, res, next) {
     try {
+        let token = utils.getJWTToken(req)
         jsonwebtoken.verify(token, HMAC_KEY, {
-            algorithms: [ "HS256" ],
+            algorithms: ["HS256"],
             clockTolerance: 300,
             issuer: "labshare"
         })
+        let decoded_token = utils.getDecodedJWT(req)
+        let user = await getUser({_id: decoded_token.sub})
+        if (!user)
+            throw new Error("unauthorized")
     }
     catch {
         return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Nicht authorisiert!")
@@ -211,16 +213,16 @@ router.use('*', function(req, res, next){
 
 
 
-router.post("/change-password", async function(req, res, nex){
+router.post("/change-password", async function (req, res, next) {
     let body = req.body
     if (!validateSchema(body, schemas.password_reset) || !body.oldPassword) {
         return utils.badRequest(res)
     }
 
     let token = utils.getDecodedJWT(req)
-    let user = await getUser({_id: token.sub})
+    let user = await getUser({ _id: token.sub })
     if (!user) {
-        return utils.internalError(res)
+        return utils.badRequest(res)
     }
 
     let hash = user.password
