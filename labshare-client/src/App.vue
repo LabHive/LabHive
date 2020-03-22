@@ -1,7 +1,7 @@
 <template>
   <div class="main-div">
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-      <a class="navbar-brand" href="#">LabShare</a>
+      <a class="navbar-brand" href="#"><img height="40px" src="./assets/logo.svg"/>LabShare</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,6 +10,12 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <router-link to="/" class="nav-link">Home</router-link>
+          </li>
+          <li class="nav-item active">
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li class="nav-item active">
+            <router-link to="/register" class="nav-link">Registrieren</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/ueber-uns" class="nav-link">Über uns</router-link>
@@ -26,7 +32,7 @@
     <footer class="footer-custom">
 
       <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">#WirVsVirus Hackathon 2020
+      <div class="footer-copyright text-center py-3"><img src="./assets/wirvsvirus.png" alt="logo wir vs virus hackathon" />
       </div>
       <!-- Copyright -->
 
@@ -54,11 +60,16 @@ export default {
 </script>
 
 <style lang="scss">
+$color-blue: #2c3e50;
+$color-brand--primary: #99cccc;
+$color-brand--secondary: #224D4D;
+$color-white: #f2f2f2;
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: $color-blue;
   margin-top: 60px;
 }
 
@@ -69,7 +80,16 @@ body {
 }
 
 .navbar-custom{
-background-color:#99cccc;
+background-color: $color-brand--primary;
+
+  .navbar-brand {
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 40px;
+  }
 }
 
 
@@ -79,30 +99,33 @@ background-color:#99cccc;
 }
 
 .footer-custom {
-  background-color:#99cccc;
+  background-color:$color-brand--primary;
 }
 
 
 .main-div{
   height:100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
 .welcome_text {
-  text-align:left;
+  text-align: left;
+}
+
+%btn-primary-custom {
+  background-color: $color-brand--secondary;
+  border-color: lighten($color-brand--secondary, 10%);
+
+  &:hover {
+    background-color: darken($color-brand--secondary, 10%);
+  border-color: $color-brand--secondary;
+  }
 }
 
 .btn-primary-custom {
-  background-color:#FFAA00;
-  border-color:#FFD703;
+  @extend %btn-primary-custom;
 }
-
-.btn-primary-custom:hover {
-  background-color:rgb(250, 193, 78);
-  border-color:#FFD703;
-}
-
 
 .img-fluid {
   max-width: 100%;
@@ -142,12 +165,7 @@ background-color:#99cccc;
 }
 
 body .p-button {
-  background-color:#FFAA00;
-  border-color:#FFD703;
+  @extend .btn-primary-custom
 }
 
-body .p-button:enabled:hover {
-  background-color:rgb(250, 193, 78);
-  border-color:#FFD703;
-}
 </style>

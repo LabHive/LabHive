@@ -10,6 +10,7 @@ import Index from './views/Index'
 import Login from './views/Login'
 import Register from './views/Register'
 import List from './views/List'
+import UeberUns from './views/UeberUns'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -29,6 +30,7 @@ const routes = [
   { path: '/', component: Index },
   { path: '/login', component: Login },
   { path: '/register', component: Register},
+  { path: '/ueber-uns', component: UeberUns},
   { path: '/list', component: List, beforeEnter: ifAuthenticated }
 ];
 
