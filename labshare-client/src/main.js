@@ -23,7 +23,7 @@ else {
   Vue.http.options.root = 'http://localhost:5000/api/v1';
 }
 
-
+/*
 const ifAuthenticated = (to, from, next) => {
   if (store.getters.isAuthenticated) {
     next()
@@ -31,13 +31,14 @@ const ifAuthenticated = (to, from, next) => {
   }
   next('/')
 }
+*/
 
 const routes = [
   { path: '/', component: Index },
   { path: '/login', component: Login },
   { path: '/register', component: Register},
   { path: '/ueber-uns', component: UeberUns},
-  { path: '/list', component: List, beforeEnter: ifAuthenticated }
+  { path: '/list', component: List }
 ];
 
 const router = new VueRouter({ routes });

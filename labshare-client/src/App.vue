@@ -24,7 +24,7 @@
       </div>
     </nav>
     <div class="content container-fluid">
-      <div class="weclome_text" id="app">
+      <div id="app">
         <router-view ></router-view>
       </div>
     </div>
@@ -70,7 +70,6 @@ $color-white: #f2f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $color-blue;
-  margin-top: 20px;
 }
 
 body {
@@ -94,7 +93,6 @@ background-color: $color-brand--primary;
 
 .content {
   flex: 1;
-  padding:5px;
 }
 
 .footer-custom {
