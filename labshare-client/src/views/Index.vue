@@ -1,12 +1,24 @@
 <template>
   <div class="index">
-      <h1>Index</h1>
-      <router-link to="/login">
-          <img class="img-fluid" src="https://via.placeholder.com/100x100?text=icon-login" />
-      </router-link>
-      <router-link to="/register">
-          <img class="img-fluid" src="https://via.placeholder.com/100x100?text=icon-register" />
-      </router-link>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <router-link to="/register" class="btn btn-primary btn-primary-custom btn-lg">
+                  Login
+              </router-link>
+              <router-link to="/register" class="btn btn-primary btn-primary-custom btn-lg">
+                  Register
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm">
+          </div>
+        </div>
+      </div>
+      
   </div>
 </template>
 
