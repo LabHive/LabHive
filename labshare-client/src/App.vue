@@ -70,7 +70,7 @@ $color-white: #f2f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $color-blue;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 body {
@@ -95,7 +95,7 @@ background-color: $color-brand--primary;
 
 .content {
   flex: 1;
-  padding:20px;
+  padding:5px;
 }
 
 .footer-custom {
@@ -111,6 +111,7 @@ background-color: $color-brand--primary;
 
 .welcome_text {
   text-align: left;
+  margin-top: 30px;
 }
 
 %btn-primary-custom {

@@ -2,9 +2,10 @@
   <div class="index">
       <div class="container">
         <div class="row">
-          <div class="col-6 offset-3">
+          <div class="col-4 offset-4">
             <img class="img-fluid" src="../assets/logo.svg" />
           </div>
+          <div class="col-4"></div>
           <div class="col-sm d-flex justify-content-center m-5">
             <div class="btn-group" role="group" aria-label="Basic example">
               <router-link to="/login" class="btn btn-primary btn-primary-custom btn-lg">
