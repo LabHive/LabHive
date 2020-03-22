@@ -92,7 +92,6 @@ background-color: $color-brand--primary;
   }
 }
 
-
 .content {
   flex: 1;
   padding:5px;
@@ -101,7 +100,6 @@ background-color: $color-brand--primary;
 .footer-custom {
   background-color:$color-brand--primary;
 }
-
 
 .main-div{
   height:100%;

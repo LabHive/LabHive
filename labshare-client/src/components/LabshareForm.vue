@@ -1,5 +1,8 @@
 <template>
   <div class="labshare-form">
+    <div class="labshare-progress mb-5">
+      <ProgressBar :value="progessPercentage" :showValue="false" />
+    </div>
 <template v-for="(step, index) in formDefinition">
       <template v-if="currentStep === index">
         <h2 :key="index" class="step__title">{{ step.title }}</h2>
@@ -8,6 +11,18 @@
         <template v-if="currentStep === index">
           <!-- input type text -->
           <template v-if="element.type == 'text'">
+            <span class="p-float-label form-element-spacer" :key="index + '-' + elementIndex">
+              <InputText
+                :id="element.type + index + elementIndex"
+                :type="element.type"
+                v-model="formDefinition[index]['formElements'][elementIndex]['value']"
+              />
+              <label :for="element.type + index + elementIndex">{{ element.label }}</label>
+            </span>
+          </template>
+
+          <!-- input type password -->
+          <template v-if="element.type == 'password'">
             <span class="p-float-label form-element-spacer" :key="index + '-' + elementIndex">
               <InputText
                 :id="element.type + index + elementIndex"
@@ -82,6 +97,7 @@ import InputText from "primevue/inputtext";
 import Checkbox from "primevue/checkbox";
 import Button from "primevue/button";
 import Dropdown from "primevue/dropdown";
+import ProgressBar from "primevue/progressbar";
 
 export default {
   name: 'LabshareForm',
@@ -92,6 +108,11 @@ export default {
   },
   props: {
       formDefinition: Array
+  },
+  computed: {
+    progessPercentage: function() {
+      return this.currentStep / this.formDefinition.length * 100
+    }
   },
   methods: {
       submit: function() {
@@ -110,7 +131,8 @@ export default {
     InputText,
     Checkbox,
     Button,
-    Dropdown
+    Dropdown,
+    ProgressBar
   }
 }
 </script>

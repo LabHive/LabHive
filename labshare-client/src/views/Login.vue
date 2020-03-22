@@ -1,11 +1,11 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-    <span class="p-float-label">
+    <span class="p-float-label form-element-spacer">
       <InputText id="email" type="text" v-model="user.email" />
       <label for="email">Email</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label form-element-spacer">
       <InputText id="password" type="password" v-model="user.password" />
       <label for="password">Password</label>
     </span>
