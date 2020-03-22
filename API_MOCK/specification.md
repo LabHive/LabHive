@@ -129,6 +129,7 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
     * Description
     * Contact
     * Available
+    * Details
 * Lab:
     * Location
     * LabContact

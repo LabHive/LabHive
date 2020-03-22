@@ -11,8 +11,8 @@
     },
     "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
     "details": {
-       "RNA-Extraction": 123,
-       "RT-PCR": 12,
+       "rnaExtraction": 123,
+       "rtPcr": 12,
        "hoursPerWeek": 20
     },
     "password": "password"
