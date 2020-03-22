@@ -1,3 +1,37 @@
+## How to build
+```
+cd labshare-client
+mkdir secret
+echo "superSecretKey" > secret/jsonwebtoken_hmacKey.txt
+docker-compose build
+docker-compose up
+```
+
+App is deployed at `localhost:5000`
+
+## Technischer Zustand des Projekts
+### Was funktioniert
+* Deployment mit Docker
+* POC vom Registrierungsprozess im Frontend
+* Backend
+    * Registrierung von Helfern und Laboren
+    * Login
+    * Aktualisierung des Profils
+    * Passwort vergessen, Passwort ändern
+
+### Was noch nicht funktioniert
+* Frontend
+    * Registrierung
+    * Login
+    * Suche
+* Backend
+    * Mailversand mit dem generierten Token bei Passwort vergessen
+    * Suchfunktion nach Laboren/Helfern
+
+Geschätzter Arbeitsaufwand bis zum Release: 20-30h
+
+
+
 ## Inspiration
 
 SARS-CoV-2 ist ein Virus der Corona-Familie, welches im Januar 2020 in der chinesischen Provinz Hubei identifiziert wurde. Im Menschen löst SARS-CoV-2 die neuartige Krankheit COVID-19 aus, welche in schweren Fällen zu Atemnot führt und in Risikogruppen mit einer hohen Letalitätsrate einhergeht. Um eine übermäßige Belastung des Gesundheitssystems, wie beispielsweise in Italien, zu verhindern, ist es von großer Bedeutung die Ausbreitung des Virus zu verlangsamen und eine genaue Datenlage bezüglich der Ausbreitungsdynamik und der Anzahl aktuell infizierten Menschen zu erlangen. Letzteres ist erheblich erschwert, da der aktuell eingesetzte Test auf SARS-Cov-2 äußerst aufwendig und zeitintensiv ist. Der Test beruht auf einer RT-PCR, welche spezielle Geräte, limitierte Verbrauchsmaterialien und qualifiziertes Personal benötigt. Die Limitation dieser Ressourcen minimiert die Anzahl der Testdurchläufe, die ein diagnostisches Labor pro Zeiteinheit durchführen kann. Auf der anderen Seite ist der wissenschaftliche Betrieb in vielen anderen Einrichtungen fast gänzlich zum Erliegen gekommen, was ein riesiges -, bisher ungenutztes -, Potential darstellt.
@@ -32,23 +66,3 @@ Unser Team hatte sehr viel Spaß interdisziplinär beim digitalen Hackathon zusa
 
 Wir würden uns wünschen, dass unsere Lösung bald einen kleinen Teil dazu beitragen kann, um die Testabdeckung effizienter zu gestalten. Doch bis es soweit ist, hacken wir weiter!
 
-## Technischer Zustand des Projekts
-### Was funktioniert
-* Deployment mit Docker
-* POC vom Registrierungsprozess im Frontend
-* Backend
-    * Registrierung von Helfern und Laboren
-    * Login
-    * Aktualisierung des Profils
-    * Passwort vergessen, Passwort ändern
-
-### Was noch nicht funktioniert
-* Frontend
-    * Registrierung
-    * Login
-    * Suche
-* Backend
-    * Mailversand mit dem generierten Token bei Passwort vergessen
-    * Suchfunktion nach Laboren/Helfern
-
-Geschätzter Arbeitsaufwand bis zum Release: 20-30h
