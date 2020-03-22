@@ -10,10 +10,13 @@
   "dependencies": {
     "argon2": "^0.26.1",
     "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
     "express": "^4.17.1",
     "http-status-codes": "^1.4.0",
+    "jquery": "^3.4.1",
     "jsonschema": "^1.2.5",
+    "popper.js": "^1.16.1",
     "primeicons": "^2.0.0",
     "primevue": "^1.1.0",
     "typescript": "^3.8.3",

@@ -48,6 +48,8 @@
 import 'primevue/resources/themes/nova-dark/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle'
 
 // TODO: remove this
 // just an example
