@@ -68,7 +68,7 @@ def login():
     return make_response({"success": True, "sessionToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"})
 
 
-@app.route("/search", methods=['GET'])
+@app.route("/api/v1/search", methods=['GET'])
 def search():
     t = request.args.get("role")
     if t == "human":
