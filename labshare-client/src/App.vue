@@ -51,8 +51,8 @@ import 'primeicons/primeicons.css'
 
 // TODO: remove this
 // just an example
-import a from './lib/validation'
-a.validateFirstname("test")
+import { Validator } from '../dist-browser/lib/validation'
+Validator.validateFirstname("test")
 
 export default {
   name: "App",

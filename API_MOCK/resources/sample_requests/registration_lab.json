@@ -16,5 +16,6 @@
         "RT-PCR": 0,
         "hoursPerWeek": 20
     },
-    "password": "password"
+    "password": "password",
+    "name": "SpongebobLabor"
 }

@@ -89,7 +89,7 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
 
 ## Passwort vergessen
 ### Request
-POST https://labshare.de/api/v1/password-forgotten
+POST https://labshare.de/api/v1/forgot-password
 
 Verschickt eine Mail mit Link auf Passwort neu setzen
 
@@ -100,7 +100,7 @@ Verschickt eine Mail mit Link auf Passwort neu setzen
 ```
 
 ### Request
-POST https://labshare.de/api/v1/password-reset?token=token
+POST https://labshare.de/api/v1/reset-password?token=token
 
 ```jsonc
 {
@@ -108,7 +108,7 @@ POST https://labshare.de/api/v1/password-reset?token=token
 }
 ```
 
-POST https://labshare.de/api/v1/password-reset
+POST https://labshare.de/api/v1/change-password
 ```jsonc
 {
     "oldPassword": "",
