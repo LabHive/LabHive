@@ -242,43 +242,110 @@ router.post("/change-password", async function(req, res, nex){
 })
 
 
-router.get("/profile", function(req, res, next){
+router.get("/profile", async function (req, res, next) {
+    let token = utils.getDecodedJWT(req)
+    let user = await getUser({ _id: token.sub })
+    if (!user) {
+        return utils.badRequest(res)
+    }
 
-}).post("/profile", function(req, res, next) {
+    let data = JSON.parse(JSON.stringify(user))
+    delete data._id
+    delete data.__v
+    delete data.password
 
-}).delete("/profile", function(req, res, next) {
+    let responseData = {
+        success: true,
+        data: data
+    }
+    res.send(responseData)
 
+}).post("/profile", async function (req, res, next) {
+    let body = req.body
+
+    let token = utils.getDecodedJWT(req)
+    let schema: any
+    if (token.role === "human") {
+        // deep copy schema
+        schema = JSON.parse(JSON.stringify(schemas.registration_human))
+        delete schema.required
+        delete schema.properties.firstname
+        delete schema.properties.lastname
+        delete schema.properties.password
+        delete schema.properties.details.required
+    }
+    else {
+        // deep copy schema
+        schema = JSON.parse(JSON.stringify(schemas.registration_lab))
+        delete schema.required
+        delete schema.properties.password
+    }
+
+    if (!validateSchema(body, schema) || v.validateProfileFields(body, token.role)) {
+        return utils.badRequest(res)
+    }
+
+    let model: mongoose.Model<any>
+    if (token.role === "human") {
+        model = User_Human
+    }
+    else {
+        model = User_Lab
+    }
+
+    model.updateOne({ _id: token.sub }, body).exec().then((doc) => {
+        if (!doc)
+            return utils.internalError(res)
+        return utils.successResponse(res)
+    }).catch(err => {
+        return utils.internalError(res)
+    })
+
+}).delete("/profile", function (req, res, next) {
+    let token = utils.getDecodedJWT(req)
+
+    let model: mongoose.Model<any>
+    if (token.role === "human") {
+        model = User_Human
+    }
+    else {
+        model = User_Lab
+    }
+
+    model.deleteOne({ _id: token.sub }).exec().then((doc) => {
+        if (!doc)
+            return utils.internalError(res)
+        return utils.successResponse(res)
+    }).catch((err) => {
+        return utils.internalError(res)
+    })
 })
 
-router.get("/search", async function(req, res, next){
-	try {
-		v.validateRole(req.query.role)
-	} catch(error) {
-		return utils.handleError(res, error)
-	}
+// router.get("/search", async function(req, res, next){
+// 	try {
+// 		v.validateRole(req.query.role)
+// 	} catch(error) {
+// 		return utils.handleError(res, error)
+// 	}
 
-	if(req.query.role === "human")
-	{
-        let users = await getUsers("test")
+// 	if(req.query.role === "human")
+// 	{
+//         let users = await getUsers("test")
 
-        res.send(users);
-	}
-	else
-	{
+//         res.send(users);
+// 	}
+// 	else
+// 	{
 
-		try {
-			v.validateSearchType(req.query.searchtype)
-		} catch(error) {
-			return utils.handleError(res, error)
-		}
+// 		try {
+// 			v.validateSearchType(req.query.searchtype)
+// 		} catch(error) {
+// 			return utils.handleError(res, error)
+// 		}
 
-	}
-})
+// 	}
+// })
 
-
-app.use(function(err: any, _req: express.Request, res: express.Response, next: express.NextFunction) {
-    return utils.handleError(res, err)
-})
 
 app.listen(5000, function () {
     console.log('Example app listening on port 5000!');
