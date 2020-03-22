@@ -1,9 +1,11 @@
 import flask
 from flask import Flask, escape, request, Response, make_response
+from flask_cors import CORS
 import os
 
 FOLDER = os.path.realpath(os.path.join(os.path.dirname(__file__)))
 app = Flask(__name__)
+CORS(app)
 
 def success():
     return make_response({"success": True})
@@ -30,7 +32,7 @@ def registration():
 
     if request.args.get("role") == "lab":
         return fail("nothing is wrong, just return an error to test errors")
-    
+
 @app.route('/api/v1/password-forgotten', methods=['POST'])
 def pw_forgotten():
     if not request.get_json().get("email"):
@@ -54,7 +56,7 @@ def profile():
     return read_file('resources/profile.json')
 
 
-@app.route("/login", methods=['PSOT'])
+@app.route("/api/v1/login", methods=['POST'])
 def login():
     body = request.get_json()
     if not body:
@@ -74,7 +76,7 @@ def search():
 
     if t == "lab":
         return read_file('resources/searchresults_labs.json')
-    
+
     return fail("Invalid 'role' parameter")
 
 def main():
