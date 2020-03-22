@@ -16,7 +16,12 @@ let router = express.Router()
 app.use(express.json());
 app.use('/api/v1', router)
 
-let HMAC_KEY = readFileSync('./secret/jsonwebtoken_hmacKey.txt', { encoding: 'utf8' })
+let HMAC_KEY: string
+try {
+    HMAC_KEY = readFileSync('./secret/jsonwebtoken_hmacKey.txt', { encoding: 'utf8' })
+} catch {
+    HMAC_KEY = "randomHmacKey"
+}
 
 router.post('/registration', async function (req, res, next) {
     let body = req.body
@@ -180,7 +185,6 @@ router.post("/login", async function(req, res, next){
 
 
 // TODO: insert authentication middleware here
-
 
 
 
