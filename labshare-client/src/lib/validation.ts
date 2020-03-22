@@ -93,21 +93,36 @@ export class Validator {
 
 
     static validateProfileFields(object: any, role: string) {
-        this.validateCity(object.address.city)
-        this.validateZipcode(object.address.zipcode)
+        if (object.address?.city)
+            this.validateCity(object.address?.city)
+        if (object.address?.zipcode)
+            this.validateZipcode(object.address?.zipcode)
 
         if (role === "human") {
-            this.validateFirstname(object.firstname)
-            this.validateLastname(object.lastname)
-            this.validatePhone(object.contact.phone)
-            this.validateDescription(object.description)
+            if (object.firstname)
+                this.validateFirstname(object.firstname)
+            if (object.lastname)
+                this.validateLastname(object.lastname)
+            if (object.contact?.phone)
+                this.validatePhone(object.contact?.phone)
+            if (object.contact?.email)
+                this.validateEmail(object.contact?.email)
+            if (object.description)
+                this.validateDescription(object.description)
         }
         else if (role == "lab") {
-            this.validateFirstname(object.labContact.firstname)
-            this.validateLastname(object.labContact.lastname)
-            this.validatePhone(object.labContact.phone)
-            this.validateStreet(object.address.street)
-            this.validateName(object.name)
+            if (object.labContact?.firstname)
+                this.validateFirstname(object.labContact?.firstname)
+            if (object.labContact?.lastname)
+                this.validateLastname(object.labContact?.lastname)
+            if (object.labContact?.phone)
+                this.validatePhone(object.labContact?.phone)
+            if (object.labContact?.email)
+                this.validateEmail(object.labContact?.email)
+            if (object.address?.street)
+                this.validateStreet(object.address?.street)
+            if (object.name)
+                this.validateName(object.name)
         }
     }
 }
