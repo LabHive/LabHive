@@ -18,6 +18,9 @@ export default new Vuex.Store({
     },
     logout (state) {
       state.isAuthenticated = false;
+    },
+    setData (state, payload) {
+      state.listData = payload;
     }
   },
   getters: {
@@ -40,10 +43,11 @@ export default new Vuex.Store({
       commit('setSession', payload);
       commit('logout');
     },
-    getListData({ Vue }) {
-      Vue.$http.get('profile')
+    getListData({ Vue, commit }) {
+      Vue.$http.get('search', {role: "lab"})
       .then(success => {
-        console.log(success.body)
+        commit('setData', success.body);
+        console.log("search" + success.body)
       },
       error => {
         console.log(error)

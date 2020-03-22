@@ -149,4 +149,8 @@ export default {
             margin: 0;
         }
     }
+
+    .p-progressbar {
+      height: 2px;
+    }
 </style>
