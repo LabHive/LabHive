@@ -3,11 +3,11 @@
         "city": "Würzburg",
         "zipcode": "97070"
     },
-    "firstname": "Sabine",
-    "lastname": "Juschkat",
     "contact": {
-        "email": "juschkat.sabine@gmail.com",
-        "telephone": "01701234556"
+        "email": "kleiner@test.de",
+        "telephone": "123456",
+        "firstname": "Test",
+        "lastname": "Test2"
     },
     "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
     "details": {

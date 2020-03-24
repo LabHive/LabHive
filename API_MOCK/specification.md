@@ -11,24 +11,24 @@ POST https://labshare.de/api/v1/registration?role=human
         "city": "", // ^[A-Za-zäöüÄÖÜß -]+$
         "zipcode": "58455", // ^[0-9]{5}$
     },
-    "firstname": "", // ^[A-Za-zäöüÄÖÜß -.]+$
-    "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     "contact": {
         "email": "",     // ^[A-Za-z.@]+$
-        "phone": "", // ^[0-9+]+$
+        "phone": "",     // ^[0-9+]+$
+        "firstname": "", // ^[A-Za-zäöüÄÖÜß -.]+$
+        "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     },
     "description": "",
-    "details": {
-       "RNA-Extraction": 29,
-       "RT-PCR": 0,
+    "details": {    // aus dem Fragebogen
+       "rnaExtraction": 29,
+       "rtPcr": 0,
        "hoursPerWeek": 20,
     },
-    "available": true,
+    "availability": true,
     "password": ""
 }
 ```
 
-### Response
+### Response (General response format)
 ```jsonc
 {
     "success": true
@@ -57,7 +57,7 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
         "zipcode": "58455", // ^[0-9]{5}$
         "street": "" // ^[A-Za-z -.0-9]+$, nur für Labore!! (Datensparsamkeit)
     },
-    "labContact": {
+    "contact": {
         "firstname": "",
         "lastname": "",
         "email": "",
@@ -87,11 +87,11 @@ Unique Identifier (kein Labor kann sich 2x registrieren):
 
 
 
-## Passwort vergessen
+## Passwort vergessen/ändern
 ### Request
 POST https://labshare.de/api/v1/forgot-password
 
-Verschickt eine Mail mit Link auf Passwort neu setzen
+Verschickt eine Mail mit Link, der einen Token beinhaltet
 
 ```jsonc
 {
@@ -108,6 +108,7 @@ POST https://labshare.de/api/v1/reset-password?token=token
 }
 ```
 
+### Request
 POST https://labshare.de/api/v1/change-password
 ```jsonc
 {
@@ -123,40 +124,46 @@ GET https://labshare.de/api/v1/profile
 POST https://labshare.de/api/v1/profile
 DELETE https://labshare.de/api/v1/profile
 
-Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editiert werden können:
+### GET Request
+Gibt alle Informationen über das Profil zurück
+
+### DELETE Request
+Kein Body, Standard Response
+
+### POST Request
+Gleiche Struktur wie bei Registrierung
+
+Liefert folgende Infos in gleichem Format, wie bei der Registrierung. Folgende Eigenschaften können geändert werden:
 * Person:
-    * Location
+    * Address
     * Description
     * Contact
     * Available
     * Details
 * Lab:
-    * Location
-    * LabContact
+    * Address
+    * Contact
     * Name
     * Description
     * Bedarfsanfrage erstellen/löschen etc.
         ```jsonc
         "lookingFor": {
             "humanRessources": true,
+            "humanSkills": {
+                "rnaExtraction": true,
+                "rtPcr": 0,
+            },
             "devices": {
-                "RNA-Exctraction": true,
+                "rnaExtraction": true,
                 "TestingKit": true
             },
             "advice": {
-                "RNA-Exctraction": true,
+                "rnaExtraction": true,
                 "testingKit": true,
                 "dataEvaluation": true
             }
         }
         ```
-
-### POST Request
-Gleiche Struktur wie bei Registrierung
-
-### DELETE Request
-Kein Body, Standard Response
-
 
 
 
@@ -208,7 +215,7 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
                     "zipcode": "58455", // ^[0-9]{5}$
                     "street": "" // ^[A-Za-z -.0-9]+$, nur bei Laboren vorhanden
                 },
-                "labContact": {
+                "contact": {
                     "firstname": "",
                     "lastname": "",
                     "email": "",
@@ -222,7 +229,7 @@ Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editi
         }
     ],
     "_links": {
-        "next": "https://labshare.de/api/v1/search?filter1=""&filter2=true&filter3=21&page=3"
+        "next": "https://labshare.de/api/v1/search?...&page=3"
     }
 }
 
