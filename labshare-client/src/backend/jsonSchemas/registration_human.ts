@@ -1,12 +1,14 @@
-import { ISchema, names } from './jsonschemas';
-export let registration_human: ISchema = {
+import { Schemas } from "./schemaIdentifier";
+import { Schema } from 'jsonschema';
+import { contact } from './contact';
+import { address } from './address';
+
+export let registration_human: Schema = {
     id: "/registration_human",
     type: "object",
     properties: {
-        address: { "$ref": names.address },
-        firstname: { "type": "string" },
-        lastname: { "type": "string" },
-        contact: { "$ref": names.contact },
+        address: address,
+        contact: contact,
         description: { type: "string" },
         password: { type: "string" },
         available: { type: "boolean" },
@@ -20,5 +22,5 @@ export let registration_human: ISchema = {
             required: ["rnaExtraction", "rtPcr", "hoursPerWeek"]
         },
     },
-    required: ["address", "firstname", "lastname", "contact", "description", "password", "details"]
+    required: ["address", "contact", "description", "password", "details", "available"]
 }

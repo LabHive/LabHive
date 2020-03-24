@@ -1,6 +1,8 @@
-import { ISchema, names } from './jsonschemas';
-export let password_reset: ISchema = {
-    id: names.password_reset,
+import { Schemas } from "./schemaIdentifier";
+import { Schema } from 'jsonschema';
+
+export let password_reset: Schema = {
+    id: Schemas.password_reset,
     type: "object",
     properties: {
         newPassword: { type: "string" },

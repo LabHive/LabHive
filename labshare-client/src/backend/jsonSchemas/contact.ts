@@ -1,6 +1,6 @@
-import { ISchema, names } from './jsonschemas';
-export let contact: ISchema = {
-    id: names.contact,
+import { Schema } from 'jsonschema';
+
+export let contact: Schema = {
     type: "object",
     properties: {
         email: { type: "string" },
@@ -8,5 +8,5 @@ export let contact: ISchema = {
         firstname: { type: "string" },
         lastname: { type: "string" }
     },
-    required: ["email", "phone"]
+    required: ["email", "phone", "firstname", "lastname"]
 };

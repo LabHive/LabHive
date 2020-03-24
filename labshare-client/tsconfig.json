@@ -16,7 +16,8 @@
             ]
         },
         "strict": true,
-        "noImplicitReturns": true
+        "noImplicitReturns": true,
+        "noImplicitThis": true
     },
     "include": [
         "src/**/*"

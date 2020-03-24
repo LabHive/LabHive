@@ -8,84 +8,84 @@ export class Validator {
         }
     }
 
-    static validateFirstname(firstname: string) {
+    static validateFirstname(firstname?: string) {
         this.validateTextShort(firstname);
     }
 
-    static validateLastname(lastname: string) {
+    static validateLastname(lastname?: string) {
         this.validateTextShort(lastname);
     }
 
-    static validateZipcode(zipcode: string) {
+    static validateZipcode(zipcode?: string) {
         let regexpZipCode = new RegExp(/^[0-9]{5}$/);
-        if (!regexpZipCode.test(zipcode)) {
+        if (!zipcode || !regexpZipCode.test(zipcode)) {
             throw new ValidationError("Bitte nicht mehr als fünf Zeichen eingeben")
         }
     }
 
-    static validateCity(city: string) {
+    static validateCity(city?: string) {
         this.validateTextShort(city);
     }
 
-    static validateStreet(street: string) {
+    static validateStreet(street?: string) {
         this.validateTextShort(street);
     }
 
-    static validatePhone(phone: string) {
+    static validatePhone(phone?: string) {
         let regexpPhone = new RegExp(/^[0-9+]+$/);
-        if (!regexpPhone.test(phone)) {
+        if (!phone || !regexpPhone.test(phone)) {
             throw new ValidationError("Telefonnummer bitte in der Form +49931123 oder 12344 eingeben ohne Leerzeichen, - oder /")
         }
     }
 
-    static validateDescription(description: string) {
+    static validateDescription(description?: string) {
         this.validateTextLong(description);
     }
 
-    static validateRNAExctractionHours(hours: number) {
+    static validateRNAExctractionHours(hours?: number) {
         this.validateNumber(hours);
     }
 
-    static validateRTPCRHours(hours: number) {
+    static validateRTPCRHours(hours?: number) {
         this.validateNumber(hours);
     }
 
-    static validateHoursPerWeek(hours: number) {
+    static validateHoursPerWeek(hours?: number) {
         this.validateNumber(hours);
     }
 
-    static validateName(name: string) {
+    static validateName(name?: string) {
         this.validateTextShort(name)
     }
 
 
-    private static validateTextShort(text: string) {
-        if (text.length > 200) {
+    private static validateTextShort(text?: string) {
+        if (!text || text.length > 200) {
             throw new ValidationError("Nicht mehr als 200 Zeichen eingeben")
         }
     }
 
-    private static validateTextLong(text: string) {
-        if (text.length > 2000) {
+    private static validateTextLong(text?: string) {
+        if (!text || text.length > 2000) {
             throw new ValidationError("Nicht mehr als 2000 Zeichen eingeben")
         }
     }
 
-    private static validateNumber(number: number) {
-        if (!Number.isInteger(number)) {
+    private static validateNumber(number?: number) {
+        if (!number || !Number.isInteger(number)) {
             throw new ValidationError("Bitte eine Zahl eingeben")
         }
     }
 
-    static validateSearchType(searchtype: string) {
-        if (searchtype !== "human_ressources" && searchtype !== "device" && searchtype !== "advice") {
+    static validateSearchType(searchtype?: string) {
+        if (!searchtype || (searchtype !== "human_ressources" && searchtype !== "device" && searchtype !== "advice")) {
             throw new ValidationError("Unknown searchtype")
         }
 
     }
 
-    static validateRole(role: string) {
-        if (role !== "lab" && role !== "human") {
+    static validateRole(role?: string) {
+        if (!role || (role !== "lab" && role !== "human")) {
             throw new ValidationError("Unknown role")
         }
 

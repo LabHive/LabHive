@@ -1,6 +1,6 @@
-import { ISchema, names } from './jsonschemas';
-export let address: ISchema = {
-    id: names.address,
+import { Schema } from 'jsonschema';
+
+export let address: Schema = {
     type: "object",
     properties: {
         city: { type: "string" },
