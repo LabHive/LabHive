@@ -1,27 +1,29 @@
 <template>
   <div class="register">
+    <h1>Registrieren</h1>
       <template v-if="!loadedForm">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <p class="lead text-center" >Wie möchtest du uns unterstützen?</p>
-            </div>
-            <div class="col-6">
-              <Button label="Helfer" @click="loadedForm = forms.HELPER" />
-            </div>
-            <div class="col-6">
-              <Button label="Labor" @click="loadedForm = forms.LAB" />
-            </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="lead text-center">Wie möchtest du uns unterstützen?</p>
+          </div>
+          <div class="col-6">
+            <Button label="Helfer" @click="loadedForm = forms.HELPER" />
+          </div>
+          <div class="col-6">
+            <Button label="Labor" @click="loadedForm = forms.LAB" />
           </div>
         </div>
       </template>
-      <LabshareForm v-if="loadedForm === forms.HELPER" :formDefinition="formHelper" @formcomplete="register"/>
-      <LabshareForm v-if="loadedForm === forms.LAB" :formDefinition="formLab" @formcomplete="register"/>
+      <div v-else>
+        <HelperForm v-if="loadedForm === forms.HELPER" @formcomplete="register"/>
+        <LabForm v-if="loadedForm === forms.LAB" @formcomplete="register"/>
+      </div>
   </div>
 </template>
 
 <script>
-import LabshareForm from '../components/LabshareForm'
+import LabForm from '../components/LabForm'
+import HelperForm from '../components/HelperForm'
 import Button from 'primevue/button'
 
 export default {
@@ -35,67 +37,18 @@ export default {
         LAB: 2
       },
       loadedForm: 0,
-      formLab: [
-        {
-          title: "Account",
-          formElements: [
-            { type: "text", name: "email", label: "Email", value: "", submit: true },
-            { type: "password", name: "password", label: "Password", value: "", submit: true },
-          ]
-        },
-        {
-          title: "Persönliche Daten",
-          formElements: [
-            { type: "text", name: "firstname", label: "Vorname", value: "", submit: true },
-            { type: "text", name: "lastname", label: "Nachname", value: "", submit: true },
-            { type: "desc", title: "Erreichbarkeit", description:"Damit Labore die schnell und einfach kontaktieren können gib bitte deine Telefonnummer an. Natürlich nur wenn du möchtest." , submit: false },
-            { type: "text", name: "phone", label: "Telefon", value: "", submit: true },
-          ]
-        },
-        {
-          title: "Deine Fähigkeiten",
-          formElements: [
-            { type: "desc", title: "Wir benötigen deine Fähigkeiten", description:"damit wir dir passende Labore anzeigen können und diese dich finden können" , submit: false },
-            { type: "checkbox", name: "knowledge", options: ["RNA-Extraktion","RT-PCR"], value: [], submit: true }
-          ]
-        },
-      ],
-      formHelper: [
-        {
-          title: "Account",
-          formElements: [
-            { type: "text", name: "email", label: "Email", value: "", submit: true },
-            { type: "password", name: "password", label: "Password", value: "", submit: true },
-          ]
-        },
-        {
-          title: "Persönliche Daten",
-          formElements: [
-            { type: "text", name: "firstname", label: "Vorname", value: "", submit: true },
-            { type: "text", name: "lastname", label: "Nachname", value: "", submit: true },
-            { type: "desc", title: "Erreichbarkeit", description:"Damit Labore die schnell und einfach kontaktieren können gib bitte deine Telefonnummer an. Natürlich nur wenn du möchtest." , submit: false },
-            { type: "text", name: "phone", label: "Telefon", value: "", submit: true },
-          ]
-        },
-        {
-          title: "Deine Fähigkeiten",
-          formElements: [
-            { type: "desc", title: "Wir benötigen deine Fähigkeiten", description:"damit wir dir passende Labore anzeigen können und diese dich finden können" , submit: false },
-            { type: "checkbox", name: "knowledge", options: ["RNA-Extraktion","RT-PCR"], value: [], submit: true }
-          ]
-        },
-      ],
     };
   },
   methods: {
       register: function (data) {
         console.log(data)
-        this.$store.dispatch('login', {payload: '22'})
+        this.$store.dispatch('login', { payload: '22' })
         this.$router.push('/list')
       }
   },
   components: {
-      LabshareForm,
+      LabForm,
+      HelperForm,
       Button
   }
 };
@@ -107,7 +60,6 @@ export default {
   width: 100%;
   min-height: 100px;
 }
-
 .register {
   padding-top: 50px;
 }

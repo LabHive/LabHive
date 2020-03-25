@@ -1,15 +1,20 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-    <span class="p-float-label form-element-spacer">
-      <InputText id="email" type="text" v-model="user.email" />
-      <label for="email">Email</label>
-    </span>
-    <span class="p-float-label form-element-spacer">
-      <InputText id="password" type="password" v-model="user.password" />
-      <label for="password">Password</label>
-    </span>
-    <Button icon="pi pi-chevron-right" iconPos="right" label="Login" @click="login()" />
+
+    <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+
+    <div class="login-form">
+      <span class="p-float-label form-element-spacer">
+        <InputText id="email" type="text" v-model="user.email" />
+        <label for="email">Email</label>
+      </span>
+      <span class="p-float-label form-element-spacer">
+        <InputText id="password" type="password" v-model="user.password" />
+        <label for="password">Password</label>
+      </span>
+      <Button icon="pi pi-chevron-right" iconPos="right" label="Login" @click="login()" />
+    </div>
   </div>
 </template>
 
@@ -25,22 +30,23 @@ export default {
       user: {
         email: "",
         password: ""
-      }
+      },
+      error: null
     };
   },
   methods: {
       login: function () {
           if(this.user.username !== '' && this.user.password !== '') {
-            console.log("Logged in");
             this.$http.post('login', { email: this.user.email, password: this.user.password })
                 .then(response => {
                     this.$store.dispatch('login', response.body.sessionToken);
                     this.$router.push('/')
                 }, error => {
-                    console.log("error", error);
+                    this.error = "Error logging in, please check you details and try again";
+                    console.log("Login error", error);
                 });
           } else {
-              console.log("Error loggin in.");
+              this.error = "Please fill in the fields and try again";
           }
       }
   },
@@ -53,5 +59,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .login{
+    max-width: 20em;
+    margin: auto;
+  }
+  .login-form{
+    margin-top: 3em;
+  }
 </style>
