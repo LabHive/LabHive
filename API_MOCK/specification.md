@@ -18,7 +18,7 @@ POST https://labshare.de/api/v1/registration?role=human
         "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     },
     "description": "",
-    "details": {    // aus dem Fragebogen
+    "details": {    // information of the registration form (not final yet)
        "rnaExtraction": 29,
        "rtPcr": 0,
        "hoursPerWeek": 20,
@@ -46,7 +46,7 @@ POST https://labshare.de/api/v1/registration?role=human
 ### Request (Lab)
 POST https://labshare.de/api/v1/registration?role=lab
 
-Unique Identifier (kein Labor kann sich 2x registrieren):
+Unique Identifier (a laboratory should only exists once):
 * address
 * name
 
@@ -125,29 +125,29 @@ POST https://labshare.de/api/v1/profile
 DELETE https://labshare.de/api/v1/profile
 
 ### GET Request
-Gibt alle Informationen über das Profil zurück
+Returns all information about a profile
 
 ### DELETE Request
-Kein Body, Standard Response
+No body, default response
 
 ### POST Request
-Gleiche Struktur wie bei Registrierung
+Basicially the same structure as used for the registration.
+But only the following information can be changed.
 
-Liefert folgende Infos in gleichem Format, wie bei der Registrierung. Folgende Eigenschaften können geändert werden:
 * Person:
     * Address
     * Description
     * Contact
-    * Available
+    * Availability
     * Details
 * Lab:
     * Address
     * Contact
     * Name
     * Description
-    * Bedarfsanfrage erstellen/löschen etc.
+    * Description what the lab can search for
         ```jsonc
-        "lookingFor": {
+        "lookingFor": { // not final yet 
             "humanRessources": true,
             "humanSkills": {
                 "rnaExtraction": true,
@@ -167,7 +167,7 @@ Liefert folgende Infos in gleichem Format, wie bei der Registrierung. Folgende E
 
 
 
-## Search
+## Search (not final, depends on registration form)
 GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|human_ressources|advice"&filter=""&page=2
 
 ### Get Parameter
@@ -179,7 +179,7 @@ GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|hu
 * `page`
     * Default : 1
 *  `filter`
-    * Kommaseperierte Liste, mögliche Werte abhängig von search_type
+    * colon seperated list of filter
     * human_ressources: keine filter
     * device: rnaextraction,testkitrna,testkitrtpcr,rtpcr
     * advice: devicerna,devicertpcr,testkitrna,testkitrtpcr,primerdesign,dataevaluationrtpcr
@@ -187,19 +187,20 @@ GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|hu
     * Zahl
 
 
-* filter und page sind optional
-* Menschen können nach Labore und nach Equipment suchen
-* Labore können:
-    * Equipment suchen
-    * Menschen suchen
+* filter and page are optional
+* Humans can search for labs and equipment (maybe they have access to equipment)
+* Labs can search for:
+    * Equipment
+    * Humans
 
 ### Response
-Liefert folgende Infos in gleicher Struktur wie bei der Registrierung, die editiert werden können:
+Basicially the same structure as used for the registration.
 * Person:
-    * Location
-    * Description
-    * Contact
-    * Available
+    * location
+    * address
+    * description
+    * contact
+    * availability
 
 ```jsonc
 {
