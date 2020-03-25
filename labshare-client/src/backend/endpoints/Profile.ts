@@ -5,6 +5,7 @@ import { getUser, UserHuman, UserLab } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { merge } from 'lodash';
+import { IUserCommon } from '../database/schemas/IUserCommon';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -31,11 +32,13 @@ class Profile {
 
 
     async post(req: express.Request, res: express.Response, next: express.NextFunction) {
-        let body = req.body;
+        let body: IUserCommon = req.body;
         let token = utils.getDecodedJWT(req);
         let schema: any;
         
         delete body.password
+        delete body._id
+        delete body.__v
         if (token.role === "human") {
             // deep copy schema
             schema = JSON.parse(JSON.stringify(schemas.registration_human));
@@ -43,6 +46,7 @@ class Profile {
             // delete properties that should not be editable
             delete body.contact.firstname
             delete body.contact.lastname
+            delete body.address.street
         }
         else {
             // deep copy schema
@@ -60,9 +64,25 @@ class Profile {
         if (!user) {
             return utils.badRequest(res)
         }
-        let userObj = user.toObject()
+        let userObj: IUserCommon = user.toObject()
         merge(userObj, body)
+
+        let location = undefined
+        if (userObj.address.zipcode != user.address.zipcode ||
+            userObj.address.street != user.address.street ||
+            userObj.address.city != user.address.city) {
+                try {
+                    location = await utils.addressToCoordinates(userObj.address)
+                } catch (error) {
+                    return utils.handleError(res, error)
+                }
+            }
+
+
         merge(user, userObj)
+        if (location) {
+            user.location = location
+        }
 
         user.save().then((doc) => {
             if (!doc)

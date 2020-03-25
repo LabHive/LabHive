@@ -33,8 +33,8 @@ class Utils {
             if (response.data.length == 0) {
                 throw new LocationNotFoundError("Invalid location")
             }
-            let lon = <number>response.data[0].lon
-            let lat = <number>response.data[0].lat
+            let lon = parseFloat(response.data[0].lon)
+            let lat = parseFloat(response.data[0].lat)
             return {
                 type: "Point",
                 coordinates: [lon, lat]
