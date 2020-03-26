@@ -1,29 +1,33 @@
 <template>
   <div class="main-div">
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-      <a class="navbar-brand" href="#"><img height="40px" src="./assets/logo.svg"/>LabShare</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="container">
+        <a class="navbar-brand w-100 order-1 order-md-0" href="#"><img height="40px" src="./assets/logo.svg"/>LabShare</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item active">
-            <router-link to="/login" class="nav-link">Login</router-link>
-          </li>
-          <li class="nav-item active">
-            <router-link to="/register" class="nav-link">Registrieren</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/ueber-uns" class="nav-link">Über uns</router-link>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse w-100 order-2" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/login" class="nav-link">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/register" class="nav-link">Registrieren</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/ueber-uns" class="nav-link">Über uns</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <div class="content container-fluid">
+
+    <div class="content container">
       <div id="app">
         <router-view ></router-view>
       </div>
@@ -48,11 +52,6 @@ import 'primeicons/primeicons.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 
-// TODO: remove this
-// just an example
-import { Validator } from '../dist-browser/lib/validation'
-Validator.validateFirstname("test")
-
 export default {
   name: "App",
   components: {}
@@ -70,12 +69,14 @@ $color-white: #f2f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $color-blue;
+  margin-top: 1em;
+  margin-bottom: 3em;
 }
 
 body {
   display:flex;
   flex-direction:column;
-  height:100vh;
+  height: 100vh;
 }
 
 .navbar-custom{
