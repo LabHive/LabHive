@@ -18,6 +18,10 @@ export interface IUserCommon extends Document {
     }
     description: string;
     password: string;
+    consent: {
+        processing: boolean;
+        publicContact: boolean;
+    }
 }
 
 export const UserCommonSchema = new Schema({
@@ -46,4 +50,8 @@ export const UserCommonSchema = new Schema({
     },
     description: String,
     password: String,
+    consent: {
+        processing: Boolean,
+        publicContact: Boolean,
+    }
 })

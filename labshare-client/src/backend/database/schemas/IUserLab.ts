@@ -19,16 +19,16 @@ export interface IUserLab extends IUserCommon {
 export const UserLabSchema = new Schema({
     ...UserCommonSchema.obj,
     name: String,
-    lookingFor: new Schema({
+    lookingFor: {
         humanRessources: Boolean,
-        devices: new Schema({
+        devices: {
             rnaExtraction: Boolean,
             testingKit: Boolean
-        }),
-        advice: new Schema({
+        },
+        advice: {
             rnaExtraction: Boolean,
             testingKit: Boolean,
             dataEvaluation: Boolean
-        })
-    })
+        }
+    }
 });

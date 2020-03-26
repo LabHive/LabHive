@@ -7,6 +7,7 @@ import { Validator as v } from '../../lib/validation';
 import { Document } from "mongoose";
 import HttpStatus from 'http-status-codes';
 import { IUserCommon } from '../database/schemas/IUserCommon';
+import { ValidationError } from '../errors';
 
 
 
@@ -31,6 +32,10 @@ export async function registration(req: express.Request, res: express.Response, 
         v.validateProfileFields(body, req.query.role)
     } catch (error) {
         return utils.handleError(res, error)
+    }
+
+    if (!body.consent.processing) {
+        return utils.handleError(res, new ValidationError("Ohne Einwilligung dürfen wir die Daten nicht verarbeiten."))
     }
 
     try {

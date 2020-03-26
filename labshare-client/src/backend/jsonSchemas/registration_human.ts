@@ -12,15 +12,27 @@ export let registration_human: Schema = {
         description: { type: "string" },
         password: { type: "string" },
         availability: { type: "boolean" },
+        organization: { type: "string" },
         details: {
             type: "object",
             properties: {
                 skills: {
                     type: "array",
+                    items: {
+                        type: "string"
+                    }
                 }
             },
             required: ["skills"]
         },
+        consent: {
+            type: "object",
+            properties: {
+                processing: { type: "boolean" },
+                publicContact: { type: "boolean" },
+            },
+            required: ["processing", "publicContact"]
+        },
     },
-    required: ["address", "contact", "description", "password", "details", "availability"]
+    required: ["address", "contact", "description", "password", "details", "availability", "consent", "organization"]
 }

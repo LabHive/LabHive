@@ -12,6 +12,14 @@ export let registration_lab: Schema = {
         name: { type: "string" },
         description: { type: "string" },
         password: { type: "string" },
+        consent: {
+            type: "object",
+            properties: {
+                processing: { type: "boolean" },
+                publicContact: { type: "boolean" },
+            },
+            required: ["processing", "publicContact"]
+        }
     },
-    required: ["address", "contact", "name", "description", "password"]
+    required: ["address", "contact", "name", "description", "password", "consent"]
 };

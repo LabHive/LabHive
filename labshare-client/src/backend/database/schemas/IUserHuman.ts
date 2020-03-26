@@ -3,19 +3,17 @@ import { IUserCommon, UserCommonSchema } from "./IUserCommon";
 
 export interface IUserHuman extends IUserCommon {
     details: {
-        rnaExtraction: number;
-        rtPcr: number;
-        hoursPerWeek: number;
+        skills: string[]
     };
-    available: boolean;
+    availability: boolean;
+    organization: string;
 }
 
 export const UserHumanSchema = new Schema({
     ...UserCommonSchema.obj,
-    details: new Schema({
-        rnaExtraction: Number,
-        rtPcr: Number,
-        hoursPerWeek: Number
-    }),
-    available: { type: Boolean, default: true },
+    details: {
+        skills: [String]
+    },
+    availability: { type: Boolean, default: true },
+    organization: String
 });

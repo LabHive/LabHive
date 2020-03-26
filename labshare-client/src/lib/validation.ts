@@ -88,11 +88,47 @@ export class Validator {
         if (!role || (role !== "lab" && role !== "human")) {
             throw new ValidationError("Unknown role")
         }
+    }
 
+    static validateSkills(skills?: string[]) {
+        if (!skills) 
+            throw new ValidationError("Invalid skills")
+
+        let labSkills = {
+            sample_processing: "Vor/Aufbereitung klinischer Proben",
+            rna_isolation: "RNA isolation (Mit Kit)",
+            qpcr: "qPCR",
+            bsl2: "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
+            bsl3: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
+            sample_collection: "klinische Erfahrung (Probenkollektion)"
+        }
+        
+        let skillCopy = Array.from(skills)
+        for (let i in labSkills) {
+            let index = skillCopy.indexOf(i)
+            if (index > -1) {
+                skillCopy.splice(index, 1)
+            }
+        }
+
+        if (skillCopy.length > 0) {
+            throw new ValidationError("Invalid skills")
+        }
+    }
+
+    static validateConsent(consent?: any) {
+        if (!consent || typeof consent.processing !== 'boolean' || typeof consent.publicContact !== 'boolean') {
+            throw new ValidationError('Invalid consent')
+        }
+    }
+
+    static validateOrganization(org?: string) {
+        this.validateTextShort(org)
     }
 
 
     static validateProfileFields(object: any, role: string) {
+        // Address
         if (object.address?.city)
             this.validateCity(object.address?.city)
         if (object.address?.zipcode)
@@ -100,6 +136,7 @@ export class Validator {
         if (object.address?.street)
             this.validateStreet(object.address?.street)
 
+        // Contact
         if (object.contact?.firstname)
             this.validateFirstname(object.contact?.firstname)
         if (object.contact?.lastname)
@@ -109,13 +146,21 @@ export class Validator {
         if (object.contact?.email)
             this.validateEmail(object.contact?.email)
 
+        // Other
         if (object.description)
             this.validateDescription(object.description)
+        if (object.consent)
+            this.validateConsent(object.consent)
 
-    
         if (role == "lab") {
             if (object.name)
                 this.validateName(object.name)
+        }
+        else {
+            if (object.details?.skills) 
+                this.validateSkills(object.details?.skills)
+            if (object.organization) 
+                this.validateOrganization(object.organization)
         }
     }
 }
