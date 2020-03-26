@@ -7,7 +7,11 @@ export default new Vuex.Store({
   state: {
     session: null,
     isAuthenticated: false,
-    listData: null
+    listData: null,
+    error: {
+      state: false,
+      description: null
+    }
   },
   mutations: {
     setSession (state, payload) {
@@ -21,6 +25,13 @@ export default new Vuex.Store({
     },
     setData (state, payload) {
       state.listData = payload;
+    },
+    setError(state, description) {
+      state.error.state = true
+      state.error.description = description
+    },
+    clearError(state) {
+      state.error.state = false
     }
   },
   getters: {
@@ -32,7 +43,7 @@ export default new Vuex.Store({
     },
     authenticated: state => {
       return state.isAuthenticated
-    }
+    },
   },
   actions: {
     login ({ commit }, payload) {

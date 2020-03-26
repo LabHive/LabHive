@@ -1,7 +1,10 @@
 <template>
   <div class="register">
     <h1>Registrieren</h1>
-      <template v-if="!loadedForm">
+      <template v-if="registrationComplete">
+        <h2>Danke für deine Registrierung!</h2>
+      </template>
+      <template v-else-if="!loadedForm">
         <div class="row">
           <div class="col-12">
             <p class="lead text-center">Wie möchtest du uns unterstützen?</p>
@@ -37,13 +40,25 @@ export default {
         LAB: 2
       },
       loadedForm: 0,
+      registrationComplete: false
     };
   },
   methods: {
       register: function (data) {
         console.log(data)
-        this.$store.dispatch('login', { payload: '22' })
-        this.$router.push('/list')
+      
+        let role = this.loadedForm == this.forms.HELPER ? 'human': 'lab'
+
+        this.$http.post('registration', data, {params: {role: role}})
+        .then(resp => {
+          let data = resp.body
+          if (data.success) {
+            this.registrationComplete = true
+            this.$store.commit('clearError')
+          }
+        }, err => {
+          this.$store.commit('setError', err.body.errorDescription)
+        })
       }
   },
   components: {

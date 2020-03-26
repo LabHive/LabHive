@@ -8,7 +8,7 @@
     </span>
 
     <span class="p-float-label form-element-spacer">
-      <InputText id="lastName" type="text" v-model="formData.contact.lastName" />
+      <InputText id="lastName" type="text" v-model="formData.contact.lastname" />
       <label for="lastName">Last name</label>
     </span>
 
@@ -54,7 +54,7 @@
             :inputId="key"
             :name="key"
             :value="key"
-            v-model="formData.details.skils"
+            v-model="formData.details.skills"
           />
           <label class="p-checkbox-label" :for="key">{{ option }}</label>
         </div>
@@ -66,7 +66,9 @@
       <label for="description">Comments</label>
     </span>
   
-
+    <div style="color: red" v-if="error.state">
+      {{ error.description }}
+    </div>
     <Button
       icon="pi pi-chevron-right"
       iconPos="right"
@@ -99,7 +101,7 @@ export default {
         password: "",
         description: "",
         details: {
-          skils: []
+          skills: []
         },
         availability: true
       },
@@ -111,6 +113,11 @@ export default {
         bsl3: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
         sample_collection: "klinische Erfahrung (Probenkollektion)"
       }
+    }
+  },
+  computed: {
+    error: function() {
+      return this.$store.state.error
     }
   },
   components: {

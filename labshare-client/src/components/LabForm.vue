@@ -35,7 +35,7 @@
     </span>
 
     <span class="p-float-label form-element-spacer">
-      <InputText id="lastName" type="text" v-model="formData.contact.lastName" />
+      <InputText id="lastName" type="text" v-model="formData.contact.lastname" />
       <label for="lastName">Last name</label>
     </span>
 
@@ -54,6 +54,9 @@
       <label for="password">Password</label>
     </span>
 
+    <div style="color: red" v-if="error.state">
+      {{ error.description }}
+    </div>
     <Button
       icon="pi pi-chevron-right"
       iconPos="right"
@@ -89,10 +92,15 @@ export default {
         }
       }
   },
+  computed: {
+    error() {
+      return this.$store.state.error
+    }
+  },
   methods: {
       submit: function() {
         this.$emit('formcomplete', this.formData)
-      }
+      },
   },
   components: {
     Button,
