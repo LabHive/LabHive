@@ -11,9 +11,16 @@
     },
     "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
     "details": {
-       "rnaExtraction": 123,
-       "rtPcr": 12,
-       "hoursPerWeek": 20
+       "skills": [
+           "rna_isolation",
+           "sample_processing"
+       ]
     },
-    "password": "password"
+    "password": "password",
+    "consent": {
+        "publicContact": true,
+        "processing": true,
+    },
+    "organization": "Lab XY"
+
 }

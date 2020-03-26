@@ -19,12 +19,18 @@ POST https://labshare.de/api/v1/registration?role=human
     },
     "description": "",
     "details": {    // information of the registration form (not final yet)
-       "rnaExtraction": 29,
-       "rtPcr": 0,
-       "hoursPerWeek": 20,
+       "skills": [
+           "abc",
+           "def"
+       ]
     },
     "availability": true,
-    "password": ""
+    "password": "",
+    "organization": "",
+    "consent": {
+        "processing": true,
+        "publicContact": true,
+    }
 }
 ```
 
@@ -65,7 +71,11 @@ Unique Identifier (a laboratory should only exists once):
     },
     "name": "Laborname",
     "description": "",
-    "password": ""
+    "password": "",
+    "consent": {
+        "processing": true,
+        "publicContact": true,
+    }
 }
 ```
 
@@ -132,19 +142,10 @@ No body, default response
 
 ### POST Request
 Basicially the same structure as used for the registration.
-But only the following information can be changed.
+ALL information must be updateable!! (GDPR)
 
-* Person:
-    * Address
-    * Description
-    * Contact
-    * Availability
-    * Details
+For the lab another dictionary key is added, where the lab can specify what it is searching for.
 * Lab:
-    * Address
-    * Contact
-    * Name
-    * Description
     * Description what the lab can search for
         ```jsonc
         "lookingFor": { // not final yet 

@@ -17,5 +17,9 @@
         "hoursPerWeek": 20
     },
     "password": "password",
-    "name": "SpongebobLabor"
+    "name": "SpongebobLabor",
+    "consent": {
+        "publicContact": true,
+        "processing": true,
+    }
 }
