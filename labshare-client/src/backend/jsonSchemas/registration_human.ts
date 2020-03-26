@@ -11,16 +11,16 @@ export let registration_human: Schema = {
         contact: contact,
         description: { type: "string" },
         password: { type: "string" },
-        available: { type: "boolean" },
+        availability: { type: "boolean" },
         details: {
             type: "object",
             properties: {
-                rnaExtraction: { type: "number" },
-                rtPcr: { type: "number" },
-                hoursPerWeek: { type: "number" }
+                skills: {
+                    type: "array",
+                }
             },
-            required: ["rnaExtraction", "rtPcr", "hoursPerWeek"]
+            required: ["skills"]
         },
     },
-    required: ["address", "contact", "description", "password", "details", "available"]
+    required: ["address", "contact", "description", "password", "details", "availability"]
 }

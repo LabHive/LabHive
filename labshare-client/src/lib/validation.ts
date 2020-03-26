@@ -97,30 +97,23 @@ export class Validator {
             this.validateCity(object.address?.city)
         if (object.address?.zipcode)
             this.validateZipcode(object.address?.zipcode)
+        if (object.address?.street)
+            this.validateStreet(object.address?.street)
 
-        if (role === "human") {
-            if (object.firstname)
-                this.validateFirstname(object.firstname)
-            if (object.lastname)
-                this.validateLastname(object.lastname)
-            if (object.contact?.phone)
-                this.validatePhone(object.contact?.phone)
-            if (object.contact?.email)
-                this.validateEmail(object.contact?.email)
-            if (object.description)
-                this.validateDescription(object.description)
-        }
-        else if (role == "lab") {
-            if (object.labContact?.firstname)
-                this.validateFirstname(object.labContact?.firstname)
-            if (object.labContact?.lastname)
-                this.validateLastname(object.labContact?.lastname)
-            if (object.labContact?.phone)
-                this.validatePhone(object.labContact?.phone)
-            if (object.labContact?.email)
-                this.validateEmail(object.labContact?.email)
-            if (object.address?.street)
-                this.validateStreet(object.address?.street)
+        if (object.contact?.firstname)
+            this.validateFirstname(object.contact?.firstname)
+        if (object.contact?.lastname)
+            this.validateLastname(object.contact?.lastname)
+        if (object.contact?.phone)
+            this.validatePhone(object.contact?.phone)
+        if (object.contact?.email)
+            this.validateEmail(object.contact?.email)
+
+        if (object.description)
+            this.validateDescription(object.description)
+
+    
+        if (role == "lab") {
             if (object.name)
                 this.validateName(object.name)
         }
