@@ -54,6 +54,19 @@
       <label for="password">Password</label>
     </span>
 
+    <div class="checkbox-group form-element-spacer">
+      <div class="checkbox form-element-spacer" key="consentProcessing">
+        <Checkbox id="consentProcessing" v-model="formData.consent.processing" :binary="true"/>
+        <label for="consentProcessing" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.
+        </label>
+      </div>
+
+      <div class="checkbox form-element-spacer" key="consentPublicContact">
+        <Checkbox id="consentPublicContact" v-model="formData.consent.publicContact" :binary="true"/>
+        <label for="consentPublicContact" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</label>
+      </div>
+    </div>
+
     <div style="color: red" v-if="error.state">
       {{ error.description }}
     </div>
@@ -69,6 +82,7 @@
 <script>
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
+import Checkbox from "primevue/checkbox";
 
 export default {
   name: 'LabForm',
@@ -88,7 +102,11 @@ export default {
           },
           name: "",
           description: "",
-          password: ""
+          password: "",
+          consent: {
+            publicContact: false,
+            processing: false,
+          }
         }
       }
   },
@@ -104,7 +122,8 @@ export default {
   },
   components: {
     Button,
-    InputText
+    InputText,
+    Checkbox
   }
 }
 </script>

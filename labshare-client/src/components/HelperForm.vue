@@ -1,6 +1,6 @@
 <template>
   <div class="lab-form">
-    <h3>Contact details</h3>
+    <h3 class="form-element-spacer">Contact details</h3>
     
     <span class="p-float-label form-element-spacer">
       <InputText id="firstName" type="text" v-model="formData.contact.firstname" />
@@ -28,8 +28,8 @@
     </span>
 
     <span class="p-float-label form-element-spacer">
-      <InputText id="name" type="text" v-model="formData.name" />
-      <label for="name">Labore/Institut</label>
+      <InputText id="organization" type="text" v-model="formData.organization" />
+      <label for="organization">Labore/Institut</label>
     </span>    
 
     <h3>Location</h3>
@@ -65,6 +65,19 @@
       <InputText id="description" type="text" v-model="formData.description" />
       <label for="description">Comments</label>
     </span>
+
+    <div class="checkbox-group form-element-spacer">
+      <div class="checkbox form-element-spacer" key="consentProcessing">
+        <Checkbox id="consentProcessing" v-model="formData.consent.processing" :binary="true"/>
+        <label for="consentProcessing" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.
+        </label>
+      </div>
+
+      <div class="checkbox form-element-spacer" key="consentPublicContact">
+        <Checkbox id="consentPublicContact" v-model="formData.consent.publicContact" :binary="true"/>
+        <label for="consentPublicContact" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</label>
+      </div>
+    </div>
   
     <div style="color: red" v-if="error.state">
       {{ error.description }}
@@ -103,11 +116,16 @@ export default {
         details: {
           skills: []
         },
-        availability: true
+        organization: "",
+        availability: true,
+        consent: {
+          processing: false,
+          publicContact: false,
+        }
       },
       labSkills: {
         sample_processing: "Vor/Aufbereitung klinischer Proben",
-        rna: "RNA isolation (Mit Kit)",
+        rna_isolation: "RNA isolation (Mit Kit)",
         qpcr: "qPCR",
         bsl2: "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
         bsl3: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
