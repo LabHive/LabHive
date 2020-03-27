@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     session: null,
-    isAuthenticated: false,
+    token: localStorage.getItem('authToken'),
     listData: null,
     error: {
       state: false,
@@ -14,14 +14,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    setSession (state, payload) {
-      state.session = payload
-    },
-    login (state) {
-      state.isAuthenticated = true;
+    auth_success(state, token) {
+      state.token = token
     },
     logout (state) {
-      state.isAuthenticated = false;
+      state.token = null
     },
     setData (state, payload) {
       state.listData = payload;
@@ -42,17 +39,29 @@ export default new Vuex.Store({
       return state.listData
     },
     authenticated: state => {
-      return state.isAuthenticated
+      return !!state.token
     },
   },
   actions: {
-    login ({ commit }, payload) {
-      commit('setSession', payload);
-      commit('login');
+    login ({ commit }, user) {
+      return new Promise((resolve, reject) => {
+        Vue.http.post('login', { email: user.email, password: user.password })
+          .then(response => {
+            let token = response.body.sessionToken
+            localStorage.setItem('authToken', token)
+            commit('auth_success', token)
+            resolve(response)
+          }, error => {
+            console.log(error)
+            commit('logout')
+            localStorage.removeItem('authToken')
+            reject(error)
+          });
+        })
     },
-    logout ({ commit }, payload) {
-      commit('setSession', payload);
-      commit('logout');
+    logout ({ commit }) {
+      commit('logout')
+      localStorage.removeItem('authToken')
     },
     getListData({ Vue, commit }) {
       Vue.$http.get('search', {role: "lab"})

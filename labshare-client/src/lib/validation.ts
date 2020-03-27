@@ -32,7 +32,7 @@ export class Validator {
     }
 
     static validatePhone(phone?: string) {
-        let regexpPhone = new RegExp(/^[0-9+]+$/);
+        let regexpPhone = new RegExp(/^[0-9+ ()]+$/);
         if (!phone || !regexpPhone.test(phone)) {
             throw new ValidationError("Telefonnummer bitte in der Form +49931123 oder 12344 eingeben ohne Leerzeichen, - oder /")
         }
