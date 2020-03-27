@@ -10,11 +10,33 @@ else {
   Vue.http.options.root = 'http://localhost:5000/api/v1';
 }
 
+function getToken() {
+  console.log("getToken")
+  try {
+    let token = localStorage.getItem('authToken')
+    let payload = JSON.parse(atob(token.split(".")[1]))
+    let date = Math.round(new Date().getTime() / 1000);
+    if (token && date < payload.exp) {
+      return token;
+    }
+  }
+  catch {
+    console.log("invalid token")
+  }
+  
+  localStorage.removeItem('authToken')
+  return null;
+}
+
+// if token is invalid it get's deleted during initialization
+getToken()
+
 // Add JWT token to requests if we are logged in
 Vue.http.interceptors.push(
   function (request) {
-    if(localStorage.getItem('authToken')) {
-      request.headers['Authorization'] = 'Bearer: ' + localStorage.getItem('authToken')
-      return request;
+    let token = getToken()
+    if (token) {
+      request.headers['Authorization'] = 'Bearer: ' + token
+      return request;  
     }
 }.bind(this));
