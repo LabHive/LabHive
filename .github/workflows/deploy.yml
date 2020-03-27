@@ -1,0 +1,44 @@
+name: "Deploy to Server"
+on:
+  push:
+    branches:
+      - master
+      - CI
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+  pull_request:
+    branches:
+      - master
+      - CI
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+  
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: cd labshare-client && npm install
+      - run: cd labshare-client && npm run build
+
+  deploy:
+    name: "Deploy to Server"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: "Deploy to server"
+      uses: appleboy/ssh-action@master
+      if: github.event.pull_request.merged == true || github.event_name == 'push'
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          cd LabShare-TestHive/labshare-client;
+          ./deploy.sh;

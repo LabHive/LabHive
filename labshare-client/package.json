@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "tsc -p tsconfig.browser.json && vue-cli-service serve",
-    "build": "tsc -p tsconfig.browser.json && vue-cli-service build",
+    "build": "tsc && tsc -p tsconfig.browser.json && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "backend": "tsc && node dist-backend/backend/main.js"
   },
