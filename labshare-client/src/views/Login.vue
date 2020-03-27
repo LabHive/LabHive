@@ -37,15 +37,11 @@ export default {
   methods: {
       login: function () {
           if(this.user.email !== '' && this.user.password !== '') {
-            this.$auth.login({
-              url: 'login',
-              body: { email: this.user.email, password: this.user.password },
-              rememberMe: true,
-              redirect: { path: '/list' },
-              error: (response) => {
-                this.error = "Error logging in, please check you details and try again";
-                console.log("Login error", response);
-              }
+            this.$store.dispatch('login', this.user)
+            .then(() => this.$router.push("/list"))
+            .catch(err => {
+              this.error = "Error logging in, please check you details and try again";
+              console.log("Login error:", err)
             });
           } else {
               this.error = "Please fill in the fields and try again";

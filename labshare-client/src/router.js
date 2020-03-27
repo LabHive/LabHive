@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from './store'
 
 import Index from './views/Index'
 import Login from './views/Login'
@@ -11,14 +12,23 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Index },
-  { path: '/login', component: Login, meta: { auth: false } },
-  { path: '/register', component: Register, meta: { auth: false }},
+  { path: '/login', component: Login },
+  { path: '/register', component: Register},
   { path: '/ueber-uns', component: UeberUns},
   { path: '/list', component: List, meta: { auth: true } }
 ];
 const router = new VueRouter({ routes });
 
-// TODO: This results in `uncaught exception: Object` when routing, but vue-auth pluign requires it :/
-// Vue.router = router;
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    if (store.getters.authenticated) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
+})
 
 export default router;

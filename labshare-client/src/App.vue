@@ -13,11 +13,14 @@
             <li class="nav-item">
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!loggedIn">
               <router-link to="/login" class="nav-link">Login</router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="!loggedIn">
               <router-link to="/register" class="nav-link">Registrieren</router-link>
+            </li>
+            <li class="nav-item" v-if="loggedIn">
+              <a @click="logout" class="nav-link">Logout</a>
             </li>
             <li class="nav-item">
               <router-link to="/ueber-uns" class="nav-link">Über uns</router-link>
@@ -54,7 +57,19 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 
 export default {
   name: "App",
-  components: {}
+  components: {},
+  computed: {
+    loggedIn: function() {
+      return this.$store.getters.authenticated;
+    }
+  },
+  methods: {
+    logout: function() {
+      this.$store.dispatch("logout").then(() => {
+        this.$router.push("/login");
+      });
+    }
+  }
 };
 </script>
 
