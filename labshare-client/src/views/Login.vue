@@ -36,15 +36,17 @@ export default {
   },
   methods: {
       login: function () {
-          if(this.user.username !== '' && this.user.password !== '') {
-            this.$http.post('login', { email: this.user.email, password: this.user.password })
-                .then(response => {
-                    this.$store.dispatch('login', response.body.sessionToken);
-                    this.$router.push('/')
-                }, error => {
-                    this.error = "Error logging in, please check you details and try again";
-                    console.log("Login error", error);
-                });
+          if(this.user.email !== '' && this.user.password !== '') {
+            this.$auth.login({
+              url: 'login',
+              body: { email: this.user.email, password: this.user.password },
+              rememberMe: true,
+              redirect: { path: '/list' },
+              error: (response) => {
+                this.error = "Error logging in, please check you details and try again";
+                console.log("Login error", response);
+              }
+            });
           } else {
               this.error = "Please fill in the fields and try again";
           }
