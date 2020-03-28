@@ -12,10 +12,10 @@
       </b-row>
       <b-row>
         <b-col></b-col>
-        <b-col md="auto">
+        <b-col cols="auto">
           <b-button size="lg" variant="primary" @click="loadedForm = forms.HELPER">Helfer</b-button>
         </b-col>
-        <b-col md="auto">
+        <b-col cols="auto">
           <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">Labor</b-button>
         </b-col>
         <b-col></b-col>
