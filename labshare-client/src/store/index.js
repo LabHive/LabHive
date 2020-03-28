@@ -95,20 +95,3 @@ export default new Vuex.Store({
   modules: {
   }
 })
-
-
-// Fetch user profile automatically if logged in
-Vue.mixin({
-  computed: {
-    $user: function () { return this.$store.state.profile; },
-    $authenticated: function () { return this.$store.getters.authenticated }
-  },
-  mounted:function()
-  {
-    if(this.$authenticated && !this.$user.role && !this.$store.fetcingProfile)
-    {
-      this.$store.fetcingProfile = true;
-      this.$store.dispatch("getProfile");
-    }
-  },
-});
