@@ -50,7 +50,22 @@
           :options="labSkills"
           name="name"
           stacked></b-form-checkbox-group>
-          
+      </b-form-group>
+
+      <b-form-group>
+        <b-form-checkbox
+          id="processing"
+          v-model="formData.consent.processing"
+          name="processing"
+        >Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.</b-form-checkbox>
+      </b-form-group>
+
+      <b-form-group>
+        <b-form-checkbox
+          id="publicContact"
+          v-model="formData.consent.publicContact"
+          name="publicContact"
+        >Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</b-form-checkbox>
       </b-form-group>
 
       
@@ -117,7 +132,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.lab-form {
-  max-width: 500px;
-}
+
 </style>
