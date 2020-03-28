@@ -1,10 +1,21 @@
 <template>
-  <div class="login">
-    <h1>Login</h1>
-
-    <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+  <div>
+    <h1 style="marign-top: 20px">Login</h1>
 
     <div class="login-form">
+      <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+
+      <b-form @submit="login">
+        <b-form-group id="email" label="E-Mail Adresse">
+          <b-form-input id="email" v-model="user.email" trim></b-form-input>
+        </b-form-group>
+        <b-form-group id="password" label="Passwort">
+          <b-form-input id="password" v-model="user.password" trim></b-form-input>
+        </b-form-group>
+        <b-button variant="primary" type="submit">Einloggen</b-button>
+      </b-form>
+    </div>
+    <!-- <div class="login-form">
       <span class="p-float-label form-element-spacer">
         <InputText id="email" type="text" v-model="user.email" />
         <label for="email">Email</label>
@@ -14,14 +25,11 @@
         <label for="password">Password</label>
       </span>
       <Button icon="pi pi-chevron-right" iconPos="right" label="Login" @click="login()" />
-    </div>
+    </div>-->
   </div>
 </template>
 
 <script>
-import InputText from "primevue/inputtext"
-import Button from "primevue/button"
-
 export default {
   name: "Login",
   props: {},
@@ -35,33 +43,31 @@ export default {
     };
   },
   methods: {
-      login: function () {
-          if(this.user.email !== '' && this.user.password !== '') {
-            this.$store.dispatch('login', this.user)
-            .then(() => this.$router.push("/list"))
-            .catch(err => {
-              this.error = "Error logging in, please check you details and try again";
-              console.log("Login error:", err)
-            });
-          } else {
-              this.error = "Please fill in the fields and try again";
-          }
+    login: function() {
+      if (this.user.email !== "" && this.user.password !== "") {
+        this.$store
+          .dispatch("login", this.user)
+          .then(() => this.$router.push("/list"))
+          .catch(err => {
+            this.error =
+              "Error logging in, please check you details and try again";
+            console.log("Login error:", err);
+          });
+      } else {
+        this.error = "Please fill in the fields and try again";
       }
+    }
   },
-  components: {
-    InputText,
-    Button
-  }
+  components: {}
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .login{
-    max-width: 20em;
-    margin: auto;
-  }
-  .login-form{
-    margin-top: 3em;
-  }
+.login-form {
+  max-width: 500px;
+  width: 100%;
+  margin-top: 20px
+
+}
 </style>
