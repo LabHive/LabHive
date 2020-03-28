@@ -9,7 +9,7 @@ import { IUserCommon } from '../database/schemas/IUserCommon';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
-        let token = utils.getDecodedJWT(req);
+        let token = utils.getUnverifiedDecodedJWT(req);
         
         let user = await getUser({ _id: token.sub });
         if (!user) {
@@ -33,7 +33,7 @@ class Profile {
 
     async post(req: express.Request, res: express.Response, next: express.NextFunction) {
         let body: IUserCommon = req.body;
-        let token = utils.getDecodedJWT(req);
+        let token = utils.getUnverifiedDecodedJWT(req);
         let schema: any;
         
         delete body.password
@@ -96,7 +96,7 @@ class Profile {
 
 
     async delete(req: express.Request, res: express.Response, next: express.NextFunction) {
-        let token = utils.getDecodedJWT(req);
+        let token = utils.getUnverifiedDecodedJWT(req);
         let model: mongoose.Model<any>;
         if (token.role === "human") {
             model = UserHuman;

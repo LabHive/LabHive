@@ -7,6 +7,7 @@ import { resetPassword } from './endpoints/resetPassword'
 import { login } from './endpoints/login'
 import { authMiddleware } from './middlewares/auth'
 import { changePassword } from './endpoints/changePassword'
+import { search } from "./endpoints/search";
 import Profile from './endpoints/Profile'
 
 let app = express()
@@ -29,6 +30,8 @@ router.post('/registration', registration)
 router.post('/forgot-password', forgotPassword)
 router.post("/reset-password", resetPassword)
 router.post("/login", login)
+router.get("/search", search)
+
 
 router.use(authMiddleware)
 
@@ -36,10 +39,6 @@ router.post("/change-password", changePassword)
 router.get("/profile", Profile.get)
     .post("/profile", Profile.post)
     .delete("/profile", Profile.delete)
-
-// router.get("/search", async function(req, res, next){
-// 
-// })
 
 
 app.listen(5000, function () {

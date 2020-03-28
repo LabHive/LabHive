@@ -12,7 +12,7 @@ export async function changePassword(req: express.Request, res: express.Response
         return utils.badRequest(res);
     }
 
-    let token = utils.getDecodedJWT(req);
+    let token = utils.getUnverifiedDecodedJWT(req);
     let user = await getUser({ _id: token.sub });
     if (!user) {
         return utils.badRequest(res);

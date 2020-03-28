@@ -7,20 +7,8 @@ import { HMAC_KEY } from '../main';
 
 
 export async function authMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
-    try {
-        let token = utils.getJWTToken(req);
-        jsonwebtoken.verify(token, HMAC_KEY, {
-            algorithms: ["HS256"],
-            clockTolerance: 300,
-            issuer: "labshare"
-        });
 
-        let decoded_token = utils.getDecodedJWT(req);
-        let user = await getUser({ _id: decoded_token.sub });
-        if (!user)
-            throw new Error("unauthorized");
-    }
-    catch {
+    if (!utils.isAuthenticated(req)) {
         return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Nicht authorisiert!");
     }
     

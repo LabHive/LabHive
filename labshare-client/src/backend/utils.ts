@@ -3,6 +3,8 @@ import express from 'express'
 import { LocationNotFoundError, ValidationError, UnauthorizedError } from './errors'
 import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
+import { getUser } from "./database/database";
+import { HMAC_KEY } from './main';
 
 export interface Address {
     city: string,
@@ -90,9 +92,37 @@ class Utils {
         return token
     }
 
-    public getDecodedJWT(req: express.Request): Token {
+    public async getVerifiedDecodedJWT(req: express.Request): Promise<Optional<Token>> {
+        if (!await this.isAuthenticated(req)) {
+            return undefined
+        }
+
+        return this.getUnverifiedDecodedJWT(req)
+    }
+
+    public getUnverifiedDecodedJWT(req: express.Request): Token {
         let token = this.getJWTToken(req)
         return <Token>jsonwebtoken.decode(token)
+    }
+
+    public async isAuthenticated(req: express.Request): Promise<boolean> {
+        try {
+            let token = this.getJWTToken(req);
+            jsonwebtoken.verify(token, HMAC_KEY, {
+                algorithms: ["HS256"],
+                clockTolerance: 300,
+                issuer: "labshare"
+            });
+        }
+        catch {
+            return false
+        }
+        
+        let decoded_token = this.getUnverifiedDecodedJWT(req);
+        let user = await getUser({ _id: decoded_token.sub });
+        if (!user)
+            return false
+        return true
     }
 }
 
