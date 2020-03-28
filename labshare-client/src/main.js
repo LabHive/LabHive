@@ -4,7 +4,7 @@ import router from './router.js'
 import store from './store'
 import App from './App.vue'
 import './http'
-import profile_load_mixin from './lib/profile_fetch_mixin'
+import profile_load_mixin from './mixins/profile_fetch'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 Vue.config.productionTip = false
