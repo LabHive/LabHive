@@ -1,105 +1,86 @@
 <template>
   <div class="lab-form">
-    <h3 class="form-element-spacer">Contact details</h3>
-    
-    <span class="p-float-label form-element-spacer">
-      <InputText id="firstName" type="text" v-model="formData.contact.firstname" />
-      <label for="firstName">First name</label>
-    </span>
+    <b-form @submit="submit">
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="lastName" type="text" v-model="formData.contact.lastname" />
-      <label for="lastName">Last name</label>
-    </span>
+      <h3>Login Informationen</h3>
+      <b-form-group id="email" label="E-Mail Adresse">
+        <b-form-input type="email" id="email" v-model="formData.contact.email" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="phone" type="text" v-model="formData.contact.phone" />
-      <label for="phone">Phone</label>
-    </span>
+      <b-form-group id="password" label="Passwort">
+        <b-form-input type="password" id="password" v-model="formData.password" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="email" type="text" v-model="formData.contact.email" />
-      <label for="email">Email</label>
-    </span>
+      <b-form-group id="password" label="Passwort wiederholen">
+        <b-form-input type="password" id="password" v-model="passwordRepeat" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="password" type="password" v-model="formData.password" />
-      <label for="password">Password</label>
-    </span>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="organization" type="text" v-model="formData.organization" />
-      <label for="organization">Labore/Institut</label>
-    </span>    
+      <h3>Kontakt Informationen</h3>
+      <b-form-group id="firstname" label="Vorname">
+        <b-form-input id="firstname" v-model="formData.contact.firstname" trim></b-form-input>
+      </b-form-group>
 
-    <h3>Location</h3>
+      <b-form-group id="lastname" label="Nachname">
+        <b-form-input id="lastname" v-model="formData.contact.lastname" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="city" type="text" v-model="formData.address.city" />
-      <label for="city">City</label>
-    </span>
+      <b-form-group id="phone" label="Telefonnummer">
+        <b-form-input id="phone" v-model="formData.contact.phone" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="zipcode" type="text" v-model="formData.address.zipcode" />
-      <label for="zipcode">Zipcode</label>
-    </span>
+      <h3>Wohnort</h3>
+      <b-form-group id="city" label="Ort">
+        <b-form-input id="city" v-model="formData.address.city" trim></b-form-input>
+      </b-form-group>
 
-    <h3>Skills</h3>
+      <b-form-group id="zipcode" label="Postleitzahl">
+        <b-form-input id="zipcode" v-model="formData.address.zipcode" trim></b-form-input>
+      </b-form-group>
 
-    <div class="checkbox-group form-element-spacer">
-      <template v-for="(option, key) in labSkills">
-        <div class="checkbox" :key="key">
-          <Checkbox
-            :id="key"
-            :inputId="key"
-            :name="key"
-            :value="key"
-            v-model="formData.details.skills"
-          />
-          <label class="p-checkbox-label" :for="key">{{ option }}</label>
-        </div>
-      </template>
-    </div>
+      <h3>Fähigkeiten</h3> 
+      <b-form-group id="organization" label="Organisation">
+        <b-form-input id="organization" v-model="formData.organization" trim></b-form-input>
+      </b-form-group>
 
-    <span class="p-float-label form-element-spacer">
-      <InputText id="description" type="text" v-model="formData.description" />
-      <label for="description">Comments</label>
-    </span>
+      <b-form-group label="Erfahrungen in folgenden Bereichen">
+        <b-form-checkbox-group
+          id="skills"
+          v-model="formData.details.skills"
+          :options="labSkills"
+          name="name"
+          stacked></b-form-checkbox-group>
+      </b-form-group>
 
-    <div class="checkbox-group form-element-spacer">
-      <div class="checkbox form-element-spacer" key="consentProcessing">
-        <Checkbox id="consentProcessing" v-model="formData.consent.processing" :binary="true"/>
-        <label for="consentProcessing" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.
-        </label>
-      </div>
+      <b-form-group>
+        <b-form-checkbox
+          id="processing"
+          v-model="formData.consent.processing"
+          name="processing"
+        >Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.</b-form-checkbox>
+      </b-form-group>
 
-      <div class="checkbox form-element-spacer" key="consentPublicContact">
-        <Checkbox id="consentPublicContact" v-model="formData.consent.publicContact" :binary="true"/>
-        <label for="consentPublicContact" class="p-checkbox-label">Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</label>
-      </div>
-    </div>
-  
-    <div style="color: red" v-if="error.state">
-      {{ error.description }}
-    </div>
-    <Button
-      icon="pi pi-chevron-right"
-      iconPos="right"
-      label="Registrieren"
-      @click="submit"
-    />
+      <b-form-group>
+        <b-form-checkbox
+          id="publicContact"
+          v-model="formData.consent.publicContact"
+          name="publicContact"
+        >Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</b-form-checkbox>
+      </b-form-group>
+
+      
+      <b-button variant="primary" type="submit">Registrieren</b-button>
+    </b-form>
   </div>
+    
 </template>
 
 <script>
-import InputText from "primevue/inputtext";
-import Checkbox from "primevue/checkbox";
-import Button from "primevue/button";
-
 export default {
   name: 'HelperForm',
   data: function() {
     return {
+      passwordRepeat: "",
       formData: {
         address: {
           city: "",
@@ -123,14 +104,14 @@ export default {
           publicContact: false,
         }
       },
-      labSkills: {
-        sample_processing: "Vor/Aufbereitung klinischer Proben",
-        rna_isolation: "RNA isolation (Mit Kit)",
-        qpcr: "qPCR",
-        bsl2: "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-        bsl3: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
-        sample_collection: "klinische Erfahrung (Probenkollektion)"
-      }
+      labSkills: [
+        {value: "bsl2", text: "Arbeit unter BSL2 Regulationen/Sicherheitsstandards"},
+        {value: "bsl3", text: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards"},
+        {value: "sample_processing", text: "Vor/Aufbereitung klinischer Proben"},
+        {value: "rna_isolation", text: "RNA isolation (Mit Kit)"},
+        {value: "qpcr", text: "qPCR"},
+        {value: "sample_collection", text: "Klinische Erfahrung (Probenkollektion)"}
+      ]
     }
   },
   computed: {
@@ -139,12 +120,10 @@ export default {
     }
   },
   components: {
-    InputText,
-    Checkbox,
-    Button
   },
   methods: {
-    submit: function() {
+    submit: function(event) {
+      event.preventDefault()
       this.$emit('formcomplete', this.formData)
     }
   }
@@ -153,4 +132,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

@@ -1,59 +1,51 @@
 <template>
   <div class="main-div">
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-      <div class="container">
-        <a class="navbar-brand w-100 order-1 order-md-0" href="#"><img height="40px" src="./assets/logo.svg"/>LabShare</a>
-        
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <b-navbar toggleable="lg" type="dark" variant="primary" id="navbar">
+      <div class="nav-container">
+        <b-navbar-brand href="#/">LabHive</b-navbar-brand>
+        <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
 
-        <div class="collapse navbar-collapse w-100 order-2" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-            <li class="nav-item" v-if="!loggedIn">
-              <router-link to="/login" class="nav-link">Login</router-link>
-            </li>
-            <li class="nav-item" v-if="!loggedIn">
-              <router-link to="/register" class="nav-link">Registrieren</router-link>
-            </li>
-            <li class="nav-item" v-if="loggedIn">
-              <a @click="logout" class="nav-link">Logout</a>
-            </li>
-            <li class="nav-item">
-              <router-link to="/ueber-uns" class="nav-link">Über uns</router-link>
-            </li>
-          </ul>
-        </div>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item href="#/UeberUns">Über uns</b-nav-item>
+          </b-navbar-nav>
+
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto">
+            <template v-if="!loggedIn">
+              <b-nav-item href="#/register">Registrieren</b-nav-item>
+              <b-nav-item href="#/login">Login</b-nav-item>
+            </template>
+          
+            <b-nav-item-dropdown v-if="loggedIn" right text="User">
+              <b-dropdown-item href="#">Profile</b-dropdown-item>
+              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
       </div>
-    </nav>
+    </b-navbar>
 
     <div class="content container">
       <div id="app">
-        <router-view ></router-view>
+        <router-view></router-view>
       </div>
     </div>
     <!-- Footer -->
     <footer class="footer-custom">
-
       <!-- Copyright -->
-      <div class="footer-copyright text-center py-3"><img src="./assets/wirvsvirus.png" alt="logo wir vs virus hackathon" />
+      <div class="footer-copyright text-center py-3">
+        <img src="./assets/wirvsvirus.png" alt="logo wir vs virus hackathon" />
       </div>
       <!-- Copyright -->
-
     </footer>
     <!-- Footer -->
   </div>
 </template>
 
 <script>
-import 'primevue/resources/themes/nova-dark/theme.css'
-import 'primevue/resources/primevue.min.css'
-import 'primeicons/primeicons.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 export default {
   name: "App",
@@ -75,27 +67,45 @@ export default {
 
 <style lang="scss">
 $color-blue: #2c3e50;
-$color-brand--primary: #99cccc;
-$color-brand--secondary: #224D4D;
-$color-white: #f2f2f2;
+$color-brand--primary: #0069d9;
+$color-brand--secondary: #0069d9;
+$color-white: #fff;
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-blue;
+  color: black;
   margin-top: 1em;
   margin-bottom: 3em;
 }
 
+#navbar {
+  box-shadow: 0px 3px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
 body {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
-.navbar-custom{
-background-color: $color-brand--primary;
+.container {
+  max-width: 800px;
+}
+
+.nav-container {
+  max-width: 800px;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar-custom {
+  background-color: $color-brand--primary;
 
   .navbar-brand {
     color: $color-white;
@@ -107,78 +117,21 @@ background-color: $color-brand--primary;
   }
 }
 
+.main-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   flex: 1;
 }
 
 .footer-custom {
-  background-color:$color-brand--primary;
+  background-color: $color-brand--primary;
 }
 
-.main-div{
-  height:100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.welcome_text {
-  text-align: left;
-  margin-top: 30px;
-}
 
-%btn-primary-custom {
-  background-color: $color-brand--secondary;
-  border-color: lighten($color-brand--secondary, 10%);
-
-  &:hover {
-    background-color: darken($color-brand--secondary, 10%);
-  border-color: $color-brand--secondary;
-  }
-}
-
-.btn-primary-custom {
-  @extend %btn-primary-custom;
-}
-
-.img-fluid {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.checkbox-group {
-  &.checkbox--inline {
-    display: flex;
-    flex-flow: row wrap;
-
-    .checkbox:not(:last-child) {
-      margin-right: 1rem;
-    }
-  }
-}
-
-.checkbox {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.p-dropdown {
-  width: 100%;
-  text-align: left;
-}
-
-.form-element-spacer {
-  margin-bottom: 2rem;
-}
-
-.p-float-label {
-  input {
-    width: 100%;
-  }
-}
-
-body .p-button {
-  @extend .btn-primary-custom
-}
 
 </style>
