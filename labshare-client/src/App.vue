@@ -12,14 +12,14 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <template v-if="!loggedIn">
+            <template v-if="!$authenticated">
               <b-nav-item href="#/register">Registrieren</b-nav-item>
               <b-nav-item href="#/login">Login</b-nav-item>
             </template>
           
-            <b-nav-item-dropdown v-if="loggedIn" right text="User">
+            <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+              <b-dropdown-item href="#" @click="logout">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -51,8 +51,16 @@ export default {
   name: "App",
   components: {},
   computed: {
-    loggedIn: function() {
-      return this.$store.getters.authenticated;
+    userName: function(){
+      if(this.$store.state.profile.role){
+        if(this.$store.state.profile.role === 'human') {
+          return this.$store.state.profile.contact.firstname
+        } else {
+          return this.$store.state.profile.name
+        }
+      } else {
+        return "User"
+      }
     }
   },
   methods: {

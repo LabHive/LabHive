@@ -99,7 +99,8 @@ export default {
     }
   },
   methods: {
-    submit: function() {
+    submit: function(event) {
+      event.preventDefault();
       this.$emit("formcomplete", this.formData);
     }
   },

@@ -11,15 +11,16 @@ import UeberUns from './views/UeberUns'
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Index },
-  { path: '/login', component: Login },
-  { path: '/register', component: Register},
+  { path: '/', component: Index, meta: { redirectLoggedIn: '/list'} },
+  { path: '/login', component: Login, meta: { redirectLoggedIn: '/list'} },
+  { path: '/register', component: Register, meta: { redirectLoggedIn: '/list'}},
   { path: '/ueber-uns', component: UeberUns},
   { path: '/list', component: List, meta: { auth: true } }
 ];
 const router = new VueRouter({ routes });
 
 router.beforeEach((to, from, next) => {
+  // Take people to login if needed
   if (to.matched.some(record => record.meta.auth)) {
     if (store.getters.authenticated) {
       next()
@@ -29,6 +30,17 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+
+  // Take people to serch when logged in
+  if(to.matched.some(record => record.meta.redirectLoggedIn)) {
+    if(store.getters.authenticated){
+      next(to.meta.redirectLoggedIn)
+      return
+    } else {
+      next()
+    }
+  }
+
 })
 
 export default router;
