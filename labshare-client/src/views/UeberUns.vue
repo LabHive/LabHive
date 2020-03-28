@@ -57,8 +57,6 @@
 </template>
 
 <script>
-const en = "en";
-
 export default {
   name: "Index",
   props: {},
