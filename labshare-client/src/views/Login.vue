@@ -43,18 +43,23 @@ export default {
     };
   },
   methods: {
-    login: function() {
-      if (this.user.email !== "" && this.user.password !== "") {
-        this.$store
-          .dispatch("login", this.user)
-          .then(() => this.$router.push("/list"))
-          .catch(err => {
-            this.error =
-              "Error logging in, please check you details and try again";
-            console.log("Login error:", err);
-          });
-      } else {
-        this.error = "Please fill in the fields and try again";
+      login: function () {
+          if(this.user.email !== '' && this.user.password !== '') {
+            this.$store.dispatch('login', this.user)
+            .then(() => {
+              this.$store.dispatch('getProfile')
+              .then(() => this.$router.push("/list"))
+              .catch(response => {
+                console.log("Profile fetch error:", response.status)
+              })
+            })
+            .catch(response => {
+              this.error = "Error logging in, please check you details and try again";
+              console.log("Login error:", response)
+            })
+          } else {
+              this.error = "Please fill in the fields and try again";
+          }
       }
     }
   },

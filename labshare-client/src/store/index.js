@@ -5,9 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    session: null,
     token: localStorage.getItem('authToken'),
-    listData: null,
+    profile: {},
+    fetcingProfile: false,
+    searchAttributes: {
+      search_type: null,
+      page: 1,
+      filters: []
+    },
+    searchResults: [],
     error: {
       state: false,
       description: null
@@ -20,8 +26,11 @@ export default new Vuex.Store({
     logout (state) {
       state.token = null
     },
-    setData (state, payload) {
-      state.listData = payload;
+    profile_fetch(state, profile){
+      state.profile = profile
+    },
+    setSearchResults (state, results) {
+      state.searchResults = results;
     },
     setError(state, description) {
       state.error.state = true
@@ -32,11 +41,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    session: state => {
-      return state.session
-    },
-    listData: state => {
-      return state.listData
+    searchResults: state => {
+      return state.searchResults
     },
     authenticated: state => {
       return !!state.token
@@ -51,23 +57,35 @@ export default new Vuex.Store({
             localStorage.setItem('authToken', token)
             commit('auth_success', token)
             resolve(response)
-          }, error => {
-            console.log(error)
+          }, response => {
             commit('logout')
             localStorage.removeItem('authToken')
-            reject(error)
+            reject(response)
           });
-        })
+      })
     },
     logout ({ commit }) {
       commit('logout')
       localStorage.removeItem('authToken')
     },
-    getListData({ Vue, commit }) {
-      Vue.$http.get('search', {role: "lab"})
+    getProfile({commit}){
+      return new Promise((resolve, reject) => {
+        Vue.http.get('profile')
+          .then(response => {
+            let profile = response.body.data
+            commit('profile_fetch', profile)
+            resolve()
+          }, response => {
+            console.log(response)
+            reject(response)
+          });
+      })
+    },
+    getSearchResults({ commit, state }) {
+      let role = state.profile.role
+      Vue.http.get('search', { params: { role: role, filter: state.searchAttributes.filters }})
       .then(success => {
-        commit('setData', success.body);
-        console.log("search" + success.body)
+        commit('setSearchResults', success.body);
       },
       error => {
         console.log(error)
@@ -77,3 +95,20 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+
+// Fetch user profile automatically if logged in
+Vue.mixin({
+  computed: {
+    $user: function () { return this.$store.state.profile; },
+    $authenticated: function () { return this.$store.getters.authenticated }
+  },
+  mounted:function()
+  {
+    if(this.$authenticated && !this.$user.role && !this.$store.fetcingProfile)
+    {
+      this.$store.fetcingProfile = true;
+      this.$store.dispatch("getProfile");
+    }
+  },
+});

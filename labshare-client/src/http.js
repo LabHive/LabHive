@@ -11,7 +11,6 @@ else {
 }
 
 function getToken() {
-  console.log("getToken")
   try {
     let token = localStorage.getItem('authToken')
     let payload = JSON.parse(atob(token.split(".")[1]))
@@ -36,7 +35,6 @@ Vue.http.interceptors.push(
   function (request) {
     let token = getToken()
     if (token) {
-      request.headers['Authorization'] = 'Bearer: ' + token
-      return request;  
+      request.headers.set('Authorization', 'Bearer ' + token);
     }
 }.bind(this));
