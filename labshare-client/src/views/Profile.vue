@@ -3,7 +3,9 @@
     <h1>Profile</h1>
 
     <template v-if="updated">
-      <h2>Profile updated</h2>
+      <div class="alert alert-success" role="alert">
+        Profile updated
+      </div>
     </template>
     <template v-else>
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
@@ -26,6 +28,10 @@ export default {
       error: null
     };
   },
+  mounted: function(){
+    this.updated= false
+    this.error = null
+  },
   computed: {
     profile: function(){
       return this.$store.state.profile
@@ -36,6 +42,7 @@ export default {
       this.$store.dispatch('updateProfile', data)
       .then(()=> {
         this.updated = true
+        setTimeout(() => this.updated = false, 3000);
       },
       err => {
           this.error = err.body.errorDescription
