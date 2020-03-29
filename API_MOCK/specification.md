@@ -169,7 +169,7 @@ For the lab another dictionary key is added, where the lab can specify what it i
 GET https://labshare.de/api/v1/search
 
 ### Get Parameter
-* `type`
+* `role`
     * Required: True
     * What type are you searching for?
     * `human|lab`
@@ -187,7 +187,7 @@ GET https://labshare.de/api/v1/search
 
 
 * `humanSkills`, `equipment`, `advice` are optional
-* Humans can search for labs and equipment (in case they have access to equipment)
+* Everyone can search for labs and filter for equipment and advice (in case they have access to equipment)
 * Labs can search for:
     * Equipment
     * Humans
@@ -231,8 +231,11 @@ Basically the same structure as used for the registration.
         },
     ],
     "_links": {
-        "next": "https://labshare.de/api/v1/search?...&page=3"
-    }
+        "next": "https://labshare.de/api/v1/search?...&page=3",
+        "previous": null
+    },
+    "totalPages": 3,
+    "success": true
 }
 ```
 
