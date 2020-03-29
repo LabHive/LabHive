@@ -28,10 +28,6 @@ export default {
       error: null
     };
   },
-  mounted: function(){
-    this.updated= false
-    this.error = null
-  },
   computed: {
     profile: function(){
       return this.$store.state.profile
