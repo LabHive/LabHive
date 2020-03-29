@@ -62,7 +62,12 @@
         >Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind.</b-form-checkbox>
       </b-form-group>
 
-      <b-button variant="primary" type="submit">Save</b-button>
+      <template v-if="profileUpdate">
+        <b-button variant="primary" type="submit">Speichern</b-button>
+      </template>
+      <template v-else>
+        <b-button variant="primary" type="submit">Registrieren</b-button>
+      </template>
     </b-form>
   </div>
   
