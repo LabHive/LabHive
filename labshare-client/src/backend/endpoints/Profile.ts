@@ -42,20 +42,13 @@ class Profile {
         if (token.role === "human") {
             // deep copy schema
             schema = JSON.parse(JSON.stringify(schemas.registration_human));
-    
-            // delete properties that should not be editable
-            delete body.contact.firstname
-            delete body.contact.lastname
-            delete body.address.street
         }
         else {
             // deep copy schema
             schema = JSON.parse(JSON.stringify(schemas.registration_lab));
-            delete schema.properties.address.required
-            delete schema.properties.contact.required
         }
-
         delete schema.required
+
         if (!JsonSchema.validate(body, schema) || v.validateProfileFields(body, token.role)) {
             return utils.badRequest(res);
         }

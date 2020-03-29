@@ -15,24 +15,31 @@
   <div class="main-div">
     <b-navbar toggleable="lg" type="dark" variant="primary" id="navbar">
       <div class="nav-container">
-        <b-navbar-brand href="#/">{{$t('brand')}}</b-navbar-brand>
-        <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-brand href="#/">{{ $t("brand") }}</b-navbar-brand>
+        <b-navbar-toggle
+          style="float: right"
+          target="nav-collapse"
+        ></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#/UeberUns">{{$t('aboutUs')}}</b-nav-item>
+            <b-nav-item href="#/UeberUns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <template v-if="!$authenticated">
-              <b-nav-item href="#/register">{{$t('register')}}</b-nav-item>
-              <b-nav-item href="#/login">{{$t('login')}}</b-nav-item>
+              <b-nav-item href="#/register">{{ $t("register") }}</b-nav-item>
+              <b-nav-item href="#/login">{{ $t("login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item href="#">{{$t('profile')}}</b-dropdown-item>
-              <b-dropdown-item href="#" @click="logout">{{$t('signOut')}}</b-dropdown-item>
+              <b-dropdown-item href="#/profile">{{
+                $t("profile")
+              }}</b-dropdown-item>
+              <b-dropdown-item href="#" @click="logout">{{
+                $t("signOut")
+              }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
           </b-navbar-nav>

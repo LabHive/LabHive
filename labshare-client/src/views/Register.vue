@@ -39,6 +39,7 @@
       </b-row>
     </template>
     <div v-else>
+      <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
       <HelperForm v-if="loadedForm === forms.HELPER" @formcomplete="register" />
       <LabForm v-if="loadedForm === forms.LAB" @formcomplete="register" />
     </div>
@@ -59,6 +60,7 @@ export default {
         HELPER: 1,
         LAB: 2
       },
+      error: null,
       loadedForm: 0,
       registrationComplete: false
     };
@@ -74,11 +76,11 @@ export default {
           let data = resp.body;
           if (data.success) {
             this.registrationComplete = true;
-            this.$store.commit("clearError");
+            this.error = null
           }
         },
         err => {
-          this.$store.commit("setError", err.body.errorDescription);
+          this.error = err.body.errorDescription;
         }
       );
     }
