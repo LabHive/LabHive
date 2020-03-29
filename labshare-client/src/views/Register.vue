@@ -1,22 +1,39 @@
+<i18n>{
+  "en": {
+    "registration": "Registration",
+    "complete": "Thank you for registering!"
+  },
+  "de": { 
+    "registration": "Registrierung",
+    "complete": "Danke für deine Registrierung!",
+    "prospectiveRole": "Als was möchtest du dich registrieren?",
+    "roleHelper": "Helfer",
+    "roleLab": "Labor"
+    }
+}</i18n>
 <template>
   <div class="register">
-    <h1>Registrierung</h1>
+    <h1>{{$t("registration")}}</h1>
     <template v-if="registrationComplete">
-      <h2>Danke für deine Registrierung!</h2>
+      <h2>{{$t("complete")}}</h2>
     </template>
     <template v-else-if="!loadedForm">
       <b-row>
         <b-col cols="12">
-          <p class="lead text-center">Als was möchtest du dich registrieren?</p>
+          <p class="lead text-center">{{$t("prospectiveRole")}}</p>
         </b-col>
       </b-row>
       <b-row>
         <b-col></b-col>
         <b-col cols="auto">
-          <b-button size="lg" variant="primary" @click="loadedForm = forms.HELPER">Helfer</b-button>
+          <b-button
+            size="lg"
+            variant="primary"
+            @click="loadedForm = forms.HELPER"
+          >{{$t("roleHelper")}}</b-button>
         </b-col>
         <b-col cols="auto">
-          <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">Labor</b-button>
+          <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">{{$t("roleLab")}}</b-button>
         </b-col>
         <b-col></b-col>
       </b-row>

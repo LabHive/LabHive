@@ -21,6 +21,6 @@ Vue.use(VueI18n);
 new Vue({
   router,
   store,
-  i18n: new VueI18n({ locale: "de" }),
+  i18n: new VueI18n({ locale: "de", fallbackLocale: "de" }),
   render: h => h(App)
 }).$mount("#app");
