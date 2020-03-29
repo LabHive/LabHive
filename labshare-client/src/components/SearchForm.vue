@@ -24,6 +24,7 @@
 
 
 <script>
+import { labSkills, equipment, advices } from '../../dist-browser/lib/selectLists'
 export default {
   data: function(){
     return {
@@ -34,18 +35,9 @@ export default {
         equipment: [],
         advice: []
       },
-      humanSkillsOptions: [ 
-        { text: 'Orange', value: 'orange' },
-        { text: 'Apple', value: 'apple' }
-      ],
-      equipmentOptions: [
-        { text: 'Orange', value: 'orange' },
-        { text: 'Apple', value: 'apple' }
-      ],
-      adviceOptions: [
-        { text: 'Orange', value: 'orange' },
-        { text: 'Apple', value: 'apple' }
-      ],
+      humanSkillsOptions: labSkills,
+      equipmentOptions: equipment,
+      adviceOptions: advices
     }
   },
   methods: {
