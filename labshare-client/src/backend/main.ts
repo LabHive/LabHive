@@ -1,5 +1,5 @@
 import cors from 'cors'
-import express from "express"
+import express, { response } from "express"
 import { readFileSync } from 'fs'
 import { registration } from './endpoints/registration'
 import { forgotPassword } from './endpoints/forgotPassword'
@@ -9,6 +9,7 @@ import { authMiddleware } from './middlewares/auth'
 import { changePassword } from './endpoints/changePassword'
 import { search } from "./endpoints/search";
 import Profile from './endpoints/Profile'
+import { language } from './endpoints/language'
 
 let app = express()
 let router = express.Router()
@@ -26,6 +27,7 @@ else {
 app.use(express.json());
 app.use('/api/v1', router)
 
+router.get('/language', language)
 router.post('/registration', registration)
 router.post('/forgot-password', forgotPassword)
 router.post("/reset-password", resetPassword)
