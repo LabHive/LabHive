@@ -23,7 +23,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#/UeberUns">{{ $t("aboutUs") }}</b-nav-item>
+            <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
