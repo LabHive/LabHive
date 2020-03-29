@@ -1,4 +1,5 @@
-<i18n>{
+<i18n>
+{
   "en": {
     "registration": "Registration",
     "complete": "Thank you for registering!"
@@ -10,7 +11,8 @@
     "roleHelper": "Helfer",
     "roleLab": "Labor"
     }
-}</i18n>
+}
+</i18n>
 <template>
   <div class="register">
     <h1>{{$t("registration")}}</h1>

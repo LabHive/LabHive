@@ -1,6 +1,6 @@
 <template>
   <div class="locale-changer">
-    <b-form-select id v-model="$i18n.locale">
+    <b-form-select id v-model="locale">
       <b-form-select-option
         v-for="(lang, i) in langs"
         :key="`Lang${i}`"
@@ -19,8 +19,15 @@ export default {
   name: "locale-change",
   data() {
     return {
-      langs
+      langs,
+      locale: this.$i18n.locale
     };
+  },
+  watch: {
+    locale: function(val) {
+      this.$i18n.locale = val
+      localStorage.setItem('locale', val)
+    }
   }
 };
 </script>
