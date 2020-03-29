@@ -7,14 +7,15 @@
         <b-form-input type="email" id="email" v-model="formData.contact.email" trim></b-form-input>
       </b-form-group>
 
-      <b-form-group id="password" label="Passwort">
-        <b-form-input type="password" id="password" v-model="formData.password" trim></b-form-input>
-      </b-form-group>
+      <template v-if="!profileUpdate">
+        <b-form-group id="password" label="Passwort">
+          <b-form-input type="password" id="password" v-model="formData.password" trim></b-form-input>
+        </b-form-group>
 
-      <b-form-group id="password" label="Passwort wiederholen">
-        <b-form-input type="password" id="password" v-model="passwordRepeat" trim></b-form-input>
-      </b-form-group>
-
+        <b-form-group id="password" label="Passwort wiederholen">
+          <b-form-input type="password" id="password" v-model="passwordRepeat" trim></b-form-input>
+        </b-form-group>
+      </template>
 
       <h3>Kontakt Informationen</h3>
       <b-form-group id="firstname" label="Vorname">
@@ -69,7 +70,7 @@
       </b-form-group>
 
       
-      <b-button variant="primary" type="submit">Registrieren</b-button>
+      <b-button variant="primary" type="submit">Save</b-button>
     </b-form>
   </div>
     
@@ -114,12 +115,15 @@ export default {
       ]
     }
   },
-  computed: {
-    error: function() {
-      return this.$store.state.error
+  props: {
+    profileUpdate: {
+      default: false,
+      type: Boolean
     }
   },
-  components: {
+  mounted: function(){
+    if(this.$store.state.profile.role)
+      this.formData = this.$store.state.profile
   },
   methods: {
     submit: function(event) {

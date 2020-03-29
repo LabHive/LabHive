@@ -29,15 +29,11 @@ export default new Vuex.Store({
     profile_fetch(state, profile){
       state.profile = profile
     },
-    setSearchResults (state, results) {
+    update_profile(state, profile){
+      state.profile = profile
+    },
+    set_search_results (state, results) {
       state.searchResults = results;
-    },
-    setError(state, description) {
-      state.error.state = true
-      state.error.description = description
-    },
-    clearError(state) {
-      state.error.state = false
     }
   },
   getters: {
@@ -81,11 +77,22 @@ export default new Vuex.Store({
           });
       })
     },
+    updateProfile({commit}, newProfileData) {
+      return new Promise((resolve, reject) => {
+        Vue.http.post('profile', newProfileData)
+        .then( () => {
+          commit('update_profile', newProfileData)
+          resolve()
+        }, response => {
+          reject(response)
+        }) 
+      })
+    },
     getSearchResults({ commit, state }) {
       let role = state.profile.role
       Vue.http.get('search', { params: { role: role, filter: state.searchAttributes.filters }})
       .then(success => {
-        commit('setSearchResults', success.body);
+        commit('set_search_results', success.body);
       },
       error => {
         console.log(error)
