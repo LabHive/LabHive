@@ -1,114 +1,125 @@
 import { ValidationError } from '../backend/errors';
 import { labSkills, equipment, advices } from "./selectLists";
+import './optional'
 
 class ValidationResult {
     valid: boolean;
     err: ValidationError;
+    value: Optional<any>
 
-    constructor(valid: boolean = true, msg: string = '') {
+    constructor(valid: boolean, msg: string, value: Optional<any>) {
         this.valid = valid
-        if (!valid && msg === '') {
+        if (!valid && !msg) {
             throw new Error("Invalid ValidationResult initialized without message")
         }
         this.err = new ValidationError(msg)
+        this.value = value
+    }
+}
+
+class ValidationResultError extends ValidationResult {
+    constructor(msg: string, value: Optional<any>) {
+        super(false, msg, value)
+    }
+}
+
+class ValidationResultSuccess extends ValidationResult {
+    constructor() {
+        super(true, '', undefined)
     }
 }
 
 export class Validator {
     static validEmail(email?: string): ValidationResult {
         let regexpEmail = new RegExp(/^.+@.+\..+$/);
-        if (email && !regexpEmail.test(email)) {
-            return new ValidationResult(false, "Ungültige email Adresse")
+        if (!email || !regexpEmail.test(email)) {
+            return new ValidationResultError("Ungültige email Adresse", email)
         }
-        return new ValidationResult()
+        return new ValidationResultSuccess()
     }
 
-    static validateFirstname(firstname?: string) {
-        this.validateTextShort(firstname);
+    static validFirstname(firstname?: string): ValidationResult {
+        return this.validTextShort(firstname);
     }
 
-    static validateLastname(lastname?: string) {
-        this.validateTextShort(lastname);
+    static validLastname(lastname?: string): ValidationResult {
+        return this.validTextShort(lastname);
     }
 
     static validZipcode(zipcode?: string): ValidationResult {
         let regexpZipCode = new RegExp(/^[0-9]{5}$/);
         if (!zipcode || !regexpZipCode.test(zipcode)) {
-            return new ValidationResult(false, "Ungültige PLZ")
+            return new ValidationResultError("Ungültige PLZ", zipcode)
         }
-        return new ValidationResult()
+        return new ValidationResultSuccess()
     }
 
-    static validateCity(city?: string) {
-        this.validateTextShort(city);
+    static validCity(city?: string): ValidationResult {
+        return this.validTextShort(city);
     }
 
-    static validateStreet(street?: string) {
-        this.validateTextShort(street);
+    static validStreet(street?: string): ValidationResult {
+        return this.validTextShort(street);
     }
 
-    static validatePhone(phone?: string) {
+    static validPhone(phone?: string): ValidationResult {
         let regexpPhone = new RegExp(/^[0-9+ ()]+$/);
         if (!phone || !regexpPhone.test(phone)) {
-            throw new ValidationError("Telefonnummer bitte in der Form +49931123 oder 12344 eingeben ohne Leerzeichen, - oder /")
+            return new ValidationResultError("Telefonnummer bitte in der Form +49931123 oder 12344 eingeben ohne Leerzeichen, - oder /", phone)
         }
+        return new ValidationResultSuccess()
     }
 
-    static validateDescription(description?: string) {
-        this.validateTextLong(description);
+    static validDescription(description?: string): ValidationResult {
+        if (description === "") {
+            description = " "
+        }
+        return this.validTextLong(description);
     }
 
-    static validateRNAExctractionHours(hours?: number) {
-        this.validateNumber(hours);
-    }
-
-    static validateRTPCRHours(hours?: number) {
-        this.validateNumber(hours);
-    }
-
-    static validateHoursPerWeek(hours?: number) {
-        this.validateNumber(hours);
-    }
-
-    static validateName(name?: string) {
-        this.validateTextShort(name)
+    static validName(name?: string): ValidationResult {
+        return this.validTextShort(name)
     }
 
 
-    private static validateTextShort(text?: string) {
+    private static validTextShort(text?: string): ValidationResult {
         if (!text || text.length > 200) {
-            throw new ValidationError("Nicht mehr als 200 Zeichen eingeben")
+            return new ValidationResultError("Nicht mehr als 200 Zeichen eingeben", text)
         }
+        return new ValidationResultSuccess()
     }
 
-    private static validateTextLong(text?: string) {
+    private static validTextLong(text?: string): ValidationResult {
         if (!text || text.length > 2000) {
-            throw new ValidationError("Nicht mehr als 2000 Zeichen eingeben")
+            return new ValidationResultError("Nicht mehr als 2000 Zeichen eingeben", text)
         }
+        return new ValidationResultSuccess()
     }
 
-    private static validateNumber(number?: number) {
+    private static validNumber(number?: number): ValidationResult {
         if (!number || !Number.isInteger(number)) {
-            throw new ValidationError("Bitte eine Zahl eingeben")
+            return new ValidationResultError("Bitte eine Zahl eingeben", number)
         }
+        return new ValidationResultSuccess()
     }
 
-    static validateSearchType(searchtype?: string) {
+    static validSearchType(searchtype?: string): ValidationResult {
         if (!searchtype || (searchtype !== "human_ressources" && searchtype !== "device" && searchtype !== "advice")) {
-            throw new ValidationError("Unknown searchtype")
+            return new ValidationResultError("Unknown searchtype", searchtype)
         }
-
+        return new ValidationResultSuccess()
     }
 
-    static validateRole(role?: string) {
+    static validRole(role?: string): ValidationResult {
         if (!role || (role !== "lab" && role !== "human")) {
-            throw new ValidationError("Unknown role")
+            return new ValidationResultError("Unknown role", role)
         }
+        return new ValidationResultSuccess()
     }
 
     static validSkills(skills?: string[]): ValidationResult {
         if (!skills) 
-            return new ValidationResult(false, "Invalid skills")
+            return new ValidationResultError("Invalid skills", skills)
 
         
         let skillCopy = Array.from(skills)
@@ -120,14 +131,14 @@ export class Validator {
         }
 
         if (skillCopy.length > 0) {
-            return new ValidationResult(false, "Invalid skills")
+            return new ValidationResultError("Invalid skills", skills)
         }
-        return new ValidationResult()
+        return new ValidationResultSuccess()
     }
 
     static validEquipment(equip?: string[]): ValidationResult {
         if (!equip)
-            return new ValidationResult(false, "Invalid equipment")
+            return new ValidationResultError("Invalid equipment", equip)
 
         let eqipCopy = Array.from(equip)
         for (let i of equipment) {
@@ -138,14 +149,14 @@ export class Validator {
         }
 
         if (eqipCopy.length > 0) {
-            return new ValidationResult(false, "Invalid equipment")
+            return new ValidationResultError("Invalid equipment", equip)
         }
-        return new ValidationResult()
+        return new ValidationResultSuccess()
     }
 
     static validAdvice(adv?: string[]): ValidationResult {
         if (!adv)
-            return new ValidationResult(false, "Invalid advice")
+            return new ValidationResultError("Invalid advice", adv)
 
         let advArr = Array.from(adv)
         for (let i of advices) {
@@ -156,57 +167,55 @@ export class Validator {
         }
 
         if (advArr.length > 0) {
-            return new ValidationResult(false, "Invalid advice")
+            return new ValidationResultError("Invalid advice", adv)
         }
-        return new ValidationResult()
+        return new ValidationResultSuccess()
     }
 
-    static validateConsent(consent?: any) {
+    static validConsent(consent?: any): ValidationResult {
         if (!consent || typeof consent.processing !== 'boolean' || typeof consent.publicContact !== 'boolean') {
-            throw new ValidationError('Invalid consent')
+            return new ValidationResultError('Invalid consent', consent)
         }
+        return new ValidationResultSuccess()
     }
 
-    static validateOrganization(org?: string) {
-        this.validateTextShort(org)
+    static validOrganization(org?: string): ValidationResult {
+        return this.validTextShort(org)
     }
 
 
-    static validateProfileFields(object: any, role: string) {
+    static validProfileFields(object: any, role: string): ValidationResult {
         // Address
-        if (object.address?.city)
-            this.validateCity(object.address?.city)
-        if (object.address?.zipcode)
-            this.validZipcode(object.address?.zipcode)
-        if (object.address?.street)
-            this.validateStreet(object.address?.street)
-
+        let results = []
+        results.push(this.validCity(object.address?.city))
+        results.push(this.validZipcode(object.address?.zipcode))
+        
         // Contact
-        if (object.contact?.firstname)
-            this.validateFirstname(object.contact?.firstname)
-        if (object.contact?.lastname)
-            this.validateLastname(object.contact?.lastname)
-        if (object.contact?.phone)
-            this.validatePhone(object.contact?.phone)
-        if (object.contact?.email)
-            this.validEmail(object.contact?.email)
+        results.push(this.validFirstname(object.contact?.firstname))
+        results.push(this.validLastname(object.contact?.lastname))
+        results.push(this.validPhone(object.contact?.phone))
+        results.push(this.validEmail(object.contact?.email))
 
         // Other
-        if (object.description)
-            this.validateDescription(object.description)
-        if (object.consent)
-            this.validateConsent(object.consent)
+        results.push(this.validDescription(object.description))
+        results.push(this.validConsent(object.consent))
 
         if (role == "lab") {
-            if (object.name)
-                this.validateName(object.name)
+            results.push(this.validName(object.name))
+            results.push(this.validStreet(object.address?.street))
         }
         else {
-            if (object.details?.skills) 
-                this.validSkills(object.details?.skills)
-            if (object.organization) 
-                this.validateOrganization(object.organization)
+            results.push(this.validSkills(object.details?.skills))
+            results.push(this.validOrganization(object.organization))
         }
+
+        for (let i of results) {
+            if (!i.valid && i.value != null) {
+                return i
+            }
+        }
+
+        return new ValidationResultSuccess()
     }
 }
 

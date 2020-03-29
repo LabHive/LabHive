@@ -28,10 +28,9 @@ export async function registration(req: express.Request, res: express.Response, 
         return utils.badRequest(res)
     }
 
-    try {
-        v.validateProfileFields(body, req.query.role)
-    } catch (error) {
-        return utils.handleError(res, error)
+    let validationResult = v.validProfileFields(body, req.query.role)
+    if (!validationResult.valid) {
+        return utils.handleError(res, validationResult.err)
     }
 
     if (!body.consent.processing) {

@@ -9,12 +9,12 @@ import utils from '../utils';
 
 export async function forgotPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
     let body = req.body;
-    try {
-        v.validEmail(body.email);
+    let validationResult = v.validEmail(body.email);
+    
+    if (!validationResult.valid) {
+        return utils.handleError(res, validationResult.err);
     }
-    catch (error) {
-        return utils.handleError(res, error);
-    }
+
 
     let user = await getUserForMail(body.email);
     if (!user) {

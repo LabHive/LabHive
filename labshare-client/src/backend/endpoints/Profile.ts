@@ -49,7 +49,7 @@ class Profile {
         }
         delete schema.required
 
-        if (!JsonSchema.validate(body, schema) || v.validateProfileFields(body, token.role)) {
+        if (!JsonSchema.validate(body, schema) || !v.validProfileFields(body, token.role).valid) {
             return utils.badRequest(res);
         }
 
