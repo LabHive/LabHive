@@ -14,10 +14,6 @@ export default new Vuex.Store({
       filters: []
     },
     searchResults: [],
-    error: {
-      state: false,
-      description: null
-    }
   },
   mutations: {
     auth_success(state, token) {
