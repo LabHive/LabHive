@@ -1,14 +1,23 @@
+<i18n>
+{
+  "en": {},
+  "de": {
+    "profile": "Profile",
+    "profileUpdated": "Profile updated"
+  }
+}
+</i18n>
 <template>
   <div class="profile">
-    <h1>Profile</h1>
+    <h1>{{$t('profile')}}</h1>
 
     <template v-if="updated">
-      <h2>Profile updated</h2>
+      <h2>{{$t('profileUpdated')}}</h2>
     </template>
     <template v-else>
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
       <HelperForm v-if="profile.role === 'human'" :profileUpdate="true" @formcomplete="save" />
-      <LabForm v-if="profile.role === 'lab'"  :profileUpdate="true" @formcomplete="save" />
+      <LabForm v-if="profile.role === 'lab'" :profileUpdate="true" @formcomplete="save" />
     </template>
   </div>
 </template>
@@ -27,18 +36,18 @@ export default {
     };
   },
   computed: {
-    profile: function(){
-      return this.$store.state.profile
+    profile: function() {
+      return this.$store.state.profile;
     }
   },
   methods: {
     save: function(data) {
-      this.$store.dispatch('updateProfile', data)
-      .then(()=> {
-        this.updated = true
-      },
-      err => {
-          this.error = err.body.errorDescription
+      this.$store.dispatch("updateProfile", data).then(
+        () => {
+          this.updated = true;
+        },
+        err => {
+          this.error = err.body.errorDescription;
         }
       );
     }

@@ -2,23 +2,9 @@
 {
   "en": {},
   "de": {
-    "loginInfo": "Login Informationen",
-    "contactInfo": "Kontakt Informationen",
     "labInfo": "Labor Informationen",
-    "register": "Registrieren",
-    "save": "Speichern",
-    "email": "E-Mail Adresse",
-    "password": "Passwort",
-    "repeatPassword": "Passwort wiederholen",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
-    "phone": "Telefonnummer",
     "labName": "Name des Labors",
-    "city": "Ort",
-    "postCode": "Postleitzahl",
-    "street": "Straße",
-    "consentProcessing": "Ich bin damit einverstanden, dass meine Daten von labHive Testshare zum Zweck der Weiterleitung an Labore oder Institute für die Möglichkeit einer Zusammenarbeit im Rahmen der SARS-CoV-2 Pandemie erhoben, verarbeitet und gespeichert werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DS-GVO sind von der Einwilligung unberührt. Weitere Hinweise finden Sie in unserer Datenschutzerklärung.",
-    "consentContact": "Ich bin damit einverstanden, dass meine Kontaktdaten für registrierte Labore oder Institute der Platform über die Suchfunktion einsehbar sind."
+    "street": "Straße"
   }
 }
 </i18n>
@@ -27,57 +13,30 @@
     <b-form @submit="submit">
       <h3>{{ $t("loginInfo") }}</h3>
       <b-form-group id="email" :label="$t('email')">
-        <b-form-input
-          type="email"
-          id="email"
-          v-model="formData.contact.email"
-          trim
-        ></b-form-input>
+        <b-form-input type="email" id="email" v-model="formData.contact.email" trim></b-form-input>
       </b-form-group>
 
       <template v-if="!profileUpdate">
         <b-form-group id="password" :label="$t('password')">
-          <b-form-input
-            type="password"
-            id="password"
-            v-model="formData.password"
-            trim
-          ></b-form-input>
+          <b-form-input type="password" id="password" v-model="formData.password" trim></b-form-input>
         </b-form-group>
 
         <b-form-group id="password" :label="$t('repeatPassword')">
-          <b-form-input
-            type="password"
-            id="password"
-            v-model="passwordRepeat"
-            trim
-          ></b-form-input>
+          <b-form-input type="password" id="password" v-model="passwordRepeat" trim></b-form-input>
         </b-form-group>
       </template>
 
       <h3>{{ $t("contactInfo") }}</h3>
       <b-form-group id="firstname" :label="$t('firstName')">
-        <b-form-input
-          id="firstname"
-          v-model="formData.contact.firstname"
-          trim
-        ></b-form-input>
+        <b-form-input id="firstname" v-model="formData.contact.firstname" trim></b-form-input>
       </b-form-group>
 
       <b-form-group id="lastname" :label="$t('lastName')">
-        <b-form-input
-          id="lastname"
-          v-model="formData.contact.lastname"
-          trim
-        ></b-form-input>
+        <b-form-input id="lastname" v-model="formData.contact.lastname" trim></b-form-input>
       </b-form-group>
 
       <b-form-group id="phone" :label="$t('phone')">
-        <b-form-input
-          id="phone"
-          v-model="formData.contact.phone"
-          trim
-        ></b-form-input>
+        <b-form-input id="phone" v-model="formData.contact.phone" trim></b-form-input>
       </b-form-group>
 
       <h3>{{ $t("labInfo") }}</h3>
@@ -86,27 +45,15 @@
       </b-form-group>
 
       <b-form-group id="city" :label="$t('city')">
-        <b-form-input
-          id="city"
-          v-model="formData.address.city"
-          trim
-        ></b-form-input>
+        <b-form-input id="city" v-model="formData.address.city" trim></b-form-input>
       </b-form-group>
 
       <b-form-group id="zipcode" :label="$t('postCode')">
-        <b-form-input
-          id="zipcode"
-          v-model="formData.address.zipcode"
-          trim
-        ></b-form-input>
+        <b-form-input id="zipcode" v-model="formData.address.zipcode" trim></b-form-input>
       </b-form-group>
 
       <b-form-group id="street" :label="$t('street')">
-        <b-form-input
-          id="street"
-          v-model="formData.address.street"
-          trim
-        ></b-form-input>
+        <b-form-input id="street" v-model="formData.address.street" trim></b-form-input>
       </b-form-group>
 
       <b-form-group>
@@ -114,8 +61,7 @@
           id="processing"
           v-model="formData.consent.processing"
           name="processing"
-          >{{ $t("consentProcessing") }}</b-form-checkbox
-        >
+        >{{ $t("consentProcessing") }}</b-form-checkbox>
       </b-form-group>
 
       <b-form-group>
@@ -123,17 +69,18 @@
           id="publicContact"
           v-model="formData.consent.publicContact"
           name="publicContact"
-          >{{ $t("consentContact") }}</b-form-checkbox
-        >
+        >{{ $t("consentContact") }}</b-form-checkbox>
       </b-form-group>
 
       <template v-if="profileUpdate">
         <b-button variant="primary" type="submit">{{ $t("save") }}</b-button>
       </template>
       <template v-else>
-        <b-button variant="primary" type="submit">{{
+        <b-button variant="primary" type="submit">
+          {{
           $t("register")
-        }}</b-button>
+          }}
+        </b-button>
       </template>
     </b-form>
   </div>
