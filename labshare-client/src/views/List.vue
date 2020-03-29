@@ -13,52 +13,70 @@
   <div class="list-view">
     <h1 class="mt-4">{{$t("title")}}</h1>
     <div class="container">
-      <template v-for="(set, index) in searchData">
-        <div :key="'row' + index" class="row mb-2">
-          <div class="col-12">
-            <p
-              class="lead"
-            >{{set.distance}} | {{ set.data.labContact.firstname }} {{ set.data.labContact.lastname }}</p>
-          </div>
-          <div class="col-12">
-            <p>Wir suchen</p>
-            <ul>
-              <li v-if="set.data.lookingFor.humanRessources">Personal</li>
-              <li
-                v-if="set['data']['lookingFor']['devices']['RNA-Exctraction']"
-              >{{$t("rnaExtraction")}}</li>
-              <li v-if="set['data']['lookingFor']['devices']['testingKit']">{{$t("testKits")}}</li>
-              <li
-                v-if="set['data']['lookingFor']['devices']['dataEvaluation']"
-              >{{$t("diagnostics")}}</li>
-            </ul>
-          </div>
-          <div class="col-12">@: {{ set.data.labContact.email }}</div>
-          <div class="col-12">T: {{ set.data.labContact.phone }}</div>
-
-          <div class="col-12">{{ set.data.address.street }}</div>
-          <div class="col-12">{{ set.data.address.zipcode }} {{ set.data.address.city }}</div>
+      <SearchForm @searchChange="updateListing" />
+      <div v-for="(item, index) in searchResults._embedded" v-bind:key="index">
+        
+        <div v-if="searchAttributes.role==='lab'">
+          <b-card :title="item.name">
+            <b-card-text>
+              City: {{item.address.city}} <br/>
+              Streert: {{item.address.street}} <br/>
+              Zipcode: {{item.address.zipcode}}
+            </b-card-text>
+            <b-link href="#" class="card-link">Contact</b-link>
+            <b-link href="#" class="card-link">Get directions</b-link>
+          </b-card>
         </div>
-      </template>
+
+        <div v-if="searchAttributes.role==='human'">
+          <b-card :title="item.availability ? 'Available' : 'Not available'">
+            <b-card-text>
+              City: {{item.address.city}} <br/>
+              Zipcode: {{item.address.zipcode}}
+            </b-card-text>
+
+            <b-card-text>
+              Skills: {{ item.details.skills }}
+            </b-card-text>
+            
+            <b-link href="#" class="card-link">Contact</b-link>
+            <b-link href="#" class="card-link">Get directions</b-link>
+          </b-card>
+        </div>
+        
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import SearchForm from "./../components/SearchForm"
+
 export default {
   name: "List",
-  props: {},
-  computed: {
-    searchData: function() {
-      return this.$store.searchResults;
+  data: function() {
+    return {
+      searchResults: {},
+      searchAttributes: {}
+    };
+  },
+  methods: {
+    updateListing(newSearchAttributes){
+      this.searchAttributes = newSearchAttributes;
+      this.getSearchResults()
+    },
+    getSearchResults() {
+      this.$http.get('search', { params: { role: this.searchAttributes.role }})
+      .then(success => {
+        this.searchResults = success.body
+      },
+      error => {
+        console.log(error)
+      })
     }
   },
-  data: function() {
-    return {};
-  },
-  components: {},
-  beforeMount: function() {
-    this.$store.dispatch("getSearchResults");
+  components: {
+    SearchForm
   }
 };
 </script>

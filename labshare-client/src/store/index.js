@@ -7,13 +7,7 @@ export default new Vuex.Store({
   state: {
     token: localStorage.getItem('authToken'),
     profile: {},
-    fetcingProfile: false,
-    searchAttributes: {
-      search_type: null,
-      page: 1,
-      filters: []
-    },
-    searchResults: [],
+    fetcingProfile: false
   },
   mutations: {
     auth_success(state, token) {
@@ -84,18 +78,6 @@ export default new Vuex.Store({
           reject(response)
         }) 
       })
-    },
-    getSearchResults({ commit, state }) {
-      let role = state.profile.role
-      Vue.http.get('search', { params: { role: role, filter: state.searchAttributes.filters }})
-      .then(success => {
-        commit('set_search_results', success.body);
-      },
-      error => {
-        console.log(error)
-      })
     }
-  },
-  modules: {
   }
 })
