@@ -1,13 +1,24 @@
 <i18n>
 {
-  "en": {},
+  "en": {
+    "brand": "LabHive",
+    "aboutUs": "About Us",
+    "register": "Sign up",
+    "login": "Login",
+    "profile": "Profile",
+    "signOut": "Logout",
+    "dataProtection": "Data protection",
+    "imprint": "Imprint"
+  },
   "de": {
     "brand": "LabHive",
     "aboutUs": "Über uns",
     "register": "Registrieren",
     "login": "Login",
-    "profile": "Profile",
-    "signOut": "Sign Out"
+    "profile": "Profil",
+    "signOut": "Logout",
+    "dataProtection": "Datenschutzerklärung",
+    "imprint": "Impressum"
   }
 }
 </i18n>
@@ -16,10 +27,7 @@
     <b-navbar toggleable="lg" type="dark" variant="primary" id="navbar">
       <div class="nav-container">
         <b-navbar-brand href="#/">{{ $t("brand") }}</b-navbar-brand>
-        <b-navbar-toggle
-          style="float: right"
-          target="nav-collapse"
-        ></b-navbar-toggle>
+        <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
@@ -34,12 +42,8 @@
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item href="#/profile">{{
-                $t("profile")
-              }}</b-dropdown-item>
-              <b-dropdown-item href="#" @click="logout">{{
-                $t("signOut")
-              }}</b-dropdown-item>
+              <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item href="#" @click="logout">{{$t("signOut")}}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
           </b-navbar-nav>
@@ -53,10 +57,22 @@
       </div>
     </div>
     <!-- Footer -->
-    <footer class="footer-custom">
+    <footer class="footer-custom bg-primary">
       <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">
-        <img src="./assets/wirvsvirus.png" alt="logo wir vs virus hackathon" />
+      <div class="text-center">
+        <img src="./assets/Hackathon_slogan_weiß.png" width="200px" alt="logo wir vs virus hackathon" />
+      </div>
+      <div class="text-center">
+        <b-row style="margin: 0; margin-top: 10px">
+          <b-col></b-col>
+          <b-col cols="auto">
+            <b-link to="dataProtection" class="clink">{{ $t('dataProtection') }}</b-link>
+          </b-col>
+          <b-col cols="auto">
+            <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
+          </b-col>
+          <b-col></b-col>
+        </b-row>
       </div>
       <!-- Copyright -->
     </footer>
@@ -101,6 +117,19 @@ $color-brand--primary: #0069d9;
 $color-brand--secondary: #0069d9;
 $color-white: #fff;
 
+.footer-custom {
+  padding: 10px 0;
+}
+
+.clink {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.clink:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -112,6 +141,10 @@ $color-white: #fff;
 
 #navbar {
   box-shadow: 0px 3px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.footer-custom {
+  box-shadow: 0px -3px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -132,6 +165,13 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  padding-left: 15px;
+  padding-right: 15px
+}
+
+.navbar {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .navbar-custom {
@@ -155,9 +195,6 @@ body {
 
 .content {
   flex: 1;
-}
-
-.footer-custom {
-  background-color: $color-brand--primary;
+  margin-top: 20px;
 }
 </style>

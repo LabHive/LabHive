@@ -8,6 +8,8 @@ import Register from './views/Register'
 import List from './views/List'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
+import Imprint from './views/Imprint'
+import DataProtection from './views/DataProtection'
 
 Vue.use(VueRouter);
 
@@ -16,8 +18,10 @@ const routes = [
   { path: '/login', component: Login, meta: { redirectLoggedIn: '/list'} },
   { path: '/register', component: Register, meta: { redirectLoggedIn: '/list'}},
   { path: '/ueber-uns', component: UeberUns},
+  { path: '/dataProtection', component: DataProtection },
+  { path: '/imprint', component: Imprint },
+  { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/list', component: List, meta: { auth: true } },
-  { path: '/profile', component: Profile, meta: { auth: true } }
 ];
 const router = new VueRouter({ routes });
 

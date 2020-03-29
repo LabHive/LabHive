@@ -74,11 +74,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.p-button {
-  width: 100%;
-  min-height: 100px;
-}
-.profile {
-  padding-top: 20px;
-}
+
 </style>

@@ -135,7 +135,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.lab-form {
-  max-width: 500px;
+.form-control {
+  max-width: 360px;
 }
 </style>

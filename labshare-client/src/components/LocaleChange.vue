@@ -1,32 +1,36 @@
 <template>
   <div class="locale-changer">
-    <b-form-select id v-model="locale">
-      <b-form-select-option
-        v-for="(lang, i) in langs"
-        :key="`Lang${i}`"
-        :value="lang.code"
-      >{{ lang.label }}</b-form-select-option>
-    </b-form-select>
+    <b-nav-item-dropdown right :text="getLanguage">
+      <template v-for="(v, k) in langs">
+        <b-dropdown-item :key="k" @click="setLocale(k)">
+        {{ v }}
+        </b-dropdown-item>
+      </template>
+    </b-nav-item-dropdown>
   </div>
 </template>
 
 <script>
-const langs = [
-  { label: "Deutsch", code: "de" },
-  { label: "English", code: "en" }
-];
+const langs = {
+  de: "Deutsch",
+  en: "English"
+};
 export default {
   name: "locale-change",
   data() {
     return {
       langs,
-      locale: this.$i18n.locale
     };
   },
-  watch: {
-    locale: function(val) {
-      this.$i18n.locale = val
-      localStorage.setItem('locale', val)
+  computed: {
+    getLanguage: function() {
+      return langs[this.$i18n.locale]
+    }
+  },
+  methods: {
+    setLocale: function(val) {
+      this.$i18n.locale = val;
+      localStorage.setItem("locale", val);
     }
   }
 };

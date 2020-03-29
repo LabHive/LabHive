@@ -9,7 +9,7 @@
 </i18n>
 <template>
   <div>
-    <h1 style="marign-top: 20px">{{$t("title")}}</h1>
+    <h1>{{$t("title")}}</h1>
 
     <div class="login-form">
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
@@ -69,9 +69,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.login-form {
-  max-width: 500px;
-  width: 100%;
-  margin-top: 20px;
+.form-control {
+  max-width: 300px;
 }
 </style>

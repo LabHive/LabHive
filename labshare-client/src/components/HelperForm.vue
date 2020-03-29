@@ -167,4 +167,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.form-control {
+  max-width: 360px;
+}
+</style>

@@ -20,25 +20,29 @@
       <h2>{{$t("complete")}}</h2>
     </template>
     <template v-else-if="!loadedForm">
-      <b-row>
-        <b-col cols="12">
-          <p class="lead text-center">{{$t("prospectiveRole")}}</p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="auto">
-          <b-button
-            size="lg"
-            variant="primary"
-            @click="loadedForm = forms.HELPER"
-          >{{$t("roleHelper")}}</b-button>
-        </b-col>
-        <b-col cols="auto">
-          <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">{{$t("roleLab")}}</b-button>
-        </b-col>
-        <b-col></b-col>
-      </b-row>
+      <b-container fluid style="margin-top: 30px">
+        <b-row>
+          <b-col cols="12">
+            <p class="lead text-center">{{$t("prospectiveRole")}}</p>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          <b-col></b-col>
+          <b-col cols="auto">
+            <b-button
+              size="lg"
+              variant="primary"
+              @click="loadedForm = forms.HELPER"
+            >{{$t("roleHelper")}}</b-button>
+          </b-col>
+          <b-col cols="auto">
+            <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">{{$t("roleLab")}}</b-button>
+          </b-col>
+          <b-col></b-col>
+        </b-row>
+
+      </b-container>
     </template>
     <div v-else>
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
@@ -78,7 +82,7 @@ export default {
           let data = resp.body;
           if (data.success) {
             this.registrationComplete = true;
-            this.error = null
+            this.error = null;
           }
         },
         err => {
@@ -96,11 +100,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.p-button {
-  width: 100%;
-  min-height: 100px;
-}
-.register {
-  padding-top: 20px;
-}
 </style>
