@@ -65,7 +65,7 @@
           <b-form-checkbox
             v-for="(skill, i) in labSkills"
             :key="`Skill${i}`"
-            value="skill.value"
+            :value="skill.value"
           >{{ $t(skill.value) }}</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
