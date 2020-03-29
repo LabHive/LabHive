@@ -17,3 +17,5 @@ export const UserHumanSchema = new Schema({
     availability: { type: Boolean, default: true },
     organization: String
 });
+
+UserHumanSchema.index({location: '2dsphere'})

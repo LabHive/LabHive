@@ -1,7 +1,121 @@
 import express from "express";
 import { Mongoose, Model } from 'mongoose';
-import { UserLab, UserHuman } from '../database/database';
-import utils from '../utils';
+import { UserLab, UserHuman, getUser } from '../database/database';
+import utils, { Token } from '../utils';
+import { Validator } from '../../lib/validation';
+import { ValidationError } from '../errors';
+
+function buildFilter(req: express.Request, res: express.Response, token?: Token): Optional<any> {
+    let searchRole = req.query.role
+    let filter: any = {}
+
+    if (searchRole === 'human') {
+        filter.availability = true
+
+        let skills: string = req.query.humanSkills
+        if (skills) {
+            let skills_array = skills.split(',').map(x => x.trim())
+            let result = Validator.validSkills(skills_array)
+            if (!result.valid) {
+                utils.handleError(res, result.err)
+                return undefined
+            }
+
+            filter['details.skills'] = {
+                '$in': skills_array
+            }
+        }
+    }
+    else {
+        let equipment: string = req.query.equipment
+        if (equipment) {
+            let equip_array = equipment.split(',').map(x => x.trim())
+            let result = Validator.validEquipment(equip_array)
+            if (!result.valid) {
+                utils.handleError(res, result.err)
+                return undefined
+            }
+
+            filter['lookingFor.equipment'] = {
+                '$in': equip_array
+            }
+        }
+
+        let advices: string = req.query.advice
+        if (advices) {
+            let advice_array = advices.split(',').map(x => x.trim())
+            let result = Validator.validAdvice(advice_array)
+            if (!result.valid) {
+                utils.handleError(res, result.err)
+                return undefined
+            }
+
+            filter['lookingFor.advice'] = {
+                '$in': advice_array
+            }
+        }
+    }
+
+    filter['consent.processing'] = true
+    return filter
+}
+
+
+function validSearchFilter(req: express.Request, res: express.Response, token?: Token): boolean {
+    if (!req.query.role || (req.query.role !== "lab" && req.query.role !== "human")) {
+        console.log("invalid role parameter")
+        utils.badRequest(res)
+        return false
+    }
+
+    if (req.query.role === 'human') {
+        if (req.query.equipment || req.query.advice) {
+            console.log("humans can not search for equipment or advice")
+            utils.badRequest(res)
+            return false
+        }
+    }
+
+    if (!token && !req.query.zipcode) {
+        console.log('Zipcode is required when unauthenticated')
+        utils.badRequest(res)
+        return false
+    }
+
+    if (req.query.zipcode) {
+        let result = Validator.validZipcode(req.query.zipcode)
+        if (!result.valid) {
+            console.log("Invalid zipcode")
+            utils.badRequest(res)
+            return false
+        }
+    }
+
+    // labs can search for everything
+    return true
+}
+
+async function getZipcodeCoords(req: express.Request, res: express.Response, token?: Token): Promise<Optional<number[]>> {
+    if (req.query.zipcode) {
+        let ccords: number[]
+        try {
+            return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coordinates
+        }
+        catch {
+            utils.errorResponse(res, 400, "Ungültige PLZ")
+            return undefined
+        }
+    }
+
+    if (token) {
+        let user = await getUser({_id: token.sub})
+        return user?.location.coordinates
+    }
+
+    utils.badRequest(res)
+    return undefined
+}
+
 
 export async function search(req: express.Request, res: express.Response, next: express.NextFunction) {
     let model: Model<any>;
@@ -14,40 +128,96 @@ export async function search(req: express.Request, res: express.Response, next: 
         page = 0
     }
     page = Math.max(page, 0)
+
+    let token = await utils.getVerifiedDecodedJWT(req)
+    if (!validSearchFilter(req, res, token)) {
+        return
+    }
     
     if (req.query.role === 'human') {
         model = UserHuman
         projection = {
-            'location': 'location',
-            'address': 'address',
-            'description': 'description',
-            'details': 'details',
-            'availability': 'availability'
+            'location': 1,
+            'address': 1,
+            'description': 1,
+            'details': 1,
+            'availability': 1,
+            'consent': 1 // delete this from the query result
         }
-    }
-    else if (req.query.role === 'lab') {
-        model = UserLab
-        projection = {
-            'location': 'location',
-            'address': 'address',
-            'description': 'description',
-            'lookingFor': 'lookingFor',
-            'name': 'name'
+
+        if (token && token.role === "lab") {
+            projection['contact'] = 1
         }
     }
     else {
-        return utils.badRequest(res)
+        model = UserLab
+        projection = {
+            'location': 1,
+            'address': 1,
+            'description': 1,
+            'lookingFor': 1,
+            'name': 1,
+            'consent': 1 // delete this from the query result
+        }
+
+        if (token) {
+            projection['contact'] = 1
+        }
     }
 
-    let count = await model.countDocuments().exec()
+
+
+    let center = await getZipcodeCoords(req, res, token)
+    if (!center) {
+        return
+    }
+    let center_point = {
+        type: 'Point',
+        coordinates: center
+    }
+
+    let filter = buildFilter(req, res, token)
+    if (!filter) {
+        // response is sent in buildFilter
+        return
+    }
+ 
+    let count = (await model.aggregate([{
+        $geoNear: {
+            near: center_point,
+            distanceField: 'distance',
+            spherical: true,
+            query: filter,
+            key: 'location'
+        }
+    }]).count('count').exec())[0].count
+
     if (count == 0 || count < page*20) {
         return utils.errorResponse(res, 400, "No results could be found")
     }
 
-    let docs = await model.find({'consent.processing': true}, projection).skip(page * 20).limit(20).exec()
+    projection['distance'] = 1
+    let docs = (await model.aggregate([{
+        $geoNear: {
+            near: center_point,
+            distanceField: 'distance',
+            spherical: true,
+            query: filter,
+            key: 'location'
+        }
+    }]).project(projection).skip(20*page).limit(20).exec())
+    
+
     let results = []
     for (let i of docs) {
-        results.push(i)
+        let a = i
+        if (!i.consent.publicContact) {
+            delete a.contact
+        }
+        
+        delete a.consent
+        delete a._id
+        results.push(a)
     }
 
     let reqUrl = req.protocol + '://' + req.get('host') + req.originalUrl;

@@ -1,11 +1,26 @@
 import { ValidationError } from '../backend/errors';
+import { labSkills, equipment, advices } from "./selectLists";
+
+class ValidationResult {
+    valid: boolean;
+    err: ValidationError;
+
+    constructor(valid: boolean = true, msg: string = '') {
+        this.valid = valid
+        if (!valid && msg === '') {
+            throw new Error("Invalid ValidationResult initialized without message")
+        }
+        this.err = new ValidationError(msg)
+    }
+}
 
 export class Validator {
-    static validateEmail(email: string) {
+    static validEmail(email?: string): ValidationResult {
         let regexpEmail = new RegExp(/^.+@.+\..+$/);
-        if (!regexpEmail.test(email)) {
-            throw new ValidationError("Keine valide Email-Adresse")
+        if (email && !regexpEmail.test(email)) {
+            return new ValidationResult(false, "Ungültige email Adresse")
         }
+        return new ValidationResult()
     }
 
     static validateFirstname(firstname?: string) {
@@ -16,11 +31,12 @@ export class Validator {
         this.validateTextShort(lastname);
     }
 
-    static validateZipcode(zipcode?: string) {
+    static validZipcode(zipcode?: string): ValidationResult {
         let regexpZipCode = new RegExp(/^[0-9]{5}$/);
         if (!zipcode || !regexpZipCode.test(zipcode)) {
-            throw new ValidationError("Bitte nicht mehr als fünf Zeichen eingeben")
+            return new ValidationResult(false, "Ungültige PLZ")
         }
+        return new ValidationResult()
     }
 
     static validateCity(city?: string) {
@@ -90,30 +106,59 @@ export class Validator {
         }
     }
 
-    static validateSkills(skills?: string[]) {
+    static validSkills(skills?: string[]): ValidationResult {
         if (!skills) 
-            throw new ValidationError("Invalid skills")
+            return new ValidationResult(false, "Invalid skills")
 
-        let labSkills = {
-            sample_processing: "Vor/Aufbereitung klinischer Proben",
-            rna_isolation: "RNA isolation (Mit Kit)",
-            qpcr: "qPCR",
-            bsl2: "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-            bsl3: "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
-            sample_collection: "klinische Erfahrung (Probenkollektion)"
-        }
         
         let skillCopy = Array.from(skills)
-        for (let i in labSkills) {
-            let index = skillCopy.indexOf(i)
+        for (let i of labSkills) {
+            let index = skillCopy.indexOf(i.value)
             if (index > -1) {
                 skillCopy.splice(index, 1)
             }
         }
 
         if (skillCopy.length > 0) {
-            throw new ValidationError("Invalid skills")
+            return new ValidationResult(false, "Invalid skills")
         }
+        return new ValidationResult()
+    }
+
+    static validEquipment(equip?: string[]): ValidationResult {
+        if (!equip)
+            return new ValidationResult(false, "Invalid equipment")
+
+        let eqipCopy = Array.from(equip)
+        for (let i of equipment) {
+            let index = eqipCopy.indexOf(i.value)
+            if (index > -1) {
+                eqipCopy.splice(index, 1)
+            }
+        }
+
+        if (eqipCopy.length > 0) {
+            return new ValidationResult(false, "Invalid equipment")
+        }
+        return new ValidationResult()
+    }
+
+    static validAdvice(adv?: string[]): ValidationResult {
+        if (!adv)
+            return new ValidationResult(false, "Invalid advice")
+
+        let advArr = Array.from(adv)
+        for (let i of advices) {
+            let index = advArr.indexOf(i.value)
+            if (index > -1) {
+                advArr.splice(index, 1)
+            }
+        }
+
+        if (advArr.length > 0) {
+            return new ValidationResult(false, "Invalid advice")
+        }
+        return new ValidationResult()
     }
 
     static validateConsent(consent?: any) {
@@ -132,7 +177,7 @@ export class Validator {
         if (object.address?.city)
             this.validateCity(object.address?.city)
         if (object.address?.zipcode)
-            this.validateZipcode(object.address?.zipcode)
+            this.validZipcode(object.address?.zipcode)
         if (object.address?.street)
             this.validateStreet(object.address?.street)
 
@@ -144,7 +189,7 @@ export class Validator {
         if (object.contact?.phone)
             this.validatePhone(object.contact?.phone)
         if (object.contact?.email)
-            this.validateEmail(object.contact?.email)
+            this.validEmail(object.contact?.email)
 
         // Other
         if (object.description)
@@ -158,7 +203,7 @@ export class Validator {
         }
         else {
             if (object.details?.skills) 
-                this.validateSkills(object.details?.skills)
+                this.validSkills(object.details?.skills)
             if (object.organization) 
                 this.validateOrganization(object.organization)
         }

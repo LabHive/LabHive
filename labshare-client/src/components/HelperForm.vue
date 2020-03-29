@@ -101,6 +101,8 @@
 </template>
 
 <script>
+import { labSkills } from '../../dist-browser/lib/selectLists'
+
 export default {
   name: "HelperForm",
   data: function() {
@@ -129,23 +131,8 @@ export default {
           publicContact: false
         }
       },
-      labSkills: [
-        {
-          value: "bsl2"
-        },
-        {
-          value: "bsl3"
-        },
-        {
-          value: "sample_processing"
-        },
-        { value: "rna_isolation" },
-        { value: "qpcr" },
-        {
-          value: "sample_collection"
-        }
-      ]
-    };
+      labSkills: labSkills
+    }
   },
   props: {
     profileUpdate: {
