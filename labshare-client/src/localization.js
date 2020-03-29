@@ -2,15 +2,15 @@
 
 let locale = localStorage.getItem('locale')
 if (!locale) {
-    locale = 'en'
+    locale = 'de'
 }
 
 export let localization = {
     locale: locale,
-    fallbackLocale: "en",
+    fallbackLocale: "de",
     messages: {
       en: {
-          
+
       },
       de: {
         loginInfo: "Login Informationen",
