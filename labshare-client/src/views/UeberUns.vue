@@ -1,5 +1,5 @@
 <i18n>
-{ "de": {
+{ "en": {
   "welcome": "Welcome to LabShare!"
 },
   "de": {
