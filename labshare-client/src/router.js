@@ -8,6 +8,7 @@ import Register from './views/Register'
 import List from './views/List'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
+import ChangePassword from './views/ChangePassword'
 import Imprint from './views/Imprint'
 import DataProtection from './views/DataProtection'
 
@@ -21,6 +22,7 @@ const routes = [
   { path: '/dataProtection', component: DataProtection },
   { path: '/imprint', component: Imprint },
   { path: '/profile', component: Profile, meta: { auth: true } },
+  { path: '/change-password', component: ChangePassword, meta: { auth: true } },
   { path: '/list', component: List, meta: { auth: true } },
 ];
 const router = new VueRouter({ routes });

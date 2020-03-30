@@ -6,6 +6,7 @@
     "register": "Sign up",
     "login": "Login",
     "profile": "Profile",
+    "changePassword": "Change Password",
     "signOut": "Logout",
     "dataProtection": "Data protection",
     "imprint": "Imprint"
@@ -16,6 +17,7 @@
     "register": "Registrieren",
     "login": "Login",
     "profile": "Profil",
+    "changePassword": "Passwort ändern",
     "signOut": "Logout",
     "dataProtection": "Datenschutzerklärung",
     "imprint": "Impressum"
@@ -43,6 +45,7 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{$t("signOut")}}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
