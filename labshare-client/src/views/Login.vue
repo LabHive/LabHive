@@ -3,7 +3,8 @@
   "en": {},
   "de": {
     "title": "Login",
-    "submit": "Einloggen"
+    "submit": "Einloggen",
+    "forgotPassword": "Passwort vergessen"
   }
 }
 </i18n>
@@ -21,6 +22,9 @@
         <b-form-group id="password" label="Passwort">
           <b-form-input type="password" id="password" v-model="user.password" trim></b-form-input>
         </b-form-group>
+        <div class="my-3">
+          <router-link to="/forgot-password">{{ $t('forgotPassword') }}</router-link>
+        </div>
         <b-button variant="primary" type="submit">{{$t("submit")}}</b-button>
       </b-form>
     </div>

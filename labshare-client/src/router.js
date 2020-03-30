@@ -4,6 +4,8 @@ import store from './store'
 
 import Index from './views/Index'
 import Login from './views/Login'
+import ForgotPassword from './views/ForgotPassword';
+import ResetPassword from './views/ResetPassword';
 import Register from './views/Register'
 import List from './views/List'
 import UeberUns from './views/UeberUns'
@@ -17,6 +19,8 @@ Vue.use(VueRouter);
 const routes = [
   { path: '/', component: Index, meta: { redirectLoggedIn: '/list'} },
   { path: '/login', component: Login, meta: { redirectLoggedIn: '/list'} },
+  { path: '/forgot-password', component: ForgotPassword },
+  { path: '/reset-password', component: ResetPassword },
   { path: '/register', component: Register, meta: { redirectLoggedIn: '/list'}},
   { path: '/ueber-uns', component: UeberUns},
   { path: '/dataProtection', component: DataProtection },
