@@ -70,6 +70,17 @@
         </b-form-checkbox-group>
       </b-form-group>
 
+      <h3>Weitere Informationen</h3>
+      <b-form-group id="description">
+        <b-form-textarea
+          id="textarea"
+          v-model="formData.description"
+          placeholder="Weitere Informationen..."
+          rows="4"
+          max-rows="10"
+        ></b-form-textarea>
+      </b-form-group>
+
       <b-form-group>
         <b-form-checkbox
           id="processing"
@@ -101,6 +112,8 @@
 </template>
 
 <script>
+import { labSkills } from '../../dist-browser/lib/selectLists'
+
 export default {
   name: "HelperForm",
   data: function() {
@@ -129,23 +142,8 @@ export default {
           publicContact: false
         }
       },
-      labSkills: [
-        {
-          value: "bsl2"
-        },
-        {
-          value: "bsl3"
-        },
-        {
-          value: "sample_processing"
-        },
-        { value: "rna_isolation" },
-        { value: "qpcr" },
-        {
-          value: "sample_collection"
-        }
-      ]
-    };
+      labSkills: labSkills
+    }
   },
   props: {
     profileUpdate: {

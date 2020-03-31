@@ -32,3 +32,5 @@ export const UserLabSchema = new Schema({
         }
     }
 });
+
+UserLabSchema.index({ location: '2dsphere' })

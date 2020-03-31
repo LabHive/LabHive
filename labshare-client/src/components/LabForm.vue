@@ -56,6 +56,17 @@
         <b-form-input id="street" v-model="formData.address.street" trim></b-form-input>
       </b-form-group>
 
+      <h3>Weitere Informationen</h3>
+      <b-form-group id="description">
+        <b-form-textarea
+          id="textarea"
+          v-model="formData.description"
+          placeholder="Weitere Informationen..."
+          rows="4"
+          max-rows="10"
+        ></b-form-textarea>
+      </b-form-group>
+
       <b-form-group>
         <b-form-checkbox
           id="processing"

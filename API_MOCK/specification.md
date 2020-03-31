@@ -141,7 +141,7 @@ Returns all information about a profile
 No body, default response
 
 ### POST Request
-Basicially the same structure as used for the registration.
+Basically the same structure as used for the registration.
 ALL information must be updateable!! (GDPR)
 
 For the lab another dictionary key is added, where the lab can specify what it is searching for.
@@ -150,52 +150,51 @@ For the lab another dictionary key is added, where the lab can specify what it i
         ```jsonc
         "lookingFor": { // not final yet 
             "humanRessources": true,
-            "humanSkills": {
-                "rnaExtraction": true,
-                "rtPcr": 0,
-            },
-            "devices": {
-                "rnaExtraction": true,
-                "TestingKit": true
-            },
-            "advice": {
-                "rnaExtraction": true,
-                "testingKit": true,
-                "dataEvaluation": true
-            }
+            "humanSkills": ["", "", ""],
+            "equipment": [
+                "rtThermocycler",
+                "qpcrThermocycler",
+                "vortexMixer",
+                "microcentrifuge",
+                "micropipettes",
+                "mutlichannelMicropipettes",
+                "microcentrifugeRack"
+            ],
+            "advice": ["", "", ""] // tbd (see notion)
         }
         ```
 
 
-
 ## Search (not final, depends on registration form)
-GET https://labshare.de/api/v1/search?role="human|lab"&search_type="equipment|human_ressources|advice"&filter=""&page=2
+GET https://labshare.de/api/v1/search
 
 ### Get Parameter
-* `type`
+* `role`
     * Required: True
-    * `human|lab`    
-* `search_type`
-    * `equipment|human_ressources|advice`
+    * What type are you searching for?
+    * `human|lab`
+* `zipcode`
+    * if unauthenticated, required
+    * else optional, uses contact address zipcode as default
 * `page`
-    * Default : 1
-*  `filter`
-    * colon seperated list of filter
-    * human_ressources: keine filter
-    * device: rnaextraction,testkitrna,testkitrtpcr,rtpcr
-    * advice: devicerna,devicertpcr,testkitrna,testkitrtpcr,primerdesign,dataevaluationrtpcr
-*   `rtpcr_mincapacity`, `rtpcr_maxcapacity`
-    * Zahl
+    * Default: 1
+* `humanSkills`
+    * colon seperated list of human skills
+* `equipment`
+    * colon seperated list of equipment (see above (profile))
+* `advice`
+    * colon seperated list of advices (see above (profile))
 
 
-* filter and page are optional
-* Humans can search for labs and equipment (maybe they have access to equipment)
+* `humanSkills`, `equipment`, `advice` are optional
+* Everyone can search for labs and filter for equipment and advice (in case they have access to equipment)
 * Labs can search for:
     * Equipment
     * Humans
+    * Advice
 
 ### Response
-Basicially the same structure as used for the registration.
+Basically the same structure as used for the registration.
 * Person:
     * location
     * address
@@ -203,46 +202,44 @@ Basicially the same structure as used for the registration.
     * contact
     * availability
 
+* Contact details are only disclosed to signed in users
+* Conact details of volunteers are never disclosed to other volunteers, only to labs and if `volunteer.consent.publicContact == true`
+* Users (labs and volunteers) who have `volunteer.consent.processing == false` are never visible in search results
+
 ```jsonc
 {
     "_embedded": [
         {
-            "data": {
-                "location": {
-                    "type": "Point",
-                    "coordinates": [10.111, 10.2234] // longitude, latitude
-                },
-                "address": {
-                    "city": "", // ^[A-Za-z -]+$
-                    "zipcode": "58455", // ^[0-9]{5}$
-                    "street": "" // ^[A-Za-z -.0-9]+$, nur bei Laboren vorhanden
-                },
-                "contact": {
-                    "firstname": "",
-                    "lastname": "",
-                    "email": "",
-                    "phone": ""
-                },
-                "name": "Laborname",
-                "description": "",
+            "location": {
+                "type": "Point",
+                "coordinates": [10.111, 10.2234] // longitude, latitude
             },
+            "address": {
+                "city": "", // ^[A-Za-z -]+$
+                "zipcode": "58455", // ^[0-9]{5}$
+                "street": "" // ^[A-Za-z -.0-9]+$, only for labs
+            },
+            "contact": { // only returned for signed in users
+                "firstname": "",
+                "lastname": "",
+                "email": "",
+                "phone": ""
+            },
+            "name": "Laborname",
+            "description": "",
             "distance": "12km",
-            
-        }
+        },
     ],
     "_links": {
-        "next": "https://labshare.de/api/v1/search?...&page=3"
-    }
+        "next": "https://labshare.de/api/v1/search?...&page=3",
+        "previous": null
+    },
+    "totalPages": 3,
+    "success": true
 }
-
 ```
 
-
-
-
-
 ## Session Management
-
 ### Session token
 
 ```
