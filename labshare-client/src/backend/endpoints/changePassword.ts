@@ -22,7 +22,7 @@ export async function changePassword(req: express.Request, res: express.Response
     let hash = user.password;
     let validPassword = await argon2.verify(hash, body.oldPassword);
     if (!validPassword) {
-        return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "Ungültiges Passwort");
+        return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "invalid_password");
     }
 
 

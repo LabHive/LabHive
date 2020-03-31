@@ -97,12 +97,11 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
 
 async function getZipcodeCoords(req: express.Request, res: express.Response, token?: Token): Promise<Optional<number[]>> {
     if (req.query.zipcode) {
-        let ccords: number[]
         try {
             return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coordinates
         }
         catch {
-            utils.errorResponse(res, 400, "Ungültige PLZ")
+            utils.errorResponse(res, 400, "invalid_zipcode")
             return undefined
         }
     }
@@ -193,7 +192,7 @@ export async function search(req: express.Request, res: express.Response, next: 
     }]).count('count').exec())[0].count
 
     if (count == 0 || count < page*20) {
-        return utils.errorResponse(res, 400, "No results could be found")
+        return utils.errorResponse(res, 400, "no_results")
     }
 
     projection['distance'] = 1

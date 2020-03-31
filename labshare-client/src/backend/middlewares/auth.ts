@@ -9,7 +9,7 @@ import { HMAC_KEY } from '../main';
 export async function authMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
 
     if (!utils.isAuthenticated(req)) {
-        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Nicht authorisiert!");
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "not_authorized");
     }
     
     next();

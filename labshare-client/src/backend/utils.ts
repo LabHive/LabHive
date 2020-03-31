@@ -38,7 +38,7 @@ class Utils {
         try {
             const response = await axios.get("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + encodeURIComponent(searchTerm))
             if (response.data.length == 0) {
-                throw new LocationNotFoundError("Invalid location")
+                throw new LocationNotFoundError("invalid_location")
             }
             let lon = parseFloat(response.data[0].lon)
             let lat = parseFloat(response.data[0].lat)
@@ -68,13 +68,13 @@ class Utils {
     }
 
     public badRequest(res: express.Response) {
-        this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, "Ungültige Anfrage!")
+        this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, "bad_request")
     }
 
     public handleError(res: express.Response, error: Error) {
         if (error instanceof LocationNotFoundError) {
             console.log("invalid address")
-            this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, "Ungültige Addresse")
+            this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, "invalid_location")
         }
         else if (error instanceof ValidationError) {
             console.log(error.message)
@@ -82,12 +82,12 @@ class Utils {
         }
         else {
             console.log('internal server error')
-            this.errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "Etwas ist schiefgelaufen...")
+            this.errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "internal_error")
         }
     }
 
     public internalError(res: express.Response) {
-        this.errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "Es ist etwas schiefgelaufen.")
+        this.errorResponse(res, HttpStatusCodes.INTERNAL_SERVER_ERROR, "internal_error")
     }
 
     public getJWTToken(req: express.Request) {
