@@ -34,7 +34,7 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     if (!body.consent.processing) {
-        return utils.handleError(res, new ValidationError("Ohne Einwilligung dürfen wir die Daten nicht verarbeiten."))
+        return utils.handleError(res, new ValidationError("false_consent"))
     }
 
     try {
@@ -57,7 +57,7 @@ export async function registration(req: express.Request, res: express.Response, 
 
     let user = await getUserForMail(body.contact.email)
     if (user) {
-        return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "User existiert bereits.")
+        return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "existing_user")
     }
 
     doc.save(undefined).then((doc) => {

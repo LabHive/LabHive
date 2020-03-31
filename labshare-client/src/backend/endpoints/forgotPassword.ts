@@ -30,6 +30,6 @@ export async function forgotPassword(req: express.Request, res: express.Response
         // TODO: Send mail
         return utils.successResponse(res);
     }).catch(() => {
-        return utils.errorResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, "Es ist etwas schiefgelaufen.");
+        return utils.internalError(res);
     });
 }

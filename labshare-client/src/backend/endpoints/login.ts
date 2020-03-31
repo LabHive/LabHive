@@ -19,7 +19,7 @@ export async function login(req: express.Request, res: express.Response, next: e
     let mail = body.email;
     let user = await getUserForMail(mail);
     if (!user) {
-        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Ungülige Login-Daten!");
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "invalid_login");
     }
 
 
@@ -27,7 +27,7 @@ export async function login(req: express.Request, res: express.Response, next: e
     let password = body.password;
     let validPassword = await argon2.verify(hash, password);
     if (!validPassword) {
-        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "Ungülige Login-Daten!");
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "invalid_login");
     }
 
 
