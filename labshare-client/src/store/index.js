@@ -18,9 +18,13 @@ export default new Vuex.Store({
   mutations: {
     auth_success(state, token) {
       state.token = token
+      localStorage.setItem('authToken', token)
     },
     logout (state) {
       state.token = null
+      state.profile = {}
+      state.fetcingProfile = false
+      localStorage.removeItem('authToken')
     },
     profile_fetch(state, profile){
       state.profile = profile
@@ -46,19 +50,16 @@ export default new Vuex.Store({
         Vue.http.post('login', { email: user.email, password: user.password })
           .then(response => {
             let token = response.body.sessionToken
-            localStorage.setItem('authToken', token)
             commit('auth_success', token)
             resolve(response)
           }, response => {
             commit('logout')
-            localStorage.removeItem('authToken')
             reject(response)
           });
       })
     },
     logout ({ commit }) {
       commit('logout')
-      localStorage.removeItem('authToken')
     },
     getProfile({commit}){
       return new Promise((resolve, reject) => {

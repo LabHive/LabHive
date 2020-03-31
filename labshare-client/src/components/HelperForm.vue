@@ -152,8 +152,8 @@ export default {
     }
   },
   mounted: function() {
-    if (this.$store.state.profile.role)
-      this.formData = this.$store.state.profile;
+    if (this.$user.role)
+      this.formData = this.$user;
   },
   methods: {
     submit: function(event) {
