@@ -17,7 +17,7 @@
     :invalid-feedback="feedback(valFunc)"
     label-cols-sm="3"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
   </b-form-group>
 </template>
 
@@ -50,6 +50,9 @@ export default {
   methods: {
     validator(meth) {
       let a = meth(this.model);
+      if (a.valid) {
+        this.$emit("valid", this.name)
+      }
       return a.valid;
     },
     feedback(meth) {
