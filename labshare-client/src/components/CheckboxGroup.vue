@@ -7,7 +7,7 @@
             <b-form-checkbox-group
               stacked
               :id="name + i"
-              v-model="value"
+              v-model="inputVal"
               :options="arrD[i-1]"
               :name="name + i"
             ></b-form-checkbox-group>
@@ -54,11 +54,14 @@ export default {
   computed: {
     arrD() {
       return arraySplitter(this.data, this.cols);
-    }
-  },
-  watch: {
-    value() {
-      this.$emit("input", this.value);
+    },
+    inputVal: {
+      get() {
+        return this.value
+      },
+      set(val) {
+        this.$emit('input', val)
+      }
     }
   }
 };
