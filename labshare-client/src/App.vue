@@ -9,7 +9,9 @@
     "changePassword": "Change Password",
     "signOut": "Logout",
     "dataProtection": "Data protection",
-    "imprint": "Imprint"
+    "imprint": "Imprint",
+    "request": "Request Ressources",
+    "search": "Search"
   },
   "de": {
     "brand": "LabHive",
@@ -20,7 +22,9 @@
     "changePassword": "Passwort ändern",
     "signOut": "Logout",
     "dataProtection": "Datenschutzerklärung",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "request": "Bedarfsanfrage",
+    "search": "Suche"
   }
 }
 </i18n>
@@ -34,6 +38,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
+            <b-nav-item href="#/search">{{ $t("search") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -45,6 +50,7 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab'" href="#/request">{{ $t("request") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{$t("signOut")}}</b-dropdown-item>
             </b-nav-item-dropdown>

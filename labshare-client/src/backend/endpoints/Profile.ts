@@ -1,10 +1,9 @@
 import express from "express";
-import mongoose from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Validator as v } from "../../lib/validation";
 import { getUser, UserHuman, UserLab } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import utils from '../utils';
-import { merge } from 'lodash';
+import utils from '../utils'; 
 import { IUserCommon } from '../database/schemas/IUserCommon';
 
 class Profile {
@@ -39,13 +38,16 @@ class Profile {
         delete body.password
         delete body._id
         delete body.__v
+        let model: Model<any>;
         if (token.role === "human") {
             // deep copy schema
             schema = JSON.parse(JSON.stringify(schemas.registration_human));
+            model = UserHuman
         }
         else {
             // deep copy schema
             schema = JSON.parse(JSON.stringify(schemas.registration_lab));
+            model = UserLab
         }
         delete schema.required
 
@@ -58,32 +60,23 @@ class Profile {
             return utils.badRequest(res)
         }
         let userObj: IUserCommon = user.toObject()
-        merge(userObj, body)
 
-        let location = undefined
-        if (userObj.address.zipcode != user.address.zipcode ||
-            userObj.address.street != user.address.street ||
-            userObj.address.city != user.address.city) {
+        if (body.address && 
+            (userObj.address.zipcode != body.address.zipcode ||
+            userObj.address.street != body.address.street ||
+            userObj.address.city != body.address.city)) {
                 try {
-                    location = await utils.addressToCoordinates(userObj.address)
+                    body.location = await utils.addressToCoordinates(userObj.address)
                 } catch (error) {
                     return utils.handleError(res, error)
                 }
             }
 
-
-        merge(user, userObj)
-        if (location) {
-            user.location = location
-        }
-
-        user.save().then((doc) => {
-            if (!doc)
-                return utils.internalError(res);
-            return utils.successResponse(res);
+        model.updateOne({_id: token.sub}, body).exec().then(doc => {
+            utils.successResponse(res)
         }).catch(err => {
-            return utils.internalError(res);
-        });
+            utils.internalError(res)
+        })
     }
 
 

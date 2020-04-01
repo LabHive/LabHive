@@ -13,19 +13,23 @@ import Profile from './views/Profile'
 import ChangePassword from './views/ChangePassword'
 import Imprint from './views/Imprint'
 import DataProtection from './views/DataProtection'
+import Request from './views/Request'
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Index, meta: { redirectLoggedIn: '/list'} },
-  { path: '/login', component: Login, meta: { redirectLoggedIn: '/list'} },
-  { path: '/forgot-password', component: ForgotPassword },
+  { path: '/', component: Index },
+  { path: '/login', component: Login, meta: { redirectLoggedIn: '/'} },
+  { path: '/register', component: Register, meta: { redirectLoggedIn: '/'}},
   { path: '/reset-password', component: ResetPassword },
-  { path: '/register', component: Register, meta: { redirectLoggedIn: '/list'}},
+  { path: '/forgot-password', component: ForgotPassword },
   { path: '/ueber-uns', component: UeberUns},
   { path: '/dataProtection', component: DataProtection },
   { path: '/imprint', component: Imprint },
+  { path: '/search', component: List },
+  
   { path: '/profile', component: Profile, meta: { auth: true } },
+  { path: '/request', component: Request, meta: { auth: true } },
   { path: '/change-password', component: ChangePassword, meta: { auth: true } },
   { path: '/list', component: List, meta: { auth: true } },
 ];

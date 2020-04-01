@@ -67,7 +67,7 @@ export default new Vuex.Store({
           .then(response => {
             let profile = response.body.data
             commit('profile_fetch', profile)
-            resolve()
+            resolve(profile)
           }, response => {
             console.log(response)
             reject(response)
