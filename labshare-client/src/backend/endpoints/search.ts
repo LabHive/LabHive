@@ -12,46 +12,43 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
     if (searchRole === 'human') {
         filter.availability = true
 
-        let skills: string = req.query.humanSkills
+        let skills: string[] = req.query.humanSkills
         if (skills) {
-            let skills_array = skills.split(',').map(x => x.trim())
-            let result = Validator.validSkills(skills_array)
+            let result = Validator.validSkills(skills)
             if (!result.valid) {
                 utils.handleError(res, result.err)
                 return undefined
             }
 
             filter['details.skills'] = {
-                '$in': skills_array
+                '$in': skills
             }
         }
     }
     else {
-        let equipment: string = req.query.equipment
+        let equipment: string[] = req.query.equipment
         if (equipment) {
-            let equip_array = equipment.split(',').map(x => x.trim())
-            let result = Validator.validEquipment(equip_array)
+            let result = Validator.validEquipment(equipment)
             if (!result.valid) {
                 utils.handleError(res, result.err)
                 return undefined
             }
 
             filter['lookingFor.equipment'] = {
-                '$in': equip_array
+                '$in': equipment
             }
         }
 
-        let advices: string = req.query.advice
+        let advices: string[] = req.query.advice
         if (advices) {
-            let advice_array = advices.split(',').map(x => x.trim())
-            let result = Validator.validAdvice(advice_array)
+            let result = Validator.validAdvice(advices)
             if (!result.valid) {
                 utils.handleError(res, result.err)
                 return undefined
             }
 
             filter['lookingFor.advice'] = {
-                '$in': advice_array
+                '$in': advices
             }
         }
     }
