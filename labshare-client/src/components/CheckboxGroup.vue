@@ -42,7 +42,10 @@ function arraySplitter(array, cols) {
 export default {
   props: {
     data: Array,
-    cols: String,
+    cols: {
+      type: String,
+      default: "2"
+    },
     name: String,
     value: Array
   },
