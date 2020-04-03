@@ -6,7 +6,7 @@ import { getModelForRole, getUserForMail } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
-import { UserRoles } from '../../lib/UserRoles';
+import { UserRoles } from '../../lib/userRoles';
 
 
 

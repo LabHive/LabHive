@@ -4,7 +4,7 @@ import { IUserLabDiag, UserLabDiagSchema } from './schemas/IUserLabDiag'
 import { IResetToken, ResetTokenSchema } from './schemas/IResetToken'
 import { IUserCommon } from './schemas/IUserCommon'
 import { UserLabResearchSchema, IUserLabResearch } from './schemas/IUserLabResearch'
-import { UserRoles } from '../../lib/UserRoles'
+import { UserRoles } from '../../lib/userRoles'
 
 if (!process.env.PRODUCTION) {
     mongoose.connect("mongodb://localhost:27017/labshare", { useNewUrlParser: true }, err => {

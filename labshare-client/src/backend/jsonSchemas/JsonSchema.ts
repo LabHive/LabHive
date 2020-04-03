@@ -6,7 +6,7 @@ import { registration_labResearch } from "./registration_labResearch";
 import { password_forgotton } from "./password_forgotton";
 import { password_reset } from "./password_reset";
 import { login } from "./login";
-import { UserRoles } from '../../lib/UserRoles';
+import { UserRoles } from '../../lib/userRoles';
 
 
 export let schemas = {

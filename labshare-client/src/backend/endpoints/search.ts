@@ -1,5 +1,5 @@
 import express from "express";
-import { UserRoles } from '../../lib/UserRoles';
+import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
 import { getModelForRole, getUser } from '../database/database';
 import utils, { Token } from '../utils';
