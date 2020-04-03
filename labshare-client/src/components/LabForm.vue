@@ -120,17 +120,30 @@ export default {
     }
   },
   mounted: function() {
-    if (this.$user.role) this.formData = this.$user;
+    if (this.$user.role) {
+      this.formData = this.$user;
+      this.$nextTick(() => {
+        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+      })
+    }
+    else {
+      this.$root.on('gotPtofile', () => {
+        this.formData = this.$user;
+        this.$nextTick(() => {
+          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+        })
+      })
+    }
+  
     this.$children.map(a => {
       a.$on("input", () => {
         console.log("triggered");
         if (!this.$el) return;
 
         // after the event is triggered it needs some time until the DOM is updated
-        setTimeout(() => {
-          this.disableSubmit =
-            this.$el.querySelectorAll(".is-invalid").length > 0;
-        }, 100);
+        this.$nextTick(() => {
+          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+        });
       });
     });
   },
