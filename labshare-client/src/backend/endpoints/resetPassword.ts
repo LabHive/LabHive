@@ -4,10 +4,13 @@ import { getUser, ResetToken } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 
+interface IBody {
+    newPassword?: string
+}
 
 export async function resetPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
-    let body = req.body;
-    if (!JsonSchema.validate(body, schemas.password_reset) || !req.query.token) {
+    let body: IBody = req.body;
+    if (!JsonSchema.validate(body, schemas.password_reset) || !req.query.token || !body.newPassword) {
         return utils.badRequest(res);
     }
     

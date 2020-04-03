@@ -1,6 +1,7 @@
 import { ValidationError } from '../backend/errors';
 import { labSkills, equipment, advices } from "./selectLists";
 import './optional'
+import { UserRoles } from './userRoles';
 
 export class ValidationResult {
     valid: boolean;
@@ -103,15 +104,10 @@ export class Validator {
         return new ValidationResultSuccess()
     }
 
-    static validSearchType(searchtype?: string): ValidationResult {
-        if (!searchtype || (searchtype !== "human_ressources" && searchtype !== "device" && searchtype !== "advice")) {
-            return new ValidationResultError("invalid_search", searchtype)
-        }
-        return new ValidationResultSuccess()
-    }
-
     static validRole(role?: string): ValidationResult {
-        if (!role || (role !== "lab" && role !== "human")) {
+        let roles: string[] = [UserRoles.LAB_DIAG, UserRoles.LAB_RESEARCH, UserRoles.VOLUNTEER]
+
+        if (!role || roles.indexOf(role) == -1) {
             return new ValidationResultError("invalid_role", role)
         }
         return new ValidationResultSuccess()
@@ -200,9 +196,20 @@ export class Validator {
         results.push(Validator.validDescription(object.description))
         results.push(Validator.validConsent(object.consent))
 
-        if (role == "lab") {
+        if (role === UserRoles.LAB_DIAG || role === UserRoles.LAB_RESEARCH) {
             results.push(Validator.validName(object.name))
             results.push(Validator.validStreet(object.address?.street))
+
+            if (object.lookingFor) {
+                if (object.lookingFor.advice) results.push(Validator.validAdvice(object.lookingFor.advice))
+                if (object.lookingFor.volunteerSkills) results.push(Validator.validSkills(object.lookingFor.volunteerSkills))
+                if (object.lookingFor.equipment) results.push(Validator.validEquipment(object.lookingFor.equipment))
+            }
+
+            if (object.offers) {
+                if (object.offers.advice) results.push(Validator.validAdvice(object.offers.advice))
+                if (object.offers.equipment) results.push(Validator.validEquipment(object.offers.equipment))
+            }
         }
         else {
             results.push(Validator.validSkills(object.details?.skills))

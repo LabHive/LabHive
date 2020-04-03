@@ -1,40 +1,27 @@
-import express from "express";
-import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import { UserHuman, UserLab, getUserForMail } from '../database/database';
-import utils from '../utils';
 import argon2 from 'argon2';
-import { Validator as v } from '../../lib/validation';
-import { Document } from "mongoose";
+import express from "express";
 import HttpStatus from 'http-status-codes';
+import { Validator as v } from '../../lib/validation';
+import { getModelForRole, getUserForMail } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
-import { ValidationError } from '../errors';
+import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
+import utils from '../utils';
+import { UserRoles } from '../../lib/UserRoles';
 
 
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
     let body: IUserCommon = req.body
+    let role = req.query.role
+    if (!role || !v.validRole(role)) return utils.badRequest(res)
 
-    if (req.query.role && req.query.role === "human") {
-        if (!JsonSchema.validate(body, schemas.registration_human)) {
-            return utils.badRequest(res)
-        }
-    }
-    else if (req.query.role && req.query.role === "lab") {
-        if (!JsonSchema.validate(body, schemas.registration_lab)) {
-            return utils.badRequest(res)
-        }
-    }
-    else {
-        return utils.badRequest(res)
-    }
+    let schema = schemaForRole(role)
+    if (!schema) return utils.badRequest(res)
+    if (!JsonSchema.validate(body, schema)) return utils.badRequest(res)
 
-    let validationResult = v.validProfileFields(body, req.query.role)
+    let validationResult = v.validProfileFields(body, role)
     if (!validationResult.valid) {
         return utils.handleError(res, validationResult.err)
-    }
-
-    if (!body.consent.processing) {
-        return utils.handleError(res, new ValidationError("false_consent"))
     }
 
     try {
@@ -47,12 +34,8 @@ export async function registration(req: express.Request, res: express.Response, 
     body.password = await argon2.hash(body.password)
     body.role = req.query.role
 
-    let doc: Document
-    if (req.query.role === "human") {
-        doc = new UserHuman(body)
-    }
-    else {
-        doc = new UserLab(body)
+    if (body.role === UserRoles.VOLUNTEER) {
+        delete body.address.street
     }
 
     let user = await getUserForMail(body.contact.email)
@@ -60,7 +43,11 @@ export async function registration(req: express.Request, res: express.Response, 
         return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "existing_user")
     }
 
-    doc.save(undefined).then((doc) => {
+    let model = getModelForRole(role)
+    if (!model) return utils.badRequest(res)
+    let doc = new model(body)
+
+    doc.save().then((doc) => {
         if (!doc) {
             return utils.internalError(res)
         }
