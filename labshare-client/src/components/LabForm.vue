@@ -127,7 +127,7 @@ export default {
       })
     }
     else {
-      this.$root.on('gotPtofile', () => {
+      this.$root.$on('gotProfile', () => {
         this.formData = this.$user;
         this.$nextTick(() => {
           this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
