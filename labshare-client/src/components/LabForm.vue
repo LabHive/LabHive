@@ -123,18 +123,19 @@ export default {
     if (this.$user.role) {
       this.formData = this.$user;
       this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-      })
-    }
-    else {
-      this.$root.$on('gotProfile', () => {
+        this.disableSubmit =
+          this.$el.querySelectorAll(".is-invalid").length > 0;
+      });
+    } else {
+      this.$root.on("gotPtofile", () => {
         this.formData = this.$user;
         this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-        })
-      })
+          this.disableSubmit =
+            this.$el.querySelectorAll(".is-invalid").length > 0;
+        });
+      });
     }
-  
+
     this.$children.map(a => {
       a.$on("input", () => {
         console.log("triggered");
@@ -142,7 +143,8 @@ export default {
 
         // after the event is triggered it needs some time until the DOM is updated
         this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+          this.disableSubmit =
+            this.$el.querySelectorAll(".is-invalid").length > 0;
         });
       });
     });

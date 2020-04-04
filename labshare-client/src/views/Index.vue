@@ -5,7 +5,9 @@
       <b-col cols="4">
         <img class="img-fluid" src="../assets/logo.svg" />
       </b-col>
-      <b-col>
+    </b-row>
+    <b-row>
+      <b-col cols="6">
         <Map />
       </b-col>
     </b-row>

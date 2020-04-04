@@ -89,7 +89,6 @@
         ></b-form-textarea>
       </b-form-group>
 
-
       <h3 class="section">Einwilligung</h3>
       <fieldset class="form-group">
         <div tabindex="-1" role="group" class="bv-no-focus-ring">
@@ -147,11 +146,11 @@ export default {
         availability: true,
         consent: {
           processing: true,
-          publicContact: false,
+          publicContact: false
         }
       },
       labSkills: labSkills,
-      disableSubmit: true,
+      disableSubmit: true
     };
   },
   props: {
@@ -163,35 +162,36 @@ export default {
   computed: {
     val() {
       return Validator;
-    },
+    }
   },
   mounted: function() {
     if (this.$user.role) {
       this.formData = this.$user;
       this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-      })
-    }
-    else {
-      this.$root.$on('gotProfile', () => {
+        this.disableSubmit =
+          this.$el.querySelectorAll(".is-invalid").length > 0;
+      });
+    } else {
+      this.$root.on("gotPtofile", () => {
         this.formData = this.$user;
         this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-        })
-      })
+          this.disableSubmit =
+            this.$el.querySelectorAll(".is-invalid").length > 0;
+        });
+      });
     }
 
-
-    this.$children.map((a) => {
-      a.$on('input', () => {
-        console.log("triggered")
-        if (!this.$el) return
+    this.$children.map(a => {
+      a.$on("input", () => {
+        console.log("triggered");
+        if (!this.$el) return;
 
         // after the event is triggered it needs some time until the DOM is updated
         this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+          this.disableSubmit =
+            this.$el.querySelectorAll(".is-invalid").length > 0;
         });
-      })
+      });
     });
   },
   methods: {
