@@ -5,16 +5,23 @@
       <b-col cols="4">
         <img class="img-fluid" src="../assets/logo.svg" />
       </b-col>
+      <b-col>
+        <Map />
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col></b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
+import Map from "../components/Map";
+
 export default {
   name: "Index",
   props: {},
-  components: {}
+  components: { Map }
 };
 </script>
 
