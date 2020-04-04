@@ -1,44 +1,49 @@
 <template>
   <div>
     <b-form @submit="submit">
-      <b-form-group label="Looking for" label-cols-sm="3">
-        <b-form-select v-model="filters.role" name="role" label @change="changeLookingFor">
-          <b-form-select-option value="lab">Labs</b-form-select-option>
-          <b-form-select-option value="human">Volunteers</b-form-select-option>
-        </b-form-select>
-      </b-form-group>
+      <div class="form-row">
+        <div class="col-md5">
+          <InputForm name="zipcode" v-model="filters.zipcode" :valFunc="val.validZipcode" @valid="searchChange"></InputForm>
+        </div>
 
-      <InputForm name="zipcode" v-model="filters.zipcode" :valFunc="val.validZipcode" @valid="searchChange"></InputForm>
-      <!-- <b-form-group label="Zipcode" label-cols-sm="2">
-        <b-form-input v-model="filters.zipcode" placeholder="Zipcode" @change="searchChange"></b-form-input>
-      </b-form-group> -->
+        <div class="col-md3">
+          <b-form-group label="Looking for">
+            <b-form-select v-model="filters.role" name="role" label @change="changeLookingFor">
+              <b-form-select-option value="lab">Labs</b-form-select-option>
+              <b-form-select-option value="human">Volunteers</b-form-select-option>
+            </b-form-select>
+          </b-form-group>
+        </div>
 
-      <b-form-group label="Filter by" label-cols-sm="3" v-if="filters.role === 'lab'">
-        <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
-          <b-form-select-option value="skills">Skills</b-form-select-option>
-          <b-form-select-option v-if="filters.role === 'lab'" value="equipment">Equipment</b-form-select-option>
-          <b-form-select-option v-if="filters.role === 'lab'" value="advice">Advice</b-form-select-option>
-        </b-form-select>
-      </b-form-group>
+        <div class="col-md4">
+          <b-form-group label="Filter by" v-if="filters.role === 'lab'">
+            <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
+              <b-form-select-option value="skills">Wanted Skills</b-form-select-option>
+              <b-form-select-option value="equipment">Wanted Equipment</b-form-select-option>
+              <b-form-select-option value="advice">Wanted Advice</b-form-select-option>
+            </b-form-select>
+          </b-form-group>
+        </div>
+      </div>
 
-      <template v-if="filterBy === 'skills'">
-        <h3 style="margin-top: 20px">Wanted Skills</h3>
-        <CheckboxGroup name="skills" :data="humanSkillsOptions" v-model="filters.humanSkills"></CheckboxGroup>
-      </template>
-
-      <template v-if="filters.role === 'lab'">
-        <template v-if="filterBy === 'equipment'">
-          <h3>Needed Equipment</h3>
-          <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment"></CheckboxGroup>
+      <div class="search-filters">
+        <template v-if="filterBy === 'skills'">
+          <h5>Wanted Skills</h5>
+          <CheckboxGroup name="skills" :data="humanSkillsOptions" v-model="filters.humanSkills" :saveChanges="searchChange"></CheckboxGroup>
         </template>
 
-        <template v-if="filterBy === 'advice'">
-          <h3>Needed Advice</h3>
-          <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.equipment"></CheckboxGroup>
-        </template>
-      </template>
+        <template v-if="filters.role === 'lab'">
+          <template v-if="filterBy === 'equipment'">
+            <h5>Wanted Equipment</h5>
+            <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment" :saveChanges="searchChange"></CheckboxGroup>
+          </template>
 
-      <b-button type="submit" variant="primary">Search</b-button>
+          <template v-if="filterBy === 'advice'">
+            <h5>Wanted Advice</h5>
+            <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.advice" :saveChanges="searchChange"></CheckboxGroup>
+          </template>
+        </template>
+      </div>
     </b-form>
   </div>
 </template>

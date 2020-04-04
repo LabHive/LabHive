@@ -31,7 +31,7 @@
 <template>
   <div class="main-div">
     <b-navbar toggleable="lg" type="dark" variant="primary" id="navbar">
-      <div class="nav-container">
+      <div class="container">
         <b-navbar-brand href="#/">{{ $t("brand") }}</b-navbar-brand>
         <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
 
@@ -69,7 +69,11 @@
     <footer class="footer-custom bg-primary">
       <!-- Copyright -->
       <div class="text-center">
-        <img src="./assets/Hackathon_slogan_weiß.png" width="200px" alt="logo wir vs virus hackathon" />
+        <img
+          src="./assets/Hackathon_slogan_weiß.png"
+          width="200px"
+          alt="logo wir vs virus hackathon"
+        />
       </div>
       <div class="text-center">
         <b-row style="margin: 0; margin-top: 10px">
@@ -160,22 +164,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.container {
-  max-width: 800px;
-}
-
-.nav-container {
-  max-width: 800px;
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  padding-left: 15px;
-  padding-right: 15px
 }
 
 .navbar {

@@ -13,49 +13,62 @@
 <template>
   <div class="list-view">
     <h1 class="mt-4">{{$t("title")}}</h1>
-    <div>
       <SearchForm @searchChange="updateListing" />
-      <div class="searchResults" v-if="searchResults._embedded">
-        <h1>{{ $t('searchResults') }}</h1>
-        <div v-for="(item, index) in searchResults._embedded" v-bind:key="index">
-          <div v-if="searchAttributes.role==='lab'">
-            <b-card :title="`${item.name}`" class="searchCard">
-              <b-card-text>
-                Distance: {{ (item.distance/1000).toFixed(1) }}km
-                <br/>
-                City: {{item.address.city}}
-                <br />
-                Street: {{item.address.street}}
-                <br />
-                Zipcode: {{item.address.zipcode}}
-              </b-card-text>
-              <b-link href="#" class="card-link">Contact</b-link>
-              <b-link href="#" class="card-link">Get directions</b-link>
-            </b-card>
-          </div>
-
-          <div v-if="searchAttributes.role==='human'">
-            <b-card :title="item.availability ? 'Available' : 'Not available'" class="searchCard">
-              <b-card-text>
-                City: {{item.address.city}}
-                <br />
-                Zipcode: {{item.address.zipcode}}
-              </b-card-text>
-
-              <b-card-text>Skills: {{ item.details.skills }}</b-card-text>
-
-              <b-link href="#" class="card-link">Contact</b-link>
-              <b-link href="#" class="card-link">Get directions</b-link>
-            </b-card>
-          </div>
-        </div>
-      </div>
-    </div>
+      <table class="table search-results" v-if="searchResults._embedded">
+        <template v-if="searchAttributes.role==='lab'">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Distance</th>
+              <th>City</th>
+              <th>Postleitzahl</th>
+            </tr>
+          </thead>
+          <tbody v-for="(item, index) in searchResults._embedded" v-bind:key="index">
+            <tr>
+              <td><b-link href="#">{{ item.name }}</b-link></td>
+              <td>{{ (item.distance/1000).toFixed(1) }}km</td>
+              <td>{{ item.address.city }}</td>
+              <td>{{ item.address.zipcode }}</td>
+            </tr>
+          </tbody>
+        </template>
+        <template v-if="searchAttributes.role==='human'">
+          <thead>
+            <tr>
+              <th>Availability</th>
+              <th>City</th>
+              <th>Postleitzahl</th>
+              <th>Skills</th>
+            </tr>
+          </thead>     
+          <tbody v-for="(item, index) in searchResults._embedded" v-bind:key="index">
+            <tr>
+              <td><b-link href="#">{{ item.availability ? 'Available' : 'Not available' }}</b-link></td>
+              <td>{{ item.address.city }}</td>
+              <td>{{ item.address.zipcode }}</td>
+              <td><span class="d-inline-block text-truncate">{{ item.details.skills }}</span></td>
+            </tr>
+          </tbody>
+        </template>
+      </table>
   </div>
 </template>
 
 <script>
 import SearchForm from "./../components/SearchForm";
+
+function encodeAttributes(queryAttributes) {
+  let encodedAttributes = {}
+
+  encodedAttributes.role = queryAttributes.role
+  encodedAttributes.zipcode =  queryAttributes.zipcode
+  encodedAttributes.humanSkills = queryAttributes.humanSkills.join('|')
+  encodedAttributes.equipment = queryAttributes.equipment.join('|')
+  encodedAttributes.advice = queryAttributes.advice.join('|')
+
+  return encodedAttributes
+}
 
 export default {
   name: "List",
@@ -71,7 +84,7 @@ export default {
       this.getSearchResults();
     },
     getSearchResults() {
-      this.$http.get("search", { params: this.searchAttributes }).then(
+      this.$http.get("search", { params: encodeAttributes(this.searchAttributes) }).then(
         success => {
           this.searchResults = success.body;
         },
@@ -89,12 +102,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.searchResults {
-  margin-top: 50px
-}
-
-.searchCard {
-  margin-top: 20px;
-  box-shadow: 0 0 5px rgba(0,0,0, 0.2);
+.search-results {
+  margin-top: 4em
 }
 </style>
