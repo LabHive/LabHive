@@ -9,14 +9,15 @@
         <div class="col-md3">
           <b-form-group label="Looking for">
             <b-form-select v-model="filters.role" name="role" label @change="changeLookingFor">
-              <b-form-select-option value="lab">Labs</b-form-select-option>
-              <b-form-select-option value="human">Volunteers</b-form-select-option>
+              <b-form-select-option value="lab_diag">Diagnostic Labs</b-form-select-option>
+              <b-form-select-option value="lab_research">Research Labs</b-form-select-option>
+              <b-form-select-option value="volunteer">Volunteers</b-form-select-option>
             </b-form-select>
           </b-form-group>
         </div>
 
         <div class="col-md4">
-          <b-form-group label="Filter by" v-if="filters.role === 'lab'">
+          <b-form-group label="Filter by" v-if="['lab_diag', 'lab_research'].includes(filters.role)">
             <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
               <b-form-select-option value="skills">Wanted Skills</b-form-select-option>
               <b-form-select-option value="equipment">Wanted Equipment</b-form-select-option>
@@ -29,19 +30,17 @@
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
           <h5>Wanted Skills</h5>
-          <CheckboxGroup name="skills" :data="humanSkillsOptions" v-model="filters.humanSkills" :saveChanges="searchChange"></CheckboxGroup>
+          <CheckboxGroup name="skills" :data="volunteerSkillsOptions" v-model="filters.volunteerSkills" :saveChanges="searchChange"></CheckboxGroup>
         </template>
 
-        <template v-if="filters.role === 'lab'">
-          <template v-if="filterBy === 'equipment'">
-            <h5>Wanted Equipment</h5>
-            <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment" :saveChanges="searchChange"></CheckboxGroup>
-          </template>
+        <template v-if="filterBy === 'equipment'">
+          <h5>Wanted Equipment</h5>
+          <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment" :saveChanges="searchChange"></CheckboxGroup>
+        </template>
 
-          <template v-if="filterBy === 'advice'">
-            <h5>Wanted Advice</h5>
-            <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.advice" :saveChanges="searchChange"></CheckboxGroup>
-          </template>
+        <template v-if="filterBy === 'advice'">
+          <h5>Wanted Advice</h5>
+          <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.advice" :saveChanges="searchChange"></CheckboxGroup>
         </template>
       </div>
     </b-form>
@@ -62,13 +61,13 @@ export default {
   data: function() {
     return {
       filters: {
-        role: "lab",
+        role: "lab_diag",
         zipcode: "",
-        humanSkills: [],
+        volunteerSkills: [],
         equipment: [],
         advice: []
       },
-      humanSkillsOptions: labSkills,
+      volunteerSkillsOptions: labSkills,
       equipmentOptions: equipment,
       adviceOptions: advices,
       filterBy: "skills",
@@ -80,7 +79,7 @@ export default {
       this.$emit("searchChange", this.filters);
     },
     changeFilterBy: function() {
-      this.filters.humanSkills = [];
+      this.filters.volunteerSkills = [];
       this.filters.equipment = [];
       this.filters.advice = [];
       this.searchChange();

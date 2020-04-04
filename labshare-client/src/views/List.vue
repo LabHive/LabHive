@@ -58,18 +58,6 @@
 <script>
 import SearchForm from "./../components/SearchForm";
 
-function encodeAttributes(queryAttributes) {
-  let encodedAttributes = {}
-
-  encodedAttributes.role = queryAttributes.role
-  encodedAttributes.zipcode =  queryAttributes.zipcode
-  encodedAttributes.humanSkills = queryAttributes.humanSkills.join('|')
-  encodedAttributes.equipment = queryAttributes.equipment.join('|')
-  encodedAttributes.advice = queryAttributes.advice.join('|')
-
-  return encodedAttributes
-}
-
 export default {
   name: "List",
   data: function() {
@@ -84,7 +72,7 @@ export default {
       this.getSearchResults();
     },
     getSearchResults() {
-      this.$http.get("search", { params: encodeAttributes(this.searchAttributes) }).then(
+      this.$http.get("search", { params: this.searchAttributes }).then(
         success => {
           this.searchResults = success.body;
         },
