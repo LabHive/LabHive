@@ -3,16 +3,20 @@ import express from "express";
 import HttpStatus from 'http-status-codes';
 import jsonwebtoken from "jsonwebtoken";
 import { getUserForMail } from '../database/database';
-import { IUserLab } from "../database/schemas/IUserLab";
-import { IUserHuman } from "../database/schemas/IUserHuman";
+import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import utils from '../utils';
 import { HMAC_KEY } from '../main';
+import utils from '../utils';
 
+interface IBody {
+    email?: string,
+    password?: string
+}
 
 export async function login(req: express.Request, res: express.Response, next: express.NextFunction) {
-    let body = req.body;
-    if (!JsonSchema.validate(body, schemas.login)) {
+    let body: IBody = req.body;
+    if (!JsonSchema.validate(body, schemas.login)
+        || !body.email || !body.password) {
         return utils.badRequest(res);
     }
 
@@ -34,10 +38,10 @@ export async function login(req: express.Request, res: express.Response, next: e
     let userID: string = user._id.toString(); // Database ID
     let payload = {
         role: user.role,
-        email: user.role === "human" ? (<IUserHuman>user).contact.email : (<IUserLab>user).contact.email
+        email: (<IUserCommon>user).contact.email
     };
     let options = {
-        issuer: "labshare",
+        issuer: "labhive",
         subject: userID,
         notBefore: 0,
         expiresIn: "2h",

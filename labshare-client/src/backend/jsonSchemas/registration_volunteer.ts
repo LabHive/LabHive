@@ -1,16 +1,11 @@
-import { Schemas } from "./schemaIdentifier";
 import { Schema } from 'jsonschema';
-import { contact } from './contact';
-import { address } from './address';
+import { userCommon } from './userCommon';
 
-export let registration_human: Schema = {
-    id: "/registration_human",
+export let registration_volunteer: Schema = {
+    id: "/registration_volunteer",
     type: "object",
     properties: {
-        address: address,
-        contact: contact,
-        description: { type: "string" },
-        password: { type: "string" },
+        ...userCommon,
         availability: { type: "boolean" },
         organization: { type: "string" },
         details: {
@@ -24,14 +19,6 @@ export let registration_human: Schema = {
                 }
             },
             required: ["skills"]
-        },
-        consent: {
-            type: "object",
-            properties: {
-                processing: { type: "boolean" },
-                publicContact: { type: "boolean" },
-            },
-            required: ["processing", "publicContact"]
         },
     },
     required: ["address", "contact", "description", "password", "details", "availability", "consent", "organization"]

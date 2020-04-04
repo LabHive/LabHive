@@ -5,10 +5,16 @@ import { getUser } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 
+interface IBody {
+    oldPassword?: string,
+    newPassword?: string
+}
+
 
 export async function changePassword(req: express.Request, res: express.Response, next: express.NextFunction) {
-    let body = req.body;
-    if (!JsonSchema.validate(body, schemas.password_reset) || !body.oldPassword) {
+    let body: IBody = req.body;
+    if (!JsonSchema.validate(body, schemas.password_reset) 
+        || !body.oldPassword || !body.newPassword) {
         return utils.badRequest(res);
     }
 
@@ -24,7 +30,6 @@ export async function changePassword(req: express.Request, res: express.Response
     if (!validPassword) {
         return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "invalid_password");
     }
-
 
     let password = await argon2.hash(body.newPassword);
     user.password = password;

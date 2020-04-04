@@ -1,22 +1,20 @@
 import { Schema } from "mongoose";
 import { IUserCommon, UserCommonSchema } from "./IUserCommon";
-export interface IUserLab extends IUserCommon {
+export interface IUserLabResearch extends IUserCommon {
     name: string;
-    lookingFor: {
-        humanSkills: string[],
+    offers: {
         advice: string[],
         equipment: string[]
     };
 }
 
-export const UserLabSchema = new Schema({
+export const UserLabResearchSchema = new Schema({
     ...UserCommonSchema.obj,
     name: String,
-    lookingFor: {
+    offers: {
         advice: [String],
         equipment: [String],
-        humanSkills: [String]
     }
 });
 
-UserLabSchema.index({ location: '2dsphere' })
+UserLabResearchSchema.index({ location: '2dsphere' })

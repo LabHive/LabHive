@@ -50,7 +50,7 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab'" href="#/request">{{ $t("request") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("request") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{$t("signOut")}}</b-dropdown-item>
             </b-nav-item-dropdown>
@@ -103,11 +103,11 @@ export default {
   components: { LocaleChange },
   computed: {
     userName: function() {
-      if (this.$store.state.profile.role) {
-        if (this.$store.state.profile.role === "human") {
-          return this.$store.state.profile.contact.firstname;
+      if (this.$user.role) {
+        if (this.$user.role === "volunteer") {
+          return this.$user.contact.firstname;
         } else {
-          return this.$store.state.profile.name;
+          return this.$user.name;
         }
       } else {
         return "User";

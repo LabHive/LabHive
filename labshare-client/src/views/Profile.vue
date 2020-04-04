@@ -20,12 +20,12 @@
         {{ error }}
       </div>
       <HelperForm
-        v-if="profile.role === 'human'"
+        v-if="profile.role === 'volunteer'"
         :profileUpdate="true"
         @formcomplete="save"
       />
       <LabForm
-        v-if="profile.role === 'lab'"
+        v-if="profile.role === 'lab_diag'"
         :profileUpdate="true"
         @formcomplete="save"
       />

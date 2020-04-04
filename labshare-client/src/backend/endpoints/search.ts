@@ -1,54 +1,107 @@
 import express from "express";
-import { Mongoose, Model } from 'mongoose';
-import { UserLab, UserHuman, getUser } from '../database/database';
-import utils, { Token } from '../utils';
+import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
-import { ValidationError } from '../errors';
+import { getModelForRole, getUser } from '../database/database';
+import utils, { Token } from '../utils';
+
+
+enum QueryTypes {
+    volunteerSkills = "volunteerSkills",
+    advice = "advice",
+    equipment = "equipment"
+}
+
+function getVolunteerSkills(req: express.Request, res: express.Response): Optional<string[]> {
+    let skills: string[] = req.query[QueryTypes.volunteerSkills]
+    if (skills) {
+        let result = Validator.validSkills(skills)
+        if (!result.valid) {
+            utils.handleError(res, result.err)
+            return undefined
+        }
+        return skills
+    }
+    return []
+}
+
+function getAdvice(req: express.Request, res: express.Response): Optional<string[]> {
+    let skills: string[] = req.query[QueryTypes.advice]
+    if (skills) {
+        let result = Validator.validAdvice(skills)
+        if (!result.valid) {
+            utils.handleError(res, result.err)
+            return undefined
+        }
+        return skills
+    }
+    return []
+}
+
+function getEquipment(req: express.Request, res: express.Response): Optional<string[]> {
+    let skills: string[] = req.query[QueryTypes.equipment]
+    if (skills) {
+        let result = Validator.validEquipment(skills)
+        if (!result.valid) {
+            utils.handleError(res, result.err)
+            return undefined
+        }
+        return skills
+    }
+    return []
+}
 
 function buildFilter(req: express.Request, res: express.Response, token?: Token): Optional<any> {
-    let searchRole = req.query.role
+    let searchForRole = req.query.role
     let filter: any = {}
 
-    if (searchRole === 'human') {
+    let skills = getVolunteerSkills(req, res)
+    if (!skills) return undefined
+    let equipment = getEquipment(req, res)
+    if (!equipment) return undefined
+    let advice = getAdvice(req, res)
+    if (!advice) return undefined
+
+    skills = skills.length == 0 ? undefined : skills
+    equipment = equipment.length == 0 ? undefined : equipment
+    advice = advice.length == 0 ? undefined : advice
+
+    if (searchForRole === UserRoles.VOLUNTEER) {
         filter.availability = true
-
-        let skills: string[] = req.query.humanSkills
+    
         if (skills) {
-            let result = Validator.validSkills(skills)
-            if (!result.valid) {
-                utils.handleError(res, result.err)
-                return undefined
-            }
-
             filter['details.skills'] = {
                 '$in': skills
             }
         }
     }
-    else {
-        let equipment: string[] = req.query.equipment
-        if (equipment) {
-            let result = Validator.validEquipment(equipment)
-            if (!result.valid) {
-                utils.handleError(res, result.err)
-                return undefined
+    else if (searchForRole === UserRoles.LAB_DIAG) {
+        if (skills) {
+            filter['lookingFor.volunteerSkills'] = {
+                '$in': skills
             }
-
+        }
+        if (equipment) {
             filter['lookingFor.equipment'] = {
                 '$in': equipment
             }
         }
 
-        let advices: string[] = req.query.advice
-        if (advices) {
-            let result = Validator.validAdvice(advices)
-            if (!result.valid) {
-                utils.handleError(res, result.err)
-                return undefined
-            }
-
+        if (advice) {
             filter['lookingFor.advice'] = {
-                '$in': advices
+                '$in': advice
+            }
+        }
+    }
+    else if (searchForRole === UserRoles.LAB_RESEARCH) {
+        if (equipment) {
+            filter['offers.equipment'] = {
+                '$in': equipment
+            }
+        }
+
+        if (advice) {
+            filter['offers.advice'] = {
+                '$in': advice
             }
         }
     }
@@ -59,23 +112,21 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
 
 
 function validSearchFilter(req: express.Request, res: express.Response, token?: Token): boolean {
-    if (!req.query.role || (req.query.role !== "lab" && req.query.role !== "human")) {
-        console.log("invalid role parameter")
-        utils.badRequest(res)
-        return false
+    if (req.query.role === UserRoles.VOLUNTEER) {
+        if (req.query[QueryTypes.equipment] || req.query[QueryTypes.advice]) {
+            console.log("searching for volunteers can not search for equipment or advice")
+            return false
+        }
     }
-
-    if (req.query.role === 'human') {
-        if (req.query.equipment || req.query.advice) {
-            console.log("humans can not search for equipment or advice")
-            utils.badRequest(res)
+    else if (req.query.role === UserRoles.LAB_RESEARCH) {
+        if (req.query[QueryTypes.volunteerSkills]) {
+            console.log("searching for research labs can not search for human skills")
             return false
         }
     }
 
     if (!token && !req.query.zipcode) {
         console.log('Zipcode is required when unauthenticated')
-        utils.badRequest(res)
         return false
     }
 
@@ -83,7 +134,6 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
         let result = Validator.validZipcode(req.query.zipcode)
         if (!result.valid) {
             console.log("Invalid zipcode")
-            utils.badRequest(res)
             return false
         }
     }
@@ -114,8 +164,6 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
 
 
 export async function search(req: express.Request, res: express.Response, next: express.NextFunction) {
-    let model: Model<any>;
-    let projection: any;
     let page = 0
     try {
         page = parseInt(req.query.page ?? '1') - 1
@@ -125,42 +173,54 @@ export async function search(req: express.Request, res: express.Response, next: 
     }
     page = Math.max(page, 0)
 
+
+    let searchForRole = req.query.role
+    if (!Validator.validRole(searchForRole).valid) {
+        return utils.badRequest(res)
+    }
+
     let token = await utils.getVerifiedDecodedJWT(req)
     if (!validSearchFilter(req, res, token)) {
-        return
-    }
-    
-    if (req.query.role === 'human') {
-        model = UserHuman
-        projection = {
-            'location': 1,
-            'address': 1,
-            'description': 1,
-            'details': 1,
-            'availability': 1,
-            'consent': 1 // delete this from the query result
-        }
-
-        if (token && token.role === "lab") {
-            projection['contact'] = 1
-        }
-    }
-    else {
-        model = UserLab
-        projection = {
-            'location': 1,
-            'address': 1,
-            'description': 1,
-            'lookingFor': 1,
-            'name': 1,
-            'consent': 1 // delete this from the query result
-        }
-
-        if (token) {
-            projection['contact'] = 1
-        }
+        return utils.badRequest(res)
     }
 
+    let model = getModelForRole(searchForRole)
+    if (!model) return utils.badRequest(res)
+
+    let projection: { [key: string]: number } = {
+        'location': 1,
+        'address': 1,
+        'description': 1,
+        'consent': 1
+    }
+
+
+    // TODO: Permissions
+    switch (searchForRole) {
+        case UserRoles.VOLUNTEER:
+            projection['details'] = 1
+            projection['availability'] = 1
+
+            if (token && token.role == UserRoles.LAB_DIAG) {
+                projection['contact'] = 1
+                projection['organization'] = 1
+            }
+            break;
+        case UserRoles.LAB_DIAG: 
+            projection['name'] = 1
+            projection['lookingFor'] = 1
+            break;
+        case UserRoles.LAB_RESEARCH:
+            projection['name'] = 1
+            projection['offers'] = 1
+            if (token && token.role == UserRoles.LAB_DIAG) {
+                projection['contact'] = 1
+            }
+            break;
+        default:
+            throw new Error("role not implemented")
+            break;
+    }
 
 
     let center = await getZipcodeCoords(req, res, token)
@@ -186,7 +246,11 @@ export async function search(req: express.Request, res: express.Response, next: 
             query: filter,
             key: 'location'
         }
-    }]).count('count').exec())[0].count
+    }]).count('count').exec())
+
+    if (count.length > 0) {
+        count = count[0].count
+    }
 
     if (count == 0 || count < page*20) {
         return utils.errorResponse(res, 400, "no_results")
