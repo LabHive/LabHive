@@ -1,3 +1,14 @@
+<i18n>
+{
+  "en": {
+    
+  },
+  "de": {
+    
+  }
+}
+</i18n>
+
 <template>
   <div>
     <b-form @submit="submit">
@@ -17,11 +28,18 @@
         </div>
 
         <div class="col-md4">
-          <b-form-group label="Filter by" v-if="['lab_diag', 'lab_research'].includes(filters.role)">
+          <b-form-group label="Filter by" v-if="'lab_diag' === filters.role">
             <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
               <b-form-select-option value="skills">Wanted Skills</b-form-select-option>
               <b-form-select-option value="equipment">Wanted Equipment</b-form-select-option>
               <b-form-select-option value="advice">Wanted Advice</b-form-select-option>
+            </b-form-select>
+          </b-form-group>
+
+          <b-form-group label="Filter by" v-if="'lab_research' === filters.role">
+            <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
+              <b-form-select-option value="equipment">Offered Equipment</b-form-select-option>
+              <b-form-select-option value="advice">Offered Advice</b-form-select-option>
             </b-form-select>
           </b-form-group>
         </div>
@@ -29,17 +47,17 @@
 
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
-          <h5>Wanted Skills</h5>
+          <h5>Skills</h5>
           <CheckboxGroup name="skills" :data="volunteerSkillsOptions" v-model="filters.volunteerSkills" :saveChanges="searchChange"></CheckboxGroup>
         </template>
 
         <template v-if="filterBy === 'equipment'">
-          <h5>Wanted Equipment</h5>
+          <h5>Equipment</h5>
           <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment" :saveChanges="searchChange"></CheckboxGroup>
         </template>
 
         <template v-if="filterBy === 'advice'">
-          <h5>Wanted Advice</h5>
+          <h5>Advice</h5>
           <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.advice" :saveChanges="searchChange"></CheckboxGroup>
         </template>
       </div>
@@ -70,8 +88,8 @@ export default {
       volunteerSkillsOptions: labSkills,
       equipmentOptions: equipment,
       adviceOptions: advices,
+      val: Validator,
       filterBy: "skills",
-      val: Validator
     };
   },
   methods: {
@@ -86,6 +104,9 @@ export default {
     },
     changeLookingFor: function() {
       this.filterBy = "skills"
+      if (this.filters.role === 'lab_research') {
+        this.filterBy = "equipment"
+      }
       this.searchChange()
     },
     submit: function(ev) {
