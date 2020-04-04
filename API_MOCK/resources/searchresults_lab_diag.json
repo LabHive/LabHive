@@ -1,0 +1,201 @@
+{
+    "_embedded": [
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": []
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": []
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": [
+                    "sample_processing"
+                ]
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [
+                    "micropipettes",
+                    "qpcrThermocycler",
+                    "vortexMixer"
+                ],
+                "volunteerSkills": [
+                    "bsl3",
+                    "qpcr"
+                ]
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 14"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": [
+                    "sample_processing"
+                ]
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": [
+                    "sample_processing"
+                ]
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": []
+            },
+            "address": {
+                "city": "Witten",
+                "zipcode": "58455",
+                "street": "Brückstr 16"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    7.332811883744076,
+                    51.44832465
+                ]
+            },
+            "distance": 318873.0562237199
+        },
+        {
+            "lookingFor": {
+                "advice": [],
+                "equipment": [],
+                "volunteerSkills": [
+                    "sample_processing"
+                ]
+            },
+            "address": {
+                "city": "Hamburg",
+                "street": "Hauptstraße 6",
+                "zipcode": "12490"
+            },
+            "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
+            "name": "SpongebobLabor",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    8.7705213,
+                    48.8183798
+                ]
+            },
+            "distance": 564107.470952865
+        }
+    ],
+    "_links": {
+        "next": null,
+        "previous": null
+    },
+    "totalPages": 1,
+    "sucess": true
+}

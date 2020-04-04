@@ -1,23 +1,36 @@
 {
-    "location": {
-        "type": "Point",
-        "coordinates": [20.111, 60.2234]
-    },
-    "address": {
-        "city": "Berlin",
-        "zipcode": "12312"
-    },
-    "contact": {
-        "email": "gryffindor.rocks@gmail.com",
-        "phone": "0178235236",
-        "firstname": "Harry",
-        "lastname": "Potter"
-    },
-    "description": "Expelliarmus",
-    "details": {
-        "rnaExtraction": 0,
-        "rtPcr": 45,
-        "hoursPerWeek": 10
-     },
-     "available": true
+    "success": true,
+    "data": {
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                9.932966,
+                49.79245
+            ]
+        },
+        "address": {
+            "city": "Hamburg",
+            "street": "Hauptstraße 6",
+            "zipcode": "12490"
+        },
+        "contact": {
+            "email": "sdk@sdjk.de",
+            "phone": "12341234",
+            "firstname": "Te",
+            "lastname": "test"
+        },
+        "consent": {
+            "processing": true,
+            "publicContact": true
+        },
+        "details": {
+            "skills": [
+                "bsl2"
+            ]
+        },
+        "availability": true,
+        "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
+        "organization": "test",
+        "role": "volunteer"
+    }
 }

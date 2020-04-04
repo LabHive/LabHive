@@ -3,8 +3,8 @@
 
 ## Registrierung
 
-### Request (Human)
-POST https://labshare.de/api/v1/registration?role=human
+### Request (volunteer)
+POST https://labshare.de/api/v1/registration?role=volunteer
 ```jsonc
 {
     "address": {
@@ -49,12 +49,9 @@ POST https://labshare.de/api/v1/registration?role=human
 ```
 
 
-### Request (Lab)
-POST https://labshare.de/api/v1/registration?role=lab
+### Request (Diagnostic Lab)
+POST https://labshare.de/api/v1/registration?role=lab_diag
 
-Unique Identifier (a laboratory should only exists once):
-* address
-* name
 
 ```jsonc
 {
@@ -75,6 +72,42 @@ Unique Identifier (a laboratory should only exists once):
     "consent": {
         "processing": true,
         "publicContact": true,
+    },
+    "lookingFor": {
+        "volunteerSkills": ["..."], // tbd
+        "equipment": ["..."], // tbd
+        "advice": ["..."] // tbd
+    }
+}
+```
+
+### Request (Research Lab)
+POST https://labshare.de/api/v1/registration?role=lab_research
+
+
+```jsonc
+{
+    "address": {
+        "city": "", // ^[A-Za-z -]+$
+        "zipcode": "58455", // ^[0-9]{5}$
+        "street": "" // ^[A-Za-z -.0-9]+$, nur für Labore!! (Datensparsamkeit)
+    },
+    "contact": {
+        "firstname": "",
+        "lastname": "",
+        "email": "",
+        "phone": ""
+    },
+    "name": "Laborname",
+    "description": "",
+    "password": "",
+    "consent": {
+        "processing": true,
+        "publicContact": true,
+    },
+    "offers": {
+        "equipment": ["..."], // tbd
+        "advice": ["..."] // tbd
     }
 }
 ```
@@ -141,28 +174,8 @@ Returns all information about a profile
 No body, default response
 
 ### POST Request
-Basically the same structure as used for the registration.
+Same request structure as used for the registration. Not every property of the top level object has to be send.
 ALL information must be updateable!! (GDPR)
-
-For the lab another dictionary key is added, where the lab can specify what it is searching for.
-* Lab:
-    * Description what the lab can search for
-        ```jsonc
-        "lookingFor": { // not final yet 
-            "humanRessources": true,
-            "humanSkills": ["", "", ""],
-            "equipment": [
-                "rtThermocycler",
-                "qpcrThermocycler",
-                "vortexMixer",
-                "microcentrifuge",
-                "micropipettes",
-                "mutlichannelMicropipettes",
-                "microcentrifugeRack"
-            ],
-            "advice": ["", "", ""] // tbd (see notion)
-        }
-        ```
 
 
 ## Search (not final, depends on registration form)
@@ -172,21 +185,21 @@ GET https://labshare.de/api/v1/search
 * `role`
     * Required: True
     * What type are you searching for?
-    * `human|lab`
+    * `volunteer|lab_research|lab_diag`
 * `zipcode`
     * if unauthenticated, required
     * else optional, uses contact address zipcode as default
 * `page`
     * Default: 1
-* `humanSkills`
-    * colon seperated list of human skills
+* `volunteerSkills`
+    * array of strings (`http://...?paramName[]=a&paramName[]=b`)
 * `equipment`
-    * colon seperated list of equipment (see above (profile))
+    * array of strings
 * `advice`
-    * colon seperated list of advices (see above (profile))
+    * array of string
 
 
-* `humanSkills`, `equipment`, `advice` are optional
+* `volunteerSkills`, `equipment`, `advice` are optional
 * Everyone can search for labs and filter for equipment and advice (in case they have access to equipment)
 * Labs can search for:
     * Equipment
@@ -225,9 +238,22 @@ Basically the same structure as used for the registration.
                 "email": "",
                 "phone": ""
             },
-            "name": "Laborname",
+            "name": "Laborname", // when searching for labs
             "description": "",
             "distance": "12km",
+            "availability": true, // when searching for volunteers
+            "details": { // when searching for volunteers
+                "skills": []
+            },
+            "lookingFor": { // when searching for diagnostic labs
+                "volunteerSkills": [],
+                "advice": [],
+                "equipment": []
+            },
+            "offers": { // when searching for research labs
+                "advice": [],
+                "equipment": []
+            }
         },
     ],
     "_links": {
