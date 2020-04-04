@@ -34,7 +34,7 @@ export default {
       default: 'text',
       type: String
     },
-    placeholder: String
+    placeholder: String,
   },
   computed: {
     model: {
@@ -42,6 +42,7 @@ export default {
         return this.value
       },
       set(newValue) {
+        console.log("new input")
         this.$emit("input", newValue);
       }
     }
@@ -50,7 +51,10 @@ export default {
     validator(meth) {
       let a = meth(this.model);
       if (a.valid) {
-        this.$emit("valid", this.name)
+        if (this.timeout) clearTimeout(this.timeout); 
+        this.timeout = setTimeout(() => {
+          this.$emit("valid")
+        }, 300);
       }
       return a.valid;
     },
