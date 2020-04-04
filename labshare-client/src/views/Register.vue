@@ -9,7 +9,7 @@
     "complete": "Danke für deine Registrierung!",
     "prospectiveRole": "Als was möchtest du dich registrieren?",
     "roleHelper": "Helfer",
-    "roleLab": "Labor"
+    "roleLab": "Forschungslabor"
     }
 }
 </i18n>
@@ -75,7 +75,7 @@ export default {
     register: function(data) {
       console.log(data);
 
-      let role = this.loadedForm == this.forms.HELPER ? "human" : "lab";
+      let role = this.loadedForm == this.forms.HELPER ? "volunteer" : "lab_diag";
 
       this.$http.post("registration", data, { params: { role: role } }).then(
         resp => {

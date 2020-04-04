@@ -7,19 +7,20 @@
     "contact": {
         "firstname": "Spongebob",
         "lastname": "Schwammkopf",
-        "email": "sponge@schwamm.de",
+        "email": "test@tesddddt.de",
         "phone": "+493045050"
     },
     "description": "Wichtiges Labor, suche dringend weitere Mitarbeiter!",
-    "details": {
-        "enaExtraction": 29,
-        "rtPcr": 0,
-        "hoursPerWeek": 20
-    },
-    "password": "password",
     "name": "SpongebobLabor",
+    "password": "password",
     "consent": {
-        "publicContact": true,
         "processing": true,
+        "publicContact": true
+    },
+    "offers": {
+        "advice": [],
+        "equipment": [
+            "rtThermocycler"
+        ]
     }
 }

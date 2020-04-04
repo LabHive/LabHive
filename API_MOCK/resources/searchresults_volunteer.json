@@ -1,0 +1,53 @@
+{
+    "_embedded": [
+        {
+            "details": {
+                "skills": [
+                    "bsl3"
+                ]
+            },
+            "availability": true,
+            "address": {
+                "city": "Würzburg",
+                "zipcode": "97070"
+            },
+            "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    9.932966,
+                    49.79245
+                ]
+            },
+            "distance": 449680.6679610072
+        },
+        {
+            "details": {
+                "skills": [
+                    "bsl2"
+                ]
+            },
+            "availability": true,
+            "address": {
+                "city": "Hamburg",
+                "street": "Hauptstraße 6",
+                "zipcode": "12490"
+            },
+            "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    9.932966,
+                    49.79245
+                ]
+            },
+            "distance": 449680.6679610072
+        }
+    ],
+    "_links": {
+        "next": null,
+        "previous": null
+    },
+    "totalPages": 1,
+    "sucess": true
+}

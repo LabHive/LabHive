@@ -4,23 +4,23 @@
         "zipcode": "97070"
     },
     "contact": {
-        "email": "kleiner@test.de",
-        "telephone": "123456",
-        "firstname": "Test",
-        "lastname": "Test2"
+        "email": "sdk@sdjk.de",
+        "phone": "12341234",
+        "firstname": "Te",
+        "lastname": "test"
     },
     "description": "Biete Hilfe an werktags von 17-ca 21 Uhr, wochenends ganztägig",
     "details": {
-       "skills": [
-           "rna_isolation",
-           "sample_processing"
-       ]
+        "skills": [
+            "bsl3"
+        ]
     },
     "password": "password",
+    "available": true,
     "consent": {
-        "publicContact": true,
         "processing": true,
+        "publicContact": true
     },
-    "organization": "Lab XY"
-
+    "organization": "test",
+    "availability": true
 }

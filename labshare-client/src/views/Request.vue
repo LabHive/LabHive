@@ -26,7 +26,7 @@
 		</template>
     <b-form @submit="submit">
       <h3>{{ $t("humans") }}</h3>
-      <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.humanSkills"></CheckboxGroup>
+      <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>
 
       <h3>{{ $t("equip") }}</h3>
       <CheckboxGroup name="equip" cols="3" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       lookingFor: {
-        humanSkills: [],
+        volunteerSkills: [],
         equipment: [],
         advice: []
       },

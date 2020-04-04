@@ -5,13 +5,16 @@ import { Validator as v } from "../../lib/validation";
 import { getUserForMail, ResetToken } from '../database/database';
 import utils from '../utils';
 
-
+interface IBody {
+    email?: string
+}
 
 export async function forgotPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
-    let body = req.body;
+    let body: IBody = req.body;
+
+
     let validationResult = v.validEmail(body.email);
-    
-    if (!validationResult.valid) {
+    if (!validationResult.valid || !body.email) {
         return utils.handleError(res, validationResult.err);
     }
 
