@@ -15,9 +15,9 @@
     :label="$t(name)"
     :state="validator(valFunc)"
     :invalid-feedback="feedback(valFunc)"
-    label-cols-sm="3"
+    :label-cols-sm="verticalLabel ? null: 3"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
   </b-form-group>
 </template>
 
@@ -35,7 +35,11 @@ export default {
       default: 'text',
       type: String
     },
-    placeholder: String
+    placeholder: String,
+    verticalLabel: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     model: {
@@ -43,6 +47,7 @@ export default {
         return this.value
       },
       set(newValue) {
+        console.log("new input")
         this.$emit("input", newValue);
       }
     }
@@ -50,6 +55,12 @@ export default {
   methods: {
     validator(meth) {
       let a = meth(this.model);
+      if (a.valid) {
+        if (this.timeout) clearTimeout(this.timeout); 
+        this.timeout = setTimeout(() => {
+          this.$emit("valid")
+        }, 300);
+      }
       return a.valid;
     },
     feedback(meth) {

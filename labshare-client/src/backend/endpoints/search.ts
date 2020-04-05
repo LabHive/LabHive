@@ -253,7 +253,18 @@ export async function search(req: express.Request, res: express.Response, next: 
     }
 
     if (count == 0 || count < page*20) {
-        return utils.errorResponse(res, 400, "no_results")
+        let links = {
+            next: null,
+            previous: null
+        }
+
+        let resp = {
+            "_embedded": [],
+            "_links": links,
+            totalResults: count,
+            sucess: true
+        }
+        return res.send(resp)
     }
 
     projection['distance'] = 1
@@ -303,7 +314,7 @@ export async function search(req: express.Request, res: express.Response, next: 
     let resp = {
         "_embedded": results,
         "_links": links,
-        totalPages: Math.ceil(count/20),
+        totalResults: count,
         sucess: true
     }
 
