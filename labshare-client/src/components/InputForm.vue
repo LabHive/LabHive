@@ -15,6 +15,7 @@
     :label="$t(name)"
     :state="validator(valFunc)"
     :invalid-feedback="feedback(valFunc)"
+    :label-cols-sm="verticalLabel ? null: 3"
   >
     <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
   </b-form-group>
@@ -35,6 +36,10 @@ export default {
       type: String
     },
     placeholder: String,
+    verticalLabel: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     model: {

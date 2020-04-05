@@ -14,7 +14,13 @@
     <b-form @submit="submit">
       <div class="form-row">
         <div class="col-md5">
-          <InputForm name="zipcode" v-model="filters.zipcode" :valFunc="val.validZipcode" @valid="searchChange"></InputForm>
+          <InputForm
+            :verticalLabel="true"
+            name="zipcode"
+            v-model="filters.zipcode"
+            :valFunc="val.validZipcode"
+            @valid="searchChange"
+          ></InputForm>
         </div>
 
         <div class="col-md3">
@@ -48,17 +54,32 @@
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
           <h5>Skills</h5>
-          <CheckboxGroup name="skills" :data="volunteerSkillsOptions" v-model="filters.volunteerSkills" :saveChanges="searchChange"></CheckboxGroup>
+          <CheckboxGroup
+            name="skills"
+            :data="volunteerSkillsOptions"
+            v-model="filters.volunteerSkills"
+            :saveChanges="searchChange"
+          ></CheckboxGroup>
         </template>
 
         <template v-if="filterBy === 'equipment'">
           <h5>Equipment</h5>
-          <CheckboxGroup name="equipment" :data="equipmentOptions" v-model="filters.equipment" :saveChanges="searchChange"></CheckboxGroup>
+          <CheckboxGroup
+            name="equipment"
+            :data="equipmentOptions"
+            v-model="filters.equipment"
+            :saveChanges="searchChange"
+          ></CheckboxGroup>
         </template>
 
         <template v-if="filterBy === 'advice'">
           <h5>Advice</h5>
-          <CheckboxGroup name="advice" :data="adviceOptions" v-model="filters.advice" :saveChanges="searchChange"></CheckboxGroup>
+          <CheckboxGroup
+            name="advice"
+            :data="adviceOptions"
+            v-model="filters.advice"
+            :saveChanges="searchChange"
+          ></CheckboxGroup>
         </template>
       </div>
     </b-form>
@@ -73,7 +94,7 @@ import {
 } from "../../dist-browser/lib/selectLists";
 import CheckboxGroup from "./CheckboxGroup";
 import { Validator } from "../../dist-browser/lib/validation";
-import InputForm from "./InputForm"
+import InputForm from "./InputForm";
 
 export default {
   data: function() {
@@ -89,7 +110,7 @@ export default {
       equipmentOptions: equipment,
       adviceOptions: advices,
       val: Validator,
-      filterBy: "skills",
+      filterBy: "skills"
     };
   },
   methods: {
@@ -103,11 +124,11 @@ export default {
       this.searchChange();
     },
     changeLookingFor: function() {
-      this.filterBy = "skills"
-      if (this.filters.role === 'lab_research') {
-        this.filterBy = "equipment"
+      this.filterBy = "skills";
+      if (this.filters.role === "lab_research") {
+        this.filterBy = "equipment";
       }
-      this.searchChange()
+      this.searchChange();
     },
     submit: function(ev) {
       ev.preventDefault();
@@ -116,6 +137,13 @@ export default {
   },
   mounted: function() {
     this.searchChange();
+    if (this.$user.address) {
+      this.filters.zipcode = this.$user.address.zipcode;
+    } else {
+      this.$root.$once("gotProfile", () => {
+        this.filters.zipcode = this.$user.address.zipcode;
+      });
+    }
   },
   components: {
     CheckboxGroup,

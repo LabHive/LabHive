@@ -17,15 +17,59 @@
   <div class="list-view">
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
-    <b-table v-show="totalResults > 0" ref="table" :fields="fields" :items="items" :current-page="currentPage" hover stacked="md" per-page="20">
-      <template v-slot:cell(lookingForSummary)="data">
-        <span v-html="data.value"></span>
-      </template>
-      <template v-slot:cell(offersSummary)="data">
-        <span v-html="data.value"></span>
-      </template>
-    </b-table>
-    <h3 v-if="totalResults == 0">{{ $t("noResults") }}</h3>
+
+    <div style="margin-top: 40px">
+      <b-table
+        v-show="totalResults > 0"
+        ref="table"
+        :fields="fields"
+        :items="items"
+        :current-page="currentPage"
+        hover
+        stacked="md"
+        per-page="20"
+        @row-selected="onRowSelected"
+        selectable
+        select-mode="single"
+      >
+        <template v-slot:cell(lookingForSummary)="data">
+          <span v-html="data.value"></span>
+        </template>
+        <template v-slot:cell(offersSummary)="data">
+          <span v-html="data.value"></span>
+        </template>
+
+        <template v-slot:row-details="row">
+          <b-card>
+            <b-container fluid>
+              <b-row>
+                <b-col cols="auto" v-if="row.item.contact">
+                  <strong>Vorname:</strong> {{ row.item.contact.firstname }}<br/>
+                  <strong>Nachname:</strong> {{ row.item.contact.lastname }}<br/>
+                  <strong>E-Mail:</strong> {{ row.item.contact.email }}<br/>
+                  <strong>Phone:</strong> {{ row.item.contact.phone }}<br/>
+                </b-col>
+
+                <b-col cols="auto">
+                  <strong>{{ $t('address') }}:</strong><br/>
+                  {{ row.item.address.zipcode }}<br/>
+                  {{ row.item.address.city }}<br/>
+                  <span v-if="row.item.address.street">{{ row.item.address.street }}</span>
+                </b-col>
+
+                <b-col cols="auto" v-if="row.item.offers" v-html="row.item.offersSummary"></b-col>
+                <b-col cols="auto" v-if="row.item.lookingFor" v-html="row.item.lookingForSummary"></b-col>
+                <b-col cols="auto" v-if="row.item.details">
+                  <strong>{{ $t('volunteerSkills') }}:</strong> <span v-html="row.item.detailsSummary"></span>
+                </b-col>
+              </b-row>
+            </b-container>
+          </b-card>
+        </template>
+      </b-table>
+
+      <h3 v-if="totalResults == 0">{{ $t("noResults") }}</h3>
+    </div>
 
     <b-pagination
       v-if="totalResults > 20"
@@ -34,7 +78,6 @@
       :per-page="20"
       aria-controls="table"
     ></b-pagination>
-
   </div>
 </template>
 
@@ -47,116 +90,146 @@ export default {
     return {
       searchAttributes: {},
       currentPage: 1,
-      totalResults: 0
+      totalResults: 0,
+      selectedRows: [],
     };
   },
   computed: {
     fields() {
-      if (this.searchAttributes.role === 'volunteer') {
-        return [{
-          key: 'distance',
-          label: 'Distance'
-        }, {
-          key: 'resolvedAddress',
-          label: 'Location'
-        }, {
-          key: 'detailsSummary',
-          label: 'Skills'
-        }]
-      }
-      else if (this.searchAttributes.role === 'lab_diag') {
-        return [{
-          key: 'name',
-          label: 'Name'
-        }, {
-          key: 'distance',
-          label: 'Distance'
-        }, {
-          key: 'resolvedAddress',
-          label: 'Location'
-        }, {
-          key: 'lookingForSummary',
-          label: 'Looking for'
-        }]
-      }
-      else if (this.searchAttributes.role === 'lab_research') {
-        return [{
-          key: 'name',
-          label: 'Name'
-        }, {
-          key: 'distance',
-          label: 'Distance'
-        }, {
-          key: 'resolvedAddress',
-          label: 'Location'
-        }, {
-          key: 'offersSummary',
-          label: 'Offers'
-        }]
+      if (this.searchAttributes.role === "volunteer") {
+        return [
+          {
+            key: "distance",
+            label: "Distance"
+          },
+          {
+            key: "resolvedAddress",
+            label: "Location"
+          },
+          {
+            key: "detailsSummary",
+            label: "Skills"
+          }
+        ];
+      } else if (this.searchAttributes.role === "lab_diag") {
+        return [
+          {
+            key: "name",
+            label: "Name"
+          },
+          {
+            key: "distance",
+            label: "Distance"
+          },
+          {
+            key: "resolvedAddress",
+            label: "Location"
+          },
+          {
+            key: "lookingForSummary",
+            label: "Looking for"
+          }
+        ];
+      } else if (this.searchAttributes.role === "lab_research") {
+        return [
+          {
+            key: "name",
+            label: "Name"
+          },
+          {
+            key: "distance",
+            label: "Distance"
+          },
+          {
+            key: "resolvedAddress",
+            label: "Location"
+          },
+          {
+            key: "offersSummary",
+            label: "Offers"
+          }
+        ];
       }
 
-      return []
+      return [];
     }
   },
   methods: {
+    onRowSelected(items) {
+      this.selectedRows.map((item) => {
+        item._showDetails = false
+      })
+
+      this.selectedRows = items
+      this.selectedRows.map((item) => {
+        item._showDetails = true
+      })
+    },
     updateListing(newSearchAttributes) {
       this.searchAttributes = newSearchAttributes;
-      this.$refs.table.refresh()
+      this.$refs.table.refresh();
     },
     getSearchResults(page) {
-      this.searchAttributes.page = page
-      return new Promise((res, rej) =>{
+      this.searchAttributes.page = page;
+      return new Promise((res, rej) => {
         this.$http.get("search", { params: this.searchAttributes }).then(
           success => {
-            res(success.body)
+            res(success.body);
           },
           error => {
-            rej(error)
+            rej(error);
             console.log(error);
           }
-        )
+        );
       });
     },
     items(ctx) {
-      let page = ctx.currentPage
-      return this.getSearchResults(page).then((body) => {
-        this.totalResults = body.totalResults
-        let b = body._embedded
+      let page = ctx.currentPage;
+      return this.getSearchResults(page)
+        .then(body => {
+          this.totalResults = body.totalResults;
+          let b = body._embedded;
 
-        return b.map((item) => {
-          item.distance = `${(item.distance / 1000).toFixed(1)} km`
-          let final = ""
-          if (item.lookingFor) {
-            for (let i in item.lookingFor) {
-              if (item.lookingFor[i].length > 0) {
-                final += `<strong>${i}:</strong> ${item.lookingFor[i].join(', ')}<br/>`
+          return b.map(item => {
+            item._showDetails = false
+            item.distance = `${(item.distance / 1000).toFixed(1)} km`;
+            let final = "";
+            if (item.lookingFor) {
+              for (let i in item.lookingFor) {
+                if (item.lookingFor[i].length > 0) {
+                  final += `<strong>${i}:</strong> ${item.lookingFor[i].join(
+                    ", "
+                  )}<br/>`;
+                }
               }
+              item.lookingForSummary = final;
             }
-            item.lookingForSummary = final
-          }
 
-          if (item.offers) {
-            for (let i in item.offers) {
-              if (item.offers[i].length > 0) {
-                final += `<strong>${i}:</strong> ${item.offers[i].join(', ')}<br/>`
+            if (item.offers) {
+              for (let i in item.offers) {
+                if (item.offers[i].length > 0) {
+                  final += `<strong>${i}:</strong> ${item.offers[i].join(
+                    ", "
+                  )}<br/>`;
+                }
               }
+              item.offersSummary = final;
             }
-            item.offersSummary = final
-          }
 
-          if (item.address) {
-            let r = `${item.address.zipcode}, ${item.address.city}`
-            item.resolvedAddress = r
-          }
+            if (item.address) {
+              let r = `${item.address.zipcode}, ${item.address.city}`;
+              item.resolvedAddress = r;
+            }
 
-          if (item.details) {
-            item.detailsSummary = item.details.skills.join(', ')
-          }
-          return item
+            if (item.details) {
+              item.detailsSummary = item.details.skills.join(", ");
+            }
+            return item;
+          });
         })
-      }).catch(() => {
-        return []
-      })
+        .catch(() => {
+          return [];
+        });
     }
   },
   components: {
