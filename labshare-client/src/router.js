@@ -31,7 +31,6 @@ const routes = [
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
   { path: '/change-password', component: ChangePassword, meta: { auth: true } },
-  { path: '/list', component: List, meta: { auth: true } },
 ];
 const router = new VueRouter({ routes });
 

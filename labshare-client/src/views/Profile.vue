@@ -10,7 +10,6 @@
 <template>
   <div class="profile">
     <h1>{{ $t("profile") }}</h1>
-
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
         {{ $t("profileUpdated") }}

@@ -8,13 +8,6 @@ export default new Vuex.Store({
     token: localStorage.getItem('authToken'),
     profile: {},
     fetcingProfile: false,
-    searchAttributes: {
-      search_type: null,
-      page: 1,
-      filters: [],
-    },
-    searchResults: [],
-    labLocations: [],
   },
   mutations: {
     auth_success(state, token) {
@@ -97,26 +90,5 @@ export default new Vuex.Store({
         );
       });
     },
-    getSearchResults({ commit, state }) {
-      let role = state.profile.role;
-      Vue.http
-        .get('search', {
-          params: { role: role, filter: state.searchAttributes.filters },
-        })
-        .then(
-          (success) => {
-            commit('set_search_results', success.body);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    },
-    getLabLocations({ commit }) {
-      Vue.http.get('lab-locations').then((success) => {
-        commit('set_lab_locations', success.body.data || []);
-      });
-    },
   },
-  modules: {},
 });

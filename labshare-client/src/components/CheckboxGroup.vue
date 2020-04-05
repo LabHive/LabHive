@@ -10,6 +10,7 @@
               v-model="inputVal"
               :options="arrD[i-1]"
               :name="name + i"
+              @change="saveChanges"
             ></b-form-checkbox-group>
           </b-col>
         </template>
@@ -41,8 +42,15 @@ function arraySplitter(array, cols) {
 
 export default {
   props: {
+    saveChanges: {
+      default: () => {},
+      type: Function
+    },
     data: Array,
-    cols: String,
+    cols: {
+      type: String,
+      default: "2"
+    },
     name: String,
     value: Array
   },
