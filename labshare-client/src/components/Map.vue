@@ -9,25 +9,40 @@
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
     >
+      <l-marker
+        v-for="marker in markers"
+        :lat-lng="marker.position"
+        :key="marker.id"
+        @click="alert(marker)"
+      />
       <l-tile-layer :url="url" :attribution="attribution" />
     </l-map>
   </div>
 </template>
 <script>
-import { latLng } from "leaflet";
-import { LMap, LTileLayer } from "vue2-leaflet";
+import { latLng, Icon } from "leaflet";
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+});
 
 export default {
   name: "Example",
   components: {
     LMap,
-    LTileLayer
+    LTileLayer,
+    LMarker
   },
   data() {
     return {
       zoom: 6,
       center: latLng(51.1657, 10.4515),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      // url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       mapOptions: {
@@ -36,6 +51,19 @@ export default {
       showMap: true
     };
   },
+  computed: {
+    markers() {
+      return this.$store.state.labLocations.map(({ lat, long }, index) => ({
+        id: index,
+        position: { lat, lng: long },
+        draggable: false,
+        visible: true
+      }));
+    }
+  },
+  created() {
+    this.$store.dispatch("getLabLocations");
+  },
   methods: {
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
@@ -43,12 +71,10 @@ export default {
     centerUpdate(center) {
       this.currentCenter = center;
     },
-    showLongText() {
-      this.showParagraph = !this.showParagraph;
-    },
-    innerClick() {
-      alert("Click!");
+    alert(marker) {
+      window.alert(JSON.stringify(marker));
     }
   }
 };
 </script>
+

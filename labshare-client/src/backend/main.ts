@@ -35,7 +35,7 @@ router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 router.post('/login', login);
 router.get('/search', search);
-router.get('/labLocations', labLocations);
+router.get('/lab-locations', labLocations);
 
 router.use(authMiddleware);
 
