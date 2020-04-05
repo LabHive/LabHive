@@ -119,7 +119,7 @@ class Utils {
             jsonwebtoken.verify(token, HMAC_KEY, {
                 algorithms: ["HS256"],
                 clockTolerance: 300,
-                issuer: "labshare"
+                issuer: "labhive"
             });
         }
         catch {
