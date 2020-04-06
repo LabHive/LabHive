@@ -18,7 +18,17 @@
 <template>
   <div class="lab-form">
     <b-form @submit="submit">
-      <h3 class="section">{{ $t("loginInfo") }}</h3>
+
+      <transition :name="transition" mode="out-in">
+        <component :is="formSection" 
+          v-model="formData" 
+          @nextState="nextFormSection"
+          @previousState="previousFormSection"
+          :profileUpdate="profileUpdate"></component>
+      </transition>
+      
+
+      <!-- <h3 class="section">{{ $t("loginInfo") }}</h3>
 
       <InputForm
         name="email"
@@ -112,21 +122,23 @@
       </template>
       <template v-else>
         <b-button :disabled="disableSubmit" variant="primary" type="submit">{{ $t("register") }}</b-button>
-      </template>
+      </template> -->
     </b-form>
   </div>
 </template>
 
 <script>
-import { labSkills } from "../../dist-browser/lib/selectLists";
-import { Validator } from "../../dist-browser/lib/validation";
-import InputForm from "./InputForm";
+import { Validator } from "@/../dist-browser/lib/validation";
+import InputForm from "@/components/InputForm";
+import LoginInformation from "@/components/RegistrationSections/LoginInformation";
+import PersonalInformation from "@/components/RegistrationSections/PersonalInformation";
+import Consent from "@/components/RegistrationSections/Consent";
+import SpecificVolunteer from "@/components/RegistrationSections/SpecificVolunteer";
 
 export default {
-  name: "HelperForm",
+  name: "VolunteerForm",
   data: function() {
     return {
-      passwordRepeat: "",
       formData: {
         address: {
           city: "",
@@ -150,8 +162,15 @@ export default {
           publicContact: false,
         }
       },
-      labSkills: labSkills,
       disableSubmit: true,
+      formSections: [
+        "LoginInformation",
+        "PersonalInformation",
+        "SpecificVolunteer",
+        "Consent"
+      ],
+      currentFormSection: 0,
+      transition: "forward"
     };
   },
   props: {
@@ -164,6 +183,9 @@ export default {
     val() {
       return Validator;
     },
+    formSection() {
+      return this.formSections[this.currentFormSection]
+    }
   },
   mounted: function() {
     if (this.$user.role) {
@@ -180,7 +202,6 @@ export default {
         })
       })
     }
-
 
     this.$children.map((a) => {
       a.$on('input', () => {
@@ -199,14 +220,21 @@ export default {
       event.preventDefault();
       this.$emit("formcomplete", this.formData);
     },
-    pwVal(data) {
-      return {
-        valid: this.passwordRepeat == this.formData.password && data != ""
-      };
+    nextFormSection() {
+      this.transition = "forward"
+      this.currentFormSection += 1
+    },
+    previousFormSection() {
+      this.transition = "back"
+      this.currentFormSection -= 1
     }
   },
   components: {
-    InputForm
+    InputForm,
+    LoginInformation,
+    PersonalInformation,
+    SpecificVolunteer,
+    Consent
   }
 };
 </script>
@@ -215,5 +243,32 @@ export default {
 <style scoped>
 .section {
   margin-top: 50px;
+}
+
+.forward-enter-active, .forward-leave-active {
+  transition: all .2s ease;
+}
+.forward-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.forward-enter {
+  opacity: 0;
+  transform: translateX(400px);
+}
+
+
+.back-enter-active, .back-leave-active {
+  transition: all .2s ease;
+}
+.back-leave-to {
+  opacity: 0;
+  transform: translateX(400px);
+}
+
+.back-enter {
+  opacity: 0;
+  transform: translateX(-100px);
 }
 </style>

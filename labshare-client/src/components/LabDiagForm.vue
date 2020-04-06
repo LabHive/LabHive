@@ -81,7 +81,7 @@ import { Validator } from "../../dist-browser/lib/validation";
 import InputForm from "./InputForm";
 
 export default {
-  name: "LabForm",
+  name: "LabDiagForm",
   data: function() {
     return {
       formData: {

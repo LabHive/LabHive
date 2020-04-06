@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import LabForm from "../components/LabForm";
-import HelperForm from "../components/HelperForm";
+import LabForm from "../components/LabDiagForm";
+import HelperForm from "../components/VolunteerForm";
 
 export default {
   name: "Profile",
