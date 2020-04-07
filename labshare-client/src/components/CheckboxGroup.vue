@@ -11,7 +11,17 @@
               :options="arrD[i-1]"
               :name="name + i"
               @change="saveChanges"
+              v-if="!radio"
             ></b-form-checkbox-group>
+            <b-form-radio-group
+              stacked
+              :id="name + i"
+              v-model="inputVal"
+              :options="arrD[i-1]"
+              :name="name + i"
+              @change="saveChanges"
+              v-else
+            ></b-form-radio-group>
           </b-col>
         </template>
       </b-row>
@@ -52,7 +62,11 @@ export default {
       default: "2"
     },
     name: String,
-    value: Array
+    value: null,
+    radio: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {

@@ -4,9 +4,8 @@ import { IUserCommon, UserCommonSchema } from "./IUserCommon";
 export interface IUserVolunteer extends IUserCommon {
     details: {
         skills: string[]
-    };
-    availability: boolean;
-    organization: string;
+    },
+    availability: boolean
 }
 
 export const UserVolunteerSchema = new Schema({
@@ -15,7 +14,6 @@ export const UserVolunteerSchema = new Schema({
         skills: [String]
     },
     availability: { type: Boolean, default: true },
-    organization: String
 });
 
 UserVolunteerSchema.index({location: '2dsphere'})

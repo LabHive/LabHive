@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <h2>{{ $t("requestRessource") }}</h2>
+
+    <h3>{{ $t("requestVolunteerSkills") }}</h3>
+    <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>
+
+    <h3>{{ $t("requestEquipment") }}</h3>
+    <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
+
+    <b-form-group
+      id="description"
+      :state="val.validDescription(lookingFor.equipmentDescription).valid"
+      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.equipmentDescription).err.message)"
+    >
+      <b-form-textarea
+        id="textarea"
+        v-model="lookingFor.equipmentDescription"
+        :placeholder="$t('requestEquipmentDescription')"
+        rows="4"
+        max-rows="10"
+        :state="!val.validDescription(lookingFor.equipmentDescription).valid ? false: null"
+      ></b-form-textarea>
+    </b-form-group>
+
+    <h3>{{ $t("requestAdvice") }}</h3>
+
+    <b-button variant="primary" @click="$emit('submit')" v-if="showSubmit">Save</b-button>
+  </div>
+</template>
+
+<script>
+import { labSkills, equipment, advices } from "@/../dist-browser/lib/selectLists"
+import { Validator } from "@/../dist-browser/lib/validation";
+import CheckboxGroup from "@/components/CheckboxGroup"
+
+export default {
+  props: {
+    value: Object,
+    showSubmit: {
+      type: Boolean,
+      default: true
+    }
+  },
+  computed: {
+    lookingFor: {
+      get() {
+        return this.value
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
+    },
+    val() {
+      return Validator;
+    },
+  },
+  data() {
+    return {
+      labSkills,
+      equipment,
+      advices
+    }
+  },
+  components: {
+    CheckboxGroup
+  }
+}
+</script>

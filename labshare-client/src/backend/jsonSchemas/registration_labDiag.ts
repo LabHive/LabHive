@@ -7,7 +7,7 @@ export let registration_labDiag: Schema = {
     type: "object",
     properties: {
         ...userCommon,
-        name: { type: "string" },
+        website: { type: "string" },
         lookingFor: {
             properties: {
                 volunteerSkills: {
@@ -22,9 +22,24 @@ export let registration_labDiag: Schema = {
                     type: "array",
                     items: { type: "string" }
                 },
+                equipmentDescription: { type: "string" },
+                adviceDescription: { type: "string" }
             },
-            required: ["volunteerSkills", "advice", "equipment"]
+        },
+        offers: {
+            properties: {
+                advice: {
+                    type: "array",
+                    items: { type: "string" }
+                },
+                equipment: {
+                    type: "array",
+                    items: { type: "string" }
+                },
+                equipmentDescription: { type: "string" },
+                adviceDescription: { type: "string" }
+            },
         }
     },
-    required: ["address", "contact", "name", "description", "password", "consent"]
+    required: ["address", "contact", "organization", "description", "password", "consent", "website"]
 };

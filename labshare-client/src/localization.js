@@ -30,7 +30,9 @@ export let localization = {
           invalid_skills: "Ungültige Fähigkeiten",
           invalid_equipment: "Ungültiges Equipment",
           invalid_advice: "Ungültige Anfrage",
-          invalid_consent: "Ungültige Einwilligung"
+          invalid_consent: "Ungültige Einwilligung",
+          invalid_url: "Ungültige URL",
+          passwordMatch: "Passwörter stimmen nicht überein!"
         },
         not_authorized: "Nicht authorisiert!",
         invalid_location: "Ungültige Adresse!",
@@ -40,13 +42,14 @@ export let localization = {
         invalid_login: "Ungültige Login-Daten!",
         existing_user: "User existiert bereits!",
         false_consent: "Ohne Einwilligung dürfen wir die Daten nicht verarbeiten.",
-        no_results: "No results could be found"
+        no_results: "No results could be found",
       },
       loginInfo: "Login Informationen",
       contactInfo: "Kontakt Informationen",
       register: "Registrieren",
       save: "Speichern",
       email: "E-Mail Adresse",
+      officialEmail: "E-Mail Addresse der Institution",
       password: "Passwort",
       repeatPassword: "Passwort wiederholen",
       firstName: "Vorname",
@@ -56,11 +59,23 @@ export let localization = {
       zipcode: "Postleitzahl",
       street: "Straße",
       organization: "Organisation",
-      labName: "Laborname",
-      consentProcessing:
+      labName: "Ihre Affiliation",
+      labWebsite: "Webseite Ihrer Affiliation",
+      labInformation: "Laborinformationen",
+      consentPublicContact:
         "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht wird. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/>Weitere Hinweise finden Sie in unserer <a href=\"/#/dataProtection\">Datenschutzerklärung.</a>",
       required: "Erforderlich",
       volunteerSkills: "Fähigkeiten",
+      volunteer: "Freiwillige",
+      requestRessource: "Bedarfsanfrage",
+      offerRessource: "Angebot",
+      requestVolunteerSkills: "Fähigkeiten der Freiwilligen",
+      requestEquipment: "Gesuchte Geräte",
+      requestEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
+      offerEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
+      requestAdvice: "Hilfe Gesucht",
+      offerEquipment: "Angebotene Geräte",
+      offerAdvice: "Hilgeangebote",
       skills: {
         bsl2: "BSL2 Erfahrung"
       },

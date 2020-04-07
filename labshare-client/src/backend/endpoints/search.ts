@@ -207,11 +207,12 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
             break;
         case UserRoles.LAB_DIAG: 
-            projection['name'] = 1
+            projection['organization'] = 1
             projection['lookingFor'] = 1
+            projection['offers'] = 1
             break;
         case UserRoles.LAB_RESEARCH:
-            projection['name'] = 1
+            projection['organization'] = 1
             projection['offers'] = 1
             if (token && token.role == UserRoles.LAB_DIAG) {
                 projection['contact'] = 1

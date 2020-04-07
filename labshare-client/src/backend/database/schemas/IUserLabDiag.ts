@@ -1,21 +1,35 @@
 import { Schema } from "mongoose";
 import { IUserCommon, UserCommonSchema } from "./IUserCommon";
 export interface IUserLabDiag extends IUserCommon {
-    name: string;
     lookingFor: {
         volunteerSkills: string[],
         advice: string[],
-        equipment: string[]
+        equipment: string[],
+        equipmentDescription: string,
+        adviceDescription: string
+    },
+    offers: {
+        advice: string[],
+        equipment: string[],
+        equipmentDescription: string,
+        adviceDescription: string,
     };
 }
 
 export const UserLabDiagSchema = new Schema({
     ...UserCommonSchema.obj,
-    name: String,
     lookingFor: {
         advice: [String],
         equipment: [String],
-        volunteerSkills: [String]
+        volunteerSkills: [String],
+        equipmentDescription: String,
+        adviceDescription: String,
+    },
+    offers: {
+        advice: [String],
+        equipment: [String],
+        equipmentDescription: String,
+        adviceDescription: String,
     }
 });
 

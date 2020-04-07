@@ -19,32 +19,20 @@
 
 <template>
   <div>
-    <h1>{{ $t('request') }}</h1>
     <template v-if="updated || error">
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ $(errorMsg) }}</b-alert>
 		</template>
-    <b-form @submit="submit">
-      <h3>{{ $t("humans") }}</h3>
-      <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>
+    <b-form>
 
-      <h3>{{ $t("equip") }}</h3>
-      <CheckboxGroup name="equip" cols="3" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
-
-      <h3>{{ $t("advice") }}</h3>
-      <b-button variant="primary" type="submit">Save</b-button>
+      <Request v-model="lookingFor" @submit="submit"></Request>
     </b-form>
     
   </div>
 </template>
 
 <script>
-import {
-  labSkills,
-  equipment,
-  advices
-} from "../../dist-browser/lib/selectLists";
-import CheckboxGroup from '../components/CheckboxGroup'
+import Request from "@/components/Request"
 
 export default {
   name: "Search",
@@ -56,17 +44,13 @@ export default {
         equipment: [],
         advice: []
       },
-      labSkills,
-      equipment,
-      advices,
       updated: false,
       error: false,
       errorMsg: ""
     };
   },
   methods: {
-    submit: function(event) {
-      event.preventDefault();
+    submit: function() {
       this.$http.post('profile', { 
 					lookingFor: this.lookingFor
 				}).then(() => {
@@ -94,7 +78,7 @@ export default {
     }
   },
   components: {
-    CheckboxGroup
+    Request
   }
 };
 </script>

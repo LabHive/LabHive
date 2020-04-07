@@ -25,8 +25,8 @@ export class ValidationResultError extends ValidationResult {
 }
 
 export class ValidationResultSuccess extends ValidationResult {
-    constructor() {
-        super(true, '', undefined)
+    constructor(value: any = undefined) {
+        super(true, '', value)
     }
 }
 
@@ -66,6 +66,7 @@ export class Validator {
     static validPhone(phone?: string): ValidationResult {
         let regexpPhone = new RegExp(/^[0-9+ ()]+$/);
         if (!phone || !regexpPhone.test(phone)) {
+            if (phone == "") return new ValidationResultSuccess("");
             return new ValidationResultError("invalid_phone", phone)
         }
         return new ValidationResultSuccess()
@@ -179,6 +180,14 @@ export class Validator {
         return Validator.validTextShort(org, 'invalid_organization')
     }
 
+    static validUrl(url?: string): ValidationResult {
+        let regexpUrl = new RegExp(/^https?:\/\/[^\s]+$/);
+        if (!url || !regexpUrl.test(url)) {
+            return new ValidationResultError('invalid_url', url)
+        }
+        return new ValidationResultSuccess()
+    }
+
 
     static validProfileFields(object: any, role: string): ValidationResult {
         // Address
@@ -196,24 +205,30 @@ export class Validator {
         results.push(Validator.validDescription(object.description))
         results.push(Validator.validConsent(object.consent))
 
+        results.push(Validator.validOrganization(object.organization))
+
         if (role === UserRoles.LAB_DIAG || role === UserRoles.LAB_RESEARCH) {
-            results.push(Validator.validName(object.name))
             results.push(Validator.validStreet(object.address?.street))
+            results.push(Validator.validUrl(object.website))
 
             if (object.lookingFor) {
                 if (object.lookingFor.advice) results.push(Validator.validAdvice(object.lookingFor.advice))
                 if (object.lookingFor.volunteerSkills) results.push(Validator.validSkills(object.lookingFor.volunteerSkills))
                 if (object.lookingFor.equipment) results.push(Validator.validEquipment(object.lookingFor.equipment))
+                if (object.lookingFor.equipmentDescription) results.push(Validator.validTextLong(object.lookingFor.equipmentDescription, "invalid_equipmentDescription"))
+                if (object.lookingFor.adviceDescription) results.push(Validator.validTextLong(object.lookingFor.adviceDescription, "invalid_adviceDescription"))
             }
 
             if (object.offers) {
                 if (object.offers.advice) results.push(Validator.validAdvice(object.offers.advice))
                 if (object.offers.equipment) results.push(Validator.validEquipment(object.offers.equipment))
+                if (object.offers.equipmentDescription) results.push(Validator.validTextLong(object.offers.equipmentDescription, "invalid_equipmentDescription"))
+                if (object.offers.adviceDescription) results.push(Validator.validTextLong(object.offers.adviceDescription, "invalid_adviceDescription"))
             }
         }
         else {
             results.push(Validator.validSkills(object.details?.skills))
-            results.push(Validator.validOrganization(object.organization))
+            
         }
 
         for (let i of results) {

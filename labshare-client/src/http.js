@@ -11,6 +11,10 @@ else {
 }
 
 function getToken() {
+  if (!localStorage.getItem('authToken')) {
+    return null;
+  }
+
   try {
     let token = localStorage.getItem('authToken')
     let payload = JSON.parse(atob(token.split(".")[1]))
