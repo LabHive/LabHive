@@ -11,15 +11,17 @@ export let labSkills = [
 
 
 export let equipment = [
-    { value: "rtThermocycler", text: "Thermocycler für RT" },
-    { value: "qpcrThermocycler", text: "Thermocycler für (q)PCR" },
-    { value: "vortexMixer", text: "Vortex Mixer" },
-    { value: "microcentrifuge", text: "Microcentrifuge" },
-    { value: "micropipettes", text: "Micropipettes" },
-    { value: "mutlichannelMicropipettes", text: "Multichannel micropipettes" },
-    { value: "microcentrifugeRack", text: "Racks for 1.5 mL microcentrifuge tubes" },
+    { value: "calibratedPipetteSet", text: "Calibrated Pipette Set" },
+    { value: "rtThermocycler", text: "Thermocycler RT" },
+    { value: "qpcrThermocycler", text: "Thermocycler qPCR" },
+    { value: "primerProduction", text: "Primer Production" },
+    { value: "reverseTransKit", text: "Reverse Transcriptase Kit" },
+    { value: "pcrMasterMix", text: "PCR Master Mix" },
+    { value: "rnaExtractionDevice", text: "RNA Extraction Device" },
+    { value: "rnaExtractionKit", text: "RNA Extraction Kit" },
 ]
 
 export let advices = [
     { value: "", text: "" },
 ]
+

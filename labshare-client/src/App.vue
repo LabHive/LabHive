@@ -52,7 +52,7 @@
               <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
               <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("request") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
-              <b-dropdown-item href="#" @click="logout">{{$t("signOut")}}</b-dropdown-item>
+              <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
           </b-navbar-nav>
@@ -107,7 +107,7 @@ export default {
         if (this.$user.role === "volunteer") {
           return this.$user.contact.firstname;
         } else {
-          return this.$user.name;
+          return this.$user.organization;
         }
       } else {
         return "User";

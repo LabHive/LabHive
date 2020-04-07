@@ -1,6 +1,8 @@
 import { Document, Schema } from "mongoose";
 export interface IUserCommon extends Document {
-    role: string,
+    role: string;
+    organization: string;
+    website: string;
     location: {
         type: string;
         coordinates: number[];
@@ -15,17 +17,19 @@ export interface IUserCommon extends Document {
         lastname: string,
         phone: string,
         email: string,
-    }
+    };
     description: string;
     password: string;
     consent: {
         processing: boolean;
         publicContact: boolean;
-    }
+    };
 }
 
 export const UserCommonSchema = new Schema({
     role: String,
+    organization: String,
+    website: String,
     location: {
         type: {
             type: String,

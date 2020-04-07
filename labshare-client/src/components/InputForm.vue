@@ -15,6 +15,7 @@
     :label="$t(name)"
     :state="validator(valFunc)"
     :invalid-feedback="feedback(valFunc)"
+    valid-feedback="OK"
     :label-cols-sm="verticalLabel ? null: 3"
   >
     <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
@@ -48,6 +49,7 @@ export default {
       },
       set(newValue) {
         this.$emit("input", newValue);
+        this.$root.$emit("inputForm_changed", newValue);
       }
     }
   },
@@ -59,6 +61,7 @@ export default {
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);
+        if (a.value === "") return null
       }
       return a.valid;
     },

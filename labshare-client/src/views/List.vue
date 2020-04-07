@@ -114,7 +114,7 @@ export default {
       } else if (this.searchAttributes.role === "lab_diag") {
         return [
           {
-            key: "name",
+            key: "organization",
             label: "Name"
           },
           {
@@ -133,7 +133,7 @@ export default {
       } else if (this.searchAttributes.role === "lab_research") {
         return [
           {
-            key: "name",
+            key: "organization",
             label: "Name"
           },
           {
@@ -205,6 +205,7 @@ export default {
               item.lookingForSummary = final;
             }
 
+            final = ""
             if (item.offers) {
               for (let i in item.offers) {
                 if (item.offers[i].length > 0) {

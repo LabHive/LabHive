@@ -8,80 +8,49 @@
   }
 }
 </i18n>
+
 <template>
-  <div class="lab-form">
+  <div class="lab_diag-form">
     <b-form @submit="submit">
-      <h3 class="section">{{ $t("loginInfo") }}</h3>
-      <InputForm
-        name="email"
-        v-model="formData.contact.email"
-        :valFunc="val.validEmail"
-        inType="email"
-      ></InputForm>
 
       <template v-if="!profileUpdate">
-        <InputForm name="password" v-model="formData.password" :valFunc="pwVal" inType="password"></InputForm>
-
-        <InputForm
-          name="repeatPassword"
-          v-model="passwordRepeat"
-          :valFunc="pwVal"
-          inType="password"
-        ></InputForm>
+        <transition :name="transition" mode="out-in">
+          <component
+            :is="formSection"
+            v-model="formData"
+            :role="role"
+            @nextState="nextFormSection"
+            @previousState="previousFormSection"
+            :profileUpdate="profileUpdate"
+            @submit="submit"
+          ></component>
+        </transition>
       </template>
 
-      <h3 class="section">{{ $t("contactInfo") }}</h3>
-      <InputForm
-        name="firstName"
-        v-model="formData.contact.firstname"
-        :valFunc="val.validFirstname"
-      ></InputForm>
-
-      <InputForm name="lastName" v-model="formData.contact.lastname" :valFunc="val.validLastname"></InputForm>
-
-      <InputForm name="phone" v-model="formData.contact.phone" :valFunc="val.validPhone"></InputForm>
-
-      <h3 class="section">{{ $t("labInfo") }}</h3>
-      <InputForm name="labName" v-model="formData.name" :valFunc="val.validOrganization"></InputForm>
-
-      <InputForm name="city" v-model="formData.address.city" :valFunc="val.validCity"></InputForm>
-
-      <InputForm name="zipcode" v-model="formData.address.zipcode" :valFunc="val.validZipcode"></InputForm>
-
-      <InputForm name="street" v-model="formData.address.street" :valFunc="val.validStreet"></InputForm>
-
-      <h3 class="section">Weitere Informationen</h3>
-      <b-form-group
-        id="description"
-        :state="val.validDescription(formData.description).valid"
-        :invalid-feedback="$t('backend.formValidation.' + val.validDescription(formData.description).err.message)"
-      >
-        <b-form-textarea
-          id="textarea"
-          v-model="formData.description"
-          placeholder="Weitere Informationen..."
-          rows="4"
-          max-rows="10"
-          :state="!val.validDescription(formData.description).valid ? false: null"
-        ></b-form-textarea>
-      </b-form-group>
-
-      <template v-if="profileUpdate">
-        <b-button :disabled="disableSubmit" variant="primary" type="submit">{{ $t("save") }}</b-button>
-      </template>
       <template v-else>
-        <b-button :disabled="disableSubmit" variant="primary" type="submit">{{ $t("register") }}</b-button>
+        <div v-for="i in updateFormSections" :key="i">
+          <component
+            :is="i"
+            v-model="formData"
+            :role="role"
+            @nextState="nextFormSection"
+            @previousState="previousFormSection"
+            :profileUpdate="profileUpdate"
+          ></component>
+        </div>
+        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
       </template>
+      
     </b-form>
   </div>
 </template>
 
 <script>
-import { Validator } from "../../dist-browser/lib/validation";
-import InputForm from "./InputForm";
+import registrationForm from "@/mixins/registrationForm";
 
 export default {
   name: "LabDiagForm",
+  mixins: [registrationForm],
   data: function() {
     return {
       formData: {
@@ -96,70 +65,45 @@ export default {
           email: "",
           phone: ""
         },
-        name: "",
+        organization: "",
         description: "",
         password: "",
+        website: "",
         consent: {
           processing: true,
-          publicContact: true
+          publicContact: false
+        },
+        lookingFor: {
+          volunteerSkills: [],
+          equipment: [],
+          advice: [],
+          equipmentDescription: "",
+          adviceDescription: ""
+        },
+        offers: {
+          equipment: [],
+          advice: [],
+          equipmentDescription: "",
+          adviceDescription: ""
         }
       },
-      passwordRepeat: "",
-      disableSubmit: true
+      formSections: [
+        "LoginInformation",
+        "PersonalInformation",
+        "Lab_Request",
+        "Lab_Offer",
+        "SpecificDLab",
+      ],
     };
   },
-  props: {
-    profileUpdate: {
-      default: false,
-      type: Boolean
-    }
-  },
   computed: {
-    val() {
-      return Validator;
+    updateFormSections() {
+      return [
+        "LoginInformation",
+        "PersonalInformation",
+        "SpecificDLab",
+      ]
     }
-  },
-  mounted: function() {
-    if (this.$user.role) {
-      this.formData = this.$user;
-      this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-      })
-    }
-    else {
-      this.$root.$on('gotProfile', () => {
-        this.formData = this.$user;
-        this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-        })
-      })
-    }
-  
-    this.$children.map(a => {
-      a.$on("input", () => {
-        console.log("triggered");
-        if (!this.$el) return;
-
-        // after the event is triggered it needs some time until the DOM is updated
-        this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
-        });
-      });
-    });
-  },
-  methods: {
-    submit: function(event) {
-      event.preventDefault();
-      this.$emit("formcomplete", this.formData);
-    },
-    pwVal(data) {
-      return {
-        valid: this.passwordRepeat == this.formData.password && data != ""
-      };
-    }
-  },
-  components: {
-    InputForm
   }
 };
 </script>
@@ -168,5 +112,32 @@ export default {
 <style scoped>
 .section {
   margin-top: 50px;
+}
+
+.forward-enter-active, .forward-leave-active {
+  transition: all .2s ease;
+}
+.forward-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.forward-enter {
+  opacity: 0;
+  transform: translateX(400px);
+}
+
+
+.back-enter-active, .back-leave-active {
+  transition: all .2s ease;
+}
+.back-leave-to {
+  opacity: 0;
+  transform: translateX(400px);
+}
+
+.back-enter {
+  opacity: 0;
+  transform: translateX(-100px);
 }
 </style>

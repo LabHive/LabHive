@@ -2,22 +2,17 @@
 {
   "en": {},
   "de": {
-    "address": "Wohnort",
-    "competencies": "Fähigkeiten",
-    "organization": "Organisation",
-    "skills": "Erfahrungen in folgenden Bereichen",
-    "bsl2": "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-    "bsl3": "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
-    "sample_processing": "Vor/Aufbereitung klinischer Proben",
-    "rna_isolation": "RNA isolation (Mit Kit)",
-    "qpcr": "qPCR",
-    "sample_collection": "Klinische Erfahrung (Probenkollektion)"
+    "labInfo": "Labor Informationen",
+    "labName": "Name des Labors",
+    "street": "Straße"
   }
 }
 </i18n>
+
 <template>
-  <div class="volunteer-form">
+  <div class="lab_diag-form">
     <b-form @submit="submit">
+
       <template v-if="!profileUpdate">
         <transition :name="transition" mode="out-in">
           <component
@@ -33,7 +28,7 @@
       </template>
 
       <template v-else>
-        <div v-for="i in formSections" :key="i">
+        <div v-for="i in updateFormSections" :key="i">
           <component
             :is="i"
             v-model="formData"
@@ -54,39 +49,53 @@
 import registrationForm from "@/mixins/registrationForm";
 
 export default {
-  name: "VolunteerForm",
+  name: "LabDiagForm",
   mixins: [registrationForm],
   data: function() {
     return {
       formData: {
         address: {
           city: "",
-          zipcode: ""
+          zipcode: "",
+          street: ""
         },
         contact: {
-          email: "",
-          phone: "",
           firstname: "",
-          lastname: ""
-        },
-        password: "",
-        description: "",
-        details: {
-          skills: []
+          lastname: "",
+          email: "",
+          phone: ""
         },
         organization: "",
-        availability: true,
+        description: "",
+        password: "",
+        website: "",
         consent: {
           processing: true,
           publicContact: false
+        },
+        offers: {
+          equipment: [],
+          advice: [],
+          equipmentDescription: "",
+          adviceDescription: ""
         }
       },
       formSections: [
         "LoginInformation",
         "PersonalInformation",
-        "SpecificVolunteer"
-      ]
+        "Lab_Offer",
+        "SpecificDLab",
+      ],
     };
+  },
+  computed: {
+    updateFormSections() {
+      return [
+        "LoginInformation",
+        "PersonalInformation",
+        "SpecificDLab",
+      ]
+    }
   }
 };
 </script>
@@ -97,9 +106,8 @@ export default {
   margin-top: 50px;
 }
 
-.forward-enter-active,
-.forward-leave-active {
-  transition: all 0.2s ease;
+.forward-enter-active, .forward-leave-active {
+  transition: all .2s ease;
 }
 .forward-leave-to {
   opacity: 0;
@@ -111,9 +119,9 @@ export default {
   transform: translateX(400px);
 }
 
-.back-enter-active,
-.back-leave-active {
-  transition: all 0.2s ease;
+
+.back-enter-active, .back-leave-active {
+  transition: all .2s ease;
 }
 .back-leave-to {
   opacity: 0;

@@ -15,4 +15,6 @@ export let userCommon = {
         },
         required: ["processing", "publicContact"]
     },
+    organization: { type: "string" },
+    website: { type: "string" }
 }

@@ -20,6 +20,7 @@
 <template>
   <div class="register">
     <h1>{{$t("registration")}}</h1>
+    <b-progress variant="success" v-if="registrationForm && !registrationComplete" height="4px" :value="progress"></b-progress>
 
     <template v-if="registrationComplete">
       <h2>{{$t("complete")}}</h2>
@@ -65,18 +66,19 @@
       </b-container>
     </div>
 
-    <div v-else>
-      <component :is="'VolunteerForm'" @formcomplete="register"></component>
+    <div v-else-if="!registrationComplete">
+      <component :is="registrationForm" @formcomplete="register" @updateProgress="updateProgress" :role="role"></component>
     </div>
 
   </div>
 </template>
 
 <script>
-import { Validator } from "../../dist-browser/lib/validation";
+import { Validator } from "@/../dist-browser/lib/validation";
 //import InputForm from "../components/InputForm";
-import VolunteerForm from "../components/VolunteerForm.vue";
-//import { LabDiagForm } from "../components/LabDiagForm.vue";
+import VolunteerForm from "@/components/VolunteerForm.vue";
+import LabDiagForm from "@/components/LabDiagForm.vue";
+import LabResearchForm from "@/components/LabResearchForm.vue";
 
 export default {
   name: "Register",
@@ -93,16 +95,15 @@ export default {
       registrationComplete: false,
       registrationForm: "",
       passwordRepeat: "",
-      disableSubmit: true
+      disableSubmit: true,
+      progress: 0
     };
   },
   computed: {
     val() {
       return Validator;
-    }
-  },
-  methods: {
-    register: function(formData) {
+    },
+    role() {
       let role = ""
       if (this.registrationForm === this.forms.VOLUNTEER) {
         role = "volunteer"
@@ -114,10 +115,16 @@ export default {
       }
       else {
         console.error("invalid role")
-        return
       }
-
-      this.$http.post("registration", formData, { params: { role: role } }).then(
+      return role
+    }
+  },
+  methods: {
+    updateProgress(val) {
+      this.progress = val
+    },
+    register: function(formData) {
+      this.$http.post("registration", formData, { params: { role: this.role } }).then(
         resp => {
           let data = resp.body;
           console.log(data);
@@ -136,6 +143,8 @@ export default {
   components: {
     //InputForm
     VolunteerForm,
+    LabDiagForm,
+    LabResearchForm
   }
 };
 </script>

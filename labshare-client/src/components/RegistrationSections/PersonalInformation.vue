@@ -1,6 +1,18 @@
 <template>
   <div>
     <h3 class="section">{{ $t("contactInfo") }}</h3>
+    <InputForm
+      name="labName"
+      v-model="formData.organization"
+      :valFunc="val.validOrganization"
+    ></InputForm>
+
+    <InputForm
+      name="labWebsite"
+      v-model="formData.website"
+      :valFunc="val.validUrl"
+    ></InputForm>
+
     <InputForm name="firstName" v-model="formData.contact.firstname" :valFunc="val.validFirstname"></InputForm>
 
     <InputForm name="lastName" v-model="formData.contact.lastname" :valFunc="val.validLastname"></InputForm>
@@ -12,61 +24,18 @@
 
     <InputForm name="zipcode" v-model="formData.address.zipcode" :valFunc="val.validZipcode"></InputForm>
 
+    <InputForm v-if="role !== 'volunteer'" name="street" v-model="formData.address.street" :valFunc="val.validStreet"></InputForm>
+
     <template v-if="!profileUpdate">
-      <b-button variant="primary" @click="$emit('nextState')" :disabled="disableSubmit">Next</b-button>
-      <b-button variant="primary" @click="$emit('previousState')">Back</b-button>
+      <NavButtons :disableSubmit="disableSubmit"></NavButtons>
     </template>
   </div>
 </template>
 
 <script>
-import InputForm from "@/components/InputForm";
-import { Validator } from "@/../dist-browser/lib/validation";
+import registrationSection from "@/mixins/registrationSection";
 
 export default {
-  props: {
-    value: {
-      type: Object,
-      required: true
-    },
-    profileUpdate: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      disableSubmit: true
-    };
-  },
-  computed: {
-    formData() {
-      return this.value;
-    },
-    val() {
-      return Validator;
-    }
-  },
-  mounted() {
-    this.$children.map(a => {
-      a.$on("input", () => {
-        if (!this.$el) return;
-
-        // after the event is triggered it needs some time until the DOM is updated
-        this.$nextTick(() => {
-          this.disableSubmit =
-            this.$el.querySelectorAll(".is-invalid").length > 0;
-        });
-      });
-    });
-
-    this.$nextTick(() => {
-      this.disableSubmit =
-        this.$el.querySelectorAll(".is-invalid").length > 0;
-    });
-  },
-  components: {
-    InputForm
-  }
+  mixins: [registrationSection]
 };
 </script>

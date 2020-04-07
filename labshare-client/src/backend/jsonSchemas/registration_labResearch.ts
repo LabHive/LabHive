@@ -7,7 +7,7 @@ export let registration_labResearch: Schema = {
     type: "object",
     properties: {
         ...userCommon,
-        name: { type: "string" },
+        website: { type: "string" },
         offers: {
             properties: {
                 advice: {
@@ -17,9 +17,11 @@ export let registration_labResearch: Schema = {
                 equipment: {
                     type: "array",
                     items: { type: "string" }
-                }
-            }
+                },
+                equipmentDescription: { type: "string" },
+                adviceDescription: { type: "string" }
+            },
         }
     },
-    required: ["address", "contact", "name", "description", "password", "consent"]
+    required: ["address", "contact", "organization", "description", "password", "consent", "website"]
 };
