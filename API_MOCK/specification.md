@@ -17,7 +17,6 @@ POST https://labshare.de/api/v1/registration?role=volunteer
         "firstname": "", // ^[A-Za-zäöüÄÖÜß -.]+$
         "lastname": "",  // ^[A-Za-zäöüÄÖÜß -.]+$
     },
-    "description": "",
     "details": {    // information of the registration form (not final yet)
        "skills": [
            "abc",
@@ -26,7 +25,9 @@ POST https://labshare.de/api/v1/registration?role=volunteer
     },
     "availability": true,
     "password": "",
+    "description": "",
     "organization": "",
+    "website": "",
     "consent": {
         "processing": true,
         "publicContact": true,
@@ -66,7 +67,8 @@ POST https://labshare.de/api/v1/registration?role=lab_diag
         "email": "",
         "phone": ""
     },
-    "name": "Laborname",
+    "organization": "Laborname",
+    "website": "",
     "description": "",
     "password": "",
     "consent": {
@@ -76,7 +78,15 @@ POST https://labshare.de/api/v1/registration?role=lab_diag
     "lookingFor": {
         "volunteerSkills": ["..."], // tbd
         "equipment": ["..."], // tbd
-        "advice": ["..."] // tbd
+        "advice": ["..."], // tbd
+        "equipmentDescription": "",
+        "adviceDescription": ""
+    },
+    "offers": {
+        "equipment": ["..."], // tbd
+        "advice": ["..."], // tbd
+        "equipmentDescription": "",
+        "adviceDescription": ""
     }
 }
 ```
@@ -98,7 +108,8 @@ POST https://labshare.de/api/v1/registration?role=lab_research
         "email": "",
         "phone": ""
     },
-    "name": "Laborname",
+    "organization": "Laborname",
+    "website": "",
     "description": "",
     "password": "",
     "consent": {
@@ -107,7 +118,9 @@ POST https://labshare.de/api/v1/registration?role=lab_research
     },
     "offers": {
         "equipment": ["..."], // tbd
-        "advice": ["..."] // tbd
+        "advice": ["..."], // tbd
+        "equipmentDescription": "",
+        "adviceDescription": ""
     }
 }
 ```
