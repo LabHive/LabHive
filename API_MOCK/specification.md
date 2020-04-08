@@ -4,7 +4,7 @@
 ## Registrierung
 
 ### Request (volunteer)
-POST https://labshare.de/api/v1/registration?role=volunteer
+POST https://labhive.de/api/v1/registration?role=volunteer
 ```jsonc
 {
     "address": {
@@ -19,9 +19,19 @@ POST https://labshare.de/api/v1/registration?role=volunteer
     },
     "details": {    // information of the registration form (not final yet)
        "skills": [
-           "abc",
-           "def"
-       ]
+            "bsl1",
+            "bsl2",
+            "bsl3",
+            "bsl4",
+            "qpcr",
+            "rnaExperience_isolation",
+            "sample_processing",
+            "elisa",
+            "primerProduction",
+            "dataAnalysis",
+       ],
+       "qualification": "jobTraining" 
+       // mtla, bta_cta, bachelor, master, doctorate, postdoc, groupLeader
     },
     "availability": true,
     "password": "",
@@ -51,7 +61,7 @@ POST https://labshare.de/api/v1/registration?role=volunteer
 
 
 ### Request (Diagnostic Lab)
-POST https://labshare.de/api/v1/registration?role=lab_diag
+POST https://labhive.de/api/v1/registration?role=lab_diag
 
 
 ```jsonc
@@ -92,7 +102,7 @@ POST https://labshare.de/api/v1/registration?role=lab_diag
 ```
 
 ### Request (Research Lab)
-POST https://labshare.de/api/v1/registration?role=lab_research
+POST https://labhive.de/api/v1/registration?role=lab_research
 
 
 ```jsonc
@@ -117,8 +127,23 @@ POST https://labshare.de/api/v1/registration?role=lab_research
         "publicContact": true,
     },
     "offers": {
-        "equipment": ["..."], // tbd
-        "advice": ["..."], // tbd
+        "equipment": [
+            "jobTraining",
+            "mtla",
+            "bta_cta",
+            "bachelor",
+            "master",
+            "doctorate",
+            "postdoc",
+            "groupLeader",
+        ], // see skills above
+        "advice": [
+            "virology",
+            "rnaExperience_isolation",
+            "qPCR",
+            "elisa",
+            "protocolProduction",
+        ], // tbd
         "equipmentDescription": "",
         "adviceDescription": ""
     }
@@ -145,7 +170,7 @@ POST https://labshare.de/api/v1/registration?role=lab_research
 
 ## Passwort vergessen/ändern
 ### Request
-POST https://labshare.de/api/v1/forgot-password
+POST https://labhive.de/api/v1/forgot-password
 
 Verschickt eine Mail mit Link, der einen Token beinhaltet
 
@@ -156,7 +181,7 @@ Verschickt eine Mail mit Link, der einen Token beinhaltet
 ```
 
 ### Request
-POST https://labshare.de/api/v1/reset-password?token=token
+POST https://labhive.de/api/v1/reset-password?token=token
 
 ```jsonc
 {
@@ -165,7 +190,7 @@ POST https://labshare.de/api/v1/reset-password?token=token
 ```
 
 ### Request
-POST https://labshare.de/api/v1/change-password
+POST https://labhive.de/api/v1/change-password
 ```jsonc
 {
     "oldPassword": "",
@@ -176,9 +201,9 @@ POST https://labshare.de/api/v1/change-password
 
 
 ## User management
-GET https://labshare.de/api/v1/profile
-POST https://labshare.de/api/v1/profile
-DELETE https://labshare.de/api/v1/profile
+GET https://labhive.de/api/v1/profile
+POST https://labhive.de/api/v1/profile
+DELETE https://labhive.de/api/v1/profile
 
 ### GET Request
 Returns all information about a profile
@@ -192,7 +217,7 @@ ALL information must be updateable!! (GDPR)
 
 
 ## Search (not final, depends on registration form)
-GET https://labshare.de/api/v1/search
+GET https://labhive.de/api/v1/search
 
 ### Get Parameter
 * `role`
@@ -270,10 +295,10 @@ Basically the same structure as used for the registration.
         },
     ],
     "_links": {
-        "next": "https://labshare.de/api/v1/search?...&page=3",
+        "next": "https://labhive.de/api/v1/search?...&page=3",
         "previous": null
     },
-    "totalPages": 3,
+    "totalResults": 3,
     "success": true
 }
 ```
@@ -302,13 +327,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
   "sub": "1234567890", // ID
   "iat": 1516239022,
   "name": "email",
-  "role": "lab|human"
+  "role": "lab_diag|volunteer|lab_research"
 }
 ```
 
 ### Login
 #### Request
-POST https://labshare.de/api/v1/login
+POST https://labhive.de/api/v1/login
 
 ```jsonc
 {
