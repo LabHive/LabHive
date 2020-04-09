@@ -1,5 +1,6 @@
 import { Document, Schema } from "mongoose";
-export interface IUserCommon extends Document {
+import { ITimestamp } from './ITimestamps';
+export interface IUserCommon extends Document, ITimestamp {
     role: string;
     organization: string;
     website: string;
@@ -58,4 +59,6 @@ export const UserCommonSchema = new Schema({
         processing: Boolean,
         publicContact: Boolean,
     }
+}, {
+    timestamps: true
 })

@@ -1,6 +1,7 @@
 import { Schema } from "mongoose";
 import { IUserCommon, UserCommonSchema } from "./IUserCommon";
-export interface IUserLabDiag extends IUserCommon {
+import { ITimestamp } from './ITimestamps';
+export interface IUserLabDiag extends IUserCommon, ITimestamp {
     lookingFor: {
         volunteerSkills: string[],
         advice: string[],
@@ -31,6 +32,8 @@ export const UserLabDiagSchema = new Schema({
         equipmentDescription: String,
         adviceDescription: String,
     }
+}, {
+    timestamps: true
 });
 
 UserLabDiagSchema.index({ location: '2dsphere' })
