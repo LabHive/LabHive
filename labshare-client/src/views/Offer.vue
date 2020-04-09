@@ -25,7 +25,7 @@
 		</template>
     
     <b-form>
-      <Offer v-model="lookingFor" @submit="submit"></Offer>
+      <Offer v-model="offers" @submit="submit"></Offer>
     </b-form>
     
   </div>
@@ -38,10 +38,11 @@ export default {
   props: {},
   data() {
     return {
-      lookingFor: {
-        volunteerSkills: [],
+      offers: {
         equipment: [],
-        advice: []
+        advice: [],
+        equipmentDescription: "",
+        adviceDescription: ""
       },
       updated: false,
       error: false,
@@ -51,7 +52,7 @@ export default {
   methods: {
     submit: function() {
       this.$http.post('profile', { 
-					lookingFor: this.lookingFor
+					offers: this.offers
 				}).then(() => {
 					return this.$store.dispatch('getProfile')
         }).then(() => {
@@ -65,13 +66,13 @@ export default {
     }
   },
   mounted: function() {
-    if (this.$user && this.$user.lookingFor) {
-      this.lookingFor = this.$user.lookingFor
+    if (this.$user && this.$user.offers) {
+      this.offers = this.$user.offers
     }
     else {
       this.$root.$once("gotProfile", (profile) => {
-        if (profile.lookingFor) {
-          this.lookingFor = profile.lookingFor
+        if (profile.offers) {
+          this.offers = profile.offers
         }
       })
     }

@@ -41,7 +41,9 @@ export default {
       lookingFor: {
         volunteerSkills: [],
         equipment: [],
-        advice: []
+        advice: [],
+        equipmentDescription: "",
+        adviceDescription: ""
       },
       updated: false,
       error: false,
