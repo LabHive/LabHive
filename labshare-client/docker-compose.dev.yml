@@ -1,0 +1,42 @@
+version: '3.1'
+
+volumes:
+  mongo_data:
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - "mongo_data:/data/"
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: example
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment: 
+      ME_CONFIG_MONGODB_SERVER: 'mongodb'
+
+  app:
+    image: labshare
+    restart: always
+    depends_on: 
+      - mongodb
+    build:
+      context: .
+      args:
+        enableDev: 'true'
+    ports:
+      - 5000:5000
+    environment: 
+      PRODUCTION: "1"
+
+  
+
+  

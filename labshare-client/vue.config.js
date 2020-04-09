@@ -9,6 +9,11 @@ module.exports = {
       .use("i18n")
       .loader("@kazupon/vue-i18n-loader")
       .end();
+
+    config.plugin('define').tap((def) => {
+      def[0]['process.env']['ENABLE_DEV'] = process.env.ENABLE_DEV
+      return def
+    })
   },
   configureWebpack: {
     resolve: {
