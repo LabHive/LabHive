@@ -12,7 +12,10 @@ if (!process.env.PRODUCTION) {
     })
 } else {
     mongoose.connect("mongodb://mongodb:27017/labshare", { useNewUrlParser: true }, err => {
-        console.log(err)
+        if (err) {
+            console.log(err)
+            process.exit(1)
+        }
     })
 }
 
