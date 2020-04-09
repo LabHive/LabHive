@@ -1,13 +1,5 @@
 ## How to build
-```
-cd labshare-client
-mkdir secret
-echo "superSecretKey" > secret/jsonwebtoken_hmacKey.txt
-docker-compose build
-docker-compose up
-```
-
-App is deployed at `localhost:5000`
+See `labshare-client/README.md`.
 
 ## Technischer Zustand des Projekts
 ### Was funktioniert
