@@ -23,16 +23,16 @@
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ $(errorMsg) }}</b-alert>
 		</template>
-
+    
     <b-form>
-      <Request v-model="lookingFor" @submit="submit"></Request>
+      <Offer v-model="lookingFor" @submit="submit"></Offer>
     </b-form>
     
   </div>
 </template>
 
 <script>
-import Request from "@/components/Request"
+import Offer from "@/components/Offer"
 
 export default {
   props: {},
@@ -77,7 +77,7 @@ export default {
     }
   },
   components: {
-    Request
+    Offer
   }
 };
 </script>
