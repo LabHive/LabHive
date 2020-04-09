@@ -2,9 +2,9 @@
 {
   "en": {
     "passwordSecurity": "Password security",
-    "0Password": "too short...",
-    "1Password": "Still not complex enough... how about throwing in (more) numbers and special characters?",
-    "2Password": "It's getting better!  how about throwing in (more) numbers and special characters?",
+    "0Password": "Too short...",
+    "1Password": "Still not complex enough... How about throwing in (more) numbers and special characters?",
+    "2Password": "It's getting better! How about throwing in (more) numbers and special characters?",
     "3Password": "Sufficient...",
     "4Password": "Unbreakable!"
 
@@ -12,8 +12,8 @@
   "de": {
     "passwordSecurity": "Passwort Sicherheit",
     "0Password": "Noch zu kurz...",
-    "1Password": "Immernoch nicht lang genug...wie wäre es mit (mehr) Zahlen und Sonderzeichen?",
-    "2Password": "Es wird besser! ...wie wäre es mit (mehr) Zahlen und Sonderzeichen?",
+    "1Password": "Immernoch nicht lang genug... Wie wäre es mit (mehr) Zahlen und Sonderzeichen?",
+    "2Password": "Es wird besser! Wie wäre es mit (noch mehr) Zahlen und Sonderzeichen?",
     "3Password": "Ausreichend...",
     "4Password": "Unknackbar!"
   }
