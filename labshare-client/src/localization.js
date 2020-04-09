@@ -31,7 +31,7 @@ export let localization = {
           invalid_equipment: "Ungültiges Equipment",
           invalid_advice: "Ungültige Anfrage",
           invalid_consent: "Ungültige Einwilligung",
-          invalid_url: "Ungültige URL",
+          invalid_url: "Ungültige URL, muss mit http:// oder https:// beginnen.",
           passwordMatch: "Passwörter stimmen nicht überein!"
         },
         not_authorized: "Nicht authorisiert!",
@@ -69,13 +69,16 @@ export let localization = {
       volunteer: "Freiwillige",
       requestRessource: "Bedarfsanfrage",
       offerRessource: "Angebot",
-      requestVolunteerSkills: "Fähigkeiten der Freiwilligen",
+      requestVolunteerSkills: "Gesuchte Fähigkeiten bei Freiwilligen",
       requestEquipment: "Gesuchte Geräte",
       requestEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
       offerEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
       requestAdvice: "Hilfe Gesucht",
-      offerEquipment: "Angebotene Geräte",
-      offerAdvice: "Hilgeangebote",
+      requestAdviceDescription: "Genauere Beschreibung",
+      offerEquipment: "Anzubietende Geräte",
+      offerAdvice: "Anzubietende Hilfe",
+      offerAdviceDescription: "Weitere Informationen",
+      qualification: "Qualifikation",
       skills: {
         bsl2: "BSL2 Erfahrung"
       },

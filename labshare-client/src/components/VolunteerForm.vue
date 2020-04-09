@@ -72,7 +72,8 @@ export default {
         password: "",
         description: "",
         details: {
-          skills: []
+          skills: [],
+          qualification: ""
         },
         organization: "",
         availability: true,

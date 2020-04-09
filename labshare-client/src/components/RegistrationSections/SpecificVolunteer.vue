@@ -1,9 +1,30 @@
+<i18n>
+{
+  "en": {
+    "ready": "I am ready to help in the labs"
+  },
+  "de": {
+    "ready": "Ab sofort zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden.)"
+  }
+}
+</i18n>
 <template>
   <div>
+    <h3 class="section">{{ $t("qualification") }}</h3>
+    <CheckboxGroup radio required name="qualification" :data="qualification" v-model="formData.details.qualification"></CheckboxGroup>
+
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>
     <CheckboxGroup name="skills" :data="labSkills" v-model="formData.details.skills"></CheckboxGroup>
 
     <h3 class="section">Weitere Informationen</h3>
+    <b-form-checkbox
+      id="readyToHelp"
+      v-model="formData.availability"
+      name="readyToHelp"
+    >
+      {{ $t("ready") }}
+    </b-form-checkbox>
+    <br/>
     <b-form-group
       id="description"
       :state="val.validDescription(formData.description).valid"
@@ -18,6 +39,8 @@
         :state="!val.validDescription(formData.description).valid ? false: null"
       ></b-form-textarea>
     </b-form-group>
+
+    
 
     <h3 class="section">Optionale Einwilligung</h3>
     <fieldset class="form-group">
@@ -44,14 +67,15 @@
 
 <script>
 import registrationSection from "@/mixins/registrationSection";
-import { labSkills } from "@/../dist-browser/lib/selectLists";
+import { labSkills, qualification } from "@/../dist-browser/lib/selectLists";
 import CheckboxGroup from "@/components/CheckboxGroup";
 
 export default {
   mixins: [registrationSection],
   data() {
     return {
-      labSkills
+      labSkills,
+      qualification
     };
   },
   components: {

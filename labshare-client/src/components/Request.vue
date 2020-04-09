@@ -9,12 +9,12 @@
     <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
 
     <b-form-group
-      id="description"
+      id="equipmentDescription"
       :state="val.validDescription(lookingFor.equipmentDescription).valid"
       :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.equipmentDescription).err.message)"
     >
       <b-form-textarea
-        id="textarea"
+        id="equipmentDescription"
         v-model="lookingFor.equipmentDescription"
         :placeholder="$t('requestEquipmentDescription')"
         rows="4"
@@ -24,6 +24,21 @@
     </b-form-group>
 
     <h3>{{ $t("requestAdvice") }}</h3>
+    <CheckboxGroup name="advice" cols="2" :data="advices" v-model="lookingFor.advice"></CheckboxGroup>
+    <b-form-group
+      id="adviceDescription"
+      :state="val.validDescription(lookingFor.adviceDescription).valid"
+      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.adviceDescription).err.message)"
+    >
+      <b-form-textarea
+        id="adviceDescription"
+        v-model="lookingFor.adviceDescription"
+        :placeholder="$t('requestAdviceDescription')"
+        rows="4"
+        max-rows="10"
+        :state="!val.validDescription(lookingFor.adviceDescription).valid ? false: null"
+      ></b-form-textarea>
+    </b-form-group>
 
     <b-button variant="primary" @click="$emit('submit')" v-if="showSubmit">Save</b-button>
   </div>

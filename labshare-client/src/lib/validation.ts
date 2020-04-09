@@ -1,5 +1,5 @@
 import { ValidationError } from '../backend/errors';
-import { labSkills, equipment, advices } from "./selectLists";
+import { labSkills, equipment, advices, qualification } from "./selectLists";
 import './optional'
 import { UserRoles } from './userRoles';
 
@@ -181,9 +181,17 @@ export class Validator {
     }
 
     static validUrl(url?: string): ValidationResult {
-        let regexpUrl = new RegExp(/^https?:\/\/[^\s]+$/);
+        let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
         if (!url || !regexpUrl.test(url)) {
             return new ValidationResultError('invalid_url', url)
+        }
+        return new ValidationResultSuccess()
+    }
+
+    static validQualification(q: string): ValidationResult {
+        let strings = qualification.map(x => x.value)
+        if (strings.indexOf(q) == -1) {
+            return new ValidationResultError('invalid_qualification', q)
         }
         return new ValidationResultSuccess()
     }
@@ -206,10 +214,10 @@ export class Validator {
         results.push(Validator.validConsent(object.consent))
 
         results.push(Validator.validOrganization(object.organization))
+        results.push(Validator.validUrl(object.website))
 
         if (role === UserRoles.LAB_DIAG || role === UserRoles.LAB_RESEARCH) {
             results.push(Validator.validStreet(object.address?.street))
-            results.push(Validator.validUrl(object.website))
 
             if (object.lookingFor) {
                 if (object.lookingFor.advice) results.push(Validator.validAdvice(object.lookingFor.advice))
@@ -228,7 +236,7 @@ export class Validator {
         }
         else {
             results.push(Validator.validSkills(object.details?.skills))
-            
+            results.push(Validator.validQualification(object.details?.qualification))
         }
 
         for (let i of results) {
