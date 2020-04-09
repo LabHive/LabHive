@@ -14,8 +14,8 @@
     :id="name"
     :label="$t(name)"
     :state="validator(valFunc)"
-    :invalid-feedback="feedback(valFunc)"
-    valid-feedback="OK"
+    :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
+    :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
     :label-cols-sm="verticalLabel ? null: 3"
   >
     <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
@@ -40,7 +40,13 @@ export default {
     verticalLabel: {
       type: Boolean,
       default: false
-    }
+    },
+    invalidFeedback: {
+      default: null,
+    },
+    validFeedback: {
+      default: null,
+    },
   },
   computed: {
     model: {

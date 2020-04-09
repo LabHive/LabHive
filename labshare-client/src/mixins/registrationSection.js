@@ -46,6 +46,12 @@ export default {
       this.disableSubmit =
         this.$el.querySelectorAll(".is-invalid").length > 0;
     });
+
+    this.$root.$on("inputForm_changed", () => {
+      this.$nextTick(() => {
+        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+      });
+    })
   },
   components: {
     InputForm,

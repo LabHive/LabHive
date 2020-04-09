@@ -10,8 +10,7 @@
     ></InputForm>
 
     <template v-if="!profileUpdate">
-      <InputForm name="password" v-model="formData.password" :valFunc="pwVal" inType="password"></InputForm>
-      <InputForm name="repeatPassword" v-model="passwordRepeat" :valFunc="pwVal" inType="password"></InputForm>
+      <Password v-model="formData.password"></Password>
     </template>
 
     <template v-if="!profileUpdate">
@@ -22,23 +21,12 @@
 
 <script>
 import registrationSection from "@/mixins/registrationSection";
+import Password from "@/components/PasswordFields";
 
 export default {
   mixins: [registrationSection],
-  data() {
-    return {
-      passwordRepeat: "",
-    };
-  },
-  methods: {
-    pwVal(data) {
-      return {
-        valid: this.passwordRepeat == this.formData.password && data != "",
-        err: {
-          message: "passwordMatch"
-        }
-      };
-    }
-  },
+  components: {
+    Password
+  }
 };
 </script>
