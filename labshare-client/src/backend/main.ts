@@ -25,6 +25,12 @@ else {
 }
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'deny')
+    res.setHeader('Referrer-Policy', 'no-referrer')
+    next()
+})
 app.use('/api/v1', router)
 
 router.get('/language', language)
