@@ -53,7 +53,7 @@ export default {
       error: null,
       disableSubmit: true,
       formData: {
-        token: "a",
+        token: "",
         newPassword: ""
       }
     };
@@ -66,21 +66,21 @@ export default {
   },
 
   methods: {
-    submit: function() {
+    submit: function(evt) {
+      evt.preventDefault()
       this.error = null;
       this.loading = true;
       this.$http
         .post("reset-password?token=" + this.formData.token, {
           newPassword: this.formData.newPassword
         })
-        .then(
-          () => {
+        .then(() => {
             this.updated = true;
             this.loading = false;
             setTimeout(() => (this.updated = false), 3000);
           },
           error => {
-            this.error = error.body.errorDescription;
+            this.error = this.$t('backend.' + error.body.errorDescription);
             this.loading = false;
           }
         );
