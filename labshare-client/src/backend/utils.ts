@@ -4,7 +4,7 @@ import { LocationNotFoundError, ValidationError, UnauthorizedError } from './err
 import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { getUser } from "./database/database";
-import { CONF } from './options'
+import { CONF, OPT } from './options'
 
 export interface Address {
     city?: string,
@@ -131,6 +131,13 @@ class Utils {
         if (!user)
             return false
         return true
+    }
+
+    public getBaseUrl(req: express.Request) {
+        if (OPT.BASE_URL) {
+            return OPT.BASE_URL
+        }
+        return req.protocol + '://' + req.get('host')
     }
 }
 

@@ -292,7 +292,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         results.push(a)
     }
 
-    let reqUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    let reqUrl = utils.getBaseUrl(req) + req.originalUrl;
     let nextUrl = new URL(reqUrl)
     let nurl = null
     if (count - (page*20 + 20) > 0) {
