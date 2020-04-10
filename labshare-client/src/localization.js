@@ -72,7 +72,7 @@ export let localization = {
       requestVolunteerSkills: "Gesuchte Fähigkeiten bei Freiwilligen",
       requestEquipment: "Gesuchte Geräte",
       requestEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
-      offerEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
+      offerEquipmentDescription: "Genauere Beschreibung angebotener Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
       requestAdvice: "Hilfe Gesucht",
       requestAdviceDescription: "Genauere Beschreibung",
       offerEquipment: "Anzubietende Geräte",
