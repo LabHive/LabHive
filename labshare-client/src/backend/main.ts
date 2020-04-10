@@ -1,4 +1,5 @@
 import cors from 'cors'
+import "./database/database"
 import express, { response } from "express"
 import { readFileSync } from 'fs'
 import { registration } from './endpoints/registration'
