@@ -5,6 +5,7 @@ import { IResetToken, ResetTokenSchema } from './schemas/IResetToken'
 import { IUserCommon } from './schemas/IUserCommon'
 import { UserLabResearchSchema, IUserLabResearch } from './schemas/IUserLabResearch'
 import { UserRoles } from '../../lib/userRoles'
+import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail'
 
 
 let promise: Promise<any>
@@ -24,6 +25,7 @@ export const UserVolunteer = mongoose.model<IUserVolunteer>('user_volunteer', Us
 export const UserLabDiag = mongoose.model<IUserLabDiag>('user_labDiag', UserLabDiagSchema)
 export const UserLabResearch = mongoose.model<IUserLabResearch>('user_labResearch', UserLabResearchSchema)
 export const ResetToken = mongoose.model<IResetToken>('reset_token', ResetTokenSchema)
+export const FailedMail = mongoose.model<IFailedMail>('failed_mail', FailedMailSchema)
 
 
 export function getUserForMail(email: string): Promise<Optional<IUserCommon>> {
