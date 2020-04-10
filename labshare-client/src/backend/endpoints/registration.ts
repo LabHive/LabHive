@@ -2,16 +2,24 @@ import argon2 from 'argon2';
 import express from "express";
 import HttpStatus from 'http-status-codes';
 import { Validator as v } from '../../lib/validation';
-import { getModelForRole, getUserForMail } from '../database/database';
+import { getModelForRole, getUserForMail, ActivationToken } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { UserRoles } from '../../lib/userRoles';
-
+import { v4 as uuid } from 'uuid';
+import { sendActivationMail } from '../mail/mailer';
+import { getLangID } from "./language";
+import { OPT } from '../options';
 
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
     let body: IUserCommon = req.body
+    
+    delete body.verified
+    delete body.__v
+    delete body._id
+
     let role = req.query.role
     if (!role || !v.validRole(role)) return utils.badRequest(res)
 
@@ -36,21 +44,42 @@ export async function registration(req: express.Request, res: express.Response, 
 
     if (body.role === UserRoles.VOLUNTEER) {
         delete body.address.street
+        body.verified = { 
+            manually: true
+        }
     }
 
-    let user = await getUserForMail(body.contact.email)
-    if (user) {
+    if (OPT.DISABLE_VERIFICATION) {
+        body.verified = {
+            mail: true,
+            manually: true
+        }
+    }
+
+    let euser = await getUserForMail(body.contact.email)
+    if (euser) {
         return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "existing_user")
     }
 
     let model = getModelForRole(role)
     if (!model) return utils.badRequest(res)
-    let doc = new model(body)
+    let user = new model(body)
+    
+    let token = uuid();
+    let token_doc = new ActivationToken({ token: token, objectId: user._id });
 
-    doc.save().then((doc) => {
-        if (!doc) {
-            return utils.internalError(res)
-        }
+    user.save().then((doc) => {
+        if (!doc)
+            throw new Error("Saving document failed")
+        return token_doc.save()
+    }).then((doc) => {
+        if (!doc)
+            throw new Error("Saving document failed")
+        let lang = getLangID(req)
+        let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
+        sendActivationMail(user.contact.email, link, lang).catch((err) => {
+            console.error("Failed to send activation mail", err)
+        })
         utils.successResponse(res)
     }).catch(err => {
         console.log(err)

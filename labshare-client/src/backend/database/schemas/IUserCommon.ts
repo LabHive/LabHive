@@ -25,6 +25,10 @@ export interface IUserCommon extends Document, ITimestamp {
         processing: boolean;
         publicContact: boolean;
     };
+    verified: {
+        mail?: boolean,
+        manually?: boolean,
+    }
 }
 
 export const UserCommonSchema = new Schema({
@@ -58,6 +62,16 @@ export const UserCommonSchema = new Schema({
     consent: {
         processing: Boolean,
         publicContact: Boolean,
+    },
+    verified: {
+        mail: {
+            type: Boolean,
+            default: false
+        },
+        manually: {
+            type: Boolean,
+            default: false
+        },
     }
 }, {
     timestamps: true

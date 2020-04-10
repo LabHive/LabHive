@@ -43,6 +43,9 @@ export let localization = {
         existing_user: "User existiert bereits!",
         false_consent: "Ohne Einwilligung dürfen wir die Daten nicht verarbeiten.",
         no_results: "No results could be found",
+        tokenTooOld: "Bitte setzen Sie das Passwort erneut zurück, der Link ist abgelaufen.",
+        contact_support: "Ein Fehler ist aufgetreten, bitte wenden Sie sich an support@labhive.de. Bitte entschuldigen Sie die Umstände!",
+        user_not_activated: "Der Benutzer ist noch nicht aktiviert. Zur Aktivierung Ihres Accounts müssen Sie die E-Mail Adresse bestätigen. Sollten Sie sich als Labor registriert haben, werden Sie von uns manuell verifiziert. Sobald dies geschehen ist, erhalten Sie von uns eine E-Mail. Sollte es länger als 2 Werktage dauern, kontaktieren Sie uns bitte unter support@labhive.de."
       },
       loginInfo: "Login Informationen",
       contactInfo: "Kontakt Informationen",

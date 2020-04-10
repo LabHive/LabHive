@@ -36,6 +36,7 @@ class Profile {
         delete body.password
         delete body._id
         delete body.__v
+        delete body.verified
         
         let model = getModelForRole(token.role)
         let schema = schemaForRole(token.role)

@@ -15,6 +15,7 @@ import Imprint from './views/Imprint'
 import DataProtection from './views/DataProtection'
 import Request from './views/Request'
 import Offer from './views/Offer'
+import Activation from './views/Activation'
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,7 @@ const routes = [
   { path: '/dataProtection', component: DataProtection },
   { path: '/imprint', component: Imprint },
   { path: '/search', component: List },
+  { path: '/activate', component: Activation },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
