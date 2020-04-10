@@ -26,5 +26,6 @@ services:
       - 5000:5000
     environment: 
       PRODUCTION: "1"
+      BASE_URL: "https://labhive.de"
 
   

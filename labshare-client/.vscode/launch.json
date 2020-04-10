@@ -4,15 +4,36 @@
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
-            "name": "Programm starten",
+            "name": "Start Backend",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/dist-backend/backend/main.js",
             "cwd": "${workspaceFolder}/",
+            "outFiles": [
+                "${workspaceFolder}/dist-backend/**/*.js"
+            ],
+            "env": {
+                "BASE_URL": "http://localhost:8080",
+            },
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start Backend - Enable Mail",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/dist-backend/backend/main.js",
+            "cwd": "${workspaceFolder}/",
+            "env": {
+                "BASE_URL": "http://localhost:8080",
+                "ENABLE_MAIL": "1",
+            },
             "outFiles": [
                 "${workspaceFolder}/dist-backend/**/*.js"
             ]
