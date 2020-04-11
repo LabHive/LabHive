@@ -1,8 +1,9 @@
-import jsonschema from 'jsonschema';
+import jsonschema, { Schema } from 'jsonschema';
 
 import { registration_volunteer } from "./registration_volunteer";
 import { registration_labDiag } from "./registration_labDiag";
 import { registration_labResearch } from "./registration_labResearch";
+import { registration_admin } from "./registration_admin";
 import { password_forgotton } from "./password_forgotton";
 import { password_reset } from "./password_reset";
 import { login } from "./login";
@@ -10,9 +11,10 @@ import { UserRoles } from '../../lib/userRoles';
 
 
 export let schemas = {
-    registration_volunteer: registration_volunteer,
+    registration_volunteer,
     registration_labDiag,
     registration_labResearch,
+    registration_admin,
     password_forgotton,
     password_reset,
     login
@@ -22,7 +24,7 @@ let validator = new jsonschema.Validator()
 
 class JsonSchema {
     
-    public validate(obj: any, schema: any) {
+    public validate(obj: any, schema: Schema) {
         let result = validator.validate(obj, schema)
         if (!result.valid)
             console.log(result.toString())

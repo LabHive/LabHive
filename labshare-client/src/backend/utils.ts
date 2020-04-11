@@ -127,7 +127,7 @@ class Utils {
         }
         
         let decoded_token = this.getUnverifiedDecodedJWT(req);
-        let user = await getUser({ _id: decoded_token.sub });
+        let user = await getUser({ _id: decoded_token.sub }, true);
         if (!user)
             return false
         return true

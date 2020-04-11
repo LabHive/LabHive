@@ -13,9 +13,11 @@ import Profile from './endpoints/Profile'
 import { language } from './endpoints/language'
 import { OPT } from './options'
 import { activate } from './endpoints/activate'
+import { AdminEndpoint } from './endpoints/admin'
 
 let app = express()
 let router = express.Router()
+let adminRouter = new AdminEndpoint(express.Router())
 
 if (OPT.PRODUCTION) {
     app.use(express.static('dist'));
@@ -32,6 +34,8 @@ app.use((req, res, next) => {
     next()
 })
 app.use('/api/v1', router)
+router.use('/admin', adminRouter.router)
+
 
 router.get('/language', language)
 router.post('/registration', registration)

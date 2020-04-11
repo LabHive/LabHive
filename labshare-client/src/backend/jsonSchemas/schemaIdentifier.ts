@@ -8,6 +8,7 @@ export enum Schemas {
     registration_volunteer = "/registration_volunteer",
     registration_labDiag = "/registration_labDiag",
     registration_labResearch = "/registration_labResearch",
+    registration_admin = "/registration_admin",
     login = "/login"
 };
 
