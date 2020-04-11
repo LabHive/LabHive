@@ -21,7 +21,7 @@ export async function registration(req: express.Request, res: express.Response, 
     delete body.__v
     delete body._id
 
-    let role = req.query.role
+    let role = typeof req.query.role === 'string' ? req.query.role : undefined
     if (!role || !v.validRole(role)) return utils.badRequest(res)
 
     let schema = schemaForRole(role)
@@ -41,7 +41,7 @@ export async function registration(req: express.Request, res: express.Response, 
 
     // Hash password
     body.password = await argon2.hash(body.password)
-    body.role = req.query.role
+    body.role = role
 
     if (body.role === UserRoles.VOLUNTEER) {
         delete body.address.street
