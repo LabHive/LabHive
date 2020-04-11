@@ -6,14 +6,7 @@
         <img class="img-fluid" src="../assets/logo.svg" />
       </b-col>
     </b-row>
-    <b-row>
-      <b-col cols="6">
-        <Map />
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col></b-col>
-    </b-row>
+    <Map />
   </b-container>
 </template>
 
