@@ -28,7 +28,8 @@ export interface IUserCommon extends Document, ITimestamp {
     verified: {
         mail?: boolean,
         manually?: boolean,
-    }
+    },
+    disabled: boolean,
 }
 
 export const UserCommonSchema = new Schema({
@@ -72,6 +73,10 @@ export const UserCommonSchema = new Schema({
             type: Boolean,
             default: false
         },
+    },
+    disabled: {
+        type: Boolean,
+        default: false,
     }
 }, {
     timestamps: true
