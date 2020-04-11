@@ -30,9 +30,11 @@
 </i18n>
 <template>
   <div class="main-div">
-    <b-navbar toggleable="lg" type="dark" variant="primary" id="navbar">
+    <b-navbar toggleable="lg" id="navbar">
       <div class="container">
-        <b-navbar-brand href="#/">{{ $t("brand") }}</b-navbar-brand>
+        <b-navbar-brand href="#/">
+          <img src="./assets/logo-green.svg" alt="LabHive" />
+        </b-navbar-brand>
         <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
@@ -60,35 +62,33 @@
         </b-collapse>
       </div>
     </b-navbar>
-
-    <div class="content container">
+    
+    <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
       <div id="app">
         <router-view></router-view>
       </div>
     </div>
+    
     <!-- Footer -->
-    <footer class="footer-custom bg-primary">
-      <!-- Copyright -->
-      <div class="text-center">
-        <img
-          src="./assets/Hackathon_slogan_weiß.png"
-          width="200px"
-          alt="logo wir vs virus hackathon"
-        />
-      </div>
-      <div class="text-center">
-        <b-row style="margin: 0; margin-top: 10px">
-          <b-col></b-col>
-          <b-col cols="auto">
-            <b-link to="dataProtection" class="clink">{{ $t('dataProtection') }}</b-link>
+    <footer class="footer-custom">
+      <b-container>
+        <b-row>
+          <b-col>
+
           </b-col>
-          <b-col cols="auto">
+          <b-col>
+            <b-link to="dataProtection" class="clink">{{ $t('dataProtection') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
           </b-col>
-          <b-col></b-col>
+          <b-col>
+            <img
+              src="./assets/Hackathon_slogan_weiß.png"
+              width="200px"
+              alt="logo wir vs virus hackathon"
+            />
+          </b-col>
         </b-row>
-      </div>
-      <!-- Copyright -->
+      </b-container>
     </footer>
     <!-- Footer -->
   </div>
@@ -131,8 +131,16 @@ $color-brand--primary: #0069d9;
 $color-brand--secondary: #0069d9;
 $color-white: #fff;
 
-.footer-custom {
-  padding: 10px 0;
+$color-bkg-primary: #F7F6FD;
+
+body {
+  font-family: 'Fira Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  color: #000;
 }
 
 .clink {
@@ -145,44 +153,8 @@ $color-white: #fff;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: black;
   margin-top: 1em;
   margin-bottom: 3em;
-}
-
-#navbar {
-  box-shadow: 0px 3px 4px 0 rgba(0, 0, 0, 0.3);
-}
-
-.footer-custom {
-  box-shadow: 0px -3px 4px 0 rgba(0, 0, 0, 0.3);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.navbar {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.navbar-custom {
-  background-color: $color-brand--primary;
-
-  .navbar-brand {
-    color: $color-white;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 40px;
-  }
 }
 
 .main-div {
@@ -195,4 +167,49 @@ body {
   flex: 1;
   margin-top: 20px;
 }
+
+#navbar, .footer-custom {
+  background: $color-bkg-primary;
+  position: relative;
+
+  a {
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  &:after {
+    left: 0;
+    right: 0;
+    top: 100%;
+    content: '';
+    height: 1px;
+    margin-top: -1px;
+    position: absolute;
+    background: linear-gradient(270.04deg, rgba(218, 218, 218, 0) 0%, #DADADA 50.23%, rgba(218, 218, 218, 0) 100.45%);
+  }
+}
+
+.footer-custom {
+  &:after {
+    top: 1px;
+  }
+}
+
+.has_banner {
+  margin-top: 0;
+  max-width: none;
+  padding: 0;
+
+  #app {
+    margin: 0;
+  }
+
+  h3 {
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 1.81;
+    margin: 0 0 45px;
+  }
+}
+
 </style>
