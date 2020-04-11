@@ -23,23 +23,22 @@
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ $(errorMsg) }}</b-alert>
 		</template>
-
+    
     <b-form>
-      <Request v-model="lookingFor" @submit="submit"></Request>
+      <Offer v-model="offers" @submit="submit"></Offer>
     </b-form>
     
   </div>
 </template>
 
 <script>
-import Request from "@/components/Request"
+import Offer from "@/components/Offer"
 
 export default {
   props: {},
   data() {
     return {
-      lookingFor: {
-        volunteerSkills: [],
+      offers: {
         equipment: [],
         advice: [],
         equipmentDescription: "",
@@ -53,7 +52,7 @@ export default {
   methods: {
     submit: function() {
       this.$http.post('profile', { 
-					lookingFor: this.lookingFor
+					offers: this.offers
 				}).then(() => {
 					return this.$store.dispatch('getProfile')
         }).then(() => {
@@ -67,19 +66,19 @@ export default {
     }
   },
   mounted: function() {
-    if (this.$user && this.$user.lookingFor) {
-      this.lookingFor = this.$user.lookingFor
+    if (this.$user && this.$user.offers) {
+      this.offers = this.$user.offers
     }
     else {
       this.$root.$once("gotProfile", (profile) => {
-        if (profile.lookingFor) {
-          this.lookingFor = profile.lookingFor
+        if (profile.offers) {
+          this.offers = profile.offers
         }
       })
     }
   },
   components: {
-    Request
+    Offer
   }
 };
 </script>

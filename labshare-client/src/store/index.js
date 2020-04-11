@@ -23,20 +23,14 @@ export default new Vuex.Store({
     profile_fetch(state, profile) {
       state.profile = profile;
     },
-    update_profile(state, profile) {
-      state.profile = profile;
-    },
-    set_search_results(state, results) {
-      state.searchResults = results;
-    },
     set_lab_locations(state, locations) {
       state.labLocations = locations;
     },
+    update_profile(state, profile) {
+      state.profile = profile;
+    },
   },
   getters: {
-    searchResults: (state) => {
-      return state.searchResults;
-    },
     authenticated: (state) => {
       return !!state.token;
     },
@@ -71,7 +65,9 @@ export default new Vuex.Store({
             resolve(profile);
           },
           (response) => {
-            console.log(response);
+            if (response.status == 401) {
+              commit('logout');
+            } else console.log(response);
             reject(response);
           }
         );

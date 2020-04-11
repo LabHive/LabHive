@@ -14,7 +14,8 @@
     :id="name"
     :label="$t(name)"
     :state="validator(valFunc)"
-    :invalid-feedback="feedback(valFunc)"
+    :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
+    :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
     :label-cols-sm="verticalLabel ? null: 3"
   >
     <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
@@ -39,7 +40,13 @@ export default {
     verticalLabel: {
       type: Boolean,
       default: false
-    }
+    },
+    invalidFeedback: {
+      default: null,
+    },
+    validFeedback: {
+      default: null,
+    },
   },
   computed: {
     model: {
@@ -47,8 +54,8 @@ export default {
         return this.value
       },
       set(newValue) {
-        console.log("new input")
         this.$emit("input", newValue);
+        this.$root.$emit("inputForm_changed", newValue);
       }
     }
   },
@@ -60,6 +67,7 @@ export default {
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);
+        if (a.value === "") return null
       }
       return a.valid;
     },

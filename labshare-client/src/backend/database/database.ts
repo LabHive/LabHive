@@ -9,23 +9,21 @@ import {
 } from './schemas/IUserLabResearch';
 import { UserRoles } from '../../lib/userRoles';
 
+let promise: Promise<any>;
 if (!process.env.PRODUCTION) {
-  mongoose.connect(
-    'mongodb://localhost:27017/labshare',
-    { useNewUrlParser: true },
-    (err) => {
-      console.log(err);
-    }
-  );
+  promise = mongoose.connect('mongodb://localhost:27017/labshare', {
+    useNewUrlParser: true,
+  });
 } else {
-  mongoose.connect(
-    'mongodb://mongodb:27017/labshare',
-    { useNewUrlParser: true },
-    (err) => {
-      console.log(err);
-    }
-  );
+  promise = mongoose.connect('mongodb://mongodb:27017/labshare', {
+    useNewUrlParser: true,
+  });
 }
+
+promise.catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
 
 export const UserVolunteer = mongoose.model<IUserVolunteer>(
   'user_volunteer',

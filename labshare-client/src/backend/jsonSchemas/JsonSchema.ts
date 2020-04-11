@@ -24,7 +24,8 @@ class JsonSchema {
     
     public validate(obj: any, schema: any) {
         let result = validator.validate(obj, schema)
-        console.log(result.toString())
+        if (!result.valid)
+            console.log(result.toString())
         return result.valid
     }
 }
@@ -42,7 +43,6 @@ export function schemaForRole(role: string): Optional<jsonschema.Schema> {
         default:
             console.error("Invalid role")
             return undefined
-            break;
     }
 }
 

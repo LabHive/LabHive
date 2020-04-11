@@ -1,4 +1,5 @@
 import cors from 'cors';
+import './database/database';
 import express, { response } from 'express';
 import { readFileSync } from 'fs';
 import { registration } from './endpoints/registration';
@@ -9,8 +10,8 @@ import { authMiddleware } from './middlewares/auth';
 import { changePassword } from './endpoints/changePassword';
 import { search } from './endpoints/search';
 import Profile from './endpoints/Profile';
-import { language } from './endpoints/language';
 import { labLocations } from './endpoints/labLocations';
+import { language } from './endpoints/language';
 
 let app = express();
 let router = express.Router();
@@ -27,6 +28,12 @@ if (process.env.PRODUCTION) {
 }
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'deny');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
 app.use('/api/v1', router);
 
 router.get('/language', language);

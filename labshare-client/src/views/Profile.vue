@@ -19,23 +19,16 @@
       <div v-if="error" class="alert alert-danger" role="alert">
         {{ error }}
       </div>
-      <HelperForm
-        v-if="profile.role === 'volunteer'"
-        :profileUpdate="true"
-        @formcomplete="save"
-      />
-      <LabForm
-        v-if="profile.role === 'lab_diag'"
-        :profileUpdate="true"
-        @formcomplete="save"
-      />
+      
+      <component :is="form" @formcomplete="save" :profileUpdate="true" :role="profile.role"></component>
     </template>
   </div>
 </template>
 
 <script>
-import LabForm from "../components/LabForm";
-import HelperForm from "../components/HelperForm";
+import LabDiagForm from "../components/LabDiagForm";
+import LabResearchForm from "../components/LabResearchForm";
+import VolunteerForm from "../components/VolunteerForm";
 
 export default {
   name: "Profile",
@@ -48,7 +41,19 @@ export default {
   },
   computed: {
     profile: function() {
-      return this.$store.state.profile;
+      return this.$user;
+    },
+    form() {
+      if (this.profile.role === 'volunteer') {
+        return "VolunteerForm"
+      }
+      else if (this.profile.role === 'lab_research') {
+        return "LabResearchForm"
+      }
+      else if (this.profile.role === 'lab_diag') {
+        return "LabDiagForm"
+      }
+      else return ""
     }
   },
   methods: {
@@ -65,8 +70,9 @@ export default {
     }
   },
   components: {
-    LabForm,
-    HelperForm
+    LabDiagForm,
+    LabResearchForm,
+    VolunteerForm
   }
 };
 </script>

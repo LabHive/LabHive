@@ -1,5 +1,5 @@
 <template>
-  <b-form-group>
+  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
     <b-container>
       <b-row>
         <template v-for="i in cols_number">
@@ -11,7 +11,21 @@
               :options="arrD[i-1]"
               :name="name + i"
               @change="saveChanges"
+              v-if="!radio"
+              :required="required"
+              :state="valid"
             ></b-form-checkbox-group>
+            <b-form-radio-group
+              stacked
+              :id="name + i"
+              v-model="inputVal"
+              :options="arrD[i-1]"
+              :name="name + i"
+              @change="saveChanges"
+              :required="required"
+              :state="valid"
+              v-else
+            ></b-form-radio-group>
           </b-col>
         </template>
       </b-row>
@@ -52,7 +66,15 @@ export default {
       default: "2"
     },
     name: String,
-    value: Array
+    value: null,
+    radio: {
+      type: Boolean,
+      default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -70,6 +92,15 @@ export default {
       set(val) {
         this.$emit('input', val)
       }
+    },
+    valid() {
+      if (!this.required) {
+        return null
+      }
+      if (this.value === "" || (typeof this.value === "object" && this.value.length === 0)) {
+        return false
+      }
+      return true
     }
   }
 };

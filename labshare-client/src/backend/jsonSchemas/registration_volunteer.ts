@@ -7,7 +7,6 @@ export let registration_volunteer: Schema = {
     properties: {
         ...userCommon,
         availability: { type: "boolean" },
-        organization: { type: "string" },
         details: {
             type: "object",
             properties: {
@@ -16,10 +15,11 @@ export let registration_volunteer: Schema = {
                     items: {
                         type: "string"
                     }
-                }
+                },
+                qualification: { type: "string" }
             },
-            required: ["skills"]
+            required: ["skills", "qualification"]
         },
     },
-    required: ["address", "contact", "description", "password", "details", "availability", "consent", "organization"]
+    required: ["address", "contact", "description", "password", "details", "availability", "consent", "organization", "website"]
 }

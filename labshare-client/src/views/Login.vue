@@ -33,8 +33,6 @@
 
 <script>
 export default {
-  name: "Login",
-  props: {},
   data() {
     return {
       user: {
@@ -45,21 +43,21 @@ export default {
     };
   },
   methods: {
-    login: function() {
+    login: function(ev) {
+      ev.preventDefault()
       if (this.user.email !== "" && this.user.password !== "") {
         this.$store
           .dispatch("login", this.user)
           .then(() => {
             this.$store
               .dispatch("getProfile")
-              .then(() => this.$router.push("/list"))
+              .then(() => this.$router.push("/search"))
               .catch(response => {
                 console.log("Profile fetch error:", response.status);
               });
           })
           .catch(response => {
-            this.error =
-              "Error logging in, please check you details and try again";
+            this.error = this.$t("backend." + response.body.errorDescription)
             console.log("Login error:", response);
           });
       } else {

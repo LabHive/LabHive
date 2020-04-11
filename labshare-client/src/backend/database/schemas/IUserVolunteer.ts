@@ -1,21 +1,24 @@
 import { Schema } from "mongoose";
 import { IUserCommon, UserCommonSchema } from "./IUserCommon";
+import { ITimestamp } from './ITimestamps';
 
-export interface IUserVolunteer extends IUserCommon {
+export interface IUserVolunteer extends IUserCommon, ITimestamp {
     details: {
-        skills: string[]
-    };
-    availability: boolean;
-    organization: string;
+        skills: string[],
+        qualification: string
+    },
+    availability: boolean
 }
 
 export const UserVolunteerSchema = new Schema({
     ...UserCommonSchema.obj,
     details: {
-        skills: [String]
+        skills: [String],
+        qualification: String
     },
-    availability: { type: Boolean, default: true },
-    organization: String
+    availability: { type: Boolean },
+}, {
+    timestamps: true
 });
 
 UserVolunteerSchema.index({location: '2dsphere'})

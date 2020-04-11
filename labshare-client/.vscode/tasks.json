@@ -1,0 +1,53 @@
+{
+// Unter https://go.microsoft.com/fwlink/?LinkId=733558
+// finden Sie Informationen zum Format von "tasks.json"
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "typescript",
+            "tsconfig": "labshare-client/tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "label": "Compile TSC",
+            "group": "build"
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "labshare-client/tsconfig.json",
+            "option": "watch",
+            "runOptions": {
+                "runOn": "folderOpen",
+                "instanceLimit": 1
+            },
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+            "label": "Watch TSC"
+        },
+        {
+            "type": "shell",
+            "command": "${workspaceFolder}/node_modules/.bin/tsc",
+            "args": ["-w", "--outDir", "${workspaceFolder}/dist-backend"],
+            "runOptions": {
+                "runOn": "folderOpen",
+                "instanceLimit": 1
+            },
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+            "label": "Watch TSC - test",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "isBackground": true
+        }
+    ]
+}

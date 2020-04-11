@@ -26,3 +26,7 @@ new Vue({
   i18n: new VueI18n(localization),
   render: h => h(App)
 }).$mount("#app");
+
+if (process.env.ENABLE_DEV) {
+  Vue.config.devtools = true 
+}

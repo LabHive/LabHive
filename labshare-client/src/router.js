@@ -14,6 +14,7 @@ import ChangePassword from './views/ChangePassword'
 import Imprint from './views/Imprint'
 import DataProtection from './views/DataProtection'
 import Request from './views/Request'
+import Offer from './views/Offer'
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,7 @@ const routes = [
   
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
+  { path: '/offer', component: Offer, meta: { auth: true } },
   { path: '/change-password', component: ChangePassword, meta: { auth: true } },
 ];
 const router = new VueRouter({ routes });

@@ -1,6 +1,7 @@
 import { Schema, Document } from "mongoose";
 import { IUserCommon } from './IUserCommon';
-export interface IResetToken extends Document {
+import { ITimestamp } from './ITimestamps';
+export interface IResetToken extends Document, ITimestamp {
     token: string;
     objectId: IUserCommon['_id'];
 }
@@ -8,4 +9,6 @@ export interface IResetToken extends Document {
 export const ResetTokenSchema = new Schema({
     token: String,
     objectId: Schema.Types.ObjectId
+}, {
+    timestamps: true
 });

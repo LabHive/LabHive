@@ -9,52 +9,76 @@
     "complete": "Danke für deine Registrierung!",
     "prospectiveRole": "Als was möchtest du dich registrieren?",
     "roleHelper": "Helfer",
-    "roleLab": "Forschungslabor"
-    }
+    "roleDiagnosticLab": "Diagnostic Lab",
+    "roleLab": "Forschungslabor",
+    "labInfo": "Labor Informationen",
+    "labName": "Name des Labors",
+    "street": "Straße"
+  }
 }
 </i18n>
 <template>
   <div class="register">
     <h1>{{$t("registration")}}</h1>
+    <b-progress variant="success" v-if="registrationForm && !registrationComplete" height="4px" :value="progress"></b-progress>
+
     <template v-if="registrationComplete">
       <h2>{{$t("complete")}}</h2>
     </template>
-    <template v-else-if="!loadedForm">
-      <b-container fluid style="margin-top: 30px">
+
+    <br />
+
+    <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
+
+    <div key="step-one" v-if="!registrationForm">
+      <b-container fluid>
         <b-row>
           <b-col cols="12">
             <p class="lead text-center">{{$t("prospectiveRole")}}</p>
           </b-col>
         </b-row>
-
         <b-row>
-          <b-col></b-col>
-          <b-col cols="auto">
+          <b-col cols="4">
             <b-button
+              block
               size="lg"
               variant="primary"
-              @click="loadedForm = forms.HELPER"
+              @click="registrationForm = forms.VOLUNTEER"
             >{{$t("roleHelper")}}</b-button>
           </b-col>
-          <b-col cols="auto">
-            <b-button size="lg" variant="primary" @click="loadedForm = forms.LAB">{{$t("roleLab")}}</b-button>
+          <b-col cols="4">
+            <b-button
+              block
+              size="lg"
+              variant="primary"
+              @click="registrationForm = forms.DIAGNOSTIC_LAB"
+            >{{$t("roleDiagnosticLab")}}</b-button>
           </b-col>
-          <b-col></b-col>
+          <b-col cols="4">
+            <b-button
+              block
+              size="lg"
+              variant="primary"
+              @click="registrationForm = forms.LAB"
+            >{{$t("roleLab")}}</b-button>
+          </b-col>
         </b-row>
-
       </b-container>
-    </template>
-    <div v-else>
-      <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
-      <HelperForm v-if="loadedForm === forms.HELPER" @formcomplete="register" />
-      <LabForm v-if="loadedForm === forms.LAB" @formcomplete="register" />
     </div>
+
+    <div v-else-if="!registrationComplete">
+      <component :is="registrationForm" @formcomplete="register" @updateProgress="updateProgress" :role="role"></component>
+    </div>
+
   </div>
 </template>
 
 <script>
-import LabForm from "../components/LabForm";
-import HelperForm from "../components/HelperForm";
+import { Validator } from "@/../dist-browser/lib/validation";
+//import InputForm from "../components/InputForm";
+import VolunteerForm from "@/components/VolunteerForm.vue";
+import LabDiagForm from "@/components/LabDiagForm.vue";
+import LabResearchForm from "@/components/LabResearchForm.vue";
 
 export default {
   name: "Register",
@@ -63,23 +87,48 @@ export default {
     return {
       forms: {
         ROLE: 0,
-        HELPER: 1,
-        LAB: 2
+        VOLUNTEER: "VolunteerForm",
+        LAB: "LabResearchForm",
+        DIAGNOSTIC_LAB: "LabDiagForm"
       },
       error: null,
-      loadedForm: 0,
-      registrationComplete: false
+      registrationComplete: false,
+      registrationForm: "",
+      passwordRepeat: "",
+      disableSubmit: true,
+      progress: 0
     };
   },
+  computed: {
+    val() {
+      return Validator;
+    },
+    role() {
+      let role = ""
+      if (this.registrationForm === this.forms.VOLUNTEER) {
+        role = "volunteer"
+      } else if (this.registrationForm === this.forms.LAB) {
+        role = "lab_research"
+      }
+      else if (this.registrationForm === this.forms.DIAGNOSTIC_LAB) {
+        role = "lab_diag"
+      }
+      else {
+        console.error("invalid role")
+      }
+      return role
+    }
+  },
   methods: {
-    register: function(data) {
-      console.log(data);
-
-      let role = this.loadedForm == this.forms.HELPER ? "volunteer" : "lab_diag";
-
-      this.$http.post("registration", data, { params: { role: role } }).then(
+    updateProgress(val) {
+      this.progress = val
+    },
+    register: function(formData) {
+      this.$http.post("registration", formData, { params: { role: this.role } }).then(
         resp => {
           let data = resp.body;
+          console.log(data);
+
           if (data.success) {
             this.registrationComplete = true;
             this.error = null;
@@ -92,12 +141,15 @@ export default {
     }
   },
   components: {
-    LabForm,
-    HelperForm
+    //InputForm
+    VolunteerForm,
+    LabDiagForm,
+    LabResearchForm
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
