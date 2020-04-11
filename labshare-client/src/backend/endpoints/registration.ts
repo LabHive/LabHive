@@ -19,7 +19,9 @@ export async function registration(req: express.Request, res: express.Response, 
     
     delete body.verified
     delete body.__v
+    delete body.__t
     delete body._id
+    delete body.disabled
 
     let role = typeof req.query.role === 'string' ? req.query.role : undefined
     if (!role || !v.validRole(role)) return utils.badRequest(res)

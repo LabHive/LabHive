@@ -1,8 +1,8 @@
-import mongoose, { Model } from "mongoose"
+import mongoose, { Model, Document } from "mongoose"
 import { IUserVolunteer, UserVolunteerSchema } from './schemas/IUserVolunteer'
 import { IUserLabDiag, UserLabDiagSchema } from './schemas/IUserLabDiag'
 import { IResetToken, ResetTokenSchema } from './schemas/IResetToken'
-import { IUserCommon } from './schemas/IUserCommon'
+import { IUserCommon, UserCommonSchema } from './schemas/IUserCommon'
 import { UserLabResearchSchema, IUserLabResearch } from './schemas/IUserLabResearch'
 import { UserRoles } from '../../lib/userRoles'
 import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail'
@@ -38,20 +38,23 @@ promise.then(async () => {
 
 
 export const UserAdmin = mongoose.model<IUserAdmin>('user_admin', UserAdminSchema)
-export const UserVolunteer = mongoose.model<IUserVolunteer>('user_volunteer', UserVolunteerSchema)
-export const UserLabDiag = mongoose.model<IUserLabDiag>('user_labDiag', UserLabDiagSchema)
-export const UserLabResearch = mongoose.model<IUserLabResearch>('user_labResearch', UserLabResearchSchema)
+
+export const UserCommon = mongoose.model<IUserCommon>('users', UserCommonSchema)
+export const UserVolunteer = UserCommon.discriminator<IUserVolunteer>('volunteer', UserVolunteerSchema)
+export const UserLabDiag = UserCommon.discriminator<IUserLabDiag>('labDiag', UserLabDiagSchema)
+export const UserLabResearch = UserCommon.discriminator<IUserLabResearch>('labResearch', UserLabResearchSchema)
+
 export const ResetToken = mongoose.model<IResetToken>('reset_token', ResetTokenSchema)
 export const FailedMail = mongoose.model<IFailedMail>('failed_mail', FailedMailSchema)
 export const ActivationToken = mongoose.model<IActivationToken>('activation_token', ActivationTokenSchema)
 
 
-export function getUserForMail(email: string, includeAdmin: boolean = false): Promise<Optional<IUserCommon>> {
-    return getUser({ "contact.email": email }, includeAdmin)
+export function getUserForMail(email: string): Promise<Optional<IUserCommon>> {
+    return getUser({ "contact.email": email })
 }
 
-export function getUserById(id: string, includeAdmin: boolean = false): Promise<Optional<IUserCommon>> {
-    return getUser({_id: id}, includeAdmin)
+export function getUserById(id: string): Promise<Optional<IUserCommon>> {
+    return getUser({_id: id})
 }
 
 export function getModelForRole(role: string): Optional<Model<IUserCommon>> {
@@ -68,30 +71,19 @@ export function getModelForRole(role: string): Optional<Model<IUserCommon>> {
     }
 }
 
-export async function getUser(filter: any, includeAdmin: boolean = false): Promise<Optional<IUserCommon>> {
-    let models: Model<any>[] = [UserLabResearch, UserLabDiag, UserVolunteer]
-    if (includeAdmin) {
-        models.push(UserAdmin)
-    }
-    let matches = []
-
-    for (let i of models) {
-        try {
-            let match = await i.findOne(filter).exec()
-            if (match) {
-                matches.push(match)
-            }
-        } catch {
-            return undefined
-        }
-    }
-
-    if (matches.length > 1) {
-        throw new Error("More than one result found.")
-    } else if (matches.length == 0) {
-        return undefined
-    } else {
-        return matches[0]
-    }
+export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
+    return (await UserCommon.findOne(filter).exec()) ?? undefined
 }
 
+export async function getUserOrAdmin(filter: any): Promise<Optional<IUserCommon>> {
+    let models: Model<any>[] = [UserCommon, UserAdmin]
+
+    for (let i of models) {
+        let tmp = await i.findOne(filter)
+        if (tmp) {
+            return tmp
+        }
+    }
+    
+    return undefined
+}

@@ -17,6 +17,7 @@ class Profile {
         let data = JSON.parse(JSON.stringify(user));
         delete data._id;
         delete data.__v;
+        delete data.__t;
         delete data.password;
 
         let responseData = {
@@ -36,7 +37,9 @@ class Profile {
         delete body.password
         delete body._id
         delete body.__v
+        delete body.__t
         delete body.verified
+        delete body.disabled
         
         let model = getModelForRole(token.role)
         let schema = schemaForRole(token.role)

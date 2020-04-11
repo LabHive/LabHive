@@ -30,6 +30,7 @@ export interface IUserCommon extends Document, ITimestamp {
         manually?: boolean,
     },
     disabled: boolean,
+    __t: String
 }
 
 export const UserCommonSchema = new Schema({

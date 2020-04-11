@@ -11,7 +11,6 @@ export interface IUserLabResearch extends IUserCommon, ITimestamp {
 }
 
 export const UserLabResearchSchema = new Schema({
-    ...UserCommonSchema.obj,
     offers: {
         advice: [String],
         equipment: [String],

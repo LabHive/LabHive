@@ -67,8 +67,8 @@ class Utils {
         })
     }
 
-    public badRequest(res: express.Response) {
-        this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, "bad_request")
+    public badRequest(res: express.Response, reason: string = "bad_request") {
+        this.errorResponse(res, HttpStatusCodes.BAD_REQUEST, reason)
     }
 
     public handleError(res: express.Response, error: Error) {
@@ -101,7 +101,7 @@ class Utils {
     }
 
     public async getVerifiedDecodedJWT(req: express.Request): Promise<Optional<Token>> {
-        if (!await this.isAuthenticated(req)) {
+        if (!await this.isValidJWT(req)) {
             return undefined
         }
 
@@ -113,7 +113,7 @@ class Utils {
         return <Token>jsonwebtoken.decode(token)
     }
 
-    public async isAuthenticated(req: express.Request): Promise<boolean> {
+    public async isValidJWT(req: express.Request): Promise<boolean> {
         try {
             let token = this.getJWTToken(req);
             jsonwebtoken.verify(token, CONF.HMAC_KEY, {
@@ -126,10 +126,6 @@ class Utils {
             return false
         }
         
-        let decoded_token = this.getUnverifiedDecodedJWT(req);
-        let user = await getUser({ _id: decoded_token.sub }, true);
-        if (!user)
-            return false
         return true
     }
 
