@@ -1,5 +1,5 @@
 import express from 'express';
-import { getLabLocations } from '../database/database';
+import { getMarkerLocations } from '../database/database';
 
 export async function labLocations(
   req: express.Request,
@@ -7,6 +7,6 @@ export async function labLocations(
 ) {
   res.send({
     success: true,
-    data: await getLabLocations(),
+    data: await getMarkerLocations(),
   });
 }

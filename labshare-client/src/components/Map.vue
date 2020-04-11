@@ -50,17 +50,25 @@ export default {
       },
       showMap: true,
       markers: [],
+      markerCounts: {},
     };
   },
   created() {
-    this.$http.get('lab-locations').then(({ body: { data } }) => {
-      this.markers = data.map(({ lat, long }, index) => ({
-        id: index,
-        position: { lat, lng: long },
-        draggable: false,
-        visible: true,
-      }));
-    });
+    this.$http.get('lab-locations').then(
+      ({
+        body: {
+          data: { markerCounts, markers },
+        },
+      }) => {
+        this.markerCounts = markerCounts;
+        this.markers = markers.map(({ latLong: { lat, long } }, index) => ({
+          id: index,
+          position: { lat, lng: long },
+          draggable: false,
+          visible: true,
+        }));
+      }
+    );
   },
   methods: {
     zoomUpdate(zoom) {

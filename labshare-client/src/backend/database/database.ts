@@ -88,13 +88,31 @@ export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
   }
 }
 
-export async function getLabLocations(): Promise<
-  Array<{ lat: number; long: number }>
-> {
+export async function getMarkerLocations(): Promise<{
+  markerCounts: { [index in UserRoles]: number };
+  markers: Array<{
+    role: UserRoles;
+    latLong: { lat: number; long: number };
+  }>;
+}> {
   const labDiags = await UserLabDiag.find();
+  const labResearches = await UserLabResearch.find();
+  const volunteers = await UserVolunteer.find();
 
-  return labDiags.map((lab) => ({
-    lat: lab.location.coordinates[1],
-    long: lab.location.coordinates[0],
-  }));
+  return {
+    markerCounts: {
+      [UserRoles.LAB_DIAG]: labDiags.length,
+      [UserRoles.LAB_RESEARCH]: labResearches.length,
+      [UserRoles.VOLUNTEER]: volunteers.length,
+    },
+    markers: [...labDiags, ...labResearches, ...volunteers].map(
+      ({ role, location }) => ({
+        role,
+        latLong: {
+          lat: location.coordinates[1],
+          long: location.coordinates[0],
+        },
+      })
+    ),
+  };
 }
