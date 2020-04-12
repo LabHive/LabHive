@@ -4,7 +4,7 @@ import { LocationNotFoundError, ValidationError, UnauthorizedError } from './err
 import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { getUser } from "./database/database";
-import { HMAC_KEY } from './main';
+import { CONF, OPT } from './options'
 
 export interface Address {
     city?: string,
@@ -116,7 +116,7 @@ class Utils {
     public async isAuthenticated(req: express.Request): Promise<boolean> {
         try {
             let token = this.getJWTToken(req);
-            jsonwebtoken.verify(token, HMAC_KEY, {
+            jsonwebtoken.verify(token, CONF.HMAC_KEY, {
                 algorithms: ["HS256"],
                 clockTolerance: 300,
                 issuer: "labhive"
@@ -131,6 +131,13 @@ class Utils {
         if (!user)
             return false
         return true
+    }
+
+    public getBaseUrl(req: express.Request) {
+        if (OPT.BASE_URL) {
+            return OPT.BASE_URL
+        }
+        return req.protocol + '://' + req.get('host')
     }
 }
 

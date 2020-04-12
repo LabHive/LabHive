@@ -4,6 +4,8 @@ import { v4 as uuid } from 'uuid';
 import { Validator as v } from "../../lib/validation";
 import { getUserForMail, ResetToken } from '../database/database';
 import utils from '../utils';
+import { sendPasswordResetMail } from '../mail/mailer';
+import { getLangID } from './language';
 
 interface IBody {
     email?: string
@@ -21,18 +23,21 @@ export async function forgotPassword(req: express.Request, res: express.Response
 
     let user = await getUserForMail(body.email);
     if (!user) {
-        return utils.badRequest(res);
+        return utils.successResponse(res);
     }
 
     ResetToken.deleteMany({ objectId: user._id }).exec();
 
     let token = uuid();
     let token_doc = new ResetToken({ token: token, objectId: user._id });
+
     
-    token_doc.save().then(() => {
-        // TODO: Send mail
+    try {
+        await token_doc.save();
+        const link = utils.getBaseUrl(req) + "/#/reset-password?token=" + token;
+        await sendPasswordResetMail(user!.contact.email, link, getLangID(req));
         return utils.successResponse(res);
-    }).catch(() => {
+    } catch {
         return utils.internalError(res);
-    });
+    }
 }

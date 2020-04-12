@@ -1,94 +1,97 @@
 <i18n>
 {
-	"en": {},
+	"en": {
+		"title": "Forgot Password",
+		"successMessage": "Sie werden von uns in Kürze eine Mail erhalten, sofern ein Konto für diese E-Mail Adresse im System hinterlegt ist.",
+		"loadingMessage": "Please wait...",
+		"pleaseEnterYourEmailMessage": "Please enter your email address",
+		"submit": "Submit",
+		"back": "Back to login"
+	},
 	"de": {
 		"title": "Passwort vergessen",
-		"successMessage": "Please check your email inbox",
-		"loadingMessage": "Please wait",
-		"pleaseEnterYourEmailMessage": "Please enter your email address",
-		"submit": "Einreichen",
-		"back": "Back to login"
+		"successMessage": "Sie werden von uns in Kürze eine Mail erhalten, sofern ein Konto für diese E-Mail Adresse im System hinterlegt ist.",
+		"loadingMessage": "Bitte warten...",
+		"pleaseEnterYourEmailMessage": "Bitte geben Sie Ihre E-Mail Adresse ein.",
+		"submit": "Abschicken",
+		"back": "Zurück zum Login"
 	}
 }
 </i18n>
 
 <template>
-	<div class="profile">
-		<h1>{{ $t("title") }}</h1>
+  <div class="profile">
+    <h1>{{ $t("title") }}</h1>
 
-		<p class="my-4">{{ $t('pleaseEnterYourEmailMessage') }}.</p>
+    <p class="my-4">{{ $t('pleaseEnterYourEmailMessage') }}.</p>
 
-		<template v-if="updated">
-			<div class="alert alert-success">
-				{{ $t("successMessage") }}
-			</div>
-		</template>
+    <template v-if="updated">
+      <div class="alert alert-success">{{ $t("successMessage") }}</div>
+    </template>
 
-		<template v-if="loading">
-			<div class="alert alert-warning">
-				{{ $t("loadingMessage") }}
-			</div>
-		</template>
-    
-		<template v-if="!updated && !loading">
-			<div v-if="error" class="alert alert-danger">
-				{{ error }}
-			</div>
+    <template v-if="loading">
+      <div class="alert alert-warning">{{ $t("loadingMessage") }}</div>
+    </template>
 
-			<div class="row">
-				<b-form @submit="submit" class="col-md-6">
-					<b-form-group id="email" :label="$t('email')">
-						<b-form-input type="email" v-model="formData.email" trim></b-form-input>
-					</b-form-group>
+    <template v-if="!updated && !loading">
+      <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
-					<div class="my-3">
-						<router-link to="/login">{{ $t('back') }}</router-link>
-					</div>
+      <div class="row">
+        <b-form @submit="submit" class="col-md-6">
+          <b-form-group id="email" :label="$t('email')">
+            <b-form-input type="email" v-model="formData.email" trim></b-form-input>
+          </b-form-group>
 
-					<b-button variant="primary" type="submit">{{ $t("submit") }}</b-button>
-				</b-form>
-			</div>
-		</template>
-	</div>
+          <div class="my-3">
+            <router-link to="/login">{{ $t('back') }}</router-link>
+          </div>
+
+          <b-button variant="primary" type="submit">{{ $t("submit") }}</b-button>
+        </b-form>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
-import Vue from 'vue'
-
 export default {
-	name: 'ForgotPassword',
-	data: function() {
-		return {
-			updated: false,
-			loading: false,
-			error: null,
-			formData: {
-				email: ''
-			},
-		};
-	},
-	
-	methods: {
-		submit: function() {
-			this.error = null;
+  name: "ForgotPassword",
+  data: function() {
+    return {
+      updated: false,
+      loading: false,
+      error: null,
+      formData: {
+        email: ""
+      }
+    };
+  },
 
-			if (this.formData.email === '') {
-				this.error = this.$t('pleaseEnterYourEmailMessage');
-			} else {
-				this.loading = true;
-				
-				Vue.http.post('forgot-password', { 
-					email: this.formData.email
-				}).then(() => {
-					this.updated = true;
-					this.loading = false;
-				}, error => {
-					this.error = error.body.errorDescription;
-					this.loading = false;
-				});
-			}
-		}
-	},
-	components: {}
+  methods: {
+    submit: function() {
+      this.error = null;
+
+      if (this.formData.email === "") {
+        this.error = this.$t("pleaseEnterYourEmailMessage");
+      } else {
+        this.loading = true;
+
+        this.$http
+          .post("forgot-password", {
+            email: this.formData.email
+          })
+          .then(() => {
+              this.updated = true;
+              this.loading = false;
+            },
+            error => {
+              this.error = this.$t("backend." + error.body.errorDescription);
+              this.loading = false;
+            }
+          );
+      }
+    }
+  },
+  components: {}
 };
 </script>

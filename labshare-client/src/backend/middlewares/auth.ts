@@ -3,7 +3,6 @@ import HttpStatus from 'http-status-codes';
 import jsonwebtoken from "jsonwebtoken";
 import { getUser } from '../database/database';
 import utils from '../utils';
-import { HMAC_KEY } from '../main';
 
 
 export async function authMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
