@@ -86,48 +86,17 @@
       </b-row>
     </b-container>
 
-    <Map />
-
-    <div class="coverage">
-      <b-container>
-        <b-row class="text-center">
-          <b-col>
-            <h3>Testkapazität und Unterstützung</h3>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col cols lg="6" md="6" sm="12">
-            <figure class="text-center">
-              <img class="img-fluid" src="../assets/map.svg" />
-            </figure>
-          </b-col>
-          <b-col cols lg="6" md="6" sm="12">
-            <dl class="total-stats">
-              <dt>354,521</dt>
-              <dd>Tests pro Woche</dd>
-            </dl>
-            <dl>
-              <dt>531</dt>
-              <dd>Qualifizierte Freiwillige</dd>
-              <dt>61</dt>
-              <dd>Forschungslabore</dd>
-              <dt>142</dt>
-              <dd>Diagnostikzentren</dd>
-            </dl>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
+    <Coverage />
   </div>
 </template>
 
 <script>
-import Map from "../components/Map";
+import Coverage from "../components/Coverage";
 
 export default {
   name: "Index",
   props: {},
-  components: { Map }
+  components: { Coverage }
 };
 </script>
 
@@ -228,88 +197,6 @@ $color-bkg-primary: #f7f6fd;
   }
 }
 
-.coverage {
-  background: $color-bkg-primary;
-  position: relative;
-  padding: 65px 0;
-
-  &:before {
-    content: "";
-    background: #fff;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 40px;
-    position: absolute;
-    z-index: 3;
-  }
-
-  &:after {
-    content: "";
-    background: $color-bkg-primary;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 4;
-  }
-
-  .container {
-    position: relative;
-    z-index: 5;
-  }
-
-  figure {
-    margin: 0;
-  }
-
-  dl {
-    overflow: hidden;
-    max-width: 340px;
-    line-height: 52px;
-    margin: 0;
-
-    dt {
-      width: 30%;
-      float: left;
-      clear: both;
-      color: $color-green;
-      font-family: Fira Sans;
-      font-size: 44px;
-      text-align: center;
-      font-weight: normal;
-      margin-bottom: 35px;
-    }
-    dd {
-      float: right;
-      font-size: 22px;
-      width: 70%;
-      margin: 0;
-    }
-
-    &.total-stats {
-      padding-top: 60px;
-
-      dt {
-        border: 3px solid $color-green;
-        box-sizing: border-box;
-        border-radius: 5px;
-        text-align: center;
-        width: 50%;
-        font-family: Fira Sans;
-        margin-bottom: 40px;
-      }
-      dd {
-        width: 50%;
-        padding-left: 30px;
-        line-height: 1.4;
-      }
-    }
-  }
-}
-
 @media (max-width: 767px) {
   .banner {
     margin-bottom: 40px;
@@ -323,25 +210,6 @@ $color-bkg-primary: #f7f6fd;
   .about {
     .col-sm-12 + .col-sm-12 {
       margin-top: 40px;
-    }
-  }
-  .coverage {
-    padding-bottom: 20px;
-
-    dl {
-      dt {
-        margin-bottom: 20px;
-      }
-      dd {
-        font-size: 20px;
-      }
-    }
-    dl.total-stats {
-      padding-top: 40px;
-
-      dt {
-        margin-bottom: 20px;
-      }
     }
   }
 }
