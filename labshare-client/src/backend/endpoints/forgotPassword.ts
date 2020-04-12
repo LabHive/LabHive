@@ -30,13 +30,14 @@ export async function forgotPassword(req: express.Request, res: express.Response
 
     let token = uuid();
     let token_doc = new ResetToken({ token: token, objectId: user._id });
+
     
-    token_doc.save().then(() => {
-        let link = utils.getBaseUrl(req) + "/#/reset-password?token=" + token
-        return sendPasswordResetMail(user!.contact.email, link, getLangID(req))
-    }).then(() => {
+    try {
+        await token_doc.save();
+        const link = utils.getBaseUrl(req) + "/#/reset-password?token=" + token;
+        await sendPasswordResetMail(user!.contact.email, link, getLangID(req));
         return utils.successResponse(res);
-    }).catch(() => {
+    } catch {
         return utils.internalError(res);
-    });
+    }
 }

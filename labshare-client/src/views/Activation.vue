@@ -3,8 +3,8 @@
     "en": {},
     "de": {
         "title": "Aktivierung",
-        "successMessage": "Activation successful",
-        "loadingMessage": "Please wait...",
+        "successMessage": "Aktivierung erfolgreich",
+        "loadingMessage": "Bitte warten...",
         "login": "Zum Login"
     }
 }

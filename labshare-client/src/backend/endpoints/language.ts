@@ -38,8 +38,7 @@ export function getLangID(req: express.Request): LANG_TYPE {
             }
         }
 
-        let tmp = selected_lang.language
-        if (tmp.indexOf('de') > -1) {
+        if (selected_lang.language.indexOf('de') > -1) {
             selected_lang_id = 'de'
         } 
     }

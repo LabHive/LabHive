@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 import { sendActivationMail } from '../mail/mailer';
 import { getLangID } from "./language";
 import { OPT } from '../options';
+import { Document } from 'mongoose';
 
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -68,21 +69,23 @@ export async function registration(req: express.Request, res: express.Response, 
     let token = uuid();
     let token_doc = new ActivationToken({ token: token, objectId: user._id });
 
-    user.save().then((doc) => {
+    try {
+        let doc: Document = await user.save()
         if (!doc)
             throw new Error("Saving document failed")
-        return token_doc.save()
-    }).then((doc) => {
+        doc = await token_doc.save()
         if (!doc)
             throw new Error("Saving document failed")
+        
         let lang = getLangID(req)
         let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
         sendActivationMail(user.contact.email, link, lang).catch((err) => {
             console.error("Failed to send activation mail", err)
         })
         utils.successResponse(res)
-    }).catch(err => {
+    }
+    catch (err) {
         console.log(err)
         return utils.internalError(res)
-    })
+    }
 }
