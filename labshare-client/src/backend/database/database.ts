@@ -5,22 +5,27 @@ import { IResetToken, ResetTokenSchema } from './schemas/IResetToken';
 import { IUserCommon } from './schemas/IUserCommon';
 import {
   UserLabResearchSchema,
-  IUserLabResearch,
+  IUserLabResearch
 } from './schemas/IUserLabResearch';
 import { UserRoles } from '../../lib/userRoles';
+import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail';
+import {
+  ActivationTokenSchema,
+  IActivationToken
+} from './schemas/IActivationToken';
 
 let promise: Promise<any>;
 if (!process.env.PRODUCTION) {
   promise = mongoose.connect('mongodb://localhost:27017/labshare', {
-    useNewUrlParser: true,
+    useNewUrlParser: true
   });
 } else {
   promise = mongoose.connect('mongodb://mongodb:27017/labshare', {
-    useNewUrlParser: true,
+    useNewUrlParser: true
   });
 }
 
-promise.catch((err) => {
+promise.catch(err => {
   console.error(err);
   process.exit(1);
 });
@@ -40,6 +45,14 @@ export const UserLabResearch = mongoose.model<IUserLabResearch>(
 export const ResetToken = mongoose.model<IResetToken>(
   'reset_token',
   ResetTokenSchema
+);
+export const FailedMail = mongoose.model<IFailedMail>(
+  'failed_mail',
+  FailedMailSchema
+);
+export const ActivationToken = mongoose.model<IActivationToken>(
+  'activation_token',
+  ActivationTokenSchema
 );
 
 export function getUserForMail(email: string): Promise<Optional<IUserCommon>> {
@@ -103,16 +116,16 @@ export async function getMarkerLocations(): Promise<{
     markerCounts: {
       [UserRoles.LAB_DIAG]: labDiags.length,
       [UserRoles.LAB_RESEARCH]: labResearches.length,
-      [UserRoles.VOLUNTEER]: volunteers.length,
+      [UserRoles.VOLUNTEER]: volunteers.length
     },
     markers: [...labDiags, ...labResearches, ...volunteers].map(
       ({ role, location }) => ({
         role,
         latLong: {
           lat: location.coordinates[1],
-          long: location.coordinates[0],
-        },
+          long: location.coordinates[0]
+        }
       })
-    ),
+    )
   };
 }

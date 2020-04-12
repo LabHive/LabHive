@@ -5,8 +5,8 @@ import jsonwebtoken from "jsonwebtoken";
 import { getUserForMail } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import { HMAC_KEY } from '../main';
 import utils from '../utils';
+import { CONF } from '../options';
 
 interface IBody {
     email?: string,
@@ -24,6 +24,10 @@ export async function login(req: express.Request, res: express.Response, next: e
     let user = await getUserForMail(mail);
     if (!user) {
         return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "invalid_login");
+    }
+
+    if (!user.verified.mail || !user.verified.manually) {
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "user_not_activated");
     }
 
 
@@ -46,8 +50,8 @@ export async function login(req: express.Request, res: express.Response, next: e
         notBefore: 0,
         expiresIn: "2h",
     };
-    let jwt = jsonwebtoken.sign(payload, HMAC_KEY, options);
-    
+    let jwt = jsonwebtoken.sign(payload, CONF.HMAC_KEY, options);
+
     res.send({
         success: true,
         sessionToken: jwt

@@ -3,6 +3,7 @@ import express from "express";
 import { getUser, ResetToken } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
+import { BAD_REQUEST } from 'http-status-codes';
 
 interface IBody {
     newPassword?: string
@@ -17,6 +18,12 @@ export async function resetPassword(req: express.Request, res: express.Response,
     let token_doc = await ResetToken.findOneAndDelete({ token: req.query.token }).exec();
     if (!token_doc) {
         return utils.badRequest(res);
+    }
+
+    let oldest = new Date()
+    oldest.setDate(oldest.getDate() - 2)
+    if (token_doc.createdAt < oldest) {
+        return utils.errorResponse(res, BAD_REQUEST, "tokenTooOld")
     }
     
     let password = await argon2.hash(body.newPassword);

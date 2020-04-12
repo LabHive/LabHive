@@ -27,6 +27,10 @@ export interface IUserCommon extends Document, ITimestamp {
     processing: boolean;
     publicContact: boolean;
   };
+  verified: {
+    mail?: boolean;
+    manually?: boolean;
+  };
 }
 
 export const UserCommonSchema = new Schema(
@@ -38,32 +42,42 @@ export const UserCommonSchema = new Schema(
       type: {
         type: String,
         enum: ['Point'],
-        required: true,
+        required: true
       },
       coordinates: {
         type: [Number],
-        required: true,
-      },
+        required: true
+      }
     },
     address: {
       city: String,
       zipcode: String,
-      street: String,
+      street: String
     },
     contact: {
       firstname: String,
       lastname: String,
       phone: String,
-      email: String,
+      email: String
     },
     description: String,
     password: String,
     consent: {
       processing: Boolean,
-      publicContact: Boolean,
+      publicContact: Boolean
     },
+    verified: {
+      mail: {
+        type: Boolean,
+        default: false
+      },
+      manually: {
+        type: Boolean,
+        default: false
+      }
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );

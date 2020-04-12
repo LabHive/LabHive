@@ -10,21 +10,18 @@ import { authMiddleware } from './middlewares/auth';
 import { changePassword } from './endpoints/changePassword';
 import { search } from './endpoints/search';
 import Profile from './endpoints/Profile';
-import { labLocations } from './endpoints/labLocations';
 import { language } from './endpoints/language';
+import { labLocations } from './endpoints/labLocations';
+import { OPT } from './options';
+import { activate } from './endpoints/activate';
 
 let app = express();
 let router = express.Router();
 
-export let HMAC_KEY: string;
-if (process.env.PRODUCTION) {
+if (OPT.PRODUCTION) {
   app.use(express.static('dist'));
-  HMAC_KEY = readFileSync('./secret/jsonwebtoken_hmacKey.txt', {
-    encoding: 'utf8',
-  });
 } else {
   app.use(cors());
-  HMAC_KEY = 'randomHmacKey';
 }
 
 app.use(express.json());
@@ -43,6 +40,7 @@ router.post('/reset-password', resetPassword);
 router.post('/login', login);
 router.get('/search', search);
 router.get('/lab-locations', labLocations);
+router.post('/activate', activate);
 
 router.use(authMiddleware);
 
@@ -52,6 +50,6 @@ router
   .post('/profile', Profile.post)
   .delete('/profile', Profile.delete);
 
-app.listen(5000, function () {
+app.listen(5000, function() {
   console.log('Example app listening on port 5000!');
 });

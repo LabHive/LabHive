@@ -36,7 +36,8 @@ services:
       - 5000:5000
     environment: 
       PRODUCTION: "1"
-
-  
+      DISABLE_VERIFICATION: "1"
+      ENABLE_MAIL: "0"
+      BASE_URL: "http://localhost:5000"
 
   

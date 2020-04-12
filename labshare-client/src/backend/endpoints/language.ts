@@ -1,8 +1,11 @@
 
 import express from 'express'
+import { LANG, LANG_TYPE } from '../constants'
 
-export function language(req: express.Request, res: express.Response) {
+
+export function getLangID(req: express.Request): LANG_TYPE {
     let accept_language = req.headers['accept-language']
+    let selected_lang_id = 'en'
     if (accept_language) {
         let raw_languages = accept_language.split(',')
         let languages = []
@@ -35,21 +38,17 @@ export function language(req: express.Request, res: express.Response) {
             }
         }
 
-        let selected_lang_id = selected_lang.language
-        if (selected_lang_id.indexOf('de') > -1) {
+        if (selected_lang.language.indexOf('de') > -1) {
             selected_lang_id = 'de'
-        } else {
-            selected_lang_id = 'en'
-        }
-
-        return res.send({
-            success: true,
-            language: selected_lang_id
-        })
+        } 
     }
 
+    return <LANG_TYPE>selected_lang_id
+}
+
+export function language(req: express.Request, res: express.Response) {
     return res.send({
         success: true,
-        language: 'en'
+        language: getLangID(req)
     })
 }
