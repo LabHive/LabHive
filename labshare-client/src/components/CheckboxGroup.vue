@@ -1,3 +1,23 @@
+<i18n>
+    {
+    "en": {
+    "bsl2": "Work under BSL2 regulations/safety standards",
+    "bsl3": "Work under BSL3 regulations/safety standards",
+    "sample_processing": "(Pre)Processing of clinical samples",
+    "rna_isolation": "RNA isolation (with Kit)",
+    "qpcr": "qPCR",
+    "sample_collection": "clinical experience (sample collection)"
+    },
+    "de": {
+    "bsl2": "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
+    "bsl3": "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
+    "sample_processing": "Vor/Aufbereitung klinischer Proben",
+    "rna_isolation": "RNA isolation (Mit Kit)",
+    "qpcr": "qPCR",
+    "sample_collection": "Klinische Erfahrung (Probenkollektion)"
+    }
+    }
+</i18n>
 <template>
   <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
     <b-container>

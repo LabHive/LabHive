@@ -1,3 +1,23 @@
+<i18n>
+    {
+    "en":{
+    "requestRessource": "Request a ressource",
+    "requestVolunteerSkills": "Request volunteer skills",
+    "requestEquipment": "Request Equipment",
+    "equipmentDescription": "Description of the requested equipment",
+    "requestAdvice":"Request advice and know-how",
+    "adviceDescription": "Description of requested advice"
+    },
+    "de":{
+    "requestRessource": "Eine Ressource anfragen",
+    "requestVolunteerSkills": "Qualifizierte Freiwillige mit Fähigkeiten anfragen",
+    "requestEquipment": "Equipment anfragen",
+    "equipmentDescription": "Beschreibung des angefragten Equipments",
+    "requestAdvice":"Beratung und Know-How anfragen",
+    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"
+    }
+    }
+</i18n>
 <template>
   <div>
     <h2>{{ $t("requestRessource") }}</h2>

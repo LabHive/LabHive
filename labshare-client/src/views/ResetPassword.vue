@@ -1,15 +1,18 @@
 <i18n>
-{
-    "en": {},
+    {
+    "en": {
+    "title": "Reset password",
+    "successMessage": "Password updated",
+    "loadingMessage": "Please wait",
+    "back": "Back to login"
+    },
     "de": {
-        "title": "Reset password",
-        "successMessage": "Password updated",
-        "loadingMessage": "Please wait",
-        "passwordTooShortMessage": "The password minimum length is 6 characters",
-        "passwordsDoesNotMatchMessage": "The passwords doesn't match",
-        "back": "Back to login"
+    "title": "Passwort zurücksetzen",
+    "successMessage": "Passwort aktualisiert",
+    "loadingMessage": "Bitte warten",
+    "back": "Zurück zum Login"
     }
-}
+    }
 </i18n>
 
 <template>

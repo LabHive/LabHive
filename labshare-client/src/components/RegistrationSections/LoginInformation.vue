@@ -1,4 +1,13 @@
-
+<i18n>
+    {
+    "en":{
+    "loginInfo": "Login information"
+    },
+    "de":{
+    "loginInfo": "Login Information"
+    }
+    }
+</i18n>
 <template>
   <div>
     <h3 class="section">{{ $t("loginInfo") }}</h3>

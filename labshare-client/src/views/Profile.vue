@@ -1,11 +1,14 @@
 <i18n>
-{
-  "en": {},
-  "de": {
+    {
+    "en": {
     "profile": "Profile",
     "profileUpdated": "Profile updated"
-  }
-}
+    },
+    "de": {
+    "profile": "Profil",
+    "profileUpdated": "Profil aktualisiert"
+    }
+    }
 </i18n>
 <template>
   <div class="profile">

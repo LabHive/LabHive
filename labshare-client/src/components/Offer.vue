@@ -1,3 +1,17 @@
+<i18n>
+    {
+    "en":{
+    "offerRessource": "Offer a ressource",
+    "offerEquipment": "Offer equipment",
+    "offerAdvice": "Offer advice and know-how"
+    },
+    "de":{
+    "offerRessource": "Ressource anbieten",
+    "offerEquipment": "Equipment anbieten",
+    "offerAdvice": "Beratung und Know-How anbieten"
+    }
+    }
+</i18n>
 <template>
   <div>
     <h2>{{ $t("offerRessource") }}</h2>

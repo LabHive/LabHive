@@ -10,7 +10,7 @@
     "signOut": "Logout",
     "dataProtection": "Data protection",
     "imprint": "Imprint",
-    "request": "Request Ressources",
+    "requestRessource": "Request Ressources",
     "search": "Search"
   },
   "de": {
@@ -23,7 +23,7 @@
     "signOut": "Logout",
     "dataProtection": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "request": "Bedarfsanfrage",
+    "requestRessource": "Bedarfsanfrage",
     "search": "Suche"
   }
 }

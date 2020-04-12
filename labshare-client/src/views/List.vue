@@ -1,17 +1,16 @@
 <i18n>
-{
-  "en": {
-    "noResults": "No results could be found!",
-    "title": "Search"
-  },
-  "de": {
+    {
+    "en": {
+    "title": "Search",
+    "diagnostics": "Diagnostics",
+    "noResults": "No results could be found!"
+    },
+    "de": {
     "title": "Suche",
-    "rnaExtraction": "RNA-Extraction",
-    "testKits": "Test Kits",
     "diagnostics": "Diagnostiker",
     "noResults": "Keine Ergebnisse gefunden!"
-  }
-}
+    }
+    }
 </i18n>
 <template>
   <div class="list-view">
