@@ -1,5 +1,11 @@
 <i18n>{
-  "en": {},
+  "en": {
+    "title": "Test Capacity and Support",
+    "testsPerWeek": "Tests per Week",
+    "qualifiedVolunteers": "Qualifiied Volunteers",
+    "researchLabs": "Research Laboratories",
+    "diagnosticLabs": "Diagnostic Centers"
+  },
   "de": {
     "title": "Testkapazität und Unterstützung",
     "testsPerWeek": "Tests pro Woche",
