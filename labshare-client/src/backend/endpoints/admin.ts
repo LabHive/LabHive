@@ -1,7 +1,7 @@
 import express from "express"
 import utils from '../utils'
 import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND } from 'http-status-codes'
-import { UserAdmin, UserCommon } from '../database/database'
+import { UserAdmin, UserCommon, ActivationToken } from '../database/database'
 import argon from 'argon2'
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import { CONF } from '../options'
@@ -9,6 +9,9 @@ import jsonwebtoken from "jsonwebtoken"
 import { registration_admin } from '../jsonSchemas/registration_admin'
 import { Validator } from 'jsonschema'
 import { authMiddleware } from '../middlewares/auth'
+import { sendActivationMail } from '../mail/mailer'
+import { getLangID } from './language'
+import { v4 } from 'uuid'
 
 
 export class AdminEndpoint {
@@ -30,6 +33,7 @@ export class AdminEndpoint {
         this.router.post('/user/disable/:id', this.disableUser)
         this.router.post('/user/enable/:id', this.enableUser)
         this.router.post('/user/delete/:id', this.deleteUser)
+        this.router.post('/user/resendActivationMail/:id', this.resendActivationMail)
 
         this.router.use(this.blackhole)
     }
@@ -148,7 +152,7 @@ export class AdminEndpoint {
         }
 
         let docs = await UserCommon.find({})
-            .sort({ "verified.manually": 1 })
+            .sort({ "verified.manually": 1, disabled: 1, createdAt: -1 })
             .limit(20)
             .skip(page_int * 20)
             .select('-password -location -lookingFor -offers -__v -consent')
@@ -188,62 +192,96 @@ export class AdminEndpoint {
     async activateUser(req: express.Request, res: express.Response) {
         let userId = req.params.id
 
-        let user = await UserCommon.findById(userId).exec()
-        if (!user) {
-            return utils.errorResponse(res, BAD_REQUEST, 'User not found')
-        }
+        try {
+            let user = await UserCommon.findById(userId).exec()
+            if (!user) {
+                return utils.errorResponse(res, BAD_REQUEST, 'User not found')
+            }
 
-        user.verified.manually = true
-        user.save().then(() => {
+            user.verified.manually = true
+            await user.save()
             utils.successResponse(res)
-        }).catch((err) => {
-            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err)
-        })
+        } catch(err) {
+            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
+        }
     }
 
     async disableUser(req: express.Request, res: express.Response) {
         let userId = req.params.id
 
-        let user = await UserCommon.findById(userId).exec()
-        if (!user) {
-            return utils.errorResponse(res, BAD_REQUEST, 'User not found')
-        }
+        try {
+            let user = await UserCommon.findById(userId).exec()
+            if (!user) {
+                return utils.errorResponse(res, BAD_REQUEST, 'User not found')
+            }
 
-        user.disabled = true
-        user.save().then(() => {
+            user.disabled = true
+            await user.save()
             utils.successResponse(res)
-        }).catch((err) => {
-            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err)
-        })
+        }
+        catch(err) {
+            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
+        }
     }
 
     async enableUser(req: express.Request, res: express.Response) {
         let userId = req.params.id
 
-        let user = await UserCommon.findById(userId).exec()
-        if (!user) {
-            return utils.errorResponse(res, BAD_REQUEST, 'User not found')
-        }
+        try {
+            let user = await UserCommon.findById(userId).exec()
+            if (!user) {
+                return utils.errorResponse(res, BAD_REQUEST, 'User not found')
+            }
 
-        user.disabled = false
-        user.save().then(() => {
+            user.disabled = false
+            user.save()
             utils.successResponse(res)
-        }).catch((err) => {
-            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err)
-        })
+        }
+        catch (err) {
+            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
+        }
     }
 
     async deleteUser(req: express.Request, res: express.Response) {
         let userId = req.params.id
 
-        UserCommon.findByIdAndDelete(userId).then((doc) => {
+        try {
+            let doc = await UserCommon.findByIdAndDelete(userId)
             if (!doc)
                 return utils.badRequest(res, "User not found")
+                
             utils.successResponse(res)
-        }).catch((err) => {
-            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err)
-        })
+        }
+        catch (err) {
+            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
+        }
     }
+
+    async resendActivationMail(req: express.Request, res: express.Response) {
+        let userId = req.params.id
+
+        try {
+            let user = await UserCommon.findById(userId)
+            if (!user)
+                return utils.badRequest(res, "User not found")
+
+            let token_doc = await ActivationToken.findOne({ objectId: userId })
+            let token = token_doc?.token
+            if (!token_doc) {
+                token = v4()
+                token_doc = new ActivationToken({ token: token, objectId: userId })
+                await token_doc.save()
+            }
+
+            let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
+            let language = getLangID(req)
+
+            await sendActivationMail(user.contact.email, link, language)
+        }
+        catch (err) {
+            utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
+        }
+    } 
 
 }
 
