@@ -1,6 +1,8 @@
 <i18n>{
   "en": {},
   "de": {
+    "title": "Testkapazität und Unterstützung",
+    "testsPerWeek": "Tests pro Woche",
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren"
@@ -8,65 +10,47 @@
 }</i18n>
 <template>
   <div class="coverage">
-    <b-col>
-      <l-map
-        v-if="showMap"
-        :zoom="zoom"
-        :center="center"
-        :options="mapOptions"
-        style="height: 600px; width: 450px;"
-        @update:center="centerUpdate"
-        @update:zoom="zoomUpdate"
-      >
-        <l-circle-marker
-          v-for="marker in markers"
-          :lat-lng="marker.position"
-          :key="marker.id"
-          :radius="8"
-          :fill-color="labshareGreenHexCode"
-          :color="labshareGreenHexCode"
-          :fill-opacity="1"
-        />
-        <l-tile-layer :url="url" :attribution="attribution" />
-      </l-map>
-    </b-col>
-    <b-col>
-      <div v-if="markerCounts">
-        <b-row>
-          <b-col>{{markerCounts.volunteer}} {{$t('qualifiedVolunteers')}}</b-col>
-        </b-row>
-        <b-row>
-          <b-col>{{markerCounts.lab_diag}} {{$t('diagnosticLabs')}}</b-col>
-        </b-row>
-        <b-row>
-          <b-col>{{markerCounts.lab_research}} {{$t('researchLabs')}}</b-col>
-        </b-row>
-      </div>
-    </b-col>
     <b-container>
       <b-row class="text-center">
         <b-col>
-          <h3>Testkapazität und Unterstützung</h3>
+          <h3>{{ $t('title') }}</h3>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols lg="6" md="6" sm="12">
-          <figure class="text-center">
-            <img class="img-fluid" src="../assets/map.svg" />
-          </figure>
+        <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center">
+          <l-map
+            v-if="showMap"
+            :zoom="zoom"
+            :center="center"
+            :options="mapOptions"
+            style="height: 456px; width: 350px;"
+            @update:center="centerUpdate"
+            @update:zoom="zoomUpdate"
+          >
+            <l-circle-marker
+              v-for="marker in markers"
+              :lat-lng="marker.position"
+              :key="marker.id"
+              :radius="8"
+              :fill-color="labshareGreenHexCode"
+              :color="labshareGreenHexCode"
+              :fill-opacity="1"
+            />
+            <l-tile-layer :url="url" :attribution="attribution" />
+          </l-map>
         </b-col>
         <b-col cols lg="6" md="6" sm="12">
           <dl class="total-stats">
             <dt>354,521</dt>
-            <dd>Tests pro Woche</dd>
+            <dd>{{ $t('testsPerWeek') }}</dd>
           </dl>
-          <dl>
-            <dt>531</dt>
-            <dd>Qualifizierte Freiwillige</dd>
-            <dt>61</dt>
-            <dd>Forschungslabore</dd>
-            <dt>142</dt>
-            <dd>Diagnostikzentren</dd>
+          <dl v-if="markerCounts">
+            <dt>{{ markerCounts.volunteer }}</dt>
+            <dd>{{ $t('qualifiedVolunteers') }}</dd>
+            <dt>{{ markerCounts.lab_research }}</dt>
+            <dd>{{ $t('researchLabs') }}</dd>
+            <dt>{{ markerCounts.lab_diag }}</dt>
+            <dd>{{ $t('diagnosticLabs') }}</dd>
           </dl>
         </b-col>
       </b-row>
@@ -74,18 +58,18 @@
   </div>
 </template>
 <script>
-import { latLng, Icon, latLngBounds } from "leaflet";
-import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
+import { latLng, Icon, latLngBounds } from 'leaflet';
+import { LMap, LTileLayer, LCircleMarker } from 'vue2-leaflet';
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
 export default {
-  name: "Example",
+  name: 'Example',
   components: {
     LMap,
     LTileLayer,
@@ -93,14 +77,14 @@ export default {
   },
   data() {
     return {
-      zoom: 6,
+      zoom: 5,
       center: latLng(51.1657, 10.4515),
-      url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
+      url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
       attribution:
         '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
       mapOptions: {
         zoomSnap: 0.5,
-        minZoom: 6,
+        minZoom: 5,
         maxBounds: new latLngBounds(
           [47.100045, 5.430908],
           [55.412386, 15.424805]
@@ -109,11 +93,11 @@ export default {
       showMap: true,
       markers: [],
       markerCounts: undefined,
-      labshareGreenHexCode: "#177867"
+      labshareGreenHexCode: '#177867'
     };
   },
   created() {
-    this.$http.get("lab-locations").then(
+    this.$http.get('lab-locations').then(
       ({
         body: {
           data: { markerCounts, markers }
@@ -153,7 +137,7 @@ $color-bkg-primary: #f7f6fd;
   padding: 65px 0;
 
   &:before {
-    content: "";
+    content: '';
     background: #fff;
     left: 0;
     right: 0;
@@ -164,7 +148,7 @@ $color-bkg-primary: #f7f6fd;
   }
 
   &:after {
-    content: "";
+    content: '';
     background: $color-bkg-primary;
     left: 0;
     right: 0;
