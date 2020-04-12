@@ -40,8 +40,8 @@
           </l-map>
         </b-col>
         <b-col cols lg="6" md="6" sm="12">
-          <dl class="total-stats">
-            <dt>354,521</dt>
+          <dl v-if="testsPerWeek" class="total-stats">
+            <dt>{{ testsPerWeek }}</dt>
             <dd>{{ $t('testsPerWeek') }}</dd>
           </dl>
           <dl v-if="markerCounts">
@@ -91,19 +91,20 @@ export default {
         )
       },
       showMap: true,
+      testsPerWeek: undefined,
       markers: [],
       markerCounts: undefined,
       labshareGreenHexCode: '#177867'
     };
   },
   created() {
-    this.$http.get('lab-locations').then(
+    this.$http.get('test-coverage').then(
       ({
         body: {
-          data: { markerCounts, markers }
+          data: { testsPerWeek, markerCounts, markers }
         }
       }) => {
-        console.log(markerCounts);
+        this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
         this.markerCounts = markerCounts;
         this.markers = markers.map(({ latLong: { lat, long } }, index) => ({
           id: index,
@@ -120,9 +121,6 @@ export default {
     },
     centerUpdate(center) {
       this.currentCenter = center;
-    },
-    alert(marker) {
-      window.alert(JSON.stringify(marker));
     }
   }
 };

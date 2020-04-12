@@ -11,7 +11,7 @@ import { changePassword } from './endpoints/changePassword';
 import { search } from './endpoints/search';
 import Profile from './endpoints/Profile';
 import { language } from './endpoints/language';
-import { labLocations } from './endpoints/labLocations';
+import { testCoverage } from './endpoints/testCoverage';
 import { OPT } from './options';
 import { activate } from './endpoints/activate';
 
@@ -39,7 +39,7 @@ router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 router.post('/login', login);
 router.get('/search', search);
-router.get('/lab-locations', labLocations);
+router.get('/test-coverage', testCoverage);
 router.post('/activate', activate);
 
 router.use(authMiddleware);

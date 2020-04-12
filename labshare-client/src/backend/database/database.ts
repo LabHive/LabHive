@@ -13,6 +13,7 @@ import {
   ActivationTokenSchema,
   IActivationToken
 } from './schemas/IActivationToken';
+import { TESTS_PER_WEEK } from '../constants';
 
 let promise: Promise<any>;
 if (!process.env.PRODUCTION) {
@@ -101,7 +102,8 @@ export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
   }
 }
 
-export async function getMarkerLocations(): Promise<{
+export async function getTestCoverage(): Promise<{
+  testsPerWeek: number;
   markerCounts: { [index in UserRoles]: number };
   markers: Array<{
     role: UserRoles;
@@ -113,6 +115,7 @@ export async function getMarkerLocations(): Promise<{
   const volunteers = await UserVolunteer.find();
 
   return {
+    testsPerWeek: TESTS_PER_WEEK,
     markerCounts: {
       [UserRoles.LAB_DIAG]: labDiags.length,
       [UserRoles.LAB_RESEARCH]: labResearches.length,
