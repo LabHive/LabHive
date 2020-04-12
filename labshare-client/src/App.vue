@@ -186,9 +186,14 @@ body {
   a {
     color: #000;
     text-transform: uppercase;
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
 
     &:hover {
       color: $color-green;
+      text-shadow: 0px 0px 1px #177867;
+      transition: all 0.15s ease-in-out;
+      -webkit-transition: all 0.15s ease-in-out;
     }
   }
 
