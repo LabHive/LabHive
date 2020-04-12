@@ -77,14 +77,14 @@ export default {
   },
   data() {
     return {
-      zoom: 5,
+      zoom: 5.5,
       center: latLng(51.1657, 10.4515),
       url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
       attribution:
         '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
       mapOptions: {
         zoomSnap: 0.5,
-        minZoom: 5,
+        minZoom: 5.5,
         maxBounds: new latLngBounds(
           [47.100045, 5.430908],
           [55.412386, 15.424805]
