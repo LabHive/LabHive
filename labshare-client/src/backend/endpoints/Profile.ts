@@ -1,6 +1,6 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
-import { getModelForRole, getUserById } from '../database/database';
+import { getModelForRole, getUserById, getUserOrAdmin } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
@@ -9,7 +9,7 @@ class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         let token = utils.getUnverifiedDecodedJWT(req);
         
-        let user = await getUserById(token.sub);
+        let user = await getUserOrAdmin({_id: token.sub});
         if (!user) {
             return utils.badRequest(res);
         }
