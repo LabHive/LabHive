@@ -8,7 +8,7 @@
     "profile": "Profile",
     "changePassword": "Change Password",
     "signOut": "Logout",
-    "dataProtection": "Data protection",
+    "dataProtection": "Privacy Policy",
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
