@@ -1,14 +1,26 @@
+<i18n>
+{
+  "en": {
+    "contactInfo": "Contact Information",
+    "address": "Address"
+  },
+  "de": {
+    "contactInfo": "Kontakt Informationen",
+    "address": "Adresse"
+  }
+}
+</i18n>
 <template>
   <div>
     <h3 class="section">{{ $t("contactInfo") }}</h3>
     <InputForm
-      name="labName"
+      :name="role === 'lab_diag' ? 'labName': 'instituteName'"
       v-model="formData.organization"
       :valFunc="val.validOrganization"
     ></InputForm>
 
     <InputForm
-      name="labWebsite"
+      :name="role === 'lab_diag' ? 'labWebsite': 'instituteWebsite'"
       v-model="formData.website"
       :valFunc="val.validUrl"
     ></InputForm>

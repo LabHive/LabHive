@@ -7,7 +7,8 @@
     "furtherInfo": "Further Information",
     "optIn": "Optional Consents",
     "agree": "I agree.",
-    "not_agree": "I don't agree."
+    "not_agree": "I don't agree.",
+    "availability": "Availability"
   },
   "de": {
     "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
@@ -16,30 +17,64 @@
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligungen",
     "agree": "Ich willige ein.",
-    "not_agree": "Ich willige nicht ein."
+    "not_agree": "Ich willige nicht ein.",
+    "availability": "Verfügbarkeit"
   }
 }
 </i18n>
 <template>
   <div>
     <h3 class="section">{{ $t("qualification") }}</h3>
-    <CheckboxGroup radio required name="qualification" :data="qualification" v-model="formData.details.qualification"></CheckboxGroup>
+    <CheckboxGroup
+      radio
+      required
+      name="qualification"
+      :data="qualification"
+      v-model="formData.details.qualification"
+    ></CheckboxGroup>
 
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>
     <CheckboxGroup name="skills" :data="labSkills" v-model="formData.details.skills"></CheckboxGroup>
 
-
     <h3 class="section">{{$t("optIn")}}</h3>
     <p v-html="$t('consentPublicSearch')"></p>
-    <b-form-group :state="formData.consent.publicSearch !== null" :invalid-feedback="$t('required')" :valid-feedback="'OK'">
-      <b-form-radio v-model="formData.consent.publicSearch" name="publicSearch" :value="true">{{ $t('agree') }}</b-form-radio>
-      <b-form-radio v-model="formData.consent.publicSearch" name="publicSearch" :value="false">{{ $t('not_agree') }}</b-form-radio>
+    <b-form-group
+      :state="formData.consent.publicSearch !== null"
+      :invalid-feedback="$t('required')"
+      :valid-feedback="'OK'"
+    >
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.publicSearch"
+        name="publicSearch"
+        :value="true"
+      >{{ $t('agree') }}</b-form-radio>
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.publicSearch"
+        name="publicSearch"
+        :value="false"
+      >{{ $t('not_agree') }}</b-form-radio>
     </b-form-group>
 
     <p v-html="$t('consentMail')"></p>
-    <b-form-group :state="formData.consent.mailUpdates !== null" :invalid-feedback="$t('required')" :valid-feedback="'OK'">
-      <b-form-radio v-model="formData.consent.mailUpdates" name="mailUpdates" :value="true">{{ $t('agree') }}</b-form-radio>
-      <b-form-radio v-model="formData.consent.mailUpdates" name="mailUpdates" :value="false">{{ $t('not_agree') }}</b-form-radio>
+    <b-form-group
+      :state="formData.consent.mailUpdates !== null"
+      :invalid-feedback="$t('required')"
+      :valid-feedback="'OK'"
+    >
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.mailUpdates"
+        name="mailUpdates"
+        :value="true"
+      >{{ $t('agree') }}</b-form-radio>
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.mailUpdates"
+        name="mailUpdates"
+        :value="false"
+      >{{ $t('not_agree') }}</b-form-radio>
     </b-form-group>
 
     <h3 class="section">{{ $t("availability") }}</h3>
@@ -48,11 +83,8 @@
         id="readyToHelp"
         v-model="formData.availability"
         name="readyToHelp"
-      >
-        {{ $t("ready") }}
-      </b-form-checkbox>
+      >{{ $t("ready") }}</b-form-checkbox>
     </b-form-group>
-
 
     <h3 class="section">{{$t("furtherInfo")}}</h3>
     <b-form-group
@@ -69,7 +101,6 @@
         :state="!val.validDescription(formData.description).valid ? false: null"
       ></b-form-textarea>
     </b-form-group>
-
 
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit" :final="true"></NavButtons>

@@ -3,6 +3,8 @@
     "en": {
     "labName": "Name of Laboratory",
     "labWebsite": "Laboratory Website",
+    "instituteName": "Institute/University",
+    "instituteWebsite": "Website of your Institute/University",
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone Number",
@@ -12,13 +14,15 @@
     "zipcode": "Zipcode",
     "street": "Street",
     "password": "Password",
-    "repeatPassword": "Repeat your password",
+    "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
-    "officialEmail": "E-Mail address of your institute"
+    "officialEmail": "E-Mail Address of your Institute"
     },
     "de":{
     "labName": "Laborname",
     "labWebsite": "Laborwebseite",
+    "instituteName": "Institut/Universität",
+    "instituteWebsite": "Website des Instituts/der Univeristät",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
