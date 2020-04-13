@@ -35,7 +35,11 @@
         <b-navbar-brand href="#/">
           <img src="./assets/logo-green.svg" alt="LabHive" width="161" />
         </b-navbar-brand>
-        <b-navbar-toggle style="float: right" target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle class="custom-toggle-icon collapsed" style="float: right" target="nav-collapse">
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
+        </b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
@@ -190,9 +194,14 @@ body {
   a {
     color: #000;
     text-transform: uppercase;
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
 
     &:hover {
       color: $color-green;
+      text-shadow: 0px 0px 1px #177867;
+      transition: all 0.15s ease-in-out;
+      -webkit-transition: all 0.15s ease-in-out;
     }
   }
 
@@ -235,6 +244,57 @@ body {
     background: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
   }
+}
+
+.navbar-toggler {
+    border: none;
+    margin-right: 15px;
+    margin-bottom: 2px;
+    outline: none;
+}
+
+.custom-toggle-icon {
+      width: 30px;
+      height: 30px;
+}
+
+.custom-toggle-icon .line {
+  display: block;
+  background: $color-green;
+  width: 22px;
+  height: 2px;
+  position: relative;
+  left: 0;
+  border-radius: 50px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+.custom-toggle-icon .line.line-1 {
+  margin-top: 0;
+}
+
+.custom-toggle-icon .line.line-2 {
+  margin-top: 4px;
+}
+
+.custom-toggle-icon .line.line-3 {
+  margin-top: 4px;
+}
+
+.custom-toggle-icon[aria-expanded="true"] .line-1 {
+  transform: translateY(6px) translateX(0) rotate(45deg);
+  -webkit-transform: translateY(6px) translateX(0) rotate(45deg);
+}
+
+.custom-toggle-icon[aria-expanded="true"] .line-2 {
+  opacity: 0;
+}
+
+.custom-toggle-icon[aria-expanded="true"] .line-3 {
+  transform: translateY(-6px) translateX(0) rotate(-45deg);
+  -webkit-transform: translateY(-6px) translateX(0) rotate(-45deg);
 }
 
 .footer-custom {
