@@ -12,7 +12,11 @@ export let localization = {
       required: "Required",
       consentMail: "I agree that LabHive sends me from time to time E-Mail-Updates about new features of the platform.",
       agree: "I agree.",
-      not_agree: "I don't agree."
+      not_agree: "I don't agree.",
+      deleteProfile: "Delete Profile",
+      delete: "Delete",
+      cancel: "Cancel",
+      deleteConfirmation: "Do you really want to delete your profile?"
     },
     de: {
       backend: {
@@ -61,6 +65,10 @@ export let localization = {
       skills: {
         bsl2: "BSL2 Erfahrung"
       },
+      deleteProfile: "Profil löschen",
+      delete: "Löschen",
+      cancel: "Abbruch",
+      deleteConfirmation: "Wollen Sie ihr Profil wirklich löschen?"
     }
   }
 }

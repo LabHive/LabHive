@@ -23,7 +23,7 @@
         {{ error }}
       </div>
       
-      <component :is="form" @formcomplete="save" :profileUpdate="true" :role="profile.role"></component>
+      <component :is="form" @formcomplete="save" :profileUpdate="true" :role="profile.role" @deleteProfile="deleteProfile"></component>
     </template>
   </div>
 </template>
@@ -67,9 +67,22 @@ export default {
           setTimeout(() => (this.updated = false), 3000);
         },
         err => {
-          this.error = err.body.errorDescription;
+          this.error = this.$t('backend.' + err.body.errorDescription);
         }
       );
+    },
+    deleteProfile() {
+      this.$http.delete('profile').then(() => {
+        this.updated = true;
+        setTimeout(() => {
+          this.updated = false
+          this.$store.dispatch('logout').then(() => {
+            this.$router.push("/login");
+          })
+        }, 2000);
+      }, err => {
+        this.error = this.$t('backend.' + err.body.errorDescription);
+      })
     }
   },
   components: {
