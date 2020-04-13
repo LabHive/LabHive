@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     validator(meth) {
-      let a = meth(this.model);
+      let a = meth(this.model, this.name);
       if (a.valid) {
         if (this.timeout) clearTimeout(this.timeout); 
         this.timeout = setTimeout(() => {

@@ -72,7 +72,7 @@ export default {
     }
   },
   methods: {
-    pwVal(data) {
+    pwVal(data, name) {
       let secure = false;
       if (data) {
         let result = zxcvbn(data);
@@ -80,6 +80,10 @@ export default {
       }
 
       let valid = this.passwordRepeat == this.password && data != "" && secure
+      if (name == 'password' && this.passwordRepeat == "" && data != "") {
+        valid = secure
+      }
+
       if (valid) {
         this.$emit('validPassword', true)
       }
