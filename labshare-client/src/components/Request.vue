@@ -4,16 +4,20 @@
     "requestResource": "Request a Resource",
     "requestVolunteerSkills": "Request Volunteer Skills",
     "requestEquipment": "Request Equipment",
+    "requestEquipmentDescription": "More specific information about the equipment you need. How many devices? Which manufacutres work for you?",
     "equipmentDescription": "Description of the Requested Equipment",
     "requestAdvice":"Request Advice and Know-How",
+    "requestAdviceDescription":"More specific information about the topics you need help with.",
     "adviceDescription": "Description of Requested Advice"
     },
     "de":{
     "requestResource": "Eine Ressource anfragen",
     "requestVolunteerSkills": "Qualifizierte Freiwillige mit Fähigkeiten anfragen",
     "requestEquipment": "Equipment anfragen",
+    "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Beratung und Know-How anfragen",
+    "requestAdviceDescription":"Genauere Informationen, über die Themen, bei denen Sie Hilfe gebrauchen",
     "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"
     }
     }
