@@ -5,14 +5,14 @@
     "qualification": "Qualifications",
     "volunteerskills": "Skills",
     "furtherInfo": "Further Information",
-    "optIn": "Optional Consent"
+    "optIn": "Optional Consents"
   },
   "de": {
     "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
     "qualification": "Qualifikationen",
     "volunteerskills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
-    "optIn": "Optionale Einwilligung"
+    "optIn": "Optionale Einwilligungen"
   }
 }
 </i18n>
@@ -24,15 +24,33 @@
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>
     <CheckboxGroup name="skills" :data="labSkills" v-model="formData.details.skills"></CheckboxGroup>
 
+
+    <h3 class="section">{{$t("optIn")}}</h3>
+    <p v-html="$t('consentPublicSearch')"></p>
+    <b-form-group :state="formData.consent.publicSearch !== null" :invalid-feedback="$t('required')" :valid-feedback="'OK'">
+      <b-form-radio v-model="formData.consent.publicSearch" name="publicSearch" :value="true">{{ $t('agree') }}</b-form-radio>
+      <b-form-radio v-model="formData.consent.publicSearch" name="publicSearch" :value="false">{{ $t('not_agree') }}</b-form-radio>
+    </b-form-group>
+
+    <p v-html="$t('consentMail')"></p>
+    <b-form-group :state="formData.consent.mailUpdates !== null" :invalid-feedback="$t('required')" :valid-feedback="'OK'">
+      <b-form-radio v-model="formData.consent.mailUpdates" name="mailUpdates" :value="true">{{ $t('agree') }}</b-form-radio>
+      <b-form-radio v-model="formData.consent.mailUpdates" name="mailUpdates" :value="false">{{ $t('not_agree') }}</b-form-radio>
+    </b-form-group>
+
+    <h3 class="section">{{ $t("availability") }}</h3>
+    <b-form-group>
+      <b-form-checkbox
+        id="readyToHelp"
+        v-model="formData.availability"
+        name="readyToHelp"
+      >
+        {{ $t("ready") }}
+      </b-form-checkbox>
+    </b-form-group>
+
+
     <h3 class="section">{{$t("furtherInfo")}}</h3>
-    <b-form-checkbox
-      id="readyToHelp"
-      v-model="formData.availability"
-      name="readyToHelp"
-    >
-      {{ $t("ready") }}
-    </b-form-checkbox>
-    <br/>
     <b-form-group
       id="description"
       :state="val.validDescription(formData.description).valid"
@@ -48,24 +66,6 @@
       ></b-form-textarea>
     </b-form-group>
 
-    
-
-    <h3 class="section">{{$t("optIn")}}</h3>
-    <fieldset class="form-group">
-      <div tabindex="-1" role="group" class="bv-no-focus-ring">
-        <div class="custom-control custom-checkbox">
-          <input
-            id="processing"
-            type="checkbox"
-            name="processing"
-            autocomplete="off"
-            class="custom-control-input"
-            v-model="formData.consent.publicContact"
-          />
-          <label for="processing" class="custom-control-label" v-html="$t('consentPublicContact')"></label>
-        </div>
-      </div>
-    </fieldset>
 
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit" :final="true"></NavButtons>
