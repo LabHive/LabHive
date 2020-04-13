@@ -1,8 +1,10 @@
-import { Document, Schema } from "mongoose";
+import { Document, Schema } from 'mongoose';
 import { ITimestamp } from './ITimestamps';
 import { LANG_TYPE } from '../../constants';
+import { UserRoles } from '../../../lib/userRoles';
+
 export interface IUserCommon extends Document, ITimestamp {
-    role: string;
+    role: UserRoles;
     organization: string;
     website: string;
     location: {
@@ -35,37 +37,38 @@ export interface IUserCommon extends Document, ITimestamp {
     __t: String
 }
 
-export const UserCommonSchema = new Schema({
+export const UserCommonSchema = new Schema(
+  {
     role: String,
     organization: String,
     website: String,
     location: {
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true
+      },
+      coordinates: {
+        type: [Number],
+        required: true
+      }
     },
     address: {
-        city: String,
-        zipcode: String,
-        street: String
+      city: String,
+      zipcode: String,
+      street: String
     },
     contact: {
-        firstname: String,
-        lastname: String,
-        phone: String,
-        email: String,
+      firstname: String,
+      lastname: String,
+      phone: String,
+      email: String
     },
     description: String,
     password: String,
     consent: {
-        processing: Boolean,
-        publicContact: Boolean,
+      processing: Boolean,
+      publicContact: Boolean
     },
     verified: {
         mail: {
@@ -84,4 +87,5 @@ export const UserCommonSchema = new Schema({
     language: String
 }, {
     timestamps: true
-})
+  }
+);

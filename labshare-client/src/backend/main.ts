@@ -20,10 +20,9 @@ let router = express.Router()
 let adminRouter = new AdminEndpoint(express.Router())
 
 if (OPT.PRODUCTION) {
-    app.use(express.static('dist'));
-}
-else {
-    app.use(cors())
+  app.use(express.static('dist'));
+} else {
+  app.use(cors());
 }
 
 app.use(express.json());

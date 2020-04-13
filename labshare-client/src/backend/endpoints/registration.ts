@@ -44,7 +44,7 @@ export async function registration(req: express.Request, res: express.Response, 
 
     // Hash password
     body.password = await argon2.hash(body.password)
-    body.role = role
+    body.role = <UserRoles>role
 
     if (body.role === UserRoles.VOLUNTEER) {
         delete body.address.street

@@ -9,7 +9,7 @@ import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail'
 import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationToken'
 import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
 import { CONF } from '../options'
-
+import { TESTS_PER_WEEK } from '../constants';
 
 const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
 
@@ -45,25 +45,25 @@ export const ActivationToken = mongoose.model<IActivationToken>('activation_toke
 
 
 export function getUserForMail(email: string): Promise<Optional<IUserCommon>> {
-    return getUser({ "contact.email": email })
+  return getUser({ 'contact.email': email });
 }
 
 export function getUserById(id: string): Promise<Optional<IUserCommon>> {
-    return getUser({_id: id})
+  return getUser({ _id: id });
 }
 
 export function getModelForRole(role: string): Optional<Model<IUserCommon>> {
-    switch (role) {
-        case UserRoles.LAB_DIAG:
-            return UserLabDiag
-        case UserRoles.LAB_RESEARCH:
-            return UserLabResearch
-        case UserRoles.VOLUNTEER:
-            return UserVolunteer;
-        default:
-            console.log("Cannot get database model for role " + role)
-            return undefined
-    }
+  switch (role) {
+    case UserRoles.LAB_DIAG:
+      return UserLabDiag;
+    case UserRoles.LAB_RESEARCH:
+      return UserLabResearch;
+    case UserRoles.VOLUNTEER:
+      return UserVolunteer;
+    default:
+      console.log('Cannot get database model for role ' + role);
+      return undefined;
+  }
 }
 
 export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
@@ -81,4 +81,35 @@ export async function getUserOrAdmin(filter: any): Promise<Optional<IUserCommon>
     }
     
     return undefined
+}
+
+export async function getTestCoverage(): Promise<{
+  testsPerWeek: number;
+  markerCounts: { [index in UserRoles]: number };
+  markers: Array<{
+    role: UserRoles;
+    latLong: { lat: number; long: number };
+  }>;
+}> {
+  const labDiags = await UserLabDiag.find();
+  const labResearches = await UserLabResearch.find();
+  const volunteers = await UserVolunteer.find();
+
+  return {
+    testsPerWeek: TESTS_PER_WEEK,
+    markerCounts: {
+      [UserRoles.LAB_DIAG]: labDiags.length,
+      [UserRoles.LAB_RESEARCH]: labResearches.length,
+      [UserRoles.VOLUNTEER]: volunteers.length
+    },
+    markers: [...labDiags, ...labResearches, ...volunteers].map(
+      ({ role, location }) => ({
+        role,
+        latLong: {
+          lat: location.coordinates[1],
+          long: location.coordinates[0]
+        }
+      })
+    )
+  };
 }
