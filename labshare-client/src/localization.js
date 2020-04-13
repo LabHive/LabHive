@@ -67,7 +67,7 @@ export let localization = {
       labWebsite: "Webseite Ihrer Affiliation",
       labInformation: "Laborinformationen",
       consentPublicSearch:
-        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht wird. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/>Weitere Hinweise finden Sie in unserer <a href=\"/#/dataProtection\">Datenschutzerklärung.</a>",
+        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/>Wenn Sie uns keine Einwilligung erteilen, ist die Verwendung unserer Plattform nur ehr eingeschränkt möglich, wodurch Sie als Helfende*r nicht über die Suche gefunden werden können. Momentan gibt es auch noch keine Möglichkeit Kontakt zu einem registrierten und verifizierten Labor aufzunehmen.<br/>Weitere Hinweise finden Sie in unserer <a href=\"/#/dataProtection\">Datenschutzerklärung.</a>",
       consentMail: "Hiermit willige ich ein, dass LabHive mir gelegentlich E-Mail-Benachrichtigungen über Updates und neue Funktionen der Website schickt.",
       required: "Erforderlich",
       volunteerSkills: "Fähigkeiten",
