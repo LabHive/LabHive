@@ -12,7 +12,7 @@ import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
 import ChangePassword from './views/ChangePassword'
 import Imprint from './views/Imprint'
-import DataProtection from './views/DataProtection'
+import PrivacyPolicy from './views/PrivacyPolicy'
 import Request from './views/Request'
 import Offer from './views/Offer'
 import Activation from './views/Activation'
@@ -29,7 +29,7 @@ const routes = [
   { path: '/reset-password', component: ResetPassword },
   { path: '/forgot-password', component: ForgotPassword },
   { path: '/ueber-uns', component: UeberUns},
-  { path: '/dataProtection', component: DataProtection },
+  { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
   { path: '/search', component: List },
   { path: '/activate', component: Activation },
