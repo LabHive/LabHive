@@ -9,7 +9,7 @@ import jsonwebtoken from "jsonwebtoken"
 import { registration_admin } from '../jsonSchemas/registration_admin'
 import { Validator } from 'jsonschema'
 import { authMiddleware } from '../middlewares/auth'
-import { sendActivationMail } from '../mail/mailer'
+import { sendActivationMail, sendActivationNotice } from '../mail/mailer'
 import { getLangID } from './language'
 import { v4 } from 'uuid'
 import { AdminUserRoles } from '../../lib/userRoles'
@@ -199,8 +199,14 @@ export class AdminEndpoint {
                 return utils.errorResponse(res, BAD_REQUEST, 'User not found')
             }
 
+            if (user.verified.manually) {
+                return utils.errorResponse(res, BAD_REQUEST, "User already activated")
+            }
+
             user.verified.manually = true
             await user.save()
+            
+            await sendActivationNotice(user.contact.email, user.language)
             utils.successResponse(res)
         } catch(err) {
             utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())

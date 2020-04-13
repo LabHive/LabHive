@@ -40,6 +40,7 @@ class Profile {
         delete body.__t
         delete body.verified
         delete body.disabled
+        delete body.language
         
         let model = getModelForRole(token.role)
         let schema = schemaForRole(token.role)

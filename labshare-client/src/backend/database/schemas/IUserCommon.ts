@@ -1,5 +1,6 @@
 import { Document, Schema } from "mongoose";
 import { ITimestamp } from './ITimestamps';
+import { LANG_TYPE } from '../../constants';
 export interface IUserCommon extends Document, ITimestamp {
     role: string;
     organization: string;
@@ -29,6 +30,7 @@ export interface IUserCommon extends Document, ITimestamp {
         mail?: boolean,
         manually?: boolean,
     },
+    language: LANG_TYPE,
     disabled: boolean,
     __t: String
 }
@@ -78,7 +80,8 @@ export const UserCommonSchema = new Schema({
     disabled: {
         type: Boolean,
         default: false,
-    }
+    },
+    language: String
 }, {
     timestamps: true
 })

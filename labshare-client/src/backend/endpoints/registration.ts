@@ -22,6 +22,7 @@ export async function registration(req: express.Request, res: express.Response, 
     delete body.__t
     delete body._id
     delete body.disabled
+    delete body.language
 
     let role = typeof req.query.role === 'string' ? req.query.role : undefined
     if (!role || !v.validRole(role)) return utils.badRequest(res)
@@ -58,6 +59,8 @@ export async function registration(req: express.Request, res: express.Response, 
             manually: true
         }
     }
+
+    body.language = getLangID(req)
 
     let euser = await getUserForMail(body.contact.email)
     if (euser) {
