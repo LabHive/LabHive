@@ -30,6 +30,10 @@ export async function login(req: express.Request, res: express.Response, next: e
         return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "user_not_activated");
     }
 
+    if (user.disabled) {
+        return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "user_disabled");
+    }
+
 
     let hash: string = user.password;
     let password = body.password;
