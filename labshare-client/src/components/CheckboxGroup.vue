@@ -1,20 +1,24 @@
 <i18n>
     {
     "en": {
-    "bsl2": "Work under BSL2 regulations/safety standards",
+    "bsl1": "Work under BSL2 regulations/safety standards",
+	"bsl2": "Work under BSL2 regulations/safety standards",
     "bsl3": "Work under BSL3 regulations/safety standards",
+	"bsl4": "Work under BSL4 regulations/safety standards",
     "sample_processing": "(Pre)Processing of clinical samples",
-    "rna_isolation": "RNA isolation (with Kit)",
+    "rna_isolation": "RNA isolation (with kit)",
     "qpcr": "qPCR",
-    "sample_collection": "clinical experience (sample collection)"
+    "sample_collection": "Clinical experience (sample collection)"
     },
     "de": {
-    "bsl2": "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-    "bsl3": "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
+	"bsl1": "Arbeit unter BSL1 Bedingungen/Sicherheitsstandards",
+    "bsl2": "Arbeit unter BSL2 Bedingungen/Sicherheitsstandards",
+    "bsl3": "Arbeit unter BSL3 Bedingungen/Sicherheitsstandards",
+	"bsl4": "Arbeit unter BSL4 Bedingungen/Sicherheitsstandards",
     "sample_processing": "Vor/Aufbereitung klinischer Proben",
-    "rna_isolation": "RNA isolation (Mit Kit)",
+    "rna_isolation": "RNA-Isolation (mit Kit)",
     "qpcr": "qPCR",
-    "sample_collection": "Klinische Erfahrung (Probenkollektion)"
+    "sample_collection": "Klinische Erfahrung (Probennahme)"
     }
     }
 </i18n>

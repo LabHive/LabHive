@@ -1,16 +1,16 @@
 <i18n>
 {
   "en": {
-    "ready": "I am ready to volunteer! (Can be changed at any point in the profil settings)",
+    "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings.)",
     "qualification": "Qualification",
-    "volunteerskills": "Skills",
+    "volunteerSkills": "Skills",
     "furtherInfo": "Further Information",
     "optIn": "Optional consent"
   },
   "de": {
-    "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
+    "ready": "Ich bin aktuell verfügbar zum Helfen! (Kann jederzeit in den Profileinstellungen geändert werden.)",
     "qualification": "Qualifikation",
-    "volunteerskills": "Fähigkeiten",
+    "volunteerSkills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligung"
   }

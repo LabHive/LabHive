@@ -1,17 +1,17 @@
 <i18n>
     {
     "en":{
-    "requestRessource": "Request a ressource",
+    "requestRessource": "Request consumables",
     "requestVolunteerSkills": "Request volunteer skills",
-    "requestEquipment": "Request Equipment",
-    "equipmentDescription": "Description of the requested equipment",
+    "requestEquipment": "Request devices and equipment",
+    "equipmentDescription": "Description of the requested devices",
     "requestAdvice":"Request advice and know-how",
     "adviceDescription": "Description of requested advice"
     },
     "de":{
-    "requestRessource": "Eine Ressource anfragen",
-    "requestVolunteerSkills": "Qualifizierte Freiwillige mit F‰higkeiten anfragen",
-    "requestEquipment": "Equipment anfragen",
+    "requestRessource": "Verbrauchsmaterial anfragen",
+    "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
+    "requestEquipment": "Ger√§te und Equipment anfragen",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Beratung und Know-How anfragen",
     "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"

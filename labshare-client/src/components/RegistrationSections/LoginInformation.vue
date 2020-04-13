@@ -4,7 +4,7 @@
     "loginInfo": "Login information"
     },
     "de":{
-    "loginInfo": "Login Information"
+    "loginInfo": "Zugangsdaten"
     }
     }
 </i18n>

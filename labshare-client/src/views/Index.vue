@@ -2,7 +2,7 @@
     {
     "en":{
     "0title": "We combine forces for more SARS-CoV-2 tests",
-    "1title": "Together we unleash the clenched Power of Science!",
+    "1title": "Together we unleash the cumulative Power of Science!",
     "button": "Join now!",
     "partner": "In collaboration with",
     "1text": "We connect",
@@ -26,7 +26,7 @@
     "group2": "Forschungslabore",
     "g2text": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)",
     "group3": "Diagnostikzentren",
-    "g3text": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
+    "g3text": "Aktive Diagnostikzentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
     }

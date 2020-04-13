@@ -2,11 +2,11 @@
     {
     "en":{
     "section": "Further information",
-    "furtherInfo": "Further information"
+    "furtherInfo": "Please add further details, that might be relevant..."
     },
     "de":{
     "section": "Weitere Informationen",
-    "furtherInfo": "Weitere Informationen"
+    "furtherInfo": "Hier können Sie ausführlichere Informationen hinterlasen, die relevant sein könnten..."
     }
     }
 </i18n>

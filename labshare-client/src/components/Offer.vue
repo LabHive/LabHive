@@ -1,13 +1,13 @@
 <i18n>
     {
     "en":{
-    "offerRessource": "Offer a ressource",
-    "offerEquipment": "Offer equipment",
+    "offerRessource": "Offer consumables",
+    "offerEquipment": "Offer devices and equipment",
     "offerAdvice": "Offer advice and know-how"
     },
     "de":{
-    "offerRessource": "Ressource anbieten",
-    "offerEquipment": "Equipment anbieten",
+    "offerRessource": "Verbrauchsmaterial anbieten",
+    "offerEquipment": "Geräte und Equipment anbieten",
     "offerAdvice": "Beratung und Know-How anbieten"
     }
     }
