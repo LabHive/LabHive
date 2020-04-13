@@ -2,16 +2,43 @@
     {
     "en":{
     "section": "Further Information",
-    "furtherInfo": "Further Information"
+    "furtherInfo": "Further Information",
+    "optIn": "Optional Consent"
     },
     "de":{
     "section": "Weitere Informationen",
-    "furtherInfo": "Weitere Informationen"
+    "furtherInfo": "Weitere Informationen",
+    "optIn": "Optionale Einwilligung",
+    "dataProcessingInformation": "<p>Durch das Abschließen der Registrierung werden Ihre Daten von LabHive verarbeitet. Ihre angegebenen Kontaktinformationen sind nur für registrierte und von uns verifizierte Forschungs- und Diagnostiklabore sichtbar. Registrierte Helfer haben momentan noch keine Möglichkeit auf ihre Suchanfragen zu reagieren. Sie können allerdings Helfer über die Suchfunktion finden, deren Kontaktdaten sehen und diese kontaktieren.<br/>Weiter Informationen finden Sie in unserer Datenschutzerklärung.</p>"
     }
     }
 </i18n>
 <template>
   <div>
+
+    <h3 class="section">{{$t("optIn")}}</h3>
+    <p v-html="$t('consentMail')"></p>
+    <b-form-group
+      :state="formData.consent.mailUpdates !== null"
+      :invalid-feedback="$t('required')"
+      :valid-feedback="'OK'"
+    >
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.mailUpdates"
+        name="mailUpdates"
+        :value="true"
+      >{{ $t('agree') }}</b-form-radio>
+      <b-form-radio
+        @change="$root.$emit('inputForm_changed')"
+        v-model="formData.consent.mailUpdates"
+        name="mailUpdates"
+        :value="false"
+      >{{ $t('not_agree') }}</b-form-radio>
+    </b-form-group>
+
+    <div>{{ $t("dataProcessingInformation") }}</div>
+
 
     <h3 class="section">{{$t("section")}}</h3>
     <b-form-group

@@ -6,8 +6,6 @@
     "volunteerSkills": "Skills",
     "furtherInfo": "Further Information",
     "optIn": "Optional Consents",
-    "agree": "I agree.",
-    "not_agree": "I don't agree.",
     "availability": "Availability"
   },
   "de": {
@@ -16,8 +14,6 @@
     "volunteerSkills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligungen",
-    "agree": "Ich willige ein.",
-    "not_agree": "Ich willige nicht ein.",
     "availability": "Verfügbarkeit"
   }
 }
