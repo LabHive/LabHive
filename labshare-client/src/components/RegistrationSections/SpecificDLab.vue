@@ -1,8 +1,8 @@
 <i18n>
     {
     "en":{
-    "section": "Further information",
-    "furtherInfo": "Further information"
+    "section": "Further Information",
+    "furtherInfo": "Further Information"
     },
     "de":{
     "section": "Weitere Informationen",
