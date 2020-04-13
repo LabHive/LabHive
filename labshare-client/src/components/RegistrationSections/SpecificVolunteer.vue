@@ -1,7 +1,7 @@
 <i18n>
 {
   "en": {
-    "ready": "I am ready to volunteer! (Can be changed at any point in the profil settings)",
+    "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings)",
     "qualification": "Qualification",
     "volunteerskills": "Skills",
     "furtherInfo": "Further Information",
