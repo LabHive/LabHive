@@ -252,6 +252,10 @@ export class AdminEndpoint {
     async deleteUser(req: express.Request, res: express.Response) {
         let userId = req.params.id
 
+        let token = utils.getUnverifiedDecodedJWT(req)
+        if (token.role !== AdminUserRoles.SUPER_ADMIN)
+            return utils.errorResponse(res, UNAUTHORIZED, "unauthorized")
+
         try {
             let doc = await UserCommon.findByIdAndDelete(userId)
             if (!doc)
