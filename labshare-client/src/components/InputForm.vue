@@ -1,19 +1,19 @@
 <i18n>
 {
     "en": {
-    "labName": "Name of laboratory",
-    "labWebsite": "Laboratory website",
-    "firstName": "First name",
-    "lastName": "Last name",
-    "phone": "Phone number",
-    "contactInfo": "Contact information",
+    "labName": "Name of Laboratory",
+    "labWebsite": "Laboratory Website",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "contactInfo": "Contact Information",
     "address": "Address",
     "city": "City",
     "zipcode": "Zipcode",
     "street": "Street",
     "password": "Password",
     "repeatPassword": "Repeat your password",
-    "email": "E-Mail address",
+    "email": "E-Mail Address",
     "officialEmail": "E-Mail address of your institute"
     },
     "de":{
