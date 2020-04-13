@@ -61,8 +61,8 @@ export default {
         organization: "",
         availability: true,
         consent: {
-          processing: true,
-          publicContact: false
+          publicSearch: null,
+          mailUpdates: null
         }
       },
       formSections: [

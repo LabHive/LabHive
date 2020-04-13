@@ -25,8 +25,8 @@ export interface IUserCommon extends Document, ITimestamp {
     description: string;
     password: string;
     consent: {
-        processing: boolean;
-        publicContact: boolean;
+        publicSearch: boolean;
+        mailUpdates: boolean;
     };
     verified: {
         mail?: boolean,
@@ -67,8 +67,8 @@ export const UserCommonSchema = new Schema(
     description: String,
     password: String,
     consent: {
-      processing: Boolean,
-      publicContact: Boolean
+      publicSearch: Boolean,
+      mailUpdates: Boolean
     },
     verified: {
         mail: {

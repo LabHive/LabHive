@@ -2,6 +2,7 @@ import { ValidationError } from '../backend/errors';
 import { labSkills, equipment, advices, qualification } from "./selectLists";
 import './optional'
 import { UserRoles } from './userRoles';
+import { IUserCommon } from '../backend/database/schemas/IUserCommon';
 
 export class ValidationResult {
     valid: boolean;
@@ -170,7 +171,7 @@ export class Validator {
     }
 
     static validConsent(consent?: any): ValidationResult {
-        if (!consent || typeof consent.processing !== 'boolean' || typeof consent.publicContact !== 'boolean') {
+        if (!consent || typeof consent.publicSearch !== 'boolean' || typeof consent.mailUpdates !== 'boolean') {
             return new ValidationResultError('invalid_consent', consent)
         }
         return new ValidationResultSuccess()

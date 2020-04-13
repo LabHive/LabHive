@@ -8,7 +8,7 @@
     "profile": "Profile",
     "changePassword": "Change Password",
     "signOut": "Logout",
-    "dataProtection": "Privacy Policy",
+    "privacyPolicy": "Privacy Policy",
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
@@ -22,7 +22,7 @@
     "profile": "Profil",
     "changePassword": "Passwort ändern",
     "signOut": "Logout",
-    "dataProtection": "Datenschutzerklärung",
+    "privacyPolicy": "Datenschutzerklärung",
     "imprint": "Impressum",
     "requestResource": "Bedarfsanfrage",
     "offerResource": "Ressource anbieten",
@@ -84,11 +84,11 @@
             &copy; LabHive 2020
           </b-col>
           <b-col cols lg="4" md="4" sm="12" class="text-center align-self-center">
-            <b-link to="dataProtection" class="clink">{{ $t('dataProtection') }}</b-link>
+            <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
           </b-col>
           <b-col cols lg="4" md="4" sm="12" class="logo">
-            <img src="./assets/logo-footer.svg" alt="Wirus Virus Projekt" width="192" height="66" />
+            <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
         </b-row>
       </b-container>

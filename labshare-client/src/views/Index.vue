@@ -41,7 +41,7 @@
           <b-col cols lg="6" md="12" sm="12">
               <h2>{{ $t("mainTitle") }}</h2>
             <p>{{$t("subTitle")}}</p>
-            <b-button href="#">{{$t("Joinbutton")}}</b-button>
+            <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -65,7 +65,7 @@
               <img src="../assets/logo-partner.svg" width="222" height="64" />
             </figure>
             <figure>
-              <img src="../assets/logo-partner-3.svg" width="160" height="46" />
+              <img src="../assets/logo-partner-3.png" width="160" height="46" />
             </figure>
           </b-col>
         </b-row>

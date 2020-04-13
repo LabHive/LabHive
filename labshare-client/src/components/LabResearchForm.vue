@@ -70,8 +70,8 @@ export default {
         password: "",
         website: "",
         consent: {
-          processing: true,
-          publicContact: false
+          publicSearch: true,
+          mailUpdates: null,
         },
         offers: {
           equipment: [],

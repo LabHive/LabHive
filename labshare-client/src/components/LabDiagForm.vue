@@ -12,7 +12,6 @@
 <template>
   <div class="lab_diag-form">
     <b-form @submit="submit">
-
       <template v-if="!profileUpdate">
         <transition :name="transition" mode="out-in">
           <component
@@ -28,6 +27,16 @@
       </template>
 
       <template v-else>
+        <b-modal
+          id="deleteModal"
+          :title="$t('deleteProfile')"
+          :ok-title="$t('delete')"
+          :cancel-title="$t('cancel')"
+          ok-variant="danger"
+          @ok="$emit('deleteProfile')"
+        >
+          <p class="my-4">{{ $t('deleteConfirmation') }}</p>
+        </b-modal>
         <div v-for="i in updateFormSections" :key="i">
           <component
             :is="i"
@@ -38,9 +47,16 @@
             :profileUpdate="profileUpdate"
           ></component>
         </div>
-        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+        <b-row>
+          <b-col cols="auto">
+            <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+          </b-col>
+          <b-col cols="auto">
+            <b-button variant="danger" v-b-modal.deleteModal>{{ $t("deleteProfile") }}</b-button>
+          </b-col>
+        </b-row>
+        
       </template>
-      
     </b-form>
   </div>
 </template>
@@ -70,8 +86,8 @@ export default {
         password: "",
         website: "",
         consent: {
-          processing: true,
-          publicContact: false
+          publicSearch: true,
+          mailUpdates: null
         },
         lookingFor: {
           volunteerSkills: [],
@@ -92,17 +108,13 @@ export default {
         "PersonalInformation",
         "Lab_Request",
         "Lab_Offer",
-        "SpecificDLab",
-      ],
+        "SpecificDLab"
+      ]
     };
   },
   computed: {
     updateFormSections() {
-      return [
-        "LoginInformation",
-        "PersonalInformation",
-        "SpecificDLab",
-      ]
+      return ["LoginInformation", "PersonalInformation", "SpecificDLab"];
     }
   }
 };
@@ -114,8 +126,9 @@ export default {
   margin-top: 50px;
 }
 
-.forward-enter-active, .forward-leave-active {
-  transition: all .2s ease;
+.forward-enter-active,
+.forward-leave-active {
+  transition: all 0.2s ease;
 }
 .forward-leave-to {
   opacity: 0;
@@ -127,9 +140,9 @@ export default {
   transform: translateX(400px);
 }
 
-
-.back-enter-active, .back-leave-active {
-  transition: all .2s ease;
+.back-enter-active,
+.back-leave-active {
+  transition: all 0.2s ease;
 }
 .back-leave-to {
   opacity: 0;

@@ -37,19 +37,19 @@ export default {
         // after the event is triggered it needs some time until the DOM is updated
         this.$nextTick(() => {
           this.disableSubmit =
-            this.$el.querySelectorAll(".is-invalid").length > 0;
+            this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
         });
       });
     });
 
     this.$nextTick(() => {
       this.disableSubmit =
-        this.$el.querySelectorAll(".is-invalid").length > 0;
+        this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
     });
 
     this.$root.$on("inputForm_changed", () => {
       this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+        this.disableSubmit = this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
       });
     })
   },

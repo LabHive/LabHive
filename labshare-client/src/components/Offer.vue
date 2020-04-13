@@ -3,12 +3,16 @@
     "en":{
     "offerResource": "Offer a resource",
     "offerEquipment": "Offer equipment",
-    "offerAdvice": "Offer advice and know-how"
+    "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
+    "offerAdvice": "Offer advice and know-how",
+    "offerAdviceDescription": "Further information about the help you can offer."
     },
     "de":{
     "offerResource": "Ressource anbieten",
     "offerEquipment": "Equipment anbieten",
-    "offerAdvice": "Beratung und Know-How anbieten"
+    "offerEquipmentDescription": "Weiter Informationen über die abzugebenen Geräte. Hersteller, Website des Herstellers, Anzahl der Geräte, etc.",
+    "offerAdvice": "Beratung und Know-How anbieten",
+    "offerAdviceDescription": "Weitere Informationen, wie Sie Hilfe anbieten können."
     }
     }
 </i18n>

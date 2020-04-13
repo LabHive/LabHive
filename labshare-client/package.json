@@ -72,7 +72,13 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-prototype-builtins": "off"
+      "no-prototype-builtins": "off",
+      "vue/no-parsing-error": [
+        "error",
+        {
+          "unexpected-character-in-unquoted-attribute-value": false
+        }
+      ]
     }
   },
   "browserslist": [
