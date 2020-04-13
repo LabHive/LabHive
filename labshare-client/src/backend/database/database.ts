@@ -91,9 +91,17 @@ export async function getTestCoverage(): Promise<{
     latLong: { lat: number; long: number };
   }>;
 }> {
-  const labDiags = await UserLabDiag.find();
-  const labResearches = await UserLabResearch.find();
-  const volunteers = await UserVolunteer.find();
+
+  let filter = {
+    disabled: false,
+    verified: {
+      manually: true,
+      main: true
+    }
+  }
+  const labDiags = await UserLabDiag.find(filter);
+  const labResearches = await UserLabResearch.find(filter);
+  const volunteers = await UserVolunteer.find(filter);
 
   return {
     testsPerWeek: TESTS_PER_WEEK,

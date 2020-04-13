@@ -110,6 +110,9 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
     }
 
     filter['consent.processing'] = true
+    filter['disabled'] = false
+    filter['verified.manually'] = true
+    filter['verified.mail'] = true
     return filter
 }
 
