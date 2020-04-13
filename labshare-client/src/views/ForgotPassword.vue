@@ -15,7 +15,8 @@
 		"pleaseEnterYourEmailMessage": "Bitte geben Sie Ihre E-Mail Adresse ein.",
 		"submit": "Abschicken",
 		"back": "Zurück zum Login"
-	}
+  }
+}
 </i18n>
 
 <template>
