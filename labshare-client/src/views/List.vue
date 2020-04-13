@@ -5,7 +5,7 @@
     "title": "Search"
   },
   "de": {
-    "title": "Suche",
+    "title": "Suche nach Ressourcen",
     "rnaExtraction": "RNA-Extraction",
     "testKits": "Test Kits",
     "diagnostics": "Diagnostiker",

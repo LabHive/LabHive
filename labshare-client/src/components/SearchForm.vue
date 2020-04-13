@@ -13,6 +13,35 @@
   <div>
     <b-form @submit="submit">
       <div class="form-row">
+        <div class="col-md3">
+          <b-form-group label="Wähle deine Nutzergruppe">
+            <div class="lh-button-group">
+              <LhButton text="Diagnostic Labs" :active="filters.role === 'lab_diag'" v-bind:onClick="() => changeLookingFor('lab_diag')" />
+              <LhButton text="Research Labs" :active="filters.role === 'lab_research'" v-bind:onClick="() => changeLookingFor('lab_research')" />
+              <LhButton text="Volunteers" :active="filters.role === 'volunteer'" v-bind:onClick="() => changeLookingFor('volunteer')" />
+            </div>
+          </b-form-group>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md4">
+          <b-form-group label="Filter by" v-if="'lab_diag' === filters.role">
+            <div class="lh-button-group">
+              <LhButton text="Wanted Skills" :active="filterBy === 'skills'" v-bind:onClick="() => changeFilterBy('skills')" />
+              <LhButton text="Wanted Equipment" :active="filterBy === 'equipment'" v-bind:onClick="() => changeFilterBy('equipment')" />
+              <LhButton text="Wanted Advice" :active="filterBy === 'advice'" v-bind:onClick="() => changeFilterBy('advice')" />
+            </div>
+          </b-form-group>
+
+          <b-form-group label="Filter by" v-if="'lab_research' === filters.role">
+            <div class="lh-button-group">
+              <LhButton text="Offered Equipment" :active="filterBy === 'equipment'" v-bind:onClick="() => changeFilterBy('equipment')" />
+              <LhButton text="Offered Advice" :active="filterBy === 'advice'" v-bind:onClick="() => changeFilterBy('advice')" />
+            </div>
+          </b-form-group>
+        </div>
+      </div>
+      <div class="form-row">
         <div class="col-md5">
           <InputForm
             :verticalLabel="true"
@@ -21,33 +50,6 @@
             :valFunc="val.validZipcode"
             @valid="searchChange"
           ></InputForm>
-        </div>
-
-        <div class="col-md3">
-          <b-form-group label="Looking for">
-            <b-form-select v-model="filters.role" name="role" label @change="changeLookingFor">
-              <b-form-select-option value="lab_diag">Diagnostic Labs</b-form-select-option>
-              <b-form-select-option value="lab_research">Research Labs</b-form-select-option>
-              <b-form-select-option value="volunteer">Volunteers</b-form-select-option>
-            </b-form-select>
-          </b-form-group>
-        </div>
-
-        <div class="col-md4">
-          <b-form-group label="Filter by" v-if="'lab_diag' === filters.role">
-            <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
-              <b-form-select-option value="skills">Wanted Skills</b-form-select-option>
-              <b-form-select-option value="equipment">Wanted Equipment</b-form-select-option>
-              <b-form-select-option value="advice">Wanted Advice</b-form-select-option>
-            </b-form-select>
-          </b-form-group>
-
-          <b-form-group label="Filter by" v-if="'lab_research' === filters.role">
-            <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
-              <b-form-select-option value="equipment">Offered Equipment</b-form-select-option>
-              <b-form-select-option value="advice">Offered Advice</b-form-select-option>
-            </b-form-select>
-          </b-form-group>
         </div>
       </div>
 
@@ -95,6 +97,7 @@ import {
 import CheckboxGroup from "./CheckboxGroup";
 import { Validator } from "../../dist-browser/lib/validation";
 import InputForm from "./InputForm";
+import LhButton from './LhButton';
 
 export default {
   data: function() {
@@ -117,15 +120,18 @@ export default {
     searchChange: function() {
       this.$emit("searchChange", this.filters);
     },
-    changeFilterBy: function() {
+    changeFilterBy: function(type) {
+      this.filterBy = type;
       this.filters.volunteerSkills = [];
       this.filters.equipment = [];
       this.filters.advice = [];
       this.searchChange();
     },
-    changeLookingFor: function() {
+    changeLookingFor: function(type) {
       this.filterBy = "skills";
-      if (this.filters.role === "lab_research") {
+      this.filters.role = type;
+
+      if (this.filters.role === type) {
         this.filterBy = "equipment";
       }
       this.searchChange();
@@ -147,7 +153,34 @@ export default {
   },
   components: {
     CheckboxGroup,
-    InputForm
+    InputForm,
+    LhButton
   }
 };
 </script>
+
+<style lang="scss" scoped>
+$color-green: #177867;
+$color-bkg-primary: #f7f6fd;
+
+.lh-button-group {
+  .lh-button + .lh-button { margin-left: 24px; }  
+}
+.lh-button {
+  padding: 12px 24px;
+  background: #D9F0EF;
+  border-radius: 4px;
+  border: 0;
+  outline: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  color: #177867;
+
+  &.active {
+    background: #177867;
+    color: #fff;
+  }
+}
+</style>
