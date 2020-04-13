@@ -6,7 +6,7 @@
           <b-col cols lg="6" md="12" sm="12">
             <h2>Wir bündeln Kräfte für mehr SARS-CoV-2 Tests</h2>
             <p>Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!</p>
-            <b-button href="#">Jetzt mitmachen</b-button>
+            <b-button class="btn-primary" href="#">Jetzt mitmachen</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -156,12 +156,19 @@ $color-bkg-primary: #f7f6fd;
     margin: 25px 0 0;
     padding: 14px 32px;
     background: $color-green;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    border: none;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
     border-radius: 4px;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0.1em;
+  }
+
+  .btn:hover {
+    background: #fff;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    color: $color-green;
   }
 
   figure {
