@@ -1,12 +1,12 @@
 <i18n>
     {
     "en":{
-    "requestResource": "Request a resource",
-    "requestVolunteerSkills": "Request volunteer skills",
+    "requestResource": "Request a Resource",
+    "requestVolunteerSkills": "Request Volunteer Skills",
     "requestEquipment": "Request Equipment",
-    "equipmentDescription": "Description of the requested equipment",
-    "requestAdvice":"Request advice and know-how",
-    "adviceDescription": "Description of requested advice"
+    "equipmentDescription": "Description of the Requested Equipment",
+    "requestAdvice":"Request Advice and Know-How",
+    "adviceDescription": "Description of Requested Advice"
     },
     "de":{
     "requestResource": "Eine Ressource anfragen",
