@@ -65,7 +65,7 @@
               <img src="../assets/logo-partner.svg" width="222" height="64" />
             </figure>
             <figure>
-              <img src="../assets/logo-partner-3.svg" width="160" height="46" />
+              <img src="../assets/logo-partner-3.png" width="160" height="46" />
             </figure>
           </b-col>
         </b-row>

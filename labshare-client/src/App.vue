@@ -88,7 +88,7 @@
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
           </b-col>
           <b-col cols lg="4" md="4" sm="12" class="logo">
-            <img src="./assets/logo-footer.svg" alt="Wirus Virus Projekt" width="192" height="66" />
+            <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
         </b-row>
       </b-container>
