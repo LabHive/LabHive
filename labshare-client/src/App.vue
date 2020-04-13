@@ -51,7 +51,7 @@
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.indexOf('dmin') == -1">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
               <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerRessource") }}</b-dropdown-item>
               <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestRessource") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>

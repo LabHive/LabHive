@@ -11,14 +11,9 @@ import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
 import { CONF } from '../options'
 
 
-let promise: Promise<any>
-if (!process.env.PRODUCTION) {
-    promise = mongoose.connect("mongodb://localhost:27017/labshare", { useNewUrlParser: true })
-} else {
-    promise = mongoose.connect("mongodb://mongodb:27017/labshare", { useNewUrlParser: true })
-}
+const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
 
-promise.then(async () => {
+mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {
     if (CONF.ADMIN_USER) {
         let mail = CONF.ADMIN_USER.contact.email
         let user = await UserAdmin.findOne({ 'contact.email': mail }).exec()

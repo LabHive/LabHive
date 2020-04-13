@@ -12,6 +12,7 @@ import { authMiddleware } from '../middlewares/auth'
 import { sendActivationMail } from '../mail/mailer'
 import { getLangID } from './language'
 import { v4 } from 'uuid'
+import { AdminUserRoles } from '../../lib/userRoles'
 
 
 export class AdminEndpoint {
@@ -41,7 +42,7 @@ export class AdminEndpoint {
     async adminAuthMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
         authMiddleware(req, res, function() {
             let token = utils.getUnverifiedDecodedJWT(req)
-            if (token.role !== 'admin' && token.role !== 'superAdmin') {
+            if (token.role !== AdminUserRoles.ADMIN && token.role !== AdminUserRoles.SUPER_ADMIN) {
                 return utils.errorResponse(res, UNAUTHORIZED, 'unauthorized')
             }
             next()
@@ -91,7 +92,7 @@ export class AdminEndpoint {
     async createAdmin(req: express.Request, res: express.Response) {
         let token = utils.getUnverifiedDecodedJWT(req)
         let body = req.body
-        if (token.role !== 'superAdmin')     
+        if (token.role !== AdminUserRoles.SUPER_ADMIN)     
             return utils.badRequest(res)
 
         delete body.role
@@ -117,7 +118,7 @@ export class AdminEndpoint {
 
     deleteAdmin(req: express.Request, res: express.Response) {
         let token = utils.getUnverifiedDecodedJWT(req)
-        if (token.role !== 'superAdmin')
+        if (token.role !== AdminUserRoles.SUPER_ADMIN)
             return utils.badRequest(res)
 
         if (!req.body.email || typeof req.body.email !== 'string')

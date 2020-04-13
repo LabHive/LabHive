@@ -1,5 +1,6 @@
 import { Schema, Document } from "mongoose";
 import { ITimestamp } from './ITimestamps';
+import { AdminUserRoles } from '../../../lib/userRoles'
 export interface IUserAdmin extends Document, ITimestamp {
     password: string,
     disabled: boolean,
@@ -8,7 +9,7 @@ export interface IUserAdmin extends Document, ITimestamp {
         firstname: string,
         lastname: string
     }
-    role: string
+    role: AdminUserRoles
 }
 
 export const UserAdminSchema = new Schema({
