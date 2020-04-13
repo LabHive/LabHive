@@ -4,7 +4,7 @@
     "bsl2": "Work under BSL2 regulations/safety standards",
     "bsl3": "Work under BSL3 regulations/safety standards",
     "sample_processing": "(Pre)Processing of clinical samples",
-    "rna_isolation": "RNA isolation (with Kit)",
+    "rna_isolation": "RNA isolation (with kit)",
     "qpcr": "qPCR",
     "sample_collection": "clinical experience (sample collection)"
     },
