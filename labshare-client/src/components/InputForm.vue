@@ -13,7 +13,7 @@
     "street": "Street",
     "password": "Password",
     "repeatPassword": "Repeat your password",
-    "email": "E-Mail address",
+    "email": "E-Mail Address",
     "officialEmail": "Institutional e-mail address"
     },
     "de":{
@@ -89,7 +89,7 @@ export default {
     validator(meth) {
       let a = meth(this.model);
       if (a.valid) {
-        if (this.timeout) clearTimeout(this.timeout); 
+        if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);

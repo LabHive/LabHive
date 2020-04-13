@@ -48,28 +48,28 @@
         </div>
 
         <div class="col-md3">
-          <b-form-group :label="$t('text1')">
+          <b-form-group :label="$t('Lookingfor')">
               <b-form-select v-model="filters.role" name="role" label @change="changeLookingFor">
-              <b-form-select-option value="lab_diag">{{$t("text1a")}}</b-form-select-option>
-              <b-form-select-option value="lab_research">{{$t("text1b")}}</b-form-select-option>
-              <b-form-select-option value="volunteer">{{$t("text1c")}}</b-form-select-option>
+              <b-form-select-option value="lab_diag">{{$t("diag-cent")}}</b-form-select-option>
+              <b-form-select-option value="lab_research">{{$t("res-lab")}}</b-form-select-option>
+              <b-form-select-option value="volunteer">{{$t("qualif-vol")}}</b-form-select-option>
             </b-form-select>
           </b-form-group>
         </div>
 
         <div class="col-md4">
-          <b-form-group :label="$t('text2')" v-if="'lab_diag' === filters.role">
+          <b-form-group :label="$t('Filterfor')" v-if="'lab_diag' === filters.role">
             <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
-                <b-form-select-option value="skills">{{$t("text2a")}}</b-form-select-option>
-                <b-form-select-option value="equipment">{{$t("text2b")}}</b-form-select-option>
-                <b-form-select-option value="advice">{{$t("text2c")}}</b-form-select-option>
+                <b-form-select-option value="skills">{{$t("req-skills")}}</b-form-select-option>
+                <b-form-select-option value="equipment">{{$t("req-equip")}}</b-form-select-option>
+                <b-form-select-option value="advice">{{$t("req-advice")}}</b-form-select-option>
             </b-form-select>
           </b-form-group>
 
-          <b-form-group :label="$t('text2')" v-if="'lab_research' === filters.role">
+          <b-form-group :label="$t('Filterfor')" v-if="'lab_research' === filters.role">
             <b-form-select v-model="filterBy" name="filter" label @change="changeFilterBy">
-              <b-form-select-option value="equipment">{{$t("text3a")}}</b-form-select-option>
-              <b-form-select-option value="advice">{{$t("text3b")}}</b-form-select-option>
+              <b-form-select-option value="equipment">{{$t("equipOffer")}}</b-form-select-option>
+              <b-form-select-option value="advice">{{$t("adviceOffer")}}</b-form-select-option>
             </b-form-select>
           </b-form-group>
         </div>
@@ -77,7 +77,7 @@
 
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
-          <h5>{{$t("text4")}}</h5>
+          <h5>{{$t("skills")}}</h5>
           <CheckboxGroup
             name="skills"
             :data="volunteerSkillsOptions"
@@ -87,7 +87,7 @@
         </template>
 
         <template v-if="filterBy === 'equipment'">
-            <h5>{{$t("text5")}}</h5>
+            <h5>{{$t("equip")}}</h5>
           <CheckboxGroup
             name="equipment"
             :data="equipmentOptions"
@@ -97,7 +97,7 @@
         </template>
 
         <template v-if="filterBy === 'advice'">
-            <h5>{{$t("text6")}}</h5>
+            <h5>{{$t("advice")}}</h5>
           <CheckboxGroup
             name="advice"
             :data="adviceOptions"

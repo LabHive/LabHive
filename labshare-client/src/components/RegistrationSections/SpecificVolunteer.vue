@@ -1,16 +1,16 @@
 <i18n>
 {
   "en": {
-    "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings.)",
-    "qualification": "Qualification",
-    "volunteerSkills": "Skills",
+    "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings)",
+    "qualification": "Qualifications",
+    "volunteerskills": "Skills",
     "furtherInfo": "Further Information",
-    "optIn": "Optional consent"
+    "optIn": "Optional Consent"
   },
   "de": {
-    "ready": "Ich bin aktuell verfügbar zum Helfen! (Kann jederzeit in den Profileinstellungen geändert werden.)",
-    "qualification": "Qualifikation",
-    "volunteerSkills": "Fähigkeiten",
+    "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
+    "qualification": "Qualifikationen",
+    "volunteerskills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligung"
   }
@@ -48,7 +48,7 @@
       ></b-form-textarea>
     </b-form-group>
 
-    
+
 
     <h3 class="section">{{$t("optIn")}}</h3>
     <fieldset class="form-group">

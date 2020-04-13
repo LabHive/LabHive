@@ -14,7 +14,7 @@
 </i18n>
 <template>
   <div>
-    <h2>{{ $t("offerRessource") }}</h2>
+    <h2>{{ $t("offerResource") }}</h2>
     <h3>{{ $t("offerEquipment") }}</h3>
     <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
     <b-form-group

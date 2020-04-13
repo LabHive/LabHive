@@ -20,7 +20,7 @@
 </i18n>
 <template>
   <div>
-    <h2>{{ $t("requestRessource") }}</h2>
+    <h2>{{ $t("requestResource") }}</h2>
 
     <h3>{{ $t("requestVolunteerSkills") }}</h3>
     <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>

@@ -1,7 +1,7 @@
 <i18n>
     {
     "en":{
-    "loginInfo": "Login information"
+    "loginInfo": "Login details"
     },
     "de":{
     "loginInfo": "Zugangsdaten"

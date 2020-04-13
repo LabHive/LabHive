@@ -52,8 +52,8 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerRessource") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestRessource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerResource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestResource") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
@@ -62,13 +62,13 @@
         </b-collapse>
       </div>
     </b-navbar>
-    
+
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
       <div id="app">
         <router-view></router-view>
       </div>
     </div>
-    
+
     <!-- Footer -->
     <footer class="footer-custom">
       <b-container>
@@ -102,7 +102,7 @@ export default {
     window.onscroll = function() {
       const navbar = document.getElementById('navbar');
       let className = navbar.className.replace('sticky', '');
-      
+
       if (window.scrollY > 0) {
          className = className + ' sticky ';
       }
@@ -208,8 +208,8 @@ body {
   }
 
   @media (max-width: 767px) {
-    .copyright, .logo { 
-      text-align: center; 
+    .copyright, .logo {
+      text-align: center;
       padding: 10px 0;
     }
   }
