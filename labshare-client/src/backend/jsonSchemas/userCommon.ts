@@ -10,10 +10,10 @@ export let userCommon = {
     consent: {
         type: "object",
         properties: {
-            processing: { type: "boolean" },
-            publicContact: { type: "boolean" },
+            publicSearch: { type: "boolean" },
+            mailUpdates: { type: "boolean" },
         },
-        required: ["processing", "publicContact"]
+        required: ["publicSearch", "mailUpdates"]
     },
     organization: { type: "string" },
     website: { type: "string" }
