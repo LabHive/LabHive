@@ -16,7 +16,6 @@
 		"submit": "Abschicken",
 		"back": "Zurück zum Login"
 	}
-}
 </i18n>
 
 <template>

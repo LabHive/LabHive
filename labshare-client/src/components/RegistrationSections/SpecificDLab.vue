@@ -1,7 +1,19 @@
+<i18n>
+    {
+    "en":{
+    "section": "Further Information",
+    "furtherInfo": "Further Information"
+    },
+    "de":{
+    "section": "Weitere Informationen",
+    "furtherInfo": "Weitere Informationen"
+    }
+    }
+</i18n>
 <template>
   <div>
 
-    <h3 class="section">Weitere Informationen</h3>
+    <h3 class="section">{{$t("section")}}</h3>
     <b-form-group
       id="description"
       :state="val.validDescription(formData.description).valid"
@@ -10,7 +22,7 @@
       <b-form-textarea
         id="textarea"
         v-model="formData.description"
-        placeholder="Weitere Informationen..."
+        :placeholder="$t('furtherInfo')"
         rows="4"
         max-rows="10"
         :state="!val.validDescription(formData.description).valid ? false: null"

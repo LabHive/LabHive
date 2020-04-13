@@ -1,12 +1,16 @@
 <i18n>
-{
-  "en": {},
-  "de": {
+    {
+    "en": {
+    "title": "Login",
+    "submit": "Log in",
+    "forgotPassword": "Forgot password"
+    },
+    "de": {
     "title": "Login",
     "submit": "Einloggen",
     "forgotPassword": "Passwort vergessen"
-  }
-}
+    }
+    }
 </i18n>
 <template>
   <div>

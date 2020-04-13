@@ -1,19 +1,17 @@
 <i18n>
 {
   "en": {
-    "passwordSecurity": "Password security",
     "0Password": "Too short...",
-    "1Password": "Still not complex enough... How about throwing in (more) numbers and special characters?",
-    "2Password": "It's getting better! How about throwing in (more) numbers and special characters?",
+    "1Password": "Still not complex enough... Please add more characters (also numbers and special characters are allowed)",
+    "2Password": "Add more characters",
     "3Password": "Sufficient...",
     "4Password": "Unbreakable!"
 
   },
   "de": {
-    "passwordSecurity": "Passwort Sicherheit",
     "0Password": "Noch zu kurz...",
-    "1Password": "Immernoch nicht lang genug... Wie wäre es mit (mehr) Zahlen und Sonderzeichen?",
-    "2Password": "Es wird besser! Wie wäre es mit (noch mehr) Zahlen und Sonderzeichen?",
+    "1Password": "Immernoch nicht lang genug... Bitte mehr Zeichen hinzufügen (Es sind auch Zahlen und Sonderzeichen erlaubt)",
+    "2Password": "Füge mehr Zeichen hinzu",
     "3Password": "Ausreichend...",
     "4Password": "Unknackbar!"
   }

@@ -1,17 +1,9 @@
 <i18n>
 {
   "en": {
-    "equip": "Search for devices",
-    "advice": "Search for advices",
-    "humans": "Search for volunteers",
-    "request": "File a Request",
     "success": "Saved successfully"
   },
   "de": {
-    "equip": "Suche nach Geräten",
-    "advice": "Suche nach Wissen",
-    "humans": "Suche nach Freiwilligen Helfern",
-    "request": "Anfrage stellen",
     "success": "Erfolgreich gespeichert"
   }
 }
@@ -21,7 +13,7 @@
   <div>
     <template v-if="updated || error">
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
-      <b-alert v-if="error" variant="error" show>{{ $(errorMsg) }}</b-alert>
+      <b-alert v-if="error" variant="error" show>{{ errorMsg }}</b-alert>
 		</template>
 
     <b-form>

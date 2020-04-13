@@ -1,12 +1,38 @@
 <i18n>
 {
-  "en": {
-    
-  },
-  "de": {
-    
-  }
-}
+    "en": {
+    "labName": "Name of Laboratory",
+    "labWebsite": "Laboratory Website",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "contactInfo": "Contact Information",
+    "address": "Address",
+    "city": "City",
+    "zipcode": "Zipcode",
+    "street": "Street",
+    "password": "Password",
+    "repeatPassword": "Repeat your password",
+    "email": "E-Mail Address",
+    "officialEmail": "E-Mail address of your institute"
+    },
+    "de":{
+    "labName": "Laborname",
+    "labWebsite": "Laborwebseite",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefonnummer",
+    "contactInfo": "Kontaktinformation",
+    "address": "Adresse",
+    "city": "Stadt",
+    "zipcode": "Postleitzahl",
+    "street": "Strasse",
+    "password": "Passwort",
+    "repeatPassword": "Passwort wiederholen",
+    "email": "E-Mail Adresse",
+    "officialEmail": "E-Mail Adresse des Instituts"
+    }
+    }
 </i18n>
 
 <template>

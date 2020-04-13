@@ -1,10 +1,18 @@
 <i18n>
 {
   "en": {
-    "ready": "I am ready to help in the labs"
+    "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings)",
+    "qualification": "Qualifications",
+    "volunteerskills": "Skills",
+    "furtherInfo": "Further Information",
+    "optIn": "Optional Consent"
   },
   "de": {
-    "ready": "Ab sofort zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden.)"
+    "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
+    "qualification": "Qualifikationen",
+    "volunteerskills": "Fähigkeiten",
+    "furtherInfo": "Weitere Informationen",
+    "optIn": "Optionale Einwilligung"
   }
 }
 </i18n>
@@ -16,7 +24,7 @@
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>
     <CheckboxGroup name="skills" :data="labSkills" v-model="formData.details.skills"></CheckboxGroup>
 
-    <h3 class="section">Weitere Informationen</h3>
+    <h3 class="section">{{$t("furtherInfo")}}</h3>
     <b-form-checkbox
       id="readyToHelp"
       v-model="formData.availability"
@@ -42,7 +50,7 @@
 
     
 
-    <h3 class="section">Optionale Einwilligung</h3>
+    <h3 class="section">{{$t("optIn")}}</h3>
     <fieldset class="form-group">
       <div tabindex="-1" role="group" class="bv-no-focus-ring">
         <div class="custom-control custom-checkbox">

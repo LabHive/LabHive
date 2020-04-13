@@ -10,7 +10,8 @@
     "signOut": "Logout",
     "dataProtection": "Data protection",
     "imprint": "Imprint",
-    "request": "Request Ressources",
+    "requestResource": "Request Resources",
+    "offerResource": "Offer Resources",
     "search": "Search"
   },
   "de": {
@@ -23,7 +24,8 @@
     "signOut": "Logout",
     "dataProtection": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "request": "Bedarfsanfrage",
+    "requestResource": "Bedarfsanfrage",
+    "offerResource": "Ressource anbieten",
     "search": "Suche"
   }
 }
@@ -56,8 +58,8 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerRessource") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestRessource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerResource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestResource") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>

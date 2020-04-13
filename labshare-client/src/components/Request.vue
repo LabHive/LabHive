@@ -1,6 +1,26 @@
+<i18n>
+    {
+    "en":{
+    "requestResource": "Request a Resource",
+    "requestVolunteerSkills": "Request Volunteer Skills",
+    "requestEquipment": "Request Equipment",
+    "equipmentDescription": "Description of the Requested Equipment",
+    "requestAdvice":"Request Advice and Know-How",
+    "adviceDescription": "Description of Requested Advice"
+    },
+    "de":{
+    "requestResource": "Eine Ressource anfragen",
+    "requestVolunteerSkills": "Qualifizierte Freiwillige mit Fähigkeiten anfragen",
+    "requestEquipment": "Equipment anfragen",
+    "equipmentDescription": "Beschreibung des angefragten Equipments",
+    "requestAdvice":"Beratung und Know-How anfragen",
+    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"
+    }
+    }
+</i18n>
 <template>
   <div>
-    <h2>{{ $t("requestRessource") }}</h2>
+    <h2>{{ $t("requestResource") }}</h2>
 
     <h3>{{ $t("requestVolunteerSkills") }}</h3>
     <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>

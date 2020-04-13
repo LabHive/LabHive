@@ -21,7 +21,7 @@
   <div>
     <template v-if="updated || error">
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
-      <b-alert v-if="error" variant="error" show>{{ $(errorMsg) }}</b-alert>
+      <b-alert v-if="error" variant="error" show>{{ errorMsg }}</b-alert>
 		</template>
     
     <b-form>
@@ -60,7 +60,7 @@ export default {
 					this.error = false;
         }).catch(error => {
           this.error = true;
-          this.errorMsg = error.body.errorDescription;
+          this.errorMsg = this.$t('backend.' + error.body.errorDescription);
 					this.updated = false;
 				});
     }
