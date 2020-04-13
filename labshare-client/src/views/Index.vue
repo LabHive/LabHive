@@ -41,7 +41,7 @@
           <b-col cols lg="6" md="12" sm="12">
               <h2>{{ $t("mainTitle") }}</h2>
             <p>{{$t("subTitle")}}</p>
-            <b-button href="#">{{$t("Joinbutton")}}</b-button>
+            <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
