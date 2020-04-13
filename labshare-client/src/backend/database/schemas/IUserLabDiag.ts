@@ -18,7 +18,6 @@ export interface IUserLabDiag extends IUserCommon, ITimestamp {
 }
 
 export const UserLabDiagSchema = new Schema({
-    ...UserCommonSchema.obj,
     lookingFor: {
         advice: [String],
         equipment: [String],

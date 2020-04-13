@@ -75,3 +75,10 @@ export async function sendPasswordResetMail(to: string, link: string, language: 
 
     return sendMailTo(to, subject, text)
 }
+
+export async function sendActivationNotice(to: string, language: LANG_TYPE): Promise<any> {
+    let subject = localization[language].activationNotice.subject.trim()
+    let text = localization[language].activationNotice.text.trim()
+
+    return sendMailTo(to, subject, text)
+}

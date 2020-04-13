@@ -1,36 +1,40 @@
 import { Document, Schema } from 'mongoose';
 import { ITimestamp } from './ITimestamps';
+import { LANG_TYPE } from '../../constants';
 import { UserRoles } from '../../../lib/userRoles';
 
 export interface IUserCommon extends Document, ITimestamp {
-  role: UserRoles;
-  organization: string;
-  website: string;
-  location: {
-    type: string;
-    coordinates: number[];
-  };
-  address: {
-    city: string;
-    zipcode: string;
-    street: string;
-  };
-  contact: {
-    firstname: string;
-    lastname: string;
-    phone: string;
-    email: string;
-  };
-  description: string;
-  password: string;
-  consent: {
-    processing: boolean;
-    publicContact: boolean;
-  };
-  verified: {
-    mail?: boolean;
-    manually?: boolean;
-  };
+    role: UserRoles;
+    organization: string;
+    website: string;
+    location: {
+        type: string;
+        coordinates: number[];
+    };
+    address: {
+        city: string;
+        zipcode: string;
+        street: string;
+    };
+    contact: {
+        firstname: string,
+        lastname: string,
+        phone: string,
+        email: string,
+    };
+    description: string;
+    password: string;
+    consent: {
+        processing: boolean;
+        publicContact: boolean;
+    };
+    verified: {
+        mail?: boolean,
+        manually?: boolean,
+    },
+    language: LANG_TYPE,
+    disabled: boolean,
+    __t: String
 }
 
 export const UserCommonSchema = new Schema(
@@ -67,17 +71,21 @@ export const UserCommonSchema = new Schema(
       publicContact: Boolean
     },
     verified: {
-      mail: {
+        mail: {
+            type: Boolean,
+            default: false
+        },
+        manually: {
+            type: Boolean,
+            default: false
+        },
+    },
+    disabled: {
         type: Boolean,
-        default: false
-      },
-      manually: {
-        type: Boolean,
-        default: false
-      }
-    }
-  },
-  {
+        default: false,
+    },
+    language: String
+}, {
     timestamps: true
   }
 );

@@ -11,7 +11,6 @@ export interface IUserVolunteer extends IUserCommon, ITimestamp {
 }
 
 export const UserVolunteerSchema = new Schema({
-    ...UserCommonSchema.obj,
     details: {
         skills: [String],
         qualification: String

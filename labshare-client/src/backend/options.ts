@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from 'fs'
 import { FILE_PATH } from './constants'
 import Mail from 'nodemailer/lib/mailer'
+import { IUserAdmin } from './database/schemas/IUserAdmin'
 
 class EnvVar<T> {
     private _isSet: boolean = false
@@ -74,10 +75,18 @@ export let OPT = new Options()
 class Configuration {
     HMAC_KEY: string
     MAIL_CONFIG: Mail.Options
+    ADMIN_USER?: IUserAdmin
 
     constructor() {
         this.HMAC_KEY = OPT.PRODUCTION ? readFileSync(FILE_PATH.hmacKey, { encoding: 'utf8' }) : "randomKey"
         this.MAIL_CONFIG = OPT.ENABLE_MAIL ? JSON.parse(readFileSync(FILE_PATH.mailConfig, { encoding: 'utf8' })) : undefined
+
+        if (!existsSync(FILE_PATH.adminUser)) {
+            console.error("No admin user configuration found!")
+            console.error("Create an admin user in secret/adminUser.json")
+        } else {
+            this.ADMIN_USER = JSON.parse(readFileSync(FILE_PATH.adminUser, { encoding: "utf8" }))
+        }
     }
 }
 

@@ -55,10 +55,11 @@
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item href="#/profile">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
               <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerRessource") }}</b-dropdown-item>
               <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestRessource") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
+              <b-dropdown-item href="#/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
@@ -119,8 +120,11 @@ export default {
       if (this.$user.role) {
         if (this.$user.role === "volunteer") {
           return this.$user.contact.firstname;
-        } else {
+        } else if (this.$user.organization) {
           return this.$user.organization;
+        }
+        else {
+          return this.$user.role
         }
       } else {
         return "User";

@@ -26,6 +26,15 @@ Ihr LabHive Team
 `
       }
     },
+    activationNotice: {
+      subject: "LabHive - Account verifiziert",
+      text: `
+Hallo,
+Ihr Account wurde von uns erfolgreich verifiziert.
+
+Ihr LabHive Team
+      `
+    }
   },
 
 
@@ -55,5 +64,14 @@ Ihr LabHive Team
 `
       }
     },
+    activationNotice: {
+      subject: "LabHive - Account verifiziert",
+      text: `
+Hallo,
+Ihr Account wurde von uns erfolgreich verifiziert.
+
+Ihr LabHive Team
+      `
+    }
   }
 }

@@ -12,7 +12,8 @@ enum QueryTypes {
 }
 
 function getVolunteerSkills(req: express.Request, res: express.Response): Optional<string[]> {
-    let skills: string[] = req.query[QueryTypes.volunteerSkills]
+    let query = req.query[QueryTypes.volunteerSkills]
+    let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validSkills(skills)
         if (!result.valid) {
@@ -25,7 +26,8 @@ function getVolunteerSkills(req: express.Request, res: express.Response): Option
 }
 
 function getAdvice(req: express.Request, res: express.Response): Optional<string[]> {
-    let skills: string[] = req.query[QueryTypes.advice]
+    let query = req.query[QueryTypes.advice]
+    let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validAdvice(skills)
         if (!result.valid) {
@@ -38,7 +40,8 @@ function getAdvice(req: express.Request, res: express.Response): Optional<string
 }
 
 function getEquipment(req: express.Request, res: express.Response): Optional<string[]> {
-    let skills: string[] = req.query[QueryTypes.equipment]
+    let query = req.query[QueryTypes.equipment]
+    let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validEquipment(skills)
         if (!result.valid) {
@@ -131,6 +134,7 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
     }
 
     if (req.query.zipcode) {
+        if (typeof req.query.zipcode !== "string") return false
         let result = Validator.validZipcode(req.query.zipcode)
         if (!result.valid) {
             console.log("Invalid zipcode")
@@ -145,6 +149,7 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
 async function getZipcodeCoords(req: express.Request, res: express.Response, token?: Token): Promise<Optional<number[]>> {
     if (req.query.zipcode) {
         try {
+            if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
             return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coordinates
         }
         catch {
@@ -166,6 +171,7 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
 export async function search(req: express.Request, res: express.Response, next: express.NextFunction) {
     let page = 0
     try {
+        if (req.query.page !== "string") throw new Error()
         page = parseInt(req.query.page ?? '1') - 1
     }
     catch {
@@ -174,8 +180,8 @@ export async function search(req: express.Request, res: express.Response, next: 
     page = Math.max(page, 0)
 
 
-    let searchForRole = req.query.role
-    if (!Validator.validRole(searchForRole).valid) {
+    let searchForRole = typeof req.query.role === "string" ? req.query.role : undefined
+    if (!searchForRole || !Validator.validRole(searchForRole).valid) {
         return utils.badRequest(res)
     }
 

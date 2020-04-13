@@ -11,11 +11,13 @@ interface IBody {
 
 export async function resetPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
     let body: IBody = req.body;
-    if (!JsonSchema.validate(body, schemas.password_reset) || !req.query.token || !body.newPassword) {
+    let token = typeof req.query.token === 'string' ? req.query.token : undefined
+
+    if (!JsonSchema.validate(body, schemas.password_reset) || !token || !body.newPassword) {
         return utils.badRequest(res);
     }
     
-    let token_doc = await ResetToken.findOneAndDelete({ token: req.query.token }).exec();
+    let token_doc = await ResetToken.findOneAndDelete({ token: token }).exec();
     if (!token_doc) {
         return utils.badRequest(res);
     }

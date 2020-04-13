@@ -8,3 +8,10 @@ export enum UserRoles {
 
 export type UserRolesString = keyof typeof UserRoles
 
+export enum AdminUserRoles {
+    ADMIN = "admin",
+    SUPER_ADMIN = "superAdmin",
+}
+
+export type AdminUserRolesString = keyof typeof UserRoles
+

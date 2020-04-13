@@ -1,8 +1,9 @@
 export const TESTS_PER_WEEK = 354521;
 
 export enum FILE_PATH {
-  mailConfig = 'secret/mailConfig.json',
-  hmacKey = 'secret/jsonwebtoken_hmacKey.txt'
+    mailConfig = "secret/mailConfig.json",
+    hmacKey = "secret/jsonwebtoken_hmacKey.txt",
+    adminUser = "secret/adminUser.json"
 }
 
 export enum LANG {

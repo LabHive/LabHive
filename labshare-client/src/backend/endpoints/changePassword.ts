@@ -1,7 +1,7 @@
 import argon2 from "argon2";
 import express from "express";
 import HttpStatus from 'http-status-codes';
-import { getUser } from '../database/database';
+import { getUserOrAdmin } from '../database/database';
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 
@@ -19,7 +19,7 @@ export async function changePassword(req: express.Request, res: express.Response
     }
 
     let token = utils.getUnverifiedDecodedJWT(req);
-    let user = await getUser({ _id: token.sub });
+    let user = await getUserOrAdmin({_id: token.sub})
     if (!user) {
         return utils.badRequest(res);
     }
