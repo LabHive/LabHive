@@ -2,14 +2,14 @@
 {
   "en": {
     "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings)",
-    "qualification": "Qualification",
+    "qualification": "Qualifications",
     "volunteerskills": "Skills",
     "furtherInfo": "Further Information",
     "optIn": "Optional consent"
   },
   "de": {
     "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
-    "qualification": "Qualifikation",
+    "qualification": "Qualifikationen",
     "volunteerskills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligung"
