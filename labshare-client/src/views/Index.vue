@@ -1,32 +1,32 @@
 <i18n>
     {
     "en":{
-    "0title": "We combine forces for more SARS-CoV-2 tests",
-    "1title": "Together we unleash the clenched Power of Science!",
-    "button": "Join now!",
+    "mainTitle": "We combine forces for more SARS-CoV-2 tests",
+    "subTitle": "Together we unleash the Power of Science!",
+    "Joinbutton": "Join now!",
     "partner": "In collaboration with",
-    "1text": "We connect",
-    "group1": "qualified volunteers",
-    "g1text": "scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
-    "group2": "research laboratories",
-    "g2text": "academic or industrial research laboratory with access to materials, reagents, equipment or suitable laboratories (BSL-2/3)",
-    "group3": "diagnotic centers",
-    "g3text": "active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support",
+    "weconnect": "We connect",
+    "qualif-vol": "qualified volunteers",
+    "Textqualif-vol": "scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
+    "res-lab": "research laboratories",
+    "Textres-lab": "academic or industrial research laboratory with access to materials, reagents, equipment or suitable laboratories (BSL-2/3)",
+    "diag-cent": "diagnotic centers",
+    "Textdiag-cent": "active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support",
     "text4": "test capacities and support",
     "testsweek": "tests per week"
     },
     "de":{
-    "0title": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "1title": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
-    "button": "Jetzt mitmachen!",
+    "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
+    "subTitle": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
+    "Joinbutton": "Jetzt mitmachen!",
     "partner": "In Zusammenarbeit mit",
-    "1text": "Wir bringen zusammen",
-    "group1": "qualifizierte Freiwillige",
-    "g1text": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
-    "group2": "Forschungslabore",
-    "g2text": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)",
-    "group3": "Diagnostikzentren",
-    "g3text": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
+    "weconnect": "Wir bringen zusammen",
+    "qualif-vol": "qualifizierte Freiwillige",
+    "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
+    "res-lab": "Forschungslabore",
+    "Textres-lab": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)",
+    "diag-cent": "Diagnostikzentren",
+    "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
     }
@@ -39,9 +39,9 @@
       <b-container class="container">
         <b-row>
           <b-col cols lg="6" md="12" sm="12">
-              <h2>{{ $t("0title") }}</h2>
-            <p>{{$t("1title")}}</p>
-            <b-button href="#">{{$t("button")}}</b-button>
+              <h2>{{ $t("mainTitle") }}</h2>
+            <p>{{$t("subTitle")}}</p>
+            <b-button href="#">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -75,7 +75,7 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3>{{$t("1text")}}</h3>
+            <h3>{{$t("subTitle")}}</h3>
         </b-col>
       </b-row>
       <b-row>
@@ -89,9 +89,9 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("group1")}}</h4>
+          <h4 class="text-center">{{$t("qualif-vol")}}</h4>
           <p>
-              {{$t("g1text")}}
+              {{$t("Textqualif-vol")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12">
@@ -104,9 +104,9 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("group2")}}</h4>
+          <h4 class="text-center">{{$t("res-lab")}}</h4>
           <p>
-              {{$t("g2text")}}
+              {{$t("Textres-lab")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12">
@@ -119,9 +119,9 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("group3")}}</h4>
+          <h4 class="text-center">{{$t("diag-cent")}}</h4>
           <p>
-              {{$t("g3text")}}
+              {{$t("Textdiag-cent")}}
           </p>
         </b-col>
       </b-row>
