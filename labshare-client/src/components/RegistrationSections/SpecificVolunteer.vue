@@ -5,7 +5,7 @@
     "qualification": "Qualifications",
     "volunteerskills": "Skills",
     "furtherInfo": "Further Information",
-    "optIn": "Optional consent"
+    "optIn": "Optional Consent"
   },
   "de": {
     "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
