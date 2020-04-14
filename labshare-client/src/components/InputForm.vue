@@ -1,8 +1,8 @@
 <i18n>
 {
     "en": {
-    "labName": "Name of Laboratory",
-    "labWebsite": "Laboratory Website",
+    "labName": "Laboratory Name",
+    "labWebsite": "Laboratory Homepage",
     "instituteName": "Institute/University",
     "instituteWebsite": "Website of your Institute/University",
     "firstName": "First Name",
@@ -16,25 +16,25 @@
     "password": "Password",
     "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
-    "officialEmail": "E-Mail Address of your Institute"
+    "officialEmail": "Institutional e-mail address"
     },
     "de":{
     "labName": "Laborname",
-    "labWebsite": "Laborwebseite",
+    "labWebsite": "Labor-Homepage",
     "instituteName": "Institut/Universität",
     "instituteWebsite": "Website des Instituts/der Univeristät",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
-    "contactInfo": "Kontaktinformation",
+    "contactInfo": "Kontaktinformationen",
     "address": "Adresse",
     "city": "Stadt",
     "zipcode": "Postleitzahl",
     "street": "Strasse",
     "password": "Passwort",
     "repeatPassword": "Passwort wiederholen",
-    "email": "E-Mail Adresse",
-    "officialEmail": "E-Mail Adresse des Instituts"
+    "email": "E-Mail-Adresse",
+    "officialEmail": "E-Mail-Adresse des Instituts"
     }
     }
 </i18n>
@@ -93,7 +93,7 @@ export default {
     validator(meth) {
       let a = meth(this.model, this.name);
       if (a.valid) {
-        if (this.timeout) clearTimeout(this.timeout); 
+        if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);

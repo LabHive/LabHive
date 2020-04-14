@@ -2,7 +2,7 @@
     {
     "en":{
     "mainTitle": "We combine forces for more SARS-CoV-2 tests",
-    "subTitle": "Together we unleash the Power of Science!",
+    "subTitle": "Together we unleash the cumulative Power of Science!",
     "Joinbutton": "Join now!",
     "partner": "In collaboration with",
     "weconnect": "We connect",

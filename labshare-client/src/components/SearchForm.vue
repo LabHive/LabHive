@@ -1,33 +1,34 @@
 <i18n>
     {
     "en": {
-    "Lookingfor": "Looking for",
-    "diag-cent": "Diagnostic Centers",
-    "res-lab": "Research Laboratories",
-    "Filterfor": "Filter for",
-    "req-skills": "Wanted Skills",
-    "req-equip": "Wanted Equipment",
-    "req-advice": "Wanted Advice/Know-How",
-    "equipOffer": "Offered Equipment",
-    "adviceOffer": "Offered Advice/Know-How",
-    "skills": "Skills",
-    "equip": "Equipment",
-    "advice": "Advice/Know-How"
+    "text1": "Search as",
+    "text1a": "Diagnostic Center",
+    "text1b": "Research Laboratory",
+    "text1c": "Qualified Volunteer",
+    "text2": "Filter for",
+    "text2a": "Wanted skills",
+    "text2b": "Wanted devices/equipment",
+    "text2c": "Wanted advice/know-how",
+    "text3a": "Offered devices/equipment",
+    "text3b": "Offered advice/know-how",
+    "text4": "Skills",
+    "text5": "Devices/Equipment",
+    "text6": "Advice/Know-How"
     },
     "de": {
-    "Lookingfor": "Suche für",
-    "diag-cent": "Diagnostikzentren",
-    "res-lab": "Forschungslabore",
-    "qualif-vol": "Qualifizierte Freiwillige",
-    "Filterfor": "Filtern für",
-    "req-skills": "Gesuchte Fähigkeiten",
-    "req-equip": "Gesuchtes Equipment",
-    "req-advice": "Gesuchter Rat/Know-How",
-    "equipOffer": "Angebotenes Equipment",
-    "adviceOffer": "Angebotener Rat/Know-How",
-    "skills": "Faehigkeiten",
-    "equip": "Equipment",
-    "advice": "Rat/Know-How"
+    "text1": "Suche als",
+    "text1a": "Diagnostikzentrum",
+    "text1b": "Forschungslabor",
+    "text1c": "Qualifizierte Freiwillige",
+    "text2": "Filtern nach",
+    "text2a": "Gesuchte Fähigkeiten",
+    "text2b": "Gesuchte Geräte/Equipment",
+    "text2c": "Gesuchter Rat/Know-How",
+    "text3a": "Angebotenes Equipment",
+    "text3b": "Angebotener Rat/Know-How",
+    "text4": "Fähigkeiten",
+    "text5": "Equipment",
+    "text6": "Rat/Know-How"
     }
     }
 </i18n>

@@ -1,10 +1,10 @@
 <i18n>
     {
     "en":{
-    "loginInfo": "Login Information"
+    "loginInfo": "Login Details"
     },
     "de":{
-    "loginInfo": "Login Information"
+    "loginInfo": "Zugangsdaten"
     }
     }
 </i18n>

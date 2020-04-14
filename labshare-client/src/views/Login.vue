@@ -6,7 +6,7 @@
     "forgotPassword": "Forgot password"
     },
     "de": {
-    "title": "Login",
+    "title": "Anmeldung",
     "submit": "Einloggen",
     "forgotPassword": "Passwort vergessen"
     }
