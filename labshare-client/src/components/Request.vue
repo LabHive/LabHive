@@ -3,17 +3,17 @@
     "en":{
     "requestResource": "Request a Resource",
     "requestVolunteerSkills": "Request Volunteer Skills",
-    "requestEquipment": "Request Equipment",
+    "requestEquipment": "Request Devices and Equipment",
     "requestEquipmentDescription": "More specific information about the equipment you need. How many devices? Which manufacutres work for you?",
-    "equipmentDescription": "Description of the Requested Equipment",
+    "equipmentDescription": "Description of the requested Devices",
     "requestAdvice":"Request Advice and Know-How",
     "requestAdviceDescription":"More specific information about the topics you need help with.",
-    "adviceDescription": "Description of Requested Advice"
+    "adviceDescription": "Description of requested Advice"
     },
     "de":{
     "requestResource": "Eine Ressource anfragen",
-    "requestVolunteerSkills": "Qualifizierte Freiwillige mit Fähigkeiten anfragen",
-    "requestEquipment": "Equipment anfragen",
+    "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
+    "requestEquipment": "Equipment und Geräte anfragen",
     "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Beratung und Know-How anfragen",

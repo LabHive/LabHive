@@ -8,7 +8,7 @@
     },
     "de": {
     "title": "Passwort ändern",
-    "successMessage": "Passwort aktualisiert",
+    "successMessage": "Passwort wurde aktualisiert",
     "loadingMessage": "Bitte warten",
     "oldPassword": "Aktuelles Passwort"
     }
