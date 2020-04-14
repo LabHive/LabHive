@@ -22,11 +22,10 @@
   <div>
     <h3 class="section">{{ $t("qualification") }}</h3>
     <CheckboxGroup
-      radio
       required
       name="qualification"
       :data="qualification"
-      v-model="formData.details.qualification"
+      v-model="formData.details.qualifications"
     ></CheckboxGroup>
 
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>

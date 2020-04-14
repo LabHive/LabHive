@@ -33,7 +33,6 @@
               @change="saveChanges"
               v-if="!radio"
               :required="required"
-              :state="valid"
             ></b-form-checkbox-group>
             <b-form-radio-group
               stacked
@@ -43,7 +42,6 @@
               :name="name + i"
               @change="saveChanges"
               :required="required"
-              :state="valid"
               v-else
             ></b-form-radio-group>
           </b-col>

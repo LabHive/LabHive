@@ -56,7 +56,7 @@ export default {
         description: "",
         details: {
           skills: [],
-          qualification: ""
+          qualifications: []
         },
         organization: "",
         availability: true,

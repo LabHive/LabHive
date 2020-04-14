@@ -31,6 +31,25 @@ export class ValidationResultSuccess extends ValidationResult {
     }
 }
 
+
+function checkArray(got: Optional<string[]>, expected: { text: string, value: string }[], reason: string): ValidationResult {
+    if (!got)
+        return new ValidationResultError(reason, got)
+
+    let gotCopy = Array.from(got)
+    for (let i of expected) {
+        let index = gotCopy.indexOf(i.value)
+        if (index > -1) {
+            gotCopy.splice(index, 1)
+        }
+    }
+
+    if (gotCopy.length > 0) {
+        return new ValidationResultError(reason, got)
+    }
+    return new ValidationResultSuccess()
+}
+
 export class Validator {
     static validEmail(email?: string): ValidationResult {
         let regexpEmail = new RegExp(/^.+@.+\..+$/);
@@ -116,58 +135,15 @@ export class Validator {
     }
 
     static validSkills(skills?: string[]): ValidationResult {
-        if (!skills) 
-            return new ValidationResultError("invalid_skills", skills)
-
-        
-        let skillCopy = Array.from(skills)
-        for (let i of labSkills) {
-            let index = skillCopy.indexOf(i.value)
-            if (index > -1) {
-                skillCopy.splice(index, 1)
-            }
-        }
-
-        if (skillCopy.length > 0) {
-            return new ValidationResultError("invalid_skills", skills)
-        }
-        return new ValidationResultSuccess()
+        return checkArray(skills, labSkills, "invalid_skills")
     }
 
     static validEquipment(equip?: string[]): ValidationResult {
-        if (!equip)
-            return new ValidationResultError("invalid_equipment", equip)
-
-        let eqipCopy = Array.from(equip)
-        for (let i of equipment) {
-            let index = eqipCopy.indexOf(i.value)
-            if (index > -1) {
-                eqipCopy.splice(index, 1)
-            }
-        }
-
-        if (eqipCopy.length > 0) {
-            return new ValidationResultError("invalid_equipment", equip)
-        }
-        return new ValidationResultSuccess()
+        return checkArray(equip, equipment, "invalid_equipment")
     }
 
     static validAdvice(adv?: string[]): ValidationResult {
-        if (!adv)
-            return new ValidationResultError("invalid_advice", adv)
-
-        let advArr = Array.from(adv)
-        for (let i of advices) {
-            let index = advArr.indexOf(i.value)
-            if (index > -1) {
-                advArr.splice(index, 1)
-            }
-        }
-
-        if (advArr.length > 0) {
-            return new ValidationResultError("invalid_advice", adv)
-        }
-        return new ValidationResultSuccess()
+        return checkArray(adv, advices, "invalid_advice")
     }
 
     static validConsent(consent?: any): ValidationResult {
@@ -189,12 +165,8 @@ export class Validator {
         return new ValidationResultSuccess()
     }
 
-    static validQualification(q: string): ValidationResult {
-        let strings = qualification.map(x => x.value)
-        if (strings.indexOf(q) == -1) {
-            return new ValidationResultError('invalid_qualification', q)
-        }
-        return new ValidationResultSuccess()
+    static validQualifications(q?: string[]): ValidationResult {
+        return checkArray(q, qualification, "invalid_qualification")
     }
 
 
@@ -237,7 +209,7 @@ export class Validator {
         }
         else {
             results.push(Validator.validSkills(object.details?.skills))
-            results.push(Validator.validQualification(object.details?.qualification))
+            results.push(Validator.validQualifications(object.details?.qualifications))
         }
 
         for (let i of results) {
