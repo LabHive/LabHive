@@ -1,22 +1,80 @@
 <i18n>
-    {
-    "en": {
-    "bsl2": "Work under BSL2 regulations/safety standards",
-    "bsl3": "Work under BSL3 regulations/safety standards",
-    "sample_processing": "(Pre)Processing of clinical samples",
-    "rna_isolation": "RNA isolation (with kit)",
+{
+  "en": {
+    "bsl1": "Experience in BSL1",
+    "bsl2": "Experience in BSL2",
+    "bsl3": "Experience in BSL3",
+    "bsl4": "Experience in BSL4",
     "qpcr": "qPCR",
-    "sample_collection": "clinical experience (sample collection)"
-    },
-    "de": {
-    "bsl2": "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-    "bsl3": "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
-    "sample_processing": "Vor/Aufbereitung klinischer Proben",
-    "rna_isolation": "RNA isolation (Mit Kit)",
+    "rnaExperience_isolation": "Work with RNA (especially Isolation)",
+    "sample_processing": "Work with Patientenproben",
+    "elisa": "ELISA",
+    "primerProduction": "Primerherstellung",
+    "dataAnalysis": "Datenanalyse",
+
+    "calibratedPipetteSet": "Calibrated Pipette Set",
+    "rtThermocycler": "Thermocycler RT",
+    "qpcrThermocycler": "Thermocycler qPCR",
+    "primerProduction": "Primer Production",
+    "reverseTransKit": "Reverse Transcriptase Kit",
+    "pcrMasterMix": "PCR Master Mix",
+    "rnaExtractionDevice": "RNA Extraction Device",
+    "rnaExtractionKit": "RNA Extraction Kit",
+
+    "virology": "Virologie",
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
+    "qPCR": "Allgemein qPCR",
+    "elisa": "ELISA",
+    "protocolProduction": "Protokollerstellung",
+
+    "jobTraining": "Berufsausbildung",
+    "mtla": "MTLA",
+    "bta_cta": "BTA/CTA",
+    "bachelor": "Bachelor",
+    "master": "Master",
+    "doctorate": "Promotion",
+    "postdoc": "Postdoc",
+    "groupLeader": "Gruppenleiter*in",
+    "other": "Andere"
+  },
+  "de": {
+    "bsl1": "Grundsätzlich Erfahrung in BSL1",
+    "bsl2": "Grundsätzlich Erfahrung in BSL2",
+    "bsl3": "Grundsätzlich Erfahrung in BSL3",
+    "bsl4": "Grundsätzlich Erfahrung in BSL4",
     "qpcr": "qPCR",
-    "sample_collection": "Klinische Erfahrung (Probenkollektion)"
-    }
-    }
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
+    "sample_processing": "Arbeit mit Patientenproben",
+    "elisa": "ELISA",
+    "primerProduction": "Primerherstellung",
+    "dataAnalysis": "Datenanalyse",
+
+    "calibratedPipetteSet": "Calibrated Pipette Set",
+    "rtThermocycler": "Thermocycler RT",
+    "qpcrThermocycler": "Thermocycler qPCR",
+    "primerProduction": "Primer Production",
+    "reverseTransKit": "Reverse Transcriptase Kit",
+    "pcrMasterMix": "PCR Master Mix",
+    "rnaExtractionDevice": "RNA Extraction Device",
+    "rnaExtractionKit": "RNA Extraction Kit",
+
+    "virology": "Virologie",
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
+    "qPCR": "Allgemein qPCR",
+    "elisa": "ELISA",
+    "protocolProduction": "Protokollerstellung",
+
+    "jobTraining": "Berufsausbildung",
+    "mtla": "MTLA",
+    "bta_cta": "BTA/CTA",
+    "bachelor": "Bachelor",
+    "master": "Master",
+    "doctorate": "Promotion",
+    "postdoc": "Postdoc",
+    "groupLeader": "Gruppenleiter*in",
+    "other": "Andere"
+  }
+}
 </i18n>
 <template>
   <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
@@ -99,9 +157,18 @@ export default {
       cols_number: parseInt(this.cols)
     };
   },
+  methods: {
+    
+  },
   computed: {
+    translatedData() {
+      return this.data.map((x) => {
+        x.text = this.$t(x.value)
+        return x
+      })
+    },
     arrD() {
-      return arraySplitter(this.data, this.cols);
+      return arraySplitter(this.translatedData, this.cols);
     },
     inputVal: {
       get() {
