@@ -10,7 +10,7 @@ export let labSkills = [
     { value: "sample_processing", text: "Arbeit mit Patientenproben" },
     { value: "elisa", text: "ELISA" },
     { value: "primerProduction", text: "Primerherstellung" },
-    { value: "dataAnalysis", text: "Datenanalyse" }
+    { value: "dataAnalysis", text: "Datenanalyse" },
 ]
 
 
@@ -30,7 +30,7 @@ export let advices = [
     { value: "rnaExperience_isolation", text: "Arbeit mit RNA (insbes. Isolation)" },
     { value: "qPCR", text: "Allgemein qPCR" },
     { value: "elisa", text: "ELISA" },
-    { value: "protocolProduction", text: "Protokollerstellung" }
+    { value: "protocolProduction", text: "Protokollerstellung" },
 ]
 
 export let qualification = [

@@ -5,7 +5,7 @@ import { ITimestamp } from './ITimestamps';
 export interface IUserVolunteer extends IUserCommon, ITimestamp {
     details: {
         skills: string[],
-        qualification: string
+        qualifications: string[]
     },
     availability: boolean
 }
@@ -13,7 +13,7 @@ export interface IUserVolunteer extends IUserCommon, ITimestamp {
 export const UserVolunteerSchema = new Schema({
     details: {
         skills: [String],
-        qualification: String
+        qualifications: [String]
     },
     availability: { type: Boolean },
 }, {

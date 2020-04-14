@@ -16,9 +16,14 @@ export let registration_volunteer: Schema = {
                         type: "string"
                     }
                 },
-                qualification: { type: "string" }
+                qualifications: {
+                    type: "array",
+                    items: {
+                        type: "string"
+                    }
+                },
             },
-            required: ["skills", "qualification"]
+            required: ["skills", "qualifications"]
         },
     },
     required: ["address", "contact", "description", "password", "details", "availability", "consent", "organization", "website"]
