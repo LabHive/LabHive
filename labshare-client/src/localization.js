@@ -62,9 +62,6 @@ export let localization = {
       agree: "Ich willige ein.",
       not_agree: "Ich willige nicht ein.",
       qualification: "Qualifikation",
-      skills: {
-        bsl2: "BSL2 Erfahrung"
-      },
       deleteProfile: "Profil löschen",
       delete: "Löschen",
       cancel: "Abbruch",

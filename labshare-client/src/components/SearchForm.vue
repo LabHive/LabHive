@@ -1,34 +1,32 @@
 <i18n>
     {
     "en": {
-    "text1": "Search as",
-    "text1a": "Diagnostic Center",
-    "text1b": "Research Laboratory",
-    "text1c": "Qualified Volunteer",
-    "text2": "Filter for",
-    "text2a": "Wanted skills",
-    "text2b": "Wanted devices/equipment",
-    "text2c": "Wanted advice/know-how",
-    "text3a": "Offered devices/equipment",
-    "text3b": "Offered advice/know-how",
-    "text4": "Skills",
-    "text5": "Devices/Equipment",
-    "text6": "Advice/Know-How"
+    "searchFor": "For what user group do you want to search?",
+    "dlabs": "Diagnostic Center",
+    "rlabs": "Research Laboratory",
+    "volunteers": "Qualified Volunteer",
+    "skills": "Skills",
+    "equipment": "Devices/Equipment",
+    "advice": "Advice/Know-How",
+    "workers": "Workers",
+    "request": "What is needed?",
+    "offer": "What can be offered?",
+    "searchInSurroundings": "Search in the surroundings",
+    "zipcode": "Enter Zipcode"
     },
     "de": {
-    "text1": "Suche als",
-    "text1a": "Diagnostikzentrum",
-    "text1b": "Forschungslabor",
-    "text1c": "Qualifizierte Freiwillige",
-    "text2": "Filtern nach",
-    "text2a": "Gesuchte Fähigkeiten",
-    "text2b": "Gesuchte Geräte/Equipment",
-    "text2c": "Gesuchter Rat/Know-How",
-    "text3a": "Angebotenes Equipment",
-    "text3b": "Angebotener Rat/Know-How",
-    "text4": "Fähigkeiten",
-    "text5": "Equipment",
-    "text6": "Rat/Know-How"
+    "searchFor": "Wonach möchten Sie suchen?",
+    "dlabs": "Diagnostikzentrum",
+    "rlabs": "Forschungslabor",
+    "volunteers": "Qualifizierte Freiwillige",
+    "skills": "Fähigkeiten",
+    "equipment": "Equipment",
+    "advice": "Beratung",
+    "workers": "Arbeitskraft",
+    "request": "Was wird benötigt?",
+    "offer": "Was kann abgegeben werden?",
+    "searchInSurroundings": "Suche in der Umgebung",
+    "zipcode": "PLZ eingeben"
     }
     }
 </i18n>
@@ -38,58 +36,40 @@
     <b-form @submit="submit">
       <div class="form-row">
         <div class="col-md3">
-          <b-form-group label="Wähle deine Nutzergruppe">
+          <b-form-group :label="$t('searchFor')">
             <div class="lh-button-group">
-              <LhButton text="Diagnostic Labs" :active="filters.role === 'lab_diag'" v-bind:onClick="() => changeLookingFor('lab_diag')" />
-              <LhButton text="Research Labs" :active="filters.role === 'lab_research'" v-bind:onClick="() => changeLookingFor('lab_research')" />
-              <LhButton text="Volunteers" :active="filters.role === 'volunteer'" v-bind:onClick="() => changeLookingFor('volunteer')" />
+              <LhButton :text="$t('dlabs')" :active="filters.role === 'lab_diag'" @click="() => changeLookingFor('lab_diag')" />
+              <LhButton :text="$t('rlabs')" :active="filters.role === 'lab_research'" @click="() => changeLookingFor('lab_research')" />
+              <LhButton :text="$t('volunteers')" :active="filters.role === 'volunteer'" @click="() => changeLookingFor('volunteer')" />
             </div>
           </b-form-group>
         </div>
       </div>
       <div class="form-row">
         <div class="col-md4">
-          <b-form-group label="Filter by" v-if="'lab_diag' === filters.role">
+          <b-form-group :label="filters.role === 'lab_diag' ? $t('request'): $t('offer')" v-if="'volunteer' !== filters.role">
             <div class="lh-button-group">
-              <LhButton text="Wanted Skills" :active="filterBy === 'skills'" v-bind:onClick="() => changeFilterBy('skills')" />
-              <LhButton text="Wanted Equipment" :active="filterBy === 'equipment'" v-bind:onClick="() => changeFilterBy('equipment')" />
-              <LhButton text="Wanted Advice" :active="filterBy === 'advice'" v-bind:onClick="() => changeFilterBy('advice')" />
+              <LhButton :text="$t('equipment')" :active="filterBy === 'equipment'" @click="() => changeFilterBy('equipment')" />
+              <LhButton :text="$t('advice')" :active="filterBy === 'advice'" @click="() => changeFilterBy('advice')" />
+              <LhButton :text="$t('workers')" v-if="'lab_diag' === filters.role" :active="filterBy === 'skills'" @click="() => changeFilterBy('skills')" />
             </div>
           </b-form-group>
 
-          <b-form-group label="Filter by" v-if="'lab_research' === filters.role">
-            <div class="lh-button-group">
-              <LhButton text="Offered Equipment" :active="filterBy === 'equipment'" v-bind:onClick="() => changeFilterBy('equipment')" />
-              <LhButton text="Offered Advice" :active="filterBy === 'advice'" v-bind:onClick="() => changeFilterBy('advice')" />
-            </div>
-          </b-form-group>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md5">
-          <InputForm
-            :verticalLabel="true"
-            name="zipcode"
-            v-model="filters.zipcode"
-            :valFunc="val.validZipcode"
-            @valid="searchChange"
-          ></InputForm>
         </div>
       </div>
 
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
-          <h5>{{$t("skills")}}</h5>
           <CheckboxGroup
             name="skills"
             :data="volunteerSkillsOptions"
             v-model="filters.volunteerSkills"
             :saveChanges="searchChange"
+            :cols="'2'"
           ></CheckboxGroup>
         </template>
 
         <template v-if="filterBy === 'equipment'">
-            <h5>{{$t("equip")}}</h5>
           <CheckboxGroup
             name="equipment"
             :data="equipmentOptions"
@@ -99,7 +79,6 @@
         </template>
 
         <template v-if="filterBy === 'advice'">
-            <h5>{{$t("advice")}}</h5>
           <CheckboxGroup
             name="advice"
             :data="adviceOptions"
@@ -107,6 +86,21 @@
             :saveChanges="searchChange"
           ></CheckboxGroup>
         </template>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md5">
+          <InputForm
+            :verticalLabel="true"
+            name="zipcode"
+            :label="$t('searchInSurroundings')"
+            v-model="filters.zipcode"
+            :valFunc="optionalZip"
+            :validFeedback="() => ''"
+            :placeholder="$t('zipcode')"
+            @valid="searchChange"
+          ></InputForm>
+        </div>
       </div>
     </b-form>
   </div>
@@ -155,23 +149,56 @@ export default {
       this.filterBy = "skills";
       this.filters.role = type;
 
-      if (this.filters.role === type) {
-        this.filterBy = "equipment";
+      switch(type) {
+        case "volunteers":
+        case "lab_diag":
+          this.filterBy = "skills";
+          break;
+        case "lab_research":
+          this.filterBy = "equipment";
+          break;
       }
       this.searchChange();
     },
     submit: function(ev) {
       ev.preventDefault();
       this.searchChange();
+    },
+    initSearchForm() {
+      switch(this.$user.role) {
+        case "volunteer":
+          this.filters.role = "lab_diag";
+          this.filterBy = "skills";
+          break;
+        case "lab_research":
+          this.filters.role = "lab_diag";
+          this.filterBy = "equipment";
+          break;
+        case "lab_diag":
+          this.filters.role = "lab_research";
+          this.filterBy = "equipment";
+          break;
+      }
+    },
+    optionalZip(data) {
+      if (data === "") {
+        return {valid: null}
+      }
+      return this.val.validZipcode(data)
     }
   },
   mounted: function() {
-    this.searchChange();
+    const timer = setTimeout(() => {
+      this.searchChange();
+    }, 300);
+
     if (this.$user.address) {
-      this.filters.zipcode = this.$user.address.zipcode;
+      clearTimeout(timer)
+      this.initSearchForm()
     } else {
       this.$root.$once("gotProfile", () => {
-        this.filters.zipcode = this.$user.address.zipcode;
+        clearTimeout(timer)
+        this.initSearchForm()
       });
     }
   },

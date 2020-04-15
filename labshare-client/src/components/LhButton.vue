@@ -10,7 +10,7 @@
 </i18n>
 
 <template>
-	<button class="lh-button" v-bind:class="{ active: active }" @click="onClick">
+	<button class="lh-button" v-bind:class="{ active: active }" @click="$emit('click')">
 		{{ text }}
 	</button>
 </template>
@@ -25,9 +25,6 @@ export default {
     active: {
 		type: Boolean,
 		default: false,
-    },
-    onClick: {
-		type: Function
     }
   },
 };

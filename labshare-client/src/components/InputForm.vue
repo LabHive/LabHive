@@ -42,7 +42,7 @@
 <template>
   <b-form-group
     :id="name"
-    :label="$t(name)"
+    :label="label ? label : $t(name)"
     :state="validator(valFunc)"
     :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
     :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
@@ -57,6 +57,10 @@ export default {
   name: "InputForm",
   props: {
     name: String,
+    label: {
+      type: String,
+      default: null,
+    },
     value: String,
     valFunc: {
       default: () => { return { valid: null } },
