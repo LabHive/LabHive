@@ -1,5 +1,5 @@
 {
-  "name": "labshare",
+  "name": "LabHive",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,10 @@
     "backend": "tsc && node dist-backend/backend/main.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
     "@types/cors": "^2.8.6",
     "@types/jsonwebtoken": "^8.3.9",
     "@types/lodash": "^4.14.149",
