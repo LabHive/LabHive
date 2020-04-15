@@ -15,24 +15,20 @@
     "calibratedPipetteSet": "Calibrated pipette set",
     "rtThermocycler": "Thermocycler RT",
     "qpcrThermocycler": "Thermocycler qPCR",
-    "primerProduction": "Primer production",
     "reverseTransKit": "Reverse transcriptase kit",
     "pcrMasterMix": "PCR master mix",
     "rnaExtractionDevice": "RNA extraction device",
     "rnaExtractionKit": "RNA extraction kit",
 
     "virology": "Virology",
-    "rnaExperience_isolation": "Work with RNA (esp. isolation with kit)",
-    "qPCR": "qPCR in general",
-    "elisa": "ELISA",
     "protocolProduction": "Writing of protocols",
 
-    "jobTraining": "Training and Degrees, please select all that apply",
+    "jobTraining": "Job training",
     "mtla": "MTLA",
     "bta_cta": "BTA/CTA",
     "bachelor": "Bachelor (completed)",
     "master": "Master (completed)",
-    "doctorate": "PhD-student",
+    "doctorate": "PhD-Student",
     "postdoc": "Postdoc",
     "groupLeader": "Group leader",
     "other": "Andere"
@@ -52,19 +48,15 @@
     "calibratedPipetteSet": "Calibrated Pipette Set",
     "rtThermocycler": "Thermocycler RT",
     "qpcrThermocycler": "Thermocycler qPCR",
-    "primerProduction": "Primerherstellung",
     "reverseTransKit": "Reverse Transkriptase-Kit",
     "pcrMasterMix": "PCR Master Mix",
     "rnaExtractionDevice": "RNA-Extraktionsgerät",
     "rnaExtractionKit": "RNA-Extraktionskit",
 
     "virology": "Virologie",
-    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation mit Kit)",
-    "qPCR": "Allgemein qPCR",
-    "elisa": "ELISA",
     "protocolProduction": "Protokollerstellung",
 
-    "jobTraining": "Ausbildung und Abschlüsse, bitte wählen Sie alle Zutreffenden aus.",
+    "jobTraining": "Berufsausbildung",
     "mtla": "MTLA",
     "bta_cta": "BTA/CTA",
     "bachelor": "Bachelor (abgeschlossen)",
@@ -77,7 +69,7 @@
 }
 </i18n>
 <template>
-  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
+  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK" :label="label">
     <b-container>
       <b-row>
         <template v-for="i in cols_number">
@@ -150,6 +142,10 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+    label: {
+      type: String,
+      default: ""
     }
   },
   data() {
