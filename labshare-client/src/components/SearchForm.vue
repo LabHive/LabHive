@@ -45,7 +45,7 @@
           </b-form-group>
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row" v-if="filterBy !== ''">
         <div class="col-md4">
           <b-form-group :label="filters.role === 'lab_diag' ? $t('request'): $t('offer')" v-if="'volunteer' !== filters.role">
             <div class="lh-button-group">
@@ -54,7 +54,6 @@
               <LhButton :text="$t('workers')" v-if="'lab_diag' === filters.role" :active="filterBy === 'skills'" @click="() => changeFilterBy('skills')" />
             </div>
           </b-form-group>
-
         </div>
       </div>
 
@@ -121,7 +120,7 @@ export default {
   data: function() {
     return {
       filters: {
-        role: "lab_diag",
+        role: "",
         zipcode: "",
         volunteerSkills: [],
         equipment: [],
@@ -131,7 +130,7 @@ export default {
       equipmentOptions: equipment,
       adviceOptions: advices,
       val: Validator,
-      filterBy: "skills"
+      filterBy: ""
     };
   },
   methods: {
