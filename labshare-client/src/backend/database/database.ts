@@ -52,7 +52,7 @@ export function getUserById(id: string): Promise<Optional<IUserCommon>> {
   return getUser({ _id: id });
 }
 
-export function getModelForRole(role: string): Optional<Model<IUserCommon>> {
+export function getModelForRole(role?: string): Optional<Model<IUserCommon>> {
   switch (role) {
     case UserRoles.LAB_DIAG:
       return UserLabDiag;
@@ -61,8 +61,7 @@ export function getModelForRole(role: string): Optional<Model<IUserCommon>> {
     case UserRoles.VOLUNTEER:
       return UserVolunteer;
     default:
-      console.log('Cannot get database model for role ' + role);
-      return undefined;
+      return UserCommon;
   }
 }
 

@@ -3,6 +3,7 @@ import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
 import { getModelForRole, getUser } from '../database/database';
 import utils, { Token } from '../utils';
+import { IUserCommon } from '../database/schemas/IUserCommon';
 
 
 enum QueryTypes {
@@ -131,11 +132,6 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
         }
     }
 
-    if (!token && !req.query.zipcode) {
-        console.log('Zipcode is required when unauthenticated')
-        return false
-    }
-
     if (req.query.zipcode) {
         if (typeof req.query.zipcode !== "string") return false
         let result = Validator.validZipcode(req.query.zipcode)
@@ -163,10 +159,9 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
 
     if (token) {
         let user = await getUser({_id: token.sub})
-        return user?.location.coordinates
+        return user?.toObject().location.coordinates
     }
 
-    utils.badRequest(res)
     return undefined
 }
 
@@ -184,7 +179,7 @@ export async function search(req: express.Request, res: express.Response, next: 
 
 
     let searchForRole = typeof req.query.role === "string" ? req.query.role : undefined
-    if (!searchForRole || !Validator.validRole(searchForRole).valid) {
+    if (searchForRole && !Validator.validRole(searchForRole).valid) {
         return utils.badRequest(res)
     }
 
@@ -200,46 +195,12 @@ export async function search(req: express.Request, res: express.Response, next: 
         'location': 1,
         'address': 1,
         'description': 1,
-        'consent': 1
-    }
-
-
-    // TODO: Permissions
-    switch (searchForRole) {
-        case UserRoles.VOLUNTEER:
-            projection['details'] = 1
-            projection['availability'] = 1
-
-            if (token && token.role == UserRoles.LAB_DIAG) {
-                projection['contact'] = 1
-                projection['organization'] = 1
-            }
-            break;
-        case UserRoles.LAB_DIAG: 
-            projection['organization'] = 1
-            projection['lookingFor'] = 1
-            projection['offers'] = 1
-            break;
-        case UserRoles.LAB_RESEARCH:
-            projection['organization'] = 1
-            projection['offers'] = 1
-            if (token && token.role == UserRoles.LAB_DIAG) {
-                projection['contact'] = 1
-            }
-            break;
-        default:
-            throw new Error("role not implemented")
-            break;
-    }
-
-
-    let center = await getZipcodeCoords(req, res, token)
-    if (!center) {
-        return
-    }
-    let center_point = {
-        type: 'Point',
-        coordinates: center
+        'consent': 1,
+        'role': 1,
+        'offers': 1,
+        'lookingFor': 1,
+        'organization': 1,
+        'contact': 1
     }
 
     let filter = buildFilter(req, res, token)
@@ -248,19 +209,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         return
     }
  
-    let count = (await model.aggregate([{
-        $geoNear: {
-            near: center_point,
-            distanceField: 'distance',
-            spherical: true,
-            query: filter,
-            key: 'location'
-        }
-    }]).count('count').exec())
-
-    if (count.length > 0) {
-        count = count[0].count
-    }
+    let count = await model.find(filter).countDocuments().exec()
 
     if (count == 0 || count < page*20) {
         let links = {
@@ -277,24 +226,49 @@ export async function search(req: express.Request, res: express.Response, next: 
         return res.send(resp)
     }
 
-    projection['distance'] = 1
-    let docs = (await model.aggregate([{
-        $geoNear: {
-            near: center_point,
-            distanceField: 'distance',
-            spherical: true,
-            query: filter,
-            key: 'location'
+    let center = await getZipcodeCoords(req, res, token)
+    let docs: IUserCommon[]
+    if (center) {
+        let center_point = {
+            type: 'Point',
+            coordinates: center
         }
-    }]).project(projection).skip(20*page).limit(20).exec())
-    
 
+        projection['distance'] = 1
+        docs = (await model.aggregate([{
+            $geoNear: {
+                near: center_point,
+                distanceField: 'distance',
+                spherical: true,
+                query: filter,
+                key: 'location'
+            }
+        }]).project(projection).skip(20 * page).limit(20).exec())
+    } else {
+        docs = await model.find(filter).select(projection).sort({ "createdAt": -1 }).skip(20 * page).limit(20)
+    }
+    
     let results = []
     for (let i of docs) {
-        let a = i
+        let a: IUserCommon = i
+        try {
+            // Only find returns Document[], aggregate returns any[]
+            a = i.toObject()
+        }
+        catch(err) { }
+        
         
         delete a.consent
         delete a._id
+
+        if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
+            delete a.contact
+        }
+
+        if (token && token.role !== UserRoles.LAB_DIAG && i.role == UserRoles.VOLUNTEER) {
+            delete a.contact
+        }
+
         results.push(a)
     }
 
