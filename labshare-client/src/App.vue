@@ -190,6 +190,32 @@ body {
   margin-top: 20px;
 }
 
+.btn-primary {
+  background: #D9F0EF;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  color: $color-green;
+  padding: 12px 24px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+
+  &:hover {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    color: $color-green;
+  }
+  &:not(:disabled):not(.disabled):active {
+    background: $color-green;
+    color: $color-white;
+    box-shadow: none;
+  }
+}
+
+
+
 #navbar, .footer-custom {
   background: $color-bkg-primary;
   position: relative;
