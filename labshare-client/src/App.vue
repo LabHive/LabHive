@@ -257,6 +257,10 @@ body {
   }
 }
 
+.btn-primary {
+  margin-bottom: 16px;
+}
+
 #navbar {
   position: fixed;
   left: 0;
