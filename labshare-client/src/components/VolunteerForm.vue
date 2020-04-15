@@ -1,20 +1,3 @@
-<i18n>
-{
-  "en": {},
-  "de": {
-    "address": "Wohnort",
-    "competencies": "Fähigkeiten",
-    "organization": "Organisation",
-    "skills": "Erfahrungen in folgenden Bereichen",
-    "bsl2": "Arbeit unter BSL2 Regulationen/Sicherheitsstandards",
-    "bsl3": "Arbeit unter BSL3 Regulationen/Sicherheitsstandards",
-    "sample_processing": "Vor/Aufbereitung klinischer Proben",
-    "rna_isolation": "RNA isolation (Mit Kit)",
-    "qpcr": "qPCR",
-    "sample_collection": "Klinische Erfahrung (Probenkollektion)"
-  }
-}
-</i18n>
 <template>
   <div class="volunteer-form">
     <b-form @submit="submit">
@@ -73,13 +56,13 @@ export default {
         description: "",
         details: {
           skills: [],
-          qualification: ""
+          qualifications: []
         },
         organization: "",
         availability: true,
         consent: {
-          processing: true,
-          publicContact: false
+          publicSearch: null,
+          mailUpdates: null
         }
       },
       formSections: [

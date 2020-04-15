@@ -109,7 +109,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
         }
     }
 
-    filter['consent.processing'] = true
+    filter['consent.publicSearch'] = true
     filter['disabled'] = false
     filter['verified.manually'] = true
     filter['verified.mail'] = true
@@ -292,9 +292,6 @@ export async function search(req: express.Request, res: express.Response, next: 
     let results = []
     for (let i of docs) {
         let a = i
-        if (!i.consent.publicContact) {
-            delete a.contact
-        }
         
         delete a.consent
         delete a._id

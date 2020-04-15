@@ -1,6 +1,24 @@
+<i18n>
+    {
+    "en":{
+    "offerResource": "Offer a resource",
+    "offerEquipment": "Offer devices and equipment",
+    "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
+    "offerAdvice": "Offer advice and know-how",
+    "offerAdviceDescription": "Further information about the help you can offer."
+    },
+    "de":{
+    "offerResource": "Ressourcen abgeben",
+    "offerEquipment": "Geräte und Equipment anbieten",
+    "offerEquipmentDescription": "Weiter Informationen über die abzugebenen Geräte. Hersteller, Website des Herstellers, Anzahl der Geräte, etc.",
+    "offerAdvice": "Beratung und Know-How anbieten",
+    "offerAdviceDescription": "Weitere Informationen, wie Sie Hilfe anbieten können."
+    }
+    }
+</i18n>
 <template>
   <div>
-    <h2>{{ $t("offerRessource") }}</h2>
+    <h2>{{ $t("offerResource") }}</h2>
     <h3>{{ $t("offerEquipment") }}</h3>
     <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
     <b-form-group

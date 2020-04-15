@@ -1,12 +1,12 @@
 <i18n>
-{
-  "en": {},
-  "de": {
-    "labInfo": "Labor Informationen",
-    "labName": "Name des Labors",
-    "street": "Straße"
-  }
-}
+    {
+    "en": {
+    "save": "Save"
+    },
+    "de": {
+    "save": "Speichern"
+    }
+    }
 </i18n>
 
 <template>
@@ -70,8 +70,8 @@ export default {
         password: "",
         website: "",
         consent: {
-          processing: true,
-          publicContact: false
+          publicSearch: true,
+          mailUpdates: null,
         },
         offers: {
           equipment: [],

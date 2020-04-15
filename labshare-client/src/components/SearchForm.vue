@@ -1,12 +1,36 @@
 <i18n>
-{
-  "en": {
-    
-  },
-  "de": {
-    
-  }
-}
+    {
+    "en": {
+    "text1": "Search as",
+    "text1a": "Diagnostic Center",
+    "text1b": "Research Laboratory",
+    "text1c": "Qualified Volunteer",
+    "text2": "Filter for",
+    "text2a": "Wanted skills",
+    "text2b": "Wanted devices/equipment",
+    "text2c": "Wanted advice/know-how",
+    "text3a": "Offered devices/equipment",
+    "text3b": "Offered advice/know-how",
+    "text4": "Skills",
+    "text5": "Devices/Equipment",
+    "text6": "Advice/Know-How"
+    },
+    "de": {
+    "text1": "Suche als",
+    "text1a": "Diagnostikzentrum",
+    "text1b": "Forschungslabor",
+    "text1c": "Qualifizierte Freiwillige",
+    "text2": "Filtern nach",
+    "text2a": "Gesuchte Fähigkeiten",
+    "text2b": "Gesuchte Geräte/Equipment",
+    "text2c": "Gesuchter Rat/Know-How",
+    "text3a": "Angebotenes Equipment",
+    "text3b": "Angebotener Rat/Know-How",
+    "text4": "Fähigkeiten",
+    "text5": "Equipment",
+    "text6": "Rat/Know-How"
+    }
+    }
 </i18n>
 
 <template>
@@ -55,7 +79,7 @@
 
       <div class="search-filters">
         <template v-if="filterBy === 'skills'">
-          <h5>Skills</h5>
+          <h5>{{$t("skills")}}</h5>
           <CheckboxGroup
             name="skills"
             :data="volunteerSkillsOptions"
@@ -65,7 +89,7 @@
         </template>
 
         <template v-if="filterBy === 'equipment'">
-          <h5>Equipment</h5>
+            <h5>{{$t("equip")}}</h5>
           <CheckboxGroup
             name="equipment"
             :data="equipmentOptions"
@@ -75,7 +99,7 @@
         </template>
 
         <template v-if="filterBy === 'advice'">
-          <h5>Advice</h5>
+            <h5>{{$t("advice")}}</h5>
           <CheckboxGroup
             name="advice"
             :data="adviceOptions"

@@ -10,8 +10,8 @@
     "testKits": "Test Kits",
     "diagnostics": "Diagnostiker",
     "noResults": "Keine Ergebnisse gefunden!"
-  }
-}
+    }
+    }
 </i18n>
 <template>
   <div class="list-view">

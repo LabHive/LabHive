@@ -1,18 +1,18 @@
 <i18n>
-{
-  "en": {
-    "oldPassword": "Current Password"
-  },
-  "de": {
+    {
+    "en": {
     "title": "Change password",
     "successMessage": "Password updated",
     "loadingMessage": "Please wait",
-    "pleaseEnterYourPasswordMessage": "Please enter your current password",
-    "passwordTooShortMessage": "The password minimum length is 6 characters",
-    "passwordsDoesNotMatchMessage": "The passwords doesn't match",
+    "oldPassword": "Current Password"
+    },
+    "de": {
+    "title": "Passwort ändern",
+    "successMessage": "Passwort wurde aktualisiert",
+    "loadingMessage": "Bitte warten",
     "oldPassword": "Aktuelles Passwort"
-  }
-}
+    }
+    }
 </i18n>
 
 <template>

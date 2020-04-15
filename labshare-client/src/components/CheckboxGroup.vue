@@ -1,3 +1,81 @@
+<i18n>
+{
+  "en": {
+    "bsl1": "Work under BSL2 regulations/safety standards",
+    "bsl2": "Work under BSL2 regulations/safety standards",
+    "bsl3": "ork under BSL3 regulations/safety standards",
+    "bsl4": "Work under BSL4 regulations/safety standards",
+    "qpcr": "qPCR",
+    "rnaExperience_isolation": "RNA isolation (with kit)",
+    "sample_processing": "(Pre)Processing of clinical samples",
+    "elisa": "ELISA",
+    "primerProduction": "Primerherstellung",
+    "dataAnalysis": "Datenanalyse",
+
+    "calibratedPipetteSet": "Calibrated Pipette Set",
+    "rtThermocycler": "Thermocycler RT",
+    "qpcrThermocycler": "Thermocycler qPCR",
+    "primerProduction": "Primer Production",
+    "reverseTransKit": "Reverse Transcriptase Kit",
+    "pcrMasterMix": "PCR Master Mix",
+    "rnaExtractionDevice": "RNA Extraction Device",
+    "rnaExtractionKit": "RNA Extraction Kit",
+
+    "virology": "Virologie",
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
+    "qPCR": "Allgemein qPCR",
+    "elisa": "ELISA",
+    "protocolProduction": "Protokollerstellung",
+
+    "jobTraining": "Berufsausbildung",
+    "mtla": "MTLA",
+    "bta_cta": "BTA/CTA",
+    "bachelor": "Bachelor",
+    "master": "Master",
+    "doctorate": "Promotion",
+    "postdoc": "Postdoc",
+    "groupLeader": "Gruppenleiter*in",
+    "other": "Andere"
+  },
+  "de": {
+    "bsl1": "Arbeit unter BSL1 Bedingungen/Sicherheitsstandards",
+    "bsl2": "Arbeit unter BSL2 Bedingungen/Sicherheitsstandards",
+    "bsl3": "Arbeit unter BSL3 Bedingungen/Sicherheitsstandards",
+    "bsl4": "Arbeit unter BSL4 Bedingungen/Sicherheitsstandards",
+    "qpcr": "qPCR",
+    "rnaExperience_isolation": "RNA-Isolation (mit Kit)",
+    "sample_processing": "Vor/Aufbereitung klinischer Proben",
+    "elisa": "ELISA",
+    "primerProduction": "Primerherstellung",
+    "dataAnalysis": "Datenanalyse",
+
+    "calibratedPipetteSet": "Calibrated Pipette Set",
+    "rtThermocycler": "Thermocycler RT",
+    "qpcrThermocycler": "Thermocycler qPCR",
+    "primerProduction": "Primer Production",
+    "reverseTransKit": "Reverse Transcriptase Kit",
+    "pcrMasterMix": "PCR Master Mix",
+    "rnaExtractionDevice": "RNA Extraction Device",
+    "rnaExtractionKit": "RNA Extraction Kit",
+
+    "virology": "Virologie",
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
+    "qPCR": "Allgemein qPCR",
+    "elisa": "ELISA",
+    "protocolProduction": "Protokollerstellung",
+
+    "jobTraining": "Berufsausbildung",
+    "mtla": "MTLA",
+    "bta_cta": "BTA/CTA",
+    "bachelor": "Bachelor",
+    "master": "Master",
+    "doctorate": "Promotion",
+    "postdoc": "Postdoc",
+    "groupLeader": "Gruppenleiter*in",
+    "other": "Andere"
+  }
+}
+</i18n>
 <template>
   <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
     <b-container>
@@ -13,7 +91,6 @@
               @change="saveChanges"
               v-if="!radio"
               :required="required"
-              :state="valid"
             ></b-form-checkbox-group>
             <b-form-radio-group
               stacked
@@ -23,7 +100,6 @@
               :name="name + i"
               @change="saveChanges"
               :required="required"
-              :state="valid"
               v-else
             ></b-form-radio-group>
           </b-col>
@@ -81,9 +157,18 @@ export default {
       cols_number: parseInt(this.cols)
     };
   },
+  methods: {
+    
+  },
   computed: {
+    translatedData() {
+      return this.data.map((x) => {
+        x.text = this.$t(x.value)
+        return x
+      })
+    },
     arrD() {
-      return arraySplitter(this.data, this.cols);
+      return arraySplitter(this.translatedData, this.cols);
     },
     inputVal: {
       get() {

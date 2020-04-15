@@ -30,3 +30,23 @@ The following env variables can be set to control the behavior of the applicatio
     * Disables that accounts have to be verified
 * `BASE_URL`, default: `undefined`, e.g. `http://localhost:8080`
     * Used to generate links (activation, password reset)
+
+## Admin Interface
+To create an inital Admin user, create the file `secret/adminUser.json` with the following content.
+```json
+{
+    "password": "$argon2i$v=19$m=4096,t=3,p=1$l1pASiNDgTVZzNMybsYfZw$w56n3nDUmjrPql/Q6tKjFwUyiKVMHduw4JN1l0lIaUo",
+    "contact": {
+        "email": "a@a.de",
+        "firstname": "a",
+        "lastname": "a"
+    },
+    "role": "superAdmin"
+}
+```
+This creates an admin user on startup with the following credentials.
+**Username:** a@a.de  
+**Password:** 12345678  
+
+The admin login is available at:
+[http://localhost:8080/#/admin-login](http://localhost:8080/#/admin-login)

@@ -1,12 +1,47 @@
+<i18n>
+    {
+    "en":{
+    "mainTitle": "We combine forces for more SARS-CoV-2 tests",
+    "subTitle": "Together we unleash the cumulative Power of Science!",
+    "Joinbutton": "Join now!",
+    "partner": "In collaboration with",
+    "weconnect": "We connect",
+    "qualif-vol": "qualified volunteers",
+    "Textqualif-vol": "scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
+    "res-lab": "research laboratories",
+    "Textres-lab": "academic or industrial research laboratory with access to materials, reagents, equipment or suitable laboratories (BSL-2/3)",
+    "diag-cent": "diagnotic centers",
+    "Textdiag-cent": "active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support",
+    "text4": "test capacities and support",
+    "testsweek": "tests per week"
+    },
+    "de":{
+    "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
+    "subTitle": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
+    "Joinbutton": "Jetzt mitmachen!",
+    "partner": "In Zusammenarbeit mit",
+    "weconnect": "Wir bringen zusammen",
+    "qualif-vol": "qualifizierte Freiwillige",
+    "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
+    "res-lab": "Forschungslabore",
+    "Textres-lab": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)",
+    "diag-cent": "Diagnostikzentren",
+    "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
+    "text4": "Testkapazitäten und Unterstützung",
+    "testsweek": "Tests pro Woche"
+    }
+    }
+
+</i18n>
 <template>
   <div>
     <div class="banner">
       <b-container class="container">
         <b-row>
           <b-col cols lg="6" md="12" sm="12">
-            <h2>Wir bündeln Kräfte für mehr SARS-CoV-2 Tests</h2>
-            <p>Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!</p>
-            <b-button class="btn-primary" href="#">Jetzt mitmachen</b-button>
+              <h2>{{ $t("mainTitle") }}</h2>
+            <p>{{$t("subTitle")}}</p>
+            <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -22,7 +57,7 @@
         </b-row>
         <b-row class="partners">
           <b-col class="text-center">
-            <p>In Zusammenarbeit mit</p>
+              <p>{{$t("partner")}}</p>
             <figure>
               <img src="../assets/logo-partner.svg" width="222" height="64" />
             </figure>
@@ -30,7 +65,7 @@
               <img src="../assets/logo-partner.svg" width="222" height="64" />
             </figure>
             <figure>
-              <img src="../assets/logo-partner-3.svg" width="160" height="46" />
+              <img src="../assets/logo-partner-3.png" width="160" height="46" />
             </figure>
           </b-col>
         </b-row>
@@ -40,7 +75,7 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-          <h3>Wir bringen zusammen</h3>
+            <h3>{{$t("subTitle")}}</h3>
         </b-col>
       </b-row>
       <b-row>
@@ -54,8 +89,10 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">Qualifizierte Freiwillige</h4>
-          <p>Wissenschaftliche Mitarbeiter oder technische Assistenten mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.</p>
+          <h4 class="text-center">{{$t("qualif-vol")}}</h4>
+          <p>
+              {{$t("Textqualif-vol")}}
+          </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
@@ -67,8 +104,10 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">Forschungslabor</h4>
-          <p>Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)</p>
+          <h4 class="text-center">{{$t("res-lab")}}</h4>
+          <p>
+              {{$t("Textres-lab")}}
+          </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
@@ -80,8 +119,10 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">Diagnostikzentrum</h4>
-          <p>Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen</p>
+          <h4 class="text-center">{{$t("diag-cent")}}</h4>
+          <p>
+              {{$t("Textdiag-cent")}}
+          </p>
         </b-col>
       </b-row>
     </b-container>

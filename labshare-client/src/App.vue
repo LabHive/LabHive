@@ -8,9 +8,10 @@
     "profile": "Profile",
     "changePassword": "Change Password",
     "signOut": "Logout",
-    "dataProtection": "Data protection",
+    "privacyPolicy": "Privacy Policy",
     "imprint": "Imprint",
-    "request": "Request Ressources",
+    "requestResource": "Request Resources",
+    "offerResource": "Offer Resources",
     "search": "Search"
   },
   "de": {
@@ -21,9 +22,10 @@
     "profile": "Profil",
     "changePassword": "Passwort ändern",
     "signOut": "Logout",
-    "dataProtection": "Datenschutzerklärung",
+    "privacyPolicy": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "request": "Bedarfsanfrage",
+    "requestResource": "Bedarfsanfrage",
+    "offerResource": "Ressource anbieten",
     "search": "Suche"
   }
 }
@@ -56,8 +58,8 @@
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerRessource") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestRessource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerResource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestResource") }}</b-dropdown-item>
               <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
               <b-dropdown-item href="#/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
               <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
@@ -82,11 +84,11 @@
             &copy; LabHive 2020
           </b-col>
           <b-col cols lg="4" md="4" sm="12" class="text-center align-self-center">
-            <b-link to="dataProtection" class="clink">{{ $t('dataProtection') }}</b-link>
+            <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
           </b-col>
           <b-col cols lg="4" md="4" sm="12" class="logo">
-            <img src="./assets/logo-footer.svg" alt="Wirus Virus Projekt" width="192" height="66" />
+            <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
         </b-row>
       </b-container>

@@ -36,21 +36,21 @@ export default {
     if (this.$user.role) {
       this.formData = this.$user;
       this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+        this.disableSubmit = this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
       })
     }
     else {
       this.$root.$on('gotProfile', () => {
         this.formData = this.$user;
         this.$nextTick(() => {
-          this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+          this.disableSubmit = this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
         })
       })
     }
 
     this.$root.$on("inputForm_changed", () => {
       this.$nextTick(() => {
-        this.disableSubmit = this.$el.querySelectorAll(".is-invalid").length > 0;
+        this.disableSubmit = this.$el.querySelectorAll(".is-invalid, .invalid-feedback.d-block").length > 0;
       });
     })
   },

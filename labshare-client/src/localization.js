@@ -1,5 +1,3 @@
-
-
 let locale = localStorage.getItem('locale')
 if (!locale) {
   locale = 'de'
@@ -8,9 +6,17 @@ if (!locale) {
 export let localization = {
   locale: locale,
   fallbackLocale: "de",
+  silentFallbackWarn: true,
   messages: {
     en: {
-      required: "Required"
+      required: "Required",
+      consentMail: "I agree that LabHive sends me from time to time E-Mail-Updates about new features of the platform.",
+      agree: "I agree.",
+      not_agree: "I don't agree.",
+      deleteProfile: "Delete Profile",
+      delete: "Delete",
+      cancel: "Cancel",
+      deleteConfirmation: "Do you really want to delete your profile?"
     },
     de: {
       backend: {
@@ -48,45 +54,21 @@ export let localization = {
         user_not_activated: "Der Benutzer ist noch nicht aktiviert. Zur Aktivierung Ihres Accounts müssen Sie die E-Mail Adresse bestätigen. Sollten Sie sich als Labor registriert haben, werden Sie von uns manuell verifiziert. Sobald dies geschehen ist, erhalten Sie von uns eine E-Mail. Sollte es länger als 2 Werktage dauern, kontaktieren Sie uns bitte unter support@labhive.de.",
         user_disabled: "Ihr Account wurde von uns deaktiviert. Bei Fragen wenden Sie sich bitte an support@labhive.de."
       },
-      loginInfo: "Login Informationen",
-      contactInfo: "Kontakt Informationen",
-      register: "Registrieren",
       save: "Speichern",
-      email: "E-Mail Adresse",
-      officialEmail: "E-Mail Addresse der Institution",
-      password: "Passwort",
-      repeatPassword: "Passwort wiederholen",
-      firstName: "Vorname",
-      lastName: "Nachname",
-      phone: "Telefonnummer",
-      city: "Ort",
-      zipcode: "Postleitzahl",
-      street: "Straße",
-      organization: "Organisation",
-      labName: "Ihre Affiliation",
-      labWebsite: "Webseite Ihrer Affiliation",
-      labInformation: "Laborinformationen",
-      consentPublicContact:
-        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht wird. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/>Weitere Hinweise finden Sie in unserer <a href=\"/#/dataProtection\">Datenschutzerklärung.</a>",
+      consentPublicSearch:
+        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/>Wenn Sie uns keine Einwilligung erteilen, ist die Verwendung unserer Plattform nur ehr eingeschränkt möglich, wodurch Sie als Helfende*r nicht über die Suche gefunden werden können. Momentan gibt es auch noch keine Möglichkeit Kontakt zu einem registrierten und verifizierten Labor aufzunehmen.<br/>Weitere Hinweise finden Sie in unserer <a href=\"/#/privacyPolicy\">Datenschutzerklärung.</a>",
+      consentMail: "Hiermit willige ich ein, dass LabHive mir gelegentlich E-Mail-Benachrichtigungen über Updates und neue Funktionen der Website schickt.",
       required: "Erforderlich",
-      volunteerSkills: "Fähigkeiten",
-      volunteer: "Freiwillige",
-      requestRessource: "Bedarfsanfrage",
-      offerRessource: "Angebot",
-      requestVolunteerSkills: "Gesuchte Fähigkeiten bei Freiwilligen",
-      requestEquipment: "Gesuchte Geräte",
-      requestEquipmentDescription: "Genauere Beschreibung gesuchter Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
-      offerEquipmentDescription: "Genauere Beschreibung angebotener Geräte. Modellbezeichnung, Webseite des Geräts, Anzahl.",
-      requestAdvice: "Hilfe Gesucht",
-      requestAdviceDescription: "Genauere Beschreibung",
-      offerEquipment: "Anzubietende Geräte",
-      offerAdvice: "Anzubietende Hilfe",
-      offerAdviceDescription: "Weitere Informationen",
+      agree: "Ich willige ein.",
+      not_agree: "Ich willige nicht ein.",
       qualification: "Qualifikation",
       skills: {
         bsl2: "BSL2 Erfahrung"
       },
-      address: "Adresse"
+      deleteProfile: "Profil löschen",
+      delete: "Löschen",
+      cancel: "Abbruch",
+      deleteConfirmation: "Wollen Sie ihr Profil wirklich löschen?"
     }
   }
 }

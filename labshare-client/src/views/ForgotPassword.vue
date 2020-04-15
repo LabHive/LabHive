@@ -2,20 +2,20 @@
 {
 	"en": {
 		"title": "Forgot Password",
-		"successMessage": "Sie werden von uns in Kürze eine Mail erhalten, sofern ein Konto für diese E-Mail Adresse im System hinterlegt ist.",
+		"successMessage": "If the e-mail address is registered, you will receive an e-mail from us shortly.",
 		"loadingMessage": "Please wait...",
-		"pleaseEnterYourEmailMessage": "Please enter your email address",
+		"pleaseEnterYourEmailMessage": "Please enter your e-mail address",
 		"submit": "Submit",
 		"back": "Back to login"
 	},
 	"de": {
 		"title": "Passwort vergessen",
-		"successMessage": "Sie werden von uns in Kürze eine Mail erhalten, sofern ein Konto für diese E-Mail Adresse im System hinterlegt ist.",
+		"successMessage": "Sie werden von uns in Kürze eine E-Mail erhalten, sofern ein Konto für diese E-Mail-Adresse im System hinterlegt ist.",
 		"loadingMessage": "Bitte warten...",
-		"pleaseEnterYourEmailMessage": "Bitte geben Sie Ihre E-Mail Adresse ein.",
+		"pleaseEnterYourEmailMessage": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
 		"submit": "Abschicken",
 		"back": "Zurück zum Login"
-	}
+  }
 }
 </i18n>
 

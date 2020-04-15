@@ -1,12 +1,42 @@
 <i18n>
 {
-  "en": {
-    
-  },
-  "de": {
-    
-  }
-}
+    "en": {
+    "labName": "Laboratory Name",
+    "labWebsite": "Laboratory Homepage",
+    "instituteName": "Institute/University",
+    "instituteWebsite": "Website of your Institute/University",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "contactInfo": "Contact Information",
+    "address": "Address",
+    "city": "City",
+    "zipcode": "Zipcode",
+    "street": "Street",
+    "password": "Password",
+    "repeatPassword": "Repeat your Password",
+    "email": "E-Mail Address",
+    "officialEmail": "Institutional e-mail address"
+    },
+    "de":{
+    "labName": "Laborname",
+    "labWebsite": "Labor-Homepage",
+    "instituteName": "Institut/Universität",
+    "instituteWebsite": "Website des Instituts/der Univeristät",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefonnummer",
+    "contactInfo": "Kontaktinformationen",
+    "address": "Adresse",
+    "city": "Stadt",
+    "zipcode": "Postleitzahl",
+    "street": "Strasse",
+    "password": "Passwort",
+    "repeatPassword": "Passwort wiederholen",
+    "email": "E-Mail-Adresse",
+    "officialEmail": "E-Mail-Adresse des Instituts"
+    }
+    }
 </i18n>
 
 <template>
@@ -61,9 +91,9 @@ export default {
   },
   methods: {
     validator(meth) {
-      let a = meth(this.model);
+      let a = meth(this.model, this.name);
       if (a.valid) {
-        if (this.timeout) clearTimeout(this.timeout); 
+        if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);

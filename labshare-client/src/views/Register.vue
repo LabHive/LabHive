@@ -1,21 +1,25 @@
 <i18n>
-{
-  "en": {
+    {
+    "en": {
     "registration": "Registration",
-    "complete": "Thank you for registering!"
-  },
-  "de": { 
+    "complete": "Thank you for your registration!",
+    "activation": "To activate your account, click the link in the email that we sent to you.",
+    "prospectiveRole": "In which role would you like to register?",
+    "roleHelper": "Volunteer",
+    "roleDiagnosticLab": "Diagnostic Laboratory",
+    "roleLab": "Research Laboratory"
+    },
+
+    "de": {
     "registration": "Registrierung",
     "complete": "Danke für deine Registrierung!",
+    "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "prospectiveRole": "Als was möchtest du dich registrieren?",
     "roleHelper": "Helfer",
-    "roleDiagnosticLab": "Diagnostic Lab",
-    "roleLab": "Forschungslabor",
-    "labInfo": "Labor Informationen",
-    "labName": "Name des Labors",
-    "street": "Straße"
-  }
-}
+    "roleDiagnosticLab": "Diagnostiklabor",
+    "roleLab": "Forschungslabor"
+    }
+    }
 </i18n>
 <template>
   <div class="register">
@@ -24,6 +28,7 @@
 
     <template v-if="registrationComplete">
       <h2>{{$t("complete")}}</h2>
+      <p>{{$t("activation")}}</p>
     </template>
 
     <br />
