@@ -161,6 +161,7 @@ body {
   display: flex;
   height: 100vh;
   color: #000;
+  background-color: $color-bkg-primary;
 }
 
 .clink {
@@ -315,6 +316,7 @@ body {
   margin-top: 0;
   max-width: none;
   padding: 0;
+  background: $color-white;
 
   #app {
     margin: 0;
