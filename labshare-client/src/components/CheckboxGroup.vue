@@ -28,9 +28,9 @@
     "bta_cta": "BTA/CTA",
     "bachelor": "Bachelor (completed)",
     "master": "Master (completed)",
-    "doctorate": "PhD-Student",
+    "doctorate": "PhD Student",
     "postdoc": "Postdoc",
-    "groupLeader": "Group leader",
+    "groupLeader": "Group Leader",
     "other": "Andere"
   },
   "de": {

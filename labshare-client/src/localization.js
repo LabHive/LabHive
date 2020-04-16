@@ -12,10 +12,10 @@ export let localization = {
       backend: {
         formValidation: {
           // english should go below here
-          invalid_email: "Invalid e-mail adress",
-          invalid_firstname: "Invalid First Name (max. 200 characters)",
-          invalid_lastname: "Invalid Last Name (max. 200 characters)",
-          invalid_zipcode: "Invalid zipcode (should be 5 digits)",
+          invalid_email: "Invalid e-mail address",
+          invalid_firstname: "Invalid first name (max. 200 characters)",
+          invalid_lastname: "Invalid last name (max. 200 characters)",
+          invalid_zipcode: "Invalid zip code (should be 5 digits)",
           invalid_city: "Invalid city (max. 200 characters)",
           invalid_street: "Invalid street (max. 200 characters)",
           invalid_phone: "Invalid phone number. Please use the format +49931123 or 12344 without - or /",
@@ -28,7 +28,7 @@ export let localization = {
           invalid_equipment: "Invalid equipment",
           invalid_advice: "Invalid request",
           invalid_consent: "Invalid consent",
-          invalid_url: "Invalid URL, has to start with http:// or https:// ",
+          invalid_url: "Invalid URL. URLs must start with http:// or https:// ",
           passwordMatch: "Passwords don't match!"
         },
         not_authorized: "Not authorized!",
@@ -40,14 +40,14 @@ export let localization = {
         existing_user: "User already exists!",
         false_consent: "Whithout consent, we're not allowed to process your data.",
         no_results: "No results were found...",
-        tokenTooOld: "Please reset the password again, the reset link expired.",
-        contact_support: "An error has occurred. Please contact support@labhive.de and apologize the inconvenience!",
+        tokenTooOld: "Please reset your password again, the reset link expired.",
+        contact_support: "An error has occurred. Please contact support@labhive.de. We apologize for the inconvenience!",
         user_not_activated: "The user hasn't been activated yet. Please validate the e-mail address. If you registered as laboratory, you will be manually verified by us. When that has been done, you will receive an e-mail from us. If this takes longer than two working days, please contact us at support@labhive.de.",
-        user_disabled: "Your account was deactivated. In case of questions, please contact support@labhive.de ."
+        user_disabled: "Your account was deactivated. In case of questions, please contact support@labhive.de."
       },
       save: "Save",
       consentPublicSearch:
-        "I agree that LabHive may make my data accessible via the search function for the purpose of cooperation with laboratories and institutes, in the context of the SARS-CoV-2 pandemic, which are registered on the platform. The right to revoke this agreement and my rights in accordance with Art. 15 DSGVO are not affected by this consent.<br/>If you do not give us your consent, the use of our platform is only possible to a limited extent, which means that you cannot be found as a helper  via the search function. Currently there is no possibility for helpers to contact a registered and verified laboratory.<br/><br/>You will find further information in our <a href=\"/#/privacyPolicy\">privacy policy</a>.",
+        "I agree that LabHive may make my data accessible via the search function for the purpose of cooperation with laboratories and institutes, in the context of the SARS-CoV-2 pandemic, which are registered on the platform. The right to revoke this agreement and my rights in accordance with Art. 15 DSGVO are not affected by this consent.<br/>If you do not give us your consent, the use of our platform is only possible to a limited extent, which means that you cannot be found as a helper via the search function. Currently there is no possibility for helpers to contact a registered and verified laboratory.<br/><br/>You will find further information in our <a href=\"/#/privacyPolicy\">privacy policy</a>.",
       consentMail: "I hereby authorize LabHive to send me occasional e-mail notifications about updates and new features of the website.",
       required: "Required",
       agree: "I give consent.",

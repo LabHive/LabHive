@@ -6,11 +6,11 @@ export default {
       subject: "LabHive - Account activation",
       text: (link: string) => {
         return `
-Dear user, 
-to activate your account on LabHive, please use the following link:
+Dear user,
+To activate your account on LabHive, please use the following link:
 ${link}
 
-Best, LabHive Team
+Regards, LabHive Team
 `
       }
     },
@@ -18,7 +18,7 @@ Best, LabHive Team
       subject: "LabHive - Password Reset",
       text: (link: string) => {
         return `
-Dear user, 
+Dear user,
 to reset your password, please use the following link:
 ${link}
 
