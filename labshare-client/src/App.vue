@@ -197,14 +197,14 @@ body {
 }
 
 .btn-primary {
-  background: #D9F0EF;
+  background: $color-green;
   border-radius: 4px;
   border: none;
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.1em;
-  color: $color-green;
+  color: #fff;
   padding: 12px 24px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
 
@@ -214,8 +214,8 @@ body {
     color: $color-green;
   }
   &:not(:disabled):not(.disabled):active {
-    background: $color-green;
-    color: $color-white;
+    background: #C9E0DF;
+    color: $color-green;
     box-shadow: none;
   }
 }
@@ -245,6 +245,10 @@ body {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 
+    @media (min-width: 991px) {
+      margin: 0 16px;
+    }
+
     &:hover {
       background: #fff;
       box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
@@ -253,6 +257,10 @@ body {
     a {
       font-weight: 500;
       color: #fff;
+
+      @media (min-width: 991px) {
+        margin: 0;
+      }
 
       &:hover {
         color: $color-green;
