@@ -2,7 +2,8 @@
 {
   "en": {
     "brand": "LabHive",
-    "aboutUs": "About Us",
+    "aboutLabhive": "About LabHive",
+    "aboutUs": "Team",
     "register": "Sign up",
     "login": "Login",
     "profile": "Profile",
@@ -12,11 +13,12 @@
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
-    "search": "Search"
+    "search": "Search For Ressources"
   },
   "de": {
     "brand": "LabHive",
-    "aboutUs": "Über uns",
+    "aboutLabhive": "Über LabHive",
+    "aboutUs": "Team",
     "register": "Registrieren",
     "login": "Login",
     "profile": "Profil",
@@ -26,7 +28,7 @@
     "imprint": "Impressum",
     "requestResource": "Bedarfsanfrage",
     "offerResource": "Ressource anbieten",
-    "search": "Suche"
+    "search": "Suche nach Ressourcen"
   }
 }
 </i18n>
@@ -44,9 +46,10 @@
         </b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav class="mr-auto">
+            <b-nav-item href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
             <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
-            <b-nav-item href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -234,6 +237,27 @@ body {
       text-shadow: 0px 0px 1px #177867;
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
+    }
+  }
+
+  .nav-cta {
+    background:$color-green;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+
+    &:hover {
+      background: #fff;
+      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    a {
+      font-weight: 500;
+      color: #fff;
+
+      &:hover {
+        color: $color-green;
+        text-shadow: none;
+      }
     }
   }
 
