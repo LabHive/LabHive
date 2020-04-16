@@ -14,7 +14,8 @@ enum QueryTypes {
 
 enum SearchMode {
     lookingFor = "lookingFor",
-    offers = "offers"
+    offers = "offers",
+    volunteers = "volunteers"
 }
 
 function getVolunteerSkills(req: express.Request, res: express.Response): Optional<string[]> {
@@ -86,7 +87,8 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
     }
     
 
-    if (searchMode == SearchMode.offers && filterBy == QueryTypes.volunteerSkills) {
+
+    if (searchMode == SearchMode.volunteers && filterBy == QueryTypes.volunteerSkills) {
         filter['details'] = {
             "$exists": true
         }
@@ -116,7 +118,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
                 {"lookingFor.advice.0": {"$exists": true}},
                 { "lookingFor.volunteerSkills.0": { "$exists": true } },
             ]
-        } else {
+        } else if (searchMode === SearchMode.offers) {
             filter['$or'] = [
                 { "offers.equipment.0": { "$exists": true } },
                 { "offers.advice.0": { "$exists": true } },
@@ -191,7 +193,9 @@ export async function search(req: express.Request, res: express.Response, next: 
 
 
     let searchMode = typeof req.query.mode === "string" ? req.query.mode : undefined
-    if (searchMode && (searchMode !== SearchMode.lookingFor && searchMode !== SearchMode.offers)) {
+    if (searchMode && (searchMode !== SearchMode.lookingFor && 
+            searchMode !== SearchMode.offers && 
+            searchMode !== SearchMode.volunteers)) {
         return utils.badRequest(res)
     }
 

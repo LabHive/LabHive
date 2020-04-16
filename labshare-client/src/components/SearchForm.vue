@@ -148,6 +148,11 @@ export default {
     changeMode: function(mode) {
       this.filter.mode = mode;
 
+      if (mode === '') {
+        this.filter.filterBy = "";
+        this.filter.filters = []
+      }
+
       switch(mode) {
         case "lookingFor":
         case "offers":
