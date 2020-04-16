@@ -71,7 +71,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
     }
 
     let filterList: Optional<string[]>
-    switch(filterBy) {
+    switch (filterBy) {
         case QueryTypes.volunteerSkills:
             filterList = getVolunteerSkills(req, res)
             if (!filterList) return undefined
@@ -85,7 +85,6 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             if (!filterList) return undefined
             break
     }
-    
 
 
     if (searchMode == SearchMode.volunteers && filterBy == QueryTypes.volunteerSkills) {
@@ -111,11 +110,11 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             }
         }
     }
-    else if(searchMode) {
+    else if (searchMode) {
         if (searchMode === SearchMode.lookingFor) {
             filter['$or'] = [
-                {"lookingFor.equipment.0" : { "$exists": true}},
-                {"lookingFor.advice.0": {"$exists": true}},
+                { "lookingFor.equipment.0": { "$exists": true } },
+                { "lookingFor.advice.0": { "$exists": true } },
                 { "lookingFor.volunteerSkills.0": { "$exists": true } },
             ]
         } else if (searchMode === SearchMode.offers) {
@@ -172,7 +171,7 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
     }
 
     if (token) {
-        let user = await getUser({_id: token.sub})
+        let user = await getUser({ _id: token.sub })
         return user?.toObject().location.coordinates
     }
 
@@ -222,10 +221,10 @@ export async function search(req: express.Request, res: express.Response, next: 
         // response is sent in buildFilter
         return
     }
- 
+
     let count = await UserCommon.find(filter).countDocuments().exec()
 
-    if (count == 0 || count < page*20) {
+    if (count == 0 || count < page * 20) {
         let links = {
             next: null,
             previous: null
@@ -261,7 +260,7 @@ export async function search(req: express.Request, res: express.Response, next: 
     } else {
         docs = await UserCommon.find(filter).select(projection).sort({ "createdAt": -1 }).skip(20 * page).limit(20)
     }
-    
+
     let results = []
     for (let i of docs) {
         let a: IUserCommon = i
@@ -269,9 +268,9 @@ export async function search(req: express.Request, res: express.Response, next: 
             // Only find returns Document[], aggregate returns any[]
             a = i.toObject()
         }
-        catch(err) { }
-        
-        
+        catch (err) { }
+
+
         delete a.consent
         delete a._id
 
@@ -289,7 +288,7 @@ export async function search(req: express.Request, res: express.Response, next: 
     let reqUrl = utils.getBaseUrl(req) + req.originalUrl;
     let nextUrl = new URL(reqUrl)
     let nurl = null
-    if (count - (page*20 + 20) > 0) {
+    if (count - (page * 20 + 20) > 0) {
         nextUrl.searchParams.set('page', (page + 2).toString())
         nurl = nextUrl.toString()
     }
@@ -300,7 +299,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         previousUrl.searchParams.set('page', (page).toString())
         purl = previousUrl.toString()
     }
-    
+
     let links = {
         next: nurl,
         previous: purl
