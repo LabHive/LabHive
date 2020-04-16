@@ -1,7 +1,7 @@
 import express from "express";
 import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
-import { getModelForRole, getUser } from '../database/database';
+import { getModelForRole, getUser, UserCommon } from '../database/database';
 import utils, { Token } from '../utils';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 
@@ -12,8 +12,13 @@ enum QueryTypes {
     equipment = "equipment"
 }
 
+enum SearchMode {
+    lookingFor = "lookingFor",
+    offers = "offers"
+}
+
 function getVolunteerSkills(req: express.Request, res: express.Response): Optional<string[]> {
-    let query = req.query[QueryTypes.volunteerSkills]
+    let query = req.query.filters
     let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validSkills(skills)
@@ -27,7 +32,7 @@ function getVolunteerSkills(req: express.Request, res: express.Response): Option
 }
 
 function getAdvice(req: express.Request, res: express.Response): Optional<string[]> {
-    let query = req.query[QueryTypes.advice]
+    let query = req.query.filters
     let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validAdvice(skills)
@@ -41,7 +46,7 @@ function getAdvice(req: express.Request, res: express.Response): Optional<string
 }
 
 function getEquipment(req: express.Request, res: express.Response): Optional<string[]> {
-    let query = req.query[QueryTypes.equipment]
+    let query = req.query.filters
     let skills: Optional<string[]> = Array.isArray(query) ? <string[]>query : undefined
     if (skills) {
         let result = Validator.validEquipment(skills)
@@ -55,60 +60,70 @@ function getEquipment(req: express.Request, res: express.Response): Optional<str
 }
 
 function buildFilter(req: express.Request, res: express.Response, token?: Token): Optional<any> {
-    let searchForRole = req.query.role
+    let searchMode = req.query.mode
     let filter: any = {}
 
-    let skills = getVolunteerSkills(req, res)
-    if (!skills) return undefined
-    let equipment = getEquipment(req, res)
-    if (!equipment) return undefined
-    let advice = getAdvice(req, res)
-    if (!advice) return undefined
+    let filterBy = typeof req.query.filterBy === 'string' ? req.query.filterBy : undefined
+    if (filterBy && (filterBy != QueryTypes.equipment && filterBy != QueryTypes.advice && filterBy != QueryTypes.volunteerSkills)) {
+        utils.badRequest(res)
+        return undefined
+    }
 
-    skills = skills.length == 0 ? undefined : skills
-    equipment = equipment.length == 0 ? undefined : equipment
-    advice = advice.length == 0 ? undefined : advice
-
-    if (searchForRole === UserRoles.VOLUNTEER) {
-        filter.availability = true
+    let filterList: Optional<string[]>
+    switch(filterBy) {
+        case QueryTypes.volunteerSkills:
+            filterList = getVolunteerSkills(req, res)
+            if (!filterList) return undefined
+            break
+        case QueryTypes.equipment:
+            filterList = getEquipment(req, res)
+            if (!filterList) return undefined
+            break
+        case QueryTypes.advice:
+            filterList = getAdvice(req, res)
+            if (!filterList) return undefined
+            break
+    }
     
-        if (skills) {
+
+    if (searchMode == SearchMode.offers && filterBy == QueryTypes.volunteerSkills) {
+        filter['details'] = {
+            "$exists": true
+        }
+
+        if (filterList && filterList.length > 0) {
             filter['details.skills'] = {
-                '$in': skills
+                "$all": filterList
             }
         }
     }
-    else if (searchForRole === UserRoles.LAB_DIAG) {
-        if (skills) {
-            filter['lookingFor.volunteerSkills'] = {
-                '$in': skills
+    else if (filterBy && filterList) {
+        if (filterList.length > 0) {
+            filter[`${searchMode}.${filterBy}`] = {
+                "$all": filterList
             }
         }
-        if (equipment) {
-            filter['lookingFor.equipment'] = {
-                '$in': equipment
+        else {
+            filter[`${searchMode}.${filterBy}.0`] = {
+                "$exists": true
             }
         }
+    }
+    else if(searchMode) {
+        if (searchMode === SearchMode.lookingFor) {
+            filter['$or'] = [
+                {"lookingFor.equipment.0" : { "$exists": true}},
+                {"lookingFor.advice.0": {"$exists": true}},
+                { "lookingFor.volunteerSkills.0": { "$exists": true } },
+            ]
+        } else {
+            filter['$or'] = [
+                { "offers.equipment.0": { "$exists": true } },
+                { "offers.advice.0": { "$exists": true } },
+            ]
+        }
+    }
 
-        if (advice) {
-            filter['lookingFor.advice'] = {
-                '$in': advice
-            }
-        }
-    }
-    else if (searchForRole === UserRoles.LAB_RESEARCH) {
-        if (equipment) {
-            filter['offers.equipment'] = {
-                '$in': equipment
-            }
-        }
-
-        if (advice) {
-            filter['offers.advice'] = {
-                '$in': advice
-            }
-        }
-    }
 
     filter['consent.publicSearch'] = true
     filter['disabled'] = false
@@ -119,17 +134,14 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
 
 
 function validSearchFilter(req: express.Request, res: express.Response, token?: Token): boolean {
-    if (req.query.role === UserRoles.VOLUNTEER) {
-        if (req.query[QueryTypes.equipment] || req.query[QueryTypes.advice]) {
-            console.log("searching for volunteers can not search for equipment or advice")
-            return false
-        }
+    if (!req.query.mode && (req.query.filterBy || req.query.filters)) {
+        console.error("searchMode is required to be able to filter")
+        return false
     }
-    else if (req.query.role === UserRoles.LAB_RESEARCH) {
-        if (req.query[QueryTypes.volunteerSkills]) {
-            console.log("searching for research labs can not search for human skills")
-            return false
-        }
+
+    if (req.query.filters && !req.query.filterBy) {
+        console.error("filterBy is required with filters")
+        return false
     }
 
     if (req.query.zipcode) {
@@ -178,8 +190,8 @@ export async function search(req: express.Request, res: express.Response, next: 
     page = Math.max(page, 0)
 
 
-    let searchForRole = typeof req.query.role === "string" ? req.query.role : undefined
-    if (searchForRole && !Validator.validRole(searchForRole).valid) {
+    let searchMode = typeof req.query.mode === "string" ? req.query.mode : undefined
+    if (searchMode && (searchMode !== SearchMode.lookingFor && searchMode !== SearchMode.offers)) {
         return utils.badRequest(res)
     }
 
@@ -187,9 +199,6 @@ export async function search(req: express.Request, res: express.Response, next: 
     if (!validSearchFilter(req, res, token)) {
         return utils.badRequest(res)
     }
-
-    let model = getModelForRole(searchForRole)
-    if (!model) return utils.badRequest(res)
 
     let projection: { [key: string]: number } = {
         'location': 1,
@@ -200,7 +209,8 @@ export async function search(req: express.Request, res: express.Response, next: 
         'offers': 1,
         'lookingFor': 1,
         'organization': 1,
-        'contact': 1
+        'contact': 1,
+        'details': 1
     }
 
     let filter = buildFilter(req, res, token)
@@ -209,7 +219,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         return
     }
  
-    let count = await model.find(filter).countDocuments().exec()
+    let count = await UserCommon.find(filter).countDocuments().exec()
 
     if (count == 0 || count < page*20) {
         let links = {
@@ -235,7 +245,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         }
 
         projection['distance'] = 1
-        docs = (await model.aggregate([{
+        docs = (await UserCommon.aggregate([{
             $geoNear: {
                 near: center_point,
                 distanceField: 'distance',
@@ -245,7 +255,7 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
         }]).project(projection).skip(20 * page).limit(20).exec())
     } else {
-        docs = await model.find(filter).select(projection).sort({ "createdAt": -1 }).skip(20 * page).limit(20)
+        docs = await UserCommon.find(filter).select(projection).sort({ "createdAt": -1 }).skip(20 * page).limit(20)
     }
     
     let results = []
