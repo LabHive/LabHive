@@ -7,7 +7,7 @@ import Login from './views/Login'
 import ForgotPassword from './views/ForgotPassword';
 import ResetPassword from './views/ResetPassword';
 import Register from './views/Register'
-import List from './views/List'
+import Search from './views/Search'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
 import ChangePassword from './views/ChangePassword'
@@ -31,7 +31,7 @@ const routes = [
   { path: '/ueber-uns', component: UeberUns},
   { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
-  { path: '/search', component: List },
+  { path: '/search', component: Search },
   { path: '/activate', component: Activation },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
