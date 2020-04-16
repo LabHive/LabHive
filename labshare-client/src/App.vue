@@ -259,7 +259,7 @@ body {
       color: #fff;
 
       @media (min-width: 991px) {
-        margin: 0;
+        margin: 0 4px;
       }
 
       &:hover {
