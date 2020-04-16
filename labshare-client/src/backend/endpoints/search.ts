@@ -258,7 +258,7 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
         }]).project(projection).skip(20 * page).limit(20).exec())
     } else {
-        docs = await UserCommon.find(filter).select(projection).sort({ "createdAt": -1 }).skip(20 * page).limit(20)
+        docs = await UserCommon.find(filter).select(projection).sort({ "updatedAt": -1 }).skip(20 * page).limit(20)
     }
 
     let results = []
