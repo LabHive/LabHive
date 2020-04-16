@@ -1,11 +1,15 @@
 <i18n>
 {
-    "en": {},
+    "en": {
+        "title": "Activate account",
+        "successMessage": "Activation successful",
+        "loadingMessage": "Please wait...",
+        "login": "&#10142;Login"},
     "de": {
-        "title": "Aktivierung",
+        "title": "Account aktivieren",
         "successMessage": "Aktivierung erfolgreich",
         "loadingMessage": "Bitte warten...",
-        "login": "Zum Login"
+        "login": "&#10140;Login"
     }
 }
 </i18n>
@@ -76,4 +80,3 @@ export default {
   }
 };
 </script>
-

@@ -2,18 +2,18 @@
     {
     "en":{
     "mainTitle": "We combine forces for more SARS-CoV-2 tests",
-    "subTitle": "Together we unleash the cumulative Power of Science!",
+    "subTitle": "Together we unleash the cumulative power of Science!",
     "Joinbutton": "Join now!",
     "partner": "In collaboration with",
     "weconnect": "We connect",
-    "qualif-vol": "qualified volunteers",
-    "Textqualif-vol": "scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
-    "res-lab": "research laboratories",
-    "Textres-lab": "academic or industrial research laboratory with access to materials, reagents, equipment or suitable laboratories (BSL-2/3)",
-    "diag-cent": "diagnotic centers",
-    "Textdiag-cent": "active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support",
-    "text4": "test capacities and support",
-    "testsweek": "tests per week"
+    "qualif-vol": "Qualified volunteers",
+    "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis.",
+    "res-lab": "Research laboratories",
+    "Textres-lab": "Academic or industrial research laboratories with access to materials, reagents, equipment or suitable laboratory space (BSL-2/3).",
+    "diag-cent": "Diagnostic centers",
+    "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support.",
+    "text4": "Test capacity and support",
+    "testsweek": "Tests per week"
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
@@ -21,12 +21,12 @@
     "Joinbutton": "Jetzt mitmachen!",
     "partner": "In Zusammenarbeit mit",
     "weconnect": "Wir bringen zusammen",
-    "qualif-vol": "qualifizierte Freiwillige",
-    "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
+    "qualif-vol": "Qualifizierte Freiwillige",
+    "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.",
     "res-lab": "Forschungslabore",
-    "Textres-lab": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3)",
+    "Textres-lab": "Akademische oder industrielle Forschungs- einrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3).",
     "diag-cent": "Diagnostikzentren",
-    "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen",
+    "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
     }

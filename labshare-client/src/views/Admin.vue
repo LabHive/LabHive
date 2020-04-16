@@ -1,9 +1,10 @@
 <i18n>
 {
   "en": {
+    "title": "User Management"
   },
   "de": {
-    "title": "User Management"
+    "title": "Nutzer Management"
   }
 }
 </i18n>
@@ -147,7 +148,7 @@ export default {
       if (item.disabled) {
         return 'userDisabled'
       }
-      
+
       return ""
     },
     items(ctx) {
@@ -172,7 +173,7 @@ export default {
 
                 let website = document.createElement('a')
                 website.href = item.website
-                
+
                 if (hostnameMailRegexp.test(website.hostname)) {
                     item._rowVariant = "warning"
                 }

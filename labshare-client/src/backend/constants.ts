@@ -6,6 +6,15 @@ export enum FILE_PATH {
     adminUser = "secret/adminUser.json"
 }
 
+<!-- can we use this for the number formatting?
+  https://stackoverflow.com/a/47219162/1842673
+  customFormat("### ### ###", TESTS_PER_WEEK)
+    > 354 521
+  or even
+  customFormat("###&#8239;###&#8239;###", TESTS_PER_WEEK)
+  > 354HalfSpace521
+  -->
+
 export enum LANG {
   de = 'de',
   en = 'en'
