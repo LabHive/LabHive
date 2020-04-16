@@ -1,21 +1,23 @@
 <i18n>
     {
     "en": {
-    "searchFor": "For what user group do you want to search?",
+    "searchModeSelection": "Do you search for offers or requests?",
     "dlabs": "Diagnostic Center",
     "rlabs": "Research Laboratory",
     "volunteers": "Qualified Volunteer",
     "skills": "Skills",
     "equipment": "Devices/Equipment",
     "advice": "Advice/Know-How",
-    "workers": "Workers",
+    "workers": "Workforce",
     "request": "What is needed?",
     "offer": "What can be offered?",
+    "theOffers": "Offers",
+    "theRequests": "Requests",
     "searchInSurroundings": "Search in the surroundings",
     "zipcode": "Enter Zipcode"
     },
     "de": {
-    "searchFor": "Wonach möchten Sie suchen?",
+    "searchModeSelection": "Suchen Sie für Angebote oder Anfragen?",
     "dlabs": "Diagnostikzentrum",
     "rlabs": "Forschungslabor",
     "volunteers": "Qualifizierte Freiwillige",
@@ -25,6 +27,8 @@
     "workers": "Arbeitskraft",
     "request": "Was wird benötigt?",
     "offer": "Was kann abgegeben werden?",
+    "theOffers": "Angebote",
+    "theRequests": "Anfragen",
     "searchInSurroundings": "Suche in der Umgebung",
     "zipcode": "PLZ eingeben"
     }
@@ -36,52 +40,51 @@
     <b-form @submit="submit">
       <div class="form-row">
         <div class="col-md3">
-          <b-form-group :label="$t('searchFor')">
+          <b-form-group :label="$t('searchModeSelection')">
             <div class="lh-button-group">
-              <LhButton :text="$t('dlabs')" :active="filters.role === 'lab_diag'" @click="() => changeLookingFor('lab_diag')" />
-              <LhButton :text="$t('rlabs')" :active="filters.role === 'lab_research'" @click="() => changeLookingFor('lab_research')" />
-              <LhButton :text="$t('volunteers')" :active="filters.role === 'volunteer'" @click="() => changeLookingFor('volunteer')" />
+              <LhButton :text="$t('theOffers')" :active="filter.mode === 'offers'" @click="() => changeMode('offers')" />
+              <LhButton :text="$t('theRequests')" :active="filter.mode === 'lookingFor'" @click="() => changeMode('lookingFor')" />
             </div>
           </b-form-group>
         </div>
       </div>
-      <div class="form-row" v-if="filterBy !== ''">
+      <div class="form-row" v-if="filter.mode !== ''">
         <div class="col-md4">
-          <b-form-group :label="filters.role === 'lab_diag' ? $t('request'): $t('offer')" v-if="'volunteer' !== filters.role">
+          <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')" v-if="'volunteer' !== filter.role">
             <div class="lh-button-group">
-              <LhButton :text="$t('equipment')" :active="filterBy === 'equipment'" @click="() => changeFilterBy('equipment')" />
-              <LhButton :text="$t('advice')" :active="filterBy === 'advice'" @click="() => changeFilterBy('advice')" />
-              <LhButton :text="$t('workers')" v-if="'lab_diag' === filters.role" :active="filterBy === 'skills'" @click="() => changeFilterBy('skills')" />
+              <LhButton :text="$t('equipment')" :active="filter.filterBy === 'equipment'" @click="() => changeFilterBy('equipment')" />
+              <LhButton :text="$t('advice')" :active="filter.filterBy === 'advice'" @click="() => changeFilterBy('advice')" />
+              <LhButton :text="$t('workers')" :active="filter.filterBy === 'volunteerSkills'" @click="() => changeFilterBy('volunteerSkills')" />
             </div>
           </b-form-group>
         </div>
       </div>
 
       <div class="search-filters">
-        <template v-if="filterBy === 'skills'">
+        <template v-if="filter.filterBy === 'volunteerSkills'">
           <CheckboxGroup
-            name="skills"
+            name="volunteerSkills"
             :data="volunteerSkillsOptions"
-            v-model="filters.volunteerSkills"
+            v-model="filter.filters"
             :saveChanges="searchChange"
             :cols="'2'"
           ></CheckboxGroup>
         </template>
 
-        <template v-if="filterBy === 'equipment'">
+        <template v-if="filter.filterBy === 'equipment'">
           <CheckboxGroup
             name="equipment"
             :data="equipmentOptions"
-            v-model="filters.equipment"
+            v-model="filter.filters"
             :saveChanges="searchChange"
           ></CheckboxGroup>
         </template>
 
-        <template v-if="filterBy === 'advice'">
+        <template v-if="filter.filterBy === 'advice'">
           <CheckboxGroup
             name="advice"
             :data="adviceOptions"
-            v-model="filters.advice"
+            v-model="filter.filters"
             :saveChanges="searchChange"
           ></CheckboxGroup>
         </template>
@@ -93,7 +96,7 @@
             :verticalLabel="true"
             name="zipcode"
             :label="$t('searchInSurroundings')"
-            v-model="filters.zipcode"
+            v-model="filter.zipcode"
             :valFunc="optionalZip"
             :validFeedback="() => ''"
             :placeholder="$t('zipcode')"
@@ -119,39 +122,37 @@ import LhButton from './LhButton';
 export default {
   data: function() {
     return {
-      filters: {
-        role: "",
+      filter: {
+        mode: "",
         zipcode: "",
-        volunteerSkills: [],
-        equipment: [],
-        advice: []
+        filterBy: "",
+        filters: []
       },
       volunteerSkillsOptions: labSkills,
       equipmentOptions: equipment,
       adviceOptions: advices,
       val: Validator,
-      filterBy: ""
     };
   },
   methods: {
     searchChange: function() {
-      this.$emit("searchChange", this.filters);
+      this.$nextTick(() => {
+        this.$emit("searchChange", this.filter);
+      })
     },
     changeFilterBy: function(type) {
-      this.filterBy = type;
-      this.filters.volunteerSkills = [];
-      this.filters.equipment = [];
-      this.filters.advice = [];
+      this.filter.filterBy = type;
+      this.filter.filters = []
       this.searchChange();
     },
-    changeLookingFor: function(type) {
-      this.filterBy = "skills";
-      this.filters.role = type;
+    changeMode: function(type) {
+      this.filterBy = "volunteerSkills";
+      this.filter.mode = type;
 
       switch(type) {
         case "volunteers":
         case "lab_diag":
-          this.filterBy = "skills";
+          this.filterBy = "volunteerSkills";
           break;
         case "lab_research":
           this.filterBy = "equipment";
@@ -166,15 +167,15 @@ export default {
     initSearchForm() {
       switch(this.$user.role) {
         case "volunteer":
-          this.filters.role = "lab_diag";
-          this.filterBy = "skills";
+          this.filter.mode = "lookingFor";
+          this.filterBy = "volunteerSkills";
           break;
         case "lab_research":
-          this.filters.role = "lab_diag";
+          this.filter.mode = "lookingFor";
           this.filterBy = "equipment";
           break;
         case "lab_diag":
-          this.filters.role = "lab_research";
+          this.filter.mode = "offers";
           this.filterBy = "equipment";
           break;
       }
