@@ -9,6 +9,14 @@ import profile_load_mixin from "./mixins/profile_fetch";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import VueI18n from "vue-i18n";
 import { localization } from "./localization";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// Font Awesome Library
+library.add(faTwitter, faGithub)
 
 Vue.config.productionTip = false;
 
