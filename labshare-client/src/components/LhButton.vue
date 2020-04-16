@@ -10,23 +10,51 @@
 </i18n>
 
 <template>
-	<button class="lh-button" v-bind:class="{ active: active }" @click="$emit('click')">
-		{{ text }}
-	</button>
+  <button class="lh-button" v-bind:class="{ active: active }" @click="click">{{ text }}</button>
 </template>
 
 <script>
 export default {
+  model: {
+    prop: 'model',
+    event: 'input'
+  },
   props: {
     text: {
-		type: String,
-		required: true,
+      type: String,
+      required: true
     },
-    active: {
-		type: Boolean,
-		default: false,
+    model: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: String,
+      default: ""
     }
   },
+  computed: {
+    active: {
+      get() {
+        return this.model === this.value
+      },
+      set(newValue) {
+        let payload = ""
+        if (newValue === true) {
+          payload = this.value
+        }
+
+        this.$emit('input', payload)
+        this.$emit('change', payload)
+          
+      }
+    }
+  },
+  methods: {
+    click() {
+      this.active = !this.active
+    },
+  }
 };
 </script>
 
@@ -36,7 +64,7 @@ $color-bkg-primary: #f7f6fd;
 
 .lh-button {
   padding: 12px 24px;
-  background: #D9F0EF;
+  background: #d9f0ef;
   border-radius: 4px;
   border: 0;
   outline: none;

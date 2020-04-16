@@ -1,7 +1,7 @@
 <i18n>
     {
     "en": {
-    "searchModeSelection": "Do you search for offers or requests?",
+    "searchModeSelection": "What do you search for?",
     "dlabs": "Diagnostic Center",
     "rlabs": "Research Laboratory",
     "volunteers": "Qualified Volunteer",
@@ -17,7 +17,7 @@
     "zipcode": "Enter Zipcode"
     },
     "de": {
-    "searchModeSelection": "Suchen Sie für Angebote oder Anfragen?",
+    "searchModeSelection": "Wonach suchen Sie?",
     "dlabs": "Diagnostikzentrum",
     "rlabs": "Forschungslabor",
     "volunteers": "Qualifizierte Freiwillige",
@@ -42,26 +42,26 @@
         <div class="col-md3">
           <b-form-group :label="$t('searchModeSelection')">
             <div class="lh-button-group">
-              <LhButton :text="$t('theOffers')" :active="filter.mode === 'offers'" @click="() => changeMode('offers')" />
-              <LhButton :text="$t('theRequests')" :active="filter.mode === 'lookingFor'" @click="() => changeMode('lookingFor')" />
+              <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
+              <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
+              <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
             </div>
           </b-form-group>
         </div>
       </div>
       <div class="form-row" v-if="filter.mode !== ''">
         <div class="col-md4">
-          <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')" v-if="'volunteer' !== filter.role">
+          <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')" v-if="'volunteers' !== filter.mode">
             <div class="lh-button-group">
-              <LhButton :text="$t('equipment')" :active="filter.filterBy === 'equipment'" @click="() => changeFilterBy('equipment')" />
-              <LhButton :text="$t('advice')" :active="filter.filterBy === 'advice'" @click="() => changeFilterBy('advice')" />
-              <LhButton :text="$t('workers')" :active="filter.filterBy === 'volunteerSkills'" @click="() => changeFilterBy('volunteerSkills')" />
+              <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
+              <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
             </div>
           </b-form-group>
         </div>
       </div>
 
       <div class="search-filters">
-        <template v-if="filter.filterBy === 'volunteerSkills'">
+        <template v-if="filter.mode === 'volunteers'">
           <CheckboxGroup
             name="volunteerSkills"
             :data="volunteerSkillsOptions"
@@ -145,17 +145,20 @@ export default {
       this.filter.filters = []
       this.searchChange();
     },
-    changeMode: function(type) {
-      this.filterBy = "volunteerSkills";
-      this.filter.mode = type;
+    changeMode: function(mode) {
+      this.filter.mode = mode;
 
-      switch(type) {
-        case "volunteers":
-        case "lab_diag":
-          this.filterBy = "volunteerSkills";
+      switch(mode) {
+        case "lookingFor":
+        case "offers":
+          if (this.filter.filterBy === "volunteerSkills") {
+            this.filter.filterBy = "";
+            this.filter.filters = []
+          }
           break;
-        case "lab_research":
-          this.filterBy = "equipment";
+        case "volunteers":
+          this.filter.filterBy = "volunteerSkills";
+          this.filter.filters = []
           break;
       }
       this.searchChange();
