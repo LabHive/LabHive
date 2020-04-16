@@ -16,7 +16,40 @@ export let localization = {
       deleteProfile: "Delete Profile",
       delete: "Delete",
       cancel: "Cancel",
-      deleteConfirmation: "Do you really want to delete your profile?"
+      deleteConfirmation: "Do you really want to delete your profile?",
+
+      "bsl1": "Work under BSL2 regulations/safety standards",
+      "bsl2": "Work under BSL2 regulations/safety standards",
+      "bsl3": "ork under BSL3 regulations/safety standards",
+      "bsl4": "Work under BSL4 regulations/safety standards",
+      "qpcr": "qPCR",
+      "rnaExperience_isolation": "RNA isolation (with kit)",
+      "sample_processing": "(Pre)Processing of clinical samples",
+      "elisa": "ELISA",
+      "primerProduction": "Primerherstellung",
+      "dataAnalysis": "Datenanalyse",
+
+      "calibratedPipetteSet": "Calibrated Pipette Set",
+      "rtThermocycler": "Thermocycler RT",
+      "qpcrThermocycler": "Thermocycler qPCR",
+      "reverseTransKit": "Reverse Transcriptase Kit",
+      "pcrMasterMix": "PCR Master Mix",
+      "rnaExtractionDevice": "RNA Extraction Device",
+      "rnaExtractionKit": "RNA Extraction Kit",
+
+      "virology": "Virologie",
+      "qPCR": "Allgemein qPCR",
+      "protocolProduction": "Protokollerstellung",
+
+      "jobTraining": "Berufsausbildung",
+      "mtla": "MTLA",
+      "bta_cta": "BTA/CTA",
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "doctorate": "Promotion",
+      "postdoc": "Postdoc",
+      "groupLeader": "Gruppenleiter*in",
+      "other": "Andere"
     },
     de: {
       backend: {
@@ -65,7 +98,41 @@ export let localization = {
       deleteProfile: "Profil löschen",
       delete: "Löschen",
       cancel: "Abbruch",
-      deleteConfirmation: "Wollen Sie ihr Profil wirklich löschen?"
+      deleteConfirmation: "Wollen Sie ihr Profil wirklich löschen?",
+
+
+      "bsl1": "Arbeit unter BSL1 Bedingungen/Sicherheitsstandards",
+      "bsl2": "Arbeit unter BSL2 Bedingungen/Sicherheitsstandards",
+      "bsl3": "Arbeit unter BSL3 Bedingungen/Sicherheitsstandards",
+      "bsl4": "Arbeit unter BSL4 Bedingungen/Sicherheitsstandards",
+      "qpcr": "qPCR",
+      "rnaExperience_isolation": "RNA-Isolation (mit Kit)",
+      "sample_processing": "Vor/Aufbereitung klinischer Proben",
+      "elisa": "ELISA",
+      "primerProduction": "Primerherstellung",
+      "dataAnalysis": "Datenanalyse",
+
+      "calibratedPipetteSet": "Calibrated Pipette Set",
+      "rtThermocycler": "Thermocycler RT",
+      "qpcrThermocycler": "Thermocycler qPCR",
+      "reverseTransKit": "Reverse Transcriptase Kit",
+      "pcrMasterMix": "PCR Master Mix",
+      "rnaExtractionDevice": "RNA Extraction Device",
+      "rnaExtractionKit": "RNA Extraction Kit",
+
+      "virology": "Virologie",
+      "qPCR": "Allgemein qPCR",
+      "protocolProduction": "Protokollerstellung",
+
+      "jobTraining": "Berufsausbildung",
+      "mtla": "MTLA",
+      "bta_cta": "BTA/CTA",
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "doctorate": "Promotion",
+      "postdoc": "Postdoc",
+      "groupLeader": "Gruppenleiter*in",
+      "other": "Andere"
     }
   }
 }
