@@ -23,31 +23,6 @@
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
-    <!-- <b-container fluid>
-      <b-row align-v="center" v-for="(chunk, i) in searchResults" :key="chunk">
-        <transition name="refresh" tag="div">
-          <b-col
-            class="result-row"
-            cols="md"
-            md="6"
-            lg="5"
-            v-for="(item, j) in chunk"
-            :key="item.header + item.center + String(i*2+j)"
-          >
-            <div class="search-result">
-              <div class="sr-header">
-                <font-awesome-icon :icon="item.faIcon" />
-                {{ item.header }}
-              </div>
-              <div class="sr-subHeader">{{ item.subHeader }}</div>
-              <div class="sr-center" v-html="item.center"></div>
-              <div class="sr-footer">{{ item.footer }}</div>
-            </div>
-          </b-col>
-        </transition>
-      </b-row>
-    </b-container> -->
-
     <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
       <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader">
         <div class="sr-header">
