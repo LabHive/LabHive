@@ -127,6 +127,7 @@ export function getFilterForPublicUsers(additional: any = {}): any {
     'consent.publicSearch': true,
     'verified.manually': true,
     'verified.mail': true,
+    'disabled': false,
     ...additional
   }
 }
