@@ -6,6 +6,7 @@ export enum FILE_PATH {
     adminUser = "secret/adminUser.json"
 }
 
+
 export enum LANG {
   de = 'de',
   en = 'en'
