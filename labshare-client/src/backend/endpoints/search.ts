@@ -214,7 +214,8 @@ export async function search(req: express.Request, res: express.Response, next: 
         'lookingFor': 1,
         'organization': 1,
         'contact': 1,
-        'details': 1
+        'details': 1,
+        'slug': 1
     }
 
     let filter = buildFilter(req, res, token)
@@ -277,10 +278,15 @@ export async function search(req: express.Request, res: express.Response, next: 
 
         if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
             delete a.contact
+
+            if (a.role === UserRoles.VOLUNTEER) {
+                delete a.organization
+            }
         }
 
-        if (token && token.role !== UserRoles.LAB_DIAG && i.role == UserRoles.VOLUNTEER) {
+        if (token && token.role !== UserRoles.LAB_DIAG && a.role == UserRoles.VOLUNTEER) {
             delete a.contact
+            delete a.organization
         }
 
         results.push(a)

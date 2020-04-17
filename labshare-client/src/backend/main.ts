@@ -45,6 +45,7 @@ router.post("/login", login)
 router.get("/search", search)
 router.post("/activate", activate)
 router.get("/test-coverage", testCoverage)
+router.get("/profile/:id", Profile.getForSlug)
 
 
 router.use(authMiddleware)
