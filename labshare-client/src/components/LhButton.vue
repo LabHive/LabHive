@@ -10,7 +10,7 @@
 </i18n>
 
 <template>
-  <button class="lh-button" v-bind:class="{ active: active }" @click="click">{{ text }}</button>
+  <b-button variant="primary" class="lh-button" v-bind:class="{ active: active }" @click="click">{{ text }}</b-button>
 </template>
 
 <script>
@@ -59,12 +59,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-green: #177867;
-$color-bkg-primary: #f7f6fd;
 
 .lh-button {
   padding: 12px 24px;
-  background: #d9f0ef;
   border-radius: 4px;
   border: 0;
   outline: none;
@@ -72,11 +69,6 @@ $color-bkg-primary: #f7f6fd;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.1em;
-  color: #177867;
-
-  &.active {
-    background: #177867;
-    color: #fff;
-  }
+  margin-bottom: 0;
 }
 </style>

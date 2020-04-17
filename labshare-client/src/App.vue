@@ -213,7 +213,8 @@ body {
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
     color: $color-green;
   }
-  &:not(:disabled):not(.disabled):active {
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
     background: #C9E0DF;
     color: $color-green;
     box-shadow: none;
