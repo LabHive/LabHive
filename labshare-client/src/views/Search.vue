@@ -239,7 +239,7 @@ export default {
   flex-basis: calc(50% - 16px);
   margin-top: 24px;
   display: inline-block;
-  transition: all 0.5s
+  transition: all 0.5s;
 }
 
 .search-result:hover {
@@ -255,6 +255,7 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .sr-header {

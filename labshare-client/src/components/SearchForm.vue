@@ -37,7 +37,7 @@
 
 <template>
   <div>
-    <b-form @submit="submit">
+    <b-form>
       <div class="form-row">
         <div class="col-md3">
           <b-form-group :label="$t('searchModeSelection')">
@@ -49,45 +49,50 @@
           </b-form-group>
         </div>
       </div>
-      <div class="form-row" v-if="filter.mode !== ''">
-        <div class="col-md4">
-          <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')" v-if="'volunteers' !== filter.mode">
-            <div class="lh-button-group">
-              <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
-              <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
-            </div>
-          </b-form-group>
+      <HeightTransition @finished="$emit('finished')">
+        <div class="form-row" v-if="filter.mode && 'volunteers' !== filter.mode">
+          <div class="col-md4">
+            <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')">
+              <div class="lh-button-group">
+                <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
+                <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
+              </div>
+            </b-form-group>
+          </div>
         </div>
-      </div>
+      </HeightTransition>
 
       <div class="search-filters">
-        <template v-if="filter.mode === 'volunteers'">
+        <HeightTransition @finished="$emit('finished')">
           <CheckboxGroup
             name="volunteerSkills"
             :data="volunteerSkillsOptions"
             v-model="filter.filters"
             :saveChanges="searchChange"
             :cols="'2'"
+            v-if="filter.mode === 'volunteers'"
           ></CheckboxGroup>
-        </template>
+        </HeightTransition>
 
-        <template v-if="filter.filterBy === 'equipment'">
+        <HeightTransition @finished="$emit('finished')">
           <CheckboxGroup
             name="equipment"
             :data="equipmentOptions"
             v-model="filter.filters"
             :saveChanges="searchChange"
+            v-if="filter.filterBy === 'equipment'"
           ></CheckboxGroup>
-        </template>
+        </HeightTransition>
 
-        <template v-if="filter.filterBy === 'advice'">
+        <HeightTransition @finished="$emit('finished')">
           <CheckboxGroup
             name="advice"
             :data="adviceOptions"
             v-model="filter.filters"
+            v-if="filter.filterBy === 'advice'"
             :saveChanges="searchChange"
           ></CheckboxGroup>
-        </template>
+        </HeightTransition>
       </div>
 
       <div class="form-row">
@@ -118,6 +123,7 @@ import CheckboxGroup from "./CheckboxGroup";
 import { Validator } from "../../dist-browser/lib/validation";
 import InputForm from "./InputForm";
 import LhButton from './LhButton';
+import HeightTransition from "./HeightTransition";
 
 export default {
   data: function() {
@@ -143,11 +149,12 @@ export default {
     changeFilterBy: function(type) {
       this.filter.filterBy = type;
       this.filter.filters = []
-      this.searchChange();
+
+      this.$once('finished', () => {
+        this.searchChange();
+      })
     },
     changeMode: function(mode) {
-      this.filter.mode = mode;
-
       if (mode === '') {
         this.filter.filterBy = "";
         this.filter.filters = []
@@ -166,11 +173,17 @@ export default {
           this.filter.filters = []
           break;
       }
-      this.searchChange();
-    },
-    submit: function(ev) {
-      ev.preventDefault();
-      this.searchChange();
+
+      if ((mode == 'lookingFor' || mode == 'offers') && this.oldFilterMode !== 'volunteers' && this.oldFilterMode) {
+        this.searchChange();
+      }
+      else {
+        this.$once('finished', () => {
+          this.searchChange();
+        })
+      }
+
+      this.oldFilterMode = mode
     },
     initSearchForm() {
       switch(this.$user.role) {
@@ -213,7 +226,8 @@ export default {
   components: {
     CheckboxGroup,
     InputForm,
-    LhButton
+    LhButton,
+    HeightTransition
   }
 };
 </script>
@@ -242,4 +256,19 @@ $color-bkg-primary: #f7f6fd;
     color: #fff;
   }
 }
+
+.fade-leave-active, .fade-enter-active {
+  transition: height 0.25s;
+  overflow: hidden;
+}
+
+.fade-enter, .fade-leave-to {
+  height: 0;
+}
+
+.fade-enter-to, .fade-leave {
+  height: 120px;
+}
+
+
 </style>
