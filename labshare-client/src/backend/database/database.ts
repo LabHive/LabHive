@@ -10,6 +10,7 @@ import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationTo
 import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
 import { CONF } from '../options'
 import { TESTS_PER_WEEK } from '../constants';
+import { Token } from '../utils'
 
 const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
 
@@ -91,16 +92,11 @@ export async function getTestCoverage(): Promise<{
   }>;
 }> {
 
-  let filter = {
-    disabled: false,
-    verified: {
-      manually: true,
-      main: true
-    }
-  }
-  const labDiags = await UserLabDiag.find(filter);
-  const labResearches = await UserLabResearch.find(filter);
-  const volunteers = await UserVolunteer.find(filter);
+  let filter = getFilterForPublicUsers()
+
+  const labDiags = await UserLabDiag.find(filter).exec();
+  const labResearches = await UserLabResearch.find(filter).exec();
+  const volunteers = await UserVolunteer.find(filter).exec();
 
   return {
     testsPerWeek: TESTS_PER_WEEK,
@@ -119,4 +115,53 @@ export async function getTestCoverage(): Promise<{
       })
     )
   };
+}
+
+
+
+
+
+
+export function getFilterForPublicUsers(additional: any = {}): any {
+  return {
+    'consent.publicSearch': true,
+    'verified.manually': true,
+    'verified.mail': true,
+    ...additional
+  }
+}
+
+export function cleanUserObjForToken(token: Optional<Token>, user: IUserCommon) {
+  delete user._id
+  delete user.__v
+  delete user.password
+  delete user.consent
+  delete user.verified
+  delete user.disabled
+
+  // unauthorized or logged in as volunteer
+  if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
+    delete user.contact
+
+    if (user.role === UserRoles.VOLUNTEER) {
+      delete user.organization
+      delete user.website
+    }
+  }
+}
+
+export function sensibleUserProjection(): { [key: string]: number } {
+  return {
+    'location': 1,
+    'address': 1,
+    'description': 1,
+    'role': 1,
+    'offers': 1,
+    'lookingFor': 1,
+    'organization': 1,
+    'website': 1,
+    'contact': 1,
+    'details': 1,
+    'slug': 1
+  }
 }

@@ -1,7 +1,7 @@
 import express from "express";
 import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
-import { getModelForRole, getUser, UserCommon } from '../database/database';
+import { getModelForRole, getUser, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
 import utils, { Token } from '../utils';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import crypto from "crypto"
@@ -63,7 +63,7 @@ function getEquipment(req: express.Request, res: express.Response): Optional<str
 
 function buildFilter(req: express.Request, res: express.Response, token?: Token): Optional<any> {
     let searchMode = req.query.mode
-    let filter: any = {}
+    let filter: any = getFilterForPublicUsers()
 
     let filterBy = typeof req.query.filterBy === 'string' ? req.query.filterBy : undefined
     if (filterBy && (filterBy != QueryTypes.equipment && filterBy != QueryTypes.advice && filterBy != QueryTypes.volunteerSkills)) {
@@ -123,14 +123,11 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
                 { "offers.equipment.0": { "$exists": true } },
                 { "offers.advice.0": { "$exists": true } },
             ]
+        } else if (searchMode == SearchMode.volunteers) {
+            filter['role'] = UserRoles.VOLUNTEER
         }
     }
 
-
-    filter['consent.publicSearch'] = true
-    filter['disabled'] = false
-    filter['verified.manually'] = true
-    filter['verified.mail'] = true
     return filter
 }
 
@@ -204,19 +201,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         return utils.badRequest(res)
     }
 
-    let projection: { [key: string]: number } = {
-        'location': 1,
-        'address': 1,
-        'description': 1,
-        'consent': 1,
-        'role': 1,
-        'offers': 1,
-        'lookingFor': 1,
-        'organization': 1,
-        'contact': 1,
-        'details': 1,
-        'slug': 1
-    }
+    let projection = sensibleUserProjection()
 
     let filter = buildFilter(req, res, token)
     if (!filter) {
@@ -260,7 +245,7 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
         }]).project(projection).skip(20 * page).limit(20).exec())
     } else {
-        docs = await UserCommon.find(filter).select(projection).sort({ "updatedAt": -1 }).skip(20 * page).limit(20)
+        docs = await UserCommon.find(filter).sort({ "updatedAt": -1 }).select(projection).skip(20 * page).limit(20)
     }
 
     let results = []
@@ -272,23 +257,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         }
         catch (err) { }
 
-
-        delete a.consent
-        a._id = crypto.createHash('sha256').update(a._id.toString()).digest('hex')
-
-        if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
-            delete a.contact
-
-            if (a.role === UserRoles.VOLUNTEER) {
-                delete a.organization
-            }
-        }
-
-        if (token && token.role !== UserRoles.LAB_DIAG && a.role == UserRoles.VOLUNTEER) {
-            delete a.contact
-            delete a.organization
-        }
-
+        cleanUserObjForToken(token, a)
         results.push(a)
     }
 
