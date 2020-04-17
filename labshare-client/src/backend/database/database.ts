@@ -91,16 +91,11 @@ export async function getTestCoverage(): Promise<{
   }>;
 }> {
 
-  let filter = {
-    disabled: false,
-    verified: {
-      manually: true,
-      main: true
-    }
-  }
-  const labDiags = await UserLabDiag.find(filter);
-  const labResearches = await UserLabResearch.find(filter);
-  const volunteers = await UserVolunteer.find(filter);
+  let filter = getFilterForPublicUsers()
+
+  const labDiags = await UserLabDiag.find(filter).exec();
+  const labResearches = await UserLabResearch.find(filter).exec();
+  const volunteers = await UserVolunteer.find(filter).exec();
 
   return {
     testsPerWeek: TESTS_PER_WEEK,
@@ -119,4 +114,18 @@ export async function getTestCoverage(): Promise<{
       })
     )
   };
+}
+
+
+
+
+
+
+export function getFilterForPublicUsers(additional: any = {}): any {
+  return {
+    'consent.publicSearch': true,
+    'verified.manually': true,
+    'verified.mail': true,
+    ...additional
+  }
 }
