@@ -28,7 +28,7 @@
     </HeightTransition>
 
     <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
-      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user._id">
+      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user.slug">
         <div class="sr-header">
           <font-awesome-icon :icon="item.faIcon" />
           {{ item.header }}

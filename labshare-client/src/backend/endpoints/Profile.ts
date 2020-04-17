@@ -1,6 +1,6 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
-import { getModelForRole, getUserById, getUserOrAdmin, getUser, UserCommon } from '../database/database';
+import { getModelForRole, getUserById, getUserOrAdmin, getUser, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
@@ -39,25 +39,8 @@ class Profile {
 
         let token = await utils.getVerifiedDecodedJWT(req)
 
-        let projection: { [key: string]: number } = {
-            'location': 1,
-            'address': 1,
-            'description': 1,
-            'role': 1,
-            'offers': 1,
-            'lookingFor': 1,
-            'organization': 1,
-            'contact': 1,
-            'details': 1,
-            'slug': 1
-        }
-
-        let filter: any = {
-            slug: req.params.id,
-            'consent.publicSearch': true,
-            'verified.manually': true,
-            'verified.mail': true
-        }
+        let projection = sensibleUserProjection()
+        let filter: any = getFilterForPublicUsers({slug: req.params.id})
 
         let user = await UserCommon.findOne(filter).select(projection).exec();
         if (!user) {
@@ -65,23 +48,7 @@ class Profile {
         }
 
         let a: IUserCommon = user.toObject()
-
-        delete a._id
-        delete a.__v
-
-        if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
-            delete a.contact
-
-            if (a.role === UserRoles.VOLUNTEER) {
-                delete a.organization
-            }
-        }
-
-        if (token && token.role !== UserRoles.LAB_DIAG && a.role == UserRoles.VOLUNTEER) {
-            delete a.contact
-            delete a.organization
-        }
-
+        cleanUserObjForToken(token, a)
 
         res.send({
             success: true,

@@ -10,6 +10,7 @@ import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationTo
 import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
 import { CONF } from '../options'
 import { TESTS_PER_WEEK } from '../constants';
+import { Token } from '../utils'
 
 const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
 
@@ -127,5 +128,40 @@ export function getFilterForPublicUsers(additional: any = {}): any {
     'verified.manually': true,
     'verified.mail': true,
     ...additional
+  }
+}
+
+export function cleanUserObjForToken(token: Optional<Token>, user: IUserCommon) {
+  delete user._id
+  delete user.__v
+  delete user.password
+  delete user.consent
+  delete user.verified
+  delete user.disabled
+
+  // unauthorized or logged in as volunteer
+  if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
+    delete user.contact
+
+    if (user.role === UserRoles.VOLUNTEER) {
+      delete user.organization
+      delete user.website
+    }
+  }
+}
+
+export function sensibleUserProjection(): { [key: string]: number } {
+  return {
+    'location': 1,
+    'address': 1,
+    'description': 1,
+    'role': 1,
+    'offers': 1,
+    'lookingFor': 1,
+    'organization': 1,
+    'website': 1,
+    'contact': 1,
+    'details': 1,
+    'slug': 1
   }
 }
