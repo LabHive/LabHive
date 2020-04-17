@@ -25,6 +25,7 @@ export let registration_labDiag: Schema = {
                 equipmentDescription: { type: "string" },
                 adviceDescription: { type: "string" }
             },
+            required: ["volunteerSkills", "advice", "equipment", "equipmentDescription", "adviceDescription"]
         },
         offers: {
             properties: {
@@ -39,6 +40,7 @@ export let registration_labDiag: Schema = {
                 equipmentDescription: { type: "string" },
                 adviceDescription: { type: "string" }
             },
+            required: ["advice", "equipment", "equipmentDescription", "adviceDescription"]
         }
     },
     required: ["address", "contact", "organization", "description", "password", "consent", "website"]

@@ -21,6 +21,7 @@ export let registration_labResearch: Schema = {
                 equipmentDescription: { type: "string" },
                 adviceDescription: { type: "string" }
             },
+            required: ["advice", "equipment", "equipmentDescription", "adviceDescription"]
         }
     },
     required: ["address", "contact", "organization", "description", "password", "consent", "website"]
