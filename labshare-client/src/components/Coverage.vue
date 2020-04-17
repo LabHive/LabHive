@@ -119,7 +119,9 @@ export default {
           visible: true
         }));
       }
-    );
+    ).catch(() => {
+      console.log("Fetching test-coverage failed")
+    })
   },
   methods: {
     zoomUpdate(zoom) {

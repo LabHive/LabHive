@@ -2,7 +2,8 @@
 {
   "en": {
     "brand": "LabHive",
-    "aboutUs": "About Us",
+    "aboutLabhive": "About LabHive",
+    "aboutUs": "Team",
     "register": "Sign up",
     "login": "Login",
     "profile": "Profile",
@@ -12,11 +13,12 @@
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
-    "search": "Search"
+    "search": "Search For Ressources"
   },
   "de": {
     "brand": "LabHive",
-    "aboutUs": "Über uns",
+    "aboutLabhive": "Über LabHive",
+    "aboutUs": "Team",
     "register": "Registrieren",
     "login": "Login",
     "profile": "Profil",
@@ -26,7 +28,7 @@
     "imprint": "Impressum",
     "requestResource": "Bedarfsanfrage",
     "offerResource": "Ressource anbieten",
-    "search": "Suche"
+    "search": "Suche nach Ressourcen"
   }
 }
 </i18n>
@@ -44,9 +46,10 @@
         </b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto">
+          <b-navbar-nav class="mr-auto">
+            <b-nav-item href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
             <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
-            <b-nav-item href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -80,16 +83,19 @@
     <footer class="footer-custom">
       <b-container>
         <b-row>
-          <b-col cols lg="4" md="4" sm="12" class="copyright align-self-center">
+          <b-col class="copyright align-self-center">
             &copy; LabHive 2020
           </b-col>
-          <b-col cols lg="4" md="4" sm="12" class="text-center align-self-center">
+          <b-col cols="12" md="auto" class="text-center align-self-center">
             <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
+            <b-link class="fa-icon" href="https://twitter.com/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
+            <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
-          <b-col cols lg="4" md="4" sm="12" class="logo">
+          <b-col class="logo">
             <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
+          
         </b-row>
       </b-container>
     </footer>
@@ -161,6 +167,7 @@ body {
   display: flex;
   height: 100vh;
   color: #000;
+  background-color: $color-bkg-primary;
 }
 
 .clink {
@@ -189,6 +196,32 @@ body {
   margin-top: 20px;
 }
 
+.btn-primary {
+  background: $color-green;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  color: #fff;
+  padding: 12px 24px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+
+  &:hover {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    color: $color-green;
+  }
+  &:not(:disabled):not(.disabled):active {
+    background: #C9E0DF;
+    color: $color-green;
+    box-shadow: none;
+  }
+}
+
+
+
 #navbar, .footer-custom {
   background: $color-bkg-primary;
   position: relative;
@@ -207,6 +240,35 @@ body {
     }
   }
 
+  .nav-cta {
+    background:$color-green;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+
+    @media (min-width: 991px) {
+      margin: 0 16px;
+    }
+
+    &:hover {
+      background: #fff;
+      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    a {
+      font-weight: 500;
+      color: #fff;
+
+      @media (min-width: 991px) {
+        margin: 0 4px;
+      }
+
+      &:hover {
+        color: $color-green;
+        text-shadow: none;
+      }
+    }
+  }
+
   &:after {
     left: 0;
     right: 0;
@@ -220,6 +282,11 @@ body {
 
   .logo {
     text-align: right;
+
+    @media (max-width: 991px) {
+      text-align: center;
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 767px) {
@@ -227,7 +294,14 @@ body {
       text-align: center; 
       padding: 10px 0;
     }
+    .copyright {
+      margin-bottom: 10px;
+    }
   }
+}
+
+.btn-primary {
+  margin-bottom: 16px;
 }
 
 #navbar {
@@ -309,12 +383,17 @@ body {
   a + a {
     margin-left: 40px;
   }
+
+  .fa-icon + .fa-icon {
+    margin-left: 16px;
+  }
 }
 
 .has_banner {
   margin-top: 0;
   max-width: none;
   padding: 0;
+  background: $color-white;
 
   #app {
     margin: 0;

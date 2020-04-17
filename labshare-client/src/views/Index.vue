@@ -146,6 +146,10 @@ export default {
 $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
 
+.has_banner {
+  background-color: #fff;
+}
+
 .banner {
   background: $color-bkg-primary;
   margin-bottom: 65px;

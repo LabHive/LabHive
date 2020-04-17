@@ -43,7 +43,7 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="4">
+          <b-col cols="md-4">
             <b-button
               block
               size="lg"
@@ -51,7 +51,7 @@
               @click="registrationForm = forms.VOLUNTEER"
             >{{$t("roleHelper")}}</b-button>
           </b-col>
-          <b-col cols="4">
+          <b-col cols="md-4">
             <b-button
               block
               size="lg"
@@ -59,7 +59,7 @@
               @click="registrationForm = forms.DIAGNOSTIC_LAB"
             >{{$t("roleDiagnosticLab")}}</b-button>
           </b-col>
-          <b-col cols="4">
+          <b-col cols="md-4">
             <b-button
               block
               size="lg"
