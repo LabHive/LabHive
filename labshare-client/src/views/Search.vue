@@ -6,21 +6,15 @@
   },
   "de": {
     "title": "Suche nach Ressourcen",
-    "rnaExtraction": "RNA-Extraction",
-    "testKits": "Test Kits",
-    "diagnostics": "Diagnostiker",
     "noResults": "Keine Ergebnisse gefunden!",
-    "offerEquipment": "Equipment anzubieten",
-    "requestEquipment": "Benötigt Equipment",
     "farAway": "entfernt",
-    "lab_research": "Forschungslabor",
-    "lab_diag": "Diagnostikzentrum",
     "volunteer": "Qualifizierter Freiwilliger",
-    "requests": "Benötigt",
-    "offers": "Bietet",
     "equipment": "Equipment",
     "advice": "Beratung",
-    "qualifiedVolunteers": "Qualif. Freiwillige"
+    "offersadvice": "Hilfe anzubieten",
+    "lookingForadvice": "Hilfe benötigt",
+    "offersequipment": "Equipment anzubieten",
+    "lookingForequipment": "Equipment benötigt"
     }
     }
 </i18n>
@@ -29,19 +23,42 @@
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
-    <b-container fluid>
-      <b-row align-v="center" v-for="(chunk, i) in searchResults" :key="i">
-        <b-col class="result-row" cols="md" md="6" lg="5" v-for="(item, j) in chunk" :key="i*2 + j">
-          <div class="search-result">
-            <div class="sr-header">{{ item.header }}</div>
-            <div class="sr-subHeader">{{ item.subHeader }}</div>
-            <div class="sr-center" v-html="item.center"></div>
-            <div class="sr-footer">{{ item.footer }}</div>
-          </div>
-        </b-col>
+    <!-- <b-container fluid>
+      <b-row align-v="center" v-for="(chunk, i) in searchResults" :key="chunk">
+        <transition name="refresh" tag="div">
+          <b-col
+            class="result-row"
+            cols="md"
+            md="6"
+            lg="5"
+            v-for="(item, j) in chunk"
+            :key="item.header + item.center + String(i*2+j)"
+          >
+            <div class="search-result">
+              <div class="sr-header">
+                <font-awesome-icon :icon="item.faIcon" />
+                {{ item.header }}
+              </div>
+              <div class="sr-subHeader">{{ item.subHeader }}</div>
+              <div class="sr-center" v-html="item.center"></div>
+              <div class="sr-footer">{{ item.footer }}</div>
+            </div>
+          </b-col>
+        </transition>
       </b-row>
-    </b-container>
+    </b-container> -->
 
+    <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
+      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader">
+        <div class="sr-header">
+          <font-awesome-icon :icon="item.faIcon" />
+          {{ item.header }}
+        </div>
+        <div class="sr-subHeader">{{ item.subHeader }}</div>
+        <div class="sr-center" v-html="item.center"></div>
+        <div class="sr-footer">{{ item.footer }}</div>
+      </div>
+    </transition-group>
 
     <b-pagination
       v-if="totalResults > 20"
@@ -55,7 +72,7 @@
 
 <script>
 import SearchForm from "./../components/SearchForm";
-import { chunk } from "lodash"
+//import { chunk } from "lodash";
 
 export default {
   name: "List",
@@ -68,66 +85,122 @@ export default {
       searchResults: []
     };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     updateListing(newSearchAttributes) {
       this.searchAttributes = newSearchAttributes;
-      this.getSearchResults(this.currentPage).then((res) => {
-        this.searchResults = chunk(res.map((x) => {
-          x.subHeader = `${x.address.zipcode} ${x.address.city}`
+      const faIcons = {
+        equipment: "cubes",
+        advice: "hands-helping"
+      };
+      this.getSearchResults(this.currentPage).then(res => {
+        let tmp_searchResults = res.map(x => {
+          let subHeader = `${x.address.zipcode} ${x.address.city}`;
           if (x.distance) {
-            x.distance = `${(x.distance / 1000).toFixed(2)} km`
-            x.subHeader += `, ${x.distance} ${this.$t('farAway')}`
+            let distance = `${(x.distance / 1000).toFixed(2)} km`;
+            subHeader += `, ${distance} ${this.$t("farAway")}`;
           }
-          
-          x.header = `${this.$t(x.role)}`
-          x.footer = ""
 
-          switch(x.role) {
-            case 'lab_research':
-            case 'lab_diag': {
-              x.footer = `${x.organization}, ${x.address.street}`
-              if (this.searchAttributes.mode && this.searchAttributes.filterBy) {
-                const tmp = x[this.searchAttributes.mode][this.searchAttributes.filterBy].map((y) => {return this.$t(y)}).join(", ")
-                x.center = `${tmp}`
-              }
-              else {
-                let lookingFor = []
-                if (x.lookingFor?.equipment.length > 0) lookingFor.push('equipment')
-                if (x.lookingFor?.advice.length > 0) lookingFor.push('advice')
-                if (x.lookingFor?.volunteerSkills.length > 0) lookingFor.push('qualifiedVolunteers')
+          let footer = "";
+          let searchResults = [];
 
-                let offers = []
-                if (x.offers?.equipment.length > 0) offers.push('equipment')
-                if (x.offers?.advice.length > 0) offers.push('advice')
-                
-                let center = ""
-                if (lookingFor.length > 0) {
-                  center += `${this.$t('requests')} ` + lookingFor.map((x) => {return this.$t(x)}).join(", ")
-                  center += "<br/>"
+          switch (x.role) {
+            case "lab_research":
+            case "lab_diag": {
+              footer = `${x.organization}, ${x.address.street}`;
+
+              if (
+                x.lookingFor &&
+                (this.searchAttributes.mode == "lookingFor" ||
+                  !this.searchAttributes.mode)
+              ) {
+                for (const i in x.lookingFor) {
+                  if (
+                    !Array.isArray(x.lookingFor[i]) ||
+                    x.lookingFor[i].length === 0 ||
+                    i === "volunteerSkills"
+                  )
+                    continue;
+                  if (
+                    this.searchAttributes.filterBy &&
+                    this.searchAttributes.filterBy !== i
+                  )
+                    continue;
+
+                  const result = {
+                    header: this.$t("lookingFor" + i),
+                    faIcon: "search",
+                    subHeader: subHeader,
+                    footer: footer,
+                    center: x.lookingFor[i]
+                      .map(y => {
+                        return this.$t(y);
+                      })
+                      .join(", "),
+                    user: x
+                  };
+
+                  searchResults.push(result);
                 }
-                if (offers.length > 0) {
-                  center += `${this.$t('offers')} ` + offers.map((x) => {return this.$t(x)}).join(", ")
-                }
-                x.center = center
               }
-              
+
+              if (
+                x.offers &&
+                (this.searchAttributes.mode == "offers" ||
+                  !this.searchAttributes.mode)
+              ) {
+                for (const i in x.offers) {
+                  if (!Array.isArray(x.offers[i]) || x.offers[i].length === 0)
+                    continue;
+                  if (
+                    this.searchAttributes.filterBy &&
+                    this.searchAttributes.filterBy !== i
+                  )
+                    continue;
+
+                  const result = {
+                    header: this.$t("offers" + i),
+                    faIcon: faIcons[i],
+                    subHeader: subHeader,
+                    footer: footer,
+                    center: x.offers[i]
+                      .map(y => {
+                        return this.$t(y);
+                      })
+                      .join(", "),
+                    user: x
+                  };
+
+                  searchResults.push(result);
+                }
+              }
+
               break;
             }
 
-            case 'volunteer': {
-              const tmp = x.details.skills.map((y) => {return this.$t(y)}).join(", ")
-              x.center = `${tmp}`
+            case "volunteer": {
+              const result = {
+                header: this.$t("volunteer"),
+                faIcon: "user-alt",
+                subHeader: subHeader,
+                footer: footer,
+                center: x.details.skills
+                  .map(y => {
+                    return this.$t(y);
+                  })
+                  .join(", "),
+                user: x
+              };
+              searchResults.push(result);
               break;
             }
           }
 
+          return searchResults;
+        });
 
-          return x
-        }), 2)
-      })
+        this.searchResults = tmp_searchResults.flat();
+      });
     },
     getSearchResults(page) {
       this.searchAttributes.page = page;
@@ -142,6 +215,13 @@ export default {
           }
         );
       });
+    },
+    fixSize(el) {
+      const {marginLeft, marginTop, width, height} = window.getComputedStyle(el)
+      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`
+      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
+      el.style.width = width
+      el.style.height = height
     }
   },
   components: {
@@ -152,20 +232,54 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.refresh-leave-active {
+  transition: opacity 0.25s;
+  position: absolute;
+}
+
+.refresh-enter-active {
+  transition: opacity 0.25s;
+}
+
+.refresh-enter, .refresh-leave-to {
+  opacity: 0;
+}
+
+.refresh-move {
+  transition: transform 0.5s;
+}
+
+@media (max-width: 768px) { 
+  .search-result {
+    flex-basis: 100% !important;
+  }
+  
+}
+
 .search-result {
   padding: 16px 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   background-color: white;
+  flex-basis: calc(50% - 16px);
+  margin-top: 24px;
+  display: inline-block;
+  transition: all 0.5s
 }
 
 .search-result:hover {
   cursor: pointer;
 }
 
-
 .result-row {
-  margin-top: 2em
+  margin-top: 2em;
+}
+
+.sr-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .sr-header {
@@ -176,7 +290,7 @@ export default {
 .sr-subHeader {
   font-size: 12px;
   line-height: 14px;
-  color: #898B91;
+  color: #898b91;
   margin-top: 16px;
 }
 
@@ -188,7 +302,7 @@ export default {
 
 .sr-footer {
   margin-top: 4px;
-  color: #898B91;
+  color: #898b91;
   font-size: 12px;
 }
 </style>
