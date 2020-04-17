@@ -1,20 +1,22 @@
 import cors from 'cors'
+import express from "express"
+import { NOT_FOUND, UNAUTHORIZED } from 'http-status-codes'
 import "./database/database"
-import express, { response } from "express"
-import { readFileSync } from 'fs'
-import { registration } from './endpoints/registration'
-import { forgotPassword } from './endpoints/forgotPassword'
-import { resetPassword } from './endpoints/resetPassword'
-import { login } from './endpoints/login'
-import { authMiddleware } from './middlewares/auth'
-import { changePassword } from './endpoints/changePassword'
-import { search } from "./endpoints/search";
-import Profile from './endpoints/Profile'
-import { language } from './endpoints/language'
-import { OPT } from './options'
 import { activate } from './endpoints/activate'
 import { AdminEndpoint } from './endpoints/admin'
+import { changePassword } from './endpoints/changePassword'
+import { forgotPassword } from './endpoints/forgotPassword'
+import { language } from './endpoints/language'
+import { login } from './endpoints/login'
+import Profile from './endpoints/Profile'
+import { registration } from './endpoints/registration'
+import { resetPassword } from './endpoints/resetPassword'
+import { search } from "./endpoints/search"
 import { testCoverage } from './endpoints/testCoverage'
+import { UnauthorizedError } from './errors'
+import { authMiddleware } from './middlewares/auth'
+import { OPT } from './options'
+import utils from './utils'
 
 let app = express()
 let router = express.Router()
@@ -54,6 +56,19 @@ router.post("/change-password", changePassword)
 router.get("/profile", Profile.get)
     .post("/profile", Profile.post)
     .delete("/profile", Profile.delete)
+
+
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
+  return utils.errorResponse(res, NOT_FOUND, "invalid_route")
+})
+
+app.use(function(err: Error, req: express.Request, res: express.Response, next: express.NextFunction) {
+  if (err instanceof UnauthorizedError) {
+    return utils.errorResponse(res, UNAUTHORIZED, "not_authorized");
+  }
+
+  return utils.errorResponse(res, NOT_FOUND, "invalid_route")
+});
 
 
 app.listen(5000, function () {
