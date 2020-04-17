@@ -2,7 +2,8 @@
 {
   "en": {
     "ready": "I am ready to volunteer! (Can be changed at any point in the profile settings)",
-    "qualification": "Qualifications",
+    "qualification": "Training and Degrees",
+    "qualification_sub": "Please select all that apply.",
     "volunteerSkills": "Skills",
     "furtherInfo": "Further Information",
     "optIn": "Optional Consents",
@@ -10,7 +11,8 @@
   },
   "de": {
     "ready": "Ich bin zum Aushelfen verfügbar! (Kann jederzeit in den Profileinstellungen geändert werden)",
-    "qualification": "Qualifikationen",
+    "qualification": "Ausbildung und Abschlüsse",
+    "qualification_sub": "Bitte wählen Sie alle Zutreffenden aus.",
     "volunteerSkills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "optIn": "Optionale Einwilligungen",
@@ -26,6 +28,7 @@
       name="qualification"
       :data="qualification"
       v-model="formData.details.qualifications"
+      :label="$t('qualification_sub')"
     ></CheckboxGroup>
 
     <h3 class="section">{{ $t("volunteerSkills") }}</h3>

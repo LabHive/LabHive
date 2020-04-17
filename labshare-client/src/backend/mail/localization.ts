@@ -6,11 +6,11 @@ export default {
       subject: "LabHive - Account activation",
       text: (link: string) => {
         return `
-Hallo, 
-um Ihren Account auf LabHive zu aktivieren, verwenden Sie bitte folgenden Link:
+Dear user,
+To activate your account on LabHive, please use the following link:
 ${link}
 
-Ihr LabHive Team
+Regards, LabHive Team
 `
       }
     },
@@ -18,21 +18,21 @@ Ihr LabHive Team
       subject: "LabHive - Password Reset",
       text: (link: string) => {
         return `
-Hallo, 
-um ihr Passwort zurückzusetzen, verwenden Sie bitte folgenden Link:
+Dear user,
+to reset your password, please use the following link:
 ${link}
 
-Ihr LabHive Team
+Best, LabHive Team
 `
       }
     },
     activationNotice: {
       subject: "LabHive - Account verifiziert",
       text: `
-Hallo,
-Ihr Account wurde von uns erfolgreich verifiziert.
+Dear user,
+Your account has been successfully verified.
 
-Ihr LabHive Team
+Best, LabHive Team
       `
     }
   },
@@ -44,7 +44,7 @@ Ihr LabHive Team
       subject: "LabHive - Account Aktivierung",
       text: (link: string) => {
         return `
-Hallo, 
+Liebe/r Nutzer/in,
 um Ihren Account auf LabHive zu aktivieren, verwenden Sie bitte folgenden Link:
 ${link}
 
@@ -56,7 +56,7 @@ Ihr LabHive Team
       subject: "LabHive - Password Reset",
       text: (link: string) => {
         return `
-Hallo, 
+Liebe/r Nutzer/in,
 um ihr Passwort zurückzusetzen, verwenden Sie bitte folgenden Link:
 ${link}
 
@@ -67,7 +67,7 @@ Ihr LabHive Team
     activationNotice: {
       subject: "LabHive - Account verifiziert",
       text: `
-Hallo,
+Liebe/r Nutzer/in,
 Ihr Account wurde von uns erfolgreich verifiziert.
 
 Ihr LabHive Team

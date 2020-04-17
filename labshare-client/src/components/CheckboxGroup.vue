@@ -1,40 +1,36 @@
 <i18n>
 {
   "en": {
-    "bsl1": "Work under BSL2 regulations/safety standards",
+    "bsl1": "Work under BSL1 regulations/safety standards",
     "bsl2": "Work under BSL2 regulations/safety standards",
-    "bsl3": "ork under BSL3 regulations/safety standards",
+    "bsl3": "Work under BSL3 regulations/safety standards",
     "bsl4": "Work under BSL4 regulations/safety standards",
     "qpcr": "qPCR",
-    "rnaExperience_isolation": "RNA isolation (with kit)",
-    "sample_processing": "(Pre)Processing of clinical samples",
+    "rnaExperience_isolation": "Work with RNA (esp. isolation with kit)",
+    "sample_processing": "(Pre-)Processing of clinical samples",
     "elisa": "ELISA",
-    "primerProduction": "Primerherstellung",
-    "dataAnalysis": "Datenanalyse",
+    "primerProduction": "Primer production",
+    "dataAnalysis": "Data analysis",
 
-    "calibratedPipetteSet": "Calibrated Pipette Set",
+    "calibratedPipetteSet": "Calibrated pipette set",
     "rtThermocycler": "Thermocycler RT",
     "qpcrThermocycler": "Thermocycler qPCR",
-    "primerProduction": "Primer Production",
-    "reverseTransKit": "Reverse Transcriptase Kit",
-    "pcrMasterMix": "PCR Master Mix",
-    "rnaExtractionDevice": "RNA Extraction Device",
-    "rnaExtractionKit": "RNA Extraction Kit",
+    "reverseTransKit": "Reverse transcriptase kit",
+    "pcrMasterMix": "PCR master mix",
+    "rnaExtractionDevice": "RNA extraction device",
+    "rnaExtractionKit": "RNA extraction kit",
 
-    "virology": "Virologie",
-    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
-    "qPCR": "Allgemein qPCR",
-    "elisa": "ELISA",
-    "protocolProduction": "Protokollerstellung",
+    "virology": "Virology",
+    "protocolProduction": "Writing of protocols",
 
-    "jobTraining": "Berufsausbildung",
+    "jobTraining": "Job training",
     "mtla": "MTLA",
     "bta_cta": "BTA/CTA",
-    "bachelor": "Bachelor",
-    "master": "Master",
-    "doctorate": "Promotion",
+    "bachelor": "Bachelor (completed)",
+    "master": "Master (completed)",
+    "doctorate": "PhD Student",
     "postdoc": "Postdoc",
-    "groupLeader": "Gruppenleiter*in",
+    "groupLeader": "Group Leader",
     "other": "Andere"
   },
   "de": {
@@ -43,7 +39,7 @@
     "bsl3": "Arbeit unter BSL3 Bedingungen/Sicherheitsstandards",
     "bsl4": "Arbeit unter BSL4 Bedingungen/Sicherheitsstandards",
     "qpcr": "qPCR",
-    "rnaExperience_isolation": "RNA-Isolation (mit Kit)",
+    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation mit Kit)",
     "sample_processing": "Vor/Aufbereitung klinischer Proben",
     "elisa": "ELISA",
     "primerProduction": "Primerherstellung",
@@ -52,24 +48,20 @@
     "calibratedPipetteSet": "Calibrated Pipette Set",
     "rtThermocycler": "Thermocycler RT",
     "qpcrThermocycler": "Thermocycler qPCR",
-    "primerProduction": "Primer Production",
-    "reverseTransKit": "Reverse Transcriptase Kit",
+    "reverseTransKit": "Reverse Transkriptase-Kit",
     "pcrMasterMix": "PCR Master Mix",
-    "rnaExtractionDevice": "RNA Extraction Device",
-    "rnaExtractionKit": "RNA Extraction Kit",
+    "rnaExtractionDevice": "RNA-Extraktionsgerät",
+    "rnaExtractionKit": "RNA-Extraktionskit",
 
     "virology": "Virologie",
-    "rnaExperience_isolation": "Arbeit mit RNA (insbes. Isolation)",
-    "qPCR": "Allgemein qPCR",
-    "elisa": "ELISA",
     "protocolProduction": "Protokollerstellung",
 
     "jobTraining": "Berufsausbildung",
     "mtla": "MTLA",
     "bta_cta": "BTA/CTA",
-    "bachelor": "Bachelor",
-    "master": "Master",
-    "doctorate": "Promotion",
+    "bachelor": "Bachelor (abgeschlossen)",
+    "master": "Master (abgeschlossen)",
+    "doctorate": "Promotionsstudent*in",
     "postdoc": "Postdoc",
     "groupLeader": "Gruppenleiter*in",
     "other": "Andere"
@@ -77,7 +69,7 @@
 }
 </i18n>
 <template>
-  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK">
+  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK" :label="label">
     <b-container>
       <b-row>
         <template v-for="i in cols_number">
@@ -150,6 +142,10 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+    label: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -158,7 +154,7 @@ export default {
     };
   },
   methods: {
-    
+
   },
   computed: {
     translatedData() {
