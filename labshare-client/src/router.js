@@ -8,6 +8,7 @@ import ForgotPassword from './views/ForgotPassword';
 import ResetPassword from './views/ResetPassword';
 import Register from './views/Register'
 import Search from './views/Search'
+import Details from './views/Details'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
 import ChangePassword from './views/ChangePassword'
@@ -32,6 +33,7 @@ const routes = [
   { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
   { path: '/search', component: Search },
+  { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
