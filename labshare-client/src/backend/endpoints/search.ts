@@ -4,6 +4,7 @@ import { Validator } from '../../lib/validation';
 import { getModelForRole, getUser, UserCommon } from '../database/database';
 import utils, { Token } from '../utils';
 import { IUserCommon } from '../database/schemas/IUserCommon';
+import crypto from "crypto"
 
 
 enum QueryTypes {
@@ -272,7 +273,7 @@ export async function search(req: express.Request, res: express.Response, next: 
 
 
         delete a.consent
-        delete a._id
+        a._id = crypto.createHash('sha256').update(a._id.toString()).digest('hex')
 
         if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
             delete a.contact
