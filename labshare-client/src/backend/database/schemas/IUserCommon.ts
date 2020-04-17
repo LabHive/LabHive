@@ -34,6 +34,7 @@ export interface IUserCommon extends Document, ITimestamp {
     },
     language: LANG_TYPE,
     disabled: boolean,
+    slug: string,
     __t: String
 }
 
@@ -83,6 +84,10 @@ export const UserCommonSchema = new Schema(
     disabled: {
         type: Boolean,
         default: false,
+    },
+    slug: {
+      type: String,
+      required: true,
     },
     language: String
 }, {

@@ -61,6 +61,7 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     body.language = getLangID(req)
+    body.slug = uuid();
 
     let euser = await getUserForMail(body.contact.email)
     if (euser) {
