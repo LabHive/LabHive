@@ -23,6 +23,10 @@
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
+    <HeightTransition>
+      <h3 v-if="this.searchResults.length === 0" style="margin-top: 20px">{{ $t("noResults") }}</h3>
+    </HeightTransition>
+
     <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
       <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader">
         <div class="sr-header">
@@ -47,6 +51,7 @@
 
 <script>
 import SearchForm from "./../components/SearchForm";
+import HeightTransition from "./../components/HeightTransition"
 //import { chunk } from "lodash";
 
 export default {
@@ -200,7 +205,8 @@ export default {
     }
   },
   components: {
-    SearchForm
+    SearchForm,
+    HeightTransition
   }
 };
 </script>
