@@ -4,12 +4,12 @@
         "title": "Activate account",
         "successMessage": "Activation successful",
         "loadingMessage": "Please wait...",
-        "login": "&#10142;Login"},
+        "login": "Login"},
     "de": {
         "title": "Account aktivieren",
         "successMessage": "Aktivierung erfolgreich",
         "loadingMessage": "Bitte warten...",
-        "login": "&#10140;Login"
+        "login": "Zum Login"
     }
 }
 </i18n>
