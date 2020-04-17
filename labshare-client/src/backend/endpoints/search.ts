@@ -123,6 +123,8 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
                 { "offers.equipment.0": { "$exists": true } },
                 { "offers.advice.0": { "$exists": true } },
             ]
+        } else if (searchMode == SearchMode.volunteers) {
+            filter['role'] = UserRoles.VOLUNTEER
         }
     }
 
