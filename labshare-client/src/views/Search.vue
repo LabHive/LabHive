@@ -28,7 +28,7 @@
     </HeightTransition>
 
     <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
-      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user._id">
+      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user._id" @click="showDetails(item.user)">
         <div class="sr-header">
           <font-awesome-icon :icon="item.faIcon" />
           {{ item.header }}
@@ -202,6 +202,9 @@ export default {
       el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
       el.style.width = width
       el.style.height = height
+    },
+    showDetails(user) {
+      this.$router.push({ name: 'details', params: { id: user.slug, profileData: user }});
     }
   },
   components: {
