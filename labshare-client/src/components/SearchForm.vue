@@ -112,6 +112,7 @@
             :validFeedback="() => ''"
             :placeholder="$t('zipcode')"
             @valid="searchChange"
+            @input="changeZip"
           ></InputForm>
         </div>
       </div>
@@ -209,10 +210,14 @@ export default {
     },
     optionalZip(data) {
       if (data === "") {
-        this.searchChange()
         return {valid: null}
       }
       return this.val.validZipcode(data)
+    },
+    changeZip(input) {
+      if (input === "") {
+        this.searchChange()
+      }
     }
   },
   mounted: function() {
