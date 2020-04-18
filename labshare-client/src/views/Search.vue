@@ -30,7 +30,11 @@
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
-      <div v-if="(this.searchResults.length === 0 || this.error) && !initial" style="margin-top: 30px" key="1">
+      <div
+        v-if="(this.searchResults.length === 0 || this.error) && !initial"
+        style="margin-top: 30px"
+        key="1"
+      >
         <b-row>
           <b-col col></b-col>
           <b-col cols="auto" style="text-align: center;">
@@ -44,39 +48,33 @@
         </b-row>
       </div>
 
-      <transition-group
-        v-else
-        name="refresh"
-        tag="div"
-        class="sr-container"
-        @before-leave="fixSize"
-        key="2"
-      >
-        <div
-          class="search-result"
-          v-for="(item) in searchResults"
-          :key="item.header + item.center + item.subHeader + item.user.slug"
-        >
-          <div class="sr-header">
-            <font-awesome-icon :icon="item.faIcon" />
-            {{ item.header }}
+      <div v-else key="2">
+        <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
+          <div
+            class="search-result"
+            v-for="(item) in searchResults"
+            :key="item.header + item.center + item.subHeader + item.user.slug"
+          >
+            <div class="sr-header">
+              <font-awesome-icon :icon="item.faIcon" />
+              {{ item.header }}
+            </div>
+            <div class="sr-subHeader">{{ item.subHeader }}</div>
+            <div class="sr-center" v-html="item.center"></div>
+            <div class="sr-footer">{{ item.footer }}</div>
           </div>
-          <div class="sr-subHeader">{{ item.subHeader }}</div>
-          <div class="sr-center" v-html="item.center"></div>
-          <div class="sr-footer">{{ item.footer }}</div>
-        </div>
-      </transition-group>
+        </transition-group>
+        <b-pagination
+          v-if="totalResults > 20"
+          v-model="currentPage"
+          :total-rows="totalResults"
+          :per-page="20"
+          aria-controls="table"
+          style="margin-top:30px"
+          @change="pageChanged"
+        ></b-pagination>
+      </div>
     </transition>
-
-    <b-pagination
-      v-if="totalResults > 20"
-      v-model="currentPage"
-      :total-rows="totalResults"
-      :per-page="20"
-      aria-controls="table"
-      style="margin-top:30px"
-      @change="pageChanged"
-    ></b-pagination>
   </div>
 </template>
 
@@ -106,23 +104,23 @@ export default {
     pageChanged() {
       this.$nextTick(() => {
         this.getSearchResults(this.currentPage);
-      })
+      });
     },
     getSearchResults(page) {
       this.searchAttributes.page = page;
       this.$http.get("search", { params: this.searchAttributes }).then(
         success => {
-          this.initial = false
-          this.error = false
+          this.initial = false;
+          this.error = false;
           this.rawSearchResults = success.body._embedded;
           this.totalResults = success.body.totalResults;
-          
+
           this.refreshSearchResults();
         },
         error => {
           this.rawSearchResults = [];
           this.totalResults = 0;
-          this.error = true
+          this.error = true;
           console.log(error);
         }
       );
