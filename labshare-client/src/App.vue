@@ -256,10 +256,12 @@ body {
   }
 
   .nav-cta .nav-link{
-    border: 1px solid $color-green;
+    border: 1.5px solid $color-green;
     border-radius: 4px;
     box-sizing: border-box;
     color: $color-green;
+    padding: 8px;
+    width: fit-content;
     
 
     @media (min-width: 991px) {
