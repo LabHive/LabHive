@@ -228,6 +228,10 @@ body {
   background: $color-bkg-primary;
   position: relative;
 
+    .container {
+      max-width: 1500px;
+    }
+
     .navbar-nav .nav-link {
       color: rgba(0, 0, 0, 0.6);
       text-transform: uppercase;
@@ -247,7 +251,7 @@ body {
       }
 
       @media (min-width: 991px) {
-        margin: 0 4px;
+        margin: 0 16px;
     }
   }
 
