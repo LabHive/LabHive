@@ -325,7 +325,7 @@ body {
   }
 }
 
-.navbar-light .navbar-nav .nav-link:focus {
+.navbar-light .navbar-nav .nav-link:focus, .navbar-toggler:focus {
   outline: 0;
 }
 
