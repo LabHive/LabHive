@@ -53,7 +53,7 @@
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageSearch"' class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
             <template v-if="!$authenticated">
               <b-nav-item :active='$route.name =="pageRegister"' href="#/register">{{ $t("register") }}</b-nav-item>
               <b-nav-item :active='$route.name =="pageLogin"' href="#/login">{{ $t("login") }}</b-nav-item>
@@ -251,14 +251,12 @@ body {
     }
   }
 
-  .nav-cta {
+  .nav-cta .nav-link{
     border: 1px solid $color-green;
     border-radius: 4px;
     box-sizing: border-box;
-
-    .nav-link {
-      color: $color-green;
-    }
+    color: $color-green;
+    
 
     @media (min-width: 991px) {
       margin: 0 16px;
