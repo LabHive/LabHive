@@ -30,13 +30,14 @@
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
-      <div v-if="this.searchResults.length === 0" style="margin-top: 30px" key="1">
+      <div v-if="(this.searchResults.length === 0 || this.error) && !initial" style="margin-top: 30px" key="1">
         <b-row>
           <b-col col></b-col>
           <b-col cols="auto" style="text-align: center;">
             <img src="../assets/No-Search-Results-Illustration.svg" />
             <p style="margin-top: 15px">
-              <strong>{{ $t('noResults') }}</strong>
+              <strong v-if="!error">{{ $t('noResults') }}</strong>
+              <strong v-else>{{ $t('error') }}</strong>
             </p>
           </b-col>
           <b-col col></b-col>
@@ -73,6 +74,8 @@
       :total-rows="totalResults"
       :per-page="20"
       aria-controls="table"
+      style="margin-top:30px"
+      @change="pageChanged"
     ></b-pagination>
   </div>
 </template>
@@ -88,139 +91,41 @@ export default {
       currentPage: 1,
       totalResults: 0,
       selectedRows: [],
-      searchResults: []
+      rawSearchResults: [],
+      searchResults: [],
+      error: false,
+      initial: true
     };
   },
   computed: {},
   methods: {
     updateListing(newSearchAttributes) {
       this.searchAttributes = newSearchAttributes;
-      const faIcons = {
-        equipment: "cubes",
-        advice: "hands-helping"
-      };
-      this.getSearchResults(this.currentPage).then(res => {
-        let tmp_searchResults = res.map(x => {
-          let subHeader = `${x.address.zipcode} ${x.address.city}`;
-          if (x.distance) {
-            let distance = `${(x.distance / 1000).toFixed(2)} km`;
-            subHeader += `, ${distance} ${this.$t("farAway")}`;
-          }
-
-          let footer = "";
-          let searchResults = [];
-
-          switch (x.role) {
-            case "lab_research":
-            case "lab_diag": {
-              footer = `${x.organization}, ${x.address.street}`;
-
-              if (
-                x.lookingFor &&
-                (this.searchAttributes.mode == "lookingFor" ||
-                  !this.searchAttributes.mode)
-              ) {
-                for (const i in x.lookingFor) {
-                  if (
-                    !Array.isArray(x.lookingFor[i]) ||
-                    x.lookingFor[i].length === 0 ||
-                    i === "volunteerSkills"
-                  )
-                    continue;
-                  if (
-                    this.searchAttributes.filterBy &&
-                    this.searchAttributes.filterBy !== i
-                  )
-                    continue;
-
-                  const result = {
-                    header: this.$t("lookingFor" + i),
-                    faIcon: "search",
-                    subHeader: subHeader,
-                    footer: footer,
-                    center: x.lookingFor[i]
-                      .map(y => {
-                        return this.$t(y);
-                      })
-                      .join(", "),
-                    user: x
-                  };
-
-                  searchResults.push(result);
-                }
-              }
-
-              if (
-                x.offers &&
-                (this.searchAttributes.mode == "offers" ||
-                  !this.searchAttributes.mode)
-              ) {
-                for (const i in x.offers) {
-                  if (!Array.isArray(x.offers[i]) || x.offers[i].length === 0)
-                    continue;
-                  if (
-                    this.searchAttributes.filterBy &&
-                    this.searchAttributes.filterBy !== i
-                  )
-                    continue;
-
-                  const result = {
-                    header: this.$t("offers" + i),
-                    faIcon: faIcons[i],
-                    subHeader: subHeader,
-                    footer: footer,
-                    center: x.offers[i]
-                      .map(y => {
-                        return this.$t(y);
-                      })
-                      .join(", "),
-                    user: x
-                  };
-
-                  searchResults.push(result);
-                }
-              }
-
-              break;
-            }
-
-            case "volunteer": {
-              const result = {
-                header: this.$t("volunteer"),
-                faIcon: "user-alt",
-                subHeader: subHeader,
-                footer: footer,
-                center: x.details.skills
-                  .map(y => {
-                    return this.$t(y);
-                  })
-                  .join(", "),
-                user: x
-              };
-              searchResults.push(result);
-              break;
-            }
-          }
-
-          return searchResults;
-        });
-
-        this.searchResults = tmp_searchResults.flat();
-      });
+      this.getSearchResults(this.currentPage);
+    },
+    pageChanged() {
+      this.$nextTick(() => {
+        this.getSearchResults(this.currentPage);
+      })
     },
     getSearchResults(page) {
       this.searchAttributes.page = page;
-      return new Promise((res, rej) => {
-        this.$http.get("search", { params: this.searchAttributes }).then(
-          success => {
-            res(success.body._embedded);
-          },
-          error => {
-            rej(error);
-            console.log(error);
-          }
-        );
-      });
+      this.$http.get("search", { params: this.searchAttributes }).then(
+        success => {
+          this.initial = false
+          this.error = false
+          this.rawSearchResults = success.body._embedded;
+          this.totalResults = success.body.totalResults;
+          
+          this.refreshSearchResults();
+        },
+        error => {
+          this.rawSearchResults = [];
+          this.totalResults = 0;
+          this.error = true
+          console.log(error);
+        }
+      );
     },
     fixSize(el) {
       const { marginLeft, marginTop, width, height } = window.getComputedStyle(
@@ -230,6 +135,123 @@ export default {
       el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`;
       el.style.width = width;
       el.style.height = height;
+    },
+
+    refreshSearchResults() {
+      const faIcons = {
+        equipment: "cubes",
+        advice: "hands-helping"
+      };
+      let tmp_searchResults = this.rawSearchResults.map(x => {
+        let subHeader = `${x.address.zipcode} ${x.address.city}`;
+        if (x.distance) {
+          let distance = `${(x.distance / 1000).toFixed(2)} km`;
+          subHeader += `, ${distance} ${this.$t("farAway")}`;
+        }
+
+        let footer = "";
+        let searchResults = [];
+
+        switch (x.role) {
+          case "lab_research":
+          case "lab_diag": {
+            footer = `${x.organization}, ${x.address.street}`;
+
+            if (
+              x.lookingFor &&
+              (this.searchAttributes.mode == "lookingFor" ||
+                !this.searchAttributes.mode)
+            ) {
+              for (const i in x.lookingFor) {
+                if (
+                  !Array.isArray(x.lookingFor[i]) ||
+                  x.lookingFor[i].length === 0 ||
+                  i === "volunteerSkills"
+                )
+                  continue;
+                if (
+                  this.searchAttributes.filterBy &&
+                  this.searchAttributes.filterBy !== i
+                )
+                  continue;
+
+                const result = {
+                  header: this.$t("lookingFor" + i),
+                  faIcon: "search",
+                  subHeader: subHeader,
+                  footer: footer,
+                  center: x.lookingFor[i]
+                    .map(y => {
+                      return this.$t(y);
+                    })
+                    .join(", "),
+                  user: x
+                };
+
+                searchResults.push(result);
+              }
+            }
+
+            if (
+              x.offers &&
+              (this.searchAttributes.mode == "offers" ||
+                !this.searchAttributes.mode)
+            ) {
+              for (const i in x.offers) {
+                if (!Array.isArray(x.offers[i]) || x.offers[i].length === 0)
+                  continue;
+                if (
+                  this.searchAttributes.filterBy &&
+                  this.searchAttributes.filterBy !== i
+                )
+                  continue;
+
+                const result = {
+                  header: this.$t("offers" + i),
+                  faIcon: faIcons[i],
+                  subHeader: subHeader,
+                  footer: footer,
+                  center: x.offers[i]
+                    .map(y => {
+                      return this.$t(y);
+                    })
+                    .join(", "),
+                  user: x
+                };
+
+                searchResults.push(result);
+              }
+            }
+
+            break;
+          }
+
+          case "volunteer": {
+            const result = {
+              header: this.$t("volunteer"),
+              faIcon: "user-alt",
+              subHeader: subHeader,
+              footer: footer,
+              center: x.details.skills
+                .map(y => {
+                  return this.$t(y);
+                })
+                .join(", "),
+              user: x
+            };
+            searchResults.push(result);
+            break;
+          }
+        }
+
+        return searchResults;
+      });
+
+      if (!tmp_searchResults) {
+        this.error = true;
+      } else {
+        this.searchResults = tmp_searchResults.flat();
+      }
     }
   },
   components: {
