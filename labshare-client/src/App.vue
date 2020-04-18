@@ -265,6 +265,10 @@ body {
         margin: 0 12px;
       }
 
+    @media (max-width: 991px) {
+        margin: 0 4px;
+    }
+
     &.active {
       background: #C9E0DF;
       border: 1px solid #C9E0DF;
