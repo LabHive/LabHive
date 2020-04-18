@@ -47,16 +47,16 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
-            <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
-            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutLabhive"' href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutUs"' href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
+            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item href="#/register">{{ $t("register") }}</b-nav-item>
-              <b-nav-item href="#/login">{{ $t("login") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageRegister"' href="#/register">{{ $t("register") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageLogin"' href="#/login">{{ $t("login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">

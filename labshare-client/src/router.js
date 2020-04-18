@@ -22,16 +22,16 @@ import LoginAdmin from './views/LoginAdmin'
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Index },
-  { path: '/login', component: Login, meta: { redirectLoggedIn: '/'} },
+  { path: '/', name: 'pageAboutLabhive', component: Index },
+  { path: '/login', name: 'pageLogin', component: Login, meta: { redirectLoggedIn: '/'} },
   { path: '/admin-login', component: LoginAdmin, meta: { redirectLoggedIn: '/admin' } },
-  { path: '/register', component: Register, meta: { redirectLoggedIn: '/'}},
+  { path: '/register', name: 'pageRegister', component: Register, meta: { redirectLoggedIn: '/'}},
   { path: '/reset-password', component: ResetPassword },
   { path: '/forgot-password', component: ForgotPassword },
-  { path: '/ueber-uns', component: UeberUns},
+  { path: '/ueber-uns', name: 'pageAboutUs', component: UeberUns},
   { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
-  { path: '/search', component: Search },
+  { path: '/search', name: 'pageSearch', component: Search },
   { path: '/activate', component: Activation },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
