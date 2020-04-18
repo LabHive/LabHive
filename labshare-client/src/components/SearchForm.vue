@@ -41,11 +41,22 @@
       <div class="form-row">
         <div class="col-md3">
           <b-form-group :label="$t('searchModeSelection')">
-            <div class="lh-button-group">
+            <b-row align-v="center">
+              <b-col cols="auto" class="lh-button-col">
+                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
+              </b-col>
+              <b-col cols="auto" class="lh-button-col">
+                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
+              </b-col>
+              <b-col cols="auto" class="lh-button-col last">
+                <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
+              </b-col>
+            </b-row>
+            <!-- <div class="lh-button-group">
               <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
               <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
               <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
-            </div>
+            </div> -->
           </b-form-group>
         </div>
       </div>
@@ -233,25 +244,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-green: #177867;
-$color-bkg-primary: #f7f6fd;
 
 .lh-button-group {
   .lh-button + .lh-button { margin-left: 24px; }  
 }
-.lh-button {
-  padding: 12px 24px;
-  border-radius: 4px;
-  border: 0;
-  outline: none;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.1em;
 
-  &.active {
-    background: #177867;
-    color: #fff;
+.lh-button-col {
+  margin-bottom: 0;
+
+  @media (max-width: 768px) {
+    margin-bottom: 13px;
+
+    &.last {
+      margin-bottom: 0
+    }
   }
 }
 

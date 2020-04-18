@@ -61,14 +61,6 @@ export default {
 <style lang="scss" scoped>
 
 .lh-button {
-  padding: 12px 24px;
-  border-radius: 4px;
-  border: 0;
-  outline: none;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.1em;
   margin-bottom: 0;
 }
 </style>
