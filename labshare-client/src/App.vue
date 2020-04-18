@@ -235,7 +235,7 @@ body {
       -webkit-transition: all 0.15s ease-in-out;
 
       &.active {
-        color: #rgba(0, 0, 0, 1);
+        color: rgba(0, 0, 0, 1);
         text-shadow: 0px 0px 1px #000;
       }
 
