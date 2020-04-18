@@ -59,12 +59,6 @@
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
             <figure>
-              <img src="../assets/logo-partner.svg" width="222" height="64" />
-            </figure>
-            <figure>
-              <img src="../assets/logo-partner.svg" width="222" height="64" />
-            </figure>
-            <figure>
               <img src="../assets/logo-partner-3.png" width="160" height="46" />
             </figure>
           </b-col>
