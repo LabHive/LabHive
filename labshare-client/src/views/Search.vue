@@ -1,20 +1,26 @@
 <i18n>
 {
   "en": {
-    "noResults": "No results could be found!",
-    "title": "Search"
+    "noResults": "No results. Try other search parameters or try it again later.",
+    "title": "Search",
+    "offersadvice": "Offers help",
+    "lookingForadvice": "Help needed",
+    "offersequipment": "Offers equipment",
+    "lookingForequipment": "Equipment needed",
+    "volunteer": "Qualified Volunteer",
+    "farAway": "far away",
+    "error": "An error occurred, please try it again later."
   },
   "de": {
-    "title": "Suche nach Ressourcen",
+    "title": "Suche",
     "noResults": "Kein Treffer. Versuche es mit anderen Suchkriterien oder schaue später nochmal vorbei.",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
-    "equipment": "Equipment",
-    "advice": "Beratung",
     "offersadvice": "Hilfe anzubieten",
     "lookingForadvice": "Hilfe benötigt",
     "offersequipment": "Equipment anzubieten",
-    "lookingForequipment": "Equipment benötigt"
+    "lookingForequipment": "Equipment benötigt",
+    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
     }
     }
 </i18n>
