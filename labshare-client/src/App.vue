@@ -171,15 +171,6 @@ body {
   background-color: $color-bkg-primary;
 }
 
-.clink {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.clink:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
-}
-
 #app {
   margin-top: 1em;
   margin-bottom: 3em;
@@ -430,6 +421,16 @@ body {
     line-height: 1.81;
     margin: 0 0 45px;
   }
+
+  .clink {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.clink:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
 }
 
 </style>
