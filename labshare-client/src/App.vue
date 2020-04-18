@@ -228,45 +228,62 @@ body {
   background: $color-bkg-primary;
   position: relative;
 
-  a {
-    color: #000;
-    text-transform: uppercase;
-    transition: all 0.15s ease-in-out;
-    -webkit-transition: all 0.15s ease-in-out;
-
-    &:hover {
-      color: $color-green;
-      text-shadow: 0px 0px 1px #177867;
+    .navbar-nav .nav-link {
+      color: rgba(0, 0, 0, 0.6);
+      text-transform: uppercase;
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
+
+      &.active {
+        color: #rgba(0, 0, 0, 1);
+        text-shadow: 0px 0px 1px #000;
+      }
+
+      &:hover {
+        color: $color-green;
+        text-shadow: 0px 0px 1px $color-green;
+        transition: all 0.15s ease-in-out;
+        -webkit-transition: all 0.15s ease-in-out;
+      }
+
+      @media (min-width: 991px) {
+        margin: 0 4px;
     }
   }
 
   .nav-cta {
-    background:$color-green;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid $color-green;
     border-radius: 4px;
+    box-sizing: border-box;
+
+    .nav-link {
+      color: $color-green;
+    }
 
     @media (min-width: 991px) {
       margin: 0 16px;
     }
 
-    &:hover {
-      background: #fff;
-      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    &.active {
+      background: #C9E0DF;
+      border: 1px solid #C9E0DF;
+
+      .nav-link {
+        color: #000;
+        text-shadow: 0px 0px 1px #000;
+      }
     }
 
-    a {
-      font-weight: 500;
-      color: #fff;
+    &:hover {
+      background: #fff;
+      border: 1px solid #fff;
+      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+      transition: all 0.15s ease-in-out;
+      -webkit-transition: all 0.15s ease-in-out;
 
-      @media (min-width: 991px) {
-        margin: 0 4px;
-      }
-
-      &:hover {
+      .nav-link {
         color: $color-green;
-        text-shadow: none;
+        text-shadow: 0px 0px 1px $color-green;
       }
     }
   }
