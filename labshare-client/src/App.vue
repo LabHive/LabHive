@@ -159,6 +159,10 @@ $color-green: #177867;
 @import "~bootstrap/scss/bootstrap.scss";
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: 'Fira Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
