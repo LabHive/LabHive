@@ -52,11 +52,6 @@
                 <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
               </b-col>
             </b-row>
-            <!-- <div class="lh-button-group">
-              <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
-              <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
-              <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
-            </div> -->
           </b-form-group>
         </div>
       </div>

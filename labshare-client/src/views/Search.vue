@@ -6,7 +6,7 @@
   },
   "de": {
     "title": "Suche nach Ressourcen",
-    "noResults": "Keine Ergebnisse gefunden!",
+    "noResults": "Kein Treffer. Versuche es mit anderen Suchkriterien oder schaue später nochmal vorbei.",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
     "equipment": "Equipment",
@@ -23,21 +23,43 @@
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
-    <HeightTransition>
-      <h3 v-if="this.searchResults.length === 0" style="margin-top: 20px">{{ $t("noResults") }}</h3>
-    </HeightTransition>
-
-    <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
-      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user.slug">
-        <div class="sr-header">
-          <font-awesome-icon :icon="item.faIcon" />
-          {{ item.header }}
-        </div>
-        <div class="sr-subHeader">{{ item.subHeader }}</div>
-        <div class="sr-center" v-html="item.center"></div>
-        <div class="sr-footer">{{ item.footer }}</div>
+    <transition name="hoverIn" mode="out-in">
+      <div v-if="this.searchResults.length === 0" style="margin-top: 30px" key="1">
+        <b-row>
+          <b-col col></b-col>
+          <b-col cols="auto" style="text-align: center;">
+            <img src="../assets/No-Search-Results-Illustration.svg" />
+            <p style="margin-top: 15px">
+              <strong>{{ $t('noResults') }}</strong>
+            </p>
+          </b-col>
+          <b-col col></b-col>
+        </b-row>
       </div>
-    </transition-group>
+
+      <transition-group
+        v-else
+        name="refresh"
+        tag="div"
+        class="sr-container"
+        @before-leave="fixSize"
+        key="2"
+      >
+        <div
+          class="search-result"
+          v-for="(item) in searchResults"
+          :key="item.header + item.center + item.subHeader + item.user.slug"
+        >
+          <div class="sr-header">
+            <font-awesome-icon :icon="item.faIcon" />
+            {{ item.header }}
+          </div>
+          <div class="sr-subHeader">{{ item.subHeader }}</div>
+          <div class="sr-center" v-html="item.center"></div>
+          <div class="sr-footer">{{ item.footer }}</div>
+        </div>
+      </transition-group>
+    </transition>
 
     <b-pagination
       v-if="totalResults > 20"
@@ -51,8 +73,6 @@
 
 <script>
 import SearchForm from "./../components/SearchForm";
-import HeightTransition from "./../components/HeightTransition"
-//import { chunk } from "lodash";
 
 export default {
   name: "List",
@@ -197,22 +217,23 @@ export default {
       });
     },
     fixSize(el) {
-      const {marginLeft, marginTop, width, height} = window.getComputedStyle(el)
-      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`
-      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
-      el.style.width = width
-      el.style.height = height
+      const { marginLeft, marginTop, width, height } = window.getComputedStyle(
+        el
+      );
+      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`;
+      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`;
+      el.style.width = width;
+      el.style.height = height;
     }
   },
   components: {
-    SearchForm,
-    HeightTransition
+    SearchForm
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .refresh-leave-active {
   transition: opacity 0.25s;
   position: absolute;
@@ -222,7 +243,8 @@ export default {
   transition: opacity 0.25s;
 }
 
-.refresh-enter, .refresh-leave-to {
+.refresh-enter,
+.refresh-leave-to {
   opacity: 0;
 }
 
@@ -230,11 +252,15 @@ export default {
   transition: transform 0.5s;
 }
 
-@media (max-width: 768px) { 
-  .search-result {
-    flex-basis: 100% !important;
-  }
-  
+.hoverIn-enter-active,
+.hoverIn-leave-active {
+  transition: all 0.25s;
+}
+
+.hoverIn-enter,
+.hoverIn-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .search-result {
@@ -246,10 +272,14 @@ export default {
   margin-top: 24px;
   display: inline-block;
   transition: all 0.5s;
-}
 
-.search-result:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    flex-basis: 100% !important;
+  }
 }
 
 .result-row {
