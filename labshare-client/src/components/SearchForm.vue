@@ -209,6 +209,7 @@ export default {
     },
     optionalZip(data) {
       if (data === "") {
+        this.searchChange()
         return {valid: null}
       }
       return this.val.validZipcode(data)
