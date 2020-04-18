@@ -3,9 +3,9 @@
   "en": {
     "brand": "LabHive",
     "aboutLabhive": "About LabHive",
-    "aboutUs": "Team",
-    "register": "Sign up",
-    "login": "Login",
+    "aboutUs": "About The Team",
+    "register": "Sign Up",
+    "login": "Log In",
     "profile": "Profile",
     "changePassword": "Change Password",
     "signOut": "Logout",
@@ -18,7 +18,7 @@
   "de": {
     "brand": "LabHive",
     "aboutLabhive": "Über LabHive",
-    "aboutUs": "Team",
+    "aboutUs": "Über das Team",
     "register": "Registrieren",
     "login": "Login",
     "profile": "Profil",
@@ -237,6 +237,7 @@ body {
       text-transform: uppercase;
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
+      margin: 0 16px;
 
       &.active {
         color: rgba(0, 0, 0, 1);
@@ -250,9 +251,9 @@ body {
         -webkit-transition: all 0.15s ease-in-out;
       }
 
-      @media (min-width: 991px) {
-        margin: 0 16px;
-    }
+      @media (max-width: 1200px) {
+        margin: 0 4px;
+      }
   }
 
   .nav-cta .nav-link{
@@ -262,11 +263,12 @@ body {
     color: $color-green;
     padding: 8px;
     width: fit-content;
-    
+    margin: 0 24px;
+    text-shadow: 0px 0px 1px $color-green;
 
-    @media (min-width: 991px) {
-      margin: 0 16px;
-    }
+    @media (max-width: 1200px) {
+        margin: 0 12px;
+      }
 
     &.active {
       background: #C9E0DF;
@@ -324,6 +326,10 @@ body {
   }
 }
 
+.navbar-brand {
+  margin-right: 32px;
+}
+
 .btn-primary {
   margin-bottom: 16px;
 }
@@ -334,11 +340,6 @@ body {
   right: 0;
   top: 0;
   z-index: 20;
-
-  a {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
 
   &.sticky {
     background: #fff;
