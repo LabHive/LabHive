@@ -321,6 +321,10 @@ body {
   }
 }
 
+.navbar-light .navbar-nav .nav-link:focus {
+  outline: 0;
+}
+
 .navbar-brand {
   margin-right: 32px;
 }
