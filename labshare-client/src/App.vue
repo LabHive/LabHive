@@ -83,19 +83,18 @@
     <footer class="footer-custom">
       <b-container>
         <b-row>
-          <b-col class="copyright align-self-center">
+          <b-col sm="12" md lg class="copyright align-self-center" order="3" order-lg="1">
             &copy; LabHive 2020
           </b-col>
-          <b-col cols="12" md="auto" class="text-center align-self-center">
+          <b-col sm="12" md="12" lg="6" class="text-center align-self-center" order="1" order-lg="2">
             <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
             <b-link class="fa-icon" href="https://twitter.com/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
             <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
-          <b-col class="logo">
+          <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
             <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
-          
         </b-row>
       </b-container>
     </footer>
@@ -292,11 +291,12 @@ body {
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     .copyright, .logo { 
       text-align: center; 
-      padding: 10px 0;
+      padding: 10px 0 0 0;
     }
+
     .copyright {
       margin-bottom: 10px;
     }
