@@ -104,8 +104,6 @@
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import LocaleChange from "./components/LocaleChange";
 
 export default {
@@ -157,6 +155,10 @@ $color-white: #fff;
 
 $color-bkg-primary: #F7F6FD;
 $color-green: #177867;
+
+@import "assets/custom.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
 
 body {
   font-family: 'Fira Sans', sans-serif;
