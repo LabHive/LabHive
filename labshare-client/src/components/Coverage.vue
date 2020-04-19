@@ -117,8 +117,6 @@ export default {
               visible: true
             })
           );
-          console.log(markers);
-          console.log(this.markers);
         }
       )
       .catch(() => {
