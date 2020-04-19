@@ -33,18 +33,11 @@
           >
             <l-marker v-for="marker in markers" :lat-lng="marker.position" :key="marker.id">
               <l-icon
-                :icon-url="`${publicPath}map-icons/map-icon-volunteer.png`"
+                :icon-url="`${publicPath}map-icons/${marker.iconPath}`"
                 :icon-size="iconSize"
                 :icon-anchor="iconAnchor"
               ></l-icon>
             </l-marker>
-            <l-circle-marker
-              v-for="marker in markers"
-              :lat-lng="marker.position"
-              :key="marker.id + 3"
-              :radius="8"
-              :fill-opacity="0"
-            />
             <l-tile-layer :url="url" :attribution="attribution" />
           </l-map>
         </b-col>
@@ -67,15 +60,10 @@
   </div>
 </template>
 <script>
-import { latLng, Icon, latLngBounds } from "leaflet";
-import { LMap, LMarker, LTileLayer, LIcon, LCircleMarker } from "vue2-leaflet";
+import { latLng, latLngBounds } from "leaflet";
+import { LMap, LMarker, LTileLayer, LIcon } from "vue2-leaflet";
 
-delete Icon.Default.prototype._getIconUrl;
-Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
-});
+import { UserMapIconPaths } from "@/../dist-browser/lib/userRoles";
 
 export default {
   name: "Coverage",
@@ -83,8 +71,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon,
-    LCircleMarker
+    LIcon
   },
   data() {
     return {
@@ -101,9 +88,6 @@ export default {
           [55.412386, 15.424805]
         )
       },
-      // volunteerIcon: L.icon({
-      //   iconUrl: "../assets/logo-footer.png",
-      // }),
       iconSize: [32, 37],
       iconAnchor: [16, 37],
       showMap: true,
@@ -114,7 +98,6 @@ export default {
     };
   },
   created() {
-    console.log(this.publicPath);
     this.$http
       .get("test-coverage")
       .then(
@@ -125,12 +108,17 @@ export default {
         }) => {
           this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
           this.markerCounts = markerCounts;
-          this.markers = markers.map(({ latLong: { lat, long } }, index) => ({
-            id: index,
-            position: { lat, lng: long },
-            draggable: false,
-            visible: true
-          }));
+          this.markers = markers.map(
+            ({ latLong: { lat, long }, role }, index) => ({
+              id: index,
+              iconPath: UserMapIconPaths[role],
+              position: { lat, lng: long },
+              draggable: false,
+              visible: true
+            })
+          );
+          console.log(markers);
+          console.log(this.markers);
         }
       )
       .catch(() => {
