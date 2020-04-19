@@ -4,7 +4,7 @@ volumes:
   labhive_mongodb_staging:
 
 services:
-  mongodb:
+  mongodb-staging:
     image: mongo
     restart: always
     # ports:
@@ -15,7 +15,7 @@ services:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
   
-  app:
+  app-staging:
     image: labhive.staging
     restart: always
     depends_on: 
