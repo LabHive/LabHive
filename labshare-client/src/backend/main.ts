@@ -53,6 +53,7 @@ router.get("/profile/:id", Profile.getForSlug)
 router.use(authMiddleware)
 
 router.post("/change-password", changePassword)
+router.post("/profile/revoke", Profile.revoke)
 router.get("/profile", Profile.get)
     .post("/profile", Profile.post)
     .delete("/profile", Profile.delete)
