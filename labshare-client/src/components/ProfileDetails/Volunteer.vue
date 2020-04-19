@@ -3,7 +3,8 @@
   "en": {
     "defaultTitle": "Volunteer",
     "contactDetails": {
-      "title": "Contact Details"
+      "title": "Contact Details",
+      "not_available": "Contact details are only available to Diagnostic Lab users."
     },
     "skills": {
       "title": "Skills"
@@ -14,10 +15,22 @@
     "other": {
       "title": "Other information"
     }
-
   },
   "de": {
-    "defaultTitle": "Freiwillige"
+    "defaultTitle": "Qualifizierte*r Freiwillige*r",
+    "contactDetails": {
+      "title": "Kontaktinformationen",
+      "not_available": "Kontaktinformationen sind nur für eingeloggte Labore sichtbar."
+    },
+    "skills": {
+      "title": "Fähigkeiten"
+    },
+    "qualifications": {
+      "title": "Qualifikation"
+    },
+    "other": {
+      "title": "Andere Informationen"
+    }
   }
 }
 </i18n>
@@ -33,7 +46,7 @@
 
         <div class="card details-card">
           <div class="card-body">
-            <h5 class="card-title">{{ $t('contactDetails.title')}}</h5>
+            <h5 class="card-title">{{ $t('contactDetails.title') }}</h5>
             <hr/>
             <template v-if="profile.contact">
               <dl class="row">
@@ -48,10 +61,10 @@
               </dl>
             </template>
             <template v-else>
-              <p class="card-text">Contact details are only avilable to Diagnostic Lab users.</p>
+              <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
               <div class="links">
-                <b-link class="btn btn-primary btn-sm" href="#/register">Sign up</b-link>
-                <b-link class="btn btn-primary btn-sm" href="#/login">Login</b-link>
+                <b-link class="btn btn-primary btn-sm" href="#/register">{{ $t("signUp") }}</b-link>
+                <b-link class="btn btn-primary btn-sm" href="#/login">{{ $t("login") }}</b-link>
               </div>
             </template>
           </div>
@@ -63,7 +76,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.details.skills" :key="s">
-                {{ labSkillsList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
           </div>
@@ -78,7 +91,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="q in profile.details.qualifications" :key="q">
-                {{ qualificationList.find(element => element.value == q ).text }}
+                {{ $t(q) }}
               </li>
             </ul>
           </div>

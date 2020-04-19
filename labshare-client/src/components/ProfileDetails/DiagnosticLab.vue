@@ -2,22 +2,39 @@
 {
   "en": {
     "contactDetails": {
-      "title": "Contact Details"
+      "title": "Contact Details",
+      "not_available": "Contact details are only available to Diagnostic Lab users."
     },
     "other": {
-      "title": "Other information"
+      "title": "Other Information"
     },
     "lookingFor": {
-      "skills": { "title": "Wanted skills"},
-      "equipment": { "title": "Wanted equipment"},
-      "advice": { "title": "Wanted advice"}
+      "skills": { "title": "Qualified volunteers needed"},
+      "equipment": { "title": "Equipment needed"},
+      "advice": { "title": "Advice needed"}
     },
     "offers": {
-      "advice": { "title": "Avilable advice" },
-      "equipment": { "title": "Available equipment"}
+      "advice": { "title": "Offers advice" },
+      "equipment": { "title": "Offers equipment"}
     }
   },
   "de": {
+    "contactDetails": {
+      "title": "Kontaktinformationen",
+      "not_available": "Kontaktinformationen sind nur für eingeloggte Labore sichtbar."
+    },
+    "other": {
+      "title": "Weitere Informationen"
+    },
+    "lookingFor": {
+      "skills": { "title": "Qualifizierte Freiwillige benötigt"},
+      "equipment": { "title": "Benötigt Equipment"},
+      "advice": { "title": "Benötigt Hilfe"}
+    },
+    "offers": {
+      "advice": { "title": "Hilfe anzubieten" },
+      "equipment": { "title": "Equipment anzubieten"}
+    }
   }
 }
 </i18n>
@@ -52,10 +69,10 @@
               </dl>
             </template>
             <template v-else>
-              <p class="card-text">Contact details are only avilable to logged in users.</p>
+              <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
               <div class="links">
-                <b-link class="btn btn-primary btn-sm" href="#/register">Sign up</b-link>
-                <b-link class="btn btn-primary btn-sm" href="#/login">Login</b-link>
+                <b-link class="btn btn-primary btn-sm" href="#/register">{{ $t("signUp") }}</b-link>
+                <b-link class="btn btn-primary btn-sm" href="#/login">{{ $t("login") }}</b-link>
               </div>
             </template>
           </div>
@@ -67,7 +84,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.lookingFor.volunteerSkills" :key="s">
-                {{ labSkillsList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
 
@@ -80,7 +97,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.lookingFor.equipment" :key="s">
-                {{ equipmentList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
 
@@ -95,7 +112,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.lookingFor.advice" :key="s">
-                {{ adviceList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
 
@@ -120,7 +137,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.offers.advice" :key="s">
-                {{ adviceList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
 
@@ -134,7 +151,7 @@
             <hr/>
             <ul>
               <li class="inline-item" v-for="s in profile.offers.equipment" :key="s">
-                {{ equipmentList.find(element => element.value == s ).text }}
+                {{ $t(s) }}
               </li>
             </ul>
 
