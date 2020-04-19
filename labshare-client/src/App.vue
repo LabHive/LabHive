@@ -168,7 +168,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   height: 100vh;
   color: #000;

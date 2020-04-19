@@ -2,13 +2,13 @@
     {
     "en": {
    "ourTeam": "Our Team",
-    "ourStoryHeadline": "Our Story",
-    "ourStoryText": "Irgendwas darüber, dass sich die das Core-Team beim Hackathon getroffen hat und seit dem immer weider Leute hinhzugekommen sind. Alles online sicher auch interessant. Viele Disziplinen vertreten."
+    "ourStoryHeadline": "The LabHive team thanks you for this:",
+    "ourStoryText": "The LabHive team came together from two teams with a similar idea as part of the German government's hackathon #WirVsVirus. This idea was continued after the hackathon and additional team members were won over. Thus, the team now consists of a wide variety of personalities with different interests from a wide range of nationalities. From natural sciences to humanities, almost every discipline is represented. We, the LabHive team, have recognized that the virus knows no boundaries and therefore we too must not know any boundaries. Our team, which now consists of 15 people, works in a networked, digital and international way to create a digital platform for an efficient diagnostic network. So that you have the opportunity to increase your test capacities and we can all benefit from your expertise. Together we unleash the concentrated power of science."
     },
     "de": {
     "ourTeam": "Unser Team",
     "ourStoryHeadline": "Unsere Geschichte",
-    "ourStoryText": "Irgendwas darüber, dass sich die das Core-Team beim Hackathon getroffen hat und seit dem immer weider Leute hinhzugekommen sind. Alles online sicher auch interessant. Viele Disziplinen vertreten."
+    "ourStoryText": "Das Team von LabHive fand sich im Rahmen des Hackathons #WirVsVirus der Bundesregierung, aus zwei Teams, mit einer ähnlichen Idee zusammen. Diese Idee wurde auch nach dem Hackathon weiterverfolgt und es konnten weitere Teammitglieder gewonnen werden. So besteht das Team mittlerweile aus verschiedensten Persönlichkeiten mit diversen Interessenschwerpunkten aus den unterschiedlichsten Nationalitäten. Von Naturwissenschaften bis Geisteswissenschaften ist fast jede Disziplin vertreten. Wir, das Team von LabHive, haben erkannt, dass das Virus keine Grenzen kennt und somit dürfen auch wir keine Grenzen kennen. Unser mittlerweile 15  Personen starkes Team arbeitet vernetzt, digital und international daran, eine digitale Platform für ein effizientes Diagnostiknetzwerk zu schaffen. Damit Sie die Möglichkeit bekommen Ihre Testkapazitäten zu erhöhen und wir alle von Ihrer Expertise profitieren können. Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft."
     }
     }
 </i18n>
@@ -196,17 +196,20 @@ export default {
     font-weight: normal;
     font-size: 36px;
     letter-spacing: 0.1em;
-    margin-bottom: 24px;
+    margin-bottom: 64px;
     text-align: center;
   }
 
-  .team h1 {
-    margin-bottom: 88px;
-  }
 
   .story {
-    margin: 88px 0;
+    margin: 64px 0;
     text-align: center;
+
+    p {
+      font-size: 15px;
+      text-align: left;
+      margin-bottom: 0;
+    }
   }
 
   .team-member {

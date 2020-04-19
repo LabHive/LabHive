@@ -221,12 +221,12 @@ $color-bkg-primary: #f7f6fd;
 
 .about {
   margin-bottom: 50px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.2;
 
   h4 {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
     color: $color-green;
     margin: 0;
