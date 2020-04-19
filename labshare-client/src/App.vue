@@ -168,7 +168,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   height: 100vh;
   color: #000;
@@ -178,6 +178,21 @@ body {
 #app {
   margin-top: 1em;
   margin-bottom: 3em;
+}
+
+h1,h3 {
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  color: #282e40;
+  margin: 60px 0 0;
+}
+
+h3 {
+font-size: 28px;
+margin: 32px 0 8px 0;
+letter-spacing: 0.05em;
 }
 
 .main-div {
@@ -217,6 +232,25 @@ body {
   }
 }
 
+.btn-secondary {
+    margin: 25px 0 0;
+    padding: 14px 32px;
+    background: $color-green;
+    border: none;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    color: $color-green;
+  }
+}
+
 
 
 #navbar, .footer-custom {
@@ -236,12 +270,12 @@ body {
 
       &.active {
         color: rgba(0, 0, 0, 1);
-        text-shadow: 0px 0px 1px #000;
+        font-weight: 500;
       }
 
       &:hover {
         color: $color-green;
-        text-shadow: 0px 0px 1px $color-green;
+        font-weight: 500;
         transition: all 0.15s ease-in-out;
         -webkit-transition: all 0.15s ease-in-out;
       }
@@ -259,7 +293,7 @@ body {
     padding: 8px;
     width: fit-content;
     margin: 0 24px;
-    text-shadow: 0px 0px 1px $color-green;
+    font-weight: 500;
 
     @media (max-width: 1200px) {
         margin: 0 12px;
@@ -275,20 +309,18 @@ body {
 
       .nav-link {
         color: #000;
-        text-shadow: 0px 0px 1px #000;
       }
     }
 
     &:hover {
       background: #fff;
-      border: 1px solid #fff;
+      border: 1.5px solid #fff;
       box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
 
       .nav-link {
         color: $color-green;
-        text-shadow: 0px 0px 1px $color-green;
       }
     }
   }
@@ -431,7 +463,11 @@ body {
     font-weight: normal;
     font-size: 22px;
     line-height: 1.81;
-    margin: 0 0 45px;
+    margin: 0 0 44px;
+
+    @media (max-width: 576px) {
+      font-size: 20px;
+    }
   }
 
   .clink {
