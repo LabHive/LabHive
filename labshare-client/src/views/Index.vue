@@ -33,7 +33,7 @@
       <b-container class="container">
         <b-row>
           <b-col cols lg="6" md="12" sm="12">
-              <h2>{{ $t("mainTitle") }}</h2>
+              <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
             <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
@@ -167,15 +167,6 @@ $color-bkg-primary: #f7f6fd;
   .container {
     position: relative;
     z-index: 5;
-  }
-
-  h2 {
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 1.2;
-    letter-spacing: 0.1em;
-    color: #282e40;
-    margin: 60px 0 0;
   }
 
   p {
