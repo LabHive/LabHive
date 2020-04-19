@@ -100,7 +100,7 @@ export let localization = {
     de: {
       "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.",
       "Textres-lab": "Akademische oder industrielle Forschungs- einrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3).",
-      "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
+      "Textdiag-cent": "Aktive Diagnostikzentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
 
       signUp: "Registrieren",
       login: "Login",

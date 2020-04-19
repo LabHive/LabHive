@@ -17,7 +17,7 @@
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
     "prospectiveRole": "Als was möchten Sie sich registrieren?",
-    "roleHelper": "Qualifizierte*r Freiwillige*r",
+    "roleHelper": "Qualifizierte Freiwillige",
     "roleDiagnosticLab": "Diagnostikzentrum",
     "roleLab": "Forschungslabor"
     }
