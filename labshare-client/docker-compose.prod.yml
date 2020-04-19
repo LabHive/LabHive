@@ -16,7 +16,7 @@ services:
     #  MONGO_INITDB_ROOT_PASSWORD: example
   
   app:
-    image: labhiveProd
+    image: labhive.prod
     restart: always
     depends_on: 
       - mongodb
