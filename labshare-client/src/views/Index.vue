@@ -10,7 +10,9 @@
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
     "text4": "Test capacity and support",
-    "testsweek": "Tests per week"
+    "testsweek": "Tests per week",
+    "aboutIntro": "We want to improve SARS-CoV-2 diagnostic and support diagnostic laboratories to increase test numbers. Therefore we foster communication and connect:",
+    "aboutEpilog": "The SARS-CoV-2 virus can be detected by rt-qPCR in nasal and throat swabs in order to detemine infections and the test is an important measure in controling the pandemic. To increase test capacity important resources like personnel, machines and reagents are missing. For this aim our platform fosters the development of a strong diagnostic network and facilitates the efficient access to resources for diagnostic centers through connection of qualified volunteers, research laboratories and diagnostic centers. Spread the test, beat the virus!"
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
@@ -22,7 +24,9 @@
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
     "text4": "Testkapazitäten und Unterstützung",
-    "testsweek": "Tests pro Woche"
+    "testsweek": "Tests pro Woche",
+    "aboutIntro": "Wir möchten die SARS-CoV-2 Diagnostik verbessern und die diagnostischen Labore unterstützen, um die Testzahlen zu erhöhen. Dazu fördern wir die Kommunikation und verbinden:",
+    "aboutEpilog": "Das SARS-CoV-2 Virus kann über rt-qPCR in Nasen-und Rachenabstrichen nachgewiesen werden um Infektionen festzustellen und der Test ist eine wichtige Maßnahme bei der Bekämpfung der Pandemie. Um Testkapazitäten zu erhöhen fehlen Ressourcen wie Personal, Geräte und Reagenzien. Unsere Plattform fördert dazu den Aufbau eines starken Diagnostik-Netzwerk und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen durch die Verknüpfung von qualifizierten Freiwilligen, Forschungslaboren und Diagnostikzentren. Spread the test, beat the virus!"
     }
     }
 
@@ -35,7 +39,7 @@
           <b-col cols lg="6" md="12" sm="12">
               <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
-            <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
+            <b-button class="btn-secondary" href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -63,7 +67,12 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3>{{$t("subTitle")}}</h3>
+            <h3 class="has-subtitle">{{$t("subTitle")}}</h3>
+        </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <b-col class="text-center" sm="12" lg="10" xl="8">
+          <p>{{ $t("aboutIntro") }}</p>
         </b-col>
       </b-row>
       <b-row>
@@ -77,7 +86,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("qualif-vol")}}</h4>
-          <p>
+          <p class="bit-sized">
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
@@ -91,7 +100,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p>
+          <p class="bit-sized">
               {{$t("Textres-lab")}}
           </p>
         </b-col>
@@ -105,9 +114,19 @@
             />
           </figure>
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
-          <p>
+          <p class="bit-sized">
               {{$t("Textdiag-cent")}}
           </p>
+        </b-col>
+      </b-row>
+       <b-row align-h="center">
+        <b-col>
+          <p>{{ $t("aboutEpilog") }}</p>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col class="text-center" style="margin-bottom: 44px;">
+          <b-button class="btn-secondary" href="#/register">{{$t("Joinbutton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -130,6 +149,10 @@ export default {
 <style lang="scss" scoped>
 $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
+
+p {
+  margin: 12px 12px 44px 12px;
+}
 
 .has_banner {
   background-color: #fff;
@@ -173,25 +196,6 @@ $color-bkg-primary: #f7f6fd;
     margin: 10px 0 0;
   }
 
-  .btn {
-    margin: 25px 0 0;
-    padding: 14px 32px;
-    background: $color-green;
-    border: none;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    letter-spacing: 0.1em;
-  }
-
-  .btn:hover {
-    background: #fff;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
-    color: $color-green;
-  }
-
   figure {
     margin-bottom: 0;
   }
@@ -213,7 +217,7 @@ $color-bkg-primary: #f7f6fd;
 }
 
 .about {
-  margin-bottom: 50px;
+  margin-bottom: 24px;
   font-size: 15px;
   line-height: 1.2;
 
@@ -224,10 +228,13 @@ $color-bkg-primary: #f7f6fd;
     color: $color-green;
     margin: 0;
   }
-  p {
+  .bit-sized {
     max-width: 300px;
-    margin: 12px auto 0;
   }
+}
+
+.has-subtitle {
+  margin: 0;
 }
 
 @media (max-width: 767px) {
