@@ -1,0 +1,50 @@
+name: "Staging"
+on:
+  push:
+    branches:
+      - dev
+      - CI
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+  pull_request:
+    branches:
+      - dev
+      - CI
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+  
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: cd labshare-client && npm install
+      - run: cd labshare-client && npm run build
+
+  deploy:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: "Deploy"
+      uses: appleboy/ssh-action@master
+      if: github.event.pull_request.merged == true || github.event_name == 'push'
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          cd LabHive-Staging/labshare-client;
+          git stash save;
+          git pull;
+          git stash pop;
+          docker-compose -f docker-compose.staging.yml build;
+
+          docker-compose -f docker-compose.staging.yml down;
+          docker-compose -f docker-compose.staging.yml up -d;
