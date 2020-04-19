@@ -13,7 +13,7 @@
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
-    "search": "Search For Ressources"
+    "search": "Search For Resources"
   },
   "de": {
     "brand": "LabHive",
