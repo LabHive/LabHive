@@ -237,9 +237,11 @@ p {
   margin: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .banner {
     margin-bottom: 40px;
+    padding: 0px 0 25px;
+
     h2 {
       margin-top: 0;
     }

@@ -187,6 +187,10 @@ h1,h3 {
   letter-spacing: 0.1em;
   color: #282e40;
   margin: 60px 0 0;
+
+  @media (max-width: 991px) {
+    margin: 30px 0 0;
+  }
 }
 
 h3 {
