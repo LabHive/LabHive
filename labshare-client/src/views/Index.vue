@@ -1,11 +1,11 @@
 <i18n>
     {
     "en":{
-    "mainTitle": "We combine forces for more SARS-CoV-2 tests",
-    "subTitle": "Together we unleash the cumulative power of Science!",
+    "mainTitle": "We align efforts for more SARS-CoV-2 tests",
+    "subTitle": "LabHive - the digital platform for a stong diagnostic network!",
     "Joinbutton": "Join now!",
     "partner": "In collaboration with",
-    "weconnect": "We connect",
+    "titleGroups": "Together we unleash the united power of Science!",
     "qualif-vol": "Qualified volunteers",
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
@@ -14,10 +14,10 @@
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "subTitle": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
+    "subTitle": "LabHive - die digitale Plattform für ein starkes Diagnostik-Netzwerk!",
     "Joinbutton": "Jetzt mitmachen!",
     "partner": "In Zusammenarbeit mit",
-    "weconnect": "Wir bringen zusammen",
+    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
     "qualif-vol": "Qualifizierte Freiwillige",
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
@@ -63,7 +63,7 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3>{{$t("subTitle")}}</h3>
+            <h3>{{$t("titleGroups")}}</h3>
         </b-col>
       </b-row>
       <b-row>
