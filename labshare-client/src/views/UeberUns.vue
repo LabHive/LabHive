@@ -14,8 +14,8 @@
 <template>
   <div>
     <b-container class="team">
-      <b-row>
-        <b-col class="team-member">
+      <b-row align-h="center">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Tobias.png"
             alt="Dr. rer.-nat. Tobias Opialla"
@@ -25,7 +25,7 @@
           <p class="role">Scientific Expert, Solution Enabler Lead</p>
         </b-col>
         
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Lisa.png"
             alt="Lisa Rieble"
@@ -35,7 +35,7 @@
           <p class="role">Scientific Expert, Communication</p>
         </b-col>
 
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Jo.png"
             alt="Dr. Johannes Richers"
@@ -44,10 +44,8 @@
           <p class="name">Dr. Johannes Richers</p>
           <p class="role">Design, Communication</p>
         </b-col>
-      </b-row>
-
-      <b-row>
-        <b-col class="team-member">
+     
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Jasmine.png"
             alt="Jasmine Hubrich"
@@ -57,7 +55,7 @@
           <p class="role">Scientific Expert, Communication</p>
         </b-col>
         
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Hannes.png"
             alt="Dr. Hannes Witt"
@@ -67,7 +65,7 @@
           <p class="role">Scientific Expert</p>
         </b-col>
 
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Eleonora.png"
             alt="Eleonora Nushi"
@@ -76,10 +74,8 @@
           <p class="name">Eleonora Nushi</p>
           <p class="role">Medical Expert</p>
         </b-col>
-      </b-row>
-
-       <b-row>
-        <b-col class="team-member">
+     
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Kenneth.png"
             alt="Kenneth Ruiz Eiro"
@@ -89,7 +85,7 @@
           <p class="role">Project Management, Data Protection and Liability</p>
         </b-col>
         
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_FredericW.png"
             alt="Frederic Weichel"
@@ -99,7 +95,7 @@
           <p class="role">Design, Communication</p>
         </b-col>
 
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Thess.png"
             alt="Theresa Müller"
@@ -108,10 +104,8 @@
           <p class="name">Theresa Müller</p>
           <p class="role">Design</p>
         </b-col>
-      </b-row>
-
-      <b-row>
-        <b-col class="team-member">
+    
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Laura.png"
             alt="Laura Heimerl"
@@ -121,7 +115,7 @@
           <p class="role">Scientific Expert</p>
         </b-col>
         
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Philipp.png"
             alt="Philipp Nieting"
@@ -131,7 +125,7 @@
           <p class="role">Software Development, IT-Security</p>
         </b-col>
 
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Seth.png"
             alt="Seth G"
@@ -140,10 +134,8 @@
           <p class="name">Seth G</p>
           <p class="role">Software Development</p>
         </b-col>
-      </b-row>
-
-      <b-row>
-        <b-col class="team-member">
+     
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Valentin.png"
             alt="Valentin Arkhipov"
@@ -153,7 +145,7 @@
           <p class="role">Software Development</p>
         </b-col>
         
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_Andrei.png"
             alt="Andrei Serban"
@@ -163,7 +155,7 @@
           <p class="role">Frontend Development</p>
         </b-col>
 
-        <b-col class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
             src="../assets/team-members/LabHive_FredericS.png"
             alt="Frederic Schade"
