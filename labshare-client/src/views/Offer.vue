@@ -1,14 +1,14 @@
 <i18n>
 {
   "en": {
-    "equip": "Search for devices/equipment",
+    "equip": "Search for devices/reagents",
     "advice": "Search for advice",
     "humans": "Search for volunteers",
     "request": "File a request",
     "success": "Saved successfully"
   },
   "de": {
-    "equip": "Suche nach Geräten",
+    "equip": "Suche nach Geräten/Reagenzien",
     "advice": "Suche nach Ratschlägen/Wissen",
     "humans": "Suche nach Freiwilligen Helfer*innen",
     "request": "Anfrage stellen",

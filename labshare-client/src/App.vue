@@ -13,7 +13,7 @@
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
-    "search": "Search For Ressources"
+    "search": "Search For Resources"
   },
   "de": {
     "brand": "LabHive",
@@ -93,7 +93,7 @@
             <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
           <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
-            <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
+            <a href="https://wirvsvirushackathon.org/" target="_blank"><img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" /> </a>
           </b-col>
         </b-row>
       </b-container>
@@ -187,6 +187,10 @@ h1,h3 {
   letter-spacing: 0.1em;
   color: #282e40;
   margin: 60px 0 0;
+
+  @media (max-width: 991px) {
+    margin: 30px 0 0;
+  }
 }
 
 h3 {
