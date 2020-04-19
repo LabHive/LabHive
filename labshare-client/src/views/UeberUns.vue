@@ -10,9 +10,171 @@
     }
     }
 </i18n>
-
+  
 <template>
-  <div v-html="$t('aboutUs')"></div>
+  <div>
+    <b-container class="team">
+      <b-row>
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Tobias.png"
+            alt="Dr. rer.-nat. Tobias Opialla"
+            class="avatar"
+          />
+          <p class="name">Dr. rer.-nat. Tobias Opialla</p>
+          <p class="role">Scientific Expert, Solution Enabler Lead</p>
+        </b-col>
+        
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Lisa.png"
+            alt="Lisa Rieble"
+            class="avatar"
+          />
+          <p class="name">Lisa Rieble</p>
+          <p class="role">Scientific Expert, Communication</p>
+        </b-col>
+
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Jo.png"
+            alt="Dr. Johannes Richers"
+            class="avatar"
+          />
+          <p class="name">Dr. Johannes Richers</p>
+          <p class="role">Design, Communication</p>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Jasmine.png"
+            alt="Jasmine Hubrich"
+            class="avatar"
+          />
+          <p class="name">Jasmine Hubrich</p>
+          <p class="role">Scientific Expert, Communication</p>
+        </b-col>
+        
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Hannes.png"
+            alt="Dr. Hannes Witt"
+            class="avatar"
+          />
+          <p class="name">Dr. Hannes Witt</p>
+          <p class="role">Scientific Expert</p>
+        </b-col>
+
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Eleonora.png"
+            alt="Eleonora Nushi"
+            class="avatar"
+          />
+          <p class="name">Eleonora Nushi</p>
+          <p class="role">Medical Expert</p>
+        </b-col>
+      </b-row>
+
+       <b-row>
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Kenneth.png"
+            alt="Kenneth Ruiz Eiro"
+            class="avatar"
+          />
+          <p class="name">Kenneth Ruiz Eiro</p>
+          <p class="role">Project Management, Data Protection and Liability</p>
+        </b-col>
+        
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_FredericW.png"
+            alt="Frederic Weichel"
+            class="avatar"
+          />
+          <p class="name">Frederic Weichel</p>
+          <p class="role">Design, Communication</p>
+        </b-col>
+
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Thess.png"
+            alt="Theresa Müller"
+            class="avatar"
+          />
+          <p class="name">Theresa Müller</p>
+          <p class="role">Design</p>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Laura.png"
+            alt="Laura Heimerl"
+            class="avatar"
+          />
+          <p class="name">Laura Heimerl</p>
+          <p class="role">Scientific Expert</p>
+        </b-col>
+        
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Philipp.png"
+            alt="Philipp Nieting"
+            class="avatar"
+          />
+          <p class="name">Philipp Nieting</p>
+          <p class="role">Software Development, IT-Security</p>
+        </b-col>
+
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Seth.png"
+            alt="Seth G"
+            class="avatar"
+          />
+          <p class="name">Seth G</p>
+          <p class="role">Software Development</p>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Valentin.png"
+            alt="Valentin Arkhipov"
+            class="avatar"
+          />
+          <p class="name">Valentin Arkhipov</p>
+          <p class="role">Software Development</p>
+        </b-col>
+        
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_Andrei.png"
+            alt="Andrei Serban"
+            class="avatar"
+          />
+          <p class="name">Andrei Serban</p>
+          <p class="role">Frontend Development</p>
+        </b-col>
+
+        <b-col class="team-member">
+          <img
+            src="../assets/team-members/LabHive_FredericS.png"
+            alt="Frederic Schade"
+            class="avatar"
+          />
+          <p class="name">Frederic Schade</p>
+          <p class="role">UX/UI Design, Frontend Development</p>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -24,4 +186,36 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style lang="scss" scoped>
+  
+  .team-member {
+    margin-bottom: 64px;
+
+    .avatar {
+      max-width: 180px;
+      max-height: 180px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    p {
+      font-family: Fira Sans;
+      font-style: normal;
+      font-weight: normal;
+      text-align: center;
+      letter-spacing: 0.05em;
+      color: #000000;
+      margin-bottom: 0;
+    }
+
+    .name {
+      font-size: 20px;
+    }
+
+    .role {
+      font-size: 14px;
+    }
+ }
+</style>
