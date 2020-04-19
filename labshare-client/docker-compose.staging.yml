@@ -19,7 +19,7 @@ services:
     image: labhive.staging
     restart: always
     depends_on: 
-      - mongodb
+      - mongodb-staging
     build:
       context: .
     ports:

@@ -19,7 +19,7 @@ services:
     image: labhive.prod
     restart: always
     depends_on: 
-      - mongodb
+      - mongodb-production
     build:
       context: .
     ports:
