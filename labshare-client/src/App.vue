@@ -236,12 +236,12 @@ body {
 
       &.active {
         color: rgba(0, 0, 0, 1);
-        text-shadow: 0px 0px 1px #000;
+        font-weight: 500;
       }
 
       &:hover {
         color: $color-green;
-        text-shadow: 0px 0px 1px $color-green;
+        font-weight: 500;
         transition: all 0.15s ease-in-out;
         -webkit-transition: all 0.15s ease-in-out;
       }
@@ -259,7 +259,7 @@ body {
     padding: 8px;
     width: fit-content;
     margin: 0 24px;
-    text-shadow: 0px 0px 1px $color-green;
+    font-weight: 500;
 
     @media (max-width: 1200px) {
         margin: 0 12px;
@@ -275,20 +275,18 @@ body {
 
       .nav-link {
         color: #000;
-        text-shadow: 0px 0px 1px #000;
       }
     }
 
     &:hover {
       background: #fff;
-      border: 1px solid #fff;
+      border: 1.5px solid #fff;
       box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
 
       .nav-link {
         color: $color-green;
-        text-shadow: 0px 0px 1px $color-green;
       }
     }
   }
