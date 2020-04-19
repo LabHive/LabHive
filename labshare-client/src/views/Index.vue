@@ -70,7 +70,6 @@
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
             <img
-              class="img-fluid"
               src="../assets/decoration-3-1.svg"
               alt="Illustration"
               width="170"
@@ -85,7 +84,6 @@
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
             <img
-              class="img-fluid"
               src="../assets/decoration-3-2.svg"
               alt="Illustration"
               width="218"
@@ -100,7 +98,6 @@
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
             <img
-              class="img-fluid"
               src="../assets/decoration-3-3.svg"
               alt="Illustration"
               width="164"
@@ -217,6 +214,11 @@ $color-bkg-primary: #f7f6fd;
       margin: 15px;
     }
   }
+}
+
+.text-center img {
+  max-height: 160px;
+  width: auto;
 }
 
 .about {
