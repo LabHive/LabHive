@@ -158,6 +158,7 @@ export class Validator {
     }
 
     static validUrl(url?: string): ValidationResult {
+        if (url === '') return new ValidationResultSuccess('')
         let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
         if (!url || !regexpUrl.test(url)) {
             return new ValidationResultError('invalid_url', url)

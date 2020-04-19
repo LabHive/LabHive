@@ -7,11 +7,8 @@
     "partner": "In collaboration with",
     "weconnect": "We connect",
     "qualif-vol": "Qualified volunteers",
-    "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis.",
     "res-lab": "Research laboratories",
-    "Textres-lab": "Academic or industrial research laboratories with access to materials, reagents, equipment or suitable laboratory space (BSL-2/3).",
     "diag-cent": "Diagnostic centers",
-    "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support.",
     "text4": "Test capacity and support",
     "testsweek": "Tests per week"
     },
@@ -22,11 +19,8 @@
     "partner": "In Zusammenarbeit mit",
     "weconnect": "Wir bringen zusammen",
     "qualif-vol": "Qualifizierte Freiwillige",
-    "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.",
     "res-lab": "Forschungslabore",
-    "Textres-lab": "Akademische oder industrielle Forschungs- einrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3).",
     "diag-cent": "Diagnostikzentren",
-    "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
     }
@@ -58,12 +52,6 @@
         <b-row class="partners">
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
-            <figure>
-              <img src="../assets/logo-partner.svg" width="222" height="64" />
-            </figure>
-            <figure>
-              <img src="../assets/logo-partner.svg" width="222" height="64" />
-            </figure>
             <figure>
               <img src="../assets/logo-partner-3.png" width="160" height="46" />
             </figure>

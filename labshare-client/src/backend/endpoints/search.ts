@@ -180,7 +180,7 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
 export async function search(req: express.Request, res: express.Response, next: express.NextFunction) {
     let page = 0
     try {
-        if (req.query.page !== "string") throw new Error()
+        if (typeof req.query.page !== "string") throw new Error()
         page = parseInt(req.query.page ?? '1') - 1
     }
     catch {

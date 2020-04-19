@@ -22,21 +22,34 @@ export interface Token {
 
 class Utils {
     public async addressToCoordinates(address: Address) {
-        let searchComponent = []
+        let searchComponent: any = {
+            street: "",
+            postalcode: "",
+            city: "",
+            country: "Germany"
+        }
         if (address.street) {
-            searchComponent.push(address.street)
+            searchComponent.street = address.street
         }
         if (address.zipcode) {
-            searchComponent.push(address.zipcode)
+            searchComponent.postalcode = address.zipcode
         }
         if (address.city) {
-            searchComponent.push(address.city)
+            searchComponent.city = address.city
         }
 
-        let searchTerm = searchComponent.join(', ')
+
+        const url = new URL("https://nominatim.openstreetmap.org/search?format=json&limit=1")
+
+        for (let i in searchComponent) {
+            if (searchComponent[i] !== "") {
+                url.searchParams.set(i, searchComponent[i])
+            } 
+        }
 
         try {
-            const response = await axios.get("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + encodeURIComponent(searchTerm))
+            const urls = url.toString()
+            const response = await axios.get(urls)
             if (response.data.length == 0) {
                 throw new LocationNotFoundError("invalid_location")
             }

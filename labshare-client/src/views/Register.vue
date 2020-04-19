@@ -5,18 +5,18 @@
     "complete": "Thank you for your registration!",
     "activation": "To activate your account, click the link in the email that we sent to you.",
     "prospectiveRole": "In which role would you like to register?",
-    "roleHelper": "Volunteer",
-    "roleDiagnosticLab": "Diagnostic Laboratory",
+    "roleHelper": "Qualified Volunteer",
+    "roleDiagnosticLab": "Diagnostic Centers",
     "roleLab": "Research Laboratory"
     },
 
     "de": {
     "registration": "Registrierung",
-    "complete": "Danke für deine Registrierung!",
+    "complete": "Danke für Ihre Registrierung!",
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
-    "prospectiveRole": "Als was möchtest du dich registrieren?",
-    "roleHelper": "Helfer",
-    "roleDiagnosticLab": "Diagnostiklabor",
+    "prospectiveRole": "Als was möchten Sie sich registrieren?",
+    "roleHelper": "Qualifizierte*r Freiwillige*r",
+    "roleDiagnosticLab": "Diagnostikzentrum",
     "roleLab": "Forschungslabor"
     }
     }
@@ -42,32 +42,54 @@
             <p class="lead text-center">{{$t("prospectiveRole")}}</p>
           </b-col>
         </b-row>
+
         <b-row>
-          <b-col cols="md-4">
-            <b-button
-              block
-              size="lg"
-              variant="primary"
-              @click="registrationForm = forms.VOLUNTEER"
-            >{{$t("roleHelper")}}</b-button>
+          <b-col sm="*" md="3">
+            <b-row>
+              <b-col sm="*">
+                <b-button
+                  variant="primary"
+                  @click="registrationForm = forms.VOLUNTEER"
+                >{{$t("roleHelper")}}</b-button>
+              </b-col>
+              <b-col sm="*">
+                {{$t('Textqualif-vol')}}
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col cols="md-4">
-            <b-button
-              block
-              size="lg"
-              variant="primary"
-              @click="registrationForm = forms.DIAGNOSTIC_LAB"
-            >{{$t("roleDiagnosticLab")}}</b-button>
+
+          <b-col><hr></b-col>
+          <b-col sm="*" md="3">
+            <b-row>
+              <b-col sm="*">
+                <b-button
+                  variant="primary"
+                  @click="registrationForm = forms.DIAGNOSTIC_LAB"
+                >{{$t("roleDiagnosticLab")}}</b-button>
+              </b-col>
+              <b-col sm="*">
+                {{$t('Textdiag-cent')}}
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col cols="md-4">
-            <b-button
-              block
-              size="lg"
-              variant="primary"
-              @click="registrationForm = forms.LAB"
-            >{{$t("roleLab")}}</b-button>
+          
+          <b-col><hr></b-col>
+          
+          <b-col sm="*" md="3">
+            <b-row>
+              <b-col sm="*">
+                <b-button
+                  variant="primary"
+                  @click="registrationForm = forms.LAB"
+                >{{$t("roleLab")}}</b-button>
+              </b-col>
+              <b-col sm="*">
+                {{$t('Textres-lab')}}
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
+
       </b-container>
     </div>
 
@@ -155,6 +177,26 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+.row.mt {
+  margin-top: 0px;
 
+  @media(min-width: 768px) {
+    margin-top: 40px
+  }
+}
+
+hr {
+  @media(min-width: 768px) {
+    display: none
+  }
+}
+
+.btn {
+  line-height: 20px;
+
+  @media(max-width: 768px) {
+    max-width: 300px;
+  }
+}
 </style>

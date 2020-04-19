@@ -81,6 +81,9 @@ export default {
     validFeedback: {
       default: null,
     },
+    required: {
+      default: true
+    }
   },
   computed: {
     model: {
@@ -96,18 +99,24 @@ export default {
   methods: {
     validator(meth) {
       let a = meth(this.model, this.name);
+      console.log(this.name, a.value, this.model)
       if (a.valid) {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.$emit("valid")
         }, 300);
+        if (this.model === "" && this.required) return false
         if (a.value === "") return null
       }
+      if (!this.required && a.value === "")
+        return null
       return a.valid;
     },
     feedback(meth) {
       if (this.model === '') {
-        return this.$t("required")
+        if (this.required)
+          return this.$t("required")
+        return ""
       }
       let a = meth(this.model);
       if (a.err && a.err.message !== "") {

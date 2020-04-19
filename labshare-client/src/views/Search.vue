@@ -1,20 +1,26 @@
 <i18n>
 {
   "en": {
-    "noResults": "No results could be found!",
-    "title": "Search"
+    "noResults": "No results. Try other search parameters or try it again later.",
+    "title": "Search",
+    "offersadvice": "Offers help",
+    "lookingForadvice": "Help needed",
+    "offersequipment": "Offers equipment",
+    "lookingForequipment": "Equipment needed",
+    "volunteer": "Qualified Volunteer",
+    "farAway": "far away",
+    "error": "An error occurred, please try it again later."
   },
   "de": {
-    "title": "Suche nach Ressourcen",
-    "noResults": "Keine Ergebnisse gefunden!",
+    "title": "Suche",
+    "noResults": "Kein Treffer. Versuche es mit anderen Suchkriterien oder schaue später nochmal vorbei.",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
-    "equipment": "Equipment",
-    "advice": "Beratung",
     "offersadvice": "Hilfe anzubieten",
     "lookingForadvice": "Hilfe benötigt",
     "offersequipment": "Equipment anzubieten",
-    "lookingForequipment": "Equipment benötigt"
+    "lookingForequipment": "Equipment benötigt",
+    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
     }
     }
 </i18n>
@@ -23,36 +29,58 @@
     <h1 class="mt-4">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
-    <HeightTransition>
-      <h3 v-if="this.searchResults.length === 0" style="margin-top: 20px">{{ $t("noResults") }}</h3>
-    </HeightTransition>
-
-    <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
-      <div class="search-result" v-for="(item) in searchResults" :key="item.header + item.center + item.subHeader + item.user.slug" @click="showDetails(item.user)">
-        <div class="sr-header">
-          <font-awesome-icon :icon="item.faIcon" />
-          {{ item.header }}
-        </div>
-        <div class="sr-subHeader">{{ item.subHeader }}</div>
-        <div class="sr-center" v-html="item.center"></div>
-        <div class="sr-footer">{{ item.footer }}</div>
+    <transition name="hoverIn" mode="out-in">
+      <div
+        v-if="(this.searchResults.length === 0 || this.error) && !initial"
+        style="margin-top: 30px"
+        key="1"
+      >
+        <b-row>
+          <b-col col></b-col>
+          <b-col cols="auto" style="text-align: center;">
+            <img src="../assets/No-Search-Results-Illustration.svg" />
+            <p style="margin-top: 15px">
+              <strong v-if="!error">{{ $t('noResults') }}</strong>
+              <strong v-else>{{ $t('error') }}</strong>
+            </p>
+          </b-col>
+          <b-col col></b-col>
+        </b-row>
       </div>
-    </transition-group>
 
-    <b-pagination
-      v-if="totalResults > 20"
-      v-model="currentPage"
-      :total-rows="totalResults"
-      :per-page="20"
-      aria-controls="table"
-    ></b-pagination>
+      <div v-else key="2">
+        <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
+          <div
+            class="search-result"
+            v-for="(item) in searchResults"
+            :key="item.header + item.center + item.subHeader + item.user.slug"
+            @click="showDetails(item.user)"
+          >
+            <div class="sr-header">
+              <font-awesome-icon :icon="item.faIcon" />
+              {{ item.header }}
+            </div>
+            <div class="sr-subHeader">{{ item.subHeader }}</div>
+            <div class="sr-center" v-html="item.center"></div>
+            <div class="sr-footer">{{ item.footer }}</div>
+          </div>
+        </transition-group>
+        <b-pagination
+          v-if="totalResults > 20"
+          v-model="currentPage"
+          :total-rows="totalResults"
+          :per-page="20"
+          aria-controls="table"
+          style="margin-top:30px"
+          @change="pageChanged"
+        ></b-pagination>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import SearchForm from "./../components/SearchForm";
-import HeightTransition from "./../components/HeightTransition"
-//import { chunk } from "lodash";
 
 export default {
   name: "List",
@@ -62,160 +90,180 @@ export default {
       currentPage: 1,
       totalResults: 0,
       selectedRows: [],
-      searchResults: []
+      rawSearchResults: [],
+      searchResults: [],
+      error: false,
+      initial: true
     };
   },
   computed: {},
   methods: {
     updateListing(newSearchAttributes) {
       this.searchAttributes = newSearchAttributes;
-      const faIcons = {
-        equipment: "cubes",
-        advice: "hands-helping"
-      };
-      this.getSearchResults(this.currentPage).then(res => {
-        let tmp_searchResults = res.map(x => {
-          let subHeader = `${x.address.zipcode} ${x.address.city}`;
-          if (x.distance) {
-            let distance = `${(x.distance / 1000).toFixed(2)} km`;
-            subHeader += `, ${distance} ${this.$t("farAway")}`;
-          }
-
-          let footer = "";
-          let searchResults = [];
-
-          switch (x.role) {
-            case "lab_research":
-            case "lab_diag": {
-              footer = `${x.organization}, ${x.address.street}`;
-
-              if (
-                x.lookingFor &&
-                (this.searchAttributes.mode == "lookingFor" ||
-                  !this.searchAttributes.mode)
-              ) {
-                for (const i in x.lookingFor) {
-                  if (
-                    !Array.isArray(x.lookingFor[i]) ||
-                    x.lookingFor[i].length === 0 ||
-                    i === "volunteerSkills"
-                  )
-                    continue;
-                  if (
-                    this.searchAttributes.filterBy &&
-                    this.searchAttributes.filterBy !== i
-                  )
-                    continue;
-
-                  const result = {
-                    header: this.$t("lookingFor" + i),
-                    faIcon: "search",
-                    subHeader: subHeader,
-                    footer: footer,
-                    center: x.lookingFor[i]
-                      .map(y => {
-                        return this.$t(y);
-                      })
-                      .join(", "),
-                    user: x
-                  };
-
-                  searchResults.push(result);
-                }
-              }
-
-              if (
-                x.offers &&
-                (this.searchAttributes.mode == "offers" ||
-                  !this.searchAttributes.mode)
-              ) {
-                for (const i in x.offers) {
-                  if (!Array.isArray(x.offers[i]) || x.offers[i].length === 0)
-                    continue;
-                  if (
-                    this.searchAttributes.filterBy &&
-                    this.searchAttributes.filterBy !== i
-                  )
-                    continue;
-
-                  const result = {
-                    header: this.$t("offers" + i),
-                    faIcon: faIcons[i],
-                    subHeader: subHeader,
-                    footer: footer,
-                    center: x.offers[i]
-                      .map(y => {
-                        return this.$t(y);
-                      })
-                      .join(", "),
-                    user: x
-                  };
-
-                  searchResults.push(result);
-                }
-              }
-
-              break;
-            }
-
-            case "volunteer": {
-              const result = {
-                header: this.$t("volunteer"),
-                faIcon: "user-alt",
-                subHeader: subHeader,
-                footer: footer,
-                center: x.details.skills
-                  .map(y => {
-                    return this.$t(y);
-                  })
-                  .join(", "),
-                user: x
-              };
-              searchResults.push(result);
-              break;
-            }
-          }
-
-          return searchResults;
-        });
-
-        this.searchResults = tmp_searchResults.flat();
+      this.getSearchResults(this.currentPage);
+    },
+    pageChanged() {
+      this.$nextTick(() => {
+        this.getSearchResults(this.currentPage);
       });
     },
     getSearchResults(page) {
       this.searchAttributes.page = page;
-      return new Promise((res, rej) => {
-        this.$http.get("search", { params: this.searchAttributes }).then(
-          success => {
-            res(success.body._embedded);
-          },
-          error => {
-            rej(error);
-            console.log(error);
-          }
-        );
-      });
+      this.$http.get("search", { params: this.searchAttributes }).then(
+        success => {
+          this.initial = false;
+          this.error = false;
+          this.rawSearchResults = success.body._embedded;
+          this.totalResults = success.body.totalResults;
+
+          this.refreshSearchResults();
+        },
+        error => {
+          this.rawSearchResults = [];
+          this.totalResults = 0;
+          this.error = true;
+          console.log(error);
+        }
+      );
     },
     fixSize(el) {
-      const {marginLeft, marginTop, width, height} = window.getComputedStyle(el)
-      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`
-      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`
-      el.style.width = width
-      el.style.height = height
+      const { marginLeft, marginTop, width, height } = window.getComputedStyle(
+        el
+      );
+      el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`;
+      el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`;
+      el.style.width = width;
+      el.style.height = height;
+    },
+
+    refreshSearchResults() {
+      const faIcons = {
+        equipment: "cubes",
+        advice: "hands-helping"
+      };
+      let tmp_searchResults = this.rawSearchResults.map(x => {
+        let subHeader = `${x.address.zipcode} ${x.address.city}`;
+        if (x.distance) {
+          let distance = `${(x.distance / 1000).toFixed(2)} km`;
+          subHeader += `, ${distance} ${this.$t("farAway")}`;
+        }
+
+        let footer = "";
+        let searchResults = [];
+
+        switch (x.role) {
+          case "lab_research":
+          case "lab_diag": {
+            footer = `${x.organization}, ${x.address.street}`;
+
+            if (
+              x.lookingFor &&
+              (this.searchAttributes.mode == "lookingFor" ||
+                !this.searchAttributes.mode)
+            ) {
+              for (const i in x.lookingFor) {
+                if (
+                  !Array.isArray(x.lookingFor[i]) ||
+                  x.lookingFor[i].length === 0 ||
+                  i === "volunteerSkills"
+                )
+                  continue;
+                if (
+                  this.searchAttributes.filterBy &&
+                  this.searchAttributes.filterBy !== i
+                )
+                  continue;
+
+                const result = {
+                  header: this.$t("lookingFor" + i),
+                  faIcon: "search",
+                  subHeader: subHeader,
+                  footer: footer,
+                  center: x.lookingFor[i]
+                    .map(y => {
+                      return this.$t(y);
+                    })
+                    .join(", "),
+                  user: x
+                };
+
+                searchResults.push(result);
+              }
+            }
+
+            if (
+              x.offers &&
+              (this.searchAttributes.mode == "offers" ||
+                !this.searchAttributes.mode)
+            ) {
+              for (const i in x.offers) {
+                if (!Array.isArray(x.offers[i]) || x.offers[i].length === 0)
+                  continue;
+                if (
+                  this.searchAttributes.filterBy &&
+                  this.searchAttributes.filterBy !== i
+                )
+                  continue;
+
+                const result = {
+                  header: this.$t("offers" + i),
+                  faIcon: faIcons[i],
+                  subHeader: subHeader,
+                  footer: footer,
+                  center: x.offers[i]
+                    .map(y => {
+                      return this.$t(y);
+                    })
+                    .join(", "),
+                  user: x
+                };
+
+                searchResults.push(result);
+              }
+            }
+
+            break;
+          }
+
+          case "volunteer": {
+            const result = {
+              header: this.$t("volunteer"),
+              faIcon: "user-alt",
+              subHeader: subHeader,
+              footer: footer,
+              center: x.details.skills
+                .map(y => {
+                  return this.$t(y);
+                })
+                .join(", "),
+              user: x
+            };
+            searchResults.push(result);
+            break;
+          }
+        }
+
+        return searchResults;
+      });
+
+      if (!tmp_searchResults) {
+        this.error = true;
+      } else {
+        this.searchResults = tmp_searchResults.flat();
+      }
     },
     showDetails(user) {
       this.$router.push({ name: 'details', params: { id: user.slug, profileData: user }});
     }
   },
   components: {
-    SearchForm,
-    HeightTransition
+    SearchForm
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 .refresh-leave-active {
   transition: opacity 0.25s;
   position: absolute;
@@ -225,7 +273,8 @@ export default {
   transition: opacity 0.25s;
 }
 
-.refresh-enter, .refresh-leave-to {
+.refresh-enter,
+.refresh-leave-to {
   opacity: 0;
 }
 
@@ -233,11 +282,15 @@ export default {
   transition: transform 0.5s;
 }
 
-@media (max-width: 768px) { 
-  .search-result {
-    flex-basis: 100% !important;
-  }
-  
+.hoverIn-enter-active,
+.hoverIn-leave-active {
+  transition: all 0.25s;
+}
+
+.hoverIn-enter,
+.hoverIn-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .search-result {
@@ -249,10 +302,14 @@ export default {
   margin-top: 24px;
   display: inline-block;
   transition: all 0.5s;
-}
 
-.search-result:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    flex-basis: 100% !important;
+  }
 }
 
 .result-row {

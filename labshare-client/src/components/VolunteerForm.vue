@@ -59,6 +59,7 @@ export default {
           qualifications: []
         },
         organization: "",
+        website: "",
         availability: true,
         consent: {
           publicSearch: null,

@@ -3,9 +3,9 @@
   "en": {
     "brand": "LabHive",
     "aboutLabhive": "About LabHive",
-    "aboutUs": "Team",
-    "register": "Sign up",
-    "login": "Login",
+    "aboutUs": "About The Team",
+    "register": "Sign Up",
+    "login": "Log In",
     "profile": "Profile",
     "changePassword": "Change Password",
     "signOut": "Logout",
@@ -18,7 +18,7 @@
   "de": {
     "brand": "LabHive",
     "aboutLabhive": "Über LabHive",
-    "aboutUs": "Team",
+    "aboutUs": "Über das Team",
     "register": "Registrieren",
     "login": "Login",
     "profile": "Profil",
@@ -47,16 +47,16 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
-            <b-nav-item href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
-            <b-nav-item class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutLabhive"' href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutUs"' href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
+            <b-nav-item :active='$route.name =="pageSearch"' class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item href="#/register">{{ $t("register") }}</b-nav-item>
-              <b-nav-item href="#/login">{{ $t("login") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageRegister"' href="#/register">{{ $t("register") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageLogin"' href="#/login">{{ $t("login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
@@ -83,19 +83,18 @@
     <footer class="footer-custom">
       <b-container>
         <b-row>
-          <b-col class="copyright align-self-center">
+          <b-col sm="12" md lg class="copyright align-self-center" order="3" order-lg="1">
             &copy; LabHive 2020
           </b-col>
-          <b-col cols="12" md="auto" class="text-center align-self-center">
+          <b-col sm="12" md="12" lg="6" class="text-center align-self-center" order="1" order-lg="2">
             <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
             <b-link class="fa-icon" href="https://twitter.com/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
             <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
-          <b-col class="logo">
+          <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
             <img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" />
           </b-col>
-          
         </b-row>
       </b-container>
     </footer>
@@ -104,8 +103,6 @@
 </template>
 
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import LocaleChange from "./components/LocaleChange";
 
 export default {
@@ -158,6 +155,14 @@ $color-white: #fff;
 $color-bkg-primary: #F7F6FD;
 $color-green: #177867;
 
+@import "assets/custom.scss";
+@import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: 'Fira Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -168,15 +173,6 @@ body {
   height: 100vh;
   color: #000;
   background-color: $color-bkg-primary;
-}
-
-.clink {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.clink:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
 }
 
 #app {
@@ -227,45 +223,72 @@ body {
   background: $color-bkg-primary;
   position: relative;
 
-  a {
-    color: #000;
-    text-transform: uppercase;
-    transition: all 0.15s ease-in-out;
-    -webkit-transition: all 0.15s ease-in-out;
+    .container {
+      max-width: 1500px;
+    }
 
-    &:hover {
-      color: $color-green;
-      text-shadow: 0px 0px 1px #177867;
+    .navbar-nav .nav-link {
+      color: rgba(0, 0, 0, 0.6);
+      text-transform: uppercase;
       transition: all 0.15s ease-in-out;
       -webkit-transition: all 0.15s ease-in-out;
-    }
-  }
-
-  .nav-cta {
-    background:$color-green;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-
-    @media (min-width: 991px) {
       margin: 0 16px;
-    }
 
-    &:hover {
-      background: #fff;
-      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
-    }
-
-    a {
-      font-weight: 500;
-      color: #fff;
-
-      @media (min-width: 991px) {
-        margin: 0 4px;
+      &.active {
+        color: rgba(0, 0, 0, 1);
+        text-shadow: 0px 0px 1px #000;
       }
 
       &:hover {
         color: $color-green;
-        text-shadow: none;
+        text-shadow: 0px 0px 1px $color-green;
+        transition: all 0.15s ease-in-out;
+        -webkit-transition: all 0.15s ease-in-out;
+      }
+
+      @media (max-width: 1200px) {
+        margin: 0 4px;
+      }
+  }
+
+  .nav-cta .nav-link{
+    border: 1.5px solid $color-green;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: $color-green;
+    padding: 8px;
+    width: fit-content;
+    margin: 0 24px;
+    text-shadow: 0px 0px 1px $color-green;
+
+    @media (max-width: 1200px) {
+        margin: 0 12px;
+      }
+
+    @media (max-width: 991px) {
+        margin: 0 4px;
+    }
+
+    &.active {
+      background: #C9E0DF;
+      border: 1px solid #C9E0DF;
+
+      .nav-link {
+        color: #000;
+        text-shadow: 0px 0px 1px #000;
+      }
+    }
+
+    &:hover {
+      background: #fff;
+      border: 1px solid #fff;
+      box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+      transition: all 0.15s ease-in-out;
+      -webkit-transition: all 0.15s ease-in-out;
+
+      .nav-link {
+        color: $color-green;
+        text-shadow: 0px 0px 1px $color-green;
       }
     }
   }
@@ -290,15 +313,24 @@ body {
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     .copyright, .logo { 
       text-align: center; 
-      padding: 10px 0;
+      padding: 10px 0 0 0;
     }
+
     .copyright {
       margin-bottom: 10px;
     }
   }
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-toggler:focus {
+  outline: 0;
+}
+
+.navbar-brand {
+  margin-right: 32px;
 }
 
 .btn-primary {
@@ -311,11 +343,6 @@ body {
   right: 0;
   top: 0;
   z-index: 20;
-
-  a {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
 
   &.sticky {
     background: #fff;
@@ -406,6 +433,16 @@ body {
     line-height: 1.81;
     margin: 0 0 45px;
   }
+
+  .clink {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.clink:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
 }
 
 </style>
