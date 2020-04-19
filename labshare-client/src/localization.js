@@ -12,6 +12,8 @@ export let localization = {
       "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis.",
       "Textres-lab": "Academic or industrial research laboratories with access to materials, reagents, equipment or suitable laboratory space (BSL-2/3).",
       "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support.",
+      signUp: "Sign up",
+      login: "Log In",
       
       backend: {
         formValidation: {
@@ -99,6 +101,9 @@ export let localization = {
       "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.",
       "Textres-lab": "Akademische oder industrielle Forschungs- einrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3).",
       "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
+
+      signUp: "Registrieren",
+      login: "Login",
 
       backend: {
         formValidation: {
