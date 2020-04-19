@@ -38,8 +38,8 @@
     <div key="step-one" v-if="!registrationForm">
       <b-container fluid>
         <b-row>
-          <b-col cols="12">
-            <p class="lead text-center">{{$t("prospectiveRole")}}</p>
+          <b-col id="prospectiveRole" cols="12">
+            <p class="lead">{{$t("prospectiveRole")}}</p>
           </b-col>
         </b-row>
 
@@ -198,5 +198,13 @@ hr {
   @media(max-width: 768px) {
     max-width: 300px;
   }
+}
+
+#prospectiveRole {
+  padding: 0;
+}
+
+.lead {
+  margin-bottom: 24px;
 }
 </style>
