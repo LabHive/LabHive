@@ -30,17 +30,20 @@
             :center="center"
             :options="mapOptions"
             style="height: 456px; width: 350px;"
-            @update:center="centerUpdate"
-            @update:zoom="zoomUpdate"
           >
+            <l-marker v-for="marker in markers" :lat-lng="marker.position" :key="marker.id">
+              <l-icon
+                :icon-url="`${publicPath}map-icons/map-icon-volunteer.png`"
+                :icon-size="iconSize"
+                :icon-anchor="iconAnchor"
+              ></l-icon>
+            </l-marker>
             <l-circle-marker
               v-for="marker in markers"
               :lat-lng="marker.position"
-              :key="marker.id"
+              :key="marker.id + 3"
               :radius="8"
-              :fill-color="labshareGreenHexCode"
-              :color="labshareGreenHexCode"
-              :fill-opacity="1"
+              :fill-opacity="0"
             />
             <l-tile-layer :url="url" :attribution="attribution" />
           </l-map>
@@ -64,28 +67,30 @@
   </div>
 </template>
 <script>
-import { latLng, Icon, latLngBounds } from 'leaflet';
-import { LMap, LTileLayer, LCircleMarker } from 'vue2-leaflet';
+import { latLng, Icon, latLngBounds } from "leaflet";
+import { LMap, LMarker, LTileLayer, LIcon, LCircleMarker } from "vue2-leaflet";
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
 });
 
 export default {
-  name: 'Example',
+  name: "Coverage",
   components: {
     LMap,
     LTileLayer,
+    LMarker,
+    LIcon,
     LCircleMarker
   },
   data() {
     return {
       zoom: 5.5,
       center: latLng(51.1657, 10.4515),
-      url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
+      url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
       attribution:
         '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
       mapOptions: {
@@ -96,40 +101,41 @@ export default {
           [55.412386, 15.424805]
         )
       },
+      // volunteerIcon: L.icon({
+      //   iconUrl: "../assets/logo-footer.png",
+      // }),
+      iconSize: [32, 37],
+      iconAnchor: [16, 37],
       showMap: true,
       testsPerWeek: undefined,
       markers: [],
       markerCounts: undefined,
-      labshareGreenHexCode: '#177867'
+      publicPath: process.env.BASE_URL
     };
   },
   created() {
-    this.$http.get('test-coverage').then(
-      ({
-        body: {
-          data: { testsPerWeek, markerCounts, markers }
+    console.log(this.publicPath);
+    this.$http
+      .get("test-coverage")
+      .then(
+        ({
+          body: {
+            data: { testsPerWeek, markerCounts, markers }
+          }
+        }) => {
+          this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
+          this.markerCounts = markerCounts;
+          this.markers = markers.map(({ latLong: { lat, long } }, index) => ({
+            id: index,
+            position: { lat, lng: long },
+            draggable: false,
+            visible: true
+          }));
         }
-      }) => {
-        this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
-        this.markerCounts = markerCounts;
-        this.markers = markers.map(({ latLong: { lat, long } }, index) => ({
-          id: index,
-          position: { lat, lng: long },
-          draggable: false,
-          visible: true
-        }));
-      }
-    ).catch(() => {
-      console.log("Fetching test-coverage failed")
-    })
-  },
-  methods: {
-    zoomUpdate(zoom) {
-      this.currentZoom = zoom;
-    },
-    centerUpdate(center) {
-      this.currentCenter = center;
-    }
+      )
+      .catch(() => {
+        console.log("Fetching test-coverage failed");
+      });
   }
 };
 </script>
@@ -143,7 +149,7 @@ $color-bkg-primary: #f7f6fd;
   padding: 65px 0;
 
   &:before {
-    content: '';
+    content: "";
     background: #fff;
     left: 0;
     right: 0;
@@ -154,7 +160,7 @@ $color-bkg-primary: #f7f6fd;
   }
 
   &:after {
-    content: '';
+    content: "";
     background: $color-bkg-primary;
     left: 0;
     right: 0;
