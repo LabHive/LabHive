@@ -12,12 +12,12 @@ import { localization } from "./localization";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faUserAlt, faSearch, faCubes, faHandsHelping } from '@fortawesome/free-solid-svg-icons'
+import { faUserAlt, faSearch, faCubes, faHandsHelping, faEnvelope, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Font Awesome Library
-library.add(faTwitter, faGithub, faUserAlt, faSearch, faCubes, faHandsHelping)
+library.add(faTwitter, faGithub, faUserAlt, faSearch, faCubes, faHandsHelping, faEnvelope, faPhone, faMapMarker)
 
 Vue.config.productionTip = false;
 
