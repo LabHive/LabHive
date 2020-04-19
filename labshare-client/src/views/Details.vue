@@ -11,11 +11,15 @@
 
 <template>
   <div class="details-view">
-    <h1 class="mt-4">{{title}}</h1>
+    <Volunteer v-if="profile.role === 'volunteer'" :profile="profile" />
+    <ResearchLab v-if="profile.role === 'lab_research'" :profile="profile" />
+    <DiagnosticLab v-if="profile.role === 'lab_diag'" :profile="profile" />
   </div>
 </template>
 
 <script>
+
+import Volunteer from '@/components/ProfileDetails/Volunteer'
 export default {
   name: "Details",
   props: {
@@ -25,24 +29,6 @@ export default {
     return {
       profile: this.profileData
     }
-  },
-  computed: {
-    title() {
-      let title = ""
-      console.log(this.profile)
-      // switch(this.profile.role) {
-      //   case "volunteer":
-      //     title = "Volunteer Profile";
-      //     break;
-      //   case "lab_research":
-      //     title = "Research Lab Profile";
-      //     break;
-      //   case "lab_diag":
-      //     title = "Diagnostic Lab Profile";
-      //     break;
-      // }
-      return title;
-    } 
   },
   mounted() {
     if(!this.profile) {
@@ -66,10 +52,16 @@ export default {
         );
       });
     }
+  },
+  components: {
+    Volunteer
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  /deep/ .details-card {
+    margin-top: 2em;
+  }
 </style>
