@@ -11,19 +11,22 @@
 
 <template>
   <div class="details-view">
-    <Volunteer v-if="profile.role === 'volunteer'" :profile="profile" />
-    <ResearchLab v-if="profile.role === 'lab_research'" :profile="profile" />
-    <DiagnosticLab v-if="profile.role === 'lab_diag'" :profile="profile" />
+    <Volunteer v-if="profile && profile.role === 'volunteer'" :profile="profile" />
+    <ResearchLab v-if="profile && profile.role === 'lab_research'" :profile="profile" />
+    <DiagnosticLab v-if="profile && profile.role === 'lab_diag'" :profile="profile" />
   </div>
 </template>
 
 <script>
 
 import Volunteer from '@/components/ProfileDetails/Volunteer'
+import DiagnosticLab from '@/components/ProfileDetails/DiagnosticLab'
+import ResearchLab from '@/components/ProfileDetails/ResearchLab'
+
 export default {
   name: "Details",
   props: {
-    profileData: Object,
+    profileData: Object
   },
   data() {
     return {
@@ -54,7 +57,9 @@ export default {
     }
   },
   components: {
-    Volunteer
+    Volunteer,
+    DiagnosticLab,
+    ResearchLab
   }
 };
 </script>

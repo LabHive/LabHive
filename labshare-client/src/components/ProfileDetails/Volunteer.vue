@@ -26,6 +26,8 @@
   <div class="details-view">
     <h1 class="mt-4">{{ title || $t('defaultTitle') }}</h1>
 
+    <h5 v-if="profile.organization"><a :href="profile.website" target="_blank">{{profile.organization}}</a></h5>
+
     <div class="row">
       <div class="col-md">
 
@@ -33,10 +35,20 @@
           <div class="card-body">
             <h5 class="card-title">{{ $t('contactDetails.title')}}</h5>
             <hr/>
-            <template v-if="$authenticated">
+            <template v-if="profile.contact">
+              <dl class="row">
+                <dt class="col-sm-1"><font-awesome-icon icon="envelope" /></dt>
+                <dd class="col-sm-11"><b-link :href="`mailto:${profile.contact.email}`">{{profile.contact.email}}</b-link></dd>
+
+                <dt class="col-sm-1"><font-awesome-icon icon="phone" /></dt>
+                <dd class="col-sm-11">{{ profile.contact.phone || 'Not given'}}</dd>
+
+                <dt class="col-sm-1"><font-awesome-icon icon="map-marker" /></dt>
+                <dd class="col-sm-11">{{ profile.address.zipcode }} {{ profile.address.city}}</dd>
+              </dl>
             </template>
             <template v-else>
-              <p class="card-text">Contact details are only avilable to registered users.</p>
+              <p class="card-text">Contact details are only avilable to Diagnostic Lab users.</p>
               <div class="links">
                 <b-link class="btn btn-primary btn-sm" href="#/register">Sign up</b-link>
                 <b-link class="btn btn-primary btn-sm" href="#/login">Login</b-link>
@@ -72,7 +84,7 @@
           </div>
         </div>
 
-        <div class="card details-card">
+        <div class="card details-card" v-if="profile.description">
           <div class="card-body">
             <h5 class="card-title">{{ $t('other.title')}}</h5>
             <hr/>
@@ -95,7 +107,7 @@ export default {
   },
   data() {
     return {
-      title: null,
+      title: this.profile.contact ? `${this.profile.contact.firstname} ${this.profile.contact.lastname}` : null,
       qualificationList: qualification,
       labSkillsList: labSkills
     }
