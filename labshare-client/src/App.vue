@@ -180,13 +180,19 @@ body {
   margin-bottom: 3em;
 }
 
-h1 {
+h1,h3 {
   font-weight: normal;
   font-size: 36px;
   line-height: 1.2;
   letter-spacing: 0.1em;
   color: #282e40;
   margin: 60px 0 0;
+}
+
+h3 {
+font-size: 28px;
+margin: 32px 0 8px 0;
+letter-spacing: 0.05em;
 }
 
 .main-div {
