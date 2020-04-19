@@ -2,31 +2,31 @@
     {
     "en":{
     "mainTitle": "We align efforts for more SARS-CoV-2 tests",
-    "subTitle": "LabHive - the digital platform for a stong diagnostic network!",
-    "Joinbutton": "Join now!",
-    "partner": "In collaboration with",
-    "titleGroups": "Together we unleash the united power of Science!",
+    "subTitle": "The digital platform for a strong diagnostic network",
+    "Joinbutton": "Join now",
+    "partner": "In collaboration with:",
+    "titleGroups": "Together we unleash the united power of science",
     "qualif-vol": "Qualified volunteers",
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
     "text4": "Test capacity and support",
     "testsweek": "Tests per week",
     "aboutIntro": "We want to improve SARS-CoV-2 diagnostic and support diagnostic laboratories to increase test numbers. Therefore we foster communication and connect:",
-    "aboutEpilog": "The SARS-CoV-2 virus can be detected by rt-qPCR in nasal and throat swabs in order to detemine infections and the test is an important measure in controling the pandemic. To increase test capacity important resources like personnel, machines and reagents are missing. For this aim our platform fosters the development of a strong diagnostic network and facilitates the efficient access to resources for diagnostic centers through connection of qualified volunteers, research laboratories and diagnostic centers. Spread the test, beat the virus!"
+    "aboutEpilog": "To increase test capacity important resources like reagents, devices and personnel are missing. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!"
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "subTitle": "LabHive - die digitale Plattform für ein starkes Diagnostik-Netzwerk!",
-    "Joinbutton": "Jetzt mitmachen!",
-    "partner": "In Zusammenarbeit mit",
-    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
+    "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
+    "Joinbutton": "Jetzt mitmachen",
+    "partner": "In Zusammenarbeit mit:",
+    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft",
     "qualif-vol": "Qualifizierte Freiwillige",
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche",
     "aboutIntro": "Wir möchten die SARS-CoV-2 Diagnostik verbessern und die diagnostischen Labore unterstützen, um die Testzahlen zu erhöhen. Dazu fördern wir die Kommunikation und verbinden:",
-    "aboutEpilog": "Das SARS-CoV-2 Virus kann über rt-qPCR in Nasen-und Rachenabstrichen nachgewiesen werden um Infektionen festzustellen und der Test ist eine wichtige Maßnahme bei der Bekämpfung der Pandemie. Um Testkapazitäten zu erhöhen fehlen Ressourcen wie Personal, Geräte und Reagenzien. Unsere Plattform fördert dazu den Aufbau eines starken Diagnostik-Netzwerk und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen durch die Verknüpfung von qualifizierten Freiwilligen, Forschungslaboren und Diagnostikzentren. Spread the test, beat the virus!"
+    "aboutEpilog": "Um die Testkapazität zu erhöhen, fehlt es an Ressourcen wie Reagenzien, Geräte und Personal. Unsere Plattform fördert den Aufbau eines starken Diagnostiknetzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!"
     }
     }
 
@@ -57,7 +57,7 @@
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
             <figure>
-             <a href="https://www.steiger-stiftung.de/" target="_blank"> <img src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
+             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
             </figure>
           </b-col>
         </b-row>
@@ -67,14 +67,10 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3 class="has-subtitle">{{$t("subTitle")}}</h3>
+            <h3>{{$t("titleGroups")}}</h3>
         </b-col>
       </b-row>
-      <b-row align-h="center">
-        <b-col class="text-center" sm="12" lg="10" xl="8">
-          <p>{{ $t("aboutIntro") }}</p>
-        </b-col>
-      </b-row>
+      
       <b-row>
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
@@ -95,20 +91,6 @@
             <img
               src="../assets/decoration-3-2.svg"
               alt="Illustration"
-              width="218"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p class="bit-sized">
-              {{$t("Textres-lab")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-3.svg"
-              alt="Illustration"
               width="164"
               height="150"
             />
@@ -116,6 +98,20 @@
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
           <p class="bit-sized">
               {{$t("Textdiag-cent")}}
+          </p>
+        </b-col>
+        <b-col cols lg="4" md="4" sm="12">
+          <figure class="text-center">
+            <img
+              src="../assets/decoration-3-3.svg"
+              alt="Illustration"
+              width="218"
+              height="150"
+            />
+          </figure>
+          <h4 class="text-center">{{$t("res-lab")}}</h4>
+          <p class="bit-sized">
+              {{$t("Textres-lab")}}
           </p>
         </b-col>
       </b-row>

@@ -3,29 +3,25 @@
     "en": {
    "ourTeam": "Our Team",
     "ourStoryHeadline": "Our Story",
-    "ourStoryText": "The LabHive team came together from two teams with a similar idea as part of the German government's hackathon #WirVsVirus.whie had a similar idea and are now developing it further with new team members. The team now consists of a variety of personalities with different interests and nationalities. From natural sciences to humanities, almost every discipline is represented. The virus knows no boundaries and therefore a solution for the situation must also combine different disciplines. Our team, which now consists of 15 people, works in a networked, digital and international way to create a digital platform for an efficient diagnostic network. So that you have the opportunity to increase your test capacities and we can all benefit from your expertise. Together we unleash the concentrated power of science."
+    "ourStoryText": "Behind LabHive stands an interdisciplinary team of scientists, software developers and data protection experts. The idea for the platform originally emerged from two projects at the #WirvsVirus Hackathon of the German government. Both teams have joined forces to work voluntarily on innovative solutions for challenges of the Corona pandemic."
     },
     "de": {
     "ourTeam": "Unser Team",
     "ourStoryHeadline": "Unsere Geschichte",
-    "ourStoryText": "Das Team von LabHive kam aus zwei Teams des Hackathons #WirvsVirus der Bundesregierung zusammen, die eine ähnliche Idee verfolgten und diese nun gemeinsam mit neuen Teammitgliedern weiterentwickeln. So besteht das Team mittlerweile aus verschiedensten Persönlichkeiten mit diversen Interessenschwerpunkten und mit unterschiedlichsten Nationalitäten. Von Naturwissenschaften bis Geisteswissenschaften ist fast jede Disziplin vertreten. Das Virus kennt keine Grenzen und somit muss auch eine Lösung für die Situation verschiedene Disziplinen verbinden. Unser mittlerweile 15  Personen starkes Team arbeitet vernetzt, digital und international daran, eine digitale Platform für ein effizientes Diagnostiknetzwerk zu schaffen. Damit Sie die Möglichkeit bekommen Ihre Testkapazitäten zu erhöhen und wir alle von Ihrer Expertise profitieren können. Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft."
+    "ourStoryText": "Hinter LabHive steckt ein interdisziplinäres Team aus den Bereichen Wissenschaft, Software-Entwicklung und Datenschutz. Die Idee zur Plattform ist ursprünglich in zwei Projekten beim Hackathon #WirvsVirus der Bundesregierung entstanden. Beide Teams haben sich zusammengeschlossen, um als ehrenamtliches Innovationsprojekt an Lösungen für Herausforderungen der Corona-Pandemie zu arbeiten."
     }
     }
 </i18n>
   
 <template>
   <div>
-    <b-container class="story">
+    <b-container class="team">
+      <h1>{{ $t("ourTeam") }}</h1>
       <b-row align-h="center">
-        <b-col sm="12" lg="10" xl="8">
-          <h1>{{ $t("ourStoryHeadline") }}</h1>
+        <b-col class="text-center" id="about-subtitle" sm="12" lg="10" xl="8">
           <p>{{ $t("ourStoryText") }}</p>
         </b-col>
       </b-row>
-    </b-container>
-
-    <b-container class="team">
-      <h1>{{ $t("ourTeam") }}</h1>
       <b-row align-h="center">
         <b-col sm="12" lg="6" xl="4" class="team-member">
           <img
@@ -33,8 +29,8 @@
             alt="Dr. rer.-nat. Tobias Opialla"
             class="avatar"
           />
-          <p class="name">Dr. rer.-nat. Tobias Opialla</p>
-          <p class="role">Scientific Expert, Solution Enabler Lead</p>
+          <p class="name">Dr. Tobias Opialla</p>
+          <p class="role">Scientific Expert, Team Lead</p>
         </b-col>
         
         <b-col sm="12" lg="6" xl="4" class="team-member">
@@ -94,7 +90,7 @@
             class="avatar"
           />
           <p class="name">Kenneth Ruiz Eiro</p>
-          <p class="role">Project Management, Data Protection and Liability</p>
+          <p class="role">Project Management, Legal</p>
         </b-col>
         
         <b-col sm="12" lg="6" xl="4" class="team-member">
@@ -174,7 +170,7 @@
             class="avatar"
           />
           <p class="name">Frederic Schade</p>
-          <p class="role">UX/UI Design, Frontend Development</p>
+          <p class="role">UX/UI, Frontend Development</p>
         </b-col>
       </b-row>
     </b-container>
@@ -240,5 +236,9 @@ export default {
     .role {
       font-size: 14px;
     }
+  }
+
+  #about-subtitle {
+    margin-bottom: 64px;
   }
 </style>

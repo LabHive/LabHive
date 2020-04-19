@@ -2,14 +2,14 @@
     {
     "en":{
     "offerResource": "Offer a resource",
-    "offerEquipment": "Offer devices and equipment",
+    "offerEquipment": "Offer devices and reagents",
     "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
     "offerAdvice": "Offer advice and know-how",
     "offerAdviceDescription": "Further information about the help you can offer."
     },
     "de":{
     "offerResource": "Ressourcen abgeben",
-    "offerEquipment": "Geräte und Equipment anbieten",
+    "offerEquipment": "Geräte und Reagenzien anbieten",
     "offerEquipmentDescription": "Weiter Informationen über die abzugebenen Geräte. Hersteller, Website des Herstellers, Anzahl der Geräte, etc.",
     "offerAdvice": "Beratung und Know-How anbieten",
     "offerAdviceDescription": "Weitere Informationen, wie Sie Hilfe anbieten können."

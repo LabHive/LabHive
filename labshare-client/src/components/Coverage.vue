@@ -1,17 +1,21 @@
 <i18n>{
   "en": {
-    "title": "Test Capacity and Support",
-    "testsPerWeek": "Tests per Week",
-    "qualifiedVolunteers": "Qualifiied Volunteers",
+    "title": "Test capacity and support",
+    "testsPerWeek": "Tests per Week in Germany",
+    "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
-    "diagnosticLabs": "Diagnostic Centers"
+    "diagnosticLabs": "Diagnostic Centers",
+    "referenceRKI": "[1] COVID-19 Daily report of the RKI vom 15.04.2020",
+    "referenceRegistered": "[2] registered on our platform"
   },
   "de": {
     "title": "Testkapazität und Unterstützung",
-    "testsPerWeek": "Tests pro Woche",
+    "testsPerWeek": "Tests pro Woche in Deutschland",
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
-    "diagnosticLabs": "Diagnostikzentren"
+    "diagnosticLabs": "Diagnostikzentren",
+    "referenceRKI": "[1] COVID-19 Lagebericht des RKI vom 15.04.2020",
+    "referenceRegistered": "[2] auf unserer Platform registriert"
   }
 }</i18n>
 <template>
@@ -44,15 +48,15 @@
         <b-col cols lg="6" md="6" sm="12">
           <dl v-if="testsPerWeek" class="total-stats">
             <dt>{{ testsPerWeek }}</dt>
-            <dd>{{ $t('testsPerWeek') }}</dd>
+            <dd>{{ $t('testsPerWeek') }}<sup>1</sup></dd>
           </dl>
           <dl v-if="markerCounts">
             <dt>{{ markerCounts.volunteer }}</dt>
-            <dd>{{ $t('qualifiedVolunteers') }}</dd>
+            <dd>{{ $t('qualifiedVolunteers') }}<sup>2</sup></dd>
             <dt>{{ markerCounts.lab_research }}</dt>
-            <dd>{{ $t('researchLabs') }}</dd>
+            <dd>{{ $t('researchLabs') }}<sup>2</sup></dd>
             <dt>{{ markerCounts.lab_diag }}</dt>
-            <dd>{{ $t('diagnosticLabs') }}</dd>
+            <dd>{{ $t('diagnosticLabs') }}<sup>2</sup></dd>
           </dl>
         </b-col>
       </b-row>
