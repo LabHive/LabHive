@@ -69,4 +69,7 @@ export default {
   /deep/ .details-card {
     margin-top: 2em;
   }
+  /deep/ .card-columns{
+  column-count: 2;
+}
 </style>

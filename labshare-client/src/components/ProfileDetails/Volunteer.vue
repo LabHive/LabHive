@@ -41,71 +41,65 @@
 
     <h5 v-if="profile.organization"><a :href="profile.website" target="_blank">{{profile.organization}}</a></h5>
 
-    <div class="row">
-      <div class="col-md">
+    <div class="card-columns">
+      <div class="card details-card">
+        <div class="card-body">
+          <h5 class="card-title">{{ $t('contactDetails.title') }}</h5>
+          <hr/>
+          <template v-if="profile.contact">
+            <dl class="row">
+              <dt class="col-sm-1"><font-awesome-icon icon="envelope" /></dt>
+              <dd class="col-sm-11"><b-link :href="`mailto:${profile.contact.email}`">{{profile.contact.email}}</b-link></dd>
 
-        <div class="card details-card">
-          <div class="card-body">
-            <h5 class="card-title">{{ $t('contactDetails.title') }}</h5>
-            <hr/>
-            <template v-if="profile.contact">
-              <dl class="row">
-                <dt class="col-sm-1"><font-awesome-icon icon="envelope" /></dt>
-                <dd class="col-sm-11"><b-link :href="`mailto:${profile.contact.email}`">{{profile.contact.email}}</b-link></dd>
+              <dt class="col-sm-1"><font-awesome-icon icon="phone" /></dt>
+              <dd class="col-sm-11">{{ profile.contact.phone || 'Not given'}}</dd>
 
-                <dt class="col-sm-1"><font-awesome-icon icon="phone" /></dt>
-                <dd class="col-sm-11">{{ profile.contact.phone || 'Not given'}}</dd>
-
-                <dt class="col-sm-1"><font-awesome-icon icon="map-marker" /></dt>
-                <dd class="col-sm-11">{{ profile.address.zipcode }} {{ profile.address.city}}</dd>
-              </dl>
-            </template>
-            <template v-else>
-              <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
-              <div class="links">
-                <b-link class="btn btn-primary btn-sm" href="#/register">{{ $t("signUp") }}</b-link>
-                <b-link class="btn btn-primary btn-sm" href="#/login">{{ $t("login") }}</b-link>
-              </div>
-            </template>
-          </div>
+              <dt class="col-sm-1"><font-awesome-icon icon="map-marker" /></dt>
+              <dd class="col-sm-11">{{ profile.address.zipcode }} {{ profile.address.city}}</dd>
+            </dl>
+          </template>
+          <template v-else>
+            <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
+            <div class="links">
+              <b-link class="btn btn-primary btn-sm" href="#/register">{{ $t("signUp") }}</b-link>
+              <b-link class="btn btn-primary btn-sm" href="#/login">{{ $t("login") }}</b-link>
+            </div>
+          </template>
         </div>
-
-        <div class="card details-card">
-          <div class="card-body">
-            <h5 class="card-title">{{ $t('skills.title')}}</h5>
-            <hr/>
-            <ul>
-              <li class="inline-item" v-for="s in profile.details.skills" :key="s">
-                {{ $t(s) }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      
       </div>
-      <div class="col-md">
 
-        <div class="card details-card">
-          <div class="card-body">
-            <h5 class="card-title">{{ $t('qualifications.title')}}</h5>
-            <hr/>
-            <ul>
-              <li class="inline-item" v-for="q in profile.details.qualifications" :key="q">
-                {{ $t(q) }}
-              </li>
-            </ul>
-          </div>
+      <div class="card details-card" v-if="profile.details.skills.length > 0">
+        <div class="card-body">
+          <h5 class="card-title">{{ $t('skills.title')}}</h5>
+          <hr/>
+          <ul>
+            <li class="inline-item" v-for="s in profile.details.skills" :key="s">
+              {{ $t(s) }}
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <div class="card details-card" v-if="profile.description">
-          <div class="card-body">
-            <h5 class="card-title">{{ $t('other.title')}}</h5>
-            <hr/>
-            <p>{{ profile.description }}</p>
-          </div>
+      <div class="card details-card" v-if="profile.details.qualifications.length > 0">
+        <div class="card-body">
+          <h5 class="card-title">{{ $t('qualifications.title')}}</h5>
+          <hr/>
+          <ul>
+            <li class="inline-item" v-for="q in profile.details.qualifications" :key="q">
+              {{ $t(q) }}
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div class="card details-card" v-if="profile.description">
+        <div class="card-body">
+          <h5 class="card-title">{{ $t('other.title')}}</h5>
+          <hr/>
+          <p>{{ profile.description }}</p>
+        </div>
+      </div>
         
-      </div>
     </div>
 
   </div>
