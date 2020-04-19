@@ -4,6 +4,7 @@
     "registration": "Registration",
     "complete": "Thank you for your registration!",
     "activation": "To activate your account, click the link in the email that we sent to you.",
+    "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
     "prospectiveRole": "In which role would you like to register?",
     "roleHelper": "Qualified Volunteer",
     "roleDiagnosticLab": "Diagnostic Centers",
@@ -14,6 +15,7 @@
     "registration": "Registrierung",
     "complete": "Danke für Ihre Registrierung!",
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
+    "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
     "prospectiveRole": "Als was möchten Sie sich registrieren?",
     "roleHelper": "Qualifizierte*r Freiwillige*r",
     "roleDiagnosticLab": "Diagnostikzentrum",
@@ -28,7 +30,7 @@
 
     <template v-if="registrationComplete">
       <h2>{{$t("complete")}}</h2>
-      <p>{{$t("activation")}}</p>
+      <p>{{$t("activation")}}<template v-if="registrationForm != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
     </template>
 
     <br />

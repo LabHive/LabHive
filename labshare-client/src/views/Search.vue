@@ -54,6 +54,7 @@
             class="search-result"
             v-for="(item) in searchResults"
             :key="item.header + item.center + item.subHeader + item.user.slug"
+            @click="showDetails(item.user)"
           >
             <div class="sr-header">
               <font-awesome-icon :icon="item.faIcon" />
@@ -250,6 +251,9 @@ export default {
       } else {
         this.searchResults = tmp_searchResults.flat();
       }
+    },
+    showDetails(user) {
+      this.$router.push({ name: 'details', params: { id: user.slug, profileData: user }});
     }
   },
   components: {

@@ -40,8 +40,8 @@ export default {
   },
   methods: {
     setLocale: function(val) {
-      this.$i18n.locale = val;
       this.$root.$i18n.locale = val;
+      localStorage.setItem("locale", val);
     }
   }
 };

@@ -8,6 +8,7 @@ import ForgotPassword from './views/ForgotPassword';
 import ResetPassword from './views/ResetPassword';
 import Register from './views/Register'
 import Search from './views/Search'
+import Details from './views/Details'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
 import ChangePassword from './views/ChangePassword'
@@ -18,6 +19,7 @@ import Offer from './views/Offer'
 import Activation from './views/Activation'
 import Admin from './views/Admin'
 import LoginAdmin from './views/LoginAdmin'
+import RevokeConsent from './views/RevokeConsent'
 
 Vue.use(VueRouter);
 
@@ -32,9 +34,11 @@ const routes = [
   { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
   { path: '/search', name: 'pageSearch', component: Search },
+  { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
+  { path: '/revokeConsent', component: RevokeConsent, meta: { auth: true } },
   { path: '/admin', component: Admin, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
   { path: '/offer', component: Offer, meta: { auth: true } },

@@ -1,0 +1,31 @@
+version: '3.1'
+
+volumes:
+  labhive_mongodb_staging:
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    # ports:
+    #   - 27017:27017
+    volumes:
+      - "labhive_mongodb_staging:/data/"
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: example
+  
+  app:
+    image: labhive.staging
+    restart: always
+    depends_on: 
+      - mongodb
+    build:
+      context: .
+    ports:
+      - 5001:5000
+    environment: 
+      PRODUCTION: "1"
+      BASE_URL: "https://dev.labhive.de"
+      ENABLE_MAIL: "0"
+      DISABLE_VERIFICATION: "1"
