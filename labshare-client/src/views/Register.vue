@@ -17,7 +17,7 @@
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
     "prospectiveRole": "Als was möchten Sie sich registrieren?",
-    "roleHelper": "Qualifizierte*r Freiwillige*r",
+    "roleHelper": "Qualifizierte Freiwillige",
     "roleDiagnosticLab": "Diagnostikzentrum",
     "roleLab": "Forschungslabor"
     }
@@ -40,8 +40,8 @@
     <div key="step-one" v-if="!registrationForm">
       <b-container fluid>
         <b-row>
-          <b-col cols="12">
-            <p class="lead text-center">{{$t("prospectiveRole")}}</p>
+          <b-col id="prospectiveRole" cols="12">
+            <p class="lead">{{$t("prospectiveRole")}}</p>
           </b-col>
         </b-row>
 
@@ -200,5 +200,13 @@ hr {
   @media(max-width: 768px) {
     max-width: 300px;
   }
+}
+
+#prospectiveRole {
+  padding: 0;
+}
+
+.lead {
+  margin-bottom: 24px;
 }
 </style>

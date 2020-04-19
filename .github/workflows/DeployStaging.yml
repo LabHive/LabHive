@@ -46,5 +46,7 @@ jobs:
           git stash pop;
           docker-compose -f docker-compose.staging.yml build;
 
-          docker-compose -f docker-compose.staging.yml down;
-          docker-compose -f docker-compose.staging.yml up -d;
+          docker stack rm labhiveStaging;
+          until [[ -z $(docker stack ps labhiveStaging -q) ]]; do sleep 1; done
+          sleep 3;
+          docker stack deploy -c docker-compose.staging.yml labhiveStaging;

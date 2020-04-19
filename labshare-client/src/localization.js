@@ -9,9 +9,9 @@ export let localization = {
   silentFallbackWarn: true,
   messages: {
     en: {
-      "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis.",
-      "Textres-lab": "Academic or industrial research laboratories with access to materials, reagents, equipment or suitable laboratory space (BSL-2/3).",
-      "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis and need support.",
+      "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
+      "Textres-lab": "Academic or industrial research institutes with access to reagents, devices, or suitable laboratory space (BSL-2/3)",
+      "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis",
       signUp: "Sign up",
       login: "Log In",
       
@@ -98,9 +98,9 @@ export let localization = {
       other: "Andere"
     },
     de: {
-      "Textqualif-vol": "Wissenschaftliche Mitarbeiter*innen oder technische Assistent*innen mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse.",
-      "Textres-lab": "Akademische oder industrielle Forschungs- einrichtungen mit Zugang zu Materialien, Reagenzien, Ausrüstung oder geeigneten Laboren (BSL-2/3).",
-      "Textdiag-cent": "Aktive Diagnosezentren, die derzeit SARS-CoV-2-Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen und Hilfe brauchen.",
+      "Textqualif-vol": "Wissenschaftliche Mitarbeiter oder Technische Assistenten mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
+      "Textres-lab": "Akademische oder industrielle Forschungseinrichtungen mit Zugang zu Reagenzien, Geräte oder geeigneten Laboren (BSL-2/3)",
+      "Textdiag-cent": "Aktive Diagnostikzentren, die derzeit SARS-CoV-2 Tests anbieten, d.h. Proben verarbeiten und Analysen durchführen",
 
       signUp: "Registrieren",
       login: "Login",

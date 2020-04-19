@@ -1,8 +1,5 @@
 version: '3.1'
 
-volumes:
-  labhive_mongodb_prod:
-
 services:
   mongodb:
     image: mongo
@@ -10,7 +7,8 @@ services:
     # ports:
     #   - 27017:27017
     volumes:
-      - "labhive_mongodb_prod:/data/"
+      - labhive_mongodb_prodDB:/data/db
+      - labhive_mongodb_prodConfig:/data/configdb
     #environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
@@ -28,4 +26,9 @@ services:
       PRODUCTION: "1"
       BASE_URL: "https://labhive.de"
 
-  
+volumes:
+  labhive_mongodb_prodDB:
+    external: true
+  labhive_mongodb_prodConfig:
+    external: true
+

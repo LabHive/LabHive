@@ -2,27 +2,31 @@
     {
     "en":{
     "mainTitle": "We align efforts for more SARS-CoV-2 tests",
-    "subTitle": "LabHive - the digital platform for a stong diagnostic network!",
-    "Joinbutton": "Join now!",
-    "partner": "In collaboration with",
-    "titleGroups": "Together we unleash the united power of Science!",
+    "subTitle": "The digital platform for a strong diagnostic network",
+    "Joinbutton": "Join now",
+    "partner": "In collaboration with:",
+    "titleGroups": "Together we unleash the united power of science",
     "qualif-vol": "Qualified volunteers",
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
     "text4": "Test capacity and support",
-    "testsweek": "Tests per week"
+    "testsweek": "Tests per week",
+    "aboutIntro": "We want to improve SARS-CoV-2 diagnostic and support diagnostic laboratories to increase test numbers. Therefore we foster communication and connect:",
+    "aboutEpilog": "To increase test capacity important resources like reagents, devices and personnel are missing. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!"
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "subTitle": "LabHive - die digitale Plattform für ein starkes Diagnostik-Netzwerk!",
-    "Joinbutton": "Jetzt mitmachen!",
-    "partner": "In Zusammenarbeit mit",
-    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft!",
+    "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
+    "Joinbutton": "Jetzt mitmachen",
+    "partner": "In Zusammenarbeit mit:",
+    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft",
     "qualif-vol": "Qualifizierte Freiwillige",
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
     "text4": "Testkapazitäten und Unterstützung",
-    "testsweek": "Tests pro Woche"
+    "testsweek": "Tests pro Woche",
+    "aboutIntro": "Wir möchten die SARS-CoV-2 Diagnostik verbessern und die diagnostischen Labore unterstützen, um die Testzahlen zu erhöhen. Dazu fördern wir die Kommunikation und verbinden:",
+    "aboutEpilog": "Um die Testkapazität zu erhöhen, fehlt es an Ressourcen wie Reagenzien, Geräte und Personal. Unsere Plattform fördert den Aufbau eines starken Diagnostiknetzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!"
     }
     }
 
@@ -33,9 +37,9 @@
       <b-container class="container">
         <b-row>
           <b-col cols lg="6" md="12" sm="12">
-              <h2>{{ $t("mainTitle") }}</h2>
+              <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
-            <b-button href="#/register">{{$t("Joinbutton")}}</b-button>
+            <b-button class="btn-secondary" href="#/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -53,7 +57,7 @@
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
             <figure>
-              <img src="../assets/logo-partner-3.png" width="160" height="46" />
+             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
             </figure>
           </b-col>
         </b-row>
@@ -66,11 +70,11 @@
             <h3>{{$t("titleGroups")}}</h3>
         </b-col>
       </b-row>
+      
       <b-row>
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
             <img
-              class="img-fluid"
               src="../assets/decoration-3-1.svg"
               alt="Illustration"
               width="170"
@@ -78,39 +82,47 @@
             />
           </figure>
           <h4 class="text-center">{{$t("qualif-vol")}}</h4>
-          <p>
+          <p class="bit-sized">
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12">
           <figure class="text-center">
             <img
-              class="img-fluid"
               src="../assets/decoration-3-2.svg"
-              alt="Illustration"
-              width="218"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p>
-              {{$t("Textres-lab")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12">
-          <figure class="text-center">
-            <img
-              class="img-fluid"
-              src="../assets/decoration-3-3.svg"
               alt="Illustration"
               width="164"
               height="150"
             />
           </figure>
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
-          <p>
+          <p class="bit-sized">
               {{$t("Textdiag-cent")}}
           </p>
+        </b-col>
+        <b-col cols lg="4" md="4" sm="12">
+          <figure class="text-center">
+            <img
+              src="../assets/decoration-3-3.svg"
+              alt="Illustration"
+              width="218"
+              height="150"
+            />
+          </figure>
+          <h4 class="text-center">{{$t("res-lab")}}</h4>
+          <p class="bit-sized">
+              {{$t("Textres-lab")}}
+          </p>
+        </b-col>
+      </b-row>
+       <b-row align-h="center">
+        <b-col>
+          <p>{{ $t("aboutEpilog") }}</p>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col class="text-center" style="margin-bottom: 44px;">
+          <b-button class="btn-secondary" href="#/register">{{$t("Joinbutton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -133,6 +145,10 @@ export default {
 <style lang="scss" scoped>
 $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
+
+p {
+  margin: 12px 12px 44px 12px;
+}
 
 .has_banner {
   background-color: #fff;
@@ -172,36 +188,8 @@ $color-bkg-primary: #f7f6fd;
     z-index: 5;
   }
 
-  h2 {
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 1.2;
-    letter-spacing: 0.1em;
-    color: #282e40;
-    margin: 60px 0 0;
-  }
-
   p {
     margin: 10px 0 0;
-  }
-
-  .btn {
-    margin: 25px 0 0;
-    padding: 14px 32px;
-    background: $color-green;
-    border: none;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    letter-spacing: 0.1em;
-  }
-
-  .btn:hover {
-    background: #fff;
-    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
-    color: $color-green;
   }
 
   figure {
@@ -219,27 +207,37 @@ $color-bkg-primary: #f7f6fd;
   }
 }
 
+.text-center img {
+  max-height: 160px;
+  width: auto;
+}
+
 .about {
-  margin-bottom: 50px;
-  font-size: 12px;
+  margin-bottom: 24px;
+  font-size: 15px;
   line-height: 1.2;
 
   h4 {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
     color: $color-green;
     margin: 0;
   }
-  p {
+  .bit-sized {
     max-width: 300px;
-    margin: 12px auto 0;
   }
 }
 
-@media (max-width: 767px) {
+.has-subtitle {
+  margin: 0;
+}
+
+@media (max-width: 991px) {
   .banner {
     margin-bottom: 40px;
+    padding: 0px 0 25px;
+
     h2 {
       margin-top: 0;
     }
