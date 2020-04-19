@@ -49,7 +49,8 @@ export let localization = {
         tokenTooOld: "Please reset your password again, the reset link expired.",
         contact_support: "An error has occurred. Please contact support@labhive.de. We apologize for the inconvenience!",
         user_not_activated: "The user hasn't been activated yet. Please validate the e-mail address. If you registered as laboratory, you will be manually verified by us. When that has been done, you will receive an e-mail from us. If this takes longer than two working days, please contact us at support@labhive.de.",
-        user_disabled: "Your account was deactivated. In case of questions, please contact support@labhive.de."
+        user_disabled: "Your account was deactivated. In case of questions, please contact support@labhive.de.",
+        featureNotAvailableForRole: "This feature is not available for your user role."
       },
       save: "Save",
       consentPublicSearch:
@@ -138,7 +139,8 @@ export let localization = {
         tokenTooOld: "Bitte setzen Sie das Passwort erneut zurück, der Link ist abgelaufen.",
         contact_support: "Ein Fehler ist aufgetreten, bitte wenden Sie sich an support@labhive.de. Bitte entschuldigen Sie die Umstände!",
         user_not_activated: "Der Benutzer ist noch nicht aktiviert. Zur Aktivierung Ihres Accounts müssen Sie die E-Mail Adresse bestätigen. Sollten Sie sich als Labor registriert haben, werden Sie von uns manuell verifiziert. Sobald dies geschehen ist, erhalten Sie von uns eine E-Mail. Sollte es länger als 2 Werktage dauern, kontaktieren Sie uns bitte unter support@labhive.de.",
-        user_disabled: "Ihr Account wurde von uns deaktiviert. Bei Fragen wenden Sie sich bitte an support@labhive.de."
+        user_disabled: "Ihr Account wurde von uns deaktiviert. Bei Fragen wenden Sie sich bitte an support@labhive.de.",
+        featureNotAvailableForRole: "Die Funktion ist für Ihre Nutzerrolle nicht verfügbar."
       },
       save: "Speichern",
       consentPublicSearch:

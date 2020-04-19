@@ -4,8 +4,9 @@ import { getModelForRole, getUserById, getUserOrAdmin, getUser, UserCommon, getF
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
-import { NOT_FOUND } from 'http-status-codes';
+import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
 import { UserRoles } from '../../lib/userRoles';
+import { UnauthorizedError } from '../errors';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -53,6 +54,37 @@ class Profile {
         res.send({
             success: true,
             data: a
+        })
+    }
+
+    public async revoke(req: express.Request, res: express.Response, next: express.NextFunction) { 
+        let detail = req.query.detail
+        if (typeof detail !== 'string' || (detail !== 'mailUpdates' && detail !== 'publicSearch')) {
+            return utils.badRequest(res)
+        }
+
+        let token = utils.getUnverifiedDecodedJWT(req)
+
+        if (detail === "publicSearch" && token.role !== UserRoles.VOLUNTEER) {
+            return utils.errorResponse(res, BAD_REQUEST, 'featureNotAvailableForRole')
+        }
+        
+        let user = await getUserById(token.sub)
+        if (!user) {
+            return next(new UnauthorizedError())
+        }
+
+        if (detail === "mailUpdates") {
+            user.consent.mailUpdates = false
+        }
+        else {
+            user.consent.publicSearch = false
+        }
+
+        user.save().then(() => {
+            utils.successResponse(res)
+        }).catch(() => {
+            utils.internalError(res)
         })
     }
 
