@@ -444,8 +444,20 @@ letter-spacing: 0.05em;
     top: 1px;
   }
 
+  a {
+    color: #000;
+
+    &:hover {
+      color: $color-green;
+    }
+  }
+
   a + a {
     margin-left: 40px;
+
+    @media (max-width: 767px) {
+      margin-left: 20px;
+    }
   }
 
   .fa-icon + .fa-icon {
