@@ -10,9 +10,7 @@
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
     "text4": "Test capacity and support",
-    "testsweek": "Tests per week",
-    "aboutIntro": "We want to improve SARS-CoV-2 diagnostic and support diagnostic laboratories to increase test numbers. Therefore we foster communication and connect:",
-    "aboutEpilog": "To increase test capacity important resources like reagents, devices and personnel are missing. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!"
+    "testsweek": "Tests per week"
     },
     "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
@@ -24,9 +22,7 @@
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
     "text4": "Testkapazitäten und Unterstützung",
-    "testsweek": "Tests pro Woche",
-    "aboutIntro": "Wir möchten die SARS-CoV-2 Diagnostik verbessern und die diagnostischen Labore unterstützen, um die Testzahlen zu erhöhen. Dazu fördern wir die Kommunikation und verbinden:",
-    "aboutEpilog": "Um die Testkapazität zu erhöhen, fehlt es an Ressourcen wie Reagenzien, Geräte und Personal. Unsere Plattform fördert den Aufbau eines starken Diagnostiknetzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!"
+    "testsweek": "Tests pro Woche"
     }
     }
 
@@ -57,7 +53,7 @@
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
             <figure>
-             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
+             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img class="img-hover" src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
             </figure>
           </b-col>
         </b-row>
@@ -113,11 +109,6 @@
           <p class="bit-sized">
               {{$t("Textres-lab")}}
           </p>
-        </b-col>
-      </b-row>
-       <b-row align-h="center">
-        <b-col>
-          <p>{{ $t("aboutEpilog") }}</p>
         </b-col>
       </b-row>
       <b-row>
@@ -251,4 +242,5 @@ p {
     }
   }
 }
+
 </style>

@@ -93,7 +93,7 @@
             <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
           <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
-            <a href="https://wirvsvirushackathon.org/" target="_blank"><img src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" /> </a>
+            <a href="https://wirvsvirushackathon.org/" target="_blank"><img class="img-hover" src="./assets/logo-footer.png" alt="Wir vs Virus Projekt" width="192" height="66" /> </a>
           </b-col>
         </b-row>
       </b-container>
@@ -444,8 +444,20 @@ letter-spacing: 0.05em;
     top: 1px;
   }
 
+  a {
+    color: #000;
+
+    &:hover {
+      color: $color-green;
+    }
+  }
+
   a + a {
     margin-left: 40px;
+
+    @media (max-width: 767px) {
+      margin-left: 20px;
+    }
   }
 
   .fa-icon + .fa-icon {
@@ -483,6 +495,20 @@ letter-spacing: 0.05em;
   text-decoration: none;
 }
 
+}
+
+.img-hover {
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.15s ease-in-out;
+    filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.15));
+  }
+}
+
+.title-subtitle {
+    margin-bottom: 64px;
 }
 
 </style>
