@@ -6,8 +6,8 @@
     "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
     "diagnosticLabs": "Diagnostic Centers",
-    "referenceRKI": "[1] COVID-19 Daily report of the RKI vom 15.04.2020",
-    "referenceRegistered": "[2] registered on our platform"
+    "referenceRKI": "COVID-19 Daily report of the RKI vom 15.04.2020",
+    "referenceRegistered": "Registered on our platform"
   },
   "de": {
     "title": "Testkapazität und Unterstützung",
@@ -16,8 +16,8 @@
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "[1] COVID-19 Lagebericht des RKI vom 15.04.2020",
-    "referenceRegistered": "[2] auf unserer Platform registriert"
+    "referenceRKI": "COVID-19 Lagebericht des RKI vom 15.04.2020",
+    "referenceRegistered": "Auf unserer Platform registriert"
   }
 }</i18n>
 <template>
@@ -53,7 +53,39 @@
           </l-map>
         </b-col>
         <b-col cols lg="6" md="6" sm="12">
-          <dl v-if="testsPerWeek" class="total-stats">
+          <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
+            <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
+            <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
+            <p style="margin: 0; font-size: 12px"><sup>1</sup>{{ $t('referenceRKI') }}</p>
+          </b-row>
+          <template v-if="markerCounts">
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.volunteer }}</b-col>
+              <b-col class="details" sm="12" md="8">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_research }}</b-col>
+              <b-col class="details" sm="12" md="8">{{ $t('researchLabs') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow last" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_diag }}</b-col>
+              <b-col class="details last" sm="12" md="8">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <b-row>
+              <b-col class="spacer"></b-col>
+              <b-col cols="10" style="text-align: left; font-size: 12px"><p><sup>2</sup>{{ $t('referenceRegistered') }}</p></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+          </template>
+          <!-- <dl v-if="testsPerWeek" class="total-stats">
             <dt>{{ testsPerWeek }}</dt>
             <dd>{{ $t('testsPerWeek') }}<sup>1</sup></dd>
           </dl>
@@ -64,7 +96,7 @@
             <dd>{{ $t('researchLabs') }}<sup>2</sup></dd>
             <dt>{{ markerCounts.lab_diag }}</dt>
             <dd>{{ $t('diagnosticLabs') }}<sup>2</sup></dd>
-          </dl>
+          </dl> -->
         </b-col>
       </b-row>
     </b-container>
@@ -222,6 +254,55 @@ $color-bkg-primary: #f7f6fd;
   }
 }
 
+.statRow {
+  margin-bottom: 35px;
+
+  &.last {
+    margin-bottom: 15px;
+  }
+}
+
+.details {
+  font-size: 22px;
+}
+
+.totalDetails {
+  font-size: 22px;
+}
+
+.detailsCount {
+  color: $color-green;
+  font-family: Fira Sans;
+  font-size: 44px;
+  text-align: right;
+  font-weight: normal;
+  line-height: 52px;
+}
+
+.totalStats {
+  border: 3px solid $color-green;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Fira Sans;
+  line-height: 52px;
+  font-size: 44px;
+  color: $color-green;
+}
+
+@media (max-width: 992px) {
+  .totalDetails {
+    text-align: center;
+    margin-top: 6px;
+  }
+}
+
+@media (min-width: 767px) {
+  hr {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .coverage {
     padding-bottom: 20px;
@@ -242,5 +323,25 @@ $color-bkg-primary: #f7f6fd;
       }
     }
   }
+
+  .totalStats {
+    margin-top: 20px
+  }
+
+  .totalDetails {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .details {
+    text-align: center;
+    line-height: initial;
+  }
+
+  .detailsCount {
+    margin: 0;
+    text-align: center;
+  }
+
 }
 </style>
