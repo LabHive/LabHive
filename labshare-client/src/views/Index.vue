@@ -57,7 +57,7 @@
           <b-col class="text-center">
               <p>{{$t("partner")}}</p>
             <figure>
-             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
+             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img class="img-hover" src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
             </figure>
           </b-col>
         </b-row>
@@ -251,4 +251,5 @@ p {
     }
   }
 }
+
 </style>
