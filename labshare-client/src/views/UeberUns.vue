@@ -259,7 +259,6 @@ export default {
 
   #hashtag {
     font-weight: 500;
-    color: #00acee;
   }
 
 </style>
