@@ -159,6 +159,31 @@ $color-green: #177867;
 @import "~bootstrap/scss/bootstrap.scss";
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
+@font-face {
+    font-family: "Fira Sans";
+    src: url('/fonts/FiraSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: Light;
+}
+@font-face {
+    font-family: "Fira Sans";
+    src: url('/fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: Regular;
+}
+@font-face {
+    font-family: "Fira Sans";
+    src: url('/fonts/FiraSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: Medium;
+}
+@font-face {
+    font-family: "Fira Sans";
+    src: url('/fonts/FiraSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: Bold;
+}
+
 html {
   overflow-y: scroll;
 }
