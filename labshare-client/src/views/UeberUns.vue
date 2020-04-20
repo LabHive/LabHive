@@ -18,7 +18,7 @@
     <b-container class="team">
       <h1>{{ $t("ourTeam") }}</h1>
       <b-row align-h="center">
-        <b-col class="text-center" id="about-subtitle" sm="12" lg="10" xl="8">
+        <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
           <p>{{ $t("ourStoryText1") }}<a id="hashtag" target="_blank" href="https://twitter.com/hashtag/WirVsVirus?src=hashtag_click">#WirVsVirus</a>{{ $t("ourStoryText2") }}</p>
         </b-col>
       </b-row>
@@ -241,10 +241,6 @@ export default {
     .role {
       font-size: 14px;
     }
-  }
-
-  #about-subtitle {
-    margin-bottom: 64px;
   }
 
   .claim {

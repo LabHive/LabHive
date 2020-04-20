@@ -507,4 +507,8 @@ letter-spacing: 0.05em;
   }
 }
 
+.title-subtitle {
+    margin-bottom: 64px;
+}
+
 </style>

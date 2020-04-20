@@ -1,6 +1,7 @@
 <i18n>{
   "en": {
     "title": "Test capacity and support",
+    "subTitle": "Increasing test capacity is crucial in the fight against SARS-CoV-2, but many places lack reagents, equipment and personnel. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!",
     "testsPerWeek": "Tests per Week in Germany",
     "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
@@ -10,6 +11,7 @@
   },
   "de": {
     "title": "Testkapazität und Unterstützung",
+    "subTitle": "Die Testkapazität zu erhöhen ist entscheidend im Kampf gegen SARS-CoV-2. Allerdings fehlt es an vielen Orten an Reagenzien, Geräten und Personal. Unsere Plattform fördert den Aufbau eines starken diagnostischen Netzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!",
     "testsPerWeek": "Tests pro Woche in Deutschland",
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
@@ -24,6 +26,11 @@
       <b-row class="text-center">
         <b-col>
           <h3>{{ $t('title') }}</h3>
+        </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
+          <p>{{ $t("subTitle") }}</p>
         </b-col>
       </b-row>
       <b-row>
