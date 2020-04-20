@@ -173,6 +173,11 @@
           <p class="role">UX/UI, Frontend Development</p>
         </b-col>
       </b-row>
+      <b-row align-h="center">
+        <b-col class="claim">
+          <p>Spread the test, beat the virus!</p>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -240,5 +245,19 @@ export default {
 
   #about-subtitle {
     margin-bottom: 64px;
+  }
+
+  .claim {
+    text-align: center;
+    font-size: 32px;
+    color: #177867;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 32px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+      margin-top: 16px;
+    }
   }
 </style>
