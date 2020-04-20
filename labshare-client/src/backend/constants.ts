@@ -1,4 +1,4 @@
-export const TESTS_PER_WEEK = 354521;
+export const TESTS_PER_WEEK = 360139;
 
 export enum FILE_PATH {
     mailConfig = "secret/mailConfig.json",
