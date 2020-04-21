@@ -70,6 +70,12 @@ export default {
     margin-top: 2em;
   }
   /deep/ .card-columns{
-  column-count: 2;
-}
+    column-count: 2;
+  }
+
+  @media(max-width: 992px) {
+    /deep/ .card-columns {
+      column-count: 1;
+    }
+  }
 </style>
