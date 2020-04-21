@@ -302,9 +302,13 @@ export default {
   margin-top: 24px;
   display: inline-block;
   transition: all 0.5s;
+  transition: all 0.15s ease-in-out;
 
   &:hover {
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.20);
+    transform: scale(1.01);
+    transition: all 0.15s ease-in-out;
   }
 
   @media (max-width: 768px) {
