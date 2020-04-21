@@ -181,9 +181,10 @@ export default {
                   footer: footer,
                   center: x.lookingFor[i]
                     .map(y => {
-                      return this.$t(y);
+                      return '• ' + this.$t(y);
                     })
-                    .join(", "),
+                    .sort()
+                    .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
                   user: x
                 };
 
@@ -212,9 +213,10 @@ export default {
                   footer: footer,
                   center: x.offers[i]
                     .map(y => {
-                      return this.$t(y);
+                      return '• ' + this.$t(y);
                     })
-                    .join(", "),
+                    .sort()
+                    .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
                   user: x
                 };
 
@@ -233,9 +235,10 @@ export default {
               footer: footer,
               center: x.details.skills
                 .map(y => {
-                  return this.$t(y);
+                  return '• ' + this.$t(y);
                 })
-                .join(", "),
+                .sort()
+                .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
               user: x
             };
             searchResults.push(result);
@@ -344,6 +347,7 @@ export default {
   color: #000000;
   font-size: 16px;
   margin-top: 4px;
+  hyphens: auto;
 }
 
 .sr-footer {
