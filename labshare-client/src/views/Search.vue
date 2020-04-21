@@ -9,7 +9,8 @@
     "lookingForequipment": "Devices/Reagents needed",
     "volunteer": "Qualified Volunteers",
     "farAway": "far away",
-    "error": "An error occurred, please try it again later."
+    "error": "An error occurred, please try it again later.",
+    "other": "Other"
   },
   "de": {
     "title": "Suche",
@@ -20,7 +21,8 @@
     "lookingForadvice": "Hilfe benötigt",
     "offersequipment": "Geräte/Reagenzien anzubieten",
     "lookingForequipment": "Geräte/Reagenzien benötigt",
-    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
+    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
+    "other": "Andere"
     }
     }
 </i18n>
@@ -241,6 +243,12 @@ export default {
                 .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
               user: x
             };
+            if (result.center == '') {
+              if (result.user.description == "") {
+                return searchResults
+              }
+              result.center = "• " + this.$t("other")
+            }
             searchResults.push(result);
             break;
           }
