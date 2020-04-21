@@ -56,7 +56,7 @@
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
-            <p style="margin: 0; font-size: 12px"><sup>1</sup>{{ $t('referenceRKI') }}</p>
+            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-04-15-de.pdf?__blob=publicationFile" style="margin: 0; font-size: 12px"><sup>1</sup>{{ $t('referenceRKI') }}</a>
           </b-row>
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
