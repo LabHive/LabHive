@@ -87,8 +87,8 @@
             &copy; LabHive 2020
           </b-col>
           <b-col sm="12" md="12" lg="6" class="text-center align-self-center" order="1" order-lg="2">
-            <b-link to="privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
-            <b-link to="imprint" class="clink">{{ $t('imprint') }}</b-link>
+            <b-link to="/privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
+            <b-link to="/imprint" class="clink">{{ $t('imprint') }}</b-link>
             <b-link class="fa-icon" href="https://twitter.com/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
             <b-link class="fa-icon" href="https://github.com/Kavakuo/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
