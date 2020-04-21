@@ -17,7 +17,7 @@
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
     "referenceRKI": "COVID-19 Lagebericht des RKI vom 15.04.2020",
-    "referenceRegistered": "Auf unserer Platform registriert"
+    "referenceRegistered": "Auf unserer Plattform registriert"
   }
 }</i18n>
 <template>
@@ -362,8 +362,12 @@ $color-bkg-primary: #f7f6fd;
   margin-right: auto;
   margin-left: 6.5em;
 
+  @media (max-width: 1200px) {
+    margin-left: 4.3em;
+  }
+
   @media (max-width: 991px) {
-    margin-left: 5.5em;
+    margin: 0 auto;
   }
 }
 
