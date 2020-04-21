@@ -183,10 +183,10 @@ export default {
                   footer: footer,
                   center: x.lookingFor[i]
                     .map(y => {
-                      return '• ' + this.$t(y);
+                      return '•&nbsp;' + this.$t(y);
                     })
                     .sort()
-                    .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
+                    .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
                   user: x
                 };
 
@@ -215,10 +215,10 @@ export default {
                   footer: footer,
                   center: x.offers[i]
                     .map(y => {
-                      return '• ' + this.$t(y);
+                      return '•&nbsp;' + this.$t(y);
                     })
                     .sort()
-                    .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
+                    .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
                   user: x
                 };
 
@@ -237,10 +237,10 @@ export default {
               footer: footer,
               center: x.details.skills
                 .map(y => {
-                  return '• ' + this.$t(y);
+                  return '•&nbsp;' + this.$t(y);
                 })
                 .sort()
-                .join("&nbsp;&nbsp;&nbsp;&nbsp;"),
+                .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
               user: x
             };
             if (result.center == '') {
