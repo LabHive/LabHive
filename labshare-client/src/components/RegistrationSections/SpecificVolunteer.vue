@@ -100,6 +100,8 @@
       ></b-form-textarea>
     </b-form-group>
 
+    <p v-html="$t('disclaimerRegistration')"></p>
+
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit" :final="true"></NavButtons>
     </template>
