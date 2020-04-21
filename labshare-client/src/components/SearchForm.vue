@@ -59,10 +59,14 @@
         <div class="form-row" v-if="filter.mode && 'volunteers' !== filter.mode">
           <div class="col-md4">
             <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')">
-              <div class="lh-button-group">
-                <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
-                <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
-              </div>
+              <b-row>
+                <b-col cols="auto" class="lh-button-col">
+                  <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
+                </b-col>
+                <b-col cols="auto" class="lh-button-col last">
+                  <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
+                </b-col>
+              </b-row>
             </b-form-group>
           </div>
         </div>
@@ -207,6 +211,8 @@ export default {
           this.filterBy = "equipment";
           break;
       }
+      this.filter.zipcode = this.$user.address.zipcode;
+      this.searchChange()
     },
     optionalZip(data) {
       if (data === "") {
