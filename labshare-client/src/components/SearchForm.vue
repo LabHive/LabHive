@@ -211,6 +211,7 @@ export default {
           this.filterBy = "equipment";
           break;
       }
+      this.searchChange()
     },
     optionalZip(data) {
       if (data === "") {
