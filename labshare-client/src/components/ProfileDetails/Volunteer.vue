@@ -44,7 +44,7 @@
     <div class="card-columns">
       <div class="card details-card">
         <div class="card-body">
-          <h5 class="card-title">{{ $t('contactDetails.title') }}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="user-alt" /> {{ $t('contactDetails.title') }}</h5>
           <hr/>
           <template v-if="profile.contact">
             <dl class="row">
@@ -70,11 +70,11 @@
 
       <div class="card details-card" v-if="profile.details.skills.length > 0">
         <div class="card-body">
-          <h5 class="card-title">{{ $t('skills.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="vial" /> {{ $t('skills.title')}}</h5>
           <hr/>
           <ul>
             <li class="inline-item" v-for="s in profile.details.skills" :key="s">
-              {{ $t(s) }}
+              {{ s }}
             </li>
           </ul>
         </div>
@@ -82,11 +82,11 @@
 
       <div class="card details-card" v-if="profile.details.qualifications.length > 0">
         <div class="card-body">
-          <h5 class="card-title">{{ $t('qualifications.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="graduation-cap" /> {{ $t('qualifications.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="q in profile.details.qualifications" :key="q">
-              {{ $t(q) }}
+            <li class="inline-item" v-for="s in profile.details.qualifications" :key="s">
+              {{ s }}
             </li>
           </ul>
         </div>
@@ -94,7 +94,7 @@
 
       <div class="card details-card" v-if="profile.description">
         <div class="card-body">
-          <h5 class="card-title">{{ $t('other.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="info-circle" /> {{ $t('other.title')}}</h5>
           <hr/>
           <p>{{ profile.description }}</p>
         </div>
