@@ -145,7 +145,7 @@ export default {
       };
       let tmp_searchResults = this.rawSearchResults.map(x => {
         let subHeader = `${x.address.zipcode} ${x.address.city}`;
-        if (x.distance) {
+        if (x.distance != null) {
           let distance = `${(x.distance / 1000).toFixed(2)} km`;
           subHeader += `, ${distance} ${this.$t("farAway")}`;
         }
