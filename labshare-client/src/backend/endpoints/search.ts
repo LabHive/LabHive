@@ -168,11 +168,6 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
         }
     }
 
-    if (token) {
-        let user = await getUser({ _id: token.sub })
-        return user?.toObject().location.coordinates
-    }
-
     return undefined
 }
 
