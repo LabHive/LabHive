@@ -211,6 +211,7 @@ export default {
           this.filterBy = "equipment";
           break;
       }
+      this.filter.zipcode = this.$user.address.zipcode;
       this.searchChange()
     },
     optionalZip(data) {
