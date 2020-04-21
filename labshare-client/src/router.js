@@ -44,7 +44,16 @@ const routes = [
   { path: '/offer', component: Offer, meta: { auth: true } },
   { path: '/change-password', component: ChangePassword, meta: { auth: true } },
 ];
-const router = new VueRouter({ routes });
+const router = new VueRouter({ 
+  routes: routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
+});
 
 router.beforeEach((to, from, next) => {
   // Take people to login if needed
