@@ -1,0 +1,110 @@
+"Bundesland","Ort","Institut","Link","Kategorie","Latitude","Longitude","Adresse","Type","Source","Kontakt"
+"Universitätsinstitute",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Baden-Württemberg","Freiburg","Universitätsklinikum, Institut für Virologie","https://www.uniklinik-freiburg.de/virologie.html","Universitätsinstitute",48.0017763,7.8470186,"Hermann-Herder-Strasse 11, D-79104 Freiburg","Diagnostic center","GfV",NA
+"Baden-Württemberg","Heidelberg","Universitätsklinikum, Dept. für Infektiologie, Virologie","https://www.klinikum.uni-heidelberg.de/zentrum-fuer-infektiologie/virologie","Universitätsinstitute",49.4155869,8.6661299,"Im Neuenheimer Feld 344, D-69120 Heidelberg","Diagnostic center","GfV",NA
+"Baden-Württemberg","Tübingen","Universitätsklinikum, Institut für Medizinische Virologie","https://www.medizin.uni-tuebingen.de/de/das-klinikum/einrichtungen/institute/virologie-epidemiologie","Universitätsinstitute",48.531829,9.0329369,"Elfriede-Aulhorn-Str. 6, D-72076 Tübingen","Diagnostic center","GfV",NA
+"Baden-Württemberg","Ulm","Universitätsklinikum, Institut für Virologie","https://www.uniklinik-ulm.de/virologie.html","Universitätsinstitute",48.4236474,9.95386,"Albert-Einstein-Allee 11, D-89081 Ulm","Diagnostic center","GfV",NA
+"Bayern","Erlangen","Universitätsklinikum, Virologisches Institut","https://www.virologie.uk-erlangen.de/","Universitätsinstitute",49.5989319,11.0058134,"Schlossgarten 4, D-91054 Erlangen","Diagnostic center","GfV",NA
+"Bayern","München TUM","Lehrstuhl für Chemie Biogener Rohstoffe","https://cbr.cs.tum.de/","Universitätsinstitute",48.883601,12.584086,"Schulgasse 16, D-94315 Straubing","Partner lab (?)","https://www.tum.de/nc/die-tum/aktuelles/pressemitteilungen/details/35961/",NA
+"Bayern","München TUM","Institut für Virologie","https://www.virologie.med.tum.de/","Universitätsinstitute",48.13811,11.60204,"Trogerstr. 30, D-81675 München","Diagnostic center","GfV",NA
+"Bayern","München LMU","Max von Pettenkofer-Institut","http://www.mvp.uni-muenchen.de/diagnostik/klinische-virologie/","Universitätsinstitute",48.133789,11.562616,"Pettenkoferstr. 9a, D-80336 München","Diagnostic center","GfV",NA
+"Bayern","München","Institut für Mikrobiologie der Bundeswehr","https://instmikrobiobw.de","Universitätsinstitute",48.209612,11.58234,"Neuherbergstr. 11, D-80937 München","Diagnostic center","GfV",NA
+"Bayern","Regensburg","Universität, Institut für Mikrobiologie und Hygiene","https://www.imhr.de/startseite/16-aktuelle-meldungen/324-aktuelle-hinweise-zu-coronavirus","Universitätsinstitute",48.987401,12.088927,"Franz-Josef-Strauß-Allee 11, D-93053 Regensburg","Diagnostic center","GfV",NA
+"Bayern","Würzburg","Universität, Institut für Virologie","http://www.virologie.uni-wuerzburg.de/institut/","Universitätsinstitute",49.803479,9.959978,"Versbacher Straße 7, D-97078 Würzburg","Diagnostic center","GfV",NA
+"Berlin","Berlin","Charité, Institut für Virologie (Konsiliarlabor für Coronaviren)","https://virologie-ccm.charite.de/","Universitätsinstitute",52.523581,13.378348,"Charitéplatz 1, D-10117 Berlin","Diagnostic center","GfV","victor.corman@charite.de"
+"Berlin","Berlin","RKI, Zentrum für Biologische Gefahren und Spezielle Pathogene ZBS 1","www.rki.de","Universitätsinstitute",52.539306,13.347302,"Nordufer 20, D-13353 Berlin","Diagnostic center","GfV",NA
+"Hamburg","Hamburg","Bernhard-Nocht-Institut für Tropenmedizin","https://www.bnitm.de/das-institut/","Universitätsinstitute",53.54698,9.964902,"Bernhard-Nocht-Straße 74 , D-20359 Hamburg","Diagnostic center","GfV",NA
+"Hamburg","Hamburg","Universitätsklinikum Hamburg- Eppendorf, Institut für Mikrobiologie, Virologie und Hygiene","https://www.uke.de/","Universitätsinstitute",53.590945,9.97464,"Martinistraße 52, 20251 Hamburg","Diagnostic center","GfV",NA
+"Hessen","Frankfurt","Universitätsklinikum, Institut für Medizinische Virologie","https://www.kgu.de/einrichtungen/institute/zentrum-der-hygiene/medizinische-virologie/","Universitätsinstitute",50.095813,8.66573,"Theodor-Stern-Kai 7, D-60590 Frankfurt am Main","Diagnostic center","GfV",NA
+"Hessen","Gießen","Universität, Institut für Medizinische Virologie","https://www.ukgm.de/ugm_2/deu/ugi_vir/ugi_vir_team.php","Universitätsinstitute",50.577227,8.66536,"Rudolf-Buchheim-Straße 8, D-35392 Gießen","Diagnostic center","GfV",NA
+"Hessen","Marburg","Universitätsklinikum, Institut für Virologie","https://www.uni-marburg.de/de/fb20/bereiche/ziei/virologie","Universitätsinstitute",50.81266,8.809446,"Hans-Meerwein-Straße 2, D-35043 Marburg","Diagnostic center","GfV",NA
+"Niedersachsen","Hannover","Med. Hochschule, Institut für Virologie","https://www.mhh.de/institute-zentren-forschungseinrichtungen/institut-fuer-virologie","Universitätsinstitute",52.385223,9.806087,"Carl-Neuberg-Str. 1, D-30625 Hannover","Diagnostic center","GfV",NA
+"Niedersachsen","Göttingen","Institut für Medizinische Mikrobiologie, Universitätsmedizin Göttingen","http://www.bakteriologie.uni-goettingen.de/","Universitätsinstitute",51.545844,9.940627,"Kreuzbergring 57, D-37075 Göttingen","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Bonn","Universitätsklinikum, Institut für Virologie","https://www.ukbonn.de/42256BC8002AF3E7/direct/virologie","Universitätsinstitute",50.701632,7.103012,"Venusberg-Campus 1 / Gebäude 63, D-53127 Bonn","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Düsseldorf","Cuno-Niggl-Straße 3, 83278 Traunstein","https://www.uniklinik-duesseldorf.de/patienten-besucher/klinikeninstitutezentren/institut-fuer-virologie","Universitätsinstitute",51.198329,6.787722,"Universitätsstr. 1, D-40225 Düsseldorf","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Essen","Universitätsklinikum, Institut für Virologie","https://www.uk-essen.de/institute00/instvirologie0/","Universitätsinstitute",51.434068,6.984868,"Hufelandstraße 55, D-45147 Essen","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Köln","Universitätsklinikum, Institut für Virologie","http://virologie.uk-koeln.de/","Universitätsinstitute",50.933624,6.90491,"Kerpener Str. 62, D-50937 Köln","Diagnostic center","GfV",NA
+"Rheinland Pfalz","Mainz","Universität, Institut für Virologie","http://www.unimedizin-mainz.de/virologie/startseite/home.html","Universitätsinstitute",49.992794,8.262291,"Obere Zahlbacher Str. 67, D-55131 Mainz","Diagnostic center","GfV",NA
+"Saarland","Homburg","Universitätsklinikum, Institut für Virologie","http://www.uks.eu/de/einrichtungen/kliniken_institute/infektionsmedizin/virologie","Universitätsinstitute",49.313225,7.344563,"Kirrberger Str. 100, 66421 Homburg","Diagnostic center","GfV",NA
+"Sachsen","Dresden","Institut für Medizinische Mikrobiologie und Hygiene","https://tu-dresden.de/med/mf/mib","Universitätsinstitute",51.055134,13.77865,"Johannstadt, 01307 Dresden","Diagnostic center","GfV",NA
+"Sachsen","Leipzig","Universität Leipzig, Institut für Virologie","http://virologie.medizin.uni-leipzig.de/","Universitätsinstitute",51.330011,12.391252,"Johannisallee 30, 04103 Leipzig","Diagnostic center","GfV",NA
+"Schleswig-Hohlstein","Kiel","Universitätsklinikum, Institut für Infektionsmedizin","https://www.infmed.uni-kiel.de/de/willkommen-am-institut-fuer-infektionsmedizin","Universitätsinstitute",54.327883,10.143029,"Brunswiker Str. 4, 24105 Kiel","Diagnostic center","GfV",NA
+"Institute öffentl Gesundheitsdienst",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Baden-Württemberg","Stuttgart","Landesgesundheitsamt Baden-Württemberg (LGA)","https://www.gesundheitsamt-bw.de","Öffentlicher Gesundheitsdienst (ÖGD)",48.801345,9.189453,"Nordbahnhofstraße 135, D-70191 Stuttgart","Diagnostic center","GfV",NA
+"Bayern","Oberschleißheim","Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)","https://www.lgl.bayern.de/","Öffentlicher Gesundheitsdienst (ÖGD)",49.566826,11.006758,"Eggenreuther Weg 43, D-91058 Erlangen","Diagnostic center","GfV",NA
+"Niedersachsen","Hannover","Niedersächsisches Landesgesundheitsamt (NLGA)","https://www.nlga.niedersachsen.de/startseite/","Öffentlicher Gesundheitsdienst (ÖGD)",52.396062,9.711797,"Roesebeckstr. 4-6, D-30449 Hannover","Diagnostic center","GfV",NA
+"Sachsen-Anhalt","Magdeburg","Landesamt für Verbraucherschutz Sachsen-Anhalt","https://verbraucherschutz.sachsen-anhalt.de/","Öffentlicher Gesundheitsdienst (ÖGD)",51.526691,11.991387,"Freiimfelder Straße 68, D-06112 Halle (Saale)","Diagnostic center","GfV",NA
+"Sonstige Labore",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Bayern","Augsburg","SYNLAB Medizinisches Versorgungszentrum Augsburg GmbH *","https://www.synlab.de/lab/augsburg","Sonstige",48.401451,11.067917,"Gubener Str. 39, 86156 Augsburg","Diagnostic center","GfV",NA
+"Bayern","Burglengenfeld","Labor Kneißler GmbH & Co. KG","https://www.labor-kneissler.de/startseite","Sonstige",49.207857,12.020854,"Unterer Mühlweg 10, 93133 Burglengenfeld","Diagnostic center","GfV",NA
+"Bayern","Dachau","SYNLAB Medizinisches Versorgungszentrum Humane Genetik München · Zweigniederlassung der SYNLAB MVZ Augsburg GmbH · Ausgelagerte Praxisräume Dachau *","https://www.synlab.de/lab/dachau","Sonstige",48.266294,11.429693,"Hochstraße 27, 85221 Dachau","Diagnostic center","GfV",NA
+"Bayern","Gauting","SYNLAB Medizinisches Versorgungszentrum Humane Genetik München · Zweigniederlassung der SYNLAB MVZ Augsburg GmbH ·
+Ausgelagerte Praxisräume Gauting am IML · WHO - Supranationales Referenzlaboratorium für Tuberkulose *","https://www.synlab.de/lab/gauting","Sonstige",48.06645,11.353442,"Robert-Koch-Allee 2, 82131 Gauting","Diagnostic center","GfV",NA
+"Bayern","Martinsried","Zentrum für Humangenetik und","https://www.medizinische-genetik.de/","Sonstige",48.112467,11.451846,"Lochhamer Str. 29, 82152 Planegg","Diagnostic center","GfV",NA
+"Bayern","München","SYNLAB Medizinisches Versorgungszentrum Labor München Zentrum GbR","https://www.synlab.de/lab/muenchen-lmz","Sonstige",48.139129,11.557236,"Bayerstraße 53, 80335 München","Diagnostic center","GfV",NA
+"Bayern","Nürnberg","SYNLAB Medizinisches Versorgungszentrum Nürnberg · Zweigniederlassung der SYNLAB MVZ Weiden GmbH *","https://www.synlab.de/lab/nuernberg","Sonstige",49.459775,11.034632,"Fürther Str. 212, 90429 Nürnberg","Diagnostic center","GfV",NA
+"Bayern","Passau","Laboratoriumsdiagnostik Dr. Klein, Dr. Rost und Kollegen","https://www.labor-passau.de","Sonstige",48.590413,13.395572,"Wörth 15, D-94034 Passau","Diagnostic center","GfV",NA
+"Bayern","Regensburg","SYNLAB Medizinisches Versorgungszentrum Regensburg · Zweigniederlassung der SYNLAB MVZ Weiden GmbH *","https://www.synlab.de/lab/regensburg","Sonstige",49.006074,12.119993,"Hildegard-von-Bingen-Straße 1, 93053 Regensburg","Diagnostic center","GfV",NA
+"Bayern","Traunstein","SYNLAB Medizinisches Versorgungszentrum Traunstein · Zweigniederlassung der SYNLAB MVZ Augsburg GmbH *","https://www.synlab.de/lab/traunstein","Sonstige",47.893415,12.465636,"Cuno-Niggl-Straße 3, 83278 Traunstein","Diagnostic center","GfV",NA
+"Bayern","Weiden","SYNLAB Medizinisches Versorgungszentrum Weiden GmbH","https://www.synlab.de/lab/weiden","Sonstige",49.69385,12.320204,"Zur Kesselschmiede 4, 92637 Weiden in der Oberpfalz","Diagnostic center","GfV",NA
+"Baden-Württemberg","Eppelheim","SYNLAB Medizinisches Versorgungszentrum Heidelberg GmbH *","https://www.synlab.de/lab/heidelberg","Sonstige",49.407265,8.627314,"Wasserturmstraße 71, 69214 Eppelheim","Diagnostic center","GfV",NA
+"Baden-Württemberg","Ettlingen","MVZ Laborzentrum Ettlingen GmbH","https://www.synlab.de/lab/ettlingen","Sonstige",48.944555,8.37915,"Otto-Hahn-Straße 18, 76275 Ettlingen","Diagnostic center","GfV",NA
+"Baden-Württemberg","Freiburg","MVZ Clotten","https://www.labor-clotten.de/","Sonstige",47.978801,7.830625,"Merzhauser Str. 112a, D-79100 Freiburg","Diagnostic center","GfV",NA
+"Baden-Württemberg","Heidelberg","MVZ Labor Dr. Limbach & Kollegen","https://www.labor-limbach.de","Sonstige",49.362683,8.686634,"Im Breitspiel 16, D-69126 Heidelberg","Diagnostic center","GfV",NA
+"Baden-Württemberg","Karlsruhe","MVZ Labor Volkmann","http://www.laborvolkmann.de","Sonstige",49.005436,8.387636,"Gerwigstrasse 67, D-76131 Karlsruhe","Diagnostic center","GfV",NA
+"Baden-Württemberg","Leinfelden-Echterdingen","SYNLAB Medizinisches Versorgungszentrum Leinfelden-Echterdingen GmbH *","https://www.synlab.de/lab/leinfelden","Sonstige",48.696778,9.16542,"Nikolaus-Otto-Straße 6, 70771 Leinfelden-Echterdingen","Diagnostic center","GfV",NA
+"Baden-Württemberg","Ludwigsburg","MVZ Labor Ludwigsburg","https://www.mvz-labor-lb.de","Sonstige",48.895306,9.177219,"Mörikestraße 28/2, D-71636 Ludwigsburg","Diagnostic center","GfV",NA
+"Baden-Württemberg","Ravensburg","MVZ Labor Ravensburg","https://www.labor-gaertner.de","Sonstige",47.789497,9.623404,"Elisabethenstraße 11, D-88212 Ravensburg","Diagnostic center","GfV",NA
+"Berlin","Berlin","MDI Limbach Berlin","https://www.mdi-limbach-berlin.de","Sonstige",52.563057,13.354696,"Aroser Allee 84, D-13407 Berlin","Diagnostic center","GfV",NA
+"Berlin","Berlin","Institut für Medizinische Diagnostik Berlin-Potsdam","https://www.imd-berlin.de/labor.html","Sonstige",52.44339,13.33467,"Nicolaistraße 20, 12247 Berlin","Diagnostic center","GfV",NA
+"Berlin","Berlin","SYNLAB Medizinisches Versorgungszentrum Berlin GmbH","https://www.synlab.de/lab/berlin","Sonstige",52.472321,13.366728,"Reichartstraße 2, 10829 Berlin","Diagnostic center","GfV",NA
+"Brandenburg","Cottbus","MVZ Gemeinschaftslabor Cottbus","https://www.labor-cottbus.de","Sonstige",51.724036,14.339595,"Uhlandstraße 53, D-03050 Cottbus","Diagnostic center","GfV",NA
+"Brandenburg","Frankfurt an der Oder","IMD Labor Oderland Frankfurt/Oder","https://www.imd-oderland.de/de","Sonstige",52.343785,14.542739,"Am Kleistpark 1, 15230 Frankfurt (Oder)","Diagnostic center","GfV",NA
+"Hamburg","Hamburg","MVZ Labor Dr. Fenner und Kollegen","https://www.fennerlabor.de/","Sonstige",53.551011,9.99583,"Bergstraße 14, D-20095 Hamburg","Diagnostic center","GfV",NA
+"Hamburg","Hamburg","SYNLAB Medizinisches Versorgungszentrum Hamburg GmbH *","https://www.synlab.de/lab/hamburg","Sonstige",53.582958,10.029737,"Osterbekstraße 90C, 22083 Hamburg","Diagnostic center","GfV",NA
+"Hessen","Bad Nauheim","SYNLAB Medizinisches Versorgungszentrum Bad Nauheim · Zweigniederlassung der SYNLAB MVZ Kassel GmbH *","https://www.synlab.de/lab/bad-nauheim","Sonstige",50.367532,8.734226,"Mondorfstraße 17, 61231 Bad Nauheim","Diagnostic center","GfV",NA
+"Hessen","Kassel","SYNLAB Medizinisches Versorgungszentrum Kassel GmbH *","https://www.synlab.de/lab/kassel","Sonstige",51.32055,9.503035,"Kurt-Wolters-Straße 2-4, 34125 Kassel","Diagnostic center","GfV",NA
+"Mecklenburg-Vorpommern","Greifswald","IMD - MVZ Labor Greifswald","https://www.imd-greifswald.de/de","Sonstige",54.093484,13.431956,"Vitus-Bering-Straße 27a, 17493 Greifswald","Diagnostic center","GfV",NA
+"Mecklenburg-Vorpommern","Rostock","IMD - Medizinisches Labor Rostock GbR","https://www.labormedicus.de/","Sonstige",54.071675,12.108539,"Südring 81, 18059 Rostock","Diagnostic center","GfV",NA
+"Mecklenburg-Vorpommern","Schwerin","MVZ Labor Westmecklenburg","https://www.labor-schwerin.de","Sonstige",53.597529,11.396323,"Ellerried 7, D-19061 Schwerin","Diagnostic center","GfV",NA
+"Niedersachsen","Hannover","MVZ Labor Limbach HannoverMVZ Labor Limbach Hannover","http://www.labor-limbach-hannover.de","Sonstige",52.366347,9.993204,"Auf den Pohläckern 12, D-31275 Lehrte","Diagnostic center","GfV",NA
+"Niedersachsen","Varel","SYNLAB Medizinisches Versorgungszentrum Jade-Weser GmbH *","https://www.synlab.de/lab/jade-weser","Sonstige",53.390843,8.139969,"Beethovenstraße 2, 26316 Varel","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Bad Salzuflen","MVZ Labor Krone GbR","https://www.laborkrone.de/","Sonstige",52.088042,8.737075,"Siemensstraße 40, 32105 Bad Salzuflen","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Dortmund","MVZ Dr Eberhard & Partner Dortmund","https://www.medizin-zentrum-dortmund.de","Sonstige",51.51296,7.466831,"Brauhausstraße 4, 44137 Dortmund","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Düsseldorf","Laborinstitut ZOTZ/KLIMAS","https://zotzklimas.de/","Sonstige",51.228384,6.789884,"Immermannstr. 65A, D-40210 Düsseldorf","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Mönchengladbach","MVZ Labor Dr. Stein + Kollegen","https://www.labor-stein.de","Sonstige",51.210506,6.335784,"Tomphecke 45, D-41169 Mönchengladbach","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Münster","MVZ Labor Münster","https://www.labor-muenster.de","Sonstige",51.952575,7.639854,"Hafenweg 9-11, D-48155 Münster","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Bonn","Medizinisches Versorgungszentrum SYNLAB Bonn GmbH *","https://www.synlab.de/lab/bonn","Sonstige",50.731343,7.096832,"Dechenstraße 1, 53115 Bonn","Diagnostic center","GfV",NA
+"Nordrhein-Westfalen","Leverkusen","Medizinisches Versorgungszentrum SYNLAB Leverkusen GmbH","https://www.synlab.de/lab/leverkusen","Sonstige",51.0333166,7.0302727,"Paracelsusstraße 13, 51375 Leverkusen","Diagnostic center","GfV",NA
+"Rheinland Pfalz","Neustadt an der Weinstraße","SYNLAB Medizinisches Versorgungszentrum Neustadt/Weinstraße · Zweigniederlassung der SYNLAB MVZ Trier GmbH *","https://www.synlab.de/lab/neustadt","Sonstige",49.3502639,8.1354555,"Landauer Straße 1, 67434 Neustadt an der Weinstraße","Diagnostic center","GfV",NA
+"Rheinland Pfalz","Neuwied","SYNLAB Medizinisches Versorgungszentrum Neuwied · Zweigniederlassung der SYNLAB MVZ Trier GmbH *","https://www.synlab.de/lab/neuwied","Sonstige",50.4713241,7.4890105,"Dahlbachs Weg 15, 56566 Neuwied","Diagnostic center","GfV",NA
+"Rheinland Pfalz","Trier","SYNLAB Medizinisches Versorgungszentrum Trier GmbH *","https://www.synlab.de/lab/trier","Sonstige",49.7532142,6.6303502,"Feldstraße 26, 54290 Trier","Diagnostic center","GfV",NA
+"Sachsen-Anhalt","Dessau","MVZ Labor Dessau GmbH","https://www.laborpraxis-dessau.de","Sonstige",51.814816,12.222306,"Bauhüttenstraße 6, D-06847 Dessau-Roßlau","Diagnostic center","GfV",NA
+"Thüringen","Greiz","MVZ Dianovis","https://www.dianovis.de/","Sonstige",50.662632,12.199008,"Wichmannstr. 12, D-07973 Greiz","Diagnostic center","GfV",NA
+"Thüringen","Gera","SYNLAB Medizinisches Versorgungszentrum Gera · Zweigniederlassung der SYNLAB MVZ Weiden GmbH *","https://www.synlab.de/lab/gera","Sonstige",50.8691912,12.0485494,"Straße des Friedens 122, 07548 Gera","Diagnostic center","GfV",NA
+"Thüringen","Jena","SYNLAB Jena · ONCOSCREEN®","https://www.synlab.de/lab/jena","Sonstige",50.9463414,11.6066929,"Löbstedter Straße 93, 07749 Jena","Diagnostic center","GfV",NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Weitere potentielle Testlabore",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Hessen","Bad Nauheim (61231)","Kerckhoff Klinik, Labormedizin und Krankenhaushygiene","https://www.kerckhoff-klinik.de/fachuebergreifende-abteilungen/abteilung-labormedizin-und-krankenhaushygiene/",NA,50.369799,8.742396,"Benekestr. 2 - 8, D-61231 Bad Nauheim","Partner lab",NA,NA
+"Schleswig-Holstein","Kiel","Labor Dr. Krause und Kollegen MVZ GmbH Kiel","http://www.labor-krause.de/standorte/kiel/",NA,54.353377,10.118546,"Steenbeker Weg 23","Partner lab",NA,NA
+"Berlin","Berlin","MVZ MIB AG","https://www.labor-mib.de/standort",NA,52.553335,13.360715,"Oudenarder Str. 16","Partner lab",NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Einträge von TestThePlanet.com von Laboren mit PCR oder NGS-Ausrüstung",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Niedersachsen","Hannover","Uni Hannover - Institut für Siedlungswasserwirtschaft und Abfalltechnik",NA,NA,NA,NA,"Nordstadt, Nord, Hannover, Region Hannover, Niedersachsen, 30167, Deutschland","Candidate","TestThePlanet",NA
+"Brandenburg","Buckow","Johann Heinrich von Thünen-Institut  Institut für Forstgenetik",NA,NA,NA,NA,"Stadt Buckow (Märkische Schweiz), Buckow, Märkische Schweiz, Märkisch-Oderland, Brandenburg, 15377, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"FZ Jülich",NA,NA,NA,NA,"Lorsbeck, Jülich, Kreis Düren, Nordrhein-Westfalen, 52428, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Uni Kassel - Abteilung für Zoologie",NA,NA,NA,NA,"Brasselsberg, Kassel, Hessen, 34132, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Philipps-Universität Marburg",NA,NA,NA,NA,"Ockershausen, Marburg, Landkreis Marburg-Biedenkopf, Hessen, 35037, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Promocell Academy",NA,NA,NA,NA,"Rohrbach, Heidelberg, Baden-Württemberg, 69126, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"CeGaT GmbH",NA,NA,NA,NA,"Tübingen, Landkreis Tübingen, Baden-Württemberg, 72076, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Jena Bioscience GmbH",NA,NA,NA,NA,"Kernberge, Jena, Thüringen, 07749, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Hochschule Mittweida",NA,NA,NA,NA,"Rößgen, Mittweida, Mittelsachsen, Sachsen, 09648, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Institut für Holztechnologie Dresden gemeinnützige GmbH",NA,NA,NA,NA,"Mockritz, Plauen, Dresden, Sachsen, 01217, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Center for Molecular and Cellular Bioengineering of the TU Dresden",NA,NA,NA,NA,"Johannstadt, Altstadt, Dresden, Sachsen, 01307, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Fraunhofer IZI",NA,NA,NA,NA,"Zentrum-Südost, Mitte, Leipzig, Sachsen, 04103, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Max-Planck Institut für",NA,NA,NA,NA,"Zentrum-Südost, Mitte, Leipzig, Sachsen, 04103, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Universität Leipzig - Institut für Biologie",NA,NA,NA,NA,"Zentrum-Südost, Mitte, Leipzig, Sachsen, 04103, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"UFZ - Leipzig",NA,NA,NA,NA,"Sellerhausen-Stünz, Ost, Leipzig, Sachsen, 04318, Deutschland","Candidate","TestThePlanet",NA
+NA,NA,"Max Planck Institute of Molecular Cell Biology and Genetics",NA,NA,NA,NA,"Johannstadt, Altstadt, Dresden, Sachsen, 01307, Deutschland","Candidate","TestThePlanet",NA
