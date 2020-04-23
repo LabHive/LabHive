@@ -186,7 +186,7 @@ export default {
                       return '•&nbsp;' + this.$t(y);
                     })
                     .sort()
-                    .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
+                    .join("&emsp;&emsp;"),
                   user: x
                 };
 
@@ -218,7 +218,7 @@ export default {
                       return '•&nbsp;' + this.$t(y);
                     })
                     .sort()
-                    .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
+                    .join("&emsp;&emsp;"),
                   user: x
                 };
 
@@ -240,7 +240,7 @@ export default {
                   return '•&nbsp;' + this.$t(y);
                 })
                 .sort()
-                .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
+                .join("&emsp;&emsp;"),
               user: x
             };
             if (result.center == '') {
