@@ -404,6 +404,10 @@ letter-spacing: 0.05em;
   right: 0;
   top: 0;
   z-index: 20;
+  transition: background box-shadow 0.15s ease-in-out;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  -webkit-transition: box-shadow 0.15s ease-in-out;
 
   &.sticky {
     background: #fff;
