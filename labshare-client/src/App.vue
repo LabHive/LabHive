@@ -399,20 +399,32 @@ letter-spacing: 0.05em;
   margin-bottom: 16px;
 }
 
+#navbar .container {
+  padding: 8px 10px;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+}
+
+#navbar.sticky .container {
+  padding: 0px 15px;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+}
+
 #navbar {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 20;
-  transition: background box-shadow 0.15s ease-in-out;
-  -webkit-transition: background 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  -webkit-transition: box-shadow 0.15s ease-in-out;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
 
   &.sticky {
     background: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all box-shadow 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
   }
 }
 
