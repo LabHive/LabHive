@@ -311,6 +311,7 @@ letter-spacing: 0.05em;
 
       @media (max-width: 1200px) {
         margin: 0 4px;
+        font-size: 13.5px;
       }
   }
 
