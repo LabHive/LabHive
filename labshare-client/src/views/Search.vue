@@ -2,7 +2,7 @@
 {
   "en": {
     "noResults": "No results. Try other search criteria or stop by later",
-    "title": "Search",
+    "title": "Search for ressources",
     "offersadvice": "Offers help",
     "lookingForadvice": "Help needed",
     "offersequipment": "Offers Devices/Reagents",
@@ -13,7 +13,7 @@
     "other": "Other"
   },
   "de": {
-    "title": "Suche",
+    "title": "Suche nach Ressourcen",
     "noResults": "Keine Treffer. Andere Suchkriterien verwenden oder später vorbei schauen",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
