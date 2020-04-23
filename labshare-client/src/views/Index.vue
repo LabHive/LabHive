@@ -9,6 +9,7 @@
     "qualif-vol": "Qualified volunteers",
     "res-lab": "Research laboratories",
     "diag-cent": "Diagnostic centers",
+    "searchButton": "Search For Resources",
     "text4": "Test capacity and support",
     "testsweek": "Tests per week"
     },
@@ -21,6 +22,7 @@
     "qualif-vol": "Qualifizierte Freiwillige",
     "res-lab": "Forschungslabore",
     "diag-cent": "Diagnostikzentren",
+    "searchButton": "Suche nach Ressourcen",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
     }
@@ -113,7 +115,7 @@
       </b-row>
       <b-row>
         <b-col class="text-center" style="margin-bottom: 44px;">
-          <b-button class="btn-secondary" href="#/register">{{$t("Joinbutton")}}</b-button>
+          <b-button class="btn-secondary" href="#/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
