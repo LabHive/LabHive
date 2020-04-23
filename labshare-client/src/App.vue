@@ -211,10 +211,10 @@ h1,h3 {
   line-height: 1.2;
   letter-spacing: 0.1em;
   color: #282e40;
-  margin: 60px 0 0;
+  margin: 48px 0 48px 0;
 
   @media (max-width: 991px) {
-    margin: 30px 0 0;
+    margin: 32px 0 32px 0;
   }
 }
 
@@ -311,6 +311,7 @@ letter-spacing: 0.05em;
 
       @media (max-width: 1200px) {
         margin: 0 4px;
+        font-size: 13.5px;
       }
   }
 
@@ -398,16 +399,32 @@ letter-spacing: 0.05em;
   margin-bottom: 16px;
 }
 
+#navbar .container {
+  padding: 8px 10px;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+}
+
+#navbar.sticky .container {
+  padding: 0px 15px;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+}
+
 #navbar {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 20;
+  transition: all box-shadow 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
 
   &.sticky {
     background: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all box-shadow 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
   }
 }
 

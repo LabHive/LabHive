@@ -2,7 +2,7 @@
 {
   "en": {
     "noResults": "No results. Try other search criteria or stop by later",
-    "title": "Search",
+    "title": "Search for ressources",
     "offersadvice": "Offers help",
     "lookingForadvice": "Help needed",
     "offersequipment": "Offers Devices/Reagents",
@@ -13,7 +13,7 @@
     "other": "Other"
   },
   "de": {
-    "title": "Suche",
+    "title": "Suche nach Ressourcen",
     "noResults": "Keine Treffer. Andere Suchkriterien verwenden oder später vorbei schauen",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
@@ -28,7 +28,7 @@
 </i18n>
 <template>
   <div class="list-view">
-    <h1 class="mt-4">{{$t("title")}}</h1>
+    <h1>{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
@@ -240,7 +240,7 @@ export default {
                   return '•&nbsp;' + this.$t(y);
                 })
                 .sort()
-                .join("&emsp;&emsp;&emsp;&emsp;&emsp;"),
+                .join("&emsp;&emsp;"),
               user: x
             };
             if (result.center == '') {
