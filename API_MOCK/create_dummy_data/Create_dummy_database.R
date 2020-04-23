@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(openxlsx)
 library(httr)
-library(googlesheets4)
+#library(googlesheets4)
 library(jsonlite)
 
 #' 
@@ -26,8 +26,8 @@ randomnames=read.csv("./Randomnames.csv",stringsAsFactors = F)
 
 #' 
 ## ----load our own diagnostic center list----------------------------------------------------------
-df_diagnosticlabs=read_sheet('https://docs.google.com/spreadsheets/d/1aDqqyxmHNIbDx1kRzlFZNR9EtlkY0e3D4L7dgq6AyZM/edit#gid=0',trim_ws = T)
-write.csv(df_diagnosticlabs,"diagnosticlabs.csv",row.names = F) #issue with file encoding can currently only be solved this way
+#df_diagnosticlabs=read_sheet('https://docs.google.com/spreadsheets/d/1aDqqyxmHNIbDx1kRzlFZNR9EtlkY0e3D4L7dgq6AyZM/edit#gid=0',trim_ws = T)
+#write.csv(df_diagnosticlabs,"diagnosticlabs.csv",row.names = F) #issue with file encoding can currently only be solved this way
 
 df_diagnosticlabs=read.csv("diagnosticlabs.csv",stringsAsFactors = F,fileEncoding = "utf-8")
 df_diagnosticlabs=df_diagnosticlabs %>% filter(!is.na(Kategorie))
@@ -302,7 +302,7 @@ for(csheetname in getSheetNames("./fields2fill.xlsx")){
   }
   
   # #write out data/assign
-  # assign(paste0("df_",csheetname),df)
+   assign(paste0("df_",csheetname),df)
   # saveRDS(df,paste0("dummydata_",csheetname,".rds"))
   # df2=df
   # df2[sapply(df2, is.list)] <- lapply(df2[sapply(df2, is.list)],paste)
@@ -399,9 +399,9 @@ for(csheetname in getSheetNames("./fields2fill.xlsx")){
     }
     
     ###Put password in here###
-    x=POST(url=current_role,authenticate(user = "whoarewe?",password = "whoarewe?!"),
-           body = toJSON(l,auto_unbox = F),encode = "raw",content_type_json())
-    print(x$status_code)
+   x=POST(url=current_role,authenticate(user = "whoarewe?",password = "whoarewe?!"),
+         body = toJSON(l,auto_unbox = F),encode = "raw",content_type_json())
+   print(x$status_code)
     
     if(generateMissing){
       missingstring="withmissingvalues"
@@ -410,8 +410,8 @@ for(csheetname in getSheetNames("./fields2fill.xlsx")){
     }
     
     #write txt output for checking
-    cat(toJSON(l,auto_unbox = F),"\n",
-        file = paste0(csheetname,"_jsons_",missingstring,".txt"),
-        append = T)
+    # cat(toJSON(l,auto_unbox = F),"\n",
+    #     file = paste0(csheetname,"_jsons_",missingstring,".txt"),
+    #     append = T)
   }
 }
