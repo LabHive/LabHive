@@ -28,7 +28,7 @@
 </i18n>
 <template>
   <div class="list-view">
-    <h1 class="mt-4">{{$t("title")}}</h1>
+    <h1>{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">

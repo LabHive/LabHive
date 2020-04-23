@@ -211,10 +211,10 @@ h1,h3 {
   line-height: 1.2;
   letter-spacing: 0.1em;
   color: #282e40;
-  margin: 60px 0 0;
+  margin: 64px 0 64px 0;
 
   @media (max-width: 991px) {
-    margin: 30px 0 0;
+    margin: 32px 0 32px 0;
   }
 }
 
