@@ -2,7 +2,7 @@
 {
   "en": {
     "noResults": "No results. Try other search criteria or stop by later",
-    "title": "Search For Ressources",
+    "title": "Search For Resources",
     "offersadvice": "Offers help",
     "lookingForadvice": "Help needed",
     "offersequipment": "Offers Devices/Reagents",
