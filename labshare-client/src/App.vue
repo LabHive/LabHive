@@ -243,14 +243,14 @@ letter-spacing: 0.05em;
 }
 
 .btn-primary {
-  background: $color-green;
+  background: #C9E0DF;
   border-radius: 4px;
   border: none;
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.1em;
-  color: #fff;
+  color: #0E5145;
   padding: 12px 24px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
 
@@ -261,8 +261,8 @@ letter-spacing: 0.05em;
   }
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active {
-    background: #C9E0DF;
-    color: $color-green;
+    background: $color-green;
+    color: #fff;
     box-shadow: none;
   }
 }
