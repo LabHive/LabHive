@@ -10,7 +10,12 @@
     "volunteer": "Qualified Volunteers",
     "farAway": "far away",
     "error": "An error occurred, please try it again later.",
-    "other": "Other"
+    "other": "Other",
+    "recentlyAdded": "Recently added",
+    "bsl1": "BSL1 Experience",
+    "bsl2": "BSL2 Experience",
+    "bsl3": "BSL3 Experience",
+    "bsl4": "BSL4 Experience"
   },
   "de": {
     "title": "Suche nach Ressourcen",
@@ -22,7 +27,12 @@
     "offersequipment": "Geräte/Reagenzien anzubieten",
     "lookingForequipment": "Geräte/Reagenzien benötigt",
     "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
-    "other": "Andere"
+    "other": "Andere",
+    "recentlyAdded": "Gerade hinzugefügt",
+    "bsl1": "BSL1 Erfahrung",
+    "bsl2": "BSL2 Erfahrung",
+    "bsl3": "BSL3 Erfahrung",
+    "bsl4": "BSL4 Erfahrung"
     }
     }
 </i18n>
@@ -51,6 +61,7 @@
       </div>
 
       <div v-else key="2">
+        <p class="recentlyAdded">{{ $t("recentlyAdded") }}</p>
         <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
           <div
             class="search-result"
@@ -275,6 +286,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.recentlyAdded {
+  color: #000000;
+  font-size: 22px;
+  margin-top: 40px
+}
+
 .refresh-leave-active {
   transition: opacity 0.25s;
   position: absolute;
@@ -310,7 +327,7 @@ export default {
   border-radius: 8px;
   background-color: white;
   flex-basis: calc(50% - 16px);
-  margin-top: 24px;
+  margin-bottom: 24px;
   display: inline-block;
   transition: all 0.5s;
   transition: all 0.15s ease-in-out;

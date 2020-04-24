@@ -60,8 +60,8 @@
           <template v-else>
             <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
             <div class="links">
-              <b-link class="btn btn-primary btn-sm" href="#/register">{{ $t("signUp") }}</b-link>
-              <b-link class="btn btn-primary btn-sm" href="#/login">{{ $t("login") }}</b-link>
+              <b-link class="btn btn-primary btn-sm" to="/register">{{ $t("signUp") }}</b-link>
+              <b-link class="btn btn-primary btn-sm" to="/login">{{ $t("login") }}</b-link>
             </div>
           </template>
         </div>
