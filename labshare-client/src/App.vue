@@ -36,7 +36,7 @@
   <div class="main-div">
     <b-navbar toggleable="lg" id="navbar">
       <div class="container">
-        <b-navbar-brand href="#/">
+        <b-navbar-brand to="/">
           <img src="./assets/logo-green.svg" alt="LabHive" width="161" />
         </b-navbar-brand>
         <b-navbar-toggle class="custom-toggle-icon collapsed" style="float: right" target="nav-collapse">
@@ -47,25 +47,25 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item :active='$route.name =="pageAboutLabhive"' href="#/">{{ $t("aboutLabhive") }}</b-nav-item>
-            <b-nav-item :active='$route.name =="pageAboutUs"' href="#/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutLabhive"' to="/">{{ $t("aboutLabhive") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageAboutUs"' to="/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :active='$route.name =="pageSearch"' class="nav-cta" href="#/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item :active='$route.name =="pageSearch"' class="nav-cta" to="/search">{{ $t("search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item :active='$route.name =="pageRegister"' href="#/register">{{ $t("register") }}</b-nav-item>
-              <b-nav-item :active='$route.name =="pageLogin"' href="#/login">{{ $t("login") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageRegister"' to="/register">{{ $t("register") }}</b-nav-item>
+              <b-nav-item :active='$route.name =="pageLogin"' to="/login">{{ $t("login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item href="#/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" href="#/offer">{{ $t("offerResource") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag'" href="#/request">{{ $t("requestResource") }}</b-dropdown-item>
-              <b-dropdown-item href="#/change-password">{{ $t("changePassword") }}</b-dropdown-item>
-              <b-dropdown-item href="#/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
-              <b-dropdown-item href="#" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
+              <b-dropdown-item to="/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" to="/offer">{{ $t("offerResource") }}</b-dropdown-item>
+              <b-dropdown-item v-if="$user.role == 'lab_diag'" to="/request">{{ $t("requestResource") }}</b-dropdown-item>
+              <b-dropdown-item to="/change-password">{{ $t("changePassword") }}</b-dropdown-item>
+              <b-dropdown-item to="/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
+              <b-dropdown-item to="/" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
           </b-navbar-nav>
