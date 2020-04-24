@@ -11,7 +11,11 @@
     "farAway": "far away",
     "error": "An error occurred, please try it again later.",
     "other": "Other",
-    "recentlyAdded": "Recently added"
+    "recentlyAdded": "Recently added",
+    "bsl1": "BSL1 Experience",
+    "bsl2": "BSL2 Experience",
+    "bsl3": "BSL3 Experience",
+    "bsl4": "BSL4 Experience"
   },
   "de": {
     "title": "Suche nach Ressourcen",
@@ -24,7 +28,11 @@
     "lookingForequipment": "Geräte/Reagenzien benötigt",
     "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
     "other": "Andere",
-    "recentlyAdded": "Gerade hinzugefügt"
+    "recentlyAdded": "Gerade hinzugefügt",
+    "bsl1": "BSL1 Erfahrung",
+    "bsl2": "BSL2 Erfahrung",
+    "bsl3": "BSL3 Erfahrung",
+    "bsl4": "BSL4 Erfahrung"
     }
     }
 </i18n>
