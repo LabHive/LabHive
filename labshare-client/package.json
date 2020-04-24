@@ -1,6 +1,7 @@
 {
   "name": "LabHive",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "serve": "tsc -p tsconfig.browser.json && vue-cli-service serve",

@@ -20,6 +20,9 @@ services:
       - mongodb
     build:
       context: .
+      args:
+        enableDev: 'true'
+        staging: 'true'
     ports:
       - 5001:5000
     environment: 

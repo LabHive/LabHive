@@ -1,5 +1,6 @@
 FROM node:latest
 ARG enableDev=false
+ARG staging=false
 
 COPY . /app/
 WORKDIR /app
@@ -11,6 +12,7 @@ RUN rm -rf dist* && \
     npm install
 
 ENV ENABLE_DEV $enableDev
+ENV STAGING $enableDev
 RUN npm run build
 RUN "$(npm bin)/tsc"
 
