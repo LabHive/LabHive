@@ -122,7 +122,7 @@ export default {
       center: latLng(51.1657, 10.4515),
       url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
       attribution:
-        '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
+        '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       mapOptions: {
         zoomSnap: 0.5,
         minZoom: 5.5,
