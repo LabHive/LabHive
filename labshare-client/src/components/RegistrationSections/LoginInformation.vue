@@ -1,16 +1,19 @@
 <i18n>
-    {
-    "en":{
-    "loginInfo": "Login Details"
-    },
-    "de":{
-    "loginInfo": "Login Informationen"
-    }
-    }
+{
+  "en":{
+    "loginInfo": "Login Details",
+    "loginInfo_sub": "Please specify an e-mail address and a password."
+  },
+  "de":{
+    "loginInfo": "Login Informationen",
+    "loginInfo_sub": "Bitte legen Sie ihre E-Mail Adresse und ein Passwort fest"
+  }
+}
 </i18n>
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("loginInfo") }}</h3>
+    <p v-else>{{ $t("loginInfo_sub") }}</p>
 
     <b-row>
       <b-col sm="*" md="5" lg="4">
