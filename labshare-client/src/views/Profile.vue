@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import LabDiagForm from "../components/LabDiagForm";
-import LabResearchForm from "../components/LabResearchForm";
-import VolunteerForm from "../components/VolunteerForm";
+import LabDiagForm from "@/components/RegistrationForms/LabDiagForm";
+import LabResearchForm from "@/components/RegistrationForms/LabResearchForm";
+import VolunteerForm from "@/components/RegistrationForms/VolunteerForm";
 
 export default {
   name: "Profile",

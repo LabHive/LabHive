@@ -25,19 +25,21 @@
 </i18n>
 <template>
   <div class="register">
-    <h1>{{$t("registration")}}</h1>
-    <b-progress variant="success" v-if="registrationForm && !registrationComplete" height="4px" :value="progress"></b-progress>
+    <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
+    <p>Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können</p>
+
+    <RegistrationProgress v-model="step" :role="role"></RegistrationProgress>
 
     <template v-if="registrationComplete">
       <h2>{{$t("complete")}}</h2>
-      <p>{{$t("activation")}}<template v-if="registrationForm != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
+      <p>{{$t("activation")}}<template v-if="role != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
     </template>
 
     <br />
 
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
-    <div key="step-one" v-if="!registrationForm">
+    <div key="step-one" v-if="role === ''">
       <b-container fluid>
         <b-row>
           <b-col id="prospectiveRole" cols="12">
@@ -51,7 +53,7 @@
               <b-col sm="*">
                 <b-button
                   variant="primary"
-                  @click="registrationForm = forms.VOLUNTEER"
+                  @click="loadForm(forms.VOLUNTEER)"
                 >{{$t("roleHelper")}}</b-button>
               </b-col>
               <b-col sm="*">
@@ -66,7 +68,7 @@
               <b-col sm="*">
                 <b-button
                   variant="primary"
-                  @click="registrationForm = forms.DIAGNOSTIC_LAB"
+                  @click="loadForm(forms.DIAGNOSTIC_LAB)"
                 >{{$t("roleDiagnosticLab")}}</b-button>
               </b-col>
               <b-col sm="*">
@@ -82,7 +84,7 @@
               <b-col sm="*">
                 <b-button
                   variant="primary"
-                  @click="registrationForm = forms.LAB"
+                  @click="loadForm(forms.LAB)"
                 >{{$t("roleLab")}}</b-button>
               </b-col>
               <b-col sm="*">
@@ -96,7 +98,7 @@
     </div>
 
     <div v-else-if="!registrationComplete">
-      <component :is="registrationForm" @formcomplete="register" @updateProgress="updateProgress" :role="role"></component>
+      <router-view @formcomplete="register" @updateProgress="updateProgress" :role="role"></router-view>
     </div>
 
   </div>
@@ -104,10 +106,7 @@
 
 <script>
 import { Validator } from "@/../dist-browser/lib/validation";
-//import InputForm from "../components/InputForm";
-import VolunteerForm from "@/components/VolunteerForm.vue";
-import LabDiagForm from "@/components/LabDiagForm.vue";
-import LabResearchForm from "@/components/LabResearchForm.vue";
+import RegistrationProgress from "@/components/RegistrationProgress";
 
 export default {
   name: "Register",
@@ -115,17 +114,16 @@ export default {
   data: function() {
     return {
       forms: {
-        ROLE: 0,
-        VOLUNTEER: "VolunteerForm",
-        LAB: "LabResearchForm",
-        DIAGNOSTIC_LAB: "LabDiagForm"
+        VOLUNTEER: "volunteer",
+        LAB: "lab_research",
+        DIAGNOSTIC_LAB: "lab_diag"
       },
       error: null,
       registrationComplete: false,
       registrationForm: "",
       passwordRepeat: "",
       disableSubmit: true,
-      progress: 0
+      step: 1,
     };
   },
   computed: {
@@ -133,18 +131,10 @@ export default {
       return Validator;
     },
     role() {
-      let role = ""
-      if (this.registrationForm === this.forms.VOLUNTEER) {
-        role = "volunteer"
-      } else if (this.registrationForm === this.forms.LAB) {
-        role = "lab_research"
-      }
-      else if (this.registrationForm === this.forms.DIAGNOSTIC_LAB) {
-        role = "lab_diag"
-      }
-      else {
-        console.error("invalid role")
-      }
+      if (this.$route.name === 'pageRegister') return ''
+
+      let role = this.$route.name.replace("register/", "")
+
       return role
     }
   },
@@ -167,13 +157,14 @@ export default {
           this.error = err.body.errorDescription;
         }
       );
-    }
+    },
+    loadForm(form) {
+      this.registrationForm = form;
+      this.$router.push(this.$route.path + '/' + form)
+    },
   },
   components: {
-    //InputForm
-    VolunteerForm,
-    LabDiagForm,
-    LabResearchForm
+    RegistrationProgress
   }
 };
 </script>
