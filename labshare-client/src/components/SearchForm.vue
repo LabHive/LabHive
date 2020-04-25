@@ -137,6 +137,7 @@ import LhButton from './LhButton';
 import HeightTransition from "./HeightTransition";
 
 export default {
+  name: "searchForm",
   data: function() {
     return {
       filter: {
@@ -226,7 +227,10 @@ export default {
       }
     }
   },
-  mounted: function() {
+  activated: function() {
+    console.log("activated")
+    if (this.filter.mode !== "") return;
+    
     const timer = setTimeout(() => {
       this.searchChange();
     }, 300);

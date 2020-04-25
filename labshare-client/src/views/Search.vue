@@ -96,7 +96,7 @@
 import SearchForm from "./../components/SearchForm";
 
 export default {
-  name: "List",
+  name: "search",
   data: function() {
     return {
       searchAttributes: {},

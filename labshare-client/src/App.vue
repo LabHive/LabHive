@@ -76,7 +76,9 @@
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging"><h1 style="color: red; margin: 0; margin-top: 20px">Dient nur zu Testzwecken, enthält keine echten Daten!</h1></div>
       <div id="app">
-        <router-view></router-view>
+        <keep-alive :include="/search.*/i">
+          <router-view></router-view>
+        </keep-alive>
       </div>
     </div>
     
