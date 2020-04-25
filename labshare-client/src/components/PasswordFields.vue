@@ -27,16 +27,6 @@
       :invalidFeedback="feedback"
       :validFeedback="feedback"
       inType="password"
-      :verticalLabel="verticalLabel"
-    ></InputForm>
-    <InputForm
-      name="repeatPassword"
-      v-model="passwordRepeat"
-      :valFunc="pwVal"
-      :invalidFeedback="feedbackRepeat"
-      :validFeedback="feedback"
-      inType="password"
-      :verticalLabel="verticalLabel"
     ></InputForm>
   </div>
 </template>
@@ -50,15 +40,10 @@ export default {
     value: {
       type: String,
       required: true,
-    },
-    verticalLabel: {
-      type: Boolean,
-      default: false,
     }
   },
   data() {
     return {
-      passwordRepeat: ""
     };
   },
   computed: {
@@ -72,17 +57,14 @@ export default {
     }
   },
   methods: {
-    pwVal(data, name) {
+    pwVal(data) {
       let secure = false;
       if (data) {
         let result = zxcvbn(data);
         secure = result.score >= 3
       }
 
-      let valid = this.passwordRepeat == this.password && data != "" && secure
-      if (name == 'password' && this.passwordRepeat == "" && data != "") {
-        valid = secure
-      }
+      let valid = data != "" && secure
 
       if (valid) {
         this.$emit('validPassword', true)
@@ -103,12 +85,6 @@ export default {
       else {
         return this.$t("required");
       }
-    },
-    feedbackRepeat(data) {
-      if (this.passwordRepeat && this.password && this.passwordRepeat !== this.password) {
-        return this.$t('backend.formValidation.passwordMatch')
-      }
-      return this.feedback(data)
     }
   },
   components: {

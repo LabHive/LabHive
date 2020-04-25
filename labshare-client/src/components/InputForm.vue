@@ -42,13 +42,12 @@
 <template>
   <b-form-group
     :id="name"
-    :label="label ? label : $t(name)"
     :state="validator(valFunc)"
     :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
     :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
-    :label-cols-sm="verticalLabel ? null: 3"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
+    <label>{{ $t(name) }}</label>
   </b-form-group>
 </template>
 
@@ -57,10 +56,6 @@ export default {
   name: "InputForm",
   props: {
     name: String,
-    label: {
-      type: String,
-      default: null,
-    },
     value: String,
     valFunc: {
       default: () => { return { valid: null } },
@@ -69,11 +64,6 @@ export default {
     inType: {
       default: 'text',
       type: String
-    },
-    placeholder: String,
-    verticalLabel: {
-      type: Boolean,
-      default: false
     },
     invalidFeedback: {
       default: null,
@@ -127,3 +117,68 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+
+.form-group {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.form-group input,
+.form-group label {
+  padding: .75rem .75rem;
+}
+
+.form-group input {
+  height: 50px
+}
+
+.form-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group input:not(:placeholder-shown) {
+  padding-top: calc(.75rem + .75rem * (2 / 3));
+  padding-bottom: calc(.75rem / 3);
+}
+
+.form-group input:not(:placeholder-shown) ~ label {
+  padding-top: calc(.75rem / 3);
+  padding-bottom: calc(.75rem / 3);
+  font-size: 12px;
+  color: #777;
+}
+</style>

@@ -4,26 +4,32 @@
     "loginInfo": "Login Details"
     },
     "de":{
-    "loginInfo": "Zugangsdaten"
+    "loginInfo": "Login Informationen"
     }
     }
 </i18n>
 <template>
   <div>
-    <h3 class="section">{{ $t("loginInfo") }}</h3>
-    <InputForm
-      :name="role === 'volunteer' ? 'email' : 'officialEmail'"
-      v-model="formData.contact.email"
-      :valFunc="val.validEmail"
-      inType="email"
-    ></InputForm>
+    <h3 class="section" v-if="profileUpdate">{{ $t("loginInfo") }}</h3>
 
+    <b-row>
+      <b-col sm="*" md="5" lg="4">
+        <InputForm
+          :name="role === 'volunteer' ? 'email' : 'officialEmail'"
+          v-model="formData.contact.email"
+          :valFunc="val.validEmail"
+          inType="email"
+        ></InputForm>
+      </b-col>
+      <b-col sm="*" md="5" lg="4">
+        <template v-if="!profileUpdate">
+          <Password v-model="formData.password"></Password>
+        </template>
+      </b-col>
+    </b-row>
+    
     <template v-if="!profileUpdate">
-      <Password v-model="formData.password"></Password>
-    </template>
-
-    <template v-if="!profileUpdate">
-      <NavButtons :disableSubmit="disableSubmit" :hideBack="true"></NavButtons>
+      <NavButtons :disableSubmit="disableSubmit"></NavButtons>
     </template>
   </div>
 </template>

@@ -35,11 +35,9 @@
       <p>{{$t("activation")}}<template v-if="role != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
     </template>
 
-    <br />
-
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
-    <div key="step-one" v-if="role === ''">
+    <div key="step-one" v-if="step === 0">
       <b-container fluid>
         <b-row>
           <b-col id="prospectiveRole" cols="12">
@@ -97,8 +95,8 @@
       </b-container>
     </div>
 
-    <div v-else-if="!registrationComplete">
-      <router-view @formcomplete="register" @updateProgress="updateProgress" :role="role"></router-view>
+    <div v-else-if="!registrationComplete" style="margin-top: 8px">
+      <router-view ref="routerA" @formcomplete="register" @updateStep="updateStep" :role="role" :step="step"></router-view>
     </div>
 
   </div>
@@ -123,7 +121,7 @@ export default {
       registrationForm: "",
       passwordRepeat: "",
       disableSubmit: true,
-      step: 1,
+      step: 0
     };
   },
   computed: {
@@ -131,16 +129,25 @@ export default {
       return Validator;
     },
     role() {
-      if (this.$route.name === 'pageRegister') return ''
+      if (this.$route.name === 'pageRegister') {
+        return ''
+      }
 
-      let role = this.$route.name.replace("register/", "")
-
-      return role
+      return this.$route.name.replace("register/", "")
     }
   },
   methods: {
-    updateProgress(val) {
-      this.progress = val
+    updateStep(val) {
+      console.log(val)
+      let route = this.$route
+      route.params.id = val
+
+      if (val === 0) {
+        this.$router.push({name: "pageRegister"})
+        return
+      }
+      
+      this.$router.push(route)
     },
     register: function(formData) {
       this.$http.post("registration", formData, { params: { role: this.role } }).then(
@@ -159,9 +166,38 @@ export default {
       );
     },
     loadForm(form) {
-      this.registrationForm = form;
-      this.$router.push(this.$route.path + '/' + form)
+      this.registrationForm = form
+      if (this.$route.path.indexOf(form) == -1)
+        this.$router.push(this.$route.path + '/' + form + '/1')
     },
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (to.name == "pageRegister") 
+      this.step = 0
+    else if (to.params.id)
+      this.step = parseInt(to.params.id)
+    else
+      this.step = 2
+
+    next()
+  },
+  watch: {
+    step(newVal, oldVal) {
+      let router = this.$refs.routerA
+      if (router) {
+        if (newVal < oldVal)
+          router.$emit("updateTransition", "back")
+        else 
+          router.$emit("updateTransition", "forward")
+      }
+      
+      if (newVal === 0) {
+        this.$router.push({name: "pageRegister"})
+      }
+      else {
+        this.updateStep(newVal)
+      }
+    }
   },
   components: {
     RegistrationProgress

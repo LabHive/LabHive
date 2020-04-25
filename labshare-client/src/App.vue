@@ -256,7 +256,7 @@ letter-spacing: 0.05em;
   padding: 12px 24px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
 
-  &:hover {
+  &:not(:disabled):not(.disabled):hover {
     background: #FFFFFF;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
     color: $color-green;
@@ -267,9 +267,51 @@ letter-spacing: 0.05em;
     color: #fff;
     box-shadow: none;
   }
+
+  &:disabled, &.disabled {
+    background: #C9E0DF;
+    color: #0E5145;;
+    box-shadow: 0 0 0 transparent;
+  }
+}
+
+.btn {
+  margin-bottom: 16px;
 }
 
 .btn-secondary {
+  background: #E2E2E2;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  color: #000;
+  padding: 12px 24px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+  margin: 0 !important;
+
+  &:not(:disabled):not(.disabled):hover {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+    color: #333;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    background: $color-green;
+    color: #fff;
+    box-shadow: none;
+  }
+
+  &:disabled, &.disabled {
+    background: #C9E0DF;
+    color: #0E5145;;
+    box-shadow: 0 0 0 transparent;
+  }
+}
+
+.btn-cta {
     margin: 25px 0 0;
     padding: 14px 32px;
     background: $color-green;

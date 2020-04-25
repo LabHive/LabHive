@@ -31,9 +31,9 @@ const routes = [
   { path: '/login', name: 'pageLogin', component: Login, meta: { redirectLoggedIn: '/'} },
   { path: '/admin-login', component: LoginAdmin, meta: { redirectLoggedIn: '/admin' } },
   { path: '/register', name: 'pageRegister', component: Register, meta: { redirectLoggedIn: '/'}, children: [
-    {path: 'lab_diag', name: 'register/lab_diag', component: LabDiagForm, meta: { redirectLoggedIn: '/'}},
-    {path: 'lab_research', name: 'register/lab_research', component: LabResearchForm, meta: { redirectLoggedIn: '/'}},
-    {path: 'volunteer', name: 'register/volunteer', component: VolunteerForm, meta: { redirectLoggedIn: '/'}}
+    {path: 'lab_diag/:id', name: 'register/lab_diag', component: LabDiagForm, meta: { redirectLoggedIn: '/'}},
+    {path: 'lab_research/:id', name: 'register/lab_research', component: LabResearchForm, meta: { redirectLoggedIn: '/'}},
+    {path: 'volunteer/:id', name: 'register/volunteer', component: VolunteerForm, meta: { redirectLoggedIn: '/'}}
   ]},
   { path: '/reset-password', component: ResetPassword },
   { path: '/forgot-password', component: ForgotPassword },
