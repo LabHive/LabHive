@@ -22,7 +22,7 @@
     "labName": "Laborname",
     "labWebsite": "Labor-Homepage",
     "instituteName": "Institut/Universität",
-    "instituteWebsite": "Website des Instituts/der Univeristät",
+    "instituteWebsite": "Website des Instituts/der Universität",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
