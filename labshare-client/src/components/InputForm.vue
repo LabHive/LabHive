@@ -42,11 +42,11 @@
 <template>
   <b-form-group
     :id="name"
-    :state="validator(valFunc)"
+    :state="validator(valFunc, 'form')"
     :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
     :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="validator(valFunc, 'field')" trim :validated="true" @change="$emit('change')"></b-form-input>
     <label>{{ $t(name) }}</label>
   </b-form-group>
 </template>
@@ -87,7 +87,9 @@ export default {
     }
   },
   methods: {
-    validator(meth) {
+    validator(meth, type) {
+      if (type === 'field' && this.model === "") return null;
+      
       let a = meth(this.model, this.name);
       console.log(this.name, a.value, this.model)
       if (a.valid) {
