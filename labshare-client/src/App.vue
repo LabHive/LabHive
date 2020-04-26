@@ -459,7 +459,7 @@ letter-spacing: 0.05em;
 }
 
 .step-info-sub {
-  margin-bottom: 32px;
+  margin-bottom: 44px;
 }
 
 #navbar .container {

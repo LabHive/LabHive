@@ -14,7 +14,7 @@
 </i18n>
 <template>
   <div>
-    <b-row>
+    <b-row style="margin-top: 44px">
       <b-col cols="auto">
         <b-button variant="secondary" v-if="!hideBack" @click="$parent.$emit('previousState')">{{ $t("back") }}</b-button>
       </b-col>
