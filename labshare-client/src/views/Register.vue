@@ -42,7 +42,7 @@
     <div key="step-one" v-if="step === 0">
       <b-container fluid>
         <b-row>
-          <p class="step-info-sub">{{ $t("prospectiveRole") }}</p>
+          <p class="step-info-sub" style="margin-top: 8px">{{ $t("prospectiveRole") }}</p>
         </b-row>
 
         <b-row>
