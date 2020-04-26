@@ -37,7 +37,9 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     try {
-        body.location = await utils.addressToCoordinates(body.address)
+        let location = await utils.addressToCoordinates(body.address)
+        body.location = location.coords
+        body.address.city = location.city
     } catch (error) {
         return utils.handleError(res, error)
     }

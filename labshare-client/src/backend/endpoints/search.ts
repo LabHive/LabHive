@@ -160,7 +160,7 @@ async function getZipcodeCoords(req: express.Request, res: express.Response, tok
     if (req.query.zipcode) {
         try {
             if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
-            return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coordinates
+            return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coords.coordinates
         }
         catch {
             utils.errorResponse(res, 400, "invalid_zipcode")

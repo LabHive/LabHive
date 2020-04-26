@@ -130,7 +130,9 @@ class Profile {
             userObj.address.street != body.address.street ||
             userObj.address.city != body.address.city)) {
                 try {
-                    body.location = await utils.addressToCoordinates(userObj.address)
+                    let location = await utils.addressToCoordinates(userObj.address)
+                    body.location = location.coords
+                    body.address.city = location.city
                 } catch (error) {
                     return utils.handleError(res, error)
                 }
