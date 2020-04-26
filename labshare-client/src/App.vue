@@ -449,6 +449,10 @@ letter-spacing: 0.05em;
   margin-bottom: 16px;
 }
 
+.btn-progress {
+    margin-bottom: 4px;
+}
+
 #navbar .container {
   padding: 8px 10px;
   transition: all box-shadow 0.15s ease-in-out;

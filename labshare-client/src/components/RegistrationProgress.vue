@@ -14,21 +14,21 @@
   <div>
     <b-container>
       <b-row v-if="role === 'volunteer'">
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(0)" @click="setStep(0)">1: {{ $t("usergroup") }}</b-button></b-col>
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(1)" @click="setStep(1)">2: {{ $t("loginInformation") }}</b-button></b-col>
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(2)" @click="setStep(2)">3: {{ $t("qualification") }}</b-button></b-col>
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(3)" @click="setStep(3)">4: {{ $t("skills") }}</b-button></b-col>
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(4)" @click="setStep(4)">5: {{ $t("contact_availability") }}</b-button></b-col>
-        <b-col cols="auto"><b-button variant="primary" :class="classForStep(5)" @click="setStep(5)">6: {{ $t("consent") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(0)" @click="setStep(0)">1: {{ $t("usergroup") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(1)" @click="setStep(1)">2: {{ $t("loginInformation") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(2)" @click="setStep(2)">3: {{ $t("qualification") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(3)" @click="setStep(3)">4: {{ $t("skills") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(4)" @click="setStep(4)">5: {{ $t("contact_availability") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="classForStep(5)" @click="setStep(5)">6: {{ $t("consent") }}</b-button></b-col>
       </b-row>
       <b-row v-else-if="role === 'labDiag'">
-        <b-col><b-button variant="primary" :class="[classForStep(0)]" >Test 123</b-button></b-col>
+        <b-col><b-button class="btn-progress" variant="primary" :class="[classForStep(0)]" >Test 123</b-button></b-col>
       </b-row>
       <b-row v-else-if="role === 'labResearch'">
-        <b-col><b-button variant="primary" :class="[classForStep(0)]" >f</b-button></b-col>
+        <b-col><b-button class="btn-progress" variant="primary" :class="[classForStep(0)]" >f</b-button></b-col>
       </b-row>
       <b-row v-else>
-        <b-col cols="auto"><b-button variant="primary" :class="[classForStep(0)]" >1: {{ $t("usergroup") }}</b-button></b-col>
+        <b-col cols="auto"><b-button class="btn-progress" variant="primary" :class="[classForStep(0)]" >1: {{ $t("usergroup") }}</b-button></b-col>
       </b-row>
     </b-container>
   </div>
