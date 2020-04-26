@@ -70,7 +70,7 @@
           </p>
         </b-col>
       </b-row>
-      <NavButtons :disableSubmit="disableSubmit"></NavButtons>
+      <NavButtons :disableSubmit="disableSubmit" :final="true"></NavButtons>
     </template>
   </div>
 </template>

@@ -47,7 +47,7 @@
 
 
     <template v-if="!profileUpdate">
-      <NavButtons :disableSubmit="disableSubmit"></NavButtons>
+      <NavButtons :disableSubmit="disableSubmit" :final="true"></NavButtons>
     </template>
   </div>
 </template>

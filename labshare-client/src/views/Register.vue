@@ -27,13 +27,17 @@
 </i18n>
 <template>
   <div class="register">
-    <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
-    <p style="margin-bottom: 48px">{{ $t("registerSubtitle") }}</p>
 
-    <RegistrationProgress v-model="step" :role="role"></RegistrationProgress>
+    <template v-if="!registrationComplete">
+      <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
+      <p style="margin-bottom: 48px">{{ $t("registerSubtitle") }}</p>
+
+      <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role"></RegistrationProgress>
+    </template>
+    
 
     <template v-if="registrationComplete">
-      <h2>{{$t("complete")}}</h2>
+      <h1 style="margin-bottom: 10px">{{$t("complete")}}</h1>
       <p>{{$t("activation")}}<template v-if="role != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
     </template>
 
