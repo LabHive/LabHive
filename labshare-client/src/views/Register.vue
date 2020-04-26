@@ -46,50 +46,60 @@
         </b-row>
 
         <b-row>
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
                   @click="loadForm(forms.VOLUNTEER)"
                 >{{$t("roleHelper")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textqualif-vol')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-1.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textqualif-vol")}}
+            </p>
           </b-col>
 
-          <b-col><hr></b-col>
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
                   @click="loadForm(forms.DIAGNOSTIC_LAB)"
                 >{{$t("roleDiagnosticLab")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textdiag-cent')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-2.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textqualif-vol")}}
+            </p>
           </b-col>
-          
-          <b-col><hr></b-col>
-          
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
                   @click="loadForm(forms.LAB)"
                 >{{$t("roleLab")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textres-lab')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-3.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textqualif-vol")}}
+            </p>
           </b-col>
+
         </b-row>
 
       </b-container>
