@@ -130,8 +130,6 @@ export default {
       error: null,
       registrationComplete: false,
       registrationForm: "",
-      passwordRepeat: "",
-      disableSubmit: true,
       step: 0
     };
   },
@@ -184,8 +182,13 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     console.log("beforeRoute", to)
-    if (to.name == "pageRegister") 
+    if (to.name == "pageRegister") {
       this.step = 0
+      this.registrationComplete = false
+      this.registrationForm = ""
+      this.error = null
+    }
+      
     else if (to.params.id)
       this.step = parseInt(to.params.id)
     else
