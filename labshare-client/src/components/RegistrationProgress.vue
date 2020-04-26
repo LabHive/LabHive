@@ -96,6 +96,9 @@ export default {
       return res;
     },
     setStep(i) {
+      if (i === 0) {
+        this.cache = {}
+      }
       if (this.step < i && this.cache[i] && this.cache[i].indexOf('done') == -1) return;
       this.step = i
     }
