@@ -2,6 +2,7 @@
     {
     "en": {
     "registration": "Register",
+    "registerSubtitle": "Please register in order to use all features of LabHive",
     "complete": "Thank you for your registration!",
     "activation": "To activate your account, click the link in the email that we sent to you.",
     "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
@@ -13,6 +14,7 @@
 
     "de": {
     "registration": "Registrieren",
+    "registerSubtitle": "Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können",
     "complete": "Danke für Ihre Registrierung!",
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
@@ -26,7 +28,7 @@
 <template>
   <div class="register">
     <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
-    <p>Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können</p>
+    <p style="margin-bottom: 48px">{{ $t("registerSubtitle") }}</p>
 
     <RegistrationProgress v-model="step" :role="role"></RegistrationProgress>
 
