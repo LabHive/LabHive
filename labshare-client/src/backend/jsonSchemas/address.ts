@@ -7,5 +7,5 @@ export let address: Schema = {
         zipcode: { type: "string" },
         street: { type: "string" }
     },
-    required: ["city", "zipcode"]
+    required: ["zipcode"]
 };

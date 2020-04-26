@@ -55,9 +55,13 @@ class Utils {
             }
             let lon = parseFloat(response.data[0].lon)
             let lat = parseFloat(response.data[0].lat)
+            let city = response.data[0].display_name?.split(",")[0] ?? ""
             return {
-                type: "Point",
-                coordinates: [lon, lat]
+                coords: {
+                    type: "Point",
+                    coordinates: [lon, lat]
+                },
+                city: city
             }
         }
         catch (err) {

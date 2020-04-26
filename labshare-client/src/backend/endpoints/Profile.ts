@@ -114,6 +114,11 @@ class Profile {
             return utils.badRequest(res)
         }
 
+        let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
+        if (body.website && !regexpUrl.test(body.website)) {
+            body.website = "http://" + body.website;
+        }
+
         let user = await getUserById(token.sub)
         if (!user) {
             return utils.badRequest(res)
@@ -125,7 +130,9 @@ class Profile {
             userObj.address.street != body.address.street ||
             userObj.address.city != body.address.city)) {
                 try {
-                    body.location = await utils.addressToCoordinates(userObj.address)
+                    let location = await utils.addressToCoordinates(userObj.address)
+                    body.location = location.coords
+                    body.address.city = location.city
                 } catch (error) {
                     return utils.handleError(res, error)
                 }

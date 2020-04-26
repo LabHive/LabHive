@@ -27,9 +27,9 @@ export let equipment = [
 
 export let advices = [
     { value: "virology", text: "Virologie" },
-    { value: "rnaExperience_isolation", text: "Arbeit mit RNA (insbes. Isolation)" },
     { value: "qPCR", text: "Allgemein qPCR" },
     { value: "elisa", text: "ELISA" },
+    { value: "rnaExperience_isolation", text: "Arbeit mit RNA (insbes. Isolation)" },
     { value: "protocolProduction", text: "Protokollerstellung" },
 ]
 

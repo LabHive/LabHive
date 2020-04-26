@@ -37,7 +37,9 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     try {
-        body.location = await utils.addressToCoordinates(body.address)
+        let location = await utils.addressToCoordinates(body.address)
+        body.location = location.coords
+        body.address.city = location.city
     } catch (error) {
         return utils.handleError(res, error)
     }
@@ -62,6 +64,10 @@ export async function registration(req: express.Request, res: express.Response, 
 
     body.language = getLangID(req)
     body.slug = uuid();
+    let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
+    if (body.website && !regexpUrl.test(body.website)) {
+        body.website = "http://" + body.website;
+    }
 
     let euser = await getUserForMail(body.contact.email)
     if (euser) {

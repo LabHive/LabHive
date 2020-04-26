@@ -1,16 +1,5 @@
-<i18n>
-    {
-    "en": {
-    "save": "Save"
-    },
-    "de": {
-    "save": "Speichern"
-    }
-    }
-</i18n>
-
 <template>
-  <div class="lab_diag-form">
+  <div class="volunteer-form">
     <b-form @submit="submit">
       <template v-if="!profileUpdate">
         <transition :name="transition" mode="out-in">
@@ -27,17 +16,7 @@
       </template>
 
       <template v-else>
-        <b-modal
-          id="deleteModal"
-          :title="$t('deleteProfile')"
-          :ok-title="$t('delete')"
-          :cancel-title="$t('cancel')"
-          ok-variant="danger"
-          @ok="$emit('deleteProfile')"
-        >
-          <p class="my-4">{{ $t('deleteConfirmation') }}</p>
-        </b-modal>
-        <div v-for="i in updateFormSections" :key="i">
+        <div v-for="i in formSections" :key="i">
           <component
             :is="i"
             v-model="formData"
@@ -47,16 +26,9 @@
             :profileUpdate="profileUpdate"
           ></component>
         </div>
-        <b-row>
-          <b-col cols="auto">
-            <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
-          </b-col>
-          <b-col cols="auto">
-            <b-button variant="danger" v-b-modal.deleteModal>{{ $t("deleteProfile") }}</b-button>
-          </b-col>
-        </b-row>
-        
+        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
       </template>
+      
     </b-form>
   </div>
 </template>
@@ -65,57 +37,43 @@
 import registrationForm from "@/mixins/registrationForm";
 
 export default {
-  name: "LabDiagForm",
+  name: "VolunteerForm",
   mixins: [registrationForm],
   data: function() {
     return {
       formData: {
         address: {
           city: "",
-          zipcode: "",
-          street: ""
+          zipcode: ""
         },
         contact: {
-          firstname: "",
-          lastname: "",
           email: "",
-          phone: ""
+          phone: "",
+          firstname: "",
+          lastname: ""
+        },
+        password: "",
+        description: "",
+        details: {
+          skills: [],
+          qualifications: []
         },
         organization: "",
-        description: "",
-        password: "",
         website: "",
+        availability: null,
         consent: {
-          publicSearch: true,
+          publicSearch: null,
           mailUpdates: null
-        },
-        lookingFor: {
-          volunteerSkills: [],
-          equipment: [],
-          advice: [],
-          equipmentDescription: "",
-          adviceDescription: ""
-        },
-        offers: {
-          equipment: [],
-          advice: [],
-          equipmentDescription: "",
-          adviceDescription: ""
         }
       },
       formSections: [
         "LoginInformation",
-        "PersonalInformation",
-        "Lab_Request",
-        "Lab_Offer",
-        "SpecificDLab"
+        "Vol_Qualification",
+        "Vol_Skills",
+        "Vol_Contact",
+        "Vol_Consent"
       ]
     };
-  },
-  computed: {
-    updateFormSections() {
-      return ["LoginInformation", "PersonalInformation", "SpecificDLab"];
-    }
   }
 };
 </script>

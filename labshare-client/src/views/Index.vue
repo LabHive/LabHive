@@ -37,7 +37,7 @@
           <b-col cols lg="6" md="12" sm="12">
               <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
-            <b-button class="btn-secondary" to="/register">{{$t("Joinbutton")}}</b-button>
+            <b-button variant="primary" class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -115,7 +115,7 @@
       </b-row>
       <b-row>
         <b-col class="text-center" style="margin-bottom: 44px;">
-          <b-button class="btn-secondary" to="/search">{{$t("searchButton")}}</b-button>
+          <b-button class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
