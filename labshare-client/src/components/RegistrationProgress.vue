@@ -40,7 +40,7 @@
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(4)" @click="setStep(4)">5: {{ $t("consent") }}</b-button></b-col>
       </b-row>
       <b-row v-else>
-        <b-col cols="auto"><b-button variant="primary" :class="[classForStep(0)]" >1: {{ $t("usergroup") }}</b-button></b-col>
+        <b-col cols="auto"><b-button variant="primary" :class="classForStep(0)" >1: {{ $t("usergroup") }}</b-button></b-col>
       </b-row>
     </b-container>
   </div>
