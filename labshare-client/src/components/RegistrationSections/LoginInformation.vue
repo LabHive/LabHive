@@ -2,7 +2,7 @@
 {
   "en":{
     "loginInfo": "Login Details",
-    "loginInfo_sub": "Please specify an e-mail address and a password."
+    "loginInfo_sub": "Please specify an e-mail address and a password"
   },
   "de":{
     "loginInfo": "Login Informationen",
@@ -13,7 +13,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("loginInfo") }}</h3>
-    <p v-else>{{ $t("loginInfo_sub") }}</p>
+    <p class="login-info-sub" v-else>{{ $t("loginInfo_sub") }}</p>
 
     <b-row>
       <b-col sm="*" md="5" lg="4">
