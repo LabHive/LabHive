@@ -449,6 +449,10 @@ letter-spacing: 0.05em;
   margin-bottom: 16px;
 }
 
+.btn.disabled, .btn:disabled {
+  opacity: 0.5;
+}
+
 .btn-progress {
     margin-bottom: 4px;
 }
