@@ -457,7 +457,7 @@ letter-spacing: 0.05em;
     margin-bottom: 4px;
 }
 
-.login-info-sub {
+.step-info-sub {
   margin-bottom: 32px;
 }
 
