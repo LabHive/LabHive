@@ -313,6 +313,7 @@ letter-spacing: 0.05em;
 
 .btn-cta {
     margin: 25px 0 0;
+    color: #fff;
     padding: 14px 32px;
     background: $color-green;
     border: none;
