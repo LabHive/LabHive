@@ -63,7 +63,7 @@
 
 
     <template v-if="!profileUpdate">
-      <b-row>
+      <b-row style="margin-bottom: -50px; margin-top: 30px;">
         <b-col sm="*" :md="5*2" :lg="4*2">
           <p style="font-size: 12px; color: rgba(0, 0, 0, 0.75);">
             {{ $t("disclaimer") }}

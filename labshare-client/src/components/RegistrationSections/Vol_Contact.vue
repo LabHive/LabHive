@@ -76,7 +76,7 @@
       </b-col>
     </b-row>
 
-    <b-row style="margin-top: 44px">
+    <b-row style="margin-top: 16px">
       <b-col sm="*" :md="5*2" :lg="4*2">
         <b-form-group
           :state="formData.availability !== null"
