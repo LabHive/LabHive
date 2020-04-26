@@ -91,7 +91,7 @@ export default {
       if (type === 'field' && this.model === "") return null;
       
       let a = meth(this.model, this.name);
-      console.log(this.name, a.value, this.model)
+      //console.log(this.name, a.value, this.model)
       if (a.valid) {
         if (this.timeout) clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
