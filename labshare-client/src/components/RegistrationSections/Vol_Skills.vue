@@ -17,7 +17,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("volunteerSkills") }}</h3>
-    <p v-else>{{ $t("volunteerSkills_sub") }}</p>
+    <p class="step-info-sub" v-else>{{ $t("volunteerSkills_sub") }}</p>
     <CheckboxGroup 
       name="skills"
       :data="labSkills" 

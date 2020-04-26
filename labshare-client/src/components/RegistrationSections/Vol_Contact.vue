@@ -2,9 +2,9 @@
 {
   "en":{
     "contact": "Contact & Availability",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten und Verfügbarkeit an. Wir teilen sensible Daten wie Nachname, E-Mail Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren.",
-    "available": "Yes, I am available to help.",
-    "not_available": "No, I am currently not available."
+    "contact_sub": "Please provide your contact details and availability. We share sensitive information such as last name, email address and phone number with verified diagnostic centers only.",
+    "available": "Yes, I am currently available for helping out.",
+    "not_available": "No, I am currently not available for helping out."
   },
   "de":{
     "contact": "Kontakt & Verfügbarkeit",
@@ -17,7 +17,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
-    <p style="max-width: 75%">{{ $t("contact_sub") }}</p>
+    <p class="step-info-sub" style="max-width: 60%">{{ $t("contact_sub") }}</p>
 
     <b-row>
       <b-col sm="*" md="5" lg="4">

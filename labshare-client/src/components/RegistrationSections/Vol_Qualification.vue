@@ -2,18 +2,18 @@
 {
   "en": {
     "qualification": "Qualification",
-    "qualification_sub": "Please select your qualification(s)."
+    "qualification_sub": "Please select your qualification(s)"
   },
   "de": {
     "qualification": "Qualifikation",
-    "qualification_sub": "Bitte geben Sie ihre Qualifikation(en) an."
+    "qualification_sub": "Bitte geben Sie ihre Qualifikation(en) an"
   }
 }
 </i18n>
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("qualification") }}</h3>
-    <p v-else>{{ $t("qualification_sub") }}</p>
+    <p class="step-info-sub" v-else>{{ $t("qualification_sub") }}</p>
 
     <CheckboxGroup
       required
