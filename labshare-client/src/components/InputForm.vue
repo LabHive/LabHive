@@ -1,6 +1,6 @@
 <i18n>
 {
-    "en": {
+  "en": {
     "labName": "Laboratory Name",
     "labWebsite": "Laboratory Homepage",
     "instituteName": "Institute/University",
@@ -17,8 +17,8 @@
     "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
     "officialEmail": "Institutional e-mail address"
-    },
-    "de":{
+  },
+  "de":{
     "labName": "Laborname",
     "labWebsite": "Labor-Homepage",
     "instituteName": "Institut/Universität",
@@ -35,8 +35,8 @@
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
     "officialEmail": "E-Mail-Adresse des Instituts"
-    }
-    }
+  }
+}
 </i18n>
 
 <template>
@@ -123,7 +123,6 @@ export default {
 
 .form-group {
   position: relative;
-  margin-top: 1rem;
 }
 
 .form-group input,
