@@ -620,4 +620,8 @@ letter-spacing: 0.05em;
   margin: 0;
 }
 
+#description {
+  margin-top: 16px;
+}
+
 </style>
