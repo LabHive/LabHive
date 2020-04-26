@@ -616,4 +616,8 @@ letter-spacing: 0.05em;
     margin-bottom: 64px;
 }
 
+.form-group {
+  margin: 0;
+}
+
 </style>
