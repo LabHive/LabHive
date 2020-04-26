@@ -1,7 +1,7 @@
 <i18n>
     {
     "en": {
-    "registration": "Registration",
+    "registration": "Register",
     "complete": "Thank you for your registration!",
     "activation": "To activate your account, click the link in the email that we sent to you.",
     "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
@@ -12,7 +12,7 @@
     },
 
     "de": {
-    "registration": "Registrierung",
+    "registration": "Registrieren",
     "complete": "Danke für Ihre Registrierung!",
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
