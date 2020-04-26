@@ -1,58 +1,70 @@
 <i18n>
-    {
-    "en":{
-    "offerResource": "Offer a resource",
+{
+  "en":{
+    "offerResource": "Current offers",
     "offerEquipment": "Offer devices and reagents",
     "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
     "offerAdvice": "Offer advice and know-how",
     "offerAdviceDescription": "Further information about the help you can offer."
-    },
-    "de":{
-    "offerResource": "Ressourcen abgeben",
-    "offerEquipment": "Geräte und Reagenzien anbieten",
-    "offerEquipmentDescription": "Weiter Informationen über die abzugebenen Geräte. Hersteller, Website des Herstellers, Anzahl der Geräte, etc.",
-    "offerAdvice": "Beratung und Know-How anbieten",
-    "offerAdviceDescription": "Weitere Informationen, wie Sie Hilfe anbieten können."
-    }
-    }
+  },
+  "de":{
+    "offerResource": "Aktuelles Angebot",
+    "offerEquipment": "Anzubietende Geräte/Reagenzien",
+    "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
+    "offerAdvice": "Anzubietende Beratung/Know-How",
+    "offerAdviceDescription": "Genauere Informationen über die Themen, bei denen Sie Hilfe anbieten können.",
+    "offerRessource_sub": "Wenn sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
+  }
+}
 </i18n>
 <template>
   <div>
-    <h2>{{ $t("offerResource") }}</h2>
-    <h3>{{ $t("offerEquipment") }}</h3>
-    <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
-    <b-form-group
-      id="equipmentDescription"
-      :state="val.validDescription(offers.equipmentDescription).valid"
-      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.equipmentDescription).err.message)"
-    >
-      <b-form-textarea
-        id="equipmentDescription"
-        v-model="offers.equipmentDescription"
-        :placeholder="$t('offerEquipmentDescription')"
-        rows="4"
-        max-rows="10"
-        :state="!val.validDescription(offers.equipmentDescription).valid ? false: null"
-      ></b-form-textarea>
-    </b-form-group>
+    <h2 v-if="!registration">{{ $t("offerResource") }}</h2>
+    <p v-else class="step-info-sub">{{ $t("offerRessource_sub") }}</p>
 
+    <b-row>
+      <b-col sm="*" lg="5" order="1" order-lg="1">
+        <h4>{{ $t("offerEquipment") }}</h4>
+        <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
+      </b-col>
 
-    <h3>{{ $t("offerAdvice") }}</h3>
-    <CheckboxGroup name="advice" cols="2" :data="advices" v-model="offers.advice"></CheckboxGroup>
-    <b-form-group
-      id="adviceDescription"
-      :state="val.validDescription(offers.adviceDescription).valid"
-      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.adviceDescription).err.message)"
-    >
-      <b-form-textarea
-        id="adviceDescription"
-        v-model="offers.adviceDescription"
-        :placeholder="$t('offerAdviceDescription')"
-        rows="4"
-        max-rows="10"
-        :state="!val.validDescription(offers.adviceDescription).valid ? false : null"
-      ></b-form-textarea>
-    </b-form-group>
+      <b-col sm="*" lg="5" offset-lg="1" order="3" order-lg="2">
+        <h4>{{ $t("offerAdvice") }}</h4>
+        <CheckboxGroup name="advice" cols="2" :data="advices" v-model="offers.advice"></CheckboxGroup>
+      </b-col>
+
+      <b-col sm="*" lg="5" order="2" order-lg="3">
+        <b-form-group
+          :state="val.validDescription(offers.equipmentDescription).valid"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.equipmentDescription).err.message)"
+        >
+          <b-form-textarea
+            v-model="offers.equipmentDescription"
+            :placeholder="$t('offerEquipmentDescription')"
+            rows="4"
+            max-rows="10"
+            :state="!val.validDescription(offers.equipmentDescription).valid ? false: null"
+          ></b-form-textarea>
+        </b-form-group>
+      </b-col>
+      
+
+      <b-col sm="*" lg="5" offset-lg="1" offset-sm="0" order="4">
+        <b-form-group
+          :state="val.validDescription(offers.adviceDescription).valid"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.adviceDescription).err.message)"
+        >
+          <b-form-textarea
+            v-model="offers.adviceDescription"
+            :placeholder="$t('offerAdviceDescription')"
+            rows="4"
+            max-rows="10"
+            :state="!val.validDescription(offers.adviceDescription).valid ? false: null"
+          ></b-form-textarea>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
 
     <b-button variant="primary" @click="$emit('submit')" v-if="showSubmit">Save</b-button>
   </div>
@@ -73,6 +85,10 @@ export default {
     showSubmit: {
       type: Boolean,
       default: true
+    },
+    registration: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

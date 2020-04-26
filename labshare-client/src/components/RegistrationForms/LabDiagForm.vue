@@ -105,10 +105,10 @@ export default {
       },
       formSections: [
         "LoginInformation",
-        "PersonalInformation",
+        "Lab_Contact",
         "Lab_Request",
         "Lab_Offer",
-        "SpecificDLab"
+        "Lab_Consent"
       ]
     };
   },

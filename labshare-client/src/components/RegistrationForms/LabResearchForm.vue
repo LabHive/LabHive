@@ -82,9 +82,9 @@ export default {
       },
       formSections: [
         "LoginInformation",
-        "PersonalInformation",
+        "Lab_Contact",
         "Lab_Offer",
-        "SpecificDLab",
+        "Lab_Consent",
       ],
     };
   },

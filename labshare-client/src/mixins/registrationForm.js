@@ -1,17 +1,17 @@
 import { Validator } from "@/../dist-browser/lib/validation";
 import InputForm from "@/components/InputForm";
 
-import PersonalInformation from "@/components/RegistrationSections/PersonalInformation";
-import SpecificVolunteer from "@/components/RegistrationSections/SpecificVolunteer";
-import SpecificDLab from "@/components/RegistrationSections/SpecificDLab";
-import Lab_Offer from "@/components/RegistrationSections/Lab_Offer";
-import Lab_Request from "@/components/RegistrationSections/Lab_Request";
 
 import LoginInformation from "@/components/RegistrationSections/LoginInformation";
 import Vol_Qualification from "@/components/RegistrationSections/Vol_Qualification";
 import Vol_Skills from "@/components/RegistrationSections/Vol_Skills";
 import Vol_Contact from "@/components/RegistrationSections/Vol_Contact";
 import Vol_Consent from "@/components/RegistrationSections/Vol_Consent";
+
+import Lab_Contact from "@/components/RegistrationSections/Lab_Contact";
+import Lab_Offer from "@/components/RegistrationSections/Lab_Offer";
+import Lab_Request from "@/components/RegistrationSections/Lab_Request";
+import Lab_Consent from "@/components/RegistrationSections/Lab_Consent";
 
 export default {
   data: function () {
@@ -80,17 +80,16 @@ export default {
   },
   components: {
     InputForm,
-    
-    PersonalInformation,
-    SpecificVolunteer,
-    Lab_Offer,
-    Lab_Request,
-    SpecificDLab,
-
+  
     LoginInformation,
     Vol_Qualification,
     Vol_Skills,
     Vol_Contact,
     Vol_Consent,
+
+    Lab_Offer,
+    Lab_Request,
+    Lab_Consent,
+    Lab_Contact,
   }
 };
