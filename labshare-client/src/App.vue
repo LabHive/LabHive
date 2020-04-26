@@ -456,6 +456,10 @@ letter-spacing: 0.05em;
 
 .btn-progress {
     margin-bottom: 4px;
+
+    @media (max-width: 991px) {
+    margin-bottom: 8px;
+    }
 }
 
 .step-info-sub {
