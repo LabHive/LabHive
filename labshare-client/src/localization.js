@@ -34,7 +34,7 @@ export let localization = {
           invalid_equipment: "Invalid equipment",
           invalid_advice: "Invalid request",
           invalid_consent: "Invalid consent",
-          invalid_url: "Invalid URL. URLs must start with http:// or https:// ",
+          invalid_url: "URL must be shorter than 200 characters.",
           passwordMatch: "Passwords don't match!"
         },
         not_authorized: "Not authorized!",
@@ -125,7 +125,7 @@ export let localization = {
           invalid_equipment: "Ungültiges Equipment",
           invalid_advice: "Ungültige Anfrage",
           invalid_consent: "Ungültige Einwilligung",
-          invalid_url: "Ungültige URL, muss mit http:// oder https:// beginnen.",
+          invalid_url: "Ungültige URL (max. 200 Zeichen)",
           passwordMatch: "Passwörter stimmen nicht überein!"
         },
         not_authorized: "Nicht authorisiert!",

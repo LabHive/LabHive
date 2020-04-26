@@ -114,6 +114,11 @@ class Profile {
             return utils.badRequest(res)
         }
 
+        let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
+        if (body.website && !regexpUrl.test(body.website)) {
+            body.website = "http://" + body.website;
+        }
+
         let user = await getUserById(token.sub)
         if (!user) {
             return utils.badRequest(res)

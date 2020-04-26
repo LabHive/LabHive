@@ -62,6 +62,10 @@ export async function registration(req: express.Request, res: express.Response, 
 
     body.language = getLangID(req)
     body.slug = uuid();
+    let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
+    if (body.website && !regexpUrl.test(body.website)) {
+        body.website = "http://" + body.website;
+    }
 
     let euser = await getUserForMail(body.contact.email)
     if (euser) {
