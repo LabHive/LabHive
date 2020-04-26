@@ -106,7 +106,7 @@
     </div>
 
     <div v-else-if="!registrationComplete" style="margin-top: 8px">
-      <router-view ref="routerA" @formcomplete="register" @updateStep="updateStep" :role="role" :step="step"></router-view>
+      <router-view id="router" ref="routerA" @formcomplete="register" @updateStep="updateStep" :role="role" :step="step"></router-view>
     </div>
 
   </div>
@@ -246,4 +246,25 @@ hr {
 .lead {
   margin-bottom: 24px;
 }
+
+#router::v-deep {
+  & h4 {
+    font-weight: normal;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #484C5A;
+  }
+
+  & .step-info-sub {
+    margin-top: -8px;
+    margin-bottom: 44px;
+    max-width: 60%;
+
+    @media(max-width: 992px) {
+      max-width: 100% !important;
+    }
+  }
+
+}
+
 </style>

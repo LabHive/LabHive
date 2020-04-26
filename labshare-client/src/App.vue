@@ -454,18 +454,6 @@ letter-spacing: 0.05em;
   opacity: 0.5;
 }
 
-.btn-progress {
-    margin-bottom: 4px;
-
-    @media (max-width: 991px) {
-    margin-bottom: 8px;
-    }
-}
-
-.step-info-sub {
-  margin-bottom: 44px;
-}
-
 #navbar .container {
   padding: 8px 10px;
   transition: all box-shadow 0.15s ease-in-out;
@@ -621,7 +609,7 @@ letter-spacing: 0.05em;
 }
 
 .form-group {
-  margin: 0;
+  // margin-bottom: 16px;
 }
 
 #description {
