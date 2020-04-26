@@ -40,11 +40,8 @@
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
     <div key="step-one" v-if="step === 0">
+      <p class="step-info-sub">{{ $t("prospectiveRole") }}</p>
       <b-container fluid>
-        <b-row>
-          <p class="step-info-sub" style="margin-top: 8px">{{ $t("prospectiveRole") }}</p>
-        </b-row>
-
         <b-row>
           <b-col class="text-center" cols lg="4" md="4" sm="12">
             <b-button
@@ -105,7 +102,7 @@
       </b-container>
     </div>
 
-    <div v-else-if="!registrationComplete" style="margin-top: 8px">
+    <div v-else-if="!registrationComplete">
       <router-view id="router" ref="routerA" @formcomplete="register" @updateStep="updateStep" :role="role" :step="step"></router-view>
     </div>
 
@@ -182,6 +179,7 @@ export default {
     },
   },
   beforeRouteUpdate(to, from, next) {
+    console.log("beforeRoute", to)
     if (to.name == "pageRegister") 
       this.step = 0
     else if (to.params.id)
@@ -190,6 +188,12 @@ export default {
       this.step = 2
 
     next()
+  },
+  mounted() {
+    if (this.$route.params.id) {
+      this.step = 0
+      this.$router.replace({name: "pageRegister"})
+    }
   },
   watch: {
     step(newVal, oldVal) {
@@ -254,9 +258,10 @@ hr {
     font-size: 18px;
     color: #484C5A;
   }
+}
 
-  & .step-info-sub {
-    margin-top: -8px;
+::v-deep {
+  .step-info-sub {
     margin-bottom: 44px;
     max-width: 60%;
 
@@ -264,7 +269,6 @@ hr {
       max-width: 100% !important;
     }
   }
-
 }
 
 </style>
