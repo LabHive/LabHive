@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <template v-for="i in cols_number">
-          <b-col sm :key="i" md="auto">
+          <b-col sm="*" :key="i" md="auto">
             <b-form-checkbox-group
               stacked
               :id="name + i"
