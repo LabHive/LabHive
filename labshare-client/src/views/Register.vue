@@ -8,7 +8,7 @@
     "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
     "prospectiveRole": "Please select your user group",
     "roleHelper": "Qualified Volunteer",
-    "roleDiagnosticLab": "Diagnostic Centers",
+    "roleDiagnosticLab": "Diagnostic Center",
     "roleLab": "Research Laboratory"
     },
 
@@ -79,7 +79,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("Textqualif-vol")}}
+                {{$t("Textdiag-cent")}}
             </p>
           </b-col>
 
@@ -97,7 +97,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("Textqualif-vol")}}
+                {{$t("Textres-lab")}}
             </p>
           </b-col>
 
