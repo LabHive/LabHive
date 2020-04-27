@@ -38,7 +38,7 @@
       <!-- LabName -->
       <b-col v-bind="large" order-md="3" order="2">
         <InputForm
-          name="labName"
+          :name="role == 'lab_diag' ? 'labName' : 'instituteName'"
           v-model="formData.organization"
           :valFunc="val.validOrganization"
         ></InputForm>
@@ -69,7 +69,7 @@
       <!-- Website -->
       <b-col v-bind="large" order-md="6" order="3" style="margin-bottom: 16px;">
         <InputForm
-          name="instituteWebsite"
+          :name="role == 'lab_diag' ? 'labWebsite' : 'instituteWebsite'"
           v-model="formData.website"
           :valFunc="val.validUrl"
           :required="false"
