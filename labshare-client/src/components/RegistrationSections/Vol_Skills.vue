@@ -25,20 +25,26 @@
       :label="profileUpdate ? $t('volunteerSkills_sub') : null"
     ></CheckboxGroup>
 
-    <b-form-group
-      id="description"
-      :state="val.validDescription(formData.description).valid"
-      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(formData.description).err.message)"
-    >
-      <b-form-textarea
-        id="textarea"
-        v-model="formData.description"
-        :placeholder="$t('description')"
-        rows="4"
-        max-rows="10"
-        :state="!val.validDescription(formData.description).valid ? false: null"
-      ></b-form-textarea>
-    </b-form-group>
+    <b-row>
+      <b-col lg="8" xl="7" md="10" sm="*">
+        <b-form-group
+          id="description"
+          :state="val.validDescription(formData.description).valid"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(formData.description).err.message)"
+        >
+          <b-form-textarea
+            id="textarea"
+            v-model="formData.description"
+            :placeholder="$t('description')"
+            rows="4"
+            max-rows="10"
+            :state="!val.validDescription(formData.description).valid ? false: null"
+          ></b-form-textarea>
+        </b-form-group>
+      </b-col>
+
+    </b-row>
+    
 
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit"></NavButtons>
