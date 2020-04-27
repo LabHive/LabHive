@@ -170,7 +170,7 @@ export default {
           }
         },
         err => {
-          this.error = err.body.errorDescription;
+          this.error = this.$t('backend.formValidation.' + err.body.errorDescription);
         }
       );
     },
