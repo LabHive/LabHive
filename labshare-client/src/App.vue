@@ -13,7 +13,8 @@
     "imprint": "Imprint",
     "requestResource": "Request Resources",
     "offerResource": "Offer Resources",
-    "search": "Search For Resources"
+    "search": "Search For Resources",
+    "staging": "Only for test purposes, does not contain real data."
   },
   "de": {
     "brand": "LabHive",
@@ -28,7 +29,8 @@
     "imprint": "Impressum",
     "requestResource": "Bedarfsanfrage",
     "offerResource": "Ressource anbieten",
-    "search": "Suche nach Ressourcen"
+    "search": "Suche nach Ressourcen",
+    "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!"
   }
 }
 </i18n>
@@ -74,7 +76,7 @@
     </b-navbar>
     
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
-      <div style="text-align: center" v-if="staging"><h1 style="color: red; margin: 0; margin-top: 20px">Dient nur zu Testzwecken, enthält keine echten Daten!</h1></div>
+      <div style="text-align: center" v-if="staging"><h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("staging") }}</h1></div>
       <div id="app">
         <keep-alive :include="/search.*/i">
           <router-view></router-view>
