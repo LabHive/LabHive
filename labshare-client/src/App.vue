@@ -292,7 +292,6 @@ letter-spacing: 0.05em;
   color: #000;
   padding: 12px 24px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
-  margin: 0 !important;
 
   &:not(:disabled):not(.disabled):hover {
     background: #FFFFFF;
