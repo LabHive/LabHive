@@ -1,7 +1,8 @@
 <i18n>
 {
   "en": {
-    "optIn": "Optional Consents"
+    "optIn": "Optional Consents",
+    "disclaimer": "Whether you are allowed to work as a volunteer in a diagnostic centre or whether you are released from work, you must clarify this with your employer on your own responsibility. If you are requested to work in a diagnostic centre, you, your employer and the diagnostic centre concerned are responsible for labour law. LabHive does not take any responsibility for this."
   },
   "de": {
     "optIn": "Optionale Einwilligungen",

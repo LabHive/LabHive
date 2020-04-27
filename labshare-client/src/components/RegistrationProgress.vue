@@ -1,5 +1,16 @@
 <i18n>
 {
+  "en": {
+    "usergroup": "User group",
+    "loginInformation": "Login Information",
+    "qualification": "Qualifications",
+    "skills": "Skills",
+    "contact_availability": "Contact & Availability",
+    "consent": "Optional Consents",
+    "affiliation_contact": "Affiliation & Contact",
+    "request": "Current Requests",
+    "offer": "Current Offers"
+  },
   "de": {
     "usergroup": "Nutzergruppe",
     "loginInformation": "Login Informationen",
