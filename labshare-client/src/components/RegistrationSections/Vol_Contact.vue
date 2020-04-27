@@ -20,6 +20,7 @@
     <p class="step-info-sub" style="max-width: 60%">{{ $t("contact_sub") }}</p>
 
     <b-row>
+      <!-- FirstName -->
       <b-col sm="*" md="5" lg="4">
         <InputForm
           name="firstName"
@@ -27,6 +28,8 @@
           :valFunc="val.validFirstname"
         ></InputForm>
       </b-col>
+
+      <!-- LastName -->
       <b-col sm="*" md="5" lg="4">
         <InputForm
           name="lastName" 
@@ -37,6 +40,7 @@
     </b-row>
 
     <b-row>
+      <!-- Zipcode -->
       <b-col sm="*" md="5" lg="4">
         <InputForm 
           name="zipcode" 
@@ -44,6 +48,8 @@
           :valFunc="val.validZipcode"
         ></InputForm>
       </b-col>
+
+      <!-- Phone -->
       <b-col sm="*" md="5" lg="4">
         <InputForm 
           name="phone" 
@@ -54,6 +60,7 @@
       </b-col>
     </b-row>
 
+    <!-- LabName -->
     <b-row>
       <b-col sm="*" :md="5*2" :lg="4*2">
         <InputForm
@@ -65,6 +72,7 @@
       </b-col>
     </b-row>
 
+    <!-- Website -->
     <b-row>
       <b-col sm="*" :md="5*2" :lg="4*2">
         <InputForm
@@ -77,6 +85,8 @@
     </b-row>
 
     <b-row style="margin-top: 16px">
+
+      <!-- Availability -->
       <b-col sm="*" :md="5*2" :lg="4*2">
         <b-form-group
           :state="formData.availability !== null"
