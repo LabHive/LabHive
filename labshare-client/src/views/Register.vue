@@ -7,9 +7,9 @@
     "activation": "To activate your account, click the link in the email that we sent to you.",
     "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
     "prospectiveRole": "Please select your user group",
-    "roleHelper": "Qualified Volunteer",
-    "roleDiagnosticLab": "Diagnostic Center",
-    "roleLab": "Research Laboratory"
+    "roleHelper": "Qualified Volunteers",
+    "roleDiagnosticLab": "Diagnostic Centers",
+    "roleLab": "Research Laboratories"
     },
 
     "de": {
@@ -20,8 +20,8 @@
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
     "prospectiveRole": "Bitte wählen Sie ihre Nutzergruppe",
     "roleHelper": "Qualifizierte Freiwillige",
-    "roleDiagnosticLab": "Diagnostikzentrum",
-    "roleLab": "Forschungslabor"
+    "roleDiagnosticLab": "Diagnostikzentren",
+    "roleLab": "Forschungslabore"
     }
     }
 </i18n>
