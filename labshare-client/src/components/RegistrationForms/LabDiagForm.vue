@@ -114,7 +114,11 @@ export default {
   },
   computed: {
     updateFormSections() {
-      return ["LoginInformation", "PersonalInformation", "SpecificDLab"];
+      return [
+        "LoginInformation", 
+        "Lab_Contact", 
+        "Lab_Consent"
+      ];
     }
   }
 };

@@ -92,8 +92,8 @@ export default {
     updateFormSections() {
       return [
         "LoginInformation",
-        "PersonalInformation",
-        "SpecificDLab",
+        "Lab_Contact",
+        "Lab_Consent",
       ]
     }
   }
