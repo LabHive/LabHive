@@ -157,6 +157,7 @@ export class Validator {
     }
 
     static validOrganization(org?: string): ValidationResult {
+        if (org === '') return new ValidationResultSuccess('')
         return Validator.validTextShort(org, 'invalid_organization')
     }
 
