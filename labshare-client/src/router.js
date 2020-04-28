@@ -2,27 +2,27 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from './store'
 
-import Index from './views/Index'
-import Login from './views/Login'
-import ForgotPassword from './views/ForgotPassword';
-import ResetPassword from './views/ResetPassword';
-import Register from './views/Register'
-import Search from './views/Search'
-import Details from './views/Details'
-import UeberUns from './views/UeberUns'
-import Profile from './views/Profile'
-import ChangePassword from './views/ChangePassword'
-import Imprint from './views/Imprint'
-import PrivacyPolicy from './views/PrivacyPolicy'
-import Request from './views/Request'
-import Offer from './views/Offer'
-import Activation from './views/Activation'
-import Admin from './views/Admin'
-import LoginAdmin from './views/LoginAdmin'
-import RevokeConsent from './views/RevokeConsent'
-import LabDiagForm from './components/RegistrationForms/LabDiagForm'
-import LabResearchForm from './components/RegistrationForms/LabResearchForm'
-import VolunteerForm from './components/RegistrationForms/VolunteerForm'
+const Index = () => import('./views/Index')
+const Login = () => import('./views/Login')
+const ForgotPassword = () => import('./views/ForgotPassword')
+const ResetPassword = () => import('./views/ResetPassword')
+const Register = () => import('./views/Register')
+const Search = () => import('./views/Search')
+const Details = () => import('./views/Details')
+const UeberUns = () => import('./views/UeberUns')
+const Profile = () => import('./views/Profile')
+const ChangePassword = () => import('./views/ChangePassword')
+const Imprint = () => import('./views/Imprint')
+const PrivacyPolicy = () => import('./views/PrivacyPolicy')
+const Request = () => import('./views/Request')
+const Offer = () => import('./views/Offer')
+const Activation = () => import('./views/Activation')
+const Admin = () => import('./views/Admin')
+const LoginAdmin = () => import('./views/LoginAdmin')
+const RevokeConsent = () => import('./views/RevokeConsent')
+const LabDiagForm = () => import('./components/RegistrationForms/LabDiagForm')
+const LabResearchForm = () => import('./components/RegistrationForms/LabResearchForm')
+const VolunteerForm = () => import('./components/RegistrationForms/VolunteerForm')
 
 Vue.use(VueRouter);
 
