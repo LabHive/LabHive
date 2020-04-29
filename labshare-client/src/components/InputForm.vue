@@ -127,11 +127,11 @@ export default {
 
 .form-group input,
 .form-group label {
-  padding: .75rem .75rem;
+  padding: 16px;
 }
 
 .form-group input {
-  height: 50px
+  height: 48px
 }
 
 .form-group label {
@@ -140,14 +140,13 @@ export default {
   left: 0;
   width: 100%;
   margin-bottom: 0; /* Override default `<label>` margin */
-  line-height: 1.5;
   color: #495057;
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: 8px;
   transition: all .1s ease-in-out;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1;
   pointer-events: none;
 }
 
@@ -172,13 +171,13 @@ export default {
 }
 
 .form-group input:not(:placeholder-shown) {
-  padding-top: calc(.75rem + .75rem * (2 / 3));
-  padding-bottom: calc(.75rem / 3);
+  padding-top: 20px;
+  padding-bottom: 4px;
 }
 
 .form-group input:not(:placeholder-shown) ~ label {
-  padding-top: calc(.75rem / 3);
-  padding-bottom: calc(.75rem / 3);
+  padding-top: 8px;
+  padding-bottom: 4px;
   font-size: 12px;
   color: #777;
 }

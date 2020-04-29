@@ -262,7 +262,7 @@ h4 {
   margin-top: 20px;
 }
 
-.btn-primary {
+.btn-primary, .btn-success {
   background: #C9E0DF;
   border-radius: 4px;
   border: none;
@@ -316,7 +316,7 @@ h4 {
   }
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active {
-    background: $color-green;
+    background: #888;
     color: #fff;
     box-shadow: none;
   }
@@ -326,6 +326,11 @@ h4 {
     color: #0E5145;;
     box-shadow: 0 0 0 transparent;
   }
+}
+
+.btn-success {
+  color: #fff;
+  background: #2aad70;
 }
 
 .btn-cta {
