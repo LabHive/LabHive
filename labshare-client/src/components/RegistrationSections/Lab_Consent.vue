@@ -13,7 +13,6 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("optIn") }}</h3>
-    <p class="step-info-sub"></p>
 
     <b-row>
       <b-col sm="*" :md="5*2" :lg="4*2">
@@ -39,7 +38,7 @@
       </b-col>
     </b-row>
 
-    <b-row style="margin-top: 30px">
+    <b-row style="margin-top: 30px" v-if="!profileUpdate">
       <b-col sm="*" :md="5*2" :lg="4*2">
         <div v-html="$t('dataProcessingInformation')"></div>
       </b-col>

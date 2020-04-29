@@ -11,8 +11,8 @@
     "signOut": "Logout",
     "privacyPolicy": "Privacy Policy",
     "imprint": "Imprint",
-    "requestResource": "Request Resources",
-    "offerResource": "Offer Resources",
+    "requestResource": "Current Requests",
+    "offerResource": "Current Offers",
     "search": "Search For Resources",
     "staging": "Only for test purposes, does not contain real data."
   },
@@ -27,8 +27,8 @@
     "signOut": "Logout",
     "privacyPolicy": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "requestResource": "Bedarfsanfrage",
-    "offerResource": "Ressource anbieten",
+    "requestResource": "Aktueller Bedarf",
+    "offerResource": "Aktuelles Angebot",
     "search": "Suche nach Ressourcen",
     "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!"
   }
@@ -229,10 +229,26 @@ h1,h3 {
 }
 
 h3 {
-font-size: 28px;
-margin: 32px 0 8px 0;
-letter-spacing: 0.05em;
+  font-size: 28px;
+  margin: 32px 0 8px 0;
+  letter-spacing: 0.05em;
 }
+
+h4 {
+  font-weight: normal;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #484C5A;
+}
+
+.step-info-sub {
+      margin-bottom: 44px;
+      max-width: 60%;
+
+      @media(max-width: 992px) {
+        max-width: 100% !important;
+      }
+    }
 
 .main-div {
   height: 100%;

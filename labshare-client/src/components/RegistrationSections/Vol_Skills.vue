@@ -4,12 +4,14 @@
     "volunteerSkills": "Skills",
     "furtherInfo": "Further Information",
     "volunteerSkills_sub": "Please specify your skills, you can change them later in your profile.",
+    "volunteerSkills_sub_update": "Please specify your skills",
     "description": "Further information, other skills, availability, etc."
   },
   "de": {
     "volunteerSkills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
     "volunteerSkills_sub": "Bitte geben Sie ihre Fähigkeiten an. Diese können später jederzeit im Profil geändert werden.",
+    "volunteerSkills_sub_update": "Bitte geben Sie ihre Fähigkeiten an",
     "description": "Weitere Informationen, andere Fähigkeiten, Verfügbarkeit, etc."
   }
 }
@@ -22,7 +24,7 @@
       name="skills"
       :data="labSkills" 
       v-model="formData.details.skills"
-      :label="profileUpdate ? $t('volunteerSkills_sub') : null"
+      :label="profileUpdate ? $t('volunteerSkills_sub_update') : null"
     ></CheckboxGroup>
 
     <b-row>

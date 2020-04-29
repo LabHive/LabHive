@@ -1,26 +1,24 @@
 <i18n>
 {
-  "en":{
-    "offerResource": "Current offers",
+  "en": {
     "offerEquipment": "Offer devices and reagents",
     "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
     "offerAdvice": "Offer advice and know-how",
-    "offerAdviceDescription": "Further information about the help you can offer."
+    "offerAdviceDescription": "Further information about the help you can offer.",
+    "offerRessource_sub": "If you have resources to hand in, you can enter them here. You can always change this later in your profile settings. Click below on “Next” if you cannot provide anything at the moment."
   },
-  "de":{
-    "offerResource": "Aktuelles Angebot",
+  "de": {    
     "offerEquipment": "Anzubietende Geräte/Reagenzien",
     "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
     "offerAdvice": "Anzubietende Beratung/Know-How",
     "offerAdviceDescription": "Genauere Informationen über die Themen, bei denen Sie Hilfe anbieten können.",
-    "offerRessource_sub": "Wenn sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
+    "offerRessource_sub": "Wenn sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
   }
 }
 </i18n>
 <template>
   <div>
-    <h2 v-if="!registration">{{ $t("offerResource") }}</h2>
-    <p v-else class="step-info-sub">{{ $t("offerRessource_sub") }}</p>
+    <p class="step-info-sub" v-if="registration">{{ $t("offerRessource_sub") }}</p>
 
     <b-row>
       <b-col sm="*" lg="5" order="1" order-lg="1">
