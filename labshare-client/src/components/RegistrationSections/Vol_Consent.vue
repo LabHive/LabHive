@@ -14,8 +14,8 @@
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("optIn") }}</h3>
 
-    <b-row>
-      <b-col sm="*" :md="5*2" :lg="4*2">
+    <b-row class="consent-section">
+      <b-col sm="*" :md="5*2" :lg="4*2" style="padding: 0">
         <p v-html="$t('consentMail')"></p>
         <b-form-group
           :state="formData.consent.mailUpdates !== null"
@@ -90,3 +90,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+.consent-section {
+  margin: 44px 0;
+}
+
+</style>
