@@ -1,4 +1,6 @@
 var path = require("path");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 
 function resolveEnv(env) {
   const ENV = process.env[env]
@@ -26,6 +28,12 @@ module.exports = {
       def[0]['process.env']['STAGING'] = resolveEnv("STAGING")
       return def
     })
+
+    if (process.env.NODE_ENV === "production")
+      config.plugin("webpack-report")
+      .use(BundleAnalyzerPlugin, [{
+          // ...webpack-bundle-analyzer options here
+      }]);
   },
   configureWebpack: {
     resolve: {
