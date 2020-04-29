@@ -300,7 +300,7 @@ letter-spacing: 0.05em;
   }
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active {
-    background: $color-green;
+    background: #888;
     color: #fff;
     box-shadow: none;
   }
