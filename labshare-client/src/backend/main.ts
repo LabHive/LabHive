@@ -17,6 +17,8 @@ import { UnauthorizedError } from './errors'
 import { authMiddleware } from './middlewares/auth'
 import { OPT } from './options'
 import utils from './utils'
+import { ready } from './database/database'
+import { GlobalEvent } from './constants'
 
 let app = express()
 let router = express.Router()
@@ -72,9 +74,19 @@ app.use(function(err: Error, req: express.Request, res: express.Response, next: 
 });
 
 
-app.listen(5000, function () {
-    console.log('Example app listening on port 5000!')
-})
+function startApp() {
+    app.listen(5000, function () {
+        console.log('Example app listening on port 5000!')
+    })
+}
+
+
+if (ready) {
+    startApp()
+}
+else {
+    GlobalEvent.once("ready", startApp)
+}
 
 
 

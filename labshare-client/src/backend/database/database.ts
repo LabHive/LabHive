@@ -9,10 +9,12 @@ import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail'
 import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationToken'
 import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
 import { CONF } from '../options'
-import { TESTS_PER_WEEK } from '../constants';
+import { TESTS_PER_WEEK, GlobalEvent } from '../constants';
 import { Token } from '../utils'
+import { status } from "migrate-mongo"
 
 const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
+export let ready = false;
 
 mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {
     if (CONF.ADMIN_USER) {
@@ -26,7 +28,23 @@ mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser
             })
         }
     }
-    return
+
+    let migrated = false
+    while (!migrated) {
+      const s = await status(mongoose.connection.db)
+      const pendingMigrations = s.filter((x => x.appliedAt === "PENDING")).map(x => {return `PENDING Migration: ${x.fileName}`})
+
+      if (pendingMigrations.length == 0) {
+        migrated = true
+      }
+      else {
+        console.warn(pendingMigrations.join("\n"))
+        await new Promise(resolve => setTimeout(resolve, 5000));
+      }
+    }  
+    
+    ready = true;
+    GlobalEvent.emit("ready")
 }).catch((err) => {
     console.error(err)
     process.exit(1)
@@ -36,9 +54,9 @@ mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser
 export const UserAdmin = mongoose.model<IUserAdmin>('user_admin', UserAdminSchema)
 
 export const UserCommon = mongoose.model<IUserCommon>('users', UserCommonSchema)
-export const UserVolunteer = UserCommon.discriminator<IUserVolunteer>('volunteer', UserVolunteerSchema)
-export const UserLabDiag = UserCommon.discriminator<IUserLabDiag>('labDiag', UserLabDiagSchema)
-export const UserLabResearch = UserCommon.discriminator<IUserLabResearch>('labResearch', UserLabResearchSchema)
+export const UserVolunteer = UserCommon.discriminator<IUserVolunteer>(UserRoles.VOLUNTEER, UserVolunteerSchema)
+export const UserLabDiag = UserCommon.discriminator<IUserLabDiag>(UserRoles.LAB_DIAG, UserLabDiagSchema)
+export const UserLabResearch = UserCommon.discriminator<IUserLabResearch>(UserRoles.LAB_RESEARCH, UserLabResearchSchema)
 
 export const ResetToken = mongoose.model<IResetToken>('reset_token', ResetTokenSchema)
 export const FailedMail = mongoose.model<IFailedMail>('failed_mail', FailedMailSchema)
@@ -94,9 +112,11 @@ export async function getTestCoverage(): Promise<{
 
   let filter = getFilterForPublicUsers()
 
-  const labDiags = await UserLabDiag.find(filter).exec();
-  const labResearches = await UserLabResearch.find(filter).exec();
-  const volunteers = await UserVolunteer.find(filter).exec();
+  const users = await UserCommon.find(filter).select({__t: 1, location: 1, role: 1}).exec()
+
+  const labDiags = users.filter((i) => i.__t == UserRoles.LAB_DIAG)
+  const labResearches = users.filter((i) => i.__t == UserRoles.LAB_RESEARCH)
+  const volunteers = users.filter((i) => i.__t == UserRoles.VOLUNTEER)
 
   return {
     testsPerWeek: TESTS_PER_WEEK,
