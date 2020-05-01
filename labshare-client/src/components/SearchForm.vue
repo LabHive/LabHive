@@ -43,10 +43,10 @@
           <b-form-group :label="$t('searchModeSelection')">
             <b-row align-v="center">
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
+                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="offer" @change="changeMode" />
+                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col last">
                 <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
@@ -58,7 +58,7 @@
       <HeightTransition @finished="$emit('finished')">
         <div class="form-row" v-if="filter.mode && 'volunteers' !== filter.mode">
           <div class="col-md4">
-            <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')">
+            <b-form-group :label="filter.mode === 'lookingFor' ? $t('offer'): $t('request')">
               <b-row>
                 <b-col cols="auto" class="lh-button-col">
                   <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
