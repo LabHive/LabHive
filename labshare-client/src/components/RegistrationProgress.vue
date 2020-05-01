@@ -1,7 +1,7 @@
 <i18n>
 {
   "en": {
-    "usergroup": "User group",
+    "usergroup": "User Group",
     "loginInformation": "Login Information",
     "qualification": "Qualifications",
     "skills": "Skills",
@@ -11,7 +11,7 @@
     "request": "Current Requests",
     "offer": "Current Offers",
     "reset": "Attention!",
-    "warning": "The entered data is going to be cleaned. Do you want to continue?",
+    "warning": "All data will be deleted. Do you want to continue anyway?",
     "yes": "Yes",
     "no": "No"
   },
@@ -26,7 +26,7 @@
     "request": "Aktueller Bedarf",
     "offer": "Aktuelles Angebot",
     "reset": "Achtung!",
-    "warning": "Es werden alle Daten zurückgesetzt. Wollen sie wirklich fortfahren?",
+    "warning": "Es werden alle Daten zurückgesetzt. Trotzdem fortfahren?",
     "yes": "Ja",
     "no": "Nein"
   }
@@ -36,7 +36,7 @@
   <div>
     <b-modal
       id="confirm"
-      :title="$t('attention')"
+      :title="$t('reset')"
       :ok-title="$t('yes')"
       :cancel-title="$t('no')"
       ok-variant="primary"

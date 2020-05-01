@@ -4,7 +4,9 @@
     "mainTitle": "We align efforts for more SARS-CoV-2 tests",
     "subTitle": "The digital platform for a strong diagnostic network",
     "Joinbutton": "Join now",
-    "partner": "In collaboration with:",
+    "selected": "Selected for",
+    "collaboration": "In collaboration with",
+    "supported": "Supported by",
     "titleGroups": "Together we unleash the united power of science",
     "qualif-vol": "Qualified volunteers",
     "res-lab": "Research laboratories",
@@ -17,7 +19,9 @@
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
     "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
     "Joinbutton": "Jetzt mitmachen",
-    "partner": "In Zusammenarbeit mit:",
+    "selected": "Ausgewählt für",
+    "collaboration": "In Zusammenarbeit mit",
+    "supported": "Gefördert vom",
     "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft",
     "qualif-vol": "Qualifizierte Freiwillige",
     "res-lab": "Forschungslabore",
@@ -51,11 +55,23 @@
             </figure>
           </b-col>
         </b-row>
-        <b-row class="partners">
-          <b-col class="text-center">
-              <p>{{$t("partner")}}</p>
+        <b-row align-h="center" class="partners">
+          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
+              <p>{{$t("selected")}}</p>
             <figure>
-             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img class="img-hover" src="../assets/logo-partner-3.png" width="160" height="46" /> </a>
+             <a href="https://wirvsvirushackathon.org/weiterfuehrung-2/" target="_blank"> <img class="img-hover" src="../assets/logo-wirvsvirus-enabler.png" alt="Wir vs. Virus Solution Enabler" width="auto" height="56" /> </a>
+            </figure>
+          </b-col>
+          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
+              <p>{{$t("collaboration")}}</p>
+            <figure>
+             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img id="collaboration" class="img-hover" src="../assets/logo-bjoern-steiger-stiftung-de.png" alt="Björn Steiger Stiftung" width="auto" height="48" /> </a>
+            </figure>
+          </b-col>
+          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
+              <p>{{$t("supported")}}</p>
+            <figure>
+             <a href="https://www.bmbf.de/" target="_blank"> <img class="img-hover" src="../assets/logo-bmbf.png" alt="Bundesministerium für Bildung und Forschung" width="auto" height="56" /> </a>
             </figure>
           </b-col>
         </b-row>
@@ -193,9 +209,24 @@ p {
     margin-top: 40px;
 
     figure {
-      font-size: 15px;
       display: inline-block;
-      margin: 15px;
+      margin: 16px 0 16px 0;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 13px;
+
+      img {
+        height: 48px;
+      }
+
+      #collaboration {
+          height: 40px;
+      }
+
+      figure {
+        margin: 8px 0 16px 0;
+      }
     }
   }
 }

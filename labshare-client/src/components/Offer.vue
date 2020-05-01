@@ -1,17 +1,17 @@
 <i18n>
 {
   "en": {
-    "offerEquipment": "Offer devices and reagents",
-    "offerEquipmentDescription": "Further information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
-    "offerAdvice": "Offer advice and know-how",
-    "offerAdviceDescription": "Further information about the help you can offer.",
-    "offerRessource_sub": "If you have resources to hand in, you can enter them here. You can always change this later in your profile settings. Click below on “Next” if you cannot provide anything at the moment."
+    "offerEquipment": "Offered Devices/Reagents",
+    "offerEquipmentDescription": "More detailed information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
+    "offerAdvice": "Offered Advice/Know-How",
+    "offerAdviceDescription": "More detailed information on the areas in which you can offer help",
+    "offerRessource_sub": "If you can offer resources, you can enter them here. You can always change this later in your profile. Click on “Next” below if you do not have anything to share at present."
   },
   "de": {    
     "offerEquipment": "Anzubietende Geräte/Reagenzien",
     "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
     "offerAdvice": "Anzubietende Beratung/Know-How",
-    "offerAdviceDescription": "Genauere Informationen über die Themen, bei denen Sie Hilfe anbieten können.",
+    "offerAdviceDescription": "Genauere Informationen über die Themen, zu denen Sie Hilfe anbieten können",
     "offerRessource_sub": "Wenn sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
   }
 }
