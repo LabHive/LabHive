@@ -2,11 +2,11 @@
 {
   "en":{
     "loginInfo": "Login Details",
-    "loginInfo_sub": "Please specify an e-mail address and a password"
+    "loginInfo_sub": "Please enter your e-mail address and set a password."
   },
   "de":{
     "loginInfo": "Login Informationen",
-    "loginInfo_sub": "Bitte legen Sie ihre E-Mail Adresse und ein Passwort fest"
+    "loginInfo_sub": "Bitte geben Sie ihre E-Mail Adresse an und legen ein Passwort fest."
   }
 }
 </i18n>
