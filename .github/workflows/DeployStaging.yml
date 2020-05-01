@@ -18,14 +18,19 @@ on:
 
 jobs:
   build:
-    name: "Build"
+    name: "Build and Push Docker Image"
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: cd labshare-client && npm install
-      - run: cd labshare-client && npm run build
+      - name: "Build and Push Docker Image"
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: labhive/labhive
+          tags: staging
+          path: ./labshare-client
+          dockerfile: ./labshare-client/Dockerfile
+          build_args: enableDev=true,staging=true
 
   deploy:
     name: "Deploy"
@@ -41,12 +46,16 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           cd LabHive-Staging/labshare-client;
-          git stash save;
+          git reset --hard;
           git pull;
-          git stash pop;
-          docker-compose -f docker-compose.staging.yml build;
 
-          docker stack rm labhiveStaging;
-          until [[ -z $(docker stack ps labhiveStaging -q) ]]; do sleep 1; done
-          sleep 3;
-          docker stack deploy -c docker-compose.staging.yml labhiveStaging;
+          docker create volume labhive_secret_staging;
+          docker run --rm -v $(pwd):/src -v labhive_secret_staging:/dst busybox cp -r /src/secret/. /dst/;
+
+          docker stack deploy -c docker-compose.staging.yml LabHiveStaging;
+
+          if ! docker run --rm -v $(pwd):/app -w /app --network LabHiveStaging_network -e "PRODUCTION=1" node npm run migrations up; then
+            docker run --rm -v $(pwd):/app -w /app --network LabHiveStaging_network -e "PRODUCTION=1" node npm run migrations down || true;
+            docker service rollback LabHiveStaging_app;
+            exit 1;
+          fi
