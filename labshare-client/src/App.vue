@@ -638,4 +638,8 @@ h4 {
   margin-top: 16px;
 }
 
+.consent-section {
+  margin: 44px 0;
+}
+
 </style>

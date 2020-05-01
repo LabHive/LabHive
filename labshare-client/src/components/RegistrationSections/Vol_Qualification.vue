@@ -2,11 +2,11 @@
 {
   "en": {
     "qualification": "Qualification",
-    "qualification_sub": "Please select your qualification(s)"
+    "qualification_sub": "Please state your qualification(s)."
   },
   "de": {
     "qualification": "Qualifikation",
-    "qualification_sub": "Bitte geben Sie ihre Qualifikation(en) an"
+    "qualification_sub": "Bitte geben Sie ihre Qualifikation(en) an."
   }
 }
 </i18n>

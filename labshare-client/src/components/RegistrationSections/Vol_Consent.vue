@@ -90,11 +90,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-.consent-section {
-  margin: 44px 0;
-}
-
-</style>

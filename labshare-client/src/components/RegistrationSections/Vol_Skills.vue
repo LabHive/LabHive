@@ -3,8 +3,7 @@
   "en": {
     "volunteerSkills": "Skills",
     "furtherInfo": "Further Information",
-    "volunteerSkills_sub": "Please specify your skills, you can change them later in your profile.",
-    "volunteerSkills_sub_update": "Please specify your skills",
+    "volunteerSkills_sub": "Please specify your skills, you can change them later in your profile at any time.",
     "description": "Further information, other skills, availability, etc."
   },
   "de": {
