@@ -258,24 +258,4 @@ hr {
   margin-bottom: 24px;
 }
 
-#router::v-deep {
-  & h4 {
-    font-weight: normal;
-    margin-bottom: 16px;
-    font-size: 18px;
-    color: #484C5A;
-  }
-}
-
-::v-deep {
-  .step-info-sub {
-    margin-bottom: 44px;
-    max-width: 60%;
-
-    @media(max-width: 992px) {
-      max-width: 100% !important;
-    }
-  }
-}
-
 </style>

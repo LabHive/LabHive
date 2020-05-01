@@ -1,31 +1,31 @@
 <i18n>
 {
   "en": {
-    "requestResource": "Request a Resource",
+    
     "requestVolunteerSkills": "Request Volunteer Skills",
     "requestEquipment": "Request Devices and Equipment",
     "requestEquipmentDescription": "More specific information about the equipment you need. How many devices? Which manufacutres work for you?",
     "equipmentDescription": "Description of the requested Devices",
     "requestAdvice":"Request Advice and Know-How",
     "requestAdviceDescription":"More specific information about the topics you need help with.",
-    "adviceDescription": "Description of requested Advice"
+    "adviceDescription": "Description of requested Advice",
+    "requestRessource_sub": "If you need resources, you can specify them here. You can always change this later in your profile settings. Click below on “Next” if you cannot provide anything at the moment."
   },
   "de": {
-    "requestResource": "Eine Ressource anfragen",
     "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
     "requestEquipment": "Benötigte Geräte/Reagenzien",
     "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Benötigte Beratung/Know-How",
     "requestAdviceDescription":"Genauere Informationen, über die Themen, bei denen Sie Hilfe gebrauchen",
-    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"
+    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows",
+    "requestRessource_sub": "Wenn sie Ressourcen benötigen, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
   }
 }
 </i18n>
 <template>
   <div>
-    <h2 v-if="!registration">{{ $t("requestResource") }}</h2>
-    <p v-else class="step-info-sub">Bitte geben Sie ihre Kontaktdaten an. Wir teilen personenbezogene Daten wie Name, E-Mail Adresse und Telefonnummer nur mit verfizierten Diagnostikzentren.</p>
+    <p class="step-info-sub" v-if="registration">{{ $t("requestRessource_sub") }}</p>
 
     <b-row>
       <b-col sm="*" lg="5" order="1" order-lg="1">

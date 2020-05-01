@@ -11,8 +11,8 @@
     "signOut": "Logout",
     "privacyPolicy": "Privacy Policy",
     "imprint": "Imprint",
-    "requestResource": "Request Resources",
-    "offerResource": "Offer Resources",
+    "requestResource": "Current Requests",
+    "offerResource": "Current Offers",
     "search": "Search For Resources",
     "staging": "Only for test purposes, does not contain real data."
   },
@@ -27,8 +27,8 @@
     "signOut": "Logout",
     "privacyPolicy": "Datenschutzerklärung",
     "imprint": "Impressum",
-    "requestResource": "Bedarfsanfrage",
-    "offerResource": "Ressource anbieten",
+    "requestResource": "Aktueller Bedarf",
+    "offerResource": "Aktuelles Angebot",
     "search": "Suche nach Ressourcen",
     "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!"
   }
@@ -229,10 +229,26 @@ h1,h3 {
 }
 
 h3 {
-font-size: 28px;
-margin: 32px 0 8px 0;
-letter-spacing: 0.05em;
+  font-size: 28px;
+  margin: 32px 0 8px 0;
+  letter-spacing: 0.05em;
 }
+
+h4 {
+  font-weight: normal;
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: #484C5A;
+}
+
+.step-info-sub {
+      margin-bottom: 44px;
+      max-width: 60%;
+
+      @media(max-width: 992px) {
+        max-width: 100% !important;
+      }
+    }
 
 .main-div {
   height: 100%;
@@ -246,7 +262,7 @@ letter-spacing: 0.05em;
   margin-top: 20px;
 }
 
-.btn-primary {
+.btn-primary, .btn-success {
   background: #C9E0DF;
   border-radius: 4px;
   border: none;
@@ -300,7 +316,7 @@ letter-spacing: 0.05em;
   }
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active {
-    background: $color-green;
+    background: #888;
     color: #fff;
     box-shadow: none;
   }
@@ -310,6 +326,11 @@ letter-spacing: 0.05em;
     color: #0E5145;;
     box-shadow: 0 0 0 transparent;
   }
+}
+
+.btn-success {
+  color: #fff;
+  background: #2aad70;
 }
 
 .btn-cta {

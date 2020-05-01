@@ -2,13 +2,13 @@
 {
   "en":{
     "contact": "Affiliation & Contact",
-    "contact_sub": "Please provide your contact details. We share contact information such as last name, email address and phone number with verified diagnostic centers and research laboratories only.",
+    "contact_sub": "Please enter your contact details. <strong>We need this data to be able to verify you.</strong> We only share personal data such as name, e-mail address and telephone number with other verified diagnostic centres and research laboratories.",
     "affiliation": "Your Affiliation",
     "contactPerson": "Contact Person"
   },
   "de":{
     "contact": "Affiliation & Kontaktperson",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten an. Wir teilen personenbezogene Daten wie Name, E-Mail Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren und Forschungslaboren",
+    "contact_sub": "Bitte geben Sie ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
     "affiliation": "Ihre Affiliation",
     "contactPerson": "Kontaktperson"
   }
@@ -17,7 +17,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
-    <p class="step-info-sub" style="max-width: 60%">{{ $t("contact_sub") }}</p>
+    <p class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
 
     <b-row cols="1">
 
