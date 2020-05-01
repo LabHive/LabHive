@@ -3,13 +3,13 @@
   "en": {
     
     "requestVolunteerSkills": "Request Volunteer Skills",
-    "requestEquipment": "Request Devices and Equipment",
-    "requestEquipmentDescription": "More specific information about the equipment you need. How many devices? Which manufacutres work for you?",
-    "equipmentDescription": "Description of the requested Devices",
-    "requestAdvice":"Request Advice and Know-How",
-    "requestAdviceDescription":"More specific information about the topics you need help with.",
+    "requestEquipment": "Needed Devices/Reagents",
+    "requestEquipmentDescription": "More detailed information about the devices required. Manufacturer, quantity, etc.",
+    "equipmentDescription": "Description of the requested devices",
+    "requestAdvice":"Needed Advice/Know-How",
+    "requestAdviceDescription":"More detailed information about the areas in which you need help",
     "adviceDescription": "Description of requested Advice",
-    "requestRessource_sub": "If you need resources, you can specify them here. You can always change this later in your profile settings. Click below on “Next” if you cannot provide anything at the moment."
+    "requestRessource_sub": "If you need resources, you can list them here. You can always change this later in your profile. Click on “Next” below if currently you do not need anything."
   },
   "de": {
     "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
@@ -17,9 +17,9 @@
     "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Benötigte Beratung/Know-How",
-    "requestAdviceDescription":"Genauere Informationen, über die Themen, bei denen Sie Hilfe gebrauchen",
+    "requestAdviceDescription":"Genauere Informationen über die Themen, bei denen Sie Hilfe benötigen",
     "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows",
-    "requestRessource_sub": "Wenn sie Ressourcen benötigen, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
+    "requestRessource_sub": "Wenn sie Ressourcen benötigen, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts benötigen."
   }
 }
 </i18n>

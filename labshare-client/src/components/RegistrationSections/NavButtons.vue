@@ -3,12 +3,12 @@
   "en": {
     "back": "Back",
     "next": "Next",
-    "submit": "Submit"
+    "submit": "Register Now"
   },
   "de": {
     "back": "Zurück",
     "next": "Weiter",
-    "submit": "Registrieren"
+    "submit": "Jetzt registrieren"
   }
 }
 </i18n>

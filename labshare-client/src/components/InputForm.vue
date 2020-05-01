@@ -2,7 +2,7 @@
 {
   "en": {
     "labName": "Laboratory Name",
-    "labWebsite": "Laboratory Homepage",
+    "labWebsite": "Laboratory Website",
     "instituteName": "Institute/University",
     "instituteWebsite": "Website of your Institute/University",
     "firstName": "First Name",
@@ -20,7 +20,7 @@
   },
   "de":{
     "labName": "Laborname",
-    "labWebsite": "Labor-Homepage",
+    "labWebsite": "Labor Website",
     "instituteName": "Institut/Universität",
     "instituteWebsite": "Website des Instituts/der Universität",
     "firstName": "Vorname",
