@@ -43,10 +43,10 @@
           <b-form-group :label="$t('searchModeSelection')">
             <b-row align-v="center">
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
+                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
+                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="offer" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col last">
                 <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
