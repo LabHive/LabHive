@@ -11,12 +11,12 @@
     "contactInfo": "Contact Information",
     "address": "Address",
     "city": "City",
-    "zipcode": "Zipcode",
+    "zipcode": "ZIP-Code",
     "street": "Street",
     "password": "Password",
     "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
-    "officialEmail": "Institutional e-mail address"
+    "officialEmail": "E-mail address of your institute"
   },
   "de":{
     "labName": "Laborname",
@@ -34,7 +34,7 @@
     "password": "Passwort",
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
-    "officialEmail": "E-Mail-Adresse des Instituts"
+    "officialEmail": "E-Mail Adresse des Instituts"
   }
 }
 </i18n>

@@ -14,7 +14,7 @@
     "theOffers": "Offers",
     "theRequests": "Requests",
     "searchInSurroundings": "Search in the surroundings",
-    "zipcode": "Enter Zipcode"
+    "zipcode": "Enter ZIP-Code"
     },
     "de": {
     "searchModeSelection": "Wonach suchen Sie?",
