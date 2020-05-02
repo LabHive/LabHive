@@ -14,6 +14,7 @@
     "zipcode": "ZIP-Code",
     "street": "Street",
     "password": "Password",
+    "oldPassword": "Old Password",
     "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
     "officialEmail": "E-mail address of your institute"
@@ -32,6 +33,7 @@
     "zipcode": "Postleitzahl",
     "street": "Strasse",
     "password": "Passwort",
+    "oldPassword": "Altes Passwort",
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
     "officialEmail": "E-Mail Adresse des Instituts"
