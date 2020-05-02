@@ -32,10 +32,7 @@
 
       <div class="row">
         <b-form class="col-md-6">
-          <b-form-group id="password" :label="$t('oldPassword')">
-            <b-form-input type="password" v-model="formData.oldPassword"></b-form-input>
-          </b-form-group>
-
+          <InputForm inType="password" name="oldPassword" v-model="formData.oldPassword"></InputForm>
           <Password v-model="formData.newPassword" verticalLabel @validPassword="valid"></Password>
 
           <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
@@ -46,6 +43,7 @@
 </template>
 
 <script>
+import InputForm from "@/components/InputForm";
 import Password from "@/components/PasswordFields";
 
 export default {
@@ -83,6 +81,7 @@ export default {
     }
   },
   components: {
+    InputForm,
     Password
   }
 };
