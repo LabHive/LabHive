@@ -59,7 +59,7 @@
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
               <p>{{$t("selected")}}</p>
             <figure>
-             <a href="https://wirvsvirushackathon.org/" target="_blank"> <img class="img-hover" src="../assets/logo-wirvsvirus-enabler.png" alt="Wir vs. Virus Solution Enabler" width="auto" height="56" /> </a>
+             <a href="https://wirvsvirushackathon.org/weiterfuehrung-2/" target="_blank"> <img class="img-hover" src="../assets/logo-wirvsvirus-enabler.png" alt="Wir vs. Virus Solution Enabler" width="auto" height="56" /> </a>
             </figure>
           </b-col>
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">

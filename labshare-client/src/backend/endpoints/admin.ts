@@ -62,7 +62,7 @@ export class AdminEndpoint {
         let mail = body.email
         let password = body.password
 
-        let user = await UserAdmin.findOne({ "contact.email": mail })
+        let user = await UserAdmin.findOne({ "contact.email": mail }).lean().exec()
         if (!user) {
             return utils.badRequest(res)
         }
