@@ -16,12 +16,7 @@ import { sendActivationMail } from '../mail/mailer';
 import { getLangID } from './language';
 import { OPT } from '../options';
 import { Document } from 'mongoose';
-import Bottleneck from 'bottleneck';
 
-const locationLookupLimiter = new Bottleneck({
-  maxConcurrent: 10,
-  minTime: 100,
-});
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
     let body: IUserCommon = req.body

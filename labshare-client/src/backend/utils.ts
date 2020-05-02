@@ -4,6 +4,7 @@ import { LocationNotFoundError, ValidationError, UnauthorizedError } from './err
 import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { CONF, OPT } from './options'
+import { osmLimiter } from './ratelimiter'
 
 export interface Address {
     city?: string,
@@ -48,7 +49,7 @@ class Utils {
 
         try {
             const urls = url.toString()
-            const response = await axios.get(urls)
+            const response = await osmLimiter.schedule(() => axios.get(urls))
             if (response.data.length == 0) {
                 throw new LocationNotFoundError("invalid_location")
             }
