@@ -111,7 +111,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             }
         }
     }
-    else if (searchMode) {
+    else {
         if (searchMode === SearchMode.lookingFor) {
             filter['$or'] = [
                 { "lookingFor.equipment.0": { "$exists": true } },
@@ -125,6 +125,16 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             ]
         } else if (searchMode == SearchMode.volunteers) {
             filter['role'] = UserRoles.VOLUNTEER
+        }
+        else {
+            filter['$or'] = [
+                { "offers.equipment.0": { "$exists": true } },
+                { "offers.advice.0": { "$exists": true } },
+                { "lookingFor.equipment.0": { "$exists": true } },
+                { "lookingFor.advice.0": { "$exists": true } },
+                { "lookingFor.volunteerSkills.0": { "$exists": true } },
+                { "role": UserRoles.VOLUNTEER }
+            ]
         }
     }
 
