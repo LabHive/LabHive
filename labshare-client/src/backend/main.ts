@@ -57,6 +57,18 @@ router.use(function(req, res, next) {
 })
 
 router.use('/admin', adminRouter.router)
+if (OPT.STAGING) {
+  router.get('/debug', (req, res) => {
+    res.contentType('text/plain')
+    res.send(
+      `Time: ${new Date()}\n`+
+      `IP: ${req.ip}\n` +
+      `Headers: ${JSON.stringify(req.headers, null, 4)}\n` + 
+      `OPT: ${OPT.jsonify()}\n`
+    )
+  })
+}
+
 
 
 router.get('/language', language)
