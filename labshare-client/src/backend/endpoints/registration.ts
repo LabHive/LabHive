@@ -69,7 +69,7 @@ export async function registration(req: express.Request, res: express.Response, 
         body.website = "http://" + body.website;
     }
 
-    let euser = await getUserForMail(body.contact.email)
+    let euser = await getUserForMail(body.contact.email, true)
     if (euser) {
         return utils.errorResponse(res, HttpStatus.BAD_REQUEST, "existing_user")
     }

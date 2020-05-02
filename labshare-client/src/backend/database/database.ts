@@ -1,4 +1,4 @@
-import mongoose, { Model, Document } from "mongoose"
+import mongoose, { Model, Document, DocumentQuery } from "mongoose"
 import { IUserVolunteer, UserVolunteerSchema } from './schemas/IUserVolunteer'
 import { IUserLabDiag, UserLabDiagSchema } from './schemas/IUserLabDiag'
 import { IResetToken, ResetTokenSchema } from './schemas/IResetToken'
@@ -31,18 +31,18 @@ mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser
 
     let migrated = false
     while (!migrated) {
-      const s = await status(mongoose.connection.db)
-      const pendingMigrations = s.filter((x => x.appliedAt === "PENDING")).map(x => {return `PENDING Migration: ${x.fileName}`})
+        const s = await status(mongoose.connection.db)
+        const pendingMigrations = s.filter((x => x.appliedAt === "PENDING")).map(x => { return `PENDING Migration: ${x.fileName}` })
 
-      if (pendingMigrations.length == 0) {
-        migrated = true
-      }
-      else {
-        console.warn(pendingMigrations.join("\n"))
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }
-    }  
-    
+        if (pendingMigrations.length == 0) {
+            migrated = true
+        }
+        else {
+            console.warn(pendingMigrations.join("\n"))
+            await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+    }
+
     ready = true;
     GlobalEvent.emit("ready")
 }).catch((err) => {
@@ -63,78 +63,86 @@ export const FailedMail = mongoose.model<IFailedMail>('failed_mail', FailedMailS
 export const ActivationToken = mongoose.model<IActivationToken>('activation_token', ActivationTokenSchema)
 
 
-export function getUserForMail(email: string): Promise<Optional<IUserCommon>> {
-  return getUser({ 'contact.email': email });
+export function getUserForMail(email: string, lean: boolean = false): Promise<Optional<IUserCommon>> {
+    return getUser({ 'contact.email': email }, lean);
 }
 
-export function getUserById(id: string): Promise<Optional<IUserCommon>> {
-  return getUser({ _id: id });
+export function getUserById(id: string, lean: boolean = false): Promise<Optional<IUserCommon>> {
+    return getUser({ _id: id }, lean);
 }
 
 export function getModelForRole(role?: string): Optional<Model<IUserCommon>> {
-  switch (role) {
-    case UserRoles.LAB_DIAG:
-      return UserLabDiag;
-    case UserRoles.LAB_RESEARCH:
-      return UserLabResearch;
-    case UserRoles.VOLUNTEER:
-      return UserVolunteer;
-    default:
-      return UserCommon;
-  }
+    switch (role) {
+        case UserRoles.LAB_DIAG:
+            return UserLabDiag;
+        case UserRoles.LAB_RESEARCH:
+            return UserLabResearch;
+        case UserRoles.VOLUNTEER:
+            return UserVolunteer;
+        default:
+            return UserCommon;
+    }
 }
 
-export async function getUser(filter: any): Promise<Optional<IUserCommon>> {
-    return (await UserCommon.findOne(filter).exec()) ?? undefined
+export async function getUser(filter: any, lean: boolean = false): Promise<Optional<IUserCommon>> {
+    let query = UserCommon.findOne(filter)
+    if (lean)
+        query.lean()
+    return (await query.exec()) ?? undefined
 }
 
-export async function getUserOrAdmin(filter: any): Promise<Optional<IUserCommon>> {
+export async function getUserOrAdmin(filter: any, lean: boolean = false): Promise<Optional<IUserCommon>> {
     let models: Model<any>[] = [UserCommon, UserAdmin]
 
     for (let i of models) {
-        let tmp = await i.findOne(filter)
-        if (tmp) {
-            return tmp
+        let tmp = i.findOne(filter)
+        if (lean)
+            tmp = tmp.lean()
+
+        let res = await tmp.exec()
+        if (res) {
+            return res
         }
     }
-    
+
     return undefined
 }
 
 export async function getTestCoverage(): Promise<{
-  testsPerWeek: number;
-  markerCounts: { [index in UserRoles]: number };
-  markers: Array<{
-    role: UserRoles;
-    latLong: { lat: number; long: number };
-  }>;
+    testsPerWeek: number;
+    markerCounts: { [index in UserRoles]: number };
+    markers: Array<{
+        role: UserRoles;
+        latLong: { lat: number; long: number };
+    }>;
 }> {
 
-  let filter = getFilterForPublicUsers()
+    let filter = getFilterForPublicUsers()
 
-  const users = await UserCommon.find(filter).select({__t: 1, location: 1, role: 1}).exec()
+    const users = await UserCommon.find(filter).select({ __t: 1, location: 1, role: 1 }).lean().exec()
 
-  const labDiags = users.filter((i) => i.__t == UserRoles.LAB_DIAG)
-  const labResearches = users.filter((i) => i.__t == UserRoles.LAB_RESEARCH)
-  const volunteers = users.filter((i) => i.__t == UserRoles.VOLUNTEER)
 
-  return {
-    testsPerWeek: TESTS_PER_WEEK,
-    markerCounts: {
-      [UserRoles.LAB_DIAG]: labDiags.length,
-      [UserRoles.LAB_RESEARCH]: labResearches.length,
-      [UserRoles.VOLUNTEER]: volunteers.length
-    },
-    markers: [...labDiags, ...labResearches, ...volunteers].map(
-      ({ role, location }) => ({
-        role,
-        latLong: {
-          lat: location.coordinates[1],
-          long: location.coordinates[0]
-        }
-      })
-    )
-  };
+    const labDiags = users.filter((i) => i.__t == UserRoles.LAB_DIAG)
+    const labResearches = users.filter((i) => i.__t == UserRoles.LAB_RESEARCH)
+    const volunteers = users.filter((i) => i.__t == UserRoles.VOLUNTEER)
+
+    return {
+        testsPerWeek: TESTS_PER_WEEK,
+        markerCounts: {
+            [UserRoles.LAB_DIAG]: labDiags.length,
+            [UserRoles.LAB_RESEARCH]: labResearches.length,
+            [UserRoles.VOLUNTEER]: volunteers.length
+        },
+        markers: [...labDiags, ...labResearches, ...volunteers].map(
+            ({ role, location }) => ({
+                role,
+                latLong: {
+                    lat: location.coordinates[1],
+                    long: location.coordinates[0]
+                }
+            })
+        )
+    };
 }
 
 
@@ -143,46 +151,46 @@ export async function getTestCoverage(): Promise<{
 
 
 export function getFilterForPublicUsers(additional: any = {}): any {
-  return {
-    'consent.publicSearch': true,
-    'verified.manually': true,
-    'verified.mail': true,
-    'disabled': false,
-    ...additional
-  }
+    return {
+        'consent.publicSearch': true,
+        'verified.manually': true,
+        'verified.mail': true,
+        'disabled': false,
+        ...additional
+    }
 }
 
 export function cleanUserObjForToken(token: Optional<Token>, user: IUserCommon) {
-  delete user._id
-  delete user.__v
-  delete user.password
-  delete user.consent
-  delete user.verified
-  delete user.disabled
+    delete user._id
+    delete user.__v
+    delete user.password
+    delete user.consent
+    delete user.verified
+    delete user.disabled
 
-  // unauthorized or logged in as volunteer
-  if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
-    delete user.contact
+    // unauthorized or logged in as volunteer
+    if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
+        delete user.contact
 
-    if (user.role === UserRoles.VOLUNTEER) {
-      delete user.organization
-      delete user.website
+        if (user.role === UserRoles.VOLUNTEER) {
+            delete user.organization
+            delete user.website
+        }
     }
-  }
 }
 
 export function sensibleUserProjection(): { [key: string]: number } {
-  return {
-    'location': 1,
-    'address': 1,
-    'description': 1,
-    'role': 1,
-    'offers': 1,
-    'lookingFor': 1,
-    'organization': 1,
-    'website': 1,
-    'contact': 1,
-    'details': 1,
-    'slug': 1
-  }
+    return {
+        'location': 1,
+        'address': 1,
+        'description': 1,
+        'role': 1,
+        'offers': 1,
+        'lookingFor': 1,
+        'organization': 1,
+        'website': 1,
+        'contact': 1,
+        'details': 1,
+        'slug': 1
+    }
 }

@@ -204,7 +204,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         return
     }
 
-    let count = await UserCommon.find(filter).countDocuments().exec()
+    let count = await UserCommon.find(filter).lean().countDocuments().exec()
 
     if (count == 0 || count < page * 20) {
         let links = {
@@ -240,7 +240,7 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
         }]).project(projection).skip(20 * page).limit(20).exec())
     } else {
-        docs = await UserCommon.find(filter).sort({ "updatedAt": -1 }).select(projection).skip(20 * page).limit(20)
+        docs = <IUserCommon[]>await UserCommon.find(filter).sort({ "updatedAt": -1 }).select(projection).skip(20 * page).limit(20).lean()
     }
 
     let results = []

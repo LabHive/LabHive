@@ -21,7 +21,7 @@ export async function forgotPassword(req: express.Request, res: express.Response
     }
 
 
-    let user = await getUserForMail(body.email);
+    let user = await getUserForMail(body.email, true);
     if (!user) {
         return utils.successResponse(res);
     }

@@ -3,7 +3,6 @@ import express from 'express'
 import { LocationNotFoundError, ValidationError, UnauthorizedError } from './errors'
 import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
-import { getUser } from "./database/database";
 import { CONF, OPT } from './options'
 
 export interface Address {
