@@ -12,6 +12,7 @@ import { CONF, OPT } from '../options'
 import { TESTS_PER_WEEK, GlobalEvent } from '../constants';
 import { Token } from '../utils'
 import { status } from "migrate-mongo"
+import { ZipcodeSchema, IZipcode } from './schemas/IZipcodes'
 
 
 const connectionBase = OPT.PRODUCTION ? 'mongodb' : 'localhost';
@@ -53,6 +54,7 @@ mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser
 
 
 export const UserAdmin = mongoose.model<IUserAdmin>('user_admin', UserAdminSchema)
+export const ZipCode = mongoose.model<IZipcode>('zipcodes', ZipcodeSchema)
 
 export const UserCommon = mongoose.model<IUserCommon>('users', UserCommonSchema)
 export const UserVolunteer = UserCommon.discriminator<IUserVolunteer>(UserRoles.VOLUNTEER, UserVolunteerSchema)

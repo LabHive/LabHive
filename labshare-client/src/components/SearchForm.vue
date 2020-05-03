@@ -114,6 +114,7 @@
             v-model="filter.zipcode"
             :required="false"
             :placeholder="$t('zipcode')"
+            :valFunc="val.validZipcode"
             @valid="searchChange"
             @input="changeZip"
           ></InputForm>
