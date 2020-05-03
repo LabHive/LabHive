@@ -112,8 +112,7 @@
             name="zipcode"
             :label="$t('searchInSurroundings')"
             v-model="filter.zipcode"
-            :valFunc="optionalZip"
-            :validFeedback="() => ''"
+            :required="false"
             :placeholder="$t('zipcode')"
             @valid="searchChange"
             @input="changeZip"
@@ -217,12 +216,6 @@ export default {
       }
       this.filter.zipcode = this.$user.address.zipcode;
       this.searchChange()
-    },
-    optionalZip(data) {
-      if (data === "") {
-        return {valid: null}
-      }
-      return this.val.validZipcode(data)
     },
     changeZip(input) {
       if (input === "") {

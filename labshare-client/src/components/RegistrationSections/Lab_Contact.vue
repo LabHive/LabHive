@@ -19,7 +19,7 @@
     <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
     <p class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
 
-    <b-row cols="1">
+    <b-row>
 
       <!-- Header Affiliation -->
       <b-col v-bind="large" order-md="1" order="1">
@@ -27,7 +27,7 @@
       </b-col>
 
       <!-- Header Contact Person -->
-      <b-col v-bind="large" offset-xl="1" order-md="2" order="5" class="second-header">
+      <b-col v-bind="large" offset-xl="1" order-md="2" order="6" class="second-header">
         <h4>{{ $t("contactPerson") }}</h4>
       </b-col>
 
@@ -45,7 +45,7 @@
       </b-col>
 
       <!-- FirstName -->
-      <b-col v-bind="small" offset-xl="1" order-md="4" order="6">
+      <b-col v-bind="small" offset-xl="1" order-md="4" order="7">
         <InputForm
           name="firstName"
           v-model="formData.contact.firstname"
@@ -54,7 +54,7 @@
       </b-col>
 
       <!-- LastName -->
-      <b-col v-bind="small" order-md="5" order="7">
+      <b-col v-bind="small" order-md="5" order="8">
         <InputForm
           name="lastName" 
           v-model="formData.contact.lastname" 
@@ -67,7 +67,7 @@
 
 
       <!-- Website -->
-      <b-col v-bind="large" order-md="6" order="3" style="margin-bottom: 16px;">
+      <b-col v-bind="large" order-md="6" order="3">
         <InputForm
           :name="role == 'lab_diag' ? 'labWebsite' : 'instituteWebsite'"
           v-model="formData.website"
@@ -77,7 +77,7 @@
       </b-col>
 
       <!-- Phone -->
-      <b-col v-bind="large" offset-xl="1" order-md="7" order="8" style="margin-bottom: 16px;">
+      <b-col v-bind="large" offset-xl="1" order-md="7" order="9">
         <InputForm 
           name="phone" 
           v-model="formData.contact.phone" 
@@ -99,8 +99,12 @@
         ></InputForm>
       </b-col>
 
+      <b-col sm="0" md="6" order-md="9">
+        <!-- empty -->
+      </b-col>
+
       <!-- Street -->
-      <b-col v-bind="large" offset-xl="1" order-md="9" order="9">
+      <b-col v-bind="large" order-md="10" order="5">
         <InputForm 
           name="street" 
           v-model="formData.address.street" 
