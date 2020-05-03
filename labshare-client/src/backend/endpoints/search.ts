@@ -168,14 +168,8 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
 
 async function getZipcodeCoords(req: express.Request, res: express.Response, token?: Token): Promise<Optional<number[]>> {
     if (req.query.zipcode) {
-        try {
-            if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
-            return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coords.coordinates
-        }
-        catch {
-            utils.errorResponse(res, 400, "invalid_zipcode")
-            return undefined
-        }
+        if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
+        return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coords.coordinates
     }
 
     return undefined
@@ -231,7 +225,15 @@ export async function search(req: express.Request, res: express.Response, next: 
         return res.send(resp)
     }
 
-    let center = await getZipcodeCoords(req, res, token)
+    let center: Optional<number[]>
+    try {
+        center = await getZipcodeCoords(req, res, token)
+    }
+    catch {
+        utils.errorResponse(res, 400, "invalid_zipcode");
+        return
+    }
+    
     let docs: IUserCommon[]
     if (center) {
         let center_point = {

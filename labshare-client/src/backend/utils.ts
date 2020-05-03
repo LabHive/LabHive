@@ -5,6 +5,7 @@ import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { CONF, OPT } from './options'
 import { osmLimiter } from './ratelimiter'
+import { ZipCode } from './database/database'
 
 export interface Address {
     city?: string,
@@ -38,6 +39,18 @@ class Utils {
             searchComponent.city = address.city
         }
 
+        if (address.zipcode && !address.street && !address.city) {
+            let zipDoc = await ZipCode.findOne({ zipcode: address.zipcode }).lean().exec()
+            if (zipDoc) {
+                return {
+                    coords: {
+                        type: "Point",
+                        coordinates: [zipDoc.location.coordinates[0] , zipDoc.location.coordinates[1]]
+                    },
+                    city: zipDoc.city
+                }
+            }
+        }
 
         const url = new URL("https://nominatim.openstreetmap.org/search?format=json&limit=1")
 
@@ -56,6 +69,17 @@ class Utils {
             let lon = parseFloat(response.data[0].lon)
             let lat = parseFloat(response.data[0].lat)
             let city = response.data[0].display_name?.split(",")[0] ?? ""
+            if (address.zipcode && !address.street && !address.city) {
+                new ZipCode({
+                    zipcode: address.zipcode,
+                    location: {
+                        type: "Point",
+                        coordinates: [lon, lat]
+                    },
+                    city: city,
+                    country: "Germany"
+                }).save()
+            }
             return {
                 coords: {
                     type: "Point",
