@@ -8,12 +8,13 @@ import { UserRoles } from '../../lib/userRoles'
 import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail'
 import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationToken'
 import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin'
-import { CONF } from '../options'
+import { CONF, OPT } from '../options'
 import { TESTS_PER_WEEK, GlobalEvent } from '../constants';
 import { Token } from '../utils'
 import { status } from "migrate-mongo"
 
-const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
+
+const connectionBase = OPT.PRODUCTION ? 'mongodb' : 'localhost';
 export let ready = false;
 
 mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {

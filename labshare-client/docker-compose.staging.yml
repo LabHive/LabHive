@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+  redis:
+    image: redis
+    restart: always
+    # ports:
+    #   - 6379:6379
+    networks:
+      - network
+
   mongodb:
     image: mongo
     restart: always
@@ -39,10 +47,9 @@ services:
       rollback_config:
         parallelism: 0
     environment: 
-      PRODUCTION: "1"
-      BASE_URL: "https://dev.labhive.de"
+      STAGING: "1"
       ENABLE_MAIL: "0"
-      DISABLE_VERIFICATION: "1"
+      BASE_URL: "https://dev.labhive.de"
     networks:
       - network
     volumes: 

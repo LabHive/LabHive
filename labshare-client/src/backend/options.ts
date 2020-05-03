@@ -18,6 +18,16 @@ class EnvVar<T> {
             this._isSet = true
             this.value = <T><unknown>(evar === '1' || evar.toLowerCase() === 'true')
         }
+        else if (evar && typeof defaultValue === 'number') {
+            this._isSet = true
+            try {
+                this.value = <T><unknown>parseInt(evar)
+            }
+            catch(err) {
+                console.error("environment variable is not a number!")
+                process.exit(1)
+            }
+        }
     }
 
     public get isSet(): boolean {
@@ -28,15 +38,33 @@ class EnvVar<T> {
 class Options {
     private _ENABLE_MAIL: EnvVar<boolean>
     private _PRODUCTION: EnvVar<boolean>
+    private _STAGING: EnvVar<boolean>
     private _DISABLE_VERIFICATION: EnvVar<boolean>
     private _BASE_URL: EnvVar<string>
+    private _DISABLE_RATE_LIMITING: EnvVar<boolean>
+    private _RATE_LIMITING_BLOCK_DURATION: EnvVar<number>
 
     constructor() {
-        this._ENABLE_MAIL = new EnvVar(process.env.ENABLE_MAIL, false)
-        this._PRODUCTION = new EnvVar(process.env.PRODUCTION, false)
-        this._DISABLE_VERIFICATION = new EnvVar(process.env.DISABLE_VERIFICATION, false)
         this._BASE_URL = new EnvVar(process.env.BASE_URL, "")
-        
+
+        this._ENABLE_MAIL = new EnvVar(process.env.ENABLE_MAIL, false)
+
+        this._PRODUCTION = new EnvVar(process.env.PRODUCTION, false)
+        this._STAGING = new EnvVar(process.env.STAGING, false)
+
+        this._DISABLE_VERIFICATION = new EnvVar(process.env.DISABLE_VERIFICATION, false)
+        this._DISABLE_RATE_LIMITING = new EnvVar(process.env.DISABLE_RATE_LIMITING, false)
+        this._RATE_LIMITING_BLOCK_DURATION = new EnvVar(process.env._RATE_LIMITING_BLOCK_DURATION, 30)
+
+        if (this.STAGING) {
+            if (!this._RATE_LIMITING_BLOCK_DURATION.isSet)
+                this._RATE_LIMITING_BLOCK_DURATION.value = 1
+            if (!this._DISABLE_VERIFICATION.isSet)
+                this._DISABLE_VERIFICATION.value = true
+            if (!this._PRODUCTION.isSet)
+                this._PRODUCTION.value = true
+        }
+
         if (this.PRODUCTION && !this._ENABLE_MAIL.isSet) {
             this._ENABLE_MAIL.value = true
         }
@@ -61,12 +89,28 @@ class Options {
         return this._PRODUCTION.value
     }
 
+    public get STAGING(): boolean {
+        return this._STAGING.value
+    }
+
     public get DISABLE_VERIFICATION(): boolean {
         return this._DISABLE_VERIFICATION.value
     }
 
     public get BASE_URL(): string {
         return this._BASE_URL.value
+    }
+
+    public get DISABLE_RATE_LIMITING(): boolean {
+        return this._DISABLE_RATE_LIMITING.value
+    }
+
+    public get RATE_LIMITING_BLOCK_DURATION(): number {
+        return this._RATE_LIMITING_BLOCK_DURATION.value
+    }
+
+    public jsonify() {
+        return JSON.stringify(this, null, 4)
     }
 }
 

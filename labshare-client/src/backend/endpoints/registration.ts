@@ -1,15 +1,19 @@
 import argon2 from 'argon2';
-import express from "express";
+import express from 'express';
 import HttpStatus from 'http-status-codes';
 import { Validator as v } from '../../lib/validation';
-import { getModelForRole, getUserForMail, ActivationToken } from '../database/database';
+import {
+  getModelForRole,
+  getUserForMail,
+  ActivationToken,
+} from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
-import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
+import JsonSchema, { schemaForRole } from '../jsonSchemas/JsonSchema';
 import utils from '../utils';
 import { UserRoles } from '../../lib/userRoles';
 import { v4 as uuid } from 'uuid';
 import { sendActivationMail } from '../mail/mailer';
-import { getLangID } from "./language";
+import { getLangID } from './language';
 import { OPT } from '../options';
 import { Document } from 'mongoose';
 

@@ -19,13 +19,16 @@ import { OPT } from './options'
 import utils from './utils'
 import { ready } from './database/database'
 import { GlobalEvent } from './constants'
+import { RateLimiter } from './ratelimiter'
 
 let app = express()
+
 let router = express.Router()
 let adminRouter = new AdminEndpoint(express.Router())
 
 if (OPT.PRODUCTION) {
   app.use(express.static('dist'));
+  app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal'])
 } else {
   app.use(cors());
 }
@@ -38,7 +41,34 @@ app.use((req, res, next) => {
     next()
 })
 app.use('/api/v1', router)
+
+router.use(function(req, res, next) {
+    RateLimiter.consume(req.ip)
+        .then(() => {
+            next();
+        })
+        .catch(_ => {
+            if (OPT.DISABLE_RATE_LIMITING) {
+                return next()
+            }
+            return utils.errorResponse(res, 429, "Too many requests")
+        });
+
+})
+
 router.use('/admin', adminRouter.router)
+if (OPT.STAGING) {
+  router.get('/debug', (req, res) => {
+    res.contentType('text/plain')
+    res.send(
+      `Time: ${new Date()}\n`+
+      `IP: ${req.ip}\n` +
+      `Headers: ${JSON.stringify(req.headers, null, 4)}\n` + 
+      `OPT: ${OPT.jsonify()}\n`
+    )
+  })
+}
+
 
 
 router.get('/language', language)

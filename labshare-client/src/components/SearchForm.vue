@@ -155,7 +155,10 @@ export default {
   methods: {
     searchChange: function() {
       this.$nextTick(() => {
-        this.$emit("searchChange", this.filter);
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          this.$emit("searchChange", this.filter);
+        }, 300);
       })
     },
     changeFilterBy: function(type) {
