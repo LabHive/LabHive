@@ -24,7 +24,7 @@ export let localization = {
           invalid_zipcode: "Invalid zip code (should be 5 digits)",
           invalid_city: "Invalid city (max. 200 characters)",
           invalid_street: "Invalid street (max. 200 characters)",
-          invalid_phone: "Invalid phone number. Please use the format +49931123 or 12344 without - or /",
+          invalid_phone: "Please use the format +4992 or 123 without - or /",
           invalid_description: "Invalid description (max. 2000 characters)",
           invalid_name: "Invalid laboratory name (max. 200 characters)",
           invalid_number: "Invalid number",

@@ -67,7 +67,7 @@
 
 
       <!-- Website -->
-      <b-col v-bind="large" order-md="6" order="3" style="margin-bottom: 16px;">
+      <b-col v-bind="large" order-md="6" order="3">
         <InputForm
           :name="role == 'lab_diag' ? 'labWebsite' : 'instituteWebsite'"
           v-model="formData.website"
@@ -77,7 +77,7 @@
       </b-col>
 
       <!-- Phone -->
-      <b-col v-bind="large" offset-xl="1" order-md="7" order="9" style="margin-bottom: 16px;">
+      <b-col v-bind="large" offset-xl="1" order-md="7" order="9">
         <InputForm 
           name="phone" 
           v-model="formData.contact.phone" 
