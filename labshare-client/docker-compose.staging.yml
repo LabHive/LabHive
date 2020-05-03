@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+  redis:
+    image: redis
+    restart: always
+    # ports:
+    #   - 6379:6379
+    networks:
+      - network
+
   mongodb:
     image: mongo
     restart: always
