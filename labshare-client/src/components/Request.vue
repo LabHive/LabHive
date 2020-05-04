@@ -1,68 +1,75 @@
 <i18n>
-    {
-    "en":{
-    "requestResource": "Request a Resource",
+{
+  "en": {
+    
     "requestVolunteerSkills": "Request Volunteer Skills",
-    "requestEquipment": "Request Devices and Equipment",
-    "requestEquipmentDescription": "More specific information about the equipment you need. How many devices? Which manufacutres work for you?",
-    "equipmentDescription": "Description of the requested Devices",
-    "requestAdvice":"Request Advice and Know-How",
-    "requestAdviceDescription":"More specific information about the topics you need help with.",
-    "adviceDescription": "Description of requested Advice"
-    },
-    "de":{
-    "requestResource": "Eine Ressource anfragen",
+    "requestEquipment": "Needed Devices/Reagents",
+    "requestEquipmentDescription": "More detailed information about the devices required. Manufacturer, quantity, etc.",
+    "equipmentDescription": "Description of the requested devices",
+    "requestAdvice":"Needed Advice/Know-How",
+    "requestAdviceDescription":"More detailed information about the areas in which you need help",
+    "adviceDescription": "Description of requested Advice",
+    "requestRessource_sub": "If you need resources, you can list them here. You can always change this later in your profile. Click on “Next” below if currently you do not need anything."
+  },
+  "de": {
     "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
-    "requestEquipment": "Equipment und Geräte anfragen",
+    "requestEquipment": "Benötigte Geräte/Reagenzien",
     "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
-    "requestAdvice":"Beratung und Know-How anfragen",
-    "requestAdviceDescription":"Genauere Informationen, über die Themen, bei denen Sie Hilfe gebrauchen",
-    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows"
-    }
-    }
+    "requestAdvice":"Benötigte Beratung/Know-How",
+    "requestAdviceDescription":"Genauere Informationen über die Themen, bei denen Sie Hilfe benötigen",
+    "adviceDescription": "Beschreibung der/s angefragten Beratung/Know-Hows",
+    "requestRessource_sub": "Wenn sie Ressourcen benötigen, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts benötigen."
+  }
+}
 </i18n>
 <template>
   <div>
-    <h2>{{ $t("requestResource") }}</h2>
+    <p class="step-info-sub" v-if="registration">{{ $t("requestRessource_sub") }}</p>
 
-    <h3>{{ $t("requestVolunteerSkills") }}</h3>
-    <CheckboxGroup name="humans" cols="2" :data="labSkills" v-model="lookingFor.volunteerSkills"></CheckboxGroup>
+    <b-row>
+      <b-col sm="*" lg="5" order="1" order-lg="1">
+        <h4>{{ $t("requestEquipment") }}</h4>
+        <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
+      </b-col>
 
-    <h3>{{ $t("requestEquipment") }}</h3>
-    <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
+      <b-col sm="*" lg="5" offset-lg="1" order="3" order-lg="2">
+        <h4>{{ $t("requestAdvice") }}</h4>
+        <CheckboxGroup name="advice" cols="2" :data="advices" v-model="lookingFor.advice"></CheckboxGroup>
+      </b-col>
 
-    <b-form-group
-      id="equipmentDescription"
-      :state="val.validDescription(lookingFor.equipmentDescription).valid"
-      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.equipmentDescription).err.message)"
-    >
-      <b-form-textarea
-        id="equipmentDescription"
-        v-model="lookingFor.equipmentDescription"
-        :placeholder="$t('requestEquipmentDescription')"
-        rows="4"
-        max-rows="10"
-        :state="!val.validDescription(lookingFor.equipmentDescription).valid ? false: null"
-      ></b-form-textarea>
-    </b-form-group>
+      <b-col sm="*" lg="5" order="2" order-lg="3">
+        <b-form-group
+          :state="val.validDescription(lookingFor.equipmentDescription).valid"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.equipmentDescription).err.message)"
+        >
+          <b-form-textarea
+            v-model="lookingFor.equipmentDescription"
+            :placeholder="$t('requestEquipmentDescription')"
+            rows="4"
+            max-rows="10"
+            :state="!val.validDescription(lookingFor.equipmentDescription).valid ? false: null"
+          ></b-form-textarea>
+        </b-form-group>
+      </b-col>
+      
 
-    <h3>{{ $t("requestAdvice") }}</h3>
-    <CheckboxGroup name="advice" cols="2" :data="advices" v-model="lookingFor.advice"></CheckboxGroup>
-    <b-form-group
-      id="adviceDescription"
-      :state="val.validDescription(lookingFor.adviceDescription).valid"
-      :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.adviceDescription).err.message)"
-    >
-      <b-form-textarea
-        id="adviceDescription"
-        v-model="lookingFor.adviceDescription"
-        :placeholder="$t('requestAdviceDescription')"
-        rows="4"
-        max-rows="10"
-        :state="!val.validDescription(lookingFor.adviceDescription).valid ? false: null"
-      ></b-form-textarea>
-    </b-form-group>
+      <b-col sm="*" lg="5" offset-lg="1" offset-sm="0" order="4">
+        <b-form-group
+          :state="val.validDescription(lookingFor.adviceDescription).valid"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(lookingFor.adviceDescription).err.message)"
+        >
+          <b-form-textarea
+            v-model="lookingFor.adviceDescription"
+            :placeholder="$t('requestAdviceDescription')"
+            rows="4"
+            max-rows="10"
+            :state="!val.validDescription(lookingFor.adviceDescription).valid ? false: null"
+          ></b-form-textarea>
+        </b-form-group>
+      </b-col>
+    </b-row>
+    
 
     <b-button variant="primary" @click="$emit('submit')" v-if="showSubmit">Save</b-button>
   </div>
@@ -79,6 +86,10 @@ export default {
     showSubmit: {
       type: Boolean,
       default: true
+    },
+    registration: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -106,3 +117,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

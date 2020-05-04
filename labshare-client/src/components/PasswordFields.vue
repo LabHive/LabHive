@@ -1,19 +1,19 @@
 <i18n>
 {
   "en": {
-    "0Password": "Too short...",
-    "1Password": "Still not complex enough... Please add more characters (also numbers and special characters are allowed)",
-    "2Password": "Add more characters (also numbers and special characters are allowed)",
-    "3Password": "Sufficient...",
-    "4Password": "Unbreakable!"
+    "0Password": "Too short",
+    "1Password": "Too short, please also add numbers and special characters",
+    "2Password": "Please also add numbers and special characters",
+    "3Password": "Sufficiently secure, with more characters your password will become even more secure",
+    "4Password": "Your password is very secure"
 
   },
   "de": {
-    "0Password": "Noch zu kurz...",
-    "1Password": "Immernoch nicht lang genug... Bitte mehr Zeichen hinzufügen (Es sind auch Zahlen und Sonderzeichen erlaubt)",
-    "2Password": "Fügen Sie mehr Zeichen hinzu (Es sind auch Zahlen und Sonderzeichen erlaubt)",
-    "3Password": "Ausreichend...",
-    "4Password": "Unknackbar!"
+    "0Password": "Zu kurz",
+    "1Password": "Zu kurz, bitte fügen Sie auch Zahlen und Sonderzeichen hinzu",
+    "2Password": "Bitte fügen Sie auch Zahlen und Sonderzeichen hinzu",
+    "3Password": "Ausreichend sicher, mit mehr Zeichen wird ihr Passwort noch sicherer",
+    "4Password": "Ihr Passwort ist sehr sicher"
   }
 }
 </i18n>
@@ -27,16 +27,6 @@
       :invalidFeedback="feedback"
       :validFeedback="feedback"
       inType="password"
-      :verticalLabel="verticalLabel"
-    ></InputForm>
-    <InputForm
-      name="repeatPassword"
-      v-model="passwordRepeat"
-      :valFunc="pwVal"
-      :invalidFeedback="feedbackRepeat"
-      :validFeedback="feedback"
-      inType="password"
-      :verticalLabel="verticalLabel"
     ></InputForm>
   </div>
 </template>
@@ -50,15 +40,10 @@ export default {
     value: {
       type: String,
       required: true,
-    },
-    verticalLabel: {
-      type: Boolean,
-      default: false,
     }
   },
   data() {
     return {
-      passwordRepeat: ""
     };
   },
   computed: {
@@ -72,17 +57,14 @@ export default {
     }
   },
   methods: {
-    pwVal(data, name) {
+    pwVal(data) {
       let secure = false;
       if (data) {
         let result = zxcvbn(data);
         secure = result.score >= 3
       }
 
-      let valid = this.passwordRepeat == this.password && data != "" && secure
-      if (name == 'password' && this.passwordRepeat == "" && data != "") {
-        valid = secure
-      }
+      let valid = data != "" && secure
 
       if (valid) {
         this.$emit('validPassword', true)
@@ -103,12 +85,6 @@ export default {
       else {
         return this.$t("required");
       }
-    },
-    feedbackRepeat(data) {
-      if (this.passwordRepeat && this.password && this.passwordRepeat !== this.password) {
-        return this.$t('backend.formValidation.passwordMatch')
-      }
-      return this.feedback(data)
     }
   },
   components: {

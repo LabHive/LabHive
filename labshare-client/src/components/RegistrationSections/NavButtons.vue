@@ -3,33 +3,38 @@
   "en": {
     "back": "Back",
     "next": "Next",
-    "submit": "Submit"
+    "submit": "Register Now"
   },
   "de": {
     "back": "Zurück",
     "next": "Weiter",
-    "submit": "Registrieren"
+    "submit": "Jetzt registrieren"
   }
 }
 </i18n>
 <template>
   <div>
-    <b-button variant="primary" v-if="!hideBack" @click="$parent.$emit('previousState')">{{ $t("back") }}</b-button>
-    <b-button
-      style="float: right"
-      variant="primary"
-      @click="$parent.$emit('nextState')"
-      :disabled="disableSubmit"
-      v-if="!final"
-    >{{ $t("next") }}</b-button>
-
-    <b-button
-      style="float: right"
-      variant="success"
-      @click="$parent.$emit('submit')"
-      :disabled="disableSubmit"
-      v-if="final"
-    >{{ $t("submit") }}</b-button>
+    <b-row style="margin-top: 44px">
+      <b-col cols="auto">
+        <b-button variant="secondary" v-if="!hideBack" @click="$parent.$emit('previousState')">{{ $t("back") }}</b-button>
+      </b-col>
+      <b-col cols="auto">
+        <b-button
+          variant="primary"
+          @click="$parent.$emit('nextState')"
+          :disabled="disableSubmit"
+          v-if="!final"
+        >{{ $t("next") }}</b-button>
+        <b-button
+          variant="success"
+          @click="$parent.$emit('submit')"
+          :disabled="disableSubmit"
+          v-else
+        >{{ $t("submit") }}</b-button>
+      </b-col>
+    </b-row>
+    
+    
   </div>
 </template>
 
@@ -51,3 +56,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.col-auto {
+  padding-right: 0;
+}
+</style>

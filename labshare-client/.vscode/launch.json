@@ -19,7 +19,9 @@
             ],
             "env": {
                 "BASE_URL": "http://localhost:8080",
-                "DISABLE_VERIFICATION": "1"
+                "STAGING": "1",
+                "PRODUCTION": "0",
+                "ENABLE_MAIL": "0"
             },
         },
         {

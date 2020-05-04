@@ -1,17 +1,11 @@
 <i18n>
 {
   "en": {
-    "equip": "Search for devices/reagents",
-    "advice": "Search for advice",
-    "humans": "Search for volunteers",
-    "request": "File a request",
+    "offerResource": "Current Offers",
     "success": "Saved successfully"
   },
   "de": {
-    "equip": "Suche nach Geräten/Reagenzien",
-    "advice": "Suche nach Ratschlägen/Wissen",
-    "humans": "Suche nach Freiwilligen Helfer*innen",
-    "request": "Anfrage stellen",
+    "offerResource": "Aktuelles Angebot",
     "success": "Erfolgreich gespeichert"
   }
 }
@@ -19,6 +13,7 @@
 
 <template>
   <div>
+    <h1 style="margin-bottom: 30px">{{ $t("offerResource") }}</h1>
     <template v-if="updated || error">
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ errorMsg }}</b-alert>

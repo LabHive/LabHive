@@ -41,8 +41,12 @@ export default {
   methods: {
     setLocale: function(val) {
       this.$root.$i18n.locale = val;
+      document.documentElement.setAttribute('lang', val);
       localStorage.setItem("locale", val);
     }
+  },
+  mounted() {
+    document.documentElement.setAttribute('lang', this.$i18n.locale);
   }
 };
 </script>

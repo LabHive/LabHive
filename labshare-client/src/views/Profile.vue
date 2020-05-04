@@ -12,7 +12,7 @@
 </i18n>
 <template>
   <div class="profile">
-    <h1>{{ $t("profile") }}</h1>
+    <h1 style="margin-bottom: 0">{{ $t("profile") }}</h1>
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
         {{ $t("profileUpdated") }}
@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import LabDiagForm from "../components/LabDiagForm";
-import LabResearchForm from "../components/LabResearchForm";
-import VolunteerForm from "../components/VolunteerForm";
+import LabDiagForm from "@/components/RegistrationForms/LabDiagForm";
+import LabResearchForm from "@/components/RegistrationForms/LabResearchForm";
+import VolunteerForm from "@/components/RegistrationForms/VolunteerForm";
 
 export default {
   name: "Profile",

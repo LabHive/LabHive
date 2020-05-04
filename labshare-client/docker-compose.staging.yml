@@ -1,6 +1,14 @@
-version: '3.1'
+version: '3.7'
 
 services:
+  redis:
+    image: redis
+    restart: always
+    # ports:
+    #   - 6379:6379
+    networks:
+      - network
+
   mongodb:
     image: mongo
     restart: always
@@ -12,21 +20,40 @@ services:
     #environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - network
   
   app:
-    image: labhive.staging
+    image: labhive/labhive:staging
     restart: always
     depends_on: 
       - mongodb
     build:
       context: .
+      args:
+        enableDev: 'true'
+        staging: 'true'
     ports:
       - 5001:5000
+    deploy:
+      mode: replicated
+      replicas: 6
+      restart_policy:
+        delay: 5s
+      update_config:
+        parallelism: 2
+        delay: 5s
+        monitor: 30s
+      rollback_config:
+        parallelism: 0
     environment: 
-      PRODUCTION: "1"
-      BASE_URL: "https://dev.labhive.de"
+      STAGING: "1"
       ENABLE_MAIL: "0"
-      DISABLE_VERIFICATION: "1"
+      BASE_URL: "https://dev.labhive.de"
+    networks:
+      - network
+    volumes: 
+      - labhive_secret_staging:/app/secret
 
 
 volumes:
@@ -34,3 +61,11 @@ volumes:
     external: true
   labhive_mongodb_stagingConfig:
     external: true
+  labhive_secret_staging:
+    external: true
+
+
+networks:
+  network:
+    driver: overlay
+    attachable: true

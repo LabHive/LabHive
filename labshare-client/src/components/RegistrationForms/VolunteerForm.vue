@@ -60,7 +60,7 @@ export default {
         },
         organization: "",
         website: "",
-        availability: true,
+        availability: null,
         consent: {
           publicSearch: null,
           mailUpdates: null
@@ -68,8 +68,10 @@ export default {
       },
       formSections: [
         "LoginInformation",
-        "PersonalInformation",
-        "SpecificVolunteer"
+        "Vol_Qualification",
+        "Vol_Skills",
+        "Vol_Contact",
+        "Vol_Consent"
       ]
     };
   }

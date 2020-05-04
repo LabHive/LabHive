@@ -111,7 +111,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             }
         }
     }
-    else if (searchMode) {
+    else {
         if (searchMode === SearchMode.lookingFor) {
             filter['$or'] = [
                 { "lookingFor.equipment.0": { "$exists": true } },
@@ -125,6 +125,16 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             ]
         } else if (searchMode == SearchMode.volunteers) {
             filter['role'] = UserRoles.VOLUNTEER
+        }
+        else {
+            filter['$or'] = [
+                { "offers.equipment.0": { "$exists": true } },
+                { "offers.advice.0": { "$exists": true } },
+                { "lookingFor.equipment.0": { "$exists": true } },
+                { "lookingFor.advice.0": { "$exists": true } },
+                { "lookingFor.volunteerSkills.0": { "$exists": true } },
+                { "role": UserRoles.VOLUNTEER }
+            ]
         }
     }
 
@@ -158,19 +168,8 @@ function validSearchFilter(req: express.Request, res: express.Response, token?: 
 
 async function getZipcodeCoords(req: express.Request, res: express.Response, token?: Token): Promise<Optional<number[]>> {
     if (req.query.zipcode) {
-        try {
-            if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
-            return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coordinates
-        }
-        catch {
-            utils.errorResponse(res, 400, "invalid_zipcode")
-            return undefined
-        }
-    }
-
-    if (token) {
-        let user = await getUser({ _id: token.sub })
-        return user?.toObject().location.coordinates
+        if (typeof req.query.zipcode !== "string") throw new Error("invalid_zipcode")
+        return (await utils.addressToCoordinates({ zipcode: req.query.zipcode })).coords.coordinates
     }
 
     return undefined
@@ -209,7 +208,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         return
     }
 
-    let count = await UserCommon.find(filter).countDocuments().exec()
+    let count = await UserCommon.find(filter).lean().countDocuments().exec()
 
     if (count == 0 || count < page * 20) {
         let links = {
@@ -226,7 +225,15 @@ export async function search(req: express.Request, res: express.Response, next: 
         return res.send(resp)
     }
 
-    let center = await getZipcodeCoords(req, res, token)
+    let center: Optional<number[]>
+    try {
+        center = await getZipcodeCoords(req, res, token)
+    }
+    catch {
+        utils.errorResponse(res, 400, "invalid_zipcode");
+        return
+    }
+    
     let docs: IUserCommon[]
     if (center) {
         let center_point = {
@@ -245,7 +252,7 @@ export async function search(req: express.Request, res: express.Response, next: 
             }
         }]).project(projection).skip(20 * page).limit(20).exec())
     } else {
-        docs = await UserCommon.find(filter).sort({ "updatedAt": -1 }).select(projection).skip(20 * page).limit(20)
+        docs = <IUserCommon[]>await UserCommon.find(filter).sort({ "updatedAt": -1 }).select(projection).skip(20 * page).limit(20).lean()
     }
 
     let results = []

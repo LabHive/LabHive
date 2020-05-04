@@ -1,14 +1,14 @@
 <i18n>
     {
     "en": {
-   "ourTeam": "Our Team",
-    "ourStoryHeadline": "Our Story",
-    "ourStoryText": "Behind LabHive stands an interdisciplinary team of scientists, software developers and data protection experts. The idea for the platform originally emerged from two projects at the #WirvsVirus Hackathon of the German government. Both teams have joined forces to work voluntarily on innovative solutions for challenges of the Corona pandemic."
+    "ourTeam": "Our Team",
+    "ourStoryText1": "LabHive comprises an interdisciplinary team of scientists, software developers and data protection experts. The idea for the platform originally emerged from two projects of the ",
+    "ourStoryText2": " Hackathon of the German government. Both teams have volunteered their efforts to this initiative, and they have joined forces to help increase test capacity."
     },
     "de": {
     "ourTeam": "Unser Team",
-    "ourStoryHeadline": "Unsere Geschichte",
-    "ourStoryText": "Hinter LabHive steckt ein interdisziplinäres Team aus den Bereichen Wissenschaft, Software-Entwicklung und Datenschutz. Die Idee zur Plattform ist ursprünglich in zwei Projekten beim Hackathon #WirvsVirus der Bundesregierung entstanden. Beide Teams haben sich zusammengeschlossen, um als ehrenamtliches Innovationsprojekt an Lösungen für Herausforderungen der Corona-Pandemie zu arbeiten."
+    "ourStoryText1": "Hinter LabHive steht ein interdisziplinäres Team aus den Bereichen Wissenschaft, Software-Entwicklung und Datenschutz. Die Idee zur Plattform entstand ursprünglich aus zwei Projekten beim ",
+    "ourStoryText2": " Hackathon der Bundesregierung. Beide Teams haben sich zusammengeschlossen, um als ehrenamtliches Innovationsprojekt dabei zu helfen, die Testkapazität zu erhöhen."
     }
     }
 </i18n>
@@ -18,8 +18,8 @@
     <b-container class="team">
       <h1>{{ $t("ourTeam") }}</h1>
       <b-row align-h="center">
-        <b-col class="text-center" id="about-subtitle" sm="12" lg="10" xl="8">
-          <p>{{ $t("ourStoryText") }}</p>
+        <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
+          <p>{{ $t("ourStoryText1") }}<a id="hashtag" target="_blank" href="https://twitter.com/hashtag/WirVsVirus?src=hashtag_click">#WirVsVirus</a>{{ $t("ourStoryText2") }}</p>
         </b-col>
       </b-row>
       <b-row align-h="center">
@@ -173,6 +173,11 @@
           <p class="role">UX/UI, Frontend Development</p>
         </b-col>
       </b-row>
+      <b-row align-h="center">
+        <b-col class="claim">
+          <p>Spread the test, beat the virus!</p>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -238,7 +243,22 @@ export default {
     }
   }
 
-  #about-subtitle {
-    margin-bottom: 64px;
+  .claim {
+    text-align: center;
+    font-size: 32px;
+    color: #177867;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 32px;
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+      margin-top: 16px;
+    }
   }
+
+  #hashtag {
+    font-weight: 500;
+  }
+
 </style>

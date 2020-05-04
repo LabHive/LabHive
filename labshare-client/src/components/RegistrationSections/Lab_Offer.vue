@@ -1,7 +1,7 @@
 <template>
   <div>
       
-    <Offer v-model="formData.offers" :showSubmit="false"></Offer>
+    <Offer v-model="formData.offers" :showSubmit="false" :registration="true"></Offer>
 
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit"></NavButtons>

@@ -1,6 +1,6 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
-import { getModelForRole, getUserById, getUserOrAdmin, getUser, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { getModelForRole, getUserById, getUserOrAdmin, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
@@ -12,7 +12,7 @@ class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
         let token = utils.getUnverifiedDecodedJWT(req);
         
-        let user = await getUserOrAdmin({_id: token.sub});
+        let user = await getUserOrAdmin({_id: token.sub}, true);
         if (!user) {
             return utils.badRequest(res);
         }
@@ -43,17 +43,16 @@ class Profile {
         let projection = sensibleUserProjection()
         let filter: any = getFilterForPublicUsers({slug: req.params.id})
 
-        let user = await UserCommon.findOne(filter).select(projection).exec();
+        let user = await UserCommon.findOne(filter).select(projection).lean().exec();
         if (!user) {
             return utils.errorResponse(res, NOT_FOUND, "not_found")
         }
 
-        let a: IUserCommon = user.toObject()
-        cleanUserObjForToken(token, a)
+        cleanUserObjForToken(token, <IUserCommon>user)
 
         res.send({
             success: true,
-            data: a
+            data: user
         })
     }
 
@@ -114,6 +113,11 @@ class Profile {
             return utils.badRequest(res)
         }
 
+        let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
+        if (body.website && !regexpUrl.test(body.website)) {
+            body.website = "http://" + body.website;
+        }
+
         let user = await getUserById(token.sub)
         if (!user) {
             return utils.badRequest(res)
@@ -125,7 +129,9 @@ class Profile {
             userObj.address.street != body.address.street ||
             userObj.address.city != body.address.city)) {
                 try {
-                    body.location = await utils.addressToCoordinates(userObj.address)
+                    let location = await utils.addressToCoordinates(userObj.address)
+                    body.location = location.coords
+                    body.address.city = location.city
                 } catch (error) {
                     return utils.handleError(res, error)
                 }

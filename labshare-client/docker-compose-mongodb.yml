@@ -1,7 +1,10 @@
 version: '3.1'
 
 volumes:
-  mongo_data:
+  labhive_mongodb_stagingDB:
+    external: true
+  labhive_mongodb_stagingConfig:
+    external: true
 
 services:
   mongo:
@@ -10,7 +13,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - "mongo_data:/data/"
+      - labhive_mongodb_stagingDB:/data/db
+      - labhive_mongodb_stagingConfig:/data/configdb
     #environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
     #  MONGO_INITDB_ROOT_PASSWORD: example
@@ -23,3 +27,10 @@ services:
     # environment:
     #   ME_CONFIG_MONGODB_ADMINUSERNAME: root
     #   ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+

@@ -1,0 +1,64 @@
+version: '3.7'
+
+services:
+  redis:
+    image: redis
+    restart: always
+    # ports:
+    #   - 6379:6379
+    networks:
+      - network
+  
+  mongodb:
+    image: mongo
+    restart: always
+    # ports:
+    #   - 27017:27017
+    volumes:
+      - labhive_mongodb_prodDB:/data/db
+      - labhive_mongodb_prodConfig:/data/configdb
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - network
+  
+  app:
+    image: labhive/labhive:production
+    restart: always
+    depends_on: 
+      - mongodb
+    ports:
+      - 5002:5000
+    deploy:
+      mode: replicated
+      replicas: 6
+      restart_policy:
+        delay: 5s
+      update_config:
+        parallelism: 2
+        delay: 5s
+        monitor: 30s
+      rollback_config:
+        parallelism: 0
+    environment: 
+      PRODUCTION: "1"
+      BASE_URL: "https://labhive.de"
+    networks:
+      - network
+    volumes: 
+      - labhive_secret_production:/app/secret
+
+volumes:
+  labhive_mongodb_prodDB:
+    external: true
+  labhive_mongodb_prodConfig:
+    external: true
+  labhive_secret_production:
+    external: true
+
+networks:
+  network:
+    driver: overlay
+    attachable: true
+

@@ -19,23 +19,25 @@
     <div class="login-form">
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
-      <b-form @submit="login">
-        <b-form-group id="email" label="E-Mail Adresse">
-          <b-form-input id="email" v-model="user.email" trim></b-form-input>
-        </b-form-group>
-        <b-form-group id="password" label="Passwort">
-          <b-form-input type="password" id="password" v-model="user.password" trim></b-form-input>
-        </b-form-group>
-        <div class="my-3">
-          <router-link to="/forgot-password">{{ $t('forgotPassword') }}</router-link>
-        </div>
-        <b-button variant="primary" type="submit">{{$t("submit")}}</b-button>
-      </b-form>
+      <b-row>
+        <b-col sm="*" md="5" lg="4">
+          <b-form @submit="login">
+            <InputForm name="email" v-model="user.email" trim></InputForm>
+            <InputForm inType="password" name="password" v-model="user.password"></InputForm>
+            <div class="my-3">
+              <router-link to="/forgot-password">{{ $t('forgotPassword') }}</router-link>
+            </div>
+            <b-button variant="primary" type="submit">{{$t("submit")}}</b-button>
+          </b-form>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
 
 <script>
+import InputForm from "@/components/InputForm";
+
 export default {
   data() {
     return {
@@ -69,7 +71,9 @@ export default {
       }
     }
   },
-  components: {}
+  components: {
+    InputForm
+  }
 };
 </script>
 

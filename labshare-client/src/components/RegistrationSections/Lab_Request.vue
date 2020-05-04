@@ -1,7 +1,7 @@
 <template>
   <div>
       
-    <Request v-model="formData.lookingFor" :showSubmit="false"></Request>
+    <Request v-model="formData.lookingFor" :showSubmit="false" :registration="true"></Request>
 
     <template v-if="!profileUpdate">
       <NavButtons :disableSubmit="disableSubmit"></NavButtons>

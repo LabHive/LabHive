@@ -21,7 +21,7 @@ export async function login(req: express.Request, res: express.Response, next: e
     }
 
     let mail = body.email;
-    let user = await getUserForMail(mail);
+    let user = await getUserForMail(mail, true);
     if (!user) {
         return utils.errorResponse(res, HttpStatus.UNAUTHORIZED, "invalid_login");
     }

@@ -82,9 +82,9 @@ export default {
       },
       formSections: [
         "LoginInformation",
-        "PersonalInformation",
+        "Lab_Contact",
         "Lab_Offer",
-        "SpecificDLab",
+        "Lab_Consent",
       ],
     };
   },
@@ -92,8 +92,8 @@ export default {
     updateFormSections() {
       return [
         "LoginInformation",
-        "PersonalInformation",
-        "SpecificDLab",
+        "Lab_Contact",
+        "Lab_Consent",
       ]
     }
   }

@@ -76,6 +76,9 @@ export class Validator {
     }
 
     static validCity(city?: string): ValidationResult {
+        if (city === "") {
+            return new ValidationResultSuccess("")
+        }
         return Validator.validTextShort(city, "invalid_city");
     }
 
@@ -154,16 +157,13 @@ export class Validator {
     }
 
     static validOrganization(org?: string): ValidationResult {
+        if (org === '') return new ValidationResultSuccess('')
         return Validator.validTextShort(org, 'invalid_organization')
     }
 
     static validUrl(url?: string): ValidationResult {
         if (url === '') return new ValidationResultSuccess('')
-        let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
-        if (!url || !regexpUrl.test(url)) {
-            return new ValidationResultError('invalid_url', url)
-        }
-        return new ValidationResultSuccess()
+        return Validator.validTextShort(url, 'invalid_url')
     }
 
     static validQualifications(q?: string[]): ValidationResult {

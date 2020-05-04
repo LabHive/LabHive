@@ -38,9 +38,8 @@
 
       <div class="row">
         <b-form @submit="submit" class="col-md-6">
-          <b-form-group id="email" :label="$t('email')">
-            <b-form-input type="email" v-model="formData.email" trim></b-form-input>
-          </b-form-group>
+
+          <InputForm name="email" v-model="formData.email" trim></InputForm>
 
           <div class="my-3">
             <router-link to="/login">{{ $t('back') }}</router-link>
@@ -54,6 +53,8 @@
 </template>
 
 <script>
+import InputForm from "@/components/InputForm";
+
 export default {
   name: "ForgotPassword",
   data: function() {
@@ -92,6 +93,8 @@ export default {
       }
     }
   },
-  components: {}
+  components: {
+    InputForm
+  }
 };
 </script>

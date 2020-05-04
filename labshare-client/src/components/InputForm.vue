@@ -1,8 +1,8 @@
 <i18n>
 {
-    "en": {
+  "en": {
     "labName": "Laboratory Name",
-    "labWebsite": "Laboratory Homepage",
+    "labWebsite": "Laboratory Website",
     "instituteName": "Institute/University",
     "instituteWebsite": "Website of your Institute/University",
     "firstName": "First Name",
@@ -11,18 +11,19 @@
     "contactInfo": "Contact Information",
     "address": "Address",
     "city": "City",
-    "zipcode": "Zipcode",
+    "zipcode": "ZIP-Code",
     "street": "Street",
     "password": "Password",
+    "oldPassword": "Old Password",
     "repeatPassword": "Repeat your Password",
     "email": "E-Mail Address",
-    "officialEmail": "Institutional e-mail address"
-    },
-    "de":{
+    "officialEmail": "E-mail address of your institute"
+  },
+  "de":{
     "labName": "Laborname",
-    "labWebsite": "Labor-Homepage",
+    "labWebsite": "Labor Website",
     "instituteName": "Institut/Universität",
-    "instituteWebsite": "Website des Instituts/der Univeristät",
+    "instituteWebsite": "Website des Instituts/der Universität",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
@@ -32,23 +33,24 @@
     "zipcode": "Postleitzahl",
     "street": "Strasse",
     "password": "Passwort",
+    "oldPassword": "Altes Passwort",
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
-    "officialEmail": "E-Mail-Adresse des Instituts"
-    }
-    }
+    "officialEmail": "E-Mail Adresse des Instituts"
+  }
+}
 </i18n>
 
 <template>
   <b-form-group
     :id="name"
-    :label="label ? label : $t(name)"
-    :state="validator(valFunc)"
-    :invalid-feedback="invalidFeedback ? invalidFeedback(model) : feedback(valFunc)"
-    :valid-feedback="validFeedback ? validFeedback(model) : 'OK'"
-    :label-cols-sm="verticalLabel ? null: 3"
+    :state="state_form"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="placeholder" v-model="model" :state="validator(valFunc)" trim :validated="true" @change="$emit('change')"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="state_field" trim :validated="true" @input="validate"></b-form-input>
+    <label>{{ placeholder ? placeholder : $t(name) }}</label>
+
+    <template v-slot:invalid-feedback><span :style="{opacity: invalid_opacity}">{{ invalid_feedback_text }}</span></template>
+    <template v-slot:valid-feedback><span :style="{opacity: valid_opacity}">{{ valid_feedback_text }}</span></template>
   </b-form-group>
 </template>
 
@@ -57,10 +59,6 @@ export default {
   name: "InputForm",
   props: {
     name: String,
-    label: {
-      type: String,
-      default: null,
-    },
     value: String,
     valFunc: {
       default: () => { return { valid: null } },
@@ -70,11 +68,6 @@ export default {
       default: 'text',
       type: String
     },
-    placeholder: String,
-    verticalLabel: {
-      type: Boolean,
-      default: false
-    },
     invalidFeedback: {
       default: null,
     },
@@ -83,6 +76,20 @@ export default {
     },
     required: {
       default: true
+    },
+    placeholder: {
+      default: "",
+      type: String
+    }
+  },
+  data() {
+    return {
+      state_form: null,
+      state_field: null,
+      invalid_feedback_text: "1",
+      valid_feedback_text: "1",
+      invalid_opacity: 1,
+      valid_opacity: 1
     }
   },
   computed: {
@@ -92,38 +99,147 @@ export default {
       },
       set(newValue) {
         this.$emit("input", newValue);
-        this.$root.$emit("inputForm_changed", newValue);
       }
     }
   },
   methods: {
-    validator(meth) {
-      let a = meth(this.model, this.name);
-      console.log(this.name, a.value, this.model)
-      if (a.valid) {
-        if (this.timeout) clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => {
+    validate(text) {
+      this.$nextTick(() => {
+        if (text === "") {
+          this.setup()
+          this.$root.$emit("inputForm_changed", text);
+          return
+        }
+        
+        const valResult = this.validator();
+        if (valResult.valid) {
+          this.state_form = true
+          this.state_field = this.required ? true : null
+          this.valid_feedback_text = this.validFeedback ? this.validFeedback(this.model) : ""
+          if (this.valid_feedback_text === "") {
+            // prevents jumping around of textfields
+            this.valid_feedback_text = "nothing"
+            this.valid_opacity = 0
+          } else {
+            this.valid_opacity = 1
+          }
+
           this.$emit("valid")
-        }, 300);
-        if (this.model === "" && this.required) return false
-        if (a.value === "") return null
-      }
-      if (!this.required && a.value === "")
-        return null
-      return a.valid;
+        }
+        else {
+          this.state_form = false
+          this.state_field = false
+          this.invalid_feedback_text = this.invalidFeedback ? this.invalidFeedback(this.model) : this.feedback(valResult)
+          if (this.invalid_feedback_text === "") {
+            // prevents jumping around of textfields
+            this.invalid_feedback_text = "nothing"
+            this.invalid_opacity = 0
+          } else {
+            this.invalid_opacity = 1
+          }
+        }
+
+        this.$root.$emit("inputForm_changed", text);
+      })
     },
-    feedback(meth) {
-      if (this.model === '') {
-        if (this.required)
-          return this.$t("required")
-        return ""
-      }
-      let a = meth(this.model);
-      if (a.err && a.err.message !== "") {
-        return this.$t("backend.formValidation." + a.err.message);
+    validator() {
+      return this.valFunc(this.model, this.name);
+    },
+    feedback(valResult) {
+      if (valResult.err && valResult.err.message !== "") {
+        return this.$t("backend.formValidation." + valResult.err.message);
       }
       return "";
+    },
+    setup() {
+      if (this.model !== "") {
+        this.validate(this.model)
+        return
+      }
+      
+      if (this.required) {
+        this.state_form = false
+        this.state_field = null
+        this.invalid_feedback_text = this.$t("required")
+        this.invalid_opacity = 1
+      }
+      else {
+        this.state_form = true
+        this.state_field = null
+        this.valid_feedback_text = "nothing"
+        this.valid_opacity = 0
+      }
     }
+  },
+  mounted() {
+    this.setup();
   }
 };
 </script>
+<style lang="scss" scoped>
+
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group label {
+  padding: 16px;
+}
+
+.form-group input {
+  height: 48px
+}
+
+.form-group label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: all .1s ease-in-out;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.form-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-group input::placeholder {
+  color: transparent;
+}
+
+.form-group input:not(:placeholder-shown) {
+  padding-top: 20px;
+  padding-bottom: 4px;
+
+  &.is-invalid, &.is-valid {
+    padding-right: 34px;
+  }
+}
+
+.form-group input:not(:placeholder-shown) ~ label {
+  padding-top: 8px;
+  padding-bottom: 4px;
+  font-size: 12px;
+  color: #777;
+}
+</style>

@@ -1,16 +1,19 @@
 <i18n>
 {
   "en": {
-    "success": "Saved successfully"
+    "success": "Saved successfully",
+    "requestResource": "Current Requests"
   },
   "de": {
-    "success": "Erfolgreich gespeichert"
+    "success": "Erfolgreich gespeichert",
+    "requestResource": "Aktuelle Anfrage"
   }
 }
 </i18n>
 
 <template>
   <div>
+    <h1 style="margin-bottom: 30px">{{ $t("requestResource") }}</h1>
     <template v-if="updated || error">
       <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ errorMsg }}</b-alert>

@@ -1,102 +1,113 @@
 <i18n>
     {
     "en": {
-    "registration": "Registration",
+    "registration": "Register",
+    "registerSubtitle": "Please register to access all functionalities of LabHive.",
     "complete": "Thank you for your registration!",
     "activation": "To activate your account, click the link in the email that we sent to you.",
     "labActivation": "Since you registered as laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
-    "prospectiveRole": "In which role would you like to register?",
-    "roleHelper": "Qualified Volunteer",
+    "prospectiveRole": "Please select your user group.",
+    "roleHelper": "Qualified Volunteers",
     "roleDiagnosticLab": "Diagnostic Centers",
-    "roleLab": "Research Laboratory"
+    "roleLab": "Research Laboratories"
     },
 
     "de": {
-    "registration": "Registrierung",
+    "registration": "Registrieren",
+    "registerSubtitle": "Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können.",
     "complete": "Danke für Ihre Registrierung!",
     "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
     "labActivation": "Da Sie sich als Labor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
-    "prospectiveRole": "Als was möchten Sie sich registrieren?",
+    "prospectiveRole": "Bitte wählen Sie ihre Nutzergruppe.",
     "roleHelper": "Qualifizierte Freiwillige",
-    "roleDiagnosticLab": "Diagnostikzentrum",
-    "roleLab": "Forschungslabor"
+    "roleDiagnosticLab": "Diagnostikzentren",
+    "roleLab": "Forschungslabore"
     }
     }
 </i18n>
 <template>
   <div class="register">
-    <h1>{{$t("registration")}}</h1>
-    <b-progress variant="success" v-if="registrationForm && !registrationComplete" height="4px" :value="progress"></b-progress>
+
+    <template v-if="!registrationComplete">
+      <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
+      <p style="margin-bottom: 48px">{{ $t("registerSubtitle") }}</p>
+
+      <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role"></RegistrationProgress>
+    </template>
+    
 
     <template v-if="registrationComplete">
-      <h2>{{$t("complete")}}</h2>
-      <p>{{$t("activation")}}<template v-if="registrationForm != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
+      <h1 style="margin-bottom: 10px">{{$t("complete")}}</h1>
+      <p>{{$t("activation")}}<template v-if="role != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
     </template>
-
-    <br />
 
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
-    <div key="step-one" v-if="!registrationForm">
+    <div key="step-one" v-if="step === 0">
+      <p class="step-info-sub">{{ $t("prospectiveRole") }}</p>
       <b-container fluid>
         <b-row>
-          <b-col id="prospectiveRole" cols="12">
-            <p class="lead">{{$t("prospectiveRole")}}</p>
-          </b-col>
-        </b-row>
-
-        <b-row>
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
-                  @click="registrationForm = forms.VOLUNTEER"
+                  @click="loadForm(forms.VOLUNTEER)"
                 >{{$t("roleHelper")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textqualif-vol')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-1.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textqualif-vol")}}
+            </p>
           </b-col>
 
-          <b-col><hr></b-col>
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
-                  @click="registrationForm = forms.DIAGNOSTIC_LAB"
+                  @click="loadForm(forms.DIAGNOSTIC_LAB)"
                 >{{$t("roleDiagnosticLab")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textdiag-cent')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-2.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textdiag-cent")}}
+            </p>
           </b-col>
-          
-          <b-col><hr></b-col>
-          
-          <b-col sm="*" md="3">
-            <b-row>
-              <b-col sm="*">
-                <b-button
+
+          <b-col class="text-center" cols lg="4" md="4" sm="12">
+            <b-button
                   variant="primary"
-                  @click="registrationForm = forms.LAB"
+                  @click="loadForm(forms.LAB)"
                 >{{$t("roleLab")}}</b-button>
-              </b-col>
-              <b-col sm="*">
-                {{$t('Textres-lab')}}
-              </b-col>
-            </b-row>
+            <figure class="text-center">
+              <img
+                src="../assets/decoration-3-3.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center" style="padding: 0 15px">
+                {{$t("Textres-lab")}}
+            </p>
           </b-col>
+
         </b-row>
 
       </b-container>
     </div>
 
     <div v-else-if="!registrationComplete">
-      <component :is="registrationForm" @formcomplete="register" @updateProgress="updateProgress" :role="role"></component>
+      <router-view id="router" ref="routerA" @formcomplete="register" @updateStep="updateStep" :role="role" :step="step"></router-view>
     </div>
 
   </div>
@@ -104,10 +115,7 @@
 
 <script>
 import { Validator } from "@/../dist-browser/lib/validation";
-//import InputForm from "../components/InputForm";
-import VolunteerForm from "@/components/VolunteerForm.vue";
-import LabDiagForm from "@/components/LabDiagForm.vue";
-import LabResearchForm from "@/components/LabResearchForm.vue";
+import RegistrationProgress from "@/components/RegistrationProgress";
 
 export default {
   name: "Register",
@@ -115,17 +123,14 @@ export default {
   data: function() {
     return {
       forms: {
-        ROLE: 0,
-        VOLUNTEER: "VolunteerForm",
-        LAB: "LabResearchForm",
-        DIAGNOSTIC_LAB: "LabDiagForm"
+        VOLUNTEER: "volunteer",
+        LAB: "lab_research",
+        DIAGNOSTIC_LAB: "lab_diag"
       },
       error: null,
       registrationComplete: false,
       registrationForm: "",
-      passwordRepeat: "",
-      disableSubmit: true,
-      progress: 0
+      step: 0
     };
   },
   computed: {
@@ -133,24 +138,25 @@ export default {
       return Validator;
     },
     role() {
-      let role = ""
-      if (this.registrationForm === this.forms.VOLUNTEER) {
-        role = "volunteer"
-      } else if (this.registrationForm === this.forms.LAB) {
-        role = "lab_research"
+      if (this.$route.name === 'pageRegister') {
+        return ''
       }
-      else if (this.registrationForm === this.forms.DIAGNOSTIC_LAB) {
-        role = "lab_diag"
-      }
-      else {
-        console.error("invalid role")
-      }
-      return role
+
+      return this.$route.name.replace("register/", "")
     }
   },
   methods: {
-    updateProgress(val) {
-      this.progress = val
+    updateStep(val) {
+      console.log(val)
+      let route = this.$route
+      route.params.id = val
+
+      if (val === 0) {
+        this.$router.push({name: "pageRegister"})
+        return
+      }
+      
+      this.$router.push(route)
     },
     register: function(formData) {
       this.$http.post("registration", formData, { params: { role: this.role } }).then(
@@ -164,16 +170,58 @@ export default {
           }
         },
         err => {
-          this.error = err.body.errorDescription;
+          this.error = this.$t('backend.formValidation.' + err.body.errorDescription);
         }
       );
+    },
+    loadForm(form) {
+      this.registrationForm = form
+      if (this.$route.path.indexOf(form) == -1)
+        this.$router.push(this.$route.path + '/' + form + '/1')
+    },
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log("beforeRoute", to)
+    if (to.name == "pageRegister") {
+      this.step = 0
+      this.registrationComplete = false
+      this.registrationForm = ""
+      this.error = null
+    }
+      
+    else if (to.params.id)
+      this.step = parseInt(to.params.id)
+    else
+      this.step = 2
+
+    next()
+  },
+  mounted() {
+    if (this.$route.params.id) {
+      this.step = 0
+      this.$router.replace({name: "pageRegister"})
+    }
+  },
+  watch: {
+    step(newVal, oldVal) {
+      let router = this.$refs.routerA
+      if (router) {
+        if (newVal < oldVal)
+          router.$emit("updateTransition", "back")
+        else 
+          router.$emit("updateTransition", "forward")
+      }
+      
+      if (newVal === 0) {
+        this.$router.push({name: "pageRegister"})
+      }
+      else {
+        this.updateStep(newVal)
+      }
     }
   },
   components: {
-    //InputForm
-    VolunteerForm,
-    LabDiagForm,
-    LabResearchForm
+    RegistrationProgress
   }
 };
 </script>
@@ -209,4 +257,5 @@ hr {
 .lead {
   margin-bottom: 24px;
 }
+
 </style>

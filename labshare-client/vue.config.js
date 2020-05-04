@@ -1,5 +1,16 @@
 var path = require("path");
 
+function resolveEnv(env) {
+  const ENV = process.env[env]
+  if (!ENV) return false
+
+  if (ENV === "0" || ENV.toLocaleLowerCase() == "false") {
+    return false
+  }
+
+  return true
+}
+
 module.exports = {
   chainWebpack: config => {
     config.module
@@ -11,7 +22,8 @@ module.exports = {
       .end();
 
     config.plugin('define').tap((def) => {
-      def[0]['process.env']['ENABLE_DEV'] = process.env.ENABLE_DEV
+      def[0]['process.env']['ENABLE_DEV'] = resolveEnv("ENABLE_DEV")
+      def[0]['process.env']['STAGING'] = resolveEnv("STAGING")
       return def
     })
   },

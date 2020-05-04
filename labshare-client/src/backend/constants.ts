@@ -1,9 +1,11 @@
-export const TESTS_PER_WEEK = 354521;
+import { EventEmitter } from 'events';
+
+export const TESTS_PER_WEEK = 360139;
 
 export enum FILE_PATH {
     mailConfig = "secret/mailConfig.json",
     hmacKey = "secret/jsonwebtoken_hmacKey.txt",
-    adminUser = "secret/adminUser.json"
+    adminUsers = "secret/adminUsers.json"
 }
 
 
@@ -13,3 +15,5 @@ export enum LANG {
 }
 
 export type LANG_TYPE = keyof typeof LANG;
+
+export const GlobalEvent = new EventEmitter();

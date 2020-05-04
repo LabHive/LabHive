@@ -1,21 +1,23 @@
 <i18n>{
   "en": {
     "title": "Test capacity and support",
+    "subTitle": "Increasing test capacity is crucial in the fight against SARS-CoV-2, but many places lack reagents, equipment and personnel. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!",
     "testsPerWeek": "Tests per Week in Germany",
     "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
     "diagnosticLabs": "Diagnostic Centers",
-    "referenceRKI": "[1] COVID-19 Daily report of the RKI vom 15.04.2020",
-    "referenceRegistered": "[2] registered on our platform"
+    "referenceRKI": "COVID-19 Daily report of the RKI vom 15.04.2020",
+    "referenceRegistered": "Registered on our platform"
   },
   "de": {
     "title": "Testkapazität und Unterstützung",
+    "subTitle": "Die Testkapazität zu erhöhen ist entscheidend im Kampf gegen SARS-CoV-2. Allerdings fehlt es an vielen Orten an Reagenzien, Geräten und Personal. Unsere Plattform fördert den Aufbau eines starken diagnostischen Netzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!",
     "testsPerWeek": "Tests pro Woche in Deutschland",
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "[1] COVID-19 Lagebericht des RKI vom 15.04.2020",
-    "referenceRegistered": "[2] auf unserer Platform registriert"
+    "referenceRKI": "COVID-19 Lagebericht des RKI vom 15.04.2020",
+    "referenceRegistered": "Auf unserer Plattform registriert"
   }
 }</i18n>
 <template>
@@ -24,6 +26,11 @@
       <b-row class="text-center">
         <b-col>
           <h3>{{ $t('title') }}</h3>
+        </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
+          <p>{{ $t("subTitle") }}</p>
         </b-col>
       </b-row>
       <b-row>
@@ -46,7 +53,39 @@
           </l-map>
         </b-col>
         <b-col cols lg="6" md="6" sm="12">
-          <dl v-if="testsPerWeek" class="total-stats">
+          <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
+            <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
+            <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
+            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-04-15-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
+          </b-row>
+          <template v-if="markerCounts">
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.volunteer }}</b-col>
+              <b-col class="details" sm="12" md="8">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_research }}</b-col>
+              <b-col class="details" sm="12" md="8">{{ $t('researchLabs') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow last" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_diag }}</b-col>
+              <b-col class="details last" sm="12" md="8">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <b-row>
+              <b-col class="spacer"></b-col>
+              <b-col cols="10" style="text-align: left; font-size: 12px"><p id="platform-cit"><sup>2</sup>{{ $t('referenceRegistered') }}</p></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+          </template>
+          <!-- <dl v-if="testsPerWeek" class="total-stats">
             <dt>{{ testsPerWeek }}</dt>
             <dd>{{ $t('testsPerWeek') }}<sup>1</sup></dd>
           </dl>
@@ -57,7 +96,7 @@
             <dd>{{ $t('researchLabs') }}<sup>2</sup></dd>
             <dt>{{ markerCounts.lab_diag }}</dt>
             <dd>{{ $t('diagnosticLabs') }}<sup>2</sup></dd>
-          </dl>
+          </dl> -->
         </b-col>
       </b-row>
     </b-container>
@@ -83,7 +122,7 @@ export default {
       center: latLng(51.1657, 10.4515),
       url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
       attribution:
-        '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a>',
+        '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       mapOptions: {
         zoomSnap: 0.5,
         minZoom: 5.5,
@@ -136,8 +175,12 @@ $color-bkg-primary: #f7f6fd;
 .coverage {
   background: $color-bkg-primary;
   position: relative;
-  padding: 65px 0;
+  padding: 88px 0;
 
+  @media (max-width: 767px) {
+    padding: 44px 0;
+  }
+  
   &:before {
     content: "";
     background: #fff;
@@ -215,6 +258,55 @@ $color-bkg-primary: #f7f6fd;
   }
 }
 
+.statRow {
+  margin-bottom: 35px;
+
+  &.last {
+    margin-bottom: 15px;
+  }
+}
+
+.details {
+  font-size: 22px;
+}
+
+.totalDetails {
+  font-size: 22px;
+}
+
+.detailsCount {
+  color: $color-green;
+  font-family: Fira Sans;
+  font-size: 44px;
+  text-align: right;
+  font-weight: normal;
+  line-height: 52px;
+}
+
+.totalStats {
+  border: 3px solid $color-green;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Fira Sans;
+  line-height: 52px;
+  font-size: 44px;
+  color: $color-green;
+}
+
+@media (max-width: 992px) {
+  .totalDetails {
+    text-align: center;
+    margin-top: 6px;
+  }
+}
+
+@media (min-width: 767px) {
+  hr {
+    display: none;
+  }
+}
+
 @media (max-width: 767px) {
   .coverage {
     padding-bottom: 20px;
@@ -234,6 +326,59 @@ $color-bkg-primary: #f7f6fd;
         margin-bottom: 20px;
       }
     }
+  }
+
+  .totalStats {
+    margin-top: 20px
+  }
+
+  .totalDetails {
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .details {
+    text-align: center;
+    line-height: initial;
+  }
+
+  .detailsCount {
+    margin: 0;
+    text-align: center;
+  }
+
+}
+
+.vue2leaflet-map {
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.20);
+    transform: scale(1.01);
+    transition: all 0.15s ease-in-out;
+  }
+}
+
+#rki-cit {
+  font-size: 12px;
+  margin-right: auto;
+  margin-left: 6.5em;
+
+  @media (max-width: 1200px) {
+    margin-left: 4.3em;
+  }
+
+  @media (max-width: 991px) {
+    margin: 0 auto;
+  }
+}
+
+#platform-cit {
+
+  @media (max-width: 991px) {
+    text-align: center;
   }
 }
 </style>

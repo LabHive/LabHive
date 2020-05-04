@@ -14,7 +14,7 @@
     "theOffers": "Offers",
     "theRequests": "Requests",
     "searchInSurroundings": "Search in the surroundings",
-    "zipcode": "Enter Zipcode"
+    "zipcode": "Enter ZIP-Code"
     },
     "de": {
     "searchModeSelection": "Wonach suchen Sie?",
@@ -58,11 +58,15 @@
       <HeightTransition @finished="$emit('finished')">
         <div class="form-row" v-if="filter.mode && 'volunteers' !== filter.mode">
           <div class="col-md4">
-            <b-form-group :label="filter.mode === 'lookingFor' ? $t('request'): $t('offer')">
-              <div class="lh-button-group">
-                <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
-                <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
-              </div>
+            <b-form-group :label="filter.mode === 'lookingFor' ? $t('offer'): $t('request')">
+              <b-row>
+                <b-col cols="auto" class="lh-button-col">
+                  <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
+                </b-col>
+                <b-col cols="auto" class="lh-button-col last">
+                  <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
+                </b-col>
+              </b-row>
             </b-form-group>
           </div>
         </div>
@@ -108,9 +112,9 @@
             name="zipcode"
             :label="$t('searchInSurroundings')"
             v-model="filter.zipcode"
-            :valFunc="optionalZip"
-            :validFeedback="() => ''"
+            :required="false"
             :placeholder="$t('zipcode')"
+            :valFunc="val.validZipcode"
             @valid="searchChange"
             @input="changeZip"
           ></InputForm>
@@ -133,6 +137,7 @@ import LhButton from './LhButton';
 import HeightTransition from "./HeightTransition";
 
 export default {
+  name: "searchForm",
   data: function() {
     return {
       filter: {
@@ -150,7 +155,10 @@ export default {
   methods: {
     searchChange: function() {
       this.$nextTick(() => {
-        this.$emit("searchChange", this.filter);
+        if (this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          this.$emit("searchChange", this.filter);
+        }, 300);
       })
     },
     changeFilterBy: function(type) {
@@ -207,12 +215,8 @@ export default {
           this.filterBy = "equipment";
           break;
       }
-    },
-    optionalZip(data) {
-      if (data === "") {
-        return {valid: null}
-      }
-      return this.val.validZipcode(data)
+      this.filter.zipcode = this.$user.address.zipcode;
+      this.searchChange()
     },
     changeZip(input) {
       if (input === "") {
@@ -220,7 +224,10 @@ export default {
       }
     }
   },
-  mounted: function() {
+  activated: function() {
+    console.log("activated")
+    if (this.filter.mode !== "") return;
+    
     const timer = setTimeout(() => {
       this.searchChange();
     }, 300);
@@ -273,6 +280,10 @@ export default {
 
 .fade-enter-to, .fade-leave {
   height: 120px;
+}
+
+.form-row {
+  margin-top: 16px;
 }
 
 

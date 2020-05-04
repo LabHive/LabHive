@@ -2,17 +2,23 @@
 {
   "en": {
     "noResults": "No results. Try other search criteria or stop by later",
-    "title": "Search",
+    "title": "Search For Resources",
     "offersadvice": "Offers help",
     "lookingForadvice": "Help needed",
     "offersequipment": "Offers Devices/Reagents",
     "lookingForequipment": "Devices/Reagents needed",
     "volunteer": "Qualified Volunteers",
     "farAway": "far away",
-    "error": "An error occurred, please try it again later."
+    "error": "An error occurred, please try it again later.",
+    "other": "Other",
+    "recentlyAdded": "Recently added",
+    "bsl1": "BSL1 Experience",
+    "bsl2": "BSL2 Experience",
+    "bsl3": "BSL3 Experience",
+    "bsl4": "BSL4 Experience"
   },
   "de": {
-    "title": "Suche",
+    "title": "Suche nach Ressourcen",
     "noResults": "Keine Treffer. Andere Suchkriterien verwenden oder später vorbei schauen",
     "farAway": "entfernt",
     "volunteer": "Qualifizierter Freiwilliger",
@@ -20,13 +26,19 @@
     "lookingForadvice": "Hilfe benötigt",
     "offersequipment": "Geräte/Reagenzien anzubieten",
     "lookingForequipment": "Geräte/Reagenzien benötigt",
-    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
+    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
+    "other": "Andere",
+    "recentlyAdded": "Gerade hinzugefügt",
+    "bsl1": "BSL1 Erfahrung",
+    "bsl2": "BSL2 Erfahrung",
+    "bsl3": "BSL3 Erfahrung",
+    "bsl4": "BSL4 Erfahrung"
     }
     }
 </i18n>
 <template>
   <div class="list-view">
-    <h1 class="mt-4">{{$t("title")}}</h1>
+    <h1>{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
@@ -49,6 +61,7 @@
       </div>
 
       <div v-else key="2">
+        <p class="recentlyAdded">{{ $t("recentlyAdded") }}</p>
         <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
           <div
             class="search-result"
@@ -83,7 +96,7 @@
 import SearchForm from "./../components/SearchForm";
 
 export default {
-  name: "List",
+  name: "search",
   data: function() {
     return {
       searchAttributes: {},
@@ -143,7 +156,7 @@ export default {
       };
       let tmp_searchResults = this.rawSearchResults.map(x => {
         let subHeader = `${x.address.zipcode} ${x.address.city}`;
-        if (x.distance) {
+        if (x.distance != null) {
           let distance = `${(x.distance / 1000).toFixed(2)} km`;
           subHeader += `, ${distance} ${this.$t("farAway")}`;
         }
@@ -181,9 +194,10 @@ export default {
                   footer: footer,
                   center: x.lookingFor[i]
                     .map(y => {
-                      return this.$t(y);
+                      return '•&nbsp;' + this.$t(y);
                     })
-                    .join(", "),
+                    .sort()
+                    .join("&emsp;&emsp;"),
                   user: x
                 };
 
@@ -212,9 +226,10 @@ export default {
                   footer: footer,
                   center: x.offers[i]
                     .map(y => {
-                      return this.$t(y);
+                      return '•&nbsp;' + this.$t(y);
                     })
-                    .join(", "),
+                    .sort()
+                    .join("&emsp;&emsp;"),
                   user: x
                 };
 
@@ -233,11 +248,18 @@ export default {
               footer: footer,
               center: x.details.skills
                 .map(y => {
-                  return this.$t(y);
+                  return '•&nbsp;' + this.$t(y);
                 })
-                .join(", "),
+                .sort()
+                .join("&emsp;&emsp;"),
               user: x
             };
+            if (result.center == '') {
+              if (result.user.description == "") {
+                return searchResults
+              }
+              result.center = "• " + this.$t("other")
+            }
             searchResults.push(result);
             break;
           }
@@ -264,6 +286,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.recentlyAdded {
+  color: #000000;
+  font-size: 22px;
+  margin-top: 40px
+}
+
 .refresh-leave-active {
   transition: opacity 0.25s;
   position: absolute;
@@ -299,12 +327,16 @@ export default {
   border-radius: 8px;
   background-color: white;
   flex-basis: calc(50% - 16px);
-  margin-top: 24px;
+  margin-bottom: 24px;
   display: inline-block;
   transition: all 0.5s;
+  transition: all 0.15s ease-in-out;
 
   &:hover {
     cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.20);
+    transform: scale(1.01);
+    transition: all 0.15s ease-in-out;
   }
 
   @media (max-width: 768px) {
@@ -340,6 +372,7 @@ export default {
   color: #000000;
   font-size: 16px;
   margin-top: 4px;
+  hyphens: auto;
 }
 
 .sr-footer {
