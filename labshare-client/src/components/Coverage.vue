@@ -177,6 +177,10 @@ $color-bkg-primary: #f7f6fd;
   position: relative;
   padding: 88px 0;
 
+  @media (max-width: 767px) {
+    padding: 44px 0;
+  }
+  
   &:before {
     content: "";
     background: #fff;

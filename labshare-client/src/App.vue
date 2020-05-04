@@ -604,7 +604,7 @@ h4 {
 
     @media (max-width: 767px) {
       font-size: 24px;
-      margin: 0 5% 64px 5%;
+      margin: 0 5% 44px 5%;
     }
   }
 

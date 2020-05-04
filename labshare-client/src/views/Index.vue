@@ -171,6 +171,10 @@ p {
   padding: 70px 0 25px;
   position: relative;
 
+  @media (max-width: 767px) {
+    margin-bottom: 44px;
+  }
+
   &:before {
     content: "";
     background: #fff;
@@ -249,6 +253,10 @@ p {
   margin-bottom: 88px;
   font-size: 15px;
   line-height: 1.2;
+
+  @media (max-width: 767px) {
+    margin-bottom: 44px;
+  }
 
   h4 {
     font-weight: 500;
