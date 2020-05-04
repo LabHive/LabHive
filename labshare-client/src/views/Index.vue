@@ -130,7 +130,7 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col class="text-center" style="margin-bottom: 44px;">
+        <b-col class="text-center">
           <b-button class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
@@ -165,7 +165,7 @@ p {
 
 .banner {
   background: $color-bkg-primary;
-  margin-bottom: 65px;
+  margin-bottom: 88px;
   padding: 70px 0 25px;
   position: relative;
 
@@ -237,7 +237,7 @@ p {
 }
 
 .about {
-  margin-bottom: 24px;
+  margin-bottom: 88px;
   font-size: 15px;
   line-height: 1.2;
 
