@@ -598,7 +598,7 @@ h4 {
     font-weight: normal;
     font-size: 22px;
     line-height: 1.81;
-    margin: 0 0 44px;
+    margin: 0 0 88px;
 
     @media (max-width: 576px) {
       font-size: 20px;

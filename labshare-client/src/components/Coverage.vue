@@ -175,7 +175,7 @@ $color-bkg-primary: #f7f6fd;
 .coverage {
   background: $color-bkg-primary;
   position: relative;
-  padding: 65px 0;
+  padding: 88px 0;
 
   &:before {
     content: "";

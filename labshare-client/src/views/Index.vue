@@ -206,7 +206,8 @@ p {
   }
 
   .partners {
-    margin-top: 40px;
+    margin-top: 88px;
+    margin-bottom: 44px;
 
     figure {
       display: inline-block;
@@ -259,7 +260,6 @@ p {
 
 @media (max-width: 991px) {
   .banner {
-    margin-bottom: 40px;
     padding: 0px 0 25px;
 
     h2 {
