@@ -19,15 +19,17 @@ const connectionBase = OPT.PRODUCTION ? 'mongodb' : 'localhost';
 export let ready = false;
 
 mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {
-    if (CONF.ADMIN_USER) {
-        let mail = CONF.ADMIN_USER.contact.email
-        let user = await UserAdmin.findOne({ 'contact.email': mail }).exec()
-        if (!user) {
-            let admin = new UserAdmin(CONF.ADMIN_USER)
-            return admin.save().then((doc) => {
-                if (!doc)
-                    throw new Error("nothing saved")
-            })
+    if (CONF.ADMIN_USERS) {
+        for (let i of CONF.ADMIN_USERS) {
+            let mail = i.contact.email
+            let user = await UserAdmin.findOne({ 'contact.email': mail }).exec()
+            if (!user) {
+                let admin = new UserAdmin(i)
+                return admin.save().then((doc) => {
+                    if (!doc)
+                        throw new Error("nothing saved")
+                })
+            }
         }
     }
 

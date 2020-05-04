@@ -119,17 +119,17 @@ export let OPT = new Options()
 class Configuration {
     HMAC_KEY: string
     MAIL_CONFIG: Mail.Options
-    ADMIN_USER?: IUserAdmin
+    ADMIN_USERS?: IUserAdmin[]
 
     constructor() {
         this.HMAC_KEY = OPT.PRODUCTION ? readFileSync(FILE_PATH.hmacKey, { encoding: 'utf8' }) : "randomKey"
         this.MAIL_CONFIG = OPT.ENABLE_MAIL ? JSON.parse(readFileSync(FILE_PATH.mailConfig, { encoding: 'utf8' })) : undefined
 
-        if (!existsSync(FILE_PATH.adminUser)) {
+        if (!existsSync(FILE_PATH.adminUsers)) {
             console.error("No admin user configuration found!")
-            console.error("Create an admin user in secret/adminUser.json")
+            console.error("Create an admin user in secret/adminUsers.json")
         } else {
-            this.ADMIN_USER = JSON.parse(readFileSync(FILE_PATH.adminUser, { encoding: "utf8" }))
+            this.ADMIN_USERS = JSON.parse(readFileSync(FILE_PATH.adminUsers, { encoding: "utf8" }))
         }
     }
 }
