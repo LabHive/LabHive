@@ -216,6 +216,8 @@ p {
 
     @media (max-width: 767px) {
       font-size: 13px;
+      margin-top: 32px;
+      margin-bottom: 16px;
 
       img {
         height: 48px;
@@ -266,7 +268,7 @@ p {
       margin-top: 0;
     }
     figure {
-      margin-top: 40px;
+      margin-top: 16px;
     }
   }
   .about {
