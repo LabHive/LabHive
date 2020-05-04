@@ -217,14 +217,16 @@ body {
 
 h1,h3 {
   font-weight: normal;
-  font-size: 36px;
+  font-size: 40px;
   line-height: 1.2;
   letter-spacing: 0.1em;
   color: #282e40;
   margin: 48px 0 48px 0;
 
   @media (max-width: 991px) {
-    margin: 32px 0 32px 0;
+    margin: 48px 0 32px 0;
+    font-size: 32px;
+    text-align: center;
   }
 }
 
@@ -595,13 +597,14 @@ h4 {
   }
 
   h3 {
-    font-weight: normal;
-    font-size: 22px;
+    font-weight: 300;
+    font-size: 32px;
     line-height: 1.81;
-    margin: 0 0 88px;
+    margin: 0 20% 64px 20%;
 
-    @media (max-width: 576px) {
-      font-size: 20px;
+    @media (max-width: 767px) {
+      font-size: 24px;
+      margin: 0 5% 64px 5%;
     }
   }
 

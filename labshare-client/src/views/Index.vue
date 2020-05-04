@@ -41,7 +41,9 @@
           <b-col cols lg="6" md="12" sm="12">
               <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
-            <b-button variant="primary" class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
+            <div id="hero-button-wrapper">
+              <b-button class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
+            </div>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -96,7 +98,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("qualif-vol")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
@@ -110,7 +112,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textdiag-cent")}}
           </p>
         </b-col>
@@ -124,7 +126,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textres-lab")}}
           </p>
         </b-col>
@@ -199,6 +201,10 @@ p {
 
   p {
     margin: 10px 0 0;
+
+    @media (max-width: 991px) {
+      text-align: center;
+    }
   }
 
   figure {
@@ -269,6 +275,14 @@ p {
     }
     figure {
       margin-top: 16px;
+    }
+
+    .btn-cta {
+      
+    }
+
+    #hero-button-wrapper {
+      text-align: center !important;
     }
   }
   .about {
