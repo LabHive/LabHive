@@ -41,7 +41,9 @@
           <b-col cols lg="6" md="12" sm="12">
               <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
-            <b-button variant="primary" class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
+            <div id="hero-button-wrapper">
+              <b-button class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
+            </div>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
             <figure>
@@ -96,7 +98,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("qualif-vol")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
@@ -110,7 +112,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textdiag-cent")}}
           </p>
         </b-col>
@@ -124,13 +126,13 @@
             />
           </figure>
           <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p class="bit-sized">
+          <p class="bit-sized text-center">
               {{$t("Textres-lab")}}
           </p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col class="text-center" style="margin-bottom: 44px;">
+        <b-col class="text-center">
           <b-button class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
@@ -165,9 +167,13 @@ p {
 
 .banner {
   background: $color-bkg-primary;
-  margin-bottom: 65px;
+  margin-bottom: 88px;
   padding: 70px 0 25px;
   position: relative;
+
+  @media (max-width: 767px) {
+    margin-bottom: 44px;
+  }
 
   &:before {
     content: "";
@@ -199,6 +205,10 @@ p {
 
   p {
     margin: 10px 0 0;
+
+    @media (max-width: 991px) {
+      text-align: center;
+    }
   }
 
   figure {
@@ -206,7 +216,8 @@ p {
   }
 
   .partners {
-    margin-top: 40px;
+    margin-top: 88px;
+    margin-bottom: 44px;
 
     figure {
       display: inline-block;
@@ -215,6 +226,8 @@ p {
 
     @media (max-width: 767px) {
       font-size: 13px;
+      margin-top: 32px;
+      margin-bottom: 16px;
 
       img {
         height: 48px;
@@ -237,9 +250,13 @@ p {
 }
 
 .about {
-  margin-bottom: 24px;
+  margin-bottom: 88px;
   font-size: 15px;
   line-height: 1.2;
+
+  @media (max-width: 767px) {
+    margin-bottom: 44px;
+  }
 
   h4 {
     font-weight: 500;
@@ -259,14 +276,21 @@ p {
 
 @media (max-width: 991px) {
   .banner {
-    margin-bottom: 40px;
     padding: 0px 0 25px;
 
     h2 {
       margin-top: 0;
     }
     figure {
-      margin-top: 40px;
+      margin-top: 16px;
+    }
+
+    .btn-cta {
+      
+    }
+
+    #hero-button-wrapper {
+      text-align: center !important;
     }
   }
   .about {
