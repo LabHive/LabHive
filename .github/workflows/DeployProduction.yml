@@ -56,7 +56,7 @@ jobs:
             git reset --hard;
             git pull;
 
-            docker create volume labhive_secret_production;
+            docker volume create labhive_secret_production;
             docker run --rm -v $(pwd):/src -v labhive_secret_production:/dst busybox cp -r /src/secret/. /dst/;
 
             if ! docker service ls | grep -q LabHiveProduction; then
