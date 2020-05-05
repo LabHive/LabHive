@@ -41,7 +41,7 @@
 
     <b-row>
       <!-- Zipcode -->
-      <b-col sm="*" md="5" lg="4">
+      <b-col sm="*" md="5" lg="4" order="1" order-md="1">
         <InputForm 
           name="zipcode" 
           v-model="formData.address.zipcode" 
@@ -50,12 +50,24 @@
       </b-col>
 
       <!-- Phone -->
-      <b-col sm="*" md="5" lg="4">
+      <b-col sm="*" md="5" lg="4" order="3" order-md="2">
         <InputForm 
           name="phone" 
           v-model="formData.contact.phone" 
           :valFunc="val.validPhone" 
           :required="false"
+        ></InputForm>
+      </b-col>
+
+      <div class="w-100 order-md-3"></div>
+
+      <!-- City -->
+      <b-col sm="*" md="5" lg="4" offset="0" order="2" order-md="4">
+        <InputForm 
+          name="city" 
+          v-model="formData.address.city" 
+          :valFunc="val.validCity" 
+          :required="true"
         ></InputForm>
       </b-col>
     </b-row>

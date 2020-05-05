@@ -76,9 +76,6 @@ export class Validator {
     }
 
     static validCity(city?: string): ValidationResult {
-        if (city === "") {
-            return new ValidationResultSuccess("")
-        }
         return Validator.validTextShort(city, "invalid_city");
     }
 
