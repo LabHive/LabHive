@@ -8,7 +8,7 @@
   },
   "de":{
     "contact": "Affiliation & Kontaktperson",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
+    "contact_sub": "Bitte geben Sie Ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail-Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
     "affiliation": "Ihre Affiliation",
     "contactPerson": "Kontaktperson"
   }

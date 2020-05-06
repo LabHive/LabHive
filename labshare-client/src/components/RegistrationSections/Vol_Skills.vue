@@ -9,8 +9,8 @@
   "de": {
     "volunteerSkills": "Fähigkeiten",
     "furtherInfo": "Weitere Informationen",
-    "volunteerSkills_sub": "Bitte geben Sie ihre Fähigkeiten an. Diese können später jederzeit im Profil geändert werden.",
-    "volunteerSkills_sub_update": "Bitte geben Sie ihre Fähigkeiten an",
+    "volunteerSkills_sub": "Bitte geben Sie Ihre Fähigkeiten an. Diese können später jederzeit im Profil geändert werden.",
+    "volunteerSkills_sub_update": "Bitte geben Sie Ihre Fähigkeiten an",
     "description": "Weitere Informationen, andere Fähigkeiten, Verfügbarkeit, etc."
   }
 }
@@ -24,6 +24,7 @@
       :data="labSkills" 
       v-model="formData.details.skills"
       :label="profileUpdate ? $t('volunteerSkills_sub_update') : null"
+      :cols="3"
     ></CheckboxGroup>
 
     <b-row>

@@ -6,7 +6,7 @@
   },
   "de":{
     "loginInfo": "Login Informationen",
-    "loginInfo_sub": "Bitte geben Sie ihre E-Mail Adresse an und legen Sie ein Passwort fest."
+    "loginInfo_sub": "Bitte geben Sie Ihre E-Mail-Adresse an und legen Sie ein Passwort fest."
   }
 }
 </i18n>

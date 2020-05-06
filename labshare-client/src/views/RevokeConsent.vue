@@ -3,7 +3,7 @@
     "en": {
         "revokeConsent": "Revoke consent",
         "mail": "Receive no updates via email anymore.",
-        "dataProcessing": "Sending my personal data to registered laboratories and institutes.",
+        "dataProcessing": "Sending my personal data to registered diagnostic centers and research laboratories.",
         "loginRequired": "Please log in and open the link again.",
         "success": "Success!",
         "invalidAction": "Invalid request"
@@ -11,8 +11,8 @@
     "de": {
         "revokeConsent": "Einwilligung widerrufen",
         "mail": "Keine Updates per E-Mail erhalten.",
-        "dataProcessing": "Datenweitergabe, an Labore und Institute unterbinden.",
-        "loginRequired": "Bitte melden Sie sich an und rufen sie den Link erneut auf.",
+        "dataProcessing": "Datenweitergabe, an Diagnostikzentren und Forschungslabore unterbinden.",
+        "loginRequired": "Bitte melden Sie sich an und rufen Sie den Link erneut auf.",
         "success": "Erfolgreich ausführt.",
         "invalidAction": "Ungültige Anfrage"
     }

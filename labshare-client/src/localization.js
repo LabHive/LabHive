@@ -54,7 +54,7 @@ export let localization = {
       },
       save: "Save",
       consentPublicSearch:
-        "I agree that LabHive may make my data accessible via the search function for the purpose of cooperation with laboratories and institutes, in the context of the SARS-CoV-2 pandemic, which are registered on the platform. The right to revoke this agreement and my rights in accordance with Art. 15 DSGVO are not affected by this consent.<br/><br/>If you do not give us your consent, the use of our platform is only possible to a limited extent, which means that you cannot be found as a volunteer via the search function. Currently, there is no possibility for volunteers to contact a registered and verified laboratory.<br/><br/>You will find further information in our <a target=\"_blank\" href=\"/#/privacyPolicy\">privacy policy</a>.",
+        "I agree that LabHive may make my data accessible via the search function for the purpose of cooperation with diagnostic centers and research laboratories, in the context of the SARS-CoV-2 pandemic, which are registered on the platform. The right to revoke this agreement and my rights in accordance with Art. 15 DSGVO are not affected by this consent.<br/><br/>If you do not give us your consent, the use of our platform is only possible to a limited extent, which means that you cannot be found as a volunteer via the search function. Currently, there is no possibility for volunteers to contact a registered and verified diagnostic center.<br/><br/>You will find further information in our <a target=\"_blank\" href=\"/#/privacyPolicy\">privacy policy</a>.",
       disclaimerRegistration: "Whether you are allowed to work as a volunteer in a diagnostic center or whether you are released from work, you are responsible for clarifying this with your employer. If you are requested to work in a diagnostic center you, your employer and the diagnostic center in question are responsible for the Labour Law. LabHive assumes no responsibility in this regard.",
         consentMail: "I hereby authorize LabHive to send me occasional e-mail notifications about updates and new features of the website.",
       required: "Required",
@@ -96,7 +96,7 @@ export let localization = {
       doctorate: "PhD Student",
       postdoc: "Postdoc",
       groupLeader: "Group Leader",
-      other: "Andere"
+      other: "Other"
     },
     de: {
       "Textqualif-vol": "Wissenschaftliche Mitarbeiter oder Technische Assistenten mit Ausbildung und Erfahrung in der Anwendung von Laborgeräten, Probenvorbereitung oder Datenanalyse",
@@ -145,7 +145,7 @@ export let localization = {
       },
       save: "Speichern",
       consentPublicSearch:
-        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Laboren und Instituten, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/><br/>Wenn Sie uns keine Einwilligung erteilen, ist die Verwendung unserer Plattform nur eingeschränkt möglich, wodurch Sie als Freiwillige:r nicht über die Suche gefunden werden können. Momentan gibt es für Freiwillige noch keine Möglichkeit, Kontakt zu einem registrierten und verifizierten Labor aufzunehmen.<br/><br/>Weitere Hinweise finden Sie in unserer <a target=\"_blank\" href=\"/#/privacyPolicy\">Datenschutzerklärung</a>.",
+        "Ich bin damit einverstanden, dass meine Daten von LabHive zum Zwecke der Zusammenarbeit mit Diagnostikzentren und Forschungslaboren, im Rahmen der SARS-CoV-2 Pandemie, die auf der Plattform registriert sind, über die Suchfunktion einsehbar gemacht werden. Das Recht zum Widerruf und meine Rechte gemäß Art. 15 DSGVO sind von der Einwilligung unberührt.<br/><br/>Wenn Sie uns keine Einwilligung erteilen, ist die Verwendung unserer Plattform nur eingeschränkt möglich, wodurch Sie als Freiwillige:r nicht über die Suche gefunden werden können. Momentan gibt es für Freiwillige noch keine Möglichkeit, Kontakt zu einem registrierten und verifizierten Diagnostikzentrum aufzunehmen.<br/><br/>Weitere Hinweise finden Sie in unserer <a target=\"_blank\" href=\"/#/privacyPolicy\">Datenschutzerklärung</a>.",
       disclaimerRegistration: "Ob Sie als Freiwillige:r in Diagnostikzentren arbeiten dürfen, bzw. freigestellt werden, müssen Sie eigenverantwortlich mit Ihrem Arbeitgeber klären. Wenn Sie von einem Diagnostikzentrum angefragt werden, obliegt die arbeitsrechtliche Regelung Ihnen, Ihrem Arbeitgeber und dem betreffenden Diagnostikzentrum. LabHive übernimmt hier keine Verantwortung.",
       consentMail: "Hiermit willige ich ein, dass LabHive mir gelegentlich E-Mail-Benachrichtigungen über Updates und neue Funktionen der Website schickt.",
       required: "Erforderlich",
@@ -169,7 +169,7 @@ export let localization = {
       primerProduction: "Primerherstellung",
       dataAnalysis: "Datenanalyse",
 
-      calibratedPipetteSet: "Calibrated Pipette Set",
+      calibratedPipetteSet: "Kalibrierter Pipettensatz",
       rtThermocycler: "Thermocycler RT",
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse Transkriptase-Kit",
@@ -185,9 +185,9 @@ export let localization = {
       bta_cta: "BTA/CTA",
       bachelor: "Bachelor (abgeschlossen)",
       master: "Master (abgeschlossen)",
-      doctorate: "Promotionsstudent*in",
+      doctorate: "Promotionsstudent:in",
       postdoc: "Postdoc",
-      groupLeader: "Gruppenleiter*in",
+      groupLeader: "Gruppenleiter:in",
       other: "Andere"
     }
   }
