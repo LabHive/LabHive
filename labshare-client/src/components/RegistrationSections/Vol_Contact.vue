@@ -8,7 +8,7 @@
   },
   "de":{
     "contact": "Kontakt & Verfügbarkeit",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten und aktuelle Verfügbarkeit an. Wir teilen sensible Daten wie Nachname, E-Mail Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren.",
+    "contact_sub": "Bitte geben Sie Ihre Kontaktdaten und aktuelle Verfügbarkeit an. Wir teilen sensible Daten wie Nachname, E-Mail-Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren und Forschungslaboren.",
     "available": "Ja, ich bin derzeit zum Aushelfen verfügbar.",
     "not_available": "Nein, ich bin derzeit nicht zum Aushelfen verfügbar."
   }

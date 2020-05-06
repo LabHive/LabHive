@@ -12,7 +12,7 @@
     "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
     "offerAdvice": "Anzubietende Beratung/Know-How",
     "offerAdviceDescription": "Genauere Informationen über die Themen, zu denen Sie Hilfe anbieten können",
-    "offerRessource_sub": "Wenn sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in ihrem Profil ändern. Klicken sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
+    "offerRessource_sub": "Wenn Sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in Ihrem Profil ändern. Klicken Sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
   }
 }
 </i18n>

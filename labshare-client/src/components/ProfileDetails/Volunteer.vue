@@ -4,7 +4,7 @@
     "defaultTitle": "Volunteer",
     "contactDetails": {
       "title": "Contact Details",
-      "not_available": "Contact details are only available to Diagnostic Lab users."
+      "not_available": "Contact details are only available to registered diagnostic centers or research laboratories users."
     },
     "skills": {
       "title": "Skills"
@@ -20,7 +20,7 @@
     "defaultTitle": "Qualifizierte*r Freiwillige*r",
     "contactDetails": {
       "title": "Kontaktinformationen",
-      "not_available": "Kontaktinformationen sind nur für eingeloggte Labore sichtbar."
+      "not_available": "Kontaktinformationen sind nur für eingeloggte Diagnostikzentren oder Forschungslabore sichtbar."
     },
     "skills": {
       "title": "Fähigkeiten"

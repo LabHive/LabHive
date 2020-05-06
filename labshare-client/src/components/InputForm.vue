@@ -21,7 +21,7 @@
   },
   "de":{
     "labName": "Laborname",
-    "labWebsite": "Labor Website",
+    "labWebsite": "Labor-Webseite",
     "instituteName": "Institut/Universität",
     "instituteWebsite": "Website des Instituts/der Universität",
     "firstName": "Vorname",
@@ -36,7 +36,7 @@
     "oldPassword": "Altes Passwort",
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
-    "officialEmail": "E-Mail Adresse des Instituts"
+    "officialEmail": "E-Mail-Adresse des Instituts"
   }
 }
 </i18n>
