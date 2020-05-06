@@ -10,7 +10,7 @@ export let localization = {
   messages: {
     en: {
       "Textqualif-vol": "Scientific staff or technical assistants with training and experience in the use of laboratory equipment, sample preparation or data analysis",
-      "Textres-lab": "Academic or industrial research institutes with access to reagents, devices, or suitable laboratory space (BSL-2/3)",
+      "Textres-lab": "Academic or industrial research laboratories with access to reagents, devices, or suitable laboratory space (BSL-2/3)",
       "Textdiag-cent": "Active diagnostic centers that currently offer SARS-CoV-2 tests including sample processing and analysis",
       signUp: "Sign up",
       login: "Log In",
