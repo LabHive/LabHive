@@ -25,16 +25,16 @@
     <b-container>
       <b-row class="text-center">
         <b-col>
-          <h3>{{ $t('title') }}</h3>
+          <h3 data-aos="fade" data-aos-duration="750">{{ $t('title') }}</h3>
         </b-col>
       </b-row>
       <b-row align-h="center">
         <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
-          <p>{{ $t("subTitle") }}</p>
+          <p data-aos="fade" data-aos-duration="750">{{ $t("subTitle") }}</p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center">
+        <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center" data-aos="fade-up">
           <l-map
             v-if="showMap"
             :zoom="zoom"
@@ -52,7 +52,7 @@
             <l-tile-layer :url="url" :attribution="attribution" />
           </l-map>
         </b-col>
-        <b-col cols lg="6" md="6" sm="12" class="stats">
+        <b-col cols lg="6" md="6" sm="12" class="stats" data-aos="fade-up" data-aos-delay="100">
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>

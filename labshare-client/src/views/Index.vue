@@ -37,7 +37,7 @@
   <div>
     <div class="banner">
       <b-container class="container">
-        <b-row>
+        <b-row data-aos="fade-up" data-aos-duration="1000">
           <b-col cols lg="6" md="12" sm="12">
               <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
@@ -57,7 +57,7 @@
             </figure>
           </b-col>
         </b-row>
-        <b-row align-h="center" class="partners">
+        <b-row align-h="center" class="partners" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
               <p>{{$t("selected")}}</p>
             <figure>
@@ -83,12 +83,12 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3>{{$t("titleGroups")}}</h3>
+            <h3 data-aos="fade" data-aos-duration="750">{{$t("titleGroups")}}</h3>
         </b-col>
       </b-row>
       
       <b-row>
-        <b-col cols lg="4" md="4" sm="12">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-1.svg"
@@ -102,7 +102,7 @@
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
-        <b-col cols lg="4" md="4" sm="12">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-delay="100">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-2.svg"
@@ -116,7 +116,7 @@
               {{$t("Textdiag-cent")}}
           </p>
         </b-col>
-        <b-col cols lg="4" md="4" sm="12">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-delay="200">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-3.svg"
@@ -133,7 +133,7 @@
       </b-row>
       <b-row>
         <b-col class="text-center">
-          <b-button class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
+          <b-button data-aos="fade" class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -299,5 +299,8 @@ p {
     }
   }
 }
+
+$aos-distance: 40px; // It has to be above import
+@import 'node_modules/aos/src/sass/aos.scss';
 
 </style>
