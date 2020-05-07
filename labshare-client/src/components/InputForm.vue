@@ -3,8 +3,8 @@
   "en": {
     "labName": "Laboratory Name",
     "labWebsite": "Laboratory Website",
-    "instituteName": "Institute/University",
-    "instituteWebsite": "Website of your Institute/University",
+    "instituteName": "Institute/University/Hospital",
+    "instituteWebsite": "Website of your Institute/University/Hospital",
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone Number",
@@ -22,8 +22,8 @@
   "de":{
     "labName": "Laborname",
     "labWebsite": "Labor-Webseite",
-    "instituteName": "Institut/Universität",
-    "instituteWebsite": "Website des Instituts/der Universität",
+    "instituteName": "Institut/Universität/Krankenhaus",
+    "instituteWebsite": "Website des Instituts/der Universität/des Krankenhauses",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
