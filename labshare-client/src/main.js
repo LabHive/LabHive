@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faUserAlt, faSearch, faCubes, faHandsHelping, faEnvelope, faPhone, faMapMarker, faVial, faGraduationCap, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -30,6 +32,9 @@ Vue.mixin(profile_load_mixin);
 Vue.use(VueI18n);
 
 new Vue({
+  created () {
+    AOS.init()
+  },
   router,
   store,
   i18n: new VueI18n(localization),
