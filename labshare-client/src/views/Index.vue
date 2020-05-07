@@ -88,7 +88,7 @@
       </b-row>
       
       <b-row>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-1.svg"
@@ -102,7 +102,7 @@
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-delay="100">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-2.svg"
@@ -116,7 +116,7 @@
               {{$t("Textdiag-cent")}}
           </p>
         </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-delay="200">
+        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
           <figure class="text-center">
             <img
               src="../assets/decoration-3-3.svg"
@@ -133,7 +133,7 @@
       </b-row>
       <b-row>
         <b-col class="text-center">
-          <b-button data-aos="fade" class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
+          <b-button data-aos="fade" data-aos-duration="750" class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
