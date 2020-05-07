@@ -52,7 +52,7 @@
             <l-tile-layer :url="url" :attribution="attribution" />
           </l-map>
         </b-col>
-        <b-col cols lg="6" md="6" sm="12">
+        <b-col cols lg="6" md="6" sm="12" class="stats">
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
@@ -61,22 +61,22 @@
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.volunteer }}</b-col>
-              <b-col class="details" sm="12" md="8">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png">{{ markerCounts.volunteer }}</b-col>
+              <b-col class="details" sm="12" md="12">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_research }}</b-col>
-              <b-col class="details" sm="12" md="8">{{ $t('researchLabs') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png">{{ markerCounts.lab_research }}</b-col>
+              <b-col class="details" sm="12" md="12">{{ $t('researchLabs') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow last" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_diag }}</b-col>
-              <b-col class="details last" sm="12" md="8">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png">{{ markerCounts.lab_diag }}</b-col>
+              <b-col class="details last" sm="12" md="12">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <b-row>
@@ -260,6 +260,7 @@ $color-bkg-primary: #f7f6fd;
 
 .statRow {
   margin-bottom: 35px;
+  text-align: center;
 
   &.last {
     margin-bottom: 15px;
@@ -281,6 +282,7 @@ $color-bkg-primary: #f7f6fd;
   text-align: right;
   font-weight: normal;
   line-height: 52px;
+  text-align: center;
 }
 
 .totalStats {
@@ -325,6 +327,10 @@ $color-bkg-primary: #f7f6fd;
       dt {
         margin-bottom: 20px;
       }
+    }
+
+    .stats {
+      margin-top: 32px;
     }
   }
 
@@ -381,4 +387,11 @@ $color-bkg-primary: #f7f6fd;
     text-align: center;
   }
 }
+
+.map-icon-counter {
+  width: 32px;
+  height: 37px;
+  margin-right: 16px;
+}
+
 </style>
