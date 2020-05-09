@@ -1,6 +1,7 @@
 import express from "express";
 import utils from '../utils';
-import { ActivationToken, getUserById } from '../database/database';
+import { getUserById } from '../database/database';
+import { ActivationToken } from "../database/models";
 
 interface IBody {
     token?: string

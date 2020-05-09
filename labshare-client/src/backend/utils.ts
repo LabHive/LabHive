@@ -5,7 +5,7 @@ import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { CONF, OPT } from './options'
 import { osmLimiter } from './ratelimiter'
-import { ZipCode } from './database/database'
+import { ZipCode } from "./database/models"
 import { Document } from 'mongoose'
 import { IZipcode } from './database/schemas/IZipcodes'
 

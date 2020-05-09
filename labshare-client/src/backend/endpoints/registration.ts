@@ -5,8 +5,8 @@ import { Validator as v } from '../../lib/validation';
 import {
   getModelForRole,
   getUserForMail,
-  ActivationToken,
 } from '../database/database';
+import { ActivationToken } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from '../jsonSchemas/JsonSchema';
 import utils from '../utils';

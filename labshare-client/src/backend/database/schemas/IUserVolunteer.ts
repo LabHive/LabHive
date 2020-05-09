@@ -8,6 +8,7 @@ export interface IUserVolunteer extends IUserCommon, ITimestamp {
         qualifications: string[]
     },
     availability: boolean
+    availabilityTimer: Date | null
 }
 
 export const UserVolunteerSchema = new Schema({
@@ -16,6 +17,10 @@ export const UserVolunteerSchema = new Schema({
         qualifications: [String]
     },
     availability: { type: Boolean },
+    availabilityTimer: {
+        type: Date,
+        default: null
+    }
 }, {
     timestamps: true
 });

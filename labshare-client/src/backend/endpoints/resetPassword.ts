@@ -1,6 +1,7 @@
 import argon2 from "argon2";
 import express from "express";
-import { getUser, ResetToken } from '../database/database';
+import { getUser } from '../database/database';
+import { ResetToken } from "../database/models";
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { BAD_REQUEST } from 'http-status-codes';

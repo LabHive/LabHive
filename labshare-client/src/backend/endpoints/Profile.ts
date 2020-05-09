@@ -1,12 +1,14 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
-import { getModelForRole, getUserById, getUserOrAdmin, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { getModelForRole, getUserById, getUserOrAdmin, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { UserCommon, UserVolunteer } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
 import { UserRoles } from '../../lib/userRoles';
 import { UnauthorizedError } from '../errors';
+import { sendNotAvailableNotice } from '../mail/mailer';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -29,6 +31,58 @@ class Profile {
         };
 
         res.send(responseData);
+    }
+
+
+    public async notAvailableNotice(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (!req.params.id) {
+            next()
+            return
+        }
+
+        let token = utils.getUnverifiedDecodedJWT(req)
+        if (token.role === UserRoles.VOLUNTEER) {
+            return next(new UnauthorizedError())
+        }
+
+        let slug = req.params.id
+        let user = await UserVolunteer.findOne({ slug: slug }).exec()
+        if (!user) {
+            return utils.badRequest(res)
+        }
+
+        user.availabilityTimer = new Date();
+        sendNotAvailableNotice(user.contact.email, utils.getBaseUrl(req), user._id.toString(), user.language)
+        user.save()
+
+        utils.successResponse(res)
+    }
+
+
+    public async updateAvailability(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (!req.params.id) {
+            next()
+            return
+        }
+
+        let status = typeof req.query.status === 'string' ? req.query.status : null;
+        if (!status) {
+            return utils.badRequest(res)
+        }
+
+        let userId = req.params.id
+        let user = await UserVolunteer.findOne({ _id: userId }).exec()
+        if (!user) {
+            return utils.badRequest(res)
+        }
+
+        user.availabilityTimer = null
+        user.availability = status === '1'
+        user.save().then(() => {
+            utils.successResponse(res)
+        }).catch(() => {
+            utils.internalError(res)
+        })
     }
 
 

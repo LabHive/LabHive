@@ -1,7 +1,7 @@
 import express from "express"
 import utils from '../utils'
 import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND } from 'http-status-codes'
-import { UserAdmin, UserCommon, ActivationToken } from '../database/database'
+import { UserAdmin, UserCommon, ActivationToken } from "../database/models"
 import argon from 'argon2'
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
 import { CONF } from '../options'
@@ -285,9 +285,8 @@ export class AdminEndpoint {
             }
 
             let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
-            let language = getLangID(req)
 
-            await sendActivationMail(user.contact.email, link, language)
+            await sendActivationMail(user.contact.email, link, user.language)
         }
         catch (err) {
             utils.errorResponse(res, INTERNAL_SERVER_ERROR, err.toString())
