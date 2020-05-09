@@ -89,6 +89,8 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
 
 
     if (searchMode == SearchMode.volunteers && filterBy == QueryTypes.volunteerSkills) {
+        filter['availability'] = true
+
         filter['details'] = {
             "$exists": true
         }
@@ -125,6 +127,7 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
             ]
         } else if (searchMode == SearchMode.volunteers) {
             filter['role'] = UserRoles.VOLUNTEER
+            filter['availability'] = true
         }
         else {
             filter['$or'] = [
@@ -133,7 +136,11 @@ function buildFilter(req: express.Request, res: express.Response, token?: Token)
                 { "lookingFor.equipment.0": { "$exists": true } },
                 { "lookingFor.advice.0": { "$exists": true } },
                 { "lookingFor.volunteerSkills.0": { "$exists": true } },
-                { "role": UserRoles.VOLUNTEER }
+                { "$and": [
+                    { "role": UserRoles.VOLUNTEER },
+                    { "availability": true }
+                ] }
+                
             ]
         }
     }
