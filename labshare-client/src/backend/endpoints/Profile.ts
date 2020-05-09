@@ -66,7 +66,7 @@ class Profile {
         }
 
         let status = typeof req.query.status === 'string' ? req.query.status : null;
-        if (!status) {
+        if (!status || (status !== "1" && status !== "0")) {
             return utils.badRequest(res)
         }
 
