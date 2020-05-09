@@ -17,7 +17,7 @@
     }
   },
   "de": {
-    "defaultTitle": "Qualifizierte*r Freiwillige*r",
+    "defaultTitle": "Qualifizierte:r Freiwillige:r",
     "contactDetails": {
       "title": "Kontaktinformationen",
       "not_available": "Kontaktinformationen sind nur für eingeloggte Diagnostikzentren oder Forschungslabore sichtbar."
