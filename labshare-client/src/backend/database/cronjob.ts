@@ -12,7 +12,7 @@ async function cronjob() {
         for (let i of users) {
             i.availabilityTimer = null;
             i.availability = false;
-            sendNotAvailableFinal(i.contact.email, OPT.BASE_URL, i._id.toString(), i.language)
+            sendNotAvailableFinal(i.contact.email, OPT.BASE_URL, i.secretRandomId, i.language)
             i.save()
         }
     })
