@@ -8,7 +8,7 @@
   },
   "de":{
     "contact": "Kontakt & Verfügbarkeit",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten und aktuelle Verfügbarkeit an. Wir teilen sensible Daten wie Nachname, E-Mail Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren.",
+    "contact_sub": "Bitte geben Sie Ihre Kontaktdaten und aktuelle Verfügbarkeit an. Wir teilen sensible Daten wie Nachname, E-Mail-Adresse und Telefonnummer nur mit verifizierten Diagnostikzentren und Forschungslaboren.",
     "available": "Ja, ich bin derzeit zum Aushelfen verfügbar.",
     "not_available": "Nein, ich bin derzeit nicht zum Aushelfen verfügbar."
   }
@@ -41,7 +41,7 @@
 
     <b-row>
       <!-- Zipcode -->
-      <b-col sm="*" md="5" lg="4">
+      <b-col sm="*" md="5" lg="4" order="1" order-md="1">
         <InputForm 
           name="zipcode" 
           v-model="formData.address.zipcode" 
@@ -50,12 +50,24 @@
       </b-col>
 
       <!-- Phone -->
-      <b-col sm="*" md="5" lg="4">
+      <b-col sm="*" md="5" lg="4" order="3" order-md="2">
         <InputForm 
           name="phone" 
           v-model="formData.contact.phone" 
           :valFunc="val.validPhone" 
           :required="false"
+        ></InputForm>
+      </b-col>
+
+      <div class="w-100 order-md-3"></div>
+
+      <!-- City -->
+      <b-col sm="*" md="5" lg="4" offset="0" order="2" order-md="4">
+        <InputForm 
+          name="city" 
+          v-model="formData.address.city" 
+          :valFunc="val.validCity" 
+          :required="true"
         ></InputForm>
       </b-col>
     </b-row>

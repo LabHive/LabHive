@@ -8,7 +8,7 @@
   },
   "de":{
     "contact": "Affiliation & Kontaktperson",
-    "contact_sub": "Bitte geben Sie ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
+    "contact_sub": "Bitte geben Sie Ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail-Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
     "affiliation": "Ihre Affiliation",
     "contactPerson": "Kontaktperson"
   }
@@ -17,7 +17,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
-    <p class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
+    <p v-else class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
 
     <b-row>
 
@@ -27,16 +27,17 @@
       </b-col>
 
       <!-- Header Contact Person -->
-      <b-col v-bind="large" offset-xl="1" order-md="2" order="6" class="second-header">
+      <b-col v-bind="large" order-md="2" order="7" class="second-header">
         <h4>{{ $t("contactPerson") }}</h4>
       </b-col>
 
 
       <!-- ROW-END -->
+      <div class="w-100 order-md-3"></div>
 
 
       <!-- LabName -->
-      <b-col v-bind="large" order-md="3" order="2">
+      <b-col v-bind="large" order-md="4" order="2">
         <InputForm
           :name="role == 'lab_diag' ? 'labName' : 'instituteName'"
           v-model="formData.organization"
@@ -45,7 +46,7 @@
       </b-col>
 
       <!-- FirstName -->
-      <b-col v-bind="small" offset-xl="1" order-md="4" order="7">
+      <b-col v-bind="small" order-md="5" order="8">
         <InputForm
           name="firstName"
           v-model="formData.contact.firstname"
@@ -54,7 +55,7 @@
       </b-col>
 
       <!-- LastName -->
-      <b-col v-bind="small" order-md="5" order="8">
+      <b-col v-bind="small" order-md="6" order="9">
         <InputForm
           name="lastName" 
           v-model="formData.contact.lastname" 
@@ -64,10 +65,11 @@
 
 
       <!-- ROW-END -->
+      <div class="w-100 order-md-7"></div>
 
 
       <!-- Website -->
-      <b-col v-bind="large" order-md="6" order="3">
+      <b-col v-bind="large" order-md="8" order="3">
         <InputForm
           :name="role == 'lab_diag' ? 'labWebsite' : 'instituteWebsite'"
           v-model="formData.website"
@@ -77,7 +79,7 @@
       </b-col>
 
       <!-- Phone -->
-      <b-col v-bind="large" offset-xl="1" order-md="7" order="9">
+      <b-col v-bind="large" order-md="9" order="10">
         <InputForm 
           name="phone" 
           v-model="formData.contact.phone" 
@@ -88,10 +90,11 @@
 
 
       <!-- ROW-END -->
+      <div class="w-100 order-md-10"></div>
 
 
       <!-- Zipcode -->
-      <b-col v-bind="large" order-md="8" order="4">
+      <b-col v-bind="large" order-md="11" order="4">
         <InputForm 
           name="zipcode" 
           v-model="formData.address.zipcode" 
@@ -99,18 +102,28 @@
         ></InputForm>
       </b-col>
 
-      <b-col sm="0" md="6" order-md="9">
-        <!-- empty -->
+      <div class="w-100 order-md-12"></div>
+
+      <!-- City -->
+      <b-col v-bind="large" order-md="13" order="5">
+        <InputForm 
+          name="city" 
+          v-model="formData.address.city" 
+          :valFunc="val.validCity"
+        ></InputForm>
       </b-col>
 
+      <div class="w-100 order-md-14"></div>
+
       <!-- Street -->
-      <b-col v-bind="large" order-md="10" order="5">
+      <b-col v-bind="large" order-md="15" order="6">
         <InputForm 
           name="street" 
           v-model="formData.address.street" 
           :valFunc="val.validStreet"
         ></InputForm>
       </b-col>
+
     </b-row>
 
 
@@ -148,6 +161,32 @@ export default {
   .second-header {
     margin-top: 30px
   } 
+}
+
+@media (min-width: 768px) {
+  .order-md-13 {
+    -webkit-box-ordinal-group: 14;
+    -ms-flex-order: 13;
+    order: 13;
+  }
+
+  .order-md-14 {
+    -webkit-box-ordinal-group: 15;
+    -ms-flex-order: 14;
+    order: 14;
+  }
+
+  .order-md-15 {
+    -webkit-box-ordinal-group: 16;
+    -ms-flex-order: 15;
+    order: 15;
+  }
+
+  .order-md-16 {
+    -webkit-box-ordinal-group: 17;
+    -ms-flex-order: 16;
+    order: 16;
+  }
 }
 
 </style>

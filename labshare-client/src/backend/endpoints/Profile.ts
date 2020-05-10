@@ -1,12 +1,14 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
-import { getModelForRole, getUserById, getUserOrAdmin, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { getModelForRole, getUserById, getUserOrAdmin, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { UserCommon, UserVolunteer } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
 import { UserRoles } from '../../lib/userRoles';
 import { UnauthorizedError } from '../errors';
+import { sendNotAvailableNotice } from '../mail/mailer';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -17,18 +19,75 @@ class Profile {
             return utils.badRequest(res);
         }
 
-        let data = JSON.parse(JSON.stringify(user));
-        delete data._id;
-        delete data.__v;
-        delete data.__t;
-        delete data.password;
+        delete user._id;
+        delete user.__v;
+        delete user.__t;
+        delete user.password;
+        delete user.secretRandomId;
+        //@ts-ignore
+        delete user.availabilityTimer
 
         let responseData = {
             success: true,
-            data: data
+            data: user
         };
 
         res.send(responseData);
+    }
+
+
+    public async notAvailableNotice(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (!req.params.id) {
+            next()
+            return
+        }
+
+        let token = utils.getUnverifiedDecodedJWT(req)
+        if (token.role === UserRoles.VOLUNTEER) {
+            return next(new UnauthorizedError())
+        }
+
+        let slug = req.params.id
+        let user = await UserVolunteer.findOne({ slug: slug }).exec()
+        if (!user) {
+            return utils.badRequest(res)
+        }
+
+        if (user.availabilityTimer)
+            return utils.successResponse(res)
+
+        user.availabilityTimer = new Date();
+        sendNotAvailableNotice(user.contact.email, utils.getBaseUrl(req), user.secretRandomId, user.language)
+        user.save()
+
+        utils.successResponse(res)
+    }
+
+
+    public async updateAvailability(req: express.Request, res: express.Response, next: express.NextFunction) {
+        if (!req.params.id) {
+            next()
+            return
+        }
+
+        let status = typeof req.query.status === 'string' ? req.query.status : null;
+        if (!status || (status !== "1" && status !== "0")) {
+            return utils.badRequest(res)
+        }
+
+        let userId = req.params.id
+        let user = await UserVolunteer.findOne({ secretRandomId: userId }).exec()
+        if (!user) {
+            return utils.badRequest(res)
+        }
+
+        user.availabilityTimer = null
+        user.availability = status === '1'
+        user.save().then(() => {
+            utils.successResponse(res)
+        }).catch(() => {
+            utils.internalError(res)
+        })
     }
 
 
@@ -99,7 +158,10 @@ class Profile {
         delete body.verified
         delete body.disabled
         delete body.language
-        delete body.slug;
+        delete body.slug
+        delete body.secretRandomId
+        //@ts-ignore
+        delete body.availabilityTimer
         
         let model = getModelForRole(token.role)
         let schema = schemaForRole(token.role)

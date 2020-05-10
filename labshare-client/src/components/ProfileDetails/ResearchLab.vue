@@ -3,7 +3,7 @@
   "en": {
     "contactDetails": {
       "title": "Contact Details",
-      "not_available": "Contact details are only available to Diagnostic Lab users."
+      "not_available": "Contact details are only available to registered diagnostic centers or research laboratories users."
     },
     "other": {
       "title": "Other information"
@@ -16,7 +16,7 @@
   "de": {
     "contactDetails": {
       "title": "Kontaktinformationen",
-      "not_available": "Kontaktinformationen sind nur für eingeloggte Labore sichtbar."
+      "not_available": "Kontaktinformationen sind nur für eingeloggte Diagnostikzentren oder Forschungslabore sichtbar."
     },
     "other": {
       "title": "Weitere Informationen"
@@ -43,23 +43,23 @@
           <hr/>
           <template v-if="profile.contact">
             <p>{{profile.contact.firstname}} {{profile.contact.lastname}}</p>
-            <dl class="row">
-              <dt class="col-sm-1"><font-awesome-icon icon="envelope" /></dt>
-              <dd class="col-sm-11"><b-link :href="`mailto:${profile.contact.email}`">{{profile.contact.email}}</b-link></dd>
 
-              <dt class="col-sm-1"><font-awesome-icon icon="phone" /></dt>
-              <dd class="col-sm-11">{{ profile.contact.phone || 'Not given'}}</dd>
-
-              <dt class="col-sm-1"><font-awesome-icon icon="map-marker" /></dt>
-              <dd class="col-sm-11">
-                {{ profile.address.zipcode }} {{ profile.address.city}},
-                {{ profile.address.street }}
-              </dd>
-            </dl>
+            <b-row>
+              <b-col cols="1"><font-awesome-icon icon="envelope" /></b-col>
+              <b-col cols="10"><b-link :href="`mailto:${profile.contact.email}`">{{profile.contact.email}}</b-link></b-col>
+              <div class="w-100 nextRow"></div>
+              <template v-if="profile.contact.phone">
+                <b-col cols="1"><font-awesome-icon icon="phone" /></b-col>
+                <b-col cols="10">{{ profile.contact.phone }}</b-col>
+              </template>
+              <div class="w-100 nextRow"></div>
+              <b-col cols="1"><font-awesome-icon icon="map-marker" /></b-col>
+              <b-col cols="10">{{ profile.address.zipcode }} {{ profile.address.city}}, {{ profile.address.street }}</b-col>
+            </b-row>
           </template>
           <template v-else>
             <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
-            <div class="links">
+            <div class="links" v-if="!$authenticated">
               <b-link class="btn btn-primary btn-sm" to="/register">{{ $t("signUp") }}</b-link>
               <b-link class="btn btn-primary btn-sm" to="/login">{{ $t("login") }}</b-link>
             </div>

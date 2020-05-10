@@ -5,7 +5,9 @@ import HttpStatusCodes from 'http-status-codes'
 import jsonwebtoken from 'jsonwebtoken'
 import { CONF, OPT } from './options'
 import { osmLimiter } from './ratelimiter'
-import { ZipCode } from './database/database'
+import { ZipCode } from "./database/models"
+import { Document } from 'mongoose'
+import { IZipcode } from './database/schemas/IZipcodes'
 
 export interface Address {
     city?: string,
@@ -26,7 +28,6 @@ class Utils {
         let searchComponent: any = {
             street: "",
             postalcode: "",
-            city: "",
             country: "Germany"
         }
         if (address.street) {
@@ -35,19 +36,21 @@ class Utils {
         if (address.zipcode) {
             searchComponent.postalcode = address.zipcode
         }
-        if (address.city) {
-            searchComponent.city = address.city
-        }
 
-        if (address.zipcode && !address.street && !address.city) {
-            let zipDoc = await ZipCode.findOne({ zipcode: address.zipcode }).lean().exec()
+        if (address.zipcode && !address.street) {
+            let zipDoc = await ZipCode.findOne({ zipcode: address.zipcode }).exec()
             if (zipDoc) {
+                if (address.city && !zipDoc.city) {
+                    zipDoc.city = address.city
+                    zipDoc.save()
+                }
+
                 return {
                     coords: {
                         type: "Point",
                         coordinates: [zipDoc.location.coordinates[0] , zipDoc.location.coordinates[1]]
                     },
-                    city: zipDoc.city
+                    city: address.city ?? (zipDoc.city ?? "")
                 }
             }
         }
@@ -68,15 +71,14 @@ class Utils {
             }
             let lon = parseFloat(response.data[0].lon)
             let lat = parseFloat(response.data[0].lat)
-            let city = response.data[0].display_name?.split(",")[0] ?? ""
-            if (address.zipcode && !address.street && !address.city) {
+            if (address.zipcode && !address.street) {
                 new ZipCode({
                     zipcode: address.zipcode,
                     location: {
                         type: "Point",
                         coordinates: [lon, lat]
                     },
-                    city: city,
+                    city: address.city ?? "",
                     country: "Germany"
                 }).save()
             }
@@ -85,7 +87,7 @@ class Utils {
                     type: "Point",
                     coordinates: [lon, lat]
                 },
-                city: city
+                city: address.city ?? ""
             }
         }
         catch (err) {

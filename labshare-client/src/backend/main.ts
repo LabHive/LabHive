@@ -20,6 +20,7 @@ import utils from './utils'
 import { ready } from './database/database'
 import { GlobalEvent } from './constants'
 import { RateLimiter } from './ratelimiter'
+import './discordBot/bot'
 
 let app = express()
 
@@ -80,6 +81,7 @@ router.get("/search", search)
 router.post("/activate", activate)
 router.get("/test-coverage", testCoverage)
 router.get("/profile/:id", Profile.getForSlug)
+router.post("/profile/:id/updateAvailability", Profile.updateAvailability)
 
 
 router.use(authMiddleware)
@@ -88,6 +90,7 @@ router.post("/change-password", changePassword)
 router.post("/profile/revoke", Profile.revoke)
 router.get("/profile", Profile.get)
     .post("/profile", Profile.post)
+    .post("/profile/:id/notAvailableNotice", Profile.notAvailableNotice)
     .delete("/profile", Profile.delete)
 
 

@@ -6,7 +6,7 @@
   },
   "de": {
     "qualification": "Qualifikation",
-    "qualification_sub": "Bitte geben Sie ihre Qualifikation(en) an."
+    "qualification_sub": "Bitte geben Sie Ihre Qualifikation(en) an."
   }
 }
 </i18n>

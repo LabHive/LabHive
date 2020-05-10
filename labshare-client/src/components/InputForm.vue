@@ -3,8 +3,8 @@
   "en": {
     "labName": "Laboratory Name",
     "labWebsite": "Laboratory Website",
-    "instituteName": "Institute/University",
-    "instituteWebsite": "Website of your Institute/University",
+    "instituteName": "Institute/University/Hospital",
+    "instituteWebsite": "Website of your Institute/University/Hospital",
     "firstName": "First Name",
     "lastName": "Last Name",
     "phone": "Phone Number",
@@ -21,9 +21,9 @@
   },
   "de":{
     "labName": "Laborname",
-    "labWebsite": "Labor Website",
-    "instituteName": "Institut/Universität",
-    "instituteWebsite": "Website des Instituts/der Universität",
+    "labWebsite": "Labor-Webseite",
+    "instituteName": "Institut/Universität/Krankenhaus",
+    "instituteWebsite": "Website des Instituts/der Universität/des Krankenhauses",
     "firstName": "Vorname",
     "lastName": "Nachname",
     "phone": "Telefonnummer",
@@ -36,7 +36,7 @@
     "oldPassword": "Altes Passwort",
     "repeatPassword": "Passwort wiederholen",
     "email": "E-Mail-Adresse",
-    "officialEmail": "E-Mail Adresse des Instituts"
+    "officialEmail": "E-Mail-Adresse des Instituts"
   }
 }
 </i18n>
@@ -46,7 +46,7 @@
     :id="name"
     :state="state_form"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="state_field" trim :validated="true" @input="validate"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="state_field" trim :validated="true"></b-form-input>
     <label>{{ placeholder ? placeholder : $t(name) }}</label>
 
     <template v-slot:invalid-feedback><span :style="{opacity: invalid_opacity}">{{ invalid_feedback_text }}</span></template>
@@ -95,6 +95,7 @@ export default {
   computed: {
     model: {
       get() {
+        this.validate(this.value)
         return this.value
       },
       set(newValue) {
@@ -105,7 +106,7 @@ export default {
   methods: {
     validate(text) {
       this.$nextTick(() => {
-        if (text === "") {
+        if (text === "" || !text) {
           this.setup()
           this.$root.$emit("inputForm_changed", text);
           return
@@ -126,7 +127,7 @@ export default {
 
           this.$emit("valid")
         }
-        else {
+        else if (valResult.valid === false) {
           this.state_form = false
           this.state_field = false
           this.invalid_feedback_text = this.invalidFeedback ? this.invalidFeedback(this.model) : this.feedback(valResult)
@@ -137,6 +138,13 @@ export default {
           } else {
             this.invalid_opacity = 1
           }
+        }
+        else {
+          this.state_form = true
+          this.state_field = null
+          this.invalid_opacity = 0
+          this.valid_opacity = 0
+          this.valid_feedback_text = "nothing"
         }
 
         this.$root.$emit("inputForm_changed", text);
@@ -152,12 +160,12 @@ export default {
       return "";
     },
     setup() {
-      if (this.model !== "") {
+      if (this.model !== "" && this.model != undefined) {
         this.validate(this.model)
         return
       }
       
-      if (this.required) {
+      if (this.required && this.valFunc) {
         this.state_form = false
         this.state_field = null
         this.invalid_feedback_text = this.$t("required")

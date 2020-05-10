@@ -59,7 +59,7 @@ jobs:
             git reset --hard;
             git pull;
 
-            docker create volume labhive_secret_staging;
+            docker volume create labhive_secret_staging;
             docker run --rm -v $(pwd):/src -v labhive_secret_staging:/dst busybox cp -r /src/secret/. /dst/;
 
             if ! docker service ls | grep -q LabHiveStaging; then

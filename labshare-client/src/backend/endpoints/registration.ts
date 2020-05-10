@@ -5,8 +5,8 @@ import { Validator as v } from '../../lib/validation';
 import {
   getModelForRole,
   getUserForMail,
-  ActivationToken,
 } from '../database/database';
+import { ActivationToken } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from '../jsonSchemas/JsonSchema';
 import utils from '../utils';
@@ -16,6 +16,7 @@ import { sendActivationMail } from '../mail/mailer';
 import { getLangID } from './language';
 import { OPT } from '../options';
 import { Document } from 'mongoose';
+import { BotMsg } from '../discordBot/bot';
 
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -67,7 +68,6 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     body.language = getLangID(req)
-    body.slug = uuid();
     let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
     if (body.website && !regexpUrl.test(body.website)) {
         body.website = "http://" + body.website;
@@ -98,6 +98,7 @@ export async function registration(req: express.Request, res: express.Response, 
         sendActivationMail(user.contact.email, link, lang).catch((err) => {
             console.error("Failed to send activation mail", err)
         })
+        BotMsg.newUser(role)
         utils.successResponse(res)
     }
     catch (err) {

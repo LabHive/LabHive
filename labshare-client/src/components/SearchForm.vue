@@ -202,10 +202,6 @@ export default {
     },
     initSearchForm() {
       switch(this.$user.role) {
-        case "volunteer":
-          this.filter.mode = "lookingFor";
-          this.filterBy = "volunteerSkills";
-          break;
         case "lab_research":
           this.filter.mode = "lookingFor";
           this.filterBy = "equipment";

@@ -15,7 +15,7 @@
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
       <b-form @submit="login">
-        <b-form-group id="email" label="E-Mail Adresse">
+        <b-form-group id="email" label="E-Mail-Adresse">
           <b-form-input id="email" v-model="user.email" trim></b-form-input>
         </b-form-group>
         <b-form-group id="password" label="Passwort">

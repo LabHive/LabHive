@@ -6,7 +6,7 @@
     "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
     "diagnosticLabs": "Diagnostic Centers",
-    "referenceRKI": "COVID-19 Daily report of the RKI vom 15.04.2020",
+    "referenceRKI": "Daily situation report about COVID-19 by the RKI, May 6th 2020",
     "referenceRegistered": "Registered on our platform"
   },
   "de": {
@@ -16,7 +16,7 @@
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "COVID-19 Lagebericht des RKI vom 15.04.2020",
+    "referenceRKI": "Situationsbericht des RKI vom 06.05.2020 zu COVID-19",
     "referenceRegistered": "Auf unserer Plattform registriert"
   }
 }</i18n>
@@ -25,16 +25,16 @@
     <b-container>
       <b-row class="text-center">
         <b-col>
-          <h3>{{ $t('title') }}</h3>
+          <h3 data-aos="fade" data-aos-duration="750">{{ $t('title') }}</h3>
         </b-col>
       </b-row>
       <b-row align-h="center">
         <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
-          <p>{{ $t("subTitle") }}</p>
+          <p data-aos="fade" data-aos-duration="750">{{ $t("subTitle") }}</p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center">
+        <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center" data-aos="fade-up" data-aos-duration="750">
           <l-map
             v-if="showMap"
             :zoom="zoom"
@@ -52,31 +52,31 @@
             <l-tile-layer :url="url" :attribution="attribution" />
           </l-map>
         </b-col>
-        <b-col cols lg="6" md="6" sm="12">
+        <b-col cols lg="6" md="6" sm="12" class="stats" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
-            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-04-15-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
+            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-05-06-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
           </b-row>
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.volunteer }}</b-col>
-              <b-col class="details" sm="12" md="8">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png">{{ markerCounts.volunteer }}</b-col>
+              <b-col class="details" sm="12" md="12">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_research }}</b-col>
-              <b-col class="details" sm="12" md="8">{{ $t('researchLabs') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png">{{ markerCounts.lab_research }}</b-col>
+              <b-col class="details" sm="12" md="12">{{ $t('researchLabs') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow last" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="2">{{ markerCounts.lab_diag }}</b-col>
-              <b-col class="details last" sm="12" md="8">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png">{{ markerCounts.lab_diag }}</b-col>
+              <b-col class="details last" sm="12" md="12">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <b-row>
@@ -260,6 +260,7 @@ $color-bkg-primary: #f7f6fd;
 
 .statRow {
   margin-bottom: 35px;
+  text-align: center;
 
   &.last {
     margin-bottom: 15px;
@@ -281,6 +282,7 @@ $color-bkg-primary: #f7f6fd;
   text-align: right;
   font-weight: normal;
   line-height: 52px;
+  text-align: center;
 }
 
 .totalStats {
@@ -325,6 +327,10 @@ $color-bkg-primary: #f7f6fd;
       dt {
         margin-bottom: 20px;
       }
+    }
+
+    .stats {
+      margin-top: 32px;
     }
   }
 
@@ -381,4 +387,11 @@ $color-bkg-primary: #f7f6fd;
     text-align: center;
   }
 }
+
+.map-icon-counter {
+  width: 32px;
+  height: 37px;
+  margin-right: 16px;
+}
+
 </style>
