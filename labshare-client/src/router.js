@@ -24,6 +24,7 @@ import LabDiagForm from './components/RegistrationForms/LabDiagForm'
 import LabResearchForm from './components/RegistrationForms/LabResearchForm'
 import VolunteerForm from './components/RegistrationForms/VolunteerForm'
 import UpdateAvailability from './views/UpdateAvailability'
+import Press from './views/Press'
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,7 @@ const routes = [
   { path: '/reset-password', component: ResetPassword },
   { path: '/forgot-password', component: ForgotPassword },
   { path: '/ueber-uns', name: 'pageAboutUs', component: UeberUns},
+  { path: '/press', name: 'press', component: Press},
   { path: '/privacyPolicy', component: PrivacyPolicy },
   { path: '/imprint', component: Imprint },
   { path: '/search', name: 'pageSearch', component: Search },
