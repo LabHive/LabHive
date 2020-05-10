@@ -14,8 +14,14 @@ export const UserLabResearchSchema = new Schema({
     offers: {
         advice: [String],
         equipment: [String],
-        equipmentDescription: String,
-        adviceDescription: String,
+        equipmentDescription: {
+            type: String,
+            default: ""
+        },
+        adviceDescription: {
+            type: String,
+            default: ""
+        },
     }
 }, {
     timestamps: true
