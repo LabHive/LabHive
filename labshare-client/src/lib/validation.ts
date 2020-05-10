@@ -93,7 +93,7 @@ export class Validator {
     }
 
     static validDescription(description?: string): ValidationResult {
-        if (description === "") {
+        if (!description) {
             description = " "
         }
         return Validator.validTextLong(description, "invalid_description");
