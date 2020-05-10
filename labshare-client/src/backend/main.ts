@@ -20,6 +20,7 @@ import utils from './utils'
 import { ready } from './database/database'
 import { GlobalEvent } from './constants'
 import { RateLimiter } from './ratelimiter'
+import './discordBot/bot'
 
 let app = express()
 

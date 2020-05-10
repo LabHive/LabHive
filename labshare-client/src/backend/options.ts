@@ -43,11 +43,13 @@ class Options {
     private _BASE_URL: EnvVar<string>
     private _DISABLE_RATE_LIMITING: EnvVar<boolean>
     private _RATE_LIMITING_BLOCK_DURATION: EnvVar<number>
+    private _DISABLE_DISCORD_BOT: EnvVar<boolean>
 
     constructor() {
         this._BASE_URL = new EnvVar(process.env.BASE_URL, "")
 
         this._ENABLE_MAIL = new EnvVar(process.env.ENABLE_MAIL, false)
+        this._DISABLE_DISCORD_BOT = new EnvVar(process.env.DISABLE_DISCORD_BOT, false)
 
         this._PRODUCTION = new EnvVar(process.env.PRODUCTION, false)
         this._STAGING = new EnvVar(process.env.STAGING, false)
@@ -63,6 +65,8 @@ class Options {
                 this._DISABLE_VERIFICATION.value = true
             if (!this._PRODUCTION.isSet)
                 this._PRODUCTION.value = true
+            if (!this._DISABLE_DISCORD_BOT.isSet)
+                this._DISABLE_DISCORD_BOT.value = true
         }
 
         if (this.PRODUCTION && !this._ENABLE_MAIL.isSet) {
@@ -77,6 +81,11 @@ class Options {
 
         if (this.PRODUCTION && !existsSync(FILE_PATH.hmacKey)) {
             console.error("Production mode is enabled, but no hmacKey exists!")
+            process.exit(1)
+        }
+
+        if (!this.DISABLE_DISCORD_BOT && !existsSync(FILE_PATH.discordBotToken)) {
+            console.error("Discord Bot is enabled, but no discord token could be found!")
             process.exit(1)
         }
     }
@@ -109,6 +118,10 @@ class Options {
         return this._RATE_LIMITING_BLOCK_DURATION.value
     }
 
+    public get DISABLE_DISCORD_BOT(): boolean {
+        return this._DISABLE_DISCORD_BOT.value
+    }
+
     public jsonify() {
         return JSON.stringify(this, null, 4)
     }
@@ -120,9 +133,11 @@ class Configuration {
     HMAC_KEY: string
     MAIL_CONFIG: Mail.Options
     ADMIN_USERS?: IUserAdmin[]
+    DISCORD_BOT_TOKEN: string
 
     constructor() {
         this.HMAC_KEY = OPT.PRODUCTION ? readFileSync(FILE_PATH.hmacKey, { encoding: 'utf8' }) : "randomKey"
+        this.DISCORD_BOT_TOKEN = !OPT.DISABLE_DISCORD_BOT ? readFileSync(FILE_PATH.discordBotToken, { encoding: 'utf8' }) : ""
         this.MAIL_CONFIG = OPT.ENABLE_MAIL ? JSON.parse(readFileSync(FILE_PATH.mailConfig, { encoding: 'utf8' })) : undefined
 
         if (!existsSync(FILE_PATH.adminUsers)) {

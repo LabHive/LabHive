@@ -4,6 +4,7 @@ import { FailedMail } from "../database/models";
 import localization from './localization';
 import { OPT, CONF } from '../options';
 import { LANG, LANG_TYPE } from "../constants";
+import { BotMsg } from '../discordBot/bot';
 
 let TRANSPORTER: Mail
 
@@ -32,9 +33,10 @@ export function retryMails() {
 async function sendMessage(message: Mail.Options, storeFailed: boolean = true): Promise<any> {    
     if (OPT.ENABLE_MAIL) {
         return TRANSPORTER.sendMail(message).catch(async (err) => {
+            BotMsg.error(`Failed to send email ${err}`)
             if (storeFailed) {
                 let doc = new FailedMail(message)
-                await doc.save()
+                doc.save()
             }
             throw err
         })
