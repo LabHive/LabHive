@@ -16,6 +16,7 @@ import { sendActivationMail } from '../mail/mailer';
 import { getLangID } from './language';
 import { OPT } from '../options';
 import { Document } from 'mongoose';
+import { BotMsg } from '../discordBot/bot';
 
 
 export async function registration(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -97,6 +98,7 @@ export async function registration(req: express.Request, res: express.Response, 
         sendActivationMail(user.contact.email, link, lang).catch((err) => {
             console.error("Failed to send activation mail", err)
         })
+        BotMsg.newUser(role)
         utils.successResponse(res)
     }
     catch (err) {
