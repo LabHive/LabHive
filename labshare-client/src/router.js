@@ -23,6 +23,7 @@ import RevokeConsent from './views/RevokeConsent'
 import LabDiagForm from './components/RegistrationForms/LabDiagForm'
 import LabResearchForm from './components/RegistrationForms/LabResearchForm'
 import VolunteerForm from './components/RegistrationForms/VolunteerForm'
+import UpdateAvailability from './views/UpdateAvailability'
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,7 @@ const routes = [
   { path: '/search', name: 'pageSearch', component: Search },
   { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
+  { path: '/updateAvailability', component: UpdateAvailability },
   
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/revokeConsent', component: RevokeConsent, meta: { auth: true } },

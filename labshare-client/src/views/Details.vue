@@ -52,9 +52,6 @@ export default {
       if (p.lookingFor?.advice) {
         p.lookingFor.advice = this.localizeFields(p.lookingFor.advice)
       }
-      if (p.lookingFor?.volunteerSkills) {
-        p.lookingFor.volunteerSkills = this.localizeFields(p.lookingFor.volunteerSkills)
-      }
       if (p.offers?.equipment) {
         p.offers.equipment = this.localizeFields(p.offers.equipment)
       }
@@ -119,5 +116,9 @@ export default {
     color: #6D6F78;
     font-size: 16px;
     font-weight: normal;
+  }
+
+  /deep/ .nextRow {
+    margin-top: 10px;
   }
 </style>

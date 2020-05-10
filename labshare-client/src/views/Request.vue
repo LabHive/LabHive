@@ -6,7 +6,7 @@
   },
   "de": {
     "success": "Erfolgreich gespeichert",
-    "requestResource": "Aktuelle Anfrage"
+    "requestResource": "Aktueller Bedarf"
   }
 }
 </i18n>
@@ -34,7 +34,6 @@ export default {
   data() {
     return {
       lookingFor: {
-        volunteerSkills: [],
         equipment: [],
         advice: [],
         equipmentDescription: "",

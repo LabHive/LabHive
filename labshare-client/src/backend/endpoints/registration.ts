@@ -5,8 +5,8 @@ import { Validator as v } from '../../lib/validation';
 import {
   getModelForRole,
   getUserForMail,
-  ActivationToken,
 } from '../database/database';
+import { ActivationToken } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from '../jsonSchemas/JsonSchema';
 import utils from '../utils';
@@ -67,7 +67,6 @@ export async function registration(req: express.Request, res: express.Response, 
     }
 
     body.language = getLangID(req)
-    body.slug = uuid();
     let regexpUrl = new RegExp(/^https?:\/\/[^\s"'\\]+$/);
     if (body.website && !regexpUrl.test(body.website)) {
         body.website = "http://" + body.website;

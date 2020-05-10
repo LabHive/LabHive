@@ -93,7 +93,7 @@ export class Validator {
     }
 
     static validDescription(description?: string): ValidationResult {
-        if (description === "") {
+        if (!description) {
             description = " "
         }
         return Validator.validTextLong(description, "invalid_description");
@@ -192,7 +192,6 @@ export class Validator {
 
             if (object.lookingFor) {
                 if (object.lookingFor.advice) results.push(Validator.validAdvice(object.lookingFor.advice))
-                if (object.lookingFor.volunteerSkills) results.push(Validator.validSkills(object.lookingFor.volunteerSkills))
                 if (object.lookingFor.equipment) results.push(Validator.validEquipment(object.lookingFor.equipment))
                 if (object.lookingFor.equipmentDescription) results.push(Validator.validTextLong(object.lookingFor.equipmentDescription, "invalid_equipmentDescription"))
                 if (object.lookingFor.adviceDescription) results.push(Validator.validTextLong(object.lookingFor.adviceDescription, "invalid_adviceDescription"))

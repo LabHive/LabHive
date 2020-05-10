@@ -17,7 +17,7 @@
 <template>
   <div>
     <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
-    <p class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
+    <p v-else class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
 
     <b-row>
 

@@ -1,8 +1,6 @@
 <i18n>
 {
   "en": {
-    
-    "requestVolunteerSkills": "Request Volunteer Skills",
     "requestEquipment": "Needed Devices/Reagents",
     "requestEquipmentDescription": "More detailed information about the devices required. Manufacturer, quantity, etc.",
     "equipmentDescription": "Description of the requested devices",
@@ -12,7 +10,6 @@
     "requestRessource_sub": "If you need resources, you can list them here. You can always change this later in your profile. Click on “Next” below if currently you do not need anything. You will find qualified volunteers using the search feature."
   },
   "de": {
-    "requestVolunteerSkills": "Qualifizierte Freiwillige anfragen",
     "requestEquipment": "Benötigte Geräte/Reagenzien",
     "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",

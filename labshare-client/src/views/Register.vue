@@ -4,24 +4,26 @@
     "registration": "Register",
     "registerSubtitle": "Please register to access all functionalities of LabHive.",
     "complete": "Thank you for your registration!",
-    "activation": "To activate your account, click the link in the email that we sent to you.",
     "labActivation": "Since you registered as diagnostic center or research laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
     "prospectiveRole": "Please select your user group.",
     "roleHelper": "Qualified Volunteers",
     "roleDiagnosticLab": "Diagnostic Centers",
-    "roleLab": "Research Laboratories"
+    "roleLab": "Research Laboratories",
+    "yourMail": "your E-Mail address",
+    "confirmationMail": "We have sent a link to confirm the registration to <strong>{mail}</strong>. Please click on this link to activate your account."
   },
 
   "de": {
     "registration": "Registrieren",
     "registerSubtitle": "Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können.",
-    "complete": "Danke für Ihre Registrierung!",
-    "activation": "Um Ihren Account zu aktivieren, klicken Sie bitte auf den Link in der E-Mail, die wir Ihnen geschickt haben.",
-    "labActivation": "Da Sie sich als Diagnostikzentrum oder Forschungslabor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern, wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
+    "complete": "Registrierung erfolgreich!",
+    "labActivation": "Da Sie sich als Diagnostikzentrum oder Forschungslabor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern. Wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
     "prospectiveRole": "Bitte wählen Sie Ihre Nutzergruppe.",
     "roleHelper": "Qualifizierte Freiwillige",
     "roleDiagnosticLab": "Diagnostikzentren",
-    "roleLab": "Forschungslabore"
+    "roleLab": "Forschungslabore",
+    "yourMail": "deine E-Mail-Adresse",
+    "confirmationMail": "Wir haben einen Link zur Bestätigung der Registrierung an <strong>{mail}</strong> geschickt. Bitte klicken Sie auf diesen Link, um ihr Konto freizuschalten."
   }
 }
 </i18n>
@@ -37,13 +39,25 @@
     
 
     <template v-if="registrationComplete">
-      <h1 style="margin-bottom: 10px">{{$t("complete")}}</h1>
-      <p>{{$t("activation")}}<template v-if="role != forms.VOLUNTEER"><br>{{ $t("labActivation") }}</template></p>
+      <div style="margin: 70px auto 70px auto; max-width: 510px; text-align: center">
+        <p style="font-size: 22px">{{ $t("complete") }}</p>
+        <figure>
+          <img
+            style="margin-top: 40px"
+            class="img-fluid"
+            src="../assets/registrationComplete.svg"
+            :alt="$t('registrationComplete')"
+            width="227"
+          />
+        </figure>  
+        <p style="margin-top: 55px" v-html="this.$t('confirmationMail', { mail: formData.contact ? formData.contact.email : $t('yourMail') })"></p>
+        <p v-if="role != forms.VOLUNTEER">{{ $t("labActivation") }}</p>
+      </div>
     </template>
 
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
-    <div key="step-one" v-if="step === 0">
+    <div key="step-one" v-if="step === 0 && !registrationComplete">
       <p class="step-info-sub">{{ $t("prospectiveRole") }}</p>
       <b-container fluid>
         <b-row>
@@ -130,7 +144,8 @@ export default {
       error: null,
       registrationComplete: false,
       registrationForm: "",
-      step: 0
+      step: 0,
+      formData: {}
     };
   },
   computed: {
@@ -159,6 +174,7 @@ export default {
       this.$router.push(route)
     },
     register: function(formData) {
+      this.formData = formData
       this.$http.post("registration", formData, { params: { role: this.role } }).then(
         resp => {
           let data = resp.body;

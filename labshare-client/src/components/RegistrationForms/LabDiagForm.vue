@@ -90,7 +90,6 @@ export default {
           mailUpdates: null
         },
         lookingFor: {
-          volunteerSkills: [],
           equipment: [],
           advice: [],
           equipmentDescription: "",

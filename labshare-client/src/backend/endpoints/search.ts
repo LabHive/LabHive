@@ -1,7 +1,8 @@
 import express from "express";
 import { UserRoles } from '../../lib/userRoles';
 import { Validator } from '../../lib/validation';
-import { getModelForRole, getUser, UserCommon, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { getModelForRole, getUser, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { UserCommon } from "../database/models";
 import utils, { Token } from '../utils';
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import crypto from "crypto"
