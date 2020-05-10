@@ -86,7 +86,7 @@ export async function sendNotAvailableNotice(to: string, baseUrl: string, userId
     let url_stillAvailable = baseUrl + "/#/updateAvailability?status=1&id=" + userId
     
     let subject = localization[language].notAvailableNotice.subject.trim()
-    let text = localization[language].notAvailableNotice.text(url_notAvailable, url_stillAvailable)
+    let text = localization[language].notAvailableNotice.text(url_notAvailable, url_stillAvailable).trim()
 
     return sendMailTo(to, subject, text)
 }
@@ -95,7 +95,7 @@ export async function sendNotAvailableFinal(to: string, baseUrl: string, userId:
     let url_stillAvailable = baseUrl + "/#/updateAvailability?status=1&id=" + userId
     
     let subject = localization[language].notAvailableFinal.subject.trim()
-    let text = localization[language].notAvailableFinal.text(url_stillAvailable)
+    let text = localization[language].notAvailableFinal.text(url_stillAvailable).trim()
 
     return sendMailTo(to, subject, text)
 }

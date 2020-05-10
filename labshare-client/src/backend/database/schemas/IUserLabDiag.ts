@@ -3,7 +3,6 @@ import { IUserCommon, UserCommonSchema } from "./IUserCommon";
 import { ITimestamp } from './ITimestamps';
 export interface IUserLabDiag extends IUserCommon, ITimestamp {
     lookingFor: {
-        volunteerSkills: string[],
         advice: string[],
         equipment: string[],
         equipmentDescription: string,
@@ -21,7 +20,6 @@ export const UserLabDiagSchema = new Schema({
     lookingFor: {
         advice: [String],
         equipment: [String],
-        volunteerSkills: [String],
         equipmentDescription: String,
         adviceDescription: String,
     },

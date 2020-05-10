@@ -3,12 +3,14 @@
     "en": {
     "title": "Login",
     "submit": "Log in",
-    "forgotPassword": "Forgot password"
+    "forgotPassword": "Forgot password",
+    "emptyField": "Please fill in the fields and try again!"
     },
     "de": {
     "title": "Anmeldung",
     "submit": "Einloggen",
-    "forgotPassword": "Passwort vergessen"
+    "forgotPassword": "Passwort vergessen",
+    "emptyField": "Bitte die Felder ausfüllen und erneut probieren!"
     }
     }
 </i18n>
@@ -67,7 +69,7 @@ export default {
             console.log("Login error:", response);
           });
       } else {
-        this.error = "Please fill in the fields and try again";
+        this.error = this.$t("emptyField");
       }
     }
   },

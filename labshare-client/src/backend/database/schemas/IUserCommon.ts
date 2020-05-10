@@ -2,6 +2,7 @@ import { Document, Schema } from 'mongoose';
 import { ITimestamp } from './ITimestamps';
 import { LANG_TYPE } from '../../constants';
 import { UserRoles } from '../../../lib/userRoles';
+import { v4 } from "uuid";
 
 export interface IUserCommon extends Document, ITimestamp {
     role: UserRoles;
@@ -35,6 +36,7 @@ export interface IUserCommon extends Document, ITimestamp {
     language: LANG_TYPE,
     disabled: boolean,
     slug: string,
+    secretRandomId: string,
     __t: String
 }
 
@@ -88,8 +90,18 @@ export const UserCommonSchema = new Schema(
     slug: {
       type: String,
       required: true,
+      default: () => {
+        return v4()
+      }
     },
-    language: String
+    language: String,
+    secretRandomId: {
+      type: String,
+      required: true,
+      default: () => {
+        return v4()
+      }
+    }
 }, {
     timestamps: true
   }

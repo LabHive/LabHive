@@ -19,15 +19,17 @@ class Profile {
             return utils.badRequest(res);
         }
 
-        let data = JSON.parse(JSON.stringify(user));
-        delete data._id;
-        delete data.__v;
-        delete data.__t;
-        delete data.password;
+        delete user._id;
+        delete user.__v;
+        delete user.__t;
+        delete user.password;
+        delete user.secretRandomId;
+        //@ts-ignore
+        delete user.availabilityTimer
 
         let responseData = {
             success: true,
-            data: data
+            data: user
         };
 
         res.send(responseData);
@@ -51,8 +53,11 @@ class Profile {
             return utils.badRequest(res)
         }
 
+        if (user.availabilityTimer)
+            return utils.successResponse(res)
+
         user.availabilityTimer = new Date();
-        sendNotAvailableNotice(user.contact.email, utils.getBaseUrl(req), user._id.toString(), user.language)
+        sendNotAvailableNotice(user.contact.email, utils.getBaseUrl(req), user.secretRandomId, user.language)
         user.save()
 
         utils.successResponse(res)
@@ -71,7 +76,7 @@ class Profile {
         }
 
         let userId = req.params.id
-        let user = await UserVolunteer.findOne({ _id: userId }).exec()
+        let user = await UserVolunteer.findOne({ secretRandomId: userId }).exec()
         if (!user) {
             return utils.badRequest(res)
         }
@@ -153,7 +158,10 @@ class Profile {
         delete body.verified
         delete body.disabled
         delete body.language
-        delete body.slug;
+        delete body.slug
+        delete body.secretRandomId
+        //@ts-ignore
+        delete body.availabilityTimer
         
         let model = getModelForRole(token.role)
         let schema = schemaForRole(token.role)

@@ -24,5 +24,5 @@ export let registration_labResearch: Schema = {
             required: ["advice", "equipment", "equipmentDescription", "adviceDescription"]
         }
     },
-    required: ["address", "contact", "organization", "description", "password", "consent", "website"]
+    required: ["address", "contact", "organization", "description", "password", "consent", "website", "offers"]
 };
