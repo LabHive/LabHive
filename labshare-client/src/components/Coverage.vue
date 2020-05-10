@@ -6,7 +6,7 @@
     "qualifiedVolunteers": "Qualified Volunteers",
     "researchLabs": "Research Laboratories",
     "diagnosticLabs": "Diagnostic Centers",
-    "referenceRKI": "COVID-19 Daily report of the RKI vom 15.04.2020",
+    "referenceRKI": "Daily situation report about COVID-19 by the RKI, May 6th 2020",
     "referenceRegistered": "Registered on our platform"
   },
   "de": {
@@ -16,7 +16,7 @@
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "COVID-19 Lagebericht des RKI vom 15.04.2020",
+    "referenceRKI": "Situationsbericht des RKI vom 06.05.2020 zu COVID-19",
     "referenceRegistered": "Auf unserer Plattform registriert"
   }
 }</i18n>
@@ -56,7 +56,7 @@
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
-            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-04-15-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
+            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-05-06-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
           </b-row>
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
