@@ -16,7 +16,7 @@
     "qualifiedVolunteers": "Qualifizierte Freiwillige",
     "researchLabs": "Forschungslabore",
     "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "Situationsbericht des Robert Koch-Instituts vom 06.05.2020 zu COVID-19",
+    "referenceRKI": "Situationsbericht des RKI vom 06.05.2020 zu COVID-19",
     "referenceRegistered": "Auf unserer Plattform registriert"
   }
 }</i18n>
