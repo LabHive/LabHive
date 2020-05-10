@@ -14,7 +14,8 @@
     "requestResource": "Current Requests",
     "offerResource": "Current Offers",
     "search": "Search For Resources",
-    "staging": "Only for test purposes, does not contain real data."
+    "staging": "Only for test purposes, does not contain real data.",
+    "press": "Press"
   },
   "de": {
     "brand": "LabHive",
@@ -30,7 +31,8 @@
     "requestResource": "Aktueller Bedarf",
     "offerResource": "Aktuelles Angebot",
     "search": "Suche nach Ressourcen",
-    "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!"
+    "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!",
+    "press": "Presse"
   }
 }
 </i18n>
@@ -41,7 +43,11 @@
         <b-navbar-brand to="/">
           <img src="./assets/logo-green.svg" alt="LabHive" width="161" />
         </b-navbar-brand>
-        <b-navbar-toggle class="custom-toggle-icon collapsed" style="float: right" target="nav-collapse">
+        <b-navbar-toggle
+          class="custom-toggle-icon collapsed"
+          style="float: right"
+          target="nav-collapse"
+        >
           <span class="line line-1"></span>
           <span class="line line-2"></span>
           <span class="line line-3"></span>
@@ -49,24 +55,40 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item :active='$route.name =="pageAboutLabhive"' to="/">{{ $t("aboutLabhive") }}</b-nav-item>
-            <b-nav-item :active='$route.name =="pageAboutUs"' to="/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
+            <b-nav-item :active="$route.name =='pageAboutLabhive'" to="/">{{ $t("aboutLabhive") }}</b-nav-item>
+            <b-nav-item :active="$route.name =='pageAboutUs'" to="/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :active='$route.name =="pageSearch"' class="nav-cta" to="/search">{{ $t("search") }}</b-nav-item>
+            <b-nav-item
+              :active="$route.name =='pageSearch'"
+              class="nav-cta"
+              to="/search"
+            >{{ $t("search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item :active='$route.name =="pageRegister"' to="/register">{{ $t("register") }}</b-nav-item>
-              <b-nav-item :active='$route.name =="pageLogin"' to="/login">{{ $t("login") }}</b-nav-item>
+              <b-nav-item :active="$route.name =='pageRegister'" to="/register">{{ $t("register") }}</b-nav-item>
+              <b-nav-item :active="$route.name =='pageLogin'" to="/login">{{ $t("login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
-              <b-dropdown-item to="/profile" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1">{{ $t("profile") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'" to="/offer">{{ $t("offerResource") }}</b-dropdown-item>
-              <b-dropdown-item v-if="$user.role == 'lab_diag'" to="/request">{{ $t("requestResource") }}</b-dropdown-item>
+              <b-dropdown-item
+                to="/profile"
+                v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1"
+              >{{ $t("profile") }}</b-dropdown-item>
+              <b-dropdown-item
+                v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'"
+                to="/offer"
+              >{{ $t("offerResource") }}</b-dropdown-item>
+              <b-dropdown-item
+                v-if="$user.role == 'lab_diag'"
+                to="/request"
+              >{{ $t("requestResource") }}</b-dropdown-item>
               <b-dropdown-item to="/change-password">{{ $t("changePassword") }}</b-dropdown-item>
-              <b-dropdown-item to="/admin" v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1">Admin</b-dropdown-item>
+              <b-dropdown-item
+                to="/admin"
+                v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1"
+              >Admin</b-dropdown-item>
               <b-dropdown-item to="/" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
@@ -74,31 +96,67 @@
         </b-collapse>
       </div>
     </b-navbar>
-    
+
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
-      <div style="text-align: center" v-if="staging"><h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("staging") }}</h1></div>
+      <div style="text-align: center" v-if="staging">
+        <h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("staging") }}</h1>
+      </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
           <router-view></router-view>
         </keep-alive>
       </div>
     </div>
-    
+
     <!-- Footer -->
     <footer class="footer-custom">
       <b-container>
         <b-row>
-          <b-col sm="12" md lg class="copyright align-self-center" order="3" order-lg="1">
-            &copy; LabHive 2020
-          </b-col>
-          <b-col sm="12" md="12" lg="6" class="text-center align-self-center" order="1" order-lg="2">
+          <b-col
+            sm="12"
+            md
+            lg
+            class="copyright align-self-center"
+            order="4"
+            order-lg="1"
+          >&copy; LabHive 2020</b-col>
+          <b-col
+            sm="12"
+            md="12"
+            lg="auto"
+            class="text-center align-self-center"
+            order="1"
+            order-lg="2"
+          >
             <b-link to="/privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="/imprint" class="clink">{{ $t('imprint') }}</b-link>
-            <b-link class="fa-icon" href="https://twitter.com/Lab_Hive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
-            <b-link class="fa-icon" href="https://github.com/LabHive/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
+            <b-link to="/press" class="clink">{{ $t('press') }}</b-link>
           </b-col>
-          <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
-            <a href="https://wirvsvirushackathon.org/" target="_blank"><img class="img-hover" src="./assets/logo-wirvsvirus-projekt.png" alt="Wir vs. Virus Projekt" width="192" height="66" /> </a>
+          <b-col
+            class="text-center align-self-center social-icons"
+            sm="12"
+            md="12"
+            lg="auto"
+            order="2"
+            order-lg="3"
+          >
+            <b-link class="fa-icon" href="https://twitter.com/Lab_Hive" target="_blank">
+              <font-awesome-icon :icon="['fab', 'twitter']" />
+            </b-link>
+            <b-link class="fa-icon" href="https://github.com/LabHive/LabHive" target="_blank">
+              <font-awesome-icon :icon="['fab', 'github']" />
+            </b-link>
+          </b-col>
+          <b-col sm="12" md="12" lg class="logo" order="3" order-lg="4">
+            <a href="https://wirvsvirushackathon.org/" target="_blank">
+              <img
+                class="img-hover"
+                src="./assets/logo-wirvsvirus-projekt.png"
+                alt="Wir vs. Virus Projekt"
+                width="192"
+                height="66"
+              />
+            </a>
           </b-col>
         </b-row>
       </b-container>
@@ -116,15 +174,15 @@ export default {
   data() {
     return {
       staging: process.env.STAGING
-    }
+    };
   },
   mounted() {
     window.onscroll = function() {
-      const navbar = document.getElementById('navbar');
-      let className = navbar.className.replace('sticky', '');
-      
+      const navbar = document.getElementById("navbar");
+      let className = navbar.className.replace("sticky", "");
+
       if (window.scrollY > 0) {
-         className = className + ' sticky ';
+        className = className + " sticky ";
       }
 
       navbar.className = className;
@@ -137,9 +195,8 @@ export default {
           return this.$user.contact.firstname;
         } else if (this.$user.organization) {
           return this.$user.organization;
-        }
-        else {
-          return this.$user.role
+        } else {
+          return this.$user.role;
         }
       } else {
         return "User";
@@ -162,36 +219,36 @@ $color-brand--primary: #0069d9;
 $color-brand--secondary: #0069d9;
 $color-white: #fff;
 
-$color-bkg-primary: #F7F6FD;
+$color-bkg-primary: #f7f6fd;
 $color-green: #177867;
 
 @import "assets/custom.scss";
 @import "~bootstrap/scss/bootstrap.scss";
-@import '~bootstrap-vue/dist/bootstrap-vue.css';
+@import "~bootstrap-vue/dist/bootstrap-vue.css";
 
 @font-face {
-    font-family: "Fira Sans";
-    src: url('/fonts/FiraSans-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: Light;
+  font-family: "Fira Sans";
+  src: url("/fonts/FiraSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: Light;
 }
 @font-face {
-    font-family: "Fira Sans";
-    src: url('/fonts/FiraSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: Regular;
+  font-family: "Fira Sans";
+  src: url("/fonts/FiraSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: Regular;
 }
 @font-face {
-    font-family: "Fira Sans";
-    src: url('/fonts/FiraSans-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: Medium;
+  font-family: "Fira Sans";
+  src: url("/fonts/FiraSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: Medium;
 }
 @font-face {
-    font-family: "Fira Sans";
-    src: url('/fonts/FiraSans-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: Bold;
+  font-family: "Fira Sans";
+  src: url("/fonts/FiraSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: Bold;
 }
 
 html {
@@ -199,7 +256,7 @@ html {
 }
 
 body {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   flex-direction: column;
@@ -215,7 +272,8 @@ body {
   margin-bottom: 3em;
 }
 
-h1,h3 {
+h1,
+h3 {
   font-weight: normal;
   font-size: 40px;
   line-height: 1.2;
@@ -240,17 +298,23 @@ h4 {
   font-weight: normal;
   margin-bottom: 16px;
   font-size: 18px;
-  color: #484C5A;
+  color: #484c5a;
+}
+
+.social-icons {
+  @media (max-width: 992px) {
+    margin-top: 10px;
+  }
 }
 
 .step-info-sub {
-      margin-bottom: 44px;
-      max-width: 60%;
+  margin-bottom: 44px;
+  max-width: 60%;
 
-      @media(max-width: 992px) {
-        max-width: 100% !important;
-      }
-    }
+  @media (max-width: 992px) {
+    max-width: 100% !important;
+  }
+}
 
 .main-div {
   height: 100%;
@@ -264,20 +328,21 @@ h4 {
   margin-top: 20px;
 }
 
-.btn-primary, .btn-success {
-  background: #C9E0DF;
+.btn-primary,
+.btn-success {
+  background: #c9e0df;
   border-radius: 4px;
   border: none;
   font-weight: bold;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.1em;
-  color: #0E5145;
+  color: #0e5145;
   padding: 12px 24px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 
   &:not(:disabled):not(.disabled):hover {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
     color: $color-green;
   }
@@ -288,9 +353,10 @@ h4 {
     box-shadow: none;
   }
 
-  &:disabled, &.disabled {
-    background: #C9E0DF;
-    color: #0E5145;;
+  &:disabled,
+  &.disabled {
+    background: #c9e0df;
+    color: #0e5145;
     box-shadow: 0 0 0 transparent;
   }
 }
@@ -300,7 +366,7 @@ h4 {
 }
 
 .btn-secondary {
-  background: #E2E2E2;
+  background: #e2e2e2;
   border-radius: 4px;
   border: none;
   font-weight: bold;
@@ -309,10 +375,10 @@ h4 {
   letter-spacing: 0.1em;
   color: #000;
   padding: 12px 24px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
 
   &:not(:disabled):not(.disabled):hover {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
     color: #333;
   }
@@ -323,9 +389,10 @@ h4 {
     box-shadow: none;
   }
 
-  &:disabled, &.disabled {
-    background: #C9E0DF;
-    color: #0E5145;;
+  &:disabled,
+  &.disabled {
+    background: #c9e0df;
+    color: #0e5145;
     box-shadow: 0 0 0 transparent;
   }
 }
@@ -336,17 +403,17 @@ h4 {
 }
 
 .btn-cta {
-    margin: 25px 0 0;
-    color: #fff;
-    padding: 14px 32px;
-    background: $color-green;
-    border: none;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.10);
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    letter-spacing: 0.1em;
+  margin: 25px 0 0;
+  color: #fff;
+  padding: 14px 32px;
+  background: $color-green;
+  border: none;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.1em;
 
   &:hover {
     background: #fff;
@@ -355,42 +422,41 @@ h4 {
   }
 }
 
-
-
-#navbar, .footer-custom {
+#navbar,
+.footer-custom {
   background: $color-bkg-primary;
   position: relative;
 
-    .container {
-      max-width: 1500px;
-    }
-
-    .navbar-nav .nav-link {
-      color: rgba(0, 0, 0, 0.6);
-      text-transform: uppercase;
-      transition: all 0.15s ease-in-out;
-      -webkit-transition: all 0.15s ease-in-out;
-      margin: 0 16px;
-
-      &.active {
-        color: rgba(0, 0, 0, 1);
-        font-weight: 500;
-      }
-
-      &:hover {
-        color: $color-green;
-        font-weight: 500;
-        transition: all 0.15s ease-in-out;
-        -webkit-transition: all 0.15s ease-in-out;
-      }
-
-      @media (max-width: 1200px) {
-        margin: 0 4px;
-        font-size: 13.5px;
-      }
+  .container {
+    max-width: 1500px;
   }
 
-  .nav-cta .nav-link{
+  .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    transition: all 0.15s ease-in-out;
+    -webkit-transition: all 0.15s ease-in-out;
+    margin: 0 16px;
+
+    &.active {
+      color: rgba(0, 0, 0, 1);
+      font-weight: 500;
+    }
+
+    &:hover {
+      color: $color-green;
+      font-weight: 500;
+      transition: all 0.15s ease-in-out;
+      -webkit-transition: all 0.15s ease-in-out;
+    }
+
+    @media (max-width: 1200px) {
+      margin: 0 4px;
+      font-size: 13.5px;
+    }
+  }
+
+  .nav-cta .nav-link {
     border: 1.5px solid $color-green;
     border-radius: 4px;
     box-sizing: border-box;
@@ -401,16 +467,16 @@ h4 {
     font-weight: 500;
 
     @media (max-width: 1200px) {
-        margin: 0 12px;
-      }
+      margin: 0 12px;
+    }
 
     @media (max-width: 991px) {
-        margin: 0 4px;
+      margin: 0 4px;
     }
 
     &.active {
-      background: #C9E0DF;
-      border: 1px solid #C9E0DF;
+      background: #c9e0df;
+      border: 1px solid #c9e0df;
 
       .nav-link {
         color: #000;
@@ -434,11 +500,16 @@ h4 {
     left: 0;
     right: 0;
     top: 100%;
-    content: '';
+    content: "";
     height: 1px;
     margin-top: -1px;
     position: absolute;
-    background: linear-gradient(270.04deg, rgba(218, 218, 218, 0) 0%, #DADADA 50.23%, rgba(218, 218, 218, 0) 100.45%);
+    background: linear-gradient(
+      270.04deg,
+      rgba(218, 218, 218, 0) 0%,
+      #dadada 50.23%,
+      rgba(218, 218, 218, 0) 100.45%
+    );
   }
 
   .logo {
@@ -451,8 +522,9 @@ h4 {
   }
 
   @media (max-width: 991px) {
-    .copyright, .logo { 
-      text-align: center; 
+    .copyright,
+    .logo {
+      text-align: center;
       padding: 10px 0 0 0;
     }
 
@@ -462,7 +534,8 @@ h4 {
   }
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-toggler:focus {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-toggler:focus {
   outline: 0;
 }
 
@@ -474,7 +547,8 @@ h4 {
   margin-bottom: 16px;
 }
 
-.btn.disabled, .btn:disabled {
+.btn.disabled,
+.btn:disabled {
   opacity: 0.5;
 }
 
@@ -508,15 +582,15 @@ h4 {
 }
 
 .navbar-toggler {
-    border: none;
-    margin-right: 15px;
-    margin-bottom: 2px;
-    outline: none;
+  border: none;
+  margin-right: 15px;
+  margin-bottom: 2px;
+  outline: none;
 }
 
 .custom-toggle-icon {
-      width: 30px;
-      height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 .custom-toggle-icon .line {
@@ -609,14 +683,13 @@ h4 {
   }
 
   .clink {
-  color: rgba(255, 255, 255, 0.5);
-}
+    color: rgba(255, 255, 255, 0.5);
+  }
 
-.clink:hover {
-  color: rgba(255, 255, 255, 0.75);
-  text-decoration: none;
-}
-
+  .clink:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+  }
 }
 
 .img-hover {
@@ -630,7 +703,7 @@ h4 {
 }
 
 .title-subtitle {
-    margin-bottom: 64px;
+  margin-bottom: 64px;
 }
 
 .form-group {
@@ -644,5 +717,4 @@ h4 {
 .consent-section {
   margin: 44px 0;
 }
-
 </style>
