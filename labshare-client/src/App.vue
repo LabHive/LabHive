@@ -95,7 +95,7 @@
             <b-link to="/privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
             <b-link to="/imprint" class="clink">{{ $t('imprint') }}</b-link>
             <b-link class="fa-icon" href="https://twitter.com/Lab_Hive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
-            <b-link class="fa-icon" href="https://github.com/LavHive/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
+            <b-link class="fa-icon" href="https://github.com/LabHive/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
           <b-col sm="12" md="12" lg class="logo" order="2" order-lg="3">
             <a href="https://wirvsvirushackathon.org/" target="_blank"><img class="img-hover" src="./assets/logo-wirvsvirus-projekt.png" alt="Wir vs. Virus Projekt" width="192" height="66" /> </a>
