@@ -53,7 +53,7 @@
                 <a :href="'mailto:' + row.item.contact.email"><b-button variant="primary" size="sm">Send Mail to user</b-button></a>
               </b-col>
               <b-col cols="auto" v-if="!row.item.verified.mail && $user.role === 'superAdmin'">
-                <b-button variant="danger" @click="deleteUser(row)" size="sm">Resend activation mail</b-button>
+                <b-button variant="danger" @click="deleteUser(row)" size="sm">Delete User</b-button>
               </b-col>
             </b-row>
             <b-container fluid style="margin-top: 30px">

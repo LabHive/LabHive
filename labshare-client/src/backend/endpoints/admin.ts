@@ -156,7 +156,7 @@ export class AdminEndpoint {
             .sort({ "verified.manually": 1, disabled: 1, createdAt: -1 })
             .limit(20)
             .skip(page_int * 20)
-            .select('-password -location -lookingFor -offers -__v -consent')
+            .select('-password -location -__v')
             .exec()
 
         let rDocs = docs.map((x) => { return x.toObject() })
