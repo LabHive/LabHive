@@ -16,52 +16,25 @@
 
     <b-row class="consent-section">
       <b-col sm="*" :md="5*2" :lg="4*2" style="padding: 0">
-        <p v-html="$t('consentMail')"></p>
-        <b-form-group
-          :state="formData.consent.mailUpdates !== null"
-          :invalid-feedback="$t('required')"
-          :valid-feedback="'OK'"
-        >
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.mailUpdates"
-            name="mailUpdates"
-            :value="true"
-          >{{ $t('agree') }}</b-form-radio>
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.mailUpdates"
-            name="mailUpdates"
-            :value="false"
-          >{{ $t('not_agree') }}</b-form-radio>
-        </b-form-group>
+        <b-form-checkbox 
+          v-model="formData.consent.mailUpdates"
+          name="mailCheckbox"
+          :value="true"
+          :unchecked-value="false"
+          ><div style="max-width: 600px" v-html="$t('consentMail')"></div></b-form-checkbox>
       </b-col>
     </b-row>
 
-    <b-row>
-      <b-col sm="*" :md="5*2" :lg="4*2">
-        <p v-html="$t('consentPublicSearch')"></p>
-        <b-form-group
-          :state="formData.consent.publicSearch !== null"
-          :invalid-feedback="$t('required')"
-          :valid-feedback="'OK'"
-        >
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.publicSearch"
-            name="publicSearch"
-            :value="true"
-          >{{ $t('agree') }}</b-form-radio>
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.publicSearch"
-            name="publicSearch"
-            :value="false"
-          >{{ $t('not_agree') }}</b-form-radio>
-        </b-form-group>
+    <b-row class="consent-section">
+      <b-col sm="*" :md="5*2" :lg="4*2" style="padding: 0">
+        <b-form-checkbox 
+          v-model="formData.consent.publicSearch"
+          name="searchCheckbox"
+          :value="true"
+          :unchecked-value="false"
+          ><div style="max-width: 600px" v-html="$t('consentPublicSearch')"></div></b-form-checkbox>
       </b-col>
     </b-row>
-
 
     <template v-if="!profileUpdate">
       <b-row style="margin-bottom: -50px; margin-top: 30px;">

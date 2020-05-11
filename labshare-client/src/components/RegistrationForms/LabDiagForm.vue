@@ -87,7 +87,7 @@ export default {
         website: "",
         consent: {
           publicSearch: true,
-          mailUpdates: null
+          mailUpdates: true
         },
         lookingFor: {
           equipment: [],
