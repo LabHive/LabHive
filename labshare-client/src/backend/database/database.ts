@@ -9,7 +9,7 @@ import { UserAdmin, UserLabDiag, UserLabResearch, UserVolunteer, UserCommon } fr
 import { scheduleCronjob } from './cronjob';
 
 
-const connectionBase = OPT.PRODUCTION ? 'mongodb' : 'localhost';
+const connectionBase = OPT.DOCKER ? 'mongodb' : 'localhost';
 export let ready = false;
 
 mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {

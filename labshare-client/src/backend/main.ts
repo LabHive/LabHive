@@ -27,7 +27,7 @@ let app = express()
 let router = express.Router()
 let adminRouter = new AdminEndpoint(express.Router())
 
-if (OPT.PRODUCTION) {
+if (OPT.DOCKER || OPT.SERVE_STATIC) {
   app.use(express.static('dist'));
   app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal'])
 } else {

@@ -33,44 +33,66 @@ class EnvVar<T> {
     public get isSet(): boolean {
         return this._isSet
     }
+
+    public setIfNotSet(value: T) {
+        if (!this._isSet)
+            this.value = value
+    }
 }
 
 class Options {
-    private _ENABLE_MAIL: EnvVar<boolean>
     private _PRODUCTION: EnvVar<boolean>
     private _STAGING: EnvVar<boolean>
-    private _DISABLE_VERIFICATION: EnvVar<boolean>
     private _BASE_URL: EnvVar<string>
-    private _DISABLE_RATE_LIMITING: EnvVar<boolean>
-    private _RATE_LIMITING_BLOCK_DURATION: EnvVar<number>
+    private _ENABLE_MAIL: EnvVar<boolean>
     private _DISABLE_DISCORD_BOT: EnvVar<boolean>
+    private _DISABLE_VERIFICATION: EnvVar<boolean>    
+    private _DISABLE_RATE_LIMITING: EnvVar<boolean>
+    private _DOCKER: EnvVar<boolean>
+    private _SERVE_STATIC: EnvVar<boolean>
+    private _RATE_LIMITING_BLOCK_DURATION: EnvVar<number>
 
     constructor() {
-        this._BASE_URL = new EnvVar(process.env.BASE_URL, "")
-
-        this._ENABLE_MAIL = new EnvVar(process.env.ENABLE_MAIL, false)
-        this._DISABLE_DISCORD_BOT = new EnvVar(process.env.DISABLE_DISCORD_BOT, false)
-
+        // Default values are production configuration
         this._PRODUCTION = new EnvVar(process.env.PRODUCTION, false)
         this._STAGING = new EnvVar(process.env.STAGING, false)
 
+        this._BASE_URL = new EnvVar(process.env.BASE_URL, "https://labhive.de")
+
+        this._ENABLE_MAIL = new EnvVar(process.env.ENABLE_MAIL, true)
+        this._DISABLE_DISCORD_BOT = new EnvVar(process.env.DISABLE_DISCORD_BOT, false)
+
         this._DISABLE_VERIFICATION = new EnvVar(process.env.DISABLE_VERIFICATION, false)
         this._DISABLE_RATE_LIMITING = new EnvVar(process.env.DISABLE_RATE_LIMITING, false)
-        this._RATE_LIMITING_BLOCK_DURATION = new EnvVar(process.env._RATE_LIMITING_BLOCK_DURATION, 30)
+        this._RATE_LIMITING_BLOCK_DURATION = new EnvVar(process.env.RATE_LIMITING_BLOCK_DURATION, 60)
 
-        if (this.STAGING) {
-            if (!this._RATE_LIMITING_BLOCK_DURATION.isSet)
-                this._RATE_LIMITING_BLOCK_DURATION.value = 1
-            if (!this._DISABLE_VERIFICATION.isSet)
-                this._DISABLE_VERIFICATION.value = true
-            if (!this._PRODUCTION.isSet)
-                this._PRODUCTION.value = true
-            if (!this._DISABLE_DISCORD_BOT.isSet)
-                this._DISABLE_DISCORD_BOT.value = true
+        // autodetectable on production config, thus the default contig is for development
+        this._DOCKER = new EnvVar(process.env.DOCKER, false)
+        this._SERVE_STATIC = new EnvVar(process.env.SERVE_STATIC, false)
+
+        if (this.STAGING && this.PRODUCTION) {
+            console.error("Invalid configuration, STAGING and PRODUCTION are mutually exclusive options")
+            process.exit(1)
         }
 
-        if (this.PRODUCTION && !this._ENABLE_MAIL.isSet) {
-            this._ENABLE_MAIL.value = true
+        try {
+            if (existsSync("/proc/1/cgroup") && readFileSync("/proc/1/cgroup", { encoding: 'utf8' }).indexOf('docker') > -1) {
+                console.log("Docker detected!")
+                this._DOCKER.value = true
+                this._SERVE_STATIC.value = true
+            }
+        } catch (err) {
+            console.error(err)
+        }
+        
+
+        if (this.STAGING) {
+            this._ENABLE_MAIL.setIfNotSet(false)
+            this._DISABLE_DISCORD_BOT.setIfNotSet(true)
+            this._DISABLE_VERIFICATION.setIfNotSet(true)
+            this._DISABLE_RATE_LIMITING.setIfNotSet(true)
+            this._RATE_LIMITING_BLOCK_DURATION.setIfNotSet(1)
+            this._BASE_URL.setIfNotSet('https://dev.labhive.de')
         }
 
         if (this.ENABLE_MAIL && !existsSync(FILE_PATH.mailConfig)) {
@@ -120,6 +142,14 @@ class Options {
 
     public get DISABLE_DISCORD_BOT(): boolean {
         return this._DISABLE_DISCORD_BOT.value
+    }
+
+    public get DOCKER(): boolean {
+        return this._DOCKER.value
+    }
+
+    public get SERVE_STATIC(): boolean {
+        return this._SERVE_STATIC.value
     }
 
     public jsonify() {

@@ -98,7 +98,7 @@ export async function registration(req: express.Request, res: express.Response, 
         sendActivationMail(user.contact.email, link, lang).catch((err) => {
             console.error("Failed to send activation mail", err)
         })
-        BotMsg.newUser(role)
+        BotMsg.newUser(user)
         utils.successResponse(res)
     }
     catch (err) {
