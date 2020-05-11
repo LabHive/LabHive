@@ -62,8 +62,8 @@ export default {
         website: "",
         availability: null,
         consent: {
-          publicSearch: null,
-          mailUpdates: null
+          publicSearch: true,
+          mailUpdates: true
         }
       },
       formSections: [

@@ -2,11 +2,11 @@
 {
   "en": {
     "optIn": "Optional Consents",
-    "dataProcessingInformation": "By finishing the registration your data will be processed by LabHive. Your specified contact information is only visible for registered and internally verified research and diagnostic centers. Currently, registered volunteers have no possibility to respond to requests from diagnostic centers to prevent an increased E-mail flow. We are working on a solution that solves this problem for both sides. As a diagnostic center you can however find volunteers through the search function, view their contact data and contact them.<br/>Further information can be found in our <a href=\"/#/privacyPolicy\">privacy policy</a>."
+    "dataProcessingInformation": "<p>By finishing the registration your data will be processed by LabHive. Your specified contact information is only visible for registered and internally verified research and diagnostic centers.</p><p>Registered volunteers have no possibility to respond to requests from diagnostic centers to prevent an increased E-mail flow. As a diagnostic center you can however find volunteers through the search function, view their contact data and contact them.</p><p>Further information can be found in our <a href=\"/#/privacyPolicy\">privacy policy</a>.</p>"
   },
   "de": {
     "optIn": "Optionale Einwilligungen",
-    "dataProcessingInformation": "<p>Durch das Abschließen der Registrierung werden Ihre Daten von LabHive verarbeitet. Ihre angegebenen Kontaktinformationen sind nur für registrierte und von uns verifizierte Forschungs- und Diagnostikzentren sichtbar. Registrierte Helfer:innen haben momentan noch keine Möglichkeit auf Suchanfragen von Seiten der Diagnostikzentren zu reagieren, um ein erhöhtes E-Mail Aufkommen für diese zu vermeiden. Wir arbeiten jedoch an einer Lösung für beide Seiten. Als Diagnostikzentrum können Sie allerdings bereits Helfer:innen über die Suchfunktion finden, deren Kontaktdaten sehen und diese kontaktieren.</p><p>Weitere Informationen finden Sie in unserer <a href=\"/#/privacyPolicy\">Datenschutzerklärung</a>.</p>"
+    "dataProcessingInformation": "<p>Durch das Abschließen der Registrierung werden Ihre Daten von LabHive verarbeitet. Ihre angegebenen Kontaktinformationen sind nur für registrierte und von uns verifizierte Forschungs- und Diagnostikzentren sichtbar.</p><p>Registrierte Helfer:innen haben keine Möglichkeit auf Suchanfragen von Seiten der Diagnostikzentren zu reagieren, um ein erhöhtes E-Mail Aufkommen für diese zu vermeiden. Als Diagnostikzentrum können Sie Helfer:innen über die Suchfunktion finden, deren Kontaktdaten sehen und diese kontaktieren.</p><p>Weitere Informationen finden Sie in unserer <a href=\"/#/privacyPolicy\">Datenschutzerklärung</a>.</p>"
   }
 }
 </i18n>
@@ -16,25 +16,12 @@
 
     <b-row class="consent-section">
       <b-col sm="*" :md="5*2" :lg="4*2" style="padding: 0">
-        <p v-html="$t('consentMail')"></p>
-        <b-form-group
-          :state="formData.consent.mailUpdates !== null"
-          :invalid-feedback="$t('required')"
-          :valid-feedback="'OK'"
-        >
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.mailUpdates"
-            name="mailUpdates"
-            :value="true"
-          >{{ $t('agree') }}</b-form-radio>
-          <b-form-radio
-            @change="$root.$emit('inputForm_changed')"
-            v-model="formData.consent.mailUpdates"
-            name="mailUpdates"
-            :value="false"
-          >{{ $t('not_agree') }}</b-form-radio>
-        </b-form-group>
+        <b-form-checkbox 
+          v-model="formData.consent.mailUpdates"
+          name="mailCheckbox"
+          :value="true"
+          :unchecked-value="false"
+          ><div style="max-width: 600px" v-html="$t('consentMail')"></div></b-form-checkbox>
       </b-col>
     </b-row>
 
