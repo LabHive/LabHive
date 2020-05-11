@@ -3,7 +3,7 @@ import { RateLimiterRedis } from 'rate-limiter-flexible';
 import Redis from 'ioredis';
 import { OPT } from './options';
 
-const redis_host = OPT.PRODUCTION ? 'redis' : 'localhost';
+const redis_host = OPT.DOCKER ? 'redis' : 'localhost';
 
 export const osmLimiter = new Bottleneck({
   /* Some basic options */
@@ -16,7 +16,8 @@ export const osmLimiter = new Bottleneck({
   clearDatastore: false,
   clientOptions: {
     host: redis_host,
-    port: 6379
+    port: 6379,
+    enableOfflineQueue: !OPT.DOCKER,
  
     // Redis client options
     // Using NodeRedis? See https://github.com/NodeRedis/node_redis#options-object-properties
@@ -26,12 +27,17 @@ export const osmLimiter = new Bottleneck({
 
 
 const redisClient = new Redis({
-  enableOfflineQueue: false,
+  enableOfflineQueue: !OPT.DOCKER,
   host: redis_host,
   port: 6379,
 })
 redisClient.on('error', (err) => {
   console.error(err)
+  if (!OPT.DOCKER) {
+    redisClient.disconnect()
+    return
+  }
+
   if (err.code === 'ECONNREFUSED') {
     process.exit(1)
   }

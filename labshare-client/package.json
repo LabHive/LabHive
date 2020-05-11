@@ -7,7 +7,7 @@
     "serve": "tsc -p tsconfig.browser.json && vue-cli-service serve",
     "build": "tsc && tsc -p tsconfig.browser.json && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "backend": "tsc && node dist-backend/backend/main.js",
+    "backend": "tsc && STAGING=1 node dist-backend/backend/main.js",
     "migrations": "migrate-mongo"
   },
   "dependencies": {
