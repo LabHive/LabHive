@@ -38,7 +38,7 @@
 </i18n>
 <template>
   <div class="list-view">
-    <h1>{{$t("title")}}</h1>
+    <h1 data-aos="fade" data-aos-duration="750">{{$t("title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
@@ -47,7 +47,7 @@
         style="margin-top: 30px"
         key="1"
       >
-        <b-row>
+        <b-row data-aos="fade-up" data-aos-duration="750">
           <b-col col></b-col>
           <b-col cols="auto" style="text-align: center;">
             <img src="../assets/No-Search-Results-Illustration.svg" />
@@ -60,7 +60,7 @@
         </b-row>
       </div>
 
-      <div v-else key="2">
+      <div v-else key="2" data-aos="fade-up" data-aos-duration="750">
         <p class="recentlyAdded">{{ $t("recentlyAdded") }}</p>
         <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
           <div

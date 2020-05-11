@@ -16,14 +16,14 @@
 <template>
   <div>
     <b-container class="team">
-      <h1>{{ $t("ourTeam") }}</h1>
-      <b-row align-h="center">
+      <h1 data-aos="fade" data-aos-duration="750">{{ $t("ourTeam") }}</h1>
+      <b-row align-h="center" data-aos="fade" data-aos-duration="1000">
         <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
           <p>{{ $t("ourStoryText1") }}<a id="hashtag" target="_blank" href="https://twitter.com/hashtag/WirVsVirus?src=hashtag_click">#WirVsVirus</a>{{ $t("ourStoryText2") }}</p>
         </b-col>
       </b-row>
       <b-row align-h="center">
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="1000">
           <img
             src="../assets/team-members/LabHive_Tobias.png"
             alt="Dr. rer.-nat. Tobias Opialla"
@@ -33,7 +33,7 @@
           <p class="role">Scientific Expert, Team Lead</p>
         </b-col>
         
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Lisa.png"
             alt="Lisa Rieble"
@@ -43,7 +43,7 @@
           <p class="role">Scientific Expert, Communication</p>
         </b-col>
 
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Jo.png"
             alt="Dr. Johannes Richers"
@@ -53,7 +53,7 @@
           <p class="role">Design, Communication</p>
         </b-col>
      
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Jasmine.png"
             alt="Jasmine Hubrich"
@@ -63,7 +63,7 @@
           <p class="role">Scientific Expert, Communication</p>
         </b-col>
         
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Hannes.png"
             alt="Dr. Hannes Witt"
@@ -73,7 +73,7 @@
           <p class="role">Scientific Expert</p>
         </b-col>
 
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Eleonora.png"
             alt="Eleonora Nushi"
@@ -83,7 +83,7 @@
           <p class="role">Medical Expert</p>
         </b-col>
      
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Kenneth.png"
             alt="Kenneth Ruiz Eiro"
@@ -93,7 +93,7 @@
           <p class="role">Project Management, Legal</p>
         </b-col>
         
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_FredericW.png"
             alt="Frederic Weichel"
@@ -103,7 +103,7 @@
           <p class="role">Design, Communication</p>
         </b-col>
 
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Thess.png"
             alt="Theresa Müller"
@@ -113,7 +113,7 @@
           <p class="role">Design</p>
         </b-col>
     
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Laura.png"
             alt="Laura Heimerl"
@@ -123,7 +123,7 @@
           <p class="role">Scientific Expert</p>
         </b-col>
         
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Philipp.png"
             alt="Philipp Nieting"
@@ -133,7 +133,7 @@
           <p class="role">Software Development, IT-Security</p>
         </b-col>
 
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Seth.png"
             alt="Seth G"
@@ -143,7 +143,7 @@
           <p class="role">Software Development</p>
         </b-col>
      
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Valentin.png"
             alt="Valentin Arkhipov"
@@ -153,7 +153,7 @@
           <p class="role">Software Development</p>
         </b-col>
         
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Andrei.png"
             alt="Andrei Serban"
@@ -163,7 +163,7 @@
           <p class="role">Frontend Development</p>
         </b-col>
 
-        <b-col sm="12" lg="6" xl="4" class="team-member">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_FredericS.png"
             alt="Frederic Schade"
