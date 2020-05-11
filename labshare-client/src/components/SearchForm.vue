@@ -39,7 +39,7 @@
   <div>
     <b-form>
       <div class="form-row">
-        <div class="col-md3">
+        <div class="col-md3" data-aos="fade" data-aos-duration="750">
           <b-form-group :label="$t('searchModeSelection')">
             <b-row align-v="center">
               <b-col cols="auto" class="lh-button-col">
@@ -105,7 +105,7 @@
         </HeightTransition>
       </div>
 
-      <div class="form-row">
+      <div class="form-row" data-aos="fade" data-aos-duration="750">
         <div class="col-md5">
           <InputForm
             :verticalLabel="true"

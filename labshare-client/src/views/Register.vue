@@ -31,10 +31,10 @@
   <div class="register">
 
     <template v-if="!registrationComplete">
-      <h1 style="margin-bottom: 16px">{{$t("registration")}}</h1>
-      <p style="margin-bottom: 48px">{{ $t("registerSubtitle") }}</p>
+      <h1 style="margin-bottom: 16px" data-aos="fade" data-aos-duration="750">{{$t("registration")}}</h1>
+      <p style="margin-bottom: 48px" data-aos="fade" data-aos-duration="750">{{ $t("registerSubtitle") }}</p>
 
-      <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role"></RegistrationProgress>
+      <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role" data-aos="fade" data-aos-duration="750"></RegistrationProgress>
     </template>
     
 
@@ -58,10 +58,10 @@
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
     <div key="step-one" v-if="step === 0 && !registrationComplete">
-      <p class="step-info-sub">{{ $t("prospectiveRole") }}</p>
+      <p class="step-info-sub" data-aos="fade" data-aos-duration="750">{{ $t("prospectiveRole") }}</p>
       <b-container fluid>
         <b-row>
-          <b-col class="text-center" cols lg="4" md="4" sm="12">
+          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
                   @click="loadForm(forms.VOLUNTEER)"
@@ -79,7 +79,7 @@
             </p>
           </b-col>
 
-          <b-col class="text-center" cols lg="4" md="4" sm="12">
+          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
                   @click="loadForm(forms.DIAGNOSTIC_LAB)"
@@ -97,7 +97,7 @@
             </p>
           </b-col>
 
-          <b-col class="text-center" cols lg="4" md="4" sm="12">
+          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
                   @click="loadForm(forms.LAB)"

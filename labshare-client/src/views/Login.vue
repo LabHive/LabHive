@@ -16,9 +16,9 @@
 </i18n>
 <template>
   <div>
-    <h1>{{$t("title")}}</h1>
+    <h1 data-aos="fade" data-aos-duration="750">{{$t("title")}}</h1>
 
-    <div class="login-form">
+    <div class="login-form" data-aos="fade" data-aos-duration="750">
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
       <b-row>
