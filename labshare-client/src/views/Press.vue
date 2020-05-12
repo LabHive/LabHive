@@ -1,6 +1,6 @@
 <i18n>
-    {
-    "en":{
+{
+  "en":{
     "mainTitle": "We align efforts for more SARS-CoV-2 tests",
     "subTitle": "The digital platform for a strong diagnostic network",
     "Joinbutton": "Download Press Kit",
@@ -14,11 +14,11 @@
     "searchButton": "Search For Resources",
     "text4": "Test capacity and support",
     "testsweek": "Tests per week"
-    },
-    "de":{
+  },
+  "de":{
     "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
     "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
-    "Joinbutton": "Download Presse Kit",
+    "Joinbutton": "Download Press Kit",
     "selected": "Ausgewählt für",
     "collaboration": "In Zusammenarbeit mit",
     "supported": "Gefördert vom",
@@ -29,9 +29,8 @@
     "searchButton": "Suche nach Ressourcen",
     "text4": "Testkapazitäten und Unterstützung",
     "testsweek": "Tests pro Woche"
-    }
-    }
-
+  }
+}
 </i18n>
 <template>
   <div>
@@ -42,7 +41,7 @@
             <h1>{{ $t("mainTitle") }}</h1>
             <p>{{$t("subTitle")}}</p>
             <div id="hero-button-wrapper">
-              <b-button class="btn-cta" href="/22-05-11-LabHive-Presskit.zip">{{$t("Joinbutton")}}</b-button>
+              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("Joinbutton")}}</b-button>
             </div>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
