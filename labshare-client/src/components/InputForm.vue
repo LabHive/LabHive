@@ -244,7 +244,23 @@ export default {
   }
 }
 
+.form-group input:not(:-ms-input-placeholder) {
+  padding-top: 20px;
+  padding-bottom: 4px;
+
+  &.is-invalid, &.is-valid {
+    padding-right: 34px;
+  }
+}
+
 .form-group input:not(:placeholder-shown) ~ label {
+  padding-top: 8px;
+  padding-bottom: 4px;
+  font-size: 12px;
+  color: #777;
+}
+
+.form-group input:not(:-ms-input-placeholder) ~ label {
   padding-top: 8px;
   padding-bottom: 4px;
   font-size: 12px;
