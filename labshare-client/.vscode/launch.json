@@ -20,8 +20,24 @@
             "env": {
                 "BASE_URL": "http://localhost:8080",
                 "STAGING": "1",
-                "PRODUCTION": "0",
-                "ENABLE_MAIL": "0"
+            },
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start Backend - Enable Discord Bot",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/dist-backend/backend/main.js",
+            "cwd": "${workspaceFolder}/",
+            "outFiles": [
+                "${workspaceFolder}/dist-backend/**/*.js"
+            ],
+            "env": {
+                "BASE_URL": "http://localhost:8080",
+                "STAGING": "1",
+                "DISABLE_DISCORD_BOT": "0",
             },
         },
         {
@@ -35,6 +51,7 @@
             "cwd": "${workspaceFolder}/",
             "env": {
                 "BASE_URL": "http://localhost:8080",
+                "STAGING": "1",
                 "ENABLE_MAIL": "1",
             },
             "outFiles": [
