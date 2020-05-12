@@ -23,7 +23,7 @@
         </b-col>
       </b-row>
       <b-row align-h="center">
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="1000">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Tobias.png"
             alt="Dr. rer.-nat. Tobias Opialla"
@@ -260,5 +260,8 @@ export default {
   #hashtag {
     font-weight: 500;
   }
+
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
 
 </style>

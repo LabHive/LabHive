@@ -98,7 +98,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("qualif-vol")}}</h4>
-          <p class="bit-sized text-center">
+          <p class="text-center">
               {{$t("Textqualif-vol")}}
           </p>
         </b-col>
@@ -112,7 +112,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("diag-cent")}}</h4>
-          <p class="bit-sized text-center">
+          <p class="text-center">
               {{$t("Textdiag-cent")}}
           </p>
         </b-col>
@@ -126,7 +126,7 @@
             />
           </figure>
           <h4 class="text-center">{{$t("res-lab")}}</h4>
-          <p class="bit-sized text-center">
+          <p class="text-center">
               {{$t("Textres-lab")}}
           </p>
         </b-col>
@@ -265,9 +265,6 @@ p {
     color: $color-green;
     margin: 0;
   }
-  .bit-sized {
-    max-width: 300px;
-  }
 }
 
 .has-subtitle {
@@ -300,7 +297,7 @@ p {
   }
 }
 
-$aos-distance: 40px; // It has to be above import
+$aos-distance: 32px;
 @import 'node_modules/aos/src/sass/aos.scss';
 
 </style>
