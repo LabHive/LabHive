@@ -717,4 +717,5 @@ h4 {
 .consent-section {
   margin: 44px 0;
 }
+
 </style>

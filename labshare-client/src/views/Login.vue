@@ -80,8 +80,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+
 .form-control {
   max-width: 300px;
 }
+
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
+
 </style>

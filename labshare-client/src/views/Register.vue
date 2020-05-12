@@ -274,4 +274,7 @@ hr {
   margin-bottom: 24px;
 }
 
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
+
 </style>
