@@ -28,18 +28,17 @@
         select-mode="single"
         :tbody-tr-class="trclass"
       >
-
         <template v-slot:cell(Actions)="data">
           <b-row>
-              <b-col cols="auto" v-if="!data.item.verified.manually">
-                <b-button variant="success" @click="activate(data)" size="sm">Verify</b-button>
-              </b-col>
-              <b-col cols="auto" v-if="!data.item.disabled">
-                <b-button variant="danger" @click="disable(data)" size="sm">Disable</b-button>
-              </b-col>
-              <b-col cols="auto" v-if="data.item.disabled">
-                <b-button variant="warning" @click="enable(data)" size="sm">Enable</b-button>
-              </b-col>
+            <b-col cols="auto" v-if="!data.item.verified.manually">
+              <b-button variant="success" @click="activate(data)" size="sm">Verify</b-button>
+            </b-col>
+            <b-col cols="auto" v-if="!data.item.disabled">
+              <b-button variant="danger" @click="disable(data)" size="sm">Disable</b-button>
+            </b-col>
+            <b-col cols="auto" v-if="data.item.disabled">
+              <b-button variant="warning" @click="enable(data)" size="sm">Enable</b-button>
+            </b-col>
           </b-row>
         </template>
 
@@ -47,10 +46,16 @@
           <b-card>
             <b-row>
               <b-col cols="auto" v-if="!row.item.verified.mail">
-                <b-button variant="success" @click="resendMail(row)" size="sm">Resend activation mail</b-button>
+                <b-button
+                  variant="success"
+                  @click="resendMail(row)"
+                  size="sm"
+                >Resend activation mail</b-button>
               </b-col>
               <b-col cols="auto">
-                <a :href="'mailto:' + row.item.contact.email"><b-button variant="primary" size="sm">Send Mail to user</b-button></a>
+                <a :href="'mailto:' + row.item.contact.email">
+                  <b-button variant="primary" size="sm">Send Mail to user</b-button>
+                </a>
               </b-col>
               <b-col cols="auto" v-if="!row.item.verified.mail && $user.role === 'superAdmin'">
                 <b-button variant="danger" @click="deleteUser(row)" size="sm">Delete User</b-button>
@@ -84,6 +89,7 @@ export default {
       totalResults: 0,
       selectedRows: [],
       error: "",
+      filter: "",
     };
   },
   computed: {
@@ -112,7 +118,7 @@ export default {
         {
           key: "Actions",
           label: "Actions"
-        },
+        }
       ];
     }
   },
@@ -128,12 +134,12 @@ export default {
       });
     },
     refreshTable() {
-      this.error = ""
+      this.error = "";
       this.$refs.table.refresh();
     },
     getSearchResults(page) {
       return new Promise((res, rej) => {
-        this.$http.get("admin/users", {params: {page: page}}).then(
+        this.$http.get("admin/users", { params: { page: page } }).then(
           success => {
             res(success.body);
           },
@@ -146,90 +152,106 @@ export default {
     },
     trclass(item) {
       if (item.disabled) {
-        return 'userDisabled'
+        return "userDisabled";
       }
 
-      return ""
+      return "";
     },
-    items(ctx) {
+    async items(ctx) {
       let page = ctx.currentPage;
-      return this.getSearchResults(page)
-        .then(body => {
-          this.totalResults = body.totalResults;
-          let b = body._embedded;
+      let body
+      try {
+        body = await this.getSearchResults(page)
+      }
+      catch(err) {
+        return []
+      }
+      
+      this.totalResults = body.totalResults;
+      let b = body._embedded;
 
-          return b.map(item => {
-            item._showDetails = false;
+      return b.map(item => {
+        item._showDetails = false;
 
-            item.name = `${item.contact.firstname} ${item.contact.lastname}`
-            item.json = JSON.stringify(item, null, 4)
-            item.role = item.__t
-            if (!item.verified.manually) {
-                item._rowVariant = "danger"
+        item.name = `${item.contact.firstname} ${item.contact.lastname}`;
+        item.json = JSON.stringify(item, null, 4);
+        item.role = item.__t;
+        if (!item.verified.manually) {
+          item._rowVariant = "danger";
 
+          let hostnameMail = item.contact.email.split("@")[1];
+          let hostnameMailRegexp = new RegExp(hostnameMail + "$");
 
-                let hostnameMail = item.contact.email.split('@')[1]
-                let hostnameMailRegexp = new RegExp(hostnameMail + "$")
+          let website = document.createElement("a");
+          website.href = item.website;
 
-                let website = document.createElement('a')
-                website.href = item.website
-
-                if (hostnameMailRegexp.test(website.hostname)) {
-                    item._rowVariant = "warning"
-                }
-            }
-            return item;
-          });
-        })
-        .catch(() => {
-          return [];
-        });
+          if (hostnameMailRegexp.test(website.hostname)) {
+            item._rowVariant = "warning";
+          }
+        }
+        return item;
+      })
     },
 
     activate(data) {
-      let id = data.item._id
-      this.$http.post("admin/user/activate/" + id).then(() => {
-        this.refreshTable()
-      }).catch((response) => {
-        this.error = response.body.errorDescription
-      })
+      let id = data.item._id;
+      this.$http
+        .post("admin/user/activate/" + id)
+        .then(() => {
+          this.refreshTable();
+        })
+        .catch(response => {
+          this.error = response.body.errorDescription;
+        });
     },
 
     disable(data) {
-      let id = data.item._id
-      this.$http.post("admin/user/disable/" + id).then(() => {
-        this.refreshTable()
-      }).catch((response) => {
-        this.error = response.body.errorDescription
-      })
+      let id = data.item._id;
+      this.$http
+        .post("admin/user/disable/" + id)
+        .then(() => {
+          this.refreshTable();
+        })
+        .catch(response => {
+          this.error = response.body.errorDescription;
+        });
     },
 
     enable(data) {
-      let id = data.item._id
-      this.$http.post("admin/user/enable/" + id).then(() => {
-        this.refreshTable()
-      }).catch((response) => {
-        this.error = response.body.errorDescription
-      })
+      let id = data.item._id;
+      this.$http
+        .post("admin/user/enable/" + id)
+        .then(() => {
+          this.refreshTable();
+        })
+        .catch(response => {
+          this.error = response.body.errorDescription;
+        });
     },
 
     deleteUser(data) {
-      let id = data.item._id
-      this.$http.post("admin/user/delete/" + id).then(() => {
-        this.refreshTable()
-      }).catch((response) => {
-        this.error = response.body.errorDescription
-      })
+      let id = data.item._id;
+      this.$http
+        .post("admin/user/delete/" + id)
+        .then(() => {
+          this.refreshTable();
+        })
+        .catch(response => {
+          this.error = response.body.errorDescription;
+        });
     },
 
     resendMail(data) {
-      let id = data.item._id
+      let id = data.item._id;
 
-      this.$http.post("admin/user/resendActivationMail/" + id).then(() => {
-        this.refreshTable()
-      }).catch((response) => {
-        this.error = response.body.errorDescription
-      })
+      this.$http
+        .post("admin/user/resendActivationMail/" + id)
+        .then(() => {
+          this.refreshTable();
+        })
+        .catch(response => {
+          this.error = response.body.errorDescription;
+        });
     }
   },
   components: {}
@@ -238,8 +260,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 .userDisabled {
-  color: rgba(0, 0, 0, 0.3)
+  color: rgba(0, 0, 0, 0.3);
 }
 </style>

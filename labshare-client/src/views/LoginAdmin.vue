@@ -40,16 +40,20 @@ export default {
   },
   methods: {
     login: function(ev) {
-      ev.preventDefault()
+      ev.preventDefault();
       if (this.user.email !== "" && this.user.password !== "") {
-        this.$http.post('admin/login', this.user).then((response) => {
-            let token = response.body.sessionToken
-            this.$store.commit('auth_success', token)
-            this.$router.push("/admin")
-        }).catch((response) => {
-          this.error = this.$t("backend." + response.body.errorDescription)
-          console.log("Login error:", response);
-        })
+        this.$http
+          .post("admin/login", this.user)
+          .then(response => {
+            let token = response.body.sessionToken;
+            this.$store.commit("auth_success", token);
+            this.$router.push("/admin");
+            this.$store.dispatch("getProfile")
+          })
+          .catch(response => {
+            this.error = this.$t("backend." + response.body.errorDescription);
+            console.log("Login error:", response);
+          });
       } else {
         this.error = "Please fill in the fields and try again";
       }
