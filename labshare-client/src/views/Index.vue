@@ -300,7 +300,7 @@ p {
   }
 }
 
-$aos-distance: 40px; // It has to be above import
+$aos-distance: 32px;
 @import 'node_modules/aos/src/sass/aos.scss';
 
 </style>

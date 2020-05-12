@@ -394,4 +394,7 @@ $color-bkg-primary: #f7f6fd;
   margin-right: 16px;
 }
 
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
+
 </style>

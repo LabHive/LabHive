@@ -261,4 +261,7 @@ export default {
     font-weight: 500;
   }
 
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
+
 </style>

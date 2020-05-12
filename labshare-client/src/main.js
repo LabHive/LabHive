@@ -33,7 +33,9 @@ Vue.use(VueI18n);
 
 new Vue({
   created () {
-    AOS.init()
+    AOS.init({
+      offset: 32,
+    });
   },
   router,
   store,

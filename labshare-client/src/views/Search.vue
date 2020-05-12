@@ -380,4 +380,8 @@ export default {
   color: #898b91;
   font-size: 12px;
 }
+
+$aos-distance: 32px;
+@import 'node_modules/aos/src/sass/aos.scss';
+
 </style>
