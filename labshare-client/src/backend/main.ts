@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+if (!process.env.PRODUCTION)
+  dotenv.config()
 import cors from 'cors'
 import express from "express"
 import { NOT_FOUND, UNAUTHORIZED } from 'http-status-codes'
