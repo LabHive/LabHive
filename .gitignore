@@ -8,3 +8,4 @@ dist*/
 secret/
 node_modules
 **/.vscode/settings.json
+.env
