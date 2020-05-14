@@ -132,7 +132,7 @@ export let localization = {
           invalid_consent: "Ungültige Einwilligung",
           invalid_url: "Ungültige URL (max. 200 Zeichen)",
           passwordMatch: "Passwörter stimmen nicht überein!",
-          invalid_location: "Wir konnten Ihre angegebene Adresse leider nicht finden. Bitte überprüfen Sie die Angabge und achten Sie auf eine korrekte Schreibweise.",
+          invalid_location: "Wir konnten Ihre angegebene Adresse leider nicht finden. Bitte überprüfen Sie die Angabe und achten Sie auf eine korrekte Schreibweise.",
         },
         not_authorized: "Nicht authorisiert!",
         internal_error: "Es ist etwas schiefgelaufen...",
