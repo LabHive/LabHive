@@ -34,7 +34,7 @@ services:
         enableDev: 'true'
         staging: 'true'
     ports:
-      - 5001:5000
+      - "5000"
     deploy:
       mode: replicated
       replicas: 6
@@ -46,12 +46,18 @@ services:
         monitor: 30s
       rollback_config:
         parallelism: 0
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.to-LabHiveStaging.rule=Host(`dev.labhive.de`)"
+        - "traefik.http.services.LabHiveStaging.loadbalancer.server.port=5000"
+        - "traefik.docker.lbswarm=true"
     environment: 
       STAGING: "1"
       DISABLE_DISCORD_BOT: "0"
       BASE_URL: "https://dev.labhive.de"
     networks:
       - network
+      - traefik
     volumes: 
       - labhive_secret_staging:/app/secret
 
@@ -69,3 +75,5 @@ networks:
   network:
     driver: overlay
     attachable: true
+  traefik:
+    external: true
