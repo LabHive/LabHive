@@ -241,7 +241,7 @@ export class AdminEndpoint {
             }
 
             user.disabled = false
-            user.save()
+            await user.save()
             utils.successResponse(res)
         }
         catch (err) {
@@ -257,10 +257,17 @@ export class AdminEndpoint {
             return utils.errorResponse(res, UNAUTHORIZED, "unauthorized")
 
         try {
-            let doc = await UserCommon.findByIdAndDelete(userId)
+            let doc = await UserCommon.findById(userId).lean().exec()
             if (!doc)
                 return utils.badRequest(res, "User not found")
-                
+
+            if (doc.verified.mail && doc.verified.manually) {
+                return utils.badRequest(res, "It is only possible to delete non-activated users.")
+            }
+
+            await UserCommon.findByIdAndDelete(userId).exec()
+            ActivationToken.deleteMany({objectId: userId})
+
             utils.successResponse(res)
         }
         catch (err) {
