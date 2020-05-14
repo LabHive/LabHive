@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 
-export const TESTS_PER_WEEK = 317979;
+export const TESTS_PER_WEEK = 382154;
 
 export enum FILE_PATH {
     mailConfig = "secret/mailConfig.json",
