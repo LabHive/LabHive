@@ -5,7 +5,7 @@
     <b-row>
       <b-col sm="*" lg="5" order="1" order-lg="1">
         <h4>{{ $t("profile.request.equipment") }}</h4>
-        <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
+        <CheckboxGroup name="equipment" cols="2" :data="equipment" v-model="lookingFor.equipment"></CheckboxGroup>
       </b-col>
 
       <b-col sm="*" lg="5" offset-lg="1" order="3" order-lg="2">

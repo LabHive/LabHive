@@ -5,7 +5,7 @@
     <b-row>
       <b-col sm="*" lg="5" order="1" order-lg="1">
         <h4>{{ $t('profile.offer.equipment') }}</h4>
-        <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
+        <CheckboxGroup name="equipment" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
       </b-col>
 
       <b-col sm="*" lg="5" offset-lg="1" order="3" order-lg="2">
@@ -16,7 +16,7 @@
       <b-col sm="*" lg="5" order="2" order-lg="3">
         <b-form-group
           :state="val.validDescription(offers.equipmentDescription).valid"
-          :invalid-feedback="$t('profile.offer.backend.formValidation.' + val.validDescription(offers.equipmentDescription).err.message)"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.equipmentDescription).err.message)"
         >
           <b-form-textarea
             v-model="offers.equipmentDescription"
@@ -32,7 +32,7 @@
       <b-col sm="*" lg="5" offset-lg="1" offset-sm="0" order="4">
         <b-form-group
           :state="val.validDescription(offers.adviceDescription).valid"
-          :invalid-feedback="$t('profile.offer.backend.formValidation.' + val.validDescription(offers.adviceDescription).err.message)"
+          :invalid-feedback="$t('backend.formValidation.' + val.validDescription(offers.adviceDescription).err.message)"
         >
           <b-form-textarea
             v-model="offers.adviceDescription"

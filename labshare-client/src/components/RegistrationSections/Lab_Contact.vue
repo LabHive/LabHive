@@ -1,34 +1,18 @@
-<i18n>
-{
-  "en":{
-    "contact": "Affiliation & Contact",
-    "contact_sub": "Please enter your contact details. <strong>We need this data to be able to verify you.</strong> We only share personal data such as name, e-mail address and telephone number with other verified diagnostic centres and research laboratories.",
-    "affiliation": "Your Affiliation",
-    "contactPerson": "Contact Person"
-  },
-  "de":{
-    "contact": "Affiliation & Kontaktperson",
-    "contact_sub": "Bitte geben Sie Ihre Kontaktdaten an. <strong>Diese Daten benötigen wir, um Sie verifizieren zu können.</strong> Wir teilen personenbezogene Daten wie Name, E-Mail-Adresse und Telefonnummer nur mit anderen verifizierten Diagnostikzentren und Forschungslaboren.",
-    "affiliation": "Ihre Affiliation",
-    "contactPerson": "Kontaktperson"
-  }
-}
-</i18n>
 <template>
   <div>
-    <h3 class="section" v-if="profileUpdate">{{ $t("contact") }}</h3>
-    <p v-else class="step-info-sub" style="max-width: 60%" v-html="$t('contact_sub')"></p>
+    <h3 class="section" v-if="profileUpdate">{{ $t("registration.steps.contact.title") }}</h3>
+    <p v-else class="step-info-sub" style="max-width: 60%" v-html="$t('registration.steps.contact.subTitle')"></p>
 
     <b-row>
 
       <!-- Header Affiliation -->
       <b-col v-bind="large" order-md="1" order="1">
-        <h4>{{ $t("affiliation") }}</h4>
+        <h4>{{ $t("registration.steps.contact.affiliation") }}</h4>
       </b-col>
 
       <!-- Header Contact Person -->
       <b-col v-bind="large" order-md="2" order="7" class="second-header">
-        <h4>{{ $t("contactPerson") }}</h4>
+        <h4>{{ $t("registration.steps.contact.contactPerson") }}</h4>
       </b-col>
 
 
@@ -39,7 +23,7 @@
       <!-- LabName -->
       <b-col v-bind="large" order-md="4" order="2">
         <InputForm
-          :name="role == 'lab_diag' ? 'labName' : 'instituteName'"
+          :name="role == 'lab_diag' ? 'registration.steps.contact.textfieldPlaceholders.labName' : 'registration.steps.contact.textfieldPlaceholders.instituteName'"
           v-model="formData.organization"
           :valFunc="val.validOrganization"
         ></InputForm>
@@ -48,7 +32,7 @@
       <!-- FirstName -->
       <b-col v-bind="small" order-md="5" order="8">
         <InputForm
-          name="firstName"
+          name="registration.steps.contact.textfieldPlaceholders.firstName"
           v-model="formData.contact.firstname"
           :valFunc="val.validFirstname"
         ></InputForm>
@@ -57,7 +41,7 @@
       <!-- LastName -->
       <b-col v-bind="small" order-md="6" order="9">
         <InputForm
-          name="lastName" 
+          name="registration.steps.contact.textfieldPlaceholders.lastName" 
           v-model="formData.contact.lastname" 
           :valFunc="val.validLastname"
         ></InputForm>
@@ -71,7 +55,7 @@
       <!-- Website -->
       <b-col v-bind="large" order-md="8" order="3">
         <InputForm
-          :name="role == 'lab_diag' ? 'labWebsite' : 'instituteWebsite'"
+          :name="role == 'lab_diag' ? 'registration.steps.contact.textfieldPlaceholders.labWebsite' : 'registration.steps.contact.textfieldPlaceholders.instituteWebsite'"
           v-model="formData.website"
           :valFunc="val.validUrl"
           :required="false"
@@ -81,7 +65,7 @@
       <!-- Phone -->
       <b-col v-bind="large" order-md="9" order="10">
         <InputForm 
-          name="phone" 
+          name="registration.steps.contact.textfieldPlaceholders.phone" 
           v-model="formData.contact.phone" 
           :valFunc="val.validPhone" 
           :required="false"
@@ -96,7 +80,7 @@
       <!-- Zipcode -->
       <b-col v-bind="large" order-md="11" order="4">
         <InputForm 
-          name="zipcode" 
+          name="registration.steps.contact.textfieldPlaceholders.zipcode" 
           v-model="formData.address.zipcode" 
           :valFunc="val.validZipcode"
         ></InputForm>
@@ -107,7 +91,7 @@
       <!-- City -->
       <b-col v-bind="large" order-md="13" order="5">
         <InputForm 
-          name="city" 
+          name="registration.steps.contact.textfieldPlaceholders.city" 
           v-model="formData.address.city" 
           :valFunc="val.validCity"
         ></InputForm>
@@ -118,7 +102,7 @@
       <!-- Street -->
       <b-col v-bind="large" order-md="15" order="6">
         <InputForm 
-          name="street" 
+          name="registration.steps.contact.textfieldPlaceholders.street" 
           v-model="formData.address.street" 
           :valFunc="val.validStreet"
         ></InputForm>

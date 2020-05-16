@@ -1,24 +1,12 @@
-<i18n>
-{
-  "en":{
-    "loginInfo": "Login Details",
-    "loginInfo_sub": "Please enter your e-mail address and set a password."
-  },
-  "de":{
-    "loginInfo": "Login Informationen",
-    "loginInfo_sub": "Bitte geben Sie Ihre E-Mail-Adresse an und legen Sie ein Passwort fest."
-  }
-}
-</i18n>
 <template>
   <div>
-    <h3 class="section" v-if="profileUpdate">{{ $t("loginInfo") }}</h3>
-    <p class="step-info-sub" v-else>{{ $t("loginInfo_sub") }}</p>
+    <h3 class="section" v-if="profileUpdate">{{ $t("registration.steps.loginInformation.title") }}</h3>
+    <p class="step-info-sub" v-else>{{ $t("registration.steps.loginInformation.subTitle") }}</p>
 
     <b-row>
       <b-col sm="*" md="5" lg="4">
         <InputForm
-          :name="role === 'volunteer' ? 'email' : 'officialEmail'"
+          :name="role === 'volunteer' ? 'general.email' : 'registration.steps.loginInformation.textfieldPlaceholders.officialEmail'"
           v-model="formData.contact.email"
           :valFunc="val.validEmail"
           inType="email"

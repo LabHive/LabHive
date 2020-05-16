@@ -54,7 +54,7 @@
 
       <div class="card details-card" v-if="profile.details.skills.length > 0">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="vial" /> {{ $t('searchDetails.skills.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="vial" /> {{ $t('registration.steps.skills.title')}}</h5>
           <hr/>
           <ul>
             <li class="inline-item" v-for="s in profile.details.skills" :key="s">
@@ -66,7 +66,7 @@
 
       <div class="card details-card" v-if="profile.details.qualifications.length > 0">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="graduation-cap" /> {{ $t('searchDetails.qualifications.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="graduation-cap" /> {{ $t('registration.steps.qualification.title')}}</h5>
           <hr/>
           <ul>
             <li class="inline-item" v-for="s in profile.details.qualifications" :key="s">
