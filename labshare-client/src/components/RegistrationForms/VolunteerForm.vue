@@ -26,7 +26,7 @@
             :profileUpdate="profileUpdate"
           ></component>
         </div>
-        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("general.save") }}</b-button>
       </template>
       
     </b-form>

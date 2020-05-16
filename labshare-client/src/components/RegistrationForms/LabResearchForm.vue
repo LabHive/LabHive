@@ -1,14 +1,3 @@
-<i18n>
-    {
-    "en": {
-    "save": "Save"
-    },
-    "de": {
-    "save": "Speichern"
-    }
-    }
-</i18n>
-
 <template>
   <div class="lab_diag-form">
     <b-form @submit="submit">
@@ -38,7 +27,7 @@
             :profileUpdate="profileUpdate"
           ></component>
         </div>
-        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("general.save") }}</b-button>
       </template>
       
     </b-form>
