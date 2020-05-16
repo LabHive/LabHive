@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { loadLanguageAsync } from '@/localization.js'
 const langs = {
   de: "Deutsch",
   en: "English"
@@ -40,8 +41,7 @@ export default {
   },
   methods: {
     setLocale: function(val) {
-      this.$root.$i18n.locale = val;
-      document.documentElement.setAttribute('lang', val);
+      loadLanguageAsync(val)
       localStorage.setItem("locale", val);
     }
   },
