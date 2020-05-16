@@ -18,7 +18,7 @@
       <div class="row">
         <b-form @submit="submit" class="col-md-6">
 
-          <InputForm name="email" v-model="formData.email" :valFunc="val.validEmail" trim></InputForm>
+          <InputForm name="general.emailAddress" v-model="formData.email" :valFunc="val.validEmail" trim></InputForm>
 
           <div class="my-3">
             <router-link to="/login">{{ $t("general.to_login") }}</router-link>

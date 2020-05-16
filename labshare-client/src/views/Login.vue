@@ -1,22 +1,6 @@
-<i18n>
-    {
-    "en": {
-    "title": "Login",
-    "submit": "Log in",
-    "forgotPassword": "Forgot password",
-    "emptyField": "Please fill in the fields and try again!"
-    },
-    "de": {
-    "title": "Anmeldung",
-    "submit": "Einloggen",
-    "forgotPassword": "Passwort vergessen",
-    "emptyField": "Bitte die Felder ausfüllen und erneut probieren!"
-    }
-    }
-</i18n>
 <template>
   <div>
-    <h1 data-aos="fade" data-aos-duration="750">{{$t("title")}}</h1>
+    <h1 data-aos="fade" data-aos-duration="750">{{$t("login.title")}}</h1>
 
     <div class="login-form" data-aos="fade" data-aos-duration="750">
       <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
@@ -24,12 +8,12 @@
       <b-row>
         <b-col sm="*" md="5" lg="4">
           <b-form @submit="login">
-            <InputForm name="email" v-model="user.email" trim></InputForm>
-            <InputForm inType="password" name="password" v-model="user.password"></InputForm>
+            <InputForm name="general.emailAddress" v-model="user.email" trim></InputForm>
+            <InputForm inType="password" name="general.password" v-model="user.password"></InputForm>
             <div class="my-3">
-              <router-link to="/forgot-password">{{ $t('forgotPassword') }}</router-link>
+              <router-link to="/forgot-password">{{ $t("forgotPassword.title") }}</router-link>
             </div>
-            <b-button variant="primary" type="submit">{{$t("submit")}}</b-button>
+            <b-button variant="primary" type="submit">{{$t("general.login_verb")}}</b-button>
           </b-form>
         </b-col>
       </b-row>
@@ -69,7 +53,7 @@ export default {
             console.log("Login error:", response);
           });
       } else {
-        this.error = this.$t("emptyField");
+        this.error = this.$t("login.emptyField");
       }
     }
   },
