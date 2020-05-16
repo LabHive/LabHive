@@ -2,7 +2,7 @@
   <div>
     <h1>{{ $t("revokeConsent.title") }}</h1>
     <template v-if="loaded">
-      <b-alert variant="success" :show="!error">{{ $t("revokeConsent.successMessage") }}</b-alert>
+      <b-alert variant="success" :show="!error">{{ $t("general.executedSuccessfully") }}</b-alert>
       <b-alert variant="danger" :show="error">{{ errorMsg }}</b-alert>
     </template>
 
@@ -31,7 +31,7 @@ export default {
 
     if (!this.$route.query.action) {
       this.error = true;
-      this.errorMsg = this.$t("revokeConsent.invalidAction");
+      this.errorMsg = this.$t("general.invalidRequest");
       this.loaded = true;
       return;
     }
