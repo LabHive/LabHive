@@ -1,14 +1,3 @@
-<i18n>
-{
-  "en": {
-    "title": "Details"
-  },
-  "de": {
-    "title": "Einzelheiten"
-  }
-}
-</i18n>
-
 <template>
   <div class="details-view">
     <Volunteer v-if="profile && profile.role === 'volunteer'" :profile="profile" />
