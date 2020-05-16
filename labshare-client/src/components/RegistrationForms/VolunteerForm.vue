@@ -16,6 +16,16 @@
       </template>
 
       <template v-else>
+        <b-modal
+          id="deleteModal"
+          :title="$t('profile.delete.btn_title')"
+          :ok-title="$t('general.delete')"
+          :cancel-title="$t('general.cancel')"
+          ok-variant="danger"
+          @ok="$emit('deleteProfile')"
+        >
+          <p class="my-4">{{ $t('profile.delete.confirmation') }}</p>
+        </b-modal>
         <div v-for="i in formSections" :key="i">
           <component
             :is="i"
@@ -26,7 +36,14 @@
             :profileUpdate="profileUpdate"
           ></component>
         </div>
-        <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("general.save") }}</b-button>
+        <b-row>
+          <b-col cols="auto">
+            <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("general.save") }}</b-button>
+          </b-col>
+          <b-col cols="auto">
+            <b-button variant="danger" v-b-modal.deleteModal>{{ $t("profile.delete.btn_title") }}</b-button>
+          </b-col>
+        </b-row>
       </template>
       
     </b-form>
