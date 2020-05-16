@@ -1,16 +1,6 @@
-<i18n>
-{
-  "en": {
-    "title": "User Management"
-  },
-  "de": {
-    "title": "Nutzer Management"
-  }
-}
-</i18n>
 <template>
   <div class="list-view">
-    <h1 class="mt-4">{{$t("title")}}</h1>
+    <h1 class="mt-4">{{$t("admin.title")}}</h1>
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
     <div style="margin-top: 40px">
@@ -68,7 +58,7 @@
         </template>
       </b-table>
 
-      <h3 v-if="totalResults == 0">{{ $t("noResults") }}</h3>
+      <h3 v-if="totalResults == 0">{{ $t("general.noResults") }}</h3>
     </div>
 
     <b-pagination

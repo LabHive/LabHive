@@ -1,17 +1,6 @@
-<i18n>
-  {
-  "en": {
-    "language": "Sprache"
-  },
-  "de": {
-    "language": "Language"
-  }
-}
-</i18n>
-
 <template>
   <div class="locale-changer">
-    <b-nav-item-dropdown right :text="$t('language')">
+    <b-nav-item-dropdown right :text="$t('general.language')">
       <template v-for="(v, k) in langs">
         <b-dropdown-item :key="k" @click="setLocale(k)">
         {{ v }}
