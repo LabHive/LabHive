@@ -24,7 +24,7 @@
       :data="labSkills" 
       v-model="formData.details.skills"
       :label="profileUpdate ? $t('volunteerSkills_sub_update') : null"
-      :cols="3"
+      cols="3"
     ></CheckboxGroup>
 
     <b-row>
