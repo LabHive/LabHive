@@ -1,48 +1,13 @@
-<i18n>
-    {
-    "en":{
-    "mainTitle": "We align efforts for more SARS-CoV-2 tests",
-    "subTitle": "The digital platform for a strong diagnostic network",
-    "Joinbutton": "Join now",
-    "selected": "Selected for",
-    "collaboration": "In collaboration with",
-    "supported": "Supported by",
-    "titleGroups": "Together we unleash the united power of science",
-    "qualif-vol": "Qualified volunteers",
-    "res-lab": "Research laboratories",
-    "diag-cent": "Diagnostic centers",
-    "searchButton": "Search For Resources",
-    "text4": "Test capacity and support",
-    "testsweek": "Tests per week"
-    },
-    "de":{
-    "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
-    "Joinbutton": "Jetzt mitmachen",
-    "selected": "Ausgewählt für",
-    "collaboration": "In Zusammenarbeit mit",
-    "supported": "Gefördert vom",
-    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft",
-    "qualif-vol": "Qualifizierte Freiwillige",
-    "res-lab": "Forschungslabore",
-    "diag-cent": "Diagnostikzentren",
-    "searchButton": "Suche nach Ressourcen",
-    "text4": "Testkapazitäten und Unterstützung",
-    "testsweek": "Tests pro Woche"
-    }
-    }
-
-</i18n>
 <template>
   <div>
     <div class="banner">
       <b-container class="container">
         <b-row data-aos="fade-up" data-aos-duration="1000">
           <b-col cols lg="6" md="12" sm="12">
-              <h1>{{ $t("mainTitle") }}</h1>
-            <p>{{$t("subTitle")}}</p>
+              <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
+            <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
-              <b-button class="btn-cta" to="/register">{{$t("Joinbutton")}}</b-button>
+              <b-button class="btn-cta" to="/register">{{$t("landingpage.top.btn_join")}}</b-button>
             </div>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
@@ -59,19 +24,19 @@
         </b-row>
         <b-row align-h="center" class="partners" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
-              <p>{{$t("selected")}}</p>
+              <p>{{$t("landingpage.top.selected")}}</p>
             <figure>
              <a href="https://wirvsvirushackathon.org/weiterfuehrung-2/" target="_blank"> <img class="img-hover" src="../assets/logo-wirvsvirus-enabler.png" alt="Wir vs. Virus Solution Enabler" width="auto" height="56" /> </a>
             </figure>
           </b-col>
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
-              <p>{{$t("collaboration")}}</p>
+              <p>{{$t("landingpage.top.collaboration")}}</p>
             <figure>
              <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img id="collaboration" class="img-hover" src="../assets/logo-bjoern-steiger-stiftung-de.png" alt="Björn Steiger Stiftung" width="auto" height="48" /> </a>
             </figure>
           </b-col>
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
-              <p>{{$t("supported")}}</p>
+              <p>{{$t("landingpage.top.sponsoredBy")}}</p>
             <figure>
              <a href="https://www.bmbf.de/" target="_blank"> <img class="img-hover" src="../assets/logo-bmbf.png" alt="Bundesministerium für Bildung und Forschung" width="auto" height="56" /> </a>
             </figure>
@@ -83,7 +48,7 @@
     <b-container class="container about">
       <b-row>
         <b-col class="text-center">
-            <h3 data-aos="fade" data-aos-duration="750">{{$t("titleGroups")}}</h3>
+            <h3 data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.title")}}</h3>
         </b-col>
       </b-row>
       
@@ -97,9 +62,9 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("qualif-vol")}}</h4>
+          <h4 class="text-center">{{$tc("general.qVolunteer", 2)}}</h4>
           <p class="text-center">
-              {{$t("Textqualif-vol")}}
+              {{$t("landingpage.details.desc.qVolunteers")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
@@ -111,9 +76,9 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("diag-cent")}}</h4>
+          <h4 class="text-center">{{$tc("general.dCenter", 2)}}</h4>
           <p class="text-center">
-              {{$t("Textdiag-cent")}}
+              {{$t("landingpage.details.desc.rLab")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
@@ -125,15 +90,15 @@
               height="150"
             />
           </figure>
-          <h4 class="text-center">{{$t("res-lab")}}</h4>
+          <h4 class="text-center">{{$tc("general.rLab", 2)}}</h4>
           <p class="text-center">
-              {{$t("Textres-lab")}}
+              {{$t("landingpage.details.desc.dCenter")}}
           </p>
         </b-col>
       </b-row>
       <b-row>
         <b-col class="text-center">
-          <b-button data-aos="fade" data-aos-duration="750" class="btn-cta" to="/search">{{$t("searchButton")}}</b-button>
+          <b-button data-aos="fade" data-aos-duration="750" class="btn-cta" to="/search">{{$t("general.btn_search")}}</b-button>
         </b-col>
       </b-row>
     </b-container>
