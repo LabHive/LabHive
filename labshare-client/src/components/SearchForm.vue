@@ -38,7 +38,7 @@
       <div class="search-filters">
         <HeightTransition @finished="$emit('finished')">
           <CheckboxGroup
-            name="volunteerSkills"
+            name="skills"
             :data="volunteerSkillsOptions"
             v-model="filter.filters"
             :saveChanges="searchChange"
