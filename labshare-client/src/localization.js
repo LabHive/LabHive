@@ -4,17 +4,23 @@ import Vue from 'vue'
 
 let locale = localStorage.getItem('locale')
 if (!locale) {
-  locale = 'de'
+  locale = navigator.language || navigator.userLanguage
+
+  if (locale.toLowerCase().indexOf("de") > -1) {
+    locale = "de"
+  }
+  else {
+    locale = "en"
+  }
 }
 
 const loadedLanguages = ['de']
-console.log(messages)
 
 Vue.use(VueI18n);
 
 export const i18n = new VueI18n({
   locale: "de",
-  fallbackLocale: "de",
+  fallbackLocale: "en",
   silentFallbackWarn: true,
   messages: {
     de: messages
@@ -34,6 +40,13 @@ function setI18nLanguage (lang) {
 
 export function loadLanguageAsync(lang) {
   // If the same language
+  if (lang === 'cn') {
+    i18n.fallbackLocale = "cn"
+    i18n.setLocaleMessage(lang, {})
+    i18n.locale = lang
+    return
+  }
+
   if (i18n.locale === lang) {
     return Promise.resolve(setI18nLanguage(lang))
   }

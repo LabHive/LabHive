@@ -14,8 +14,14 @@
 import { loadLanguageAsync } from '@/localization.js'
 const langs = {
   de: "Deutsch",
-  en: "English"
+  en: "English",
+  cn: "Identifier"
 };
+
+if (process.env.NODE_ENV === 'production') {
+  delete langs.cn
+}
+
 export default {
   name: "locale-change",
   data() {
