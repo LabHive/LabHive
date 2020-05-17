@@ -18,7 +18,7 @@ export let equipment = [
     { value: "calibratedPipetteSet", text: "Calibrated Pipette Set" },
     { value: "rtThermocycler", text: "Thermocycler RT" },
     { value: "qpcrThermocycler", text: "Thermocycler qPCR" },
-    { value: "primerProduction", text: "Primer Production" },
+    { value: "primerProduction", text: "Primer for SARS-COV-2" },
     { value: "reverseTransKit", text: "Reverse Transcriptase Kit" },
     { value: "pcrMasterMix", text: "PCR Master Mix" },
     { value: "rnaExtractionDevice", text: "RNA Extraction Device" },

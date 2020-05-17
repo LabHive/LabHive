@@ -1,29 +1,13 @@
-<i18n>
-{
-    "en": {
-        "title": "Activate account",
-        "successMessage": "Activation successful",
-        "loadingMessage": "Please wait...",
-        "login": "Login"},
-    "de": {
-        "title": "Account aktivieren",
-        "successMessage": "Aktivierung erfolgreich",
-        "loadingMessage": "Bitte warten...",
-        "login": "Zum Login"
-    }
-}
-</i18n>
-
 <template>
   <div class="profile">
-    <h1>{{ $t("title") }}</h1>
+    <h1>{{ $t("activation.title") }}</h1>
 
     <template v-if="updated">
-      <p>{{ $t("successMessage") }}</p>
+      <p>{{ $t("activation.successMessage") }}</p>
     </template>
 
     <template v-if="loading">
-      <p>{{ $t("loadingMessage") }}</p>
+      <p>{{ $t("general.loading") }}</p>
     </template>
 
     <template v-if="!updated && !loading">
@@ -31,13 +15,12 @@
     </template>
 
     <div>
-      <router-link to="/login">{{ $t('login') }}</router-link>
+      <router-link to="/login">{{ $t("general.to_login") }}</router-link>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   data: function() {
     return {

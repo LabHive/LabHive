@@ -1,33 +1,15 @@
-<i18n>
-{
-  "en": {
-    "offerEquipment": "Offered Devices/Reagents",
-    "offerEquipmentDescription": "More detailed information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
-    "offerAdvice": "Offered Advice/Know-How",
-    "offerAdviceDescription": "More detailed information on the areas in which you can offer help",
-    "offerRessource_sub": "If you can offer resources, you can enter them here. You can always change this later in your profile. Click on “Next” below if you do not have anything to share at present."
-  },
-  "de": {    
-    "offerEquipment": "Anzubietende Geräte/Reagenzien",
-    "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
-    "offerAdvice": "Anzubietende Beratung/Know-How",
-    "offerAdviceDescription": "Genauere Informationen über die Themen, zu denen Sie Hilfe anbieten können",
-    "offerRessource_sub": "Wenn Sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in Ihrem Profil ändern. Klicken Sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."
-  }
-}
-</i18n>
 <template>
   <div>
-    <p class="step-info-sub" v-if="registration">{{ $t("offerRessource_sub") }}</p>
+    <p class="step-info-sub" v-if="registration">{{ $t('profile.offer.subTitle') }}</p>
 
     <b-row>
       <b-col sm="*" lg="5" order="1" order-lg="1">
-        <h4>{{ $t("offerEquipment") }}</h4>
-        <CheckboxGroup name="equip" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
+        <h4>{{ $t('profile.offer.equipment') }}</h4>
+        <CheckboxGroup name="equipment" cols="2" :data="equipment" v-model="offers.equipment"></CheckboxGroup>
       </b-col>
 
       <b-col sm="*" lg="5" offset-lg="1" order="3" order-lg="2">
-        <h4>{{ $t("offerAdvice") }}</h4>
+        <h4>{{ $t('profile.offer.advice') }}</h4>
         <CheckboxGroup name="advice" cols="2" :data="advices" v-model="offers.advice"></CheckboxGroup>
       </b-col>
 
@@ -38,7 +20,7 @@
         >
           <b-form-textarea
             v-model="offers.equipmentDescription"
-            :placeholder="$t('offerEquipmentDescription')"
+            :placeholder="$t('profile.offer.equipmentDescription')"
             rows="4"
             max-rows="10"
             :state="!val.validDescription(offers.equipmentDescription).valid ? false: null"
@@ -54,7 +36,7 @@
         >
           <b-form-textarea
             v-model="offers.adviceDescription"
-            :placeholder="$t('offerAdviceDescription')"
+            :placeholder="$t('profile.offer.adviceDescription')"
             rows="4"
             max-rows="10"
             :state="!val.validDescription(offers.adviceDescription).valid ? false: null"

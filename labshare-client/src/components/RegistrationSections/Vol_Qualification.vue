@@ -1,26 +1,14 @@
-<i18n>
-{
-  "en": {
-    "qualification": "Qualification",
-    "qualification_sub": "Please state your qualification(s)."
-  },
-  "de": {
-    "qualification": "Qualifikation",
-    "qualification_sub": "Bitte geben Sie Ihre Qualifikation(en) an."
-  }
-}
-</i18n>
 <template>
   <div>
-    <h3 class="section" v-if="profileUpdate">{{ $t("qualification") }}</h3>
-    <p class="step-info-sub" v-else>{{ $t("qualification_sub") }}</p>
+    <h3 class="section" v-if="profileUpdate">{{ $t("registration.steps.qualification.title") }}</h3>
+    <p class="step-info-sub" v-else>{{ $t("registration.steps.qualification.subTitle") }}</p>
 
     <CheckboxGroup
       required
-      name="qualification"
+      name="qualifications"
       :data="qualification"
       v-model="formData.details.qualifications"
-      :label="profileUpdate ? $t('qualification_sub'): null"
+      :label="profileUpdate ? $t('registration.steps.qualification.subTitle'): null"
     ></CheckboxGroup>
 
 

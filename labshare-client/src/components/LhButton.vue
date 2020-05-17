@@ -1,14 +1,3 @@
-<i18n>
-{
-  "en": {
-    
-  },
-  "de": {
-    
-  }
-}
-</i18n>
-
 <template>
   <b-button variant="primary" class="lh-button" v-bind:class="{ active: active }" @click="click">{{ text }}</b-button>
 </template>

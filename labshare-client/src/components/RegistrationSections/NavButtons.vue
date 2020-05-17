@@ -1,22 +1,8 @@
-<i18n>
-{
-  "en": {
-    "back": "Back",
-    "next": "Next",
-    "submit": "Register Now"
-  },
-  "de": {
-    "back": "Zurück",
-    "next": "Weiter",
-    "submit": "Jetzt registrieren"
-  }
-}
-</i18n>
 <template>
   <div>
     <b-row style="margin-top: 44px">
       <b-col cols="auto">
-        <b-button variant="secondary" v-if="!hideBack" @click="$parent.$emit('previousState')">{{ $t("back") }}</b-button>
+        <b-button variant="secondary" v-if="!hideBack" @click="$parent.$emit('previousState')">{{ $t("general.back") }}</b-button>
       </b-col>
       <b-col cols="auto">
         <b-button
@@ -24,13 +10,13 @@
           @click="$parent.$emit('nextState')"
           :disabled="disableSubmit"
           v-if="!final"
-        >{{ $t("next") }}</b-button>
+        >{{ $t("general.next") }}</b-button>
         <b-button
           variant="success"
           @click="$parent.$emit('submit')"
           :disabled="disableSubmit"
           v-else
-        >{{ $t("submit") }}</b-button>
+        >{{ $t("registration.submit") }}</b-button>
       </b-col>
     </b-row>
     

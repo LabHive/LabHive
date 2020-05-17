@@ -1,25 +1,10 @@
-<i18n>
-    {
-    "en": {
-    "ourTeam": "Our Team",
-    "ourStoryText1": "LabHive comprises an interdisciplinary team of scientists, software developers and data protection experts. The idea for the platform originally emerged from two projects of the ",
-    "ourStoryText2": " Hackathon of the German government. Both teams have volunteered their efforts to this initiative, and they have joined forces to help increase test capacity."
-    },
-    "de": {
-    "ourTeam": "Unser Team",
-    "ourStoryText1": "Hinter LabHive steht ein interdisziplinäres Team aus den Bereichen Wissenschaft, Software-Entwicklung und Datenschutz. Die Idee zur Plattform entstand ursprünglich aus zwei Projekten beim ",
-    "ourStoryText2": " Hackathon der Bundesregierung. Beide Teams haben sich zusammengeschlossen, um als ehrenamtliches Innovationsprojekt dabei zu helfen, die Testkapazität zu erhöhen."
-    }
-    }
-</i18n>
-  
 <template>
   <div>
     <b-container class="team">
-      <h1 data-aos="fade" data-aos-duration="750">{{ $t("ourTeam") }}</h1>
+      <h1 data-aos="fade" data-aos-duration="750">{{ $t("aboutUs.title") }}</h1>
       <b-row align-h="center" data-aos="fade" data-aos-duration="1000">
         <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
-          <p>{{ $t("ourStoryText1") }}<a id="hashtag" target="_blank" href="https://twitter.com/hashtag/WirVsVirus?src=hashtag_click">#WirVsVirus</a>{{ $t("ourStoryText2") }}</p>
+          <p v-html="$t('aboutUs.ourStoryText')"></p>
         </b-col>
       </b-row>
       <b-row align-h="center">
@@ -255,10 +240,6 @@ export default {
       font-size: 20px;
       margin-top: 16px;
     }
-  }
-
-  #hashtag {
-    font-weight: 500;
   }
 
 $aos-distance: 32px;

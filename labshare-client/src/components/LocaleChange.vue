@@ -1,17 +1,6 @@
-<i18n>
-  {
-  "en": {
-    "language": "Sprache"
-  },
-  "de": {
-    "language": "Language"
-  }
-}
-</i18n>
-
 <template>
   <div class="locale-changer">
-    <b-nav-item-dropdown right :text="$t('language')">
+    <b-nav-item-dropdown right :text="$t('general.language')">
       <template v-for="(v, k) in langs">
         <b-dropdown-item :key="k" @click="setLocale(k)">
         {{ v }}
@@ -22,10 +11,17 @@
 </template>
 
 <script>
+import { loadLanguageAsync } from '@/localization.js'
 const langs = {
   de: "Deutsch",
-  en: "English"
+  en: "English",
+  cn: "Identifier"
 };
+
+if (!process.env.STAGING) {
+  delete langs.cn
+}
+
 export default {
   name: "locale-change",
   data() {
@@ -33,15 +29,9 @@ export default {
       langs,
     };
   },
-  computed: {
-    getLanguage: function() {
-      return langs[this.$i18n.locale]
-    }
-  },
   methods: {
     setLocale: function(val) {
-      this.$root.$i18n.locale = val;
-      document.documentElement.setAttribute('lang', val);
+      loadLanguageAsync(val)
       localStorage.setItem("locale", val);
     }
   },

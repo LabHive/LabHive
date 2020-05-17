@@ -1,5 +1,5 @@
 <template>
-  <b-form-group :invalid-feedback="$t('required')" :state="valid" valid-feedback="OK" :label="label">
+  <b-form-group :invalid-feedback="$t('general.required')" :state="valid" valid-feedback="OK" :label="label">
     <b-container>
       <b-row>
         <template v-for="i in cols_number">
@@ -89,7 +89,7 @@ export default {
   computed: {
     translatedData() {
       return this.data.map((x) => {
-        x.text = this.$t(x.value)
+        x.text = this.$t(`checkboxes.${this.name}.${x.value}`)
         return x
       })
     },

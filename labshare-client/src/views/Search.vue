@@ -1,44 +1,6 @@
-<i18n>
-{
-  "en": {
-    "noResults": "No results. Try other search criteria or stop by later",
-    "title": "Search For Resources",
-    "offersadvice": "Offers help",
-    "lookingForadvice": "Help needed",
-    "offersequipment": "Offers Devices/Reagents",
-    "lookingForequipment": "Devices/Reagents needed",
-    "volunteer": "Qualified Volunteers",
-    "farAway": "far away",
-    "error": "An error occurred, please try it again later.",
-    "other": "Other",
-    "recentlyAdded": "Recently added",
-    "bsl1": "BSL1 Experience",
-    "bsl2": "BSL2 Experience",
-    "bsl3": "BSL3 Experience",
-    "bsl4": "BSL4 Experience"
-  },
-  "de": {
-    "title": "Suche nach Ressourcen",
-    "noResults": "Keine Treffer. Andere Suchkriterien verwenden oder später vorbei schauen",
-    "farAway": "entfernt",
-    "volunteer": "Qualifizierter Freiwilliger",
-    "offersadvice": "Hilfe anzubieten",
-    "lookingForadvice": "Hilfe benötigt",
-    "offersequipment": "Geräte/Reagenzien anzubieten",
-    "lookingForequipment": "Geräte/Reagenzien benötigt",
-    "error": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut.",
-    "other": "Andere",
-    "recentlyAdded": "Gerade hinzugefügt",
-    "bsl1": "BSL1 Erfahrung",
-    "bsl2": "BSL2 Erfahrung",
-    "bsl3": "BSL3 Erfahrung",
-    "bsl4": "BSL4 Erfahrung"
-    }
-    }
-</i18n>
 <template>
   <div class="list-view">
-    <h1 data-aos="fade" data-aos-duration="750">{{$t("title")}}</h1>
+    <h1 data-aos="fade" data-aos-duration="750">{{$t("search.title")}}</h1>
     <SearchForm @searchChange="updateListing" />
 
     <transition name="hoverIn" mode="out-in">
@@ -52,8 +14,8 @@
           <b-col cols="auto" style="text-align: center;">
             <img src="../assets/No-Search-Results-Illustration.svg" />
             <p style="margin-top: 15px">
-              <strong v-if="!error">{{ $t('noResults') }}</strong>
-              <strong v-else>{{ $t('error') }}</strong>
+              <strong v-if="!error">{{ $t('search.noResults') }}</strong>
+              <strong v-else>{{ $t('search.error') }}</strong>
             </p>
           </b-col>
           <b-col col></b-col>
@@ -61,7 +23,7 @@
       </div>
 
       <div v-else key="2" data-aos="fade-up" data-aos-duration="750">
-        <p class="recentlyAdded">{{ $t("recentlyAdded") }}</p>
+        <p class="recentlyAdded">{{ $t("search.recentlyAdded") }}</p>
         <transition-group name="refresh" tag="div" class="sr-container" @before-leave="fixSize">
           <div
             class="search-result"
@@ -158,7 +120,7 @@ export default {
         let subHeader = `${x.address.zipcode} ${x.address.city}`;
         if (x.distance != null) {
           let distance = `${(x.distance / 1000).toFixed(2)} km`;
-          subHeader += `, ${distance} ${this.$t("farAway")}`;
+          subHeader += `, ${distance} ${this.$t("search.farAway")}`;
         }
 
         let footer = "";
@@ -188,13 +150,13 @@ export default {
                   continue;
 
                 const result = {
-                  header: this.$t("lookingFor" + i),
+                  header: this.$t(`search.lookingFor${i}`),
                   faIcon: "search",
                   subHeader: subHeader,
                   footer: footer,
                   center: x.lookingFor[i]
                     .map(y => {
-                      return '•&nbsp;' + this.$t(y);
+                      return '•&nbsp;' + this.$t(`checkboxes.${i}.${y}`);
                     })
                     .sort()
                     .join("&emsp;&emsp;"),
@@ -220,13 +182,13 @@ export default {
                   continue;
 
                 const result = {
-                  header: this.$t("offers" + i),
+                  header: this.$t(`search.offers${i}`),
                   faIcon: faIcons[i],
                   subHeader: subHeader,
                   footer: footer,
                   center: x.offers[i]
                     .map(y => {
-                      return '•&nbsp;' + this.$t(y);
+                      return '•&nbsp;' + this.$t(`checkboxes.${i}.${y}`);
                     })
                     .sort()
                     .join("&emsp;&emsp;"),
@@ -242,13 +204,13 @@ export default {
 
           case "volunteer": {
             const result = {
-              header: this.$t("volunteer"),
+              header: this.$tc("general.qVolunteer", 1),
               faIcon: "user-alt",
               subHeader: subHeader,
               footer: footer,
               center: x.details.skills
                 .map(y => {
-                  return '•&nbsp;' + this.$t(y);
+                  return '•&nbsp;' + this.$t(`checkboxes.skills.searchResult.${y}`);
                 })
                 .sort()
                 .join("&emsp;&emsp;"),
@@ -258,7 +220,7 @@ export default {
               if (result.user.description == "") {
                 return searchResults
               }
-              result.center = "• " + this.$t("other")
+              result.center = "•&nbsp;" + this.$t("general.other")
             }
             searchResults.push(result);
             break;

@@ -1,55 +1,18 @@
-<i18n>
-    {
-    "en": {
-    "searchModeSelection": "What do you search for?",
-    "dlabs": "Diagnostic Center",
-    "rlabs": "Research Laboratory",
-    "volunteers": "Qualified Volunteer",
-    "skills": "Skills",
-    "equipment": "Devices/Reagents",
-    "advice": "Advice/Know-How",
-    "workers": "Workforce",
-    "request": "What is needed?",
-    "offer": "What can be offered?",
-    "theOffers": "Offers",
-    "theRequests": "Requests",
-    "searchInSurroundings": "Search in the surroundings",
-    "zipcode": "Enter ZIP-Code"
-    },
-    "de": {
-    "searchModeSelection": "Wonach suchen Sie?",
-    "dlabs": "Diagnostikzentrum",
-    "rlabs": "Forschungslabor",
-    "volunteers": "Qualifizierte Freiwillige",
-    "skills": "Fähigkeiten",
-    "equipment": "Geräte/Reagenzien",
-    "advice": "Beratung/Know-How",
-    "workers": "Arbeitskraft",
-    "request": "Was wird benötigt?",
-    "offer": "Was kann abgegeben werden?",
-    "theOffers": "Angebote",
-    "theRequests": "Anfragen",
-    "searchInSurroundings": "Suche in der Umgebung",
-    "zipcode": "PLZ eingeben"
-    }
-    }
-</i18n>
-
 <template>
   <div>
     <b-form>
       <div class="form-row">
         <div class="col-md3" data-aos="fade" data-aos-duration="750">
-          <b-form-group :label="$t('searchModeSelection')">
+          <b-form-group :label="$t('search.modeTitle')">
             <b-row align-v="center">
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theOffers')" v-model="filter.mode" value="offers" @change="changeMode" />
+                <LhButton :text="$t('search.btn_offers')" v-model="filter.mode" value="offers" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col">
-                <LhButton :text="$t('theRequests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
+                <LhButton :text="$t('search.btn_requests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col last">
-                <LhButton :text="$t('volunteers')" v-model="filter.mode" value="volunteers" @change="changeMode" />
+                <LhButton :text="$tc('general.qVolunteer', 1)" v-model="filter.mode" value="volunteers" @change="changeMode" />
               </b-col>
             </b-row>
           </b-form-group>
@@ -58,13 +21,13 @@
       <HeightTransition @finished="$emit('finished')">
         <div class="form-row" v-if="filter.mode && 'volunteers' !== filter.mode">
           <div class="col-md4">
-            <b-form-group :label="filter.mode === 'lookingFor' ? $t('offer'): $t('request')">
+            <b-form-group :label="filter.mode === 'lookingFor' ? $t('search.filterRequestTitle'): $t('search.filterOfferTitle')">
               <b-row>
                 <b-col cols="auto" class="lh-button-col">
-                  <LhButton :text="$t('equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
+                  <LhButton :text="$t('general.equipment')" v-model="filter.filterBy" value="equipment" @change="changeFilterBy" />
                 </b-col>
                 <b-col cols="auto" class="lh-button-col last">
-                  <LhButton :text="$t('advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
+                  <LhButton :text="$t('general.advice')" v-model="filter.filterBy" value="advice" @change="changeFilterBy" />
                 </b-col>
               </b-row>
             </b-form-group>
@@ -75,7 +38,7 @@
       <div class="search-filters">
         <HeightTransition @finished="$emit('finished')">
           <CheckboxGroup
-            name="volunteerSkills"
+            name="skills"
             :data="volunteerSkillsOptions"
             v-model="filter.filters"
             :saveChanges="searchChange"
@@ -110,10 +73,10 @@
           <InputForm
             :verticalLabel="true"
             name="zipcode"
-            :label="$t('searchInSurroundings')"
+            :label="$t('search.searchInSurroundings')"
             v-model="filter.zipcode"
             :required="false"
-            :placeholder="$t('zipcode')"
+            :placeholder="$t('search.enterZipcode')"
             :valFunc="val.validZipcode"
             @valid="searchChange"
             @input="changeZip"

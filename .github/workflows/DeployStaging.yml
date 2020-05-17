@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
+        with:
+          submodules: true
       - uses: actions/setup-node@v1
       - run: cd labshare-client && npm install
       - run: cd labshare-client && npm run build
@@ -36,6 +38,8 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v2
         if: github.event.pull_request.merged == true || github.event_name == 'push'
+        with:
+          submodules: true
       - name: "Build and Push Docker Image"
         uses: docker/build-push-action@v1
         if: github.event.pull_request.merged == true || github.event_name == 'push'
@@ -58,6 +62,7 @@ jobs:
             cd LabHive-Staging/labshare-client;
             git reset --hard;
             git pull;
+            git submodule update --init;
 
             docker volume create labhive_secret_staging;
             docker run --rm -v $(pwd):/src -v labhive_secret_staging:/dst busybox cp -r /src/secret/. /dst/;

@@ -1,41 +1,3 @@
-<i18n>
-{
-  "en": {
-    "brand": "LabHive",
-    "aboutLabhive": "About LabHive",
-    "aboutUs": "About The Team",
-    "register": "Sign Up",
-    "login": "Log In",
-    "profile": "Profile",
-    "changePassword": "Change Password",
-    "signOut": "Logout",
-    "privacyPolicy": "Privacy Policy",
-    "imprint": "Imprint",
-    "requestResource": "Current Requests",
-    "offerResource": "Current Offers",
-    "search": "Search For Resources",
-    "staging": "Only for test purposes, does not contain real data.",
-    "press": "Press"
-  },
-  "de": {
-    "brand": "LabHive",
-    "aboutLabhive": "Über LabHive",
-    "aboutUs": "Über das Team",
-    "register": "Registrieren",
-    "login": "Login",
-    "profile": "Profil",
-    "changePassword": "Passwort ändern",
-    "signOut": "Logout",
-    "privacyPolicy": "Datenschutzerklärung",
-    "imprint": "Impressum",
-    "requestResource": "Aktueller Bedarf",
-    "offerResource": "Aktuelles Angebot",
-    "search": "Suche nach Ressourcen",
-    "staging": "Dient nur zu Testzwecken, enthält keine echten Daten!",
-    "press": "Presse"
-  }
-}
-</i18n>
 <template>
   <div class="main-div">
     <b-navbar toggleable="lg" id="navbar">
@@ -55,8 +17,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item :active="$route.name =='pageAboutLabhive'" to="/">{{ $t("aboutLabhive") }}</b-nav-item>
-            <b-nav-item :active="$route.name =='pageAboutUs'" to="/ueber-uns">{{ $t("aboutUs") }}</b-nav-item>
+            <b-nav-item :active="$route.name =='pageAboutLabhive'" to="/">{{ $t("layout.navbar.aboutLabhive") }}</b-nav-item>
+            <b-nav-item :active="$route.name =='pageAboutUs'" to="/ueber-uns">{{ $t("layout.navbar.aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -65,31 +27,31 @@
               :active="$route.name =='pageSearch'"
               class="nav-cta"
               to="/search"
-            >{{ $t("search") }}</b-nav-item>
+            >{{ $t("general.btn_search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item :active="$route.name =='pageRegister'" to="/register">{{ $t("register") }}</b-nav-item>
-              <b-nav-item :active="$route.name =='pageLogin'" to="/login">{{ $t("login") }}</b-nav-item>
+              <b-nav-item :active="$route.name =='pageRegister'" to="/register">{{ $t("general.signUp") }}</b-nav-item>
+              <b-nav-item :active="$route.name =='pageLogin'" to="/login">{{ $t("general.login") }}</b-nav-item>
             </template>
 
             <b-nav-item-dropdown v-if="$authenticated" right :text="userName">
               <b-dropdown-item
                 to="/profile"
                 v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1"
-              >{{ $t("profile") }}</b-dropdown-item>
+              >{{ $t("profile.title") }}</b-dropdown-item>
               <b-dropdown-item
                 v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'"
                 to="/offer"
-              >{{ $t("offerResource") }}</b-dropdown-item>
+              >{{ $t("profile.offer.title") }}</b-dropdown-item>
               <b-dropdown-item
                 v-if="$user.role == 'lab_diag'"
                 to="/request"
-              >{{ $t("requestResource") }}</b-dropdown-item>
-              <b-dropdown-item to="/change-password">{{ $t("changePassword") }}</b-dropdown-item>
+              >{{ $t("profile.request.title") }}</b-dropdown-item>
+              <b-dropdown-item to="/change-password">{{ $t("changePassword.title") }}</b-dropdown-item>
               <b-dropdown-item
                 to="/admin"
                 v-if="$user.role && $user.role.toLowerCase().indexOf('admin') > -1"
               >Admin</b-dropdown-item>
-              <b-dropdown-item to="/" @click="logout">{{ $t("signOut") }}</b-dropdown-item>
+              <b-dropdown-item to="/" @click="logout">{{ $t("layout.navbar.signOut") }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <LocaleChange />
           </b-navbar-nav>
@@ -99,7 +61,7 @@
 
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("staging") }}</h1>
+        <h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("layout.staging") }}</h1>
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
@@ -128,9 +90,9 @@
             order="1"
             order-lg="2"
           >
-            <b-link to="/privacyPolicy" class="clink">{{ $t('privacyPolicy') }}</b-link>
-            <b-link to="/imprint" class="clink">{{ $t('imprint') }}</b-link>
-            <b-link to="/press" class="clink">{{ $t('press') }}</b-link>
+            <b-link to="/privacyPolicy" class="clink">{{ $t('layout.footer.privacyPolicy') }}</b-link>
+            <b-link to="/imprint" class="clink">{{ $t('layout.footer.imprint') }}</b-link>
+            <b-link to="/press" class="clink">{{ $t('layout.footer.press') }}</b-link>
           </b-col>
           <b-col
             class="text-center align-self-center social-icons"

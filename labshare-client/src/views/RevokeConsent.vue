@@ -1,34 +1,13 @@
-<i18n>
-{
-    "en": {
-        "revokeConsent": "Revoke consent",
-        "mail": "Receive no updates via email anymore.",
-        "dataProcessing": "Sending my personal data to registered diagnostic centers and research laboratories.",
-        "loginRequired": "Please log in and open the link again.",
-        "success": "Success!",
-        "invalidAction": "Invalid request"
-    },
-    "de": {
-        "revokeConsent": "Einwilligung widerrufen",
-        "mail": "Keine Updates per E-Mail erhalten.",
-        "dataProcessing": "Datenweitergabe, an Diagnostikzentren und Forschungslabore unterbinden.",
-        "loginRequired": "Bitte melden Sie sich an und rufen Sie den Link erneut auf.",
-        "success": "Erfolgreich ausführt.",
-        "invalidAction": "Ungültige Anfrage"
-    }
-}
-</i18n>
-
 <template>
   <div>
-    <h1>{{ $t("revokeConsent") }}</h1>
+    <h1>{{ $t("revokeConsent.title") }}</h1>
     <template v-if="loaded">
-      <b-alert variant="success" :show="!error">{{ $t("success") }}</b-alert>
+      <b-alert variant="success" :show="!error">{{ $t("general.executedSuccessfully") }}</b-alert>
       <b-alert variant="danger" :show="error">{{ errorMsg }}</b-alert>
     </template>
 
-    <p v-if="$route.query.action == 'mailUpdates'">{{ $t("mail") }}</p>
-    <p v-else-if="$route.query.action == 'publicSearch'">{{ $t("dataProcessing") }}</p>
+    <p v-if="$route.query.action == 'mailUpdates'">{{ $t("revokeConsent.mail") }}</p>
+    <p v-else-if="$route.query.action == 'publicSearch'">{{ $t("revokeConsent.dataProcessing") }}</p>
   </div>
 </template>
 
@@ -45,14 +24,14 @@ export default {
   mounted() {
     if (!this.$authenticated) {
       this.error = true;
-      this.errorMsg = this.$t("loginRequired");
+      this.errorMsg = this.$t("revokeConsent.loginRequired");
       this.loaded = true;
       return;
     }
 
     if (!this.$route.query.action) {
       this.error = true;
-      this.errorMsg = this.$t("invalidAction");
+      this.errorMsg = this.$t("general.invalidRequest");
       this.loaded = true;
       return;
     }

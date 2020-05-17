@@ -1,47 +1,13 @@
-<i18n>
-{
-  "en":{
-    "mainTitle": "We align efforts for more SARS-CoV-2 tests",
-    "subTitle": "The digital platform for a strong diagnostic network",
-    "Joinbutton": "Download Press Kit",
-    "selected": "Selected for",
-    "collaboration": "In collaboration with",
-    "supported": "Supported by",
-    "titleGroups": "Together we unleash the united power of science",
-    "qualif-vol": "Qualified volunteers",
-    "res-lab": "Research laboratories",
-    "diag-cent": "Diagnostic centers",
-    "searchButton": "Search For Resources",
-    "text4": "Test capacity and support",
-    "testsweek": "Tests per week"
-  },
-  "de":{
-    "mainTitle": "Wir bündeln Kräfte für mehr SARS-CoV-2 Tests",
-    "subTitle": "Die digitale Plattform für ein starkes Diagnostiknetzwerk",
-    "Joinbutton": "Download Press Kit",
-    "selected": "Ausgewählt für",
-    "collaboration": "In Zusammenarbeit mit",
-    "supported": "Gefördert vom",
-    "titleGroups": "Gemeinsam entfesseln wir die geballte Kraft der Wissenschaft",
-    "qualif-vol": "Qualifizierte Freiwillige",
-    "res-lab": "Forschungslabore",
-    "diag-cent": "Diagnostikzentren",
-    "searchButton": "Suche nach Ressourcen",
-    "text4": "Testkapazitäten und Unterstützung",
-    "testsweek": "Tests pro Woche"
-  }
-}
-</i18n>
 <template>
   <div>
     <div class="banner">
       <b-container class="container">
         <b-row data-aos="fade-up" data-aos-duration="1000">
           <b-col cols lg="6" md="12" sm="12">
-            <h1>{{ $t("mainTitle") }}</h1>
-            <p>{{$t("subTitle")}}</p>
+            <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
+            <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
-              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("Joinbutton")}}</b-button>
+              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("landingpage.top.btn_join")}}</b-button>
             </div>
           </b-col>
           <b-col cols lg="6" md="12" sm="12">
