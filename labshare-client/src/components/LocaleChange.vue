@@ -29,11 +29,6 @@ export default {
       langs,
     };
   },
-  computed: {
-    getLanguage: function() {
-      return langs[this.$i18n.locale]
-    }
-  },
   methods: {
     setLocale: function(val) {
       loadLanguageAsync(val)
