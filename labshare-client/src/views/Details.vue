@@ -36,22 +36,22 @@ export default {
       const p = this.profile_raw;
 
       if (p.lookingFor?.equipment) {
-        p.lookingFor.equipment = this.localizeFields(p.lookingFor.equipment)
+        p.lookingFor.localized_equipment = this.localizeFields(p.lookingFor.equipment, "equipment")
       }
       if (p.lookingFor?.advice) {
-        p.lookingFor.advice = this.localizeFields(p.lookingFor.advice)
+        p.lookingFor.localized_advice = this.localizeFields(p.lookingFor.advice, "advice")
       }
       if (p.offers?.equipment) {
-        p.offers.equipment = this.localizeFields(p.offers.equipment)
+        p.offers.localized_equipment = this.localizeFields(p.offers.equipment, "equipment")
       }
       if (p.offers?.advice) {
-        p.offers.advice = this.localizeFields(p.offers.advice)
+        p.offers.localized_advice = this.localizeFields(p.offers.advice, "advice")
       }
       if (p.details?.qualifications) {
-        p.details.qualifications = this.localizeFields(p.details.qualifications)
+        p.details.localized_qualifications = this.localizeFields(p.details.qualifications, "qualifications")
       }
       if (p.details?.skills) {
-        p.details.skills = this.localizeFields(p.details.skills)
+        p.details.localized_skills = this.localizeFields(p.details.skills, "skills")
       }
 
       return p
@@ -71,9 +71,9 @@ export default {
         );
       });
     },
-    localizeFields(arr) {
+    localizeFields(arr, identifier) {
       return arr.map((x) => {
-        return this.$t(x)
+        return this.$t(`checkboxes.${identifier}.${x}`)
       })
       .sort()
     }

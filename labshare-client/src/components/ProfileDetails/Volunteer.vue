@@ -57,7 +57,7 @@
           <h5 class="card-title"><font-awesome-icon icon="vial" /> {{ $t('registration.steps.skills.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.details.skills" :key="s">
+            <li class="inline-item" v-for="s in profile.details.localized_skills" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -69,7 +69,7 @@
           <h5 class="card-title"><font-awesome-icon icon="graduation-cap" /> {{ $t('registration.steps.qualification.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.details.qualifications" :key="s">
+            <li class="inline-item" v-for="s in profile.details.localized_qualifications" :key="s">
               {{ s }}
             </li>
           </ul>

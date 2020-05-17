@@ -49,7 +49,7 @@
           <h5 class="card-title"><font-awesome-icon icon="hands-helping" /> {{ $t('searchDetails.offers.advice.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.advice" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_advice" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -63,7 +63,7 @@
           <h5 class="card-title"><font-awesome-icon icon="cubes" /> {{ $t('searchDetails.offers.equipment.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.equipment" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_equipment" :key="s">
               {{ s }}
             </li>
           </ul>

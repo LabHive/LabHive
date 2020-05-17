@@ -48,7 +48,7 @@
           <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('searchDetails.lookingFor.equipment.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.lookingFor.equipment" :key="s">
+            <li class="inline-item" v-for="s in profile.lookingFor.localized_equipment" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -58,12 +58,12 @@
         </div>
       </div>
 
-      <div class="card details-card" v-if="profile.lookingFor.advice.length > 0 || profile.lookingFor.adviceDescription">
+      <div class="card details-card" v-if="profile.lookingFor.localized_advice.length > 0 || profile.lookingFor.adviceDescription">
         <div class="card-body">
           <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('searchDetails.lookingFor.advice.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.lookingFor.advice" :key="s">
+            <li class="inline-item" v-for="s in profile.lookingFor.localized_advice" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -77,7 +77,7 @@
           <h5 class="card-title"><font-awesome-icon icon="hands-helping" /> {{ $t('searchDetails.offers.advice.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.advice" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_advice" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -91,7 +91,7 @@
           <h5 class="card-title"><font-awesome-icon icon="cubes" /> {{ $t('searchDetails.offers.equipment.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.equipment" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_equipment" :key="s">
               {{ s }}
             </li>
           </ul>
