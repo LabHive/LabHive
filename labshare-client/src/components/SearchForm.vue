@@ -12,7 +12,7 @@
                 <LhButton :text="$t('search.btn_requests')" v-model="filter.mode" value="lookingFor" @change="changeMode" />
               </b-col>
               <b-col cols="auto" class="lh-button-col last">
-                <LhButton :text="$tc('general.qVolunteer', 1)" v-model="filter.mode" value="volunteers" @change="changeMode" />
+                <LhButton :text="$tc('general.qVolunteer', 2)" v-model="filter.mode" value="volunteers" @change="changeMode" />
               </b-col>
             </b-row>
           </b-form-group>
