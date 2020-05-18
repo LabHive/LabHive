@@ -78,7 +78,7 @@
           </figure>
           <h4 class="text-center">{{$tc("general.dCenter", 2)}}</h4>
           <p class="text-center">
-              {{$t("landingpage.details.desc.rLab")}}
+              {{$t("landingpage.details.desc.dCenter")}}
           </p>
         </b-col>
         <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
@@ -92,7 +92,7 @@
           </figure>
           <h4 class="text-center">{{$tc("general.rLab", 2)}}</h4>
           <p class="text-center">
-              {{$t("landingpage.details.desc.dCenter")}}
+              {{$t("landingpage.details.desc.rLab")}}
           </p>
         </b-col>
       </b-row>
