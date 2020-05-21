@@ -1,7 +1,7 @@
 name: "Pull Request"
 on:
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
+    types: [opened, synchronize, reopened]
     branches:
       - dev
       - master
@@ -87,7 +87,7 @@ jobs:
                 "name": "GitHub"
               },
               "title": "${{ github.event.pull_request.title }}",
-              "description": "${{ github.event.pull_request.body }}\\n\\nAutomatically deployed to\\nhttps://${{ github.event.pull_request.head.ref }}.dev.labhive.de",
+              "description": "Pull Request: ${{ github.event.pull_request.html_url }}\\n${{ github.event.pull_request.body }}\\n\\nAutomatically deployed to\\nhttps://${{ github.event.pull_request.head.ref }}.dev.labhive.de",
               "url": "${{ github.event.pull_request.html_url }}"
             }
           ]

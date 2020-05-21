@@ -24,7 +24,7 @@ jobs:
           script: |
             if [[ -d LabHive_${{ github.event.pull_request.head.ref }} ]]; then
               docker stack rm LabHive_${{ github.event.pull_request.head.ref }};
-              rm -r LabHive_${{ github.event.pull_request.head.ref }};
+              docker run --rm -v $(pwd):/app debian /bin/bash -c 'rm -rf /app/LabHive_${{ github.event.pull_request.head.ref }}';
             else
               echo "Branch was not deployed";
               exit 1;
