@@ -1,8 +1,10 @@
-name: "Staging"
+name: "PullRequest"
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
     branches:
       - dev
+      - master
     paths:
       - 'labshare-client/**'
       - '.github/**'
@@ -23,6 +25,7 @@ jobs:
 
   prepare:
     name: "Prepare"
+    if: contains("[DEPLOY]", github.event.pull_request.title)
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -32,20 +35,21 @@ jobs:
           submodules: true
       
       - name: "Build and Push Docker Image"
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: labhive/labhive
-          tags: staging
-          path: ./labshare-client
-          dockerfile: ./labshare-client/Dockerfile
-          build_args: enableDev=true,staging=true
+        uses: easingthemes/ssh-deploy@v2.1.2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          ARGS: -avzr --delete
+          TARGET: /home/${{ secrets.USERNAME }}/LabHive_${{ github.event.pull_request.head.ref }}
 
   deploy:
     name: "Deploy"
+    if: contains("[DEPLOY]", github.event.pull_request.title)
     runs-on: ubuntu-latest
     needs: prepare
+    env:
+      BRANCH: ${{ github.event.pull_request.head.ref }}
     steps:
       - name: "Deploy"
         uses: appleboy/ssh-action@master
@@ -54,18 +58,25 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            cd LabHive-Staging/labshare-client;
-            git reset --hard;
-            git pull;
-            git submodule update --init;
-
-            ./deploy.sh Staging
+            cd LabHive_${BRANCH}/labshare-client;
+            ./deploy.sh ${BRANCH}
 
   notify:
     name: "Notify"
+    if: contains("[DEPLOY]", github.event.pull_request.title)
     runs-on: ubuntu-latest
     needs: deploy
+    env:
+      BRANCH: ${{ github.event.pull_request.head.ref }}
     steps:
+      - name: Comment on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Automatically deployed to [${BRANCH}.dev.labhive.de](https://${BRANCH}.dev.labhive.de)!"
+          check_for_duplicate_msg: false
+
       - name: Discord Bot
         run: |
           curl -X "POST" "${{ secrets.DISCORD_WEBHOOK_PR_DEPLOYMENT }}" \
@@ -78,9 +89,9 @@ jobs:
                 "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
                 "name": "GitHub"
               },
-              "title": "New Staging Release available",
-              "description": "Available at https://dev.labhive.de",
-              "url": "${{ github.event.compare }}"
+              "title": "New Deployment: ${{ github.event.pull_request.title }}",
+              "description": "${{ github.event.pull_request.body }}\\n\\nAutomatically deployed to\\nhttps://${BRANCH}.dev.labhive.de",
+              "url": "${{ github.event.pull_request.html_url }}"
             }
           ]
           }'
