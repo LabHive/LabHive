@@ -40,7 +40,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USERNAME }}
-          ARGS: -avzr --delete
+          ARGS: -rlptDvz --delete --exclude=node_modules/ --exclude=.git/
           TARGET: /home/${{ secrets.USERNAME }}/LabHive_${{ github.event.pull_request.head.ref }}
           SOURCE: ''
 
