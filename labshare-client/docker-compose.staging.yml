@@ -4,27 +4,20 @@ services:
   redis:
     image: redis
     restart: always
-    # ports:
-    #   - 6379:6379
     networks:
       - network
 
   mongodb:
     image: mongo
     restart: always
-    # ports:
-    #   - 27017:27017
     volumes:
-      - labhive_mongodb_stagingDB:/data/db
-      - labhive_mongodb_stagingConfig:/data/configdb
-    #environment:
-    #  MONGO_INITDB_ROOT_USERNAME: root
-    #  MONGO_INITDB_ROOT_PASSWORD: example
+      - mongodb_DB:/data/db
+      - mongodb_Config:/data/configdb
     networks:
       - network
   
   app:
-    image: labhive/labhive:staging
+    image: labhive/labhive:${TAG:-staging}
     restart: always
     depends_on: 
       - mongodb
@@ -37,38 +30,35 @@ services:
       - "5000"
     deploy:
       mode: replicated
-      replicas: 6
+      replicas: 2
       restart_policy:
         delay: 5s
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 5s
         monitor: 30s
       rollback_config:
         parallelism: 0
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.to-LabHiveStaging.rule=Host(`dev.labhive.de`)"
-        - "traefik.http.services.LabHiveStaging.loadbalancer.server.port=5000"
+        - "traefik.http.routers.to-LabHive-${ENV:-Staging}.rule=Host(`${DOMAIN:-}dev.labhive.de`)"
+        - "traefik.http.services.LabHive-${ENV:-Staging}.loadbalancer.server.port=5000"
         - "traefik.docker.lbswarm=true"
     environment: 
       STAGING: "1"
       DISABLE_DISCORD_BOT: "0"
-      BASE_URL: "https://dev.labhive.de"
+      BASE_URL: "https://${DOMAIN:-}dev.labhive.de"
     networks:
       - network
       - traefik
     volumes: 
-      - labhive_secret_staging:/app/secret
+      - secret:/app/secret
 
 
 volumes:
-  labhive_mongodb_stagingDB:
-    external: true
-  labhive_mongodb_stagingConfig:
-    external: true
-  labhive_secret_staging:
-    external: true
+  mongodb_DB:
+  mongodb_Config:
+  secret:
 
 
 networks:
