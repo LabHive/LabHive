@@ -34,7 +34,7 @@ jobs:
         with:
           submodules: true
       
-      - name: "Build and Push Docker Image"
+      - name: "Copy folder to server"
         uses: easingthemes/ssh-deploy@v2.1.2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
