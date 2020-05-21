@@ -26,6 +26,13 @@ module.exports = {
       def[0]['process.env']['STAGING'] = resolveEnv("STAGING")
       return def
     })
+
+    config
+      .plugin('html')
+      .tap((args) => {
+        args[0].index = resolveEnv("STAGING") ? "noindex" : "index";
+        return args;
+      });
   },
   configureWebpack: {
     resolve: {
