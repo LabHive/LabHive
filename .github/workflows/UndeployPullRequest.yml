@@ -1,4 +1,4 @@
-name: "Undeploy PullRequest"
+name: "Undeploy Pull Request"
 on:
   pull_request:
     types: [closed]
@@ -12,7 +12,7 @@ on:
 jobs:
   delete:
     name: "Remove Deployment"
-    if: "contains(github.event.pull_request.title, '[DEPLOY]')"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
     runs-on: ubuntu-latest
     steps:
       - name: "Deploy"
@@ -32,7 +32,7 @@ jobs:
 
   notify:
     name: "Notify"
-    if: "contains(github.event.pull_request.title, '[DEPLOY]')"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
     runs-on: ubuntu-latest
     needs: delete
     steps:

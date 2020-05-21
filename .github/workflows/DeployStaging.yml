@@ -21,8 +21,8 @@ jobs:
       - run: cd labshare-client && npm run build
 
 
-  prepare:
-    name: "Prepare"
+  docker:
+    name: "Prepare Docker"
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -45,7 +45,7 @@ jobs:
   deploy:
     name: "Deploy"
     runs-on: ubuntu-latest
-    needs: prepare
+    needs: docker
     steps:
       - name: "Deploy"
         uses: appleboy/ssh-action@master
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-      - name: Discord Bot
+      - name: Notify Discord
         run: |
           curl -X "POST" "${{ secrets.DISCORD_WEBHOOK_PR_DEPLOYMENT }}" \
             -H 'Content-Type: application/json' \
