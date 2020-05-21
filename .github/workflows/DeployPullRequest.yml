@@ -1,0 +1,94 @@
+name: "Pull Request"
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    branches:
+      - dev
+      - master
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-node@v1
+      - run: cd labshare-client && npm install
+      - run: cd labshare-client && npm run build
+
+
+  sync:
+    name: "Sync commit to server"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      
+      - name: "Sync to server"
+        uses: easingthemes/ssh-deploy@v2.1.2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          ARGS: -rlptDvz --delete --exclude=node_modules/ --exclude=.git/
+          TARGET: /home/${{ secrets.USERNAME }}/LabHive_${{ github.event.pull_request.head.ref }}
+          SOURCE: ''
+
+  deploy:
+    name: "Deploy"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
+    runs-on: ubuntu-latest
+    needs: sync
+    steps:
+      - name: "Deploy"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd LabHive_${{ github.event.pull_request.head.ref }}/labshare-client;
+            ./deploy.sh ${{ github.event.pull_request.head.ref }}
+
+  notify:
+    name: "Notify"
+    if: "(contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')) && github.event.action != 'synchronize'"
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Comment on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Automatically deployed to [${{ github.event.pull_request.head.ref }}.dev.labhive.de](https://${{ github.event.pull_request.head.ref }}.dev.labhive.de)!"
+          check_for_duplicate_msg: false
+
+      - name: Notify Discord
+        run: |
+          curl -X "POST" "${{ secrets.DISCORD_WEBHOOK_PR_DEPLOYMENT }}" \
+            -H 'Content-Type: application/json' \
+            -d $'{
+          "username": "BizzyB",
+          "embeds": [
+            {
+              "author": {
+                "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+                "name": "GitHub"
+              },
+              "title": "${{ github.event.pull_request.title }}",
+              "description": "${{ github.event.pull_request.body }}\\n\\nAutomatically deployed to\\nhttps://${{ github.event.pull_request.head.ref }}.dev.labhive.de",
+              "url": "${{ github.event.pull_request.html_url }}"
+            }
+          ]
+          }'
