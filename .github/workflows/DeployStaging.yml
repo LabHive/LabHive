@@ -79,7 +79,7 @@ jobs:
                 "name": "GitHub"
               },
               "title": "New Staging Release available",
-              "description": "Available at https://dev.labhive.de",
+              "description": "Changelog: ${{ github.event.compare }}\\nAvailable at: https://dev.labhive.de",
               "url": "${{ github.event.compare }}"
             }
           ]

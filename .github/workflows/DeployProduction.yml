@@ -91,7 +91,7 @@ jobs:
                 "name": "GitHub"
               },
               "title": "New release deployed!",
-              "description": "Available at https://labhive.de",
+              "description": "Changelog: ${{ github.event.compare }}\\nAvailable at: https://labhive.de",
               "url": "${{ github.event.compare }}"
             }
           ]
