@@ -81,10 +81,12 @@ export let localization = {
       dataAnalysis: "Data analysis",
 
       calibratedPipetteSet: "Calibrated pipette set",
+      pipetteTips: "Pipette tips",
       rtThermocycler: "Thermocycler RT",
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse transcriptase kit",
       pcrMasterMix: "PCR master mix",
+      pcrPlates: "PCR Plates",
       rnaExtractionDevice: "RNA extraction device",
       rnaExtractionKit: "RNA extraction kit",
 
@@ -176,10 +178,12 @@ export let localization = {
       dataAnalysis: "Datenanalyse",
 
       calibratedPipetteSet: "Kalibrierter Pipettensatz",
+      pipetteTips: "Pipettenspitzen",
       rtThermocycler: "Thermocycler RT",
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse Transkriptase-Kit",
       pcrMasterMix: "PCR Master Mix",
+      pcrPlates: "PCR Platten",
       rnaExtractionDevice: "RNA-Extraktionsgerät",
       rnaExtractionKit: "RNA-Extraktionskit",
 
