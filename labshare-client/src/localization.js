@@ -92,7 +92,7 @@ export let localization = {
       protocolProduction: "Writing of protocols",
 
       jobTraining: "Job training",
-      mtla: "MTLA",
+      mtla: "MTA/MTLA",
       bta_cta: "BTA/CTA",
       bachelor: "Bachelor (completed)",
       master: "Master (completed)",
@@ -187,7 +187,7 @@ export let localization = {
       protocolProduction: "Protokollerstellung",
 
       jobTraining: "Berufsausbildung",
-      mtla: "MTLA",
+      mtla: "MTA/MTLA",
       bta_cta: "BTA/CTA",
       bachelor: "Bachelor (abgeschlossen)",
       master: "Master (abgeschlossen)",
