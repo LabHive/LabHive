@@ -21,6 +21,7 @@ export let equipment = [
     { value: "primerProduction", text: "Primer Production" },
     { value: "reverseTransKit", text: "Reverse Transcriptase Kit" },
     { value: "pcrMasterMix", text: "PCR Master Mix" },
+    { value: "pcrPlates", text: "PCR Platten" },
     { value: "rnaExtractionDevice", text: "RNA Extraction Device" },
     { value: "rnaExtractionKit", text: "RNA Extraction Kit" },
 ]

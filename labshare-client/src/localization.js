@@ -85,6 +85,7 @@ export let localization = {
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse transcriptase kit",
       pcrMasterMix: "PCR master mix",
+      pcrPlates: "PCR Plates",
       rnaExtractionDevice: "RNA extraction device",
       rnaExtractionKit: "RNA extraction kit",
 
@@ -180,6 +181,7 @@ export let localization = {
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse Transkriptase-Kit",
       pcrMasterMix: "PCR Master Mix",
+      pcrPlates: "PCR Platten",
       rnaExtractionDevice: "RNA-Extraktionsgerät",
       rnaExtractionKit: "RNA-Extraktionskit",
 
