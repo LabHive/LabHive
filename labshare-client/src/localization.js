@@ -81,6 +81,7 @@ export let localization = {
       dataAnalysis: "Data analysis",
 
       calibratedPipetteSet: "Calibrated pipette set",
+      pipetteTips: "Pipette tips",
       rtThermocycler: "Thermocycler RT",
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse transcriptase kit",
@@ -177,6 +178,7 @@ export let localization = {
       dataAnalysis: "Datenanalyse",
 
       calibratedPipetteSet: "Kalibrierter Pipettensatz",
+      pipetteTips: "Pipettenspitzen",
       rtThermocycler: "Thermocycler RT",
       qpcrThermocycler: "Thermocycler qPCR",
       reverseTransKit: "Reverse Transkriptase-Kit",

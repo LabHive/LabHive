@@ -16,6 +16,7 @@ export let labSkills = [
 
 export let equipment = [
     { value: "calibratedPipetteSet", text: "Calibrated Pipette Set" },
+    { value: "pipetteTips", text: "Pipettenspitzen" },
     { value: "rtThermocycler", text: "Thermocycler RT" },
     { value: "qpcrThermocycler", text: "Thermocycler qPCR" },
     { value: "primerProduction", text: "Primer Production" },
