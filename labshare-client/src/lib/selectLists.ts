@@ -16,11 +16,13 @@ export let labSkills = [
 
 export let equipment = [
     { value: "calibratedPipetteSet", text: "Calibrated Pipette Set" },
+    { value: "pipetteTips", text: "Pipettenspitzen" },
     { value: "rtThermocycler", text: "Thermocycler RT" },
     { value: "qpcrThermocycler", text: "Thermocycler qPCR" },
     { value: "primerProduction", text: "Primer for SARS-COV-2" },
     { value: "reverseTransKit", text: "Reverse Transcriptase Kit" },
     { value: "pcrMasterMix", text: "PCR Master Mix" },
+    { value: "pcrPlates", text: "PCR Platten" },
     { value: "rnaExtractionDevice", text: "RNA Extraction Device" },
     { value: "rnaExtractionKit", text: "RNA Extraction Kit" },
 ]
