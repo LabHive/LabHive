@@ -2,14 +2,14 @@
 {
   "en": {
     "offerEquipment": "Offered Devices/Materials",
-    "offerEquipmentDescription": "More detailed information about the devices you can offer. Manufacturer, website of the devices, quantity, etc.",
+    "offerEquipmentDescription": "More detailed information about the devices/materials you can offer. Manufacturer, website of the devices, quantity, etc.",
     "offerAdvice": "Offered Advice/Know-How",
     "offerAdviceDescription": "More detailed information on the areas in which you can offer help",
     "offerRessource_sub": "If you can offer resources, you can enter them here. You can always change this later in your profile. Click on “Next” below if you do not have anything to share at present."
   },
   "de": {    
     "offerEquipment": "Anzubietende Geräte/Materialien",
-    "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte. Welche Hersteller, Modelle, Anzahl, etc.",
+    "offerEquipmentDescription": "Genauere Informationen über die angebotenden Geräte/Materialien. Welche Hersteller, Modelle, Anzahl, etc.",
     "offerAdvice": "Anzubietende Beratung/Know-How",
     "offerAdviceDescription": "Genauere Informationen über die Themen, zu denen Sie Hilfe anbieten können",
     "offerRessource_sub": "Wenn Sie Ressourcen abzugeben haben, können Sie diese hier angeben. Sie können dies später jederzeit in Ihrem Profil ändern. Klicken Sie unten auf “Weiter”, wenn Sie aktuell nichts abgeben können."

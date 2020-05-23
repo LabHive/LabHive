@@ -2,7 +2,7 @@
 {
   "en": {
     "requestEquipment": "Needed Devices/Materials",
-    "requestEquipmentDescription": "More detailed information about the devices required. Manufacturer, quantity, etc.",
+    "requestEquipmentDescription": "More detailed information about the devices/materials required. Manufacturer, quantity, etc.",
     "equipmentDescription": "Description of the requested devices",
     "requestAdvice":"Needed Advice/Know-How",
     "requestAdviceDescription":"More detailed information about the areas in which you need help",
@@ -11,7 +11,7 @@
   },
   "de": {
     "requestEquipment": "Benötigte Geräte/Materialien",
-    "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
+    "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte/Materialien. Welche Hersteller, Anzahl, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Benötigte Beratung/Know-How",
     "requestAdviceDescription":"Genauere Informationen über die Themen, bei denen Sie Hilfe benötigen",
