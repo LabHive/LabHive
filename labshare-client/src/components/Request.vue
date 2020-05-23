@@ -1,8 +1,8 @@
 <i18n>
 {
   "en": {
-    "requestEquipment": "Needed Devices/Reagents",
-    "requestEquipmentDescription": "More detailed information about the devices required. Manufacturer, quantity, etc.",
+    "requestEquipment": "Needed Devices/Materials",
+    "requestEquipmentDescription": "More detailed information about the devices/materials required. Link to required item on manufacturer website, order no, quantity, description, etc.",
     "equipmentDescription": "Description of the requested devices",
     "requestAdvice":"Needed Advice/Know-How",
     "requestAdviceDescription":"More detailed information about the areas in which you need help",
@@ -10,8 +10,8 @@
     "requestRessource_sub": "If you need resources, you can list them here. You can always change this later in your profile. Click on “Next” below if currently you do not need anything. You will find qualified volunteers using the search feature."
   },
   "de": {
-    "requestEquipment": "Benötigte Geräte/Reagenzien",
-    "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte. Welche Hersteller, Anzahl, etc.",
+    "requestEquipment": "Benötigte Geräte/Materialien",
+    "requestEquipmentDescription": "Genauere Informationen über die benötigten Geräte/Materialien. Link zum Produkt auf der Hersteller-Website, Bestellnummer, Anzahl, Beschreibung, etc.",
     "equipmentDescription": "Beschreibung des angefragten Equipments",
     "requestAdvice":"Benötigte Beratung/Know-How",
     "requestAdviceDescription":"Genauere Informationen über die Themen, bei denen Sie Hilfe benötigen",
