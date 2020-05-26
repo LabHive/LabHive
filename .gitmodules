@@ -1,3 +1,3 @@
 [submodule "labshare-client/src/Localization"]
 	path = labshare-client/src/Localization
-	url = git@github.com:LabHive/Localization.git
+	url = https://github.com/LabHive/Localization.git
