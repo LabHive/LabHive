@@ -1,44 +1,3 @@
-<i18n>
-{
-  "en": {
-    "contactDetails": {
-      "title": "Contact Details",
-      "not_available": "Contact details are only available to registered diagnostic centers or research laboratories users."
-    },
-    "other": {
-      "title": "Other Information"
-    },
-    "lookingFor": {
-      "skills": { "title": "Qualified volunteers needed"},
-      "equipment": { "title": "Equipment needed"},
-      "advice": { "title": "Advice needed"}
-    },
-    "offers": {
-      "advice": { "title": "Offers advice" },
-      "equipment": { "title": "Offers equipment"}
-    }
-  },
-  "de": {
-    "contactDetails": {
-      "title": "Kontaktinformationen",
-      "not_available": "Kontaktinformationen sind nur für eingeloggte Diagnostikzentren oder Forschungslabore sichtbar."
-    },
-    "other": {
-      "title": "Weitere Informationen"
-    },
-    "lookingFor": {
-      "skills": { "title": "Qualifizierte Freiwillige benötigt"},
-      "equipment": { "title": "Benötigt Equipment"},
-      "advice": { "title": "Benötigt Hilfe"}
-    },
-    "offers": {
-      "advice": { "title": "Hilfe anzubieten" },
-      "equipment": { "title": "Equipment anzubieten"}
-    }
-  }
-}
-</i18n>
-
 <template>
   <div class="details-view">
     <h1 class="mt-4">{{ profile.organization }}</h1>
@@ -49,7 +8,7 @@
       
       <div class="card details-card">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="user-alt" /> {{ $t('contactDetails.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="user-alt" /> {{ $t('searchDetails.contactDetails.title')}}</h5>
           <hr/>
           <template v-if="profile.contact">
             <p>{{profile.contact.firstname}} {{profile.contact.lastname}}</p>
@@ -67,10 +26,10 @@
             </b-row>
           </template>
           <template v-else>
-            <p class="card-text">{{ $t('contactDetails.not_available') }}</p>
+            <p class="card-text">{{ $t('searchDetails.contactDetails.not_available') }}</p>
             <div class="links" v-if="!$authenticated">
-              <b-link class="btn btn-primary btn-sm" to="/register">{{ $t("signUp") }}</b-link>
-              <b-link class="btn btn-primary btn-sm" to="/login">{{ $t("login") }}</b-link>
+              <b-link class="btn btn-primary btn-sm" to="/register">{{ $t('general.signUp') }}</b-link>
+              <b-link class="btn btn-primary btn-sm" to="/login">{{ $t('general.login') }}</b-link>
             </div>
           </template>
         </div>
@@ -78,7 +37,7 @@
 
       <div class="card details-card" v-if="profile.description">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="info-circle" /> {{ $t('other.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="info-circle" /> {{ $t('searchDetails.other.title')}}</h5>
           <hr/>
           <p>{{ profile.description }}</p>
         </div>
@@ -86,10 +45,10 @@
 
       <div class="card details-card" v-if="profile.lookingFor.equipment.length > 0 || profile.lookingFor.equipmentDescription">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('lookingFor.equipment.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('searchDetails.lookingFor.equipment.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.lookingFor.equipment" :key="s">
+            <li class="inline-item" v-for="s in profile.lookingFor.localized_equipment" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -99,12 +58,12 @@
         </div>
       </div>
 
-      <div class="card details-card" v-if="profile.lookingFor.advice.length > 0 || profile.lookingFor.adviceDescription">
+      <div class="card details-card" v-if="profile.lookingFor.localized_advice.length > 0 || profile.lookingFor.adviceDescription">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('lookingFor.advice.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="search" /> {{ $t('searchDetails.lookingFor.advice.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.lookingFor.advice" :key="s">
+            <li class="inline-item" v-for="s in profile.lookingFor.localized_advice" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -115,10 +74,10 @@
 
       <div class="card details-card" v-if="profile.offers.advice.length > 0 || profile.offers.adviceDescription">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="hands-helping" /> {{ $t('offers.advice.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="hands-helping" /> {{ $t('searchDetails.offers.advice.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.advice" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_advice" :key="s">
               {{ s }}
             </li>
           </ul>
@@ -129,10 +88,10 @@
 
       <div class="card details-card" v-if="profile.offers.equipment.length > 0 || profile.offers.equipmentDescription">
         <div class="card-body">
-          <h5 class="card-title"><font-awesome-icon icon="cubes" /> {{ $t('offers.equipment.title')}}</h5>
+          <h5 class="card-title"><font-awesome-icon icon="cubes" /> {{ $t('searchDetails.offers.equipment.title')}}</h5>
           <hr/>
           <ul>
-            <li class="inline-item" v-for="s in profile.offers.equipment" :key="s">
+            <li class="inline-item" v-for="s in profile.offers.localized_equipment" :key="s">
               {{ s }}
             </li>
           </ul>

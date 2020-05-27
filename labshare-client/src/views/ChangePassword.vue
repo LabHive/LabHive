@@ -1,30 +1,13 @@
-<i18n>
-    {
-    "en": {
-    "title": "Change password",
-    "successMessage": "Password updated",
-    "loadingMessage": "Please wait",
-    "oldPassword": "Current Password"
-    },
-    "de": {
-    "title": "Passwort ändern",
-    "successMessage": "Passwort wurde aktualisiert",
-    "loadingMessage": "Bitte warten",
-    "oldPassword": "Aktuelles Passwort"
-    }
-    }
-</i18n>
-
 <template>
   <div class="profile">
-    <h1>{{ $t("title") }}</h1>
+    <h1>{{ $t("changePassword.title") }}</h1>
 
     <template v-if="updated">
-      <div class="alert alert-success">{{ $t("successMessage") }}</div>
+      <div class="alert alert-success">{{ $t('changePassword.successMessage') }}</div>
     </template>
 
     <template v-if="loading">
-      <div class="alert alert-warning">{{ $t("loadingMessage") }}</div>
+      <div class="alert alert-warning">{{ $t("general.loading") }}</div>
     </template>
 
     <template v-if="!updated && !loading">
@@ -32,10 +15,10 @@
 
       <div class="row">
         <b-form class="col-md-6">
-          <InputForm inType="password" name="oldPassword" v-model="formData.oldPassword"></InputForm>
+          <InputForm inType="password" name="changePassword.currentPassword" v-model="formData.oldPassword"></InputForm>
           <Password v-model="formData.newPassword" verticalLabel @validPassword="valid"></Password>
 
-          <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+          <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t('general.save') }}</b-button>
         </b-form>
       </div>
     </template>

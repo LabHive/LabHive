@@ -1,36 +1,14 @@
-<i18n>{
-  "en": {
-    "title": "Test capacity and support",
-    "subTitle": "Increasing test capacity is crucial in the fight against SARS-CoV-2, but many places lack reagents, equipment and personnel. Our platform promotes the development of a strong diagnostic network and facilitates efficient access to resources for diagnostic centers. Spread the test, beat the virus!",
-    "testsPerWeek": "Tests per Week in Germany",
-    "qualifiedVolunteers": "Qualified Volunteers",
-    "researchLabs": "Research Laboratories",
-    "diagnosticLabs": "Diagnostic Centers",
-    "referenceRKI": "Daily situation report about COVID-19 by the RKI, May 20th 2020",
-    "referenceRegistered": "Registered on our platform"
-  },
-  "de": {
-    "title": "Testkapazität und Unterstützung",
-    "subTitle": "Die Testkapazität zu erhöhen ist entscheidend im Kampf gegen SARS-CoV-2. Allerdings fehlt es an vielen Orten an Reagenzien, Geräten und Personal. Unsere Plattform fördert den Aufbau eines starken diagnostischen Netzwerks und erleichtert Diagnostikzentren den effizienten Zugang zu Ressourcen. Spread the test, beat the virus!",
-    "testsPerWeek": "Tests pro Woche in Deutschland",
-    "qualifiedVolunteers": "Qualifizierte Freiwillige",
-    "researchLabs": "Forschungslabore",
-    "diagnosticLabs": "Diagnostikzentren",
-    "referenceRKI": "Situationsbericht des RKI vom 20.05.2020 zu COVID-19",
-    "referenceRegistered": "Auf unserer Plattform registriert"
-  }
-}</i18n>
 <template>
   <div class="coverage">
     <b-container>
       <b-row class="text-center">
         <b-col>
-          <h3 data-aos="fade" data-aos-duration="750">{{ $t('title') }}</h3>
+          <h3 data-aos="fade" data-aos-duration="750">{{ $t('landingpage.coverage.title') }}</h3>
         </b-col>
       </b-row>
       <b-row align-h="center">
         <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
-          <p data-aos="fade" data-aos-duration="750">{{ $t("subTitle") }}</p>
+          <p data-aos="fade" data-aos-duration="750">{{ $t('landingpage.coverage.subTitle') }}</p>
         </b-col>
       </b-row>
       <b-row>
@@ -54,49 +32,41 @@
         </b-col>
         <b-col cols lg="6" md="6" sm="12" class="stats" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
-            <b-col class="totalStats" cols="auto">{{ testsPerWeek }}</b-col>
-            <b-col class="totalDetails" lg="5" md="12">{{ $t('testsPerWeek') }}<sup>1</sup></b-col>
-            <a target= "_blank" href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-05-20-de.pdf?__blob=publicationFile" id="rki-cit"><sup>1</sup>{{ $t('referenceRKI') }}</a>
+            <b-col class="totalStats" cols="auto">{{ $n(testsPerWeek) }}</b-col>
+            <b-col class="totalDetails" lg="5" md="12">{{ $t('landingpage.coverage.testsPerWeek') }}<sup>1</sup></b-col>
+            <a target= "_blank" 
+              :href="$t('landingpage.coverage.link')" 
+              id="rki-cit">
+              <sup>1</sup>{{ $t('landingpage.coverage.referenceRKI', {date: $t('landingpage.coverage.update_date')}) }}
+            </a>
           </b-row>
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png">{{ markerCounts.volunteer }}</b-col>
-              <b-col class="details" sm="12" md="12">{{ $t('qualifiedVolunteers') }}<sup>2</sup></b-col>
+              <b-col class="details" sm="12" md="12">{{ $tc('general.qVolunteer', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png">{{ markerCounts.lab_research }}</b-col>
-              <b-col class="details" sm="12" md="12">{{ $t('researchLabs') }}<sup>2</sup></b-col>
+              <b-col class="details" sm="12" md="12">{{ $tc('general.rLab', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow last" align-v="center">
               <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png">{{ markerCounts.lab_diag }}</b-col>
-              <b-col class="details last" sm="12" md="12">{{ $t('diagnosticLabs') }}<sup>2</sup></b-col>
+              <b-col class="details last" sm="12" md="12">{{ $tc('general.dCenter', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <b-row>
               <b-col class="spacer"></b-col>
-              <b-col cols="10" style="text-align: left; font-size: 12px"><p id="platform-cit"><sup>2</sup>{{ $t('referenceRegistered') }}</p></b-col>
+              <b-col cols="10" style="text-align: left; font-size: 12px"><p id="platform-cit"><sup>2</sup>{{ $t('landingpage.coverage.referenceRegistered') }}</p></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
           </template>
-          <!-- <dl v-if="testsPerWeek" class="total-stats">
-            <dt>{{ testsPerWeek }}</dt>
-            <dd>{{ $t('testsPerWeek') }}<sup>1</sup></dd>
-          </dl>
-          <dl v-if="markerCounts">
-            <dt>{{ markerCounts.volunteer }}</dt>
-            <dd>{{ $t('qualifiedVolunteers') }}<sup>2</sup></dd>
-            <dt>{{ markerCounts.lab_research }}</dt>
-            <dd>{{ $t('researchLabs') }}<sup>2</sup></dd>
-            <dt>{{ markerCounts.lab_diag }}</dt>
-            <dd>{{ $t('diagnosticLabs') }}<sup>2</sup></dd>
-          </dl> -->
         </b-col>
       </b-row>
     </b-container>
@@ -134,7 +104,7 @@ export default {
       iconSize: [32, 37],
       iconAnchor: [16, 37],
       showMap: true,
-      testsPerWeek: undefined,
+      testsPerWeek: parseInt(this.$t("landingpage.coverage.testNumber")),
       markers: [],
       markerCounts: undefined,
       publicPath: process.env.BASE_URL
@@ -146,10 +116,9 @@ export default {
       .then(
         ({
           body: {
-            data: { testsPerWeek, markerCounts, markers }
+            data: { markerCounts, markers }
           }
         }) => {
-          this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
           this.markerCounts = markerCounts;
           this.markers = markers.map(
             ({ latLong: { lat, long }, role }, index) => ({

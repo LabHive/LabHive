@@ -1,29 +1,12 @@
-<i18n>
-{
-  "en": {
-    "volunteerSkills": "Skills",
-    "furtherInfo": "Further Information",
-    "volunteerSkills_sub": "Please specify your skills, you can change them later in your profile at any time.",
-    "description": "Further information, other skills, availability, etc."
-  },
-  "de": {
-    "volunteerSkills": "Fähigkeiten",
-    "furtherInfo": "Weitere Informationen",
-    "volunteerSkills_sub": "Bitte geben Sie Ihre Fähigkeiten an. Diese können später jederzeit im Profil geändert werden.",
-    "volunteerSkills_sub_update": "Bitte geben Sie Ihre Fähigkeiten an",
-    "description": "Weitere Informationen, andere Fähigkeiten, Verfügbarkeit, etc."
-  }
-}
-</i18n>
 <template>
   <div>
-    <h3 class="section" v-if="profileUpdate">{{ $t("volunteerSkills") }}</h3>
-    <p class="step-info-sub" v-else>{{ $t("volunteerSkills_sub") }}</p>
+    <h3 class="section" v-if="profileUpdate">{{ $t("registration.steps.skills.title") }}</h3>
+    <p class="step-info-sub" v-else>{{ $t("registration.steps.skills.subTitle") }}</p>
     <CheckboxGroup 
       name="skills"
       :data="labSkills" 
       v-model="formData.details.skills"
-      :label="profileUpdate ? $t('volunteerSkills_sub_update') : null"
+      :label="profileUpdate ? $t('registration.steps.skills.subTitle_update') : null"
       cols="3"
     ></CheckboxGroup>
 
@@ -37,7 +20,7 @@
           <b-form-textarea
             id="textarea"
             v-model="formData.description"
-            :placeholder="$t('description')"
+            :placeholder="$t('registration.steps.skills.description')"
             rows="4"
             max-rows="10"
             :state="!val.validDescription(formData.description).valid ? false: null"

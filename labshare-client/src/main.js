@@ -7,8 +7,7 @@ import "./http";
 import "leaflet/dist/leaflet.css";
 import profile_load_mixin from "./mixins/profile_fetch";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import VueI18n from "vue-i18n";
-import { localization } from "./localization";
+import { i18n } from "./localization";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -29,7 +28,6 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuex);
 Vue.mixin(profile_load_mixin);
-Vue.use(VueI18n);
 
 new Vue({
   created () {
@@ -39,7 +37,7 @@ new Vue({
   },
   router,
   store,
-  i18n: new VueI18n(localization),
+  i18n: i18n,
   render: h => h(App)
 }).$mount("#app");
 

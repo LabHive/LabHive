@@ -1,21 +1,8 @@
-<i18n>
-{
-  "en": {
-    "offerResource": "Current Offers",
-    "success": "Saved successfully"
-  },
-  "de": {
-    "offerResource": "Aktuelles Angebot",
-    "success": "Erfolgreich gespeichert"
-  }
-}
-</i18n>
-
 <template>
   <div>
-    <h1 style="margin-bottom: 30px">{{ $t("offerResource") }}</h1>
+    <h1 style="margin-bottom: 30px">{{ $t("profile.offer.title") }}</h1>
     <template v-if="updated || error">
-      <b-alert v-if="updated" variant="success" show>{{ $t('success') }}</b-alert>
+      <b-alert v-if="updated" variant="success" show>{{ $t('general.savedSuccessfully') }}</b-alert>
       <b-alert v-if="error" variant="error" show>{{ errorMsg }}</b-alert>
 		</template>
     

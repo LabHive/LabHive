@@ -1,14 +1,3 @@
-<i18n>
-    {
-    "en": {
-    "save": "Save"
-    },
-    "de": {
-    "save": "Speichern"
-    }
-    }
-</i18n>
-
 <template>
   <div class="lab_diag-form">
     <b-form @submit="submit">
@@ -30,13 +19,13 @@
       <template v-else>
         <b-modal
           id="deleteModal"
-          :title="$t('deleteProfile')"
-          :ok-title="$t('delete')"
-          :cancel-title="$t('cancel')"
+          :title="$t('profile.delete.btn_title')"
+          :ok-title="$t('general.delete')"
+          :cancel-title="$t('general.cancel')"
           ok-variant="danger"
           @ok="$emit('deleteProfile')"
         >
-          <p class="my-4">{{ $t('deleteConfirmation') }}</p>
+          <p class="my-4">{{ $t('profile.delete.confirmation') }}</p>
         </b-modal>
         <div v-for="i in updateFormSections" :key="i">
           <component
@@ -50,10 +39,10 @@
         </div>
         <b-row>
           <b-col cols="auto">
-            <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("save") }}</b-button>
+            <b-button variant="primary" @click="submit" :disabled="disableSubmit">{{ $t("general.save") }}</b-button>
           </b-col>
           <b-col cols="auto">
-            <b-button variant="danger" v-b-modal.deleteModal>{{ $t("deleteProfile") }}</b-button>
+            <b-button variant="danger" v-b-modal.deleteModal>{{ $t("profile.delete.btn_title") }}</b-button>
           </b-col>
         </b-row>
       </template>

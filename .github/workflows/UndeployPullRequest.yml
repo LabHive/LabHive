@@ -1,0 +1,46 @@
+name: "Undeploy Pull Request"
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - dev
+      - master
+    paths:
+      - 'labshare-client/**'
+      - '.github/**'
+
+jobs:
+  delete:
+    name: "Remove Deployment"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Deploy"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            if [[ -d LabHive_${{ github.event.pull_request.head.ref }} ]]; then
+              docker stack rm LabHive_${{ github.event.pull_request.head.ref }};
+              docker run --rm -v $(pwd):/app debian /bin/bash -c 'rm -rf /app/LabHive_${{ github.event.pull_request.head.ref }}';
+            else
+              echo "Branch was not deployed";
+              exit 1;
+            fi
+
+  notify:
+    name: "Notify"
+    if: "contains(github.event.pull_request.title, '[DEPLOY]') || contains(github.event.pull_request.labels.*.name, 'deploy')"
+    runs-on: ubuntu-latest
+    needs: delete
+    steps:
+      - name: Comment on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Deleted Deployment successfully"
+          check_for_duplicate_msg: false  # OPTIONAL 
+            

@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+if (!process.env.PRODUCTION)
+  dotenv.config()
 import cors from 'cors'
 import express from "express"
 import { NOT_FOUND, UNAUTHORIZED } from 'http-status-codes'
@@ -27,6 +30,17 @@ let app = express()
 let router = express.Router()
 let adminRouter = new AdminEndpoint(express.Router())
 
+if (OPT.STAGING) {
+  app.use((req, res, next) => {
+    res.setHeader("X-Robots-Tag", "noindex")
+    next()
+  })
+  app.get("/robots.txt", (req, res) => {
+    res.setHeader("Content-Type", "text/plain")
+    res.send("User-agent: *\nDisallow: /")
+  })
+}
+
 if (OPT.DOCKER || OPT.SERVE_STATIC) {
   app.use(express.static('dist'));
   app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal'])
@@ -54,7 +68,6 @@ router.use(function(req, res, next) {
             }
             return utils.errorResponse(res, 429, "Too many requests")
         });
-
 })
 
 router.use('/admin', adminRouter.router)

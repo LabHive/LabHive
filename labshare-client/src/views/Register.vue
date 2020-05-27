@@ -1,38 +1,9 @@
-<i18n>
-{
-  "en": {
-    "registration": "Register",
-    "registerSubtitle": "Please register to access all functionalities of LabHive.",
-    "complete": "Thank you for your registration!",
-    "labActivation": "Since you registered as diagnostic center or research laboratory, we verify your account manually. This takes some time, but you will receive an email, when it is done.",
-    "prospectiveRole": "Please select your user group.",
-    "roleHelper": "Qualified Volunteers",
-    "roleDiagnosticLab": "Diagnostic Centers",
-    "roleLab": "Research Laboratories",
-    "yourMail": "your E-Mail address",
-    "confirmationMail": "We have sent a link to confirm the registration to <strong>{mail}</strong>. Please click on this link to activate your account."
-  },
-
-  "de": {
-    "registration": "Registrieren",
-    "registerSubtitle": "Registrieren Sie sich, um alle Funktionalitäten von LabHive nutzen zu können.",
-    "complete": "Registrierung erfolgreich!",
-    "labActivation": "Da Sie sich als Diagnostikzentrum oder Forschungslabor registriert haben, verifizieren wir Ihren Account zusätzlich manuell. Dies kann eine Weile dauern. Wenn Ihr Account von uns verifiziert wurde und einsatzbereit ist, erhalten Sie eine E-Mail.",
-    "prospectiveRole": "Bitte wählen Sie Ihre Nutzergruppe.",
-    "roleHelper": "Qualifizierte Freiwillige",
-    "roleDiagnosticLab": "Diagnostikzentren",
-    "roleLab": "Forschungslabore",
-    "yourMail": "deine E-Mail-Adresse",
-    "confirmationMail": "Wir haben einen Link zur Bestätigung der Registrierung an <strong>{mail}</strong> geschickt. Bitte klicken Sie auf diesen Link, um ihr Konto freizuschalten."
-  }
-}
-</i18n>
 <template>
   <div class="register">
 
     <template v-if="!registrationComplete">
-      <h1 style="margin-bottom: 16px" data-aos="fade" data-aos-duration="750">{{$t("registration")}}</h1>
-      <p style="margin-bottom: 48px" data-aos="fade" data-aos-duration="750">{{ $t("registerSubtitle") }}</p>
+      <h1 style="margin-bottom: 16px" data-aos="fade" data-aos-duration="750">{{$t("registration.title")}}</h1>
+      <p style="margin-bottom: 48px" data-aos="fade" data-aos-duration="750">{{ $t("registration.subtitle") }}</p>
 
       <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role" data-aos="fade" data-aos-duration="750"></RegistrationProgress>
     </template>
@@ -40,32 +11,32 @@
 
     <template v-if="registrationComplete">
       <div style="margin: 70px auto 70px auto; max-width: 510px; text-align: center">
-        <p style="font-size: 22px">{{ $t("complete") }}</p>
+        <p style="font-size: 22px">{{ $t("registration.complete") }}</p>
         <figure>
           <img
             style="margin-top: 40px"
             class="img-fluid"
             src="../assets/registrationComplete.svg"
-            :alt="$t('registrationComplete')"
+            :alt="$t('registration.complete')"
             width="227"
           />
         </figure>  
-        <p style="margin-top: 55px" v-html="this.$t('confirmationMail', { mail: formData.contact ? formData.contact.email : $t('yourMail') })"></p>
-        <p v-if="role != forms.VOLUNTEER">{{ $t("labActivation") }}</p>
+        <p style="margin-top: 55px" v-html="this.$t('registration.confirmationMail', { mail: formData.contact ? formData.contact.email : $t('registration.yourMail') })"></p>
+        <p v-if="role != forms.VOLUNTEER">{{ $t("registration.labActivation") }}</p>
       </div>
     </template>
 
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
     <div key="step-one" v-if="step === 0 && !registrationComplete">
-      <p class="step-info-sub" data-aos="fade" data-aos-duration="750">{{ $t("prospectiveRole") }}</p>
+      <p class="step-info-sub" data-aos="fade" data-aos-duration="750">{{ $t("registration.prospectiveRole") }}</p>
       <b-container fluid>
         <b-row>
           <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
                   @click="loadForm(forms.VOLUNTEER)"
-                >{{$t("roleHelper")}}</b-button>
+                >{{$tc("general.qVolunteer", 2)}}</b-button>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-1.svg"
@@ -75,7 +46,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("Textqualif-vol")}}
+                {{$t("landingpage.details.desc.qVolunteers")}}
             </p>
           </b-col>
 
@@ -83,7 +54,7 @@
             <b-button
                   variant="primary"
                   @click="loadForm(forms.DIAGNOSTIC_LAB)"
-                >{{$t("roleDiagnosticLab")}}</b-button>
+                >{{$tc("general.dCenter", 2)}}</b-button>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-2.svg"
@@ -93,7 +64,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("Textdiag-cent")}}
+                {{$tc("landingpage.details.desc.dCenter", 2)}}
             </p>
           </b-col>
 
@@ -101,7 +72,7 @@
             <b-button
                   variant="primary"
                   @click="loadForm(forms.LAB)"
-                >{{$t("roleLab")}}</b-button>
+                >{{$tc("general.rLab", 2)}}</b-button>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-3.svg"
@@ -111,7 +82,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("Textres-lab")}}
+                {{$t("landingpage.details.desc.rLab")}}
             </p>
           </b-col>
 

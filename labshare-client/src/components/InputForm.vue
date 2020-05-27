@@ -1,46 +1,3 @@
-<i18n>
-{
-  "en": {
-    "labName": "Laboratory Name",
-    "labWebsite": "Laboratory Website",
-    "instituteName": "Institute/University/Hospital",
-    "instituteWebsite": "Website of your Institute/University/Hospital",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "phone": "Phone Number",
-    "contactInfo": "Contact Information",
-    "address": "Address",
-    "city": "City",
-    "zipcode": "ZIP-Code",
-    "street": "Street",
-    "password": "Password",
-    "oldPassword": "Old Password",
-    "repeatPassword": "Repeat your Password",
-    "email": "E-Mail Address",
-    "officialEmail": "E-mail address of your institute"
-  },
-  "de":{
-    "labName": "Laborname",
-    "labWebsite": "Labor-Webseite",
-    "instituteName": "Institut/Universität/Krankenhaus",
-    "instituteWebsite": "Website des Instituts/der Universität/des Krankenhauses",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
-    "phone": "Telefonnummer",
-    "contactInfo": "Kontaktinformationen",
-    "address": "Adresse",
-    "city": "Stadt",
-    "zipcode": "Postleitzahl",
-    "street": "Strasse",
-    "password": "Passwort",
-    "oldPassword": "Altes Passwort",
-    "repeatPassword": "Passwort wiederholen",
-    "email": "E-Mail-Adresse",
-    "officialEmail": "E-Mail-Adresse des Instituts"
-  }
-}
-</i18n>
-
 <template>
   <b-form-group
     :id="name"
@@ -168,7 +125,7 @@ export default {
       if (this.required && this.valFunc) {
         this.state_form = false
         this.state_field = null
-        this.invalid_feedback_text = this.$t("required")
+        this.invalid_feedback_text = this.$t("general.required")
         this.invalid_opacity = 1
       }
       else {
