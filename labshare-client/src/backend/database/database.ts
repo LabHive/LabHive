@@ -2,7 +2,7 @@ import mongoose, { Model, Document, DocumentQuery } from "mongoose"
 import { IUserCommon } from './schemas/IUserCommon'
 import { UserRoles } from '../../lib/userRoles'
 import { CONF, OPT } from '../options'
-import { TESTS_PER_WEEK, GlobalEvent } from '../constants';
+import { GlobalEvent } from '../constants';
 import { Token } from '../utils'
 import { status } from "migrate-mongo"
 import { UserAdmin, UserLabDiag, UserLabResearch, UserVolunteer, UserCommon } from './models'
@@ -96,7 +96,6 @@ export async function getUserOrAdmin(filter: any, lean: boolean = false): Promis
 }
 
 export async function getTestCoverage(): Promise<{
-    testsPerWeek: number;
     markerCounts: { [index in UserRoles]: number };
     markers: Array<{
         role: UserRoles;
@@ -114,7 +113,6 @@ export async function getTestCoverage(): Promise<{
     const volunteers = users.filter((i) => i.__t == UserRoles.VOLUNTEER)
 
     return {
-        testsPerWeek: TESTS_PER_WEEK,
         markerCounts: {
             [UserRoles.LAB_DIAG]: labDiags.length,
             [UserRoles.LAB_RESEARCH]: labResearches.length,

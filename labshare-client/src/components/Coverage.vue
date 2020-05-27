@@ -32,12 +32,12 @@
         </b-col>
         <b-col cols lg="6" md="6" sm="12" class="stats" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
           <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
-            <b-col class="totalStats" cols="auto">{{ $n(425842) }}</b-col>
+            <b-col class="totalStats" cols="auto">{{ $n(testsPerWeek) }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('landingpage.coverage.testsPerWeek') }}<sup>1</sup></b-col>
             <a target= "_blank" 
-              href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-05-20-de.pdf?__blob=publicationFile" 
+              :href="$t('landingpage.coverage.link')" 
               id="rki-cit">
-              <sup>1</sup>{{ $t('landingpage.coverage.referenceRKI', {date_de: "20.05.2020", date_en: "May 20th 2020"}) }}
+              <sup>1</sup>{{ $t('landingpage.coverage.referenceRKI', {date: $t('landingpage.coverage.update_date')}) }}
             </a>
           </b-row>
           <template v-if="markerCounts">
@@ -104,7 +104,7 @@ export default {
       iconSize: [32, 37],
       iconAnchor: [16, 37],
       showMap: true,
-      testsPerWeek: undefined,
+      testsPerWeek: parseInt(this.$t("landingpage.coverage.testNumber")),
       markers: [],
       markerCounts: undefined,
       publicPath: process.env.BASE_URL
@@ -116,10 +116,9 @@ export default {
       .then(
         ({
           body: {
-            data: { testsPerWeek, markerCounts, markers }
+            data: { markerCounts, markers }
           }
         }) => {
-          this.testsPerWeek = testsPerWeek && testsPerWeek.toLocaleString();
           this.markerCounts = markerCounts;
           this.markers = markers.map(
             ({ latLong: { lat, long }, role }, index) => ({

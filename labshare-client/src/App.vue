@@ -61,7 +61,7 @@
 
     <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <h1 style="color: red; margin: 0; margin-top: 20px">{{ $t("layout.staging") }}</h1>
+        <h3 style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3>
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
