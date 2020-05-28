@@ -41,6 +41,12 @@ if (OPT.STAGING) {
   })
 }
 
+app.use((req, res, next) => {
+  res.setHeader('X-Frame-Options', 'deny')
+  res.setHeader('Referrer-Policy', 'no-referrer')
+  next()
+})
+
 if (OPT.DOCKER || OPT.SERVE_STATIC) {
   app.use(express.static('dist'));
   app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal'])
@@ -49,12 +55,6 @@ if (OPT.DOCKER || OPT.SERVE_STATIC) {
 }
 
 app.use(express.json());
-
-app.use((req, res, next) => {
-    res.setHeader('X-Frame-Options', 'deny')
-    res.setHeader('Referrer-Policy', 'no-referrer')
-    next()
-})
 app.use('/api/v1', router)
 
 router.use(function(req, res, next) {

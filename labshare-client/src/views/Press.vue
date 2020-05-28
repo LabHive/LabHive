@@ -7,17 +7,16 @@
             <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
             <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
-              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("landingpage.top.btn_join")}}</b-button>
+              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("press.btn_download")}}</b-button>
             </div>
           </b-col>
-          <b-col cols lg="6" md="12" sm="12">
-            <figure>
+          <b-col cols lg="4" md="12" sm="12">
+            <figure style="text-align: center;">
               <img
                 class="img-fluid"
-                src="../assets/decoration-1.svg"
+                src="../assets/Press-Illustration.svg"
                 alt="Illustration"
-                width="445"
-                height="334"
+                style="max-height: 250px"
               />
             </figure>
           </b-col>
@@ -75,33 +74,6 @@ p {
     margin-bottom: 0;
   }
 
-  .partners {
-    margin-top: 88px;
-    margin-bottom: 44px;
-
-    figure {
-      display: inline-block;
-      margin: 16px 0 16px 0;
-    }
-
-    @media (max-width: 767px) {
-      font-size: 13px;
-      margin-top: 32px;
-      margin-bottom: 16px;
-
-      img {
-        height: 48px;
-      }
-
-      #collaboration {
-        height: 40px;
-      }
-
-      figure {
-        margin: 8px 0 16px 0;
-      }
-    }
-  }
 }
 
 .text-center img {
@@ -109,29 +81,16 @@ p {
   width: auto;
 }
 
-.about {
-  margin-bottom: 88px;
-  font-size: 15px;
-  line-height: 1.2;
-
-  @media (max-width: 767px) {
-    margin-bottom: 44px;
-  }
-
-  h4 {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.2;
-    color: $color-green;
-    margin: 0;
-  }
-  .bit-sized {
-    max-width: 300px;
-  }
-}
-
 .has-subtitle {
   margin: 0;
+}
+
+figure {
+  margin-top: 16px;
+
+  @media (min-width: 991px) {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -141,20 +100,9 @@ p {
     h2 {
       margin-top: 0;
     }
-    figure {
-      margin-top: 16px;
-    }
-
-    .btn-cta {
-    }
 
     #hero-button-wrapper {
       text-align: center !important;
-    }
-  }
-  .about {
-    .col-sm-12 + .col-sm-12 {
-      margin-top: 40px;
     }
   }
 }
