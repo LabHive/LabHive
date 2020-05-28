@@ -49,11 +49,11 @@
       <b-row align-h="center" class="about-intro">
         <b-col cols lg="6" md="12" class="text-center">
             <h3 data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.title")}}</h3>
-            <p>{{$t("landingpage.details.text")}}</p>
+            <p data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.text")}}</p>
         </b-col>
       </b-row>
 
-      <b-row class="about-block-bottom-margin">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
         <b-col  cols lg="5" offset-lg="1" md="12">
           <h5>{{$t("landingpage.details.diagnosticCenters.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.diagnosticCenters.title")}}</h3>
@@ -65,7 +65,7 @@
         </b-col>
       </b-row>
 
-      <b-row class="about-block-bottom-margin">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
         <b-col  cols lg="3" offset-lg="2" md="12">
             <img src="../assets/decoration-3-3.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
@@ -77,7 +77,7 @@
         </b-col>
       </b-row>
 
-      <b-row class="about-block">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block">
         <b-col  cols lg="5" offset-lg="1" md="12">
           <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
