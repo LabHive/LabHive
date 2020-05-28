@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="banner">
+    <div class="hero">
       <b-container class="container">
         <b-row data-aos="fade-up" data-aos-duration="1000">
           <b-col cols lg="6" md="12" sm="12">
@@ -43,11 +43,11 @@ p {
   margin: 12px 12px 44px 12px;
 }
 
-.has_banner {
+.has_hero {
   background-color: #fff;
 }
 
-.banner {
+.hero {
   background: $color-bkg-primary;
   margin-bottom: 88px;
   padding: 70px 0 25px;
@@ -94,7 +94,7 @@ figure {
 }
 
 @media (max-width: 991px) {
-  .banner {
+  .hero {
     padding: 0px 0 25px;
 
     h2 {

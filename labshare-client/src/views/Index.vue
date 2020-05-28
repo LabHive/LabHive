@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="banner">
+    <div class="hero">
       <b-container class="container">
-        <b-row data-aos="fade-up" data-aos-duration="1000">
-          <b-col cols lg="6" md="12" sm="12">
+        <b-row align-v="center" data-aos="fade-up" data-aos-duration="1000">
+          <b-col cols lg="5" md="12" sm="12" offset-lg="1">
               <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
             <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
               <b-button class="btn-cta" to="/register">{{$t("landingpage.top.btn_join")}}</b-button>
             </div>
           </b-col>
-          <b-col cols lg="6" md="12" sm="12">
+          <b-col cols lg="5" md="12" sm="12">
             <figure>
               <img
                 class="img-fluid"
@@ -122,45 +122,29 @@ export default {
 $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
 
+h1 {
+  font-weight: 500;
+  font-size: 36px;
+  letter-spacing: 0;
+  margin: 0 0 15px 0;
+}
+
 p {
   margin: 12px 12px 44px 12px;
 }
 
-.has_banner {
+.has_hero {
   background-color: #fff;
 }
 
-.banner {
+.hero {
   background: $color-bkg-primary;
   margin-bottom: 88px;
-  padding: 70px 0 25px;
+  padding: 80px 0 80px 0;
   position: relative;
 
   @media (max-width: 767px) {
     margin-bottom: 44px;
-  }
-
-  &:before {
-    content: "";
-    background: #fff;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 40px;
-    position: absolute;
-    z-index: 3;
-  }
-
-  &:after {
-    content: "";
-    background: $color-bkg-primary;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 4;
   }
 
   .container {
@@ -169,7 +153,7 @@ p {
   }
 
   p {
-    margin: 10px 0 0;
+    margin: 0;
 
     @media (max-width: 991px) {
       text-align: center;
@@ -181,8 +165,7 @@ p {
   }
 
   .partners {
-    margin-top: 88px;
-    margin-bottom: 44px;
+    margin-top: 80px;
 
     figure {
       display: inline-block;
@@ -237,7 +220,7 @@ p {
 }
 
 @media (max-width: 991px) {
-  .banner {
+  .hero {
     padding: 0px 0 25px;
 
     h2 {

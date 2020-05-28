@@ -59,9 +59,9 @@
       </div>
     </b-navbar>
 
-    <div class="content container" v-bind:class="{ has_banner: $route.fullPath === '/' }">
+    <div class="content container" v-bind:class="{ has_hero: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <h3 style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3>
+        <!-- <h3 style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3> -->
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
@@ -367,7 +367,7 @@ h4 {
 .btn-cta {
   margin: 25px 0 0;
   color: #fff;
-  padding: 14px 32px;
+  padding: 15px 30px;
   background: $color-green;
   border: none;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
@@ -622,7 +622,7 @@ h4 {
   }
 }
 
-.has_banner {
+.has_hero {
   margin-top: 0;
   max-width: none;
   padding: 0;
