@@ -54,22 +54,22 @@
       </b-row>
 
       <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
-        <b-col  cols lg="5" offset-lg="1" md="12">
+        <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
           <h5>{{$t("landingpage.details.diagnosticCenters.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.diagnosticCenters.title")}}</h3>
           <p>{{$t("landingpage.details.diagnosticCenters.text")}}</p>
           <b-button class="btn-cta" to="/search">{{$t("landingpage.details.diagnosticCenters.button")}}</b-button>
         </b-col>
-        <b-col  cols lg="3" offset-lg="1" md="12">
+        <b-col lg="3" offset-lg="1" md="12" order="1" order-lg="2">
             <img src="../assets/decoration-3-2.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
       </b-row>
 
       <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
-        <b-col  cols lg="3" offset-lg="2" md="12">
+        <b-col lg="3" offset-lg="2" md="12">
             <img src="../assets/decoration-3-3.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
-        <b-col  cols lg="5" offset-lg="1" md="12">
+        <b-col lg="5" offset-lg="1" md="12">
           <h5>{{$t("landingpage.details.researchLabs.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.researchLabs.title")}}</h3>
           <p>{{$t("landingpage.details.researchLabs.text")}}</p>
@@ -78,13 +78,13 @@
       </b-row>
 
       <b-row data-aos="fade-up" data-aos-duration="750" class="about-block">
-        <b-col  cols lg="5" offset-lg="1" md="12">
+        <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
           <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
           <p>{{$t("landingpage.details.volunteers.text")}}</p>
           <b-button class="btn-cta" to="/search">{{$t("landingpage.details.volunteers.button")}}</b-button>
         </b-col>
-        <b-col  cols lg="3" offset-lg="1" md="12">
+        <b-col lg="3" offset-lg="1" md="12" order="1" order-lg="2">
             <img src="../assets/decoration-3-1.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
       </b-row>
@@ -146,10 +146,6 @@ h5 {
   background: $color-bkg-primary;
   padding: 80px 0 80px 0;
   position: relative;
-
-  @media (max-width: 767px) {
-    margin-bottom: 44px;
-  }
 
   .container {
     position: relative;
@@ -227,27 +223,38 @@ h5 {
 
 @media (max-width: 991px) {
   .hero {
-    padding: 0px 0 25px;
+
+    padding: 40px 15px 40px 15px;
 
     h2 {
       margin-top: 0;
     }
+
     figure {
       margin-top: 16px;
-    }
-
-    .btn-cta {
-      
     }
 
     #hero-button-wrapper {
       text-align: center !important;
     }
   }
+
   .about {
-    .col-sm-12 + .col-sm-12 {
-      margin-top: 40px;
+    padding: 40px 15px 40px 15px;
+    text-align: center;
+
+    img {
+      width: 25%;
+      margin-bottom: 30px;
+
+      @media (max-width: 767px) {
+        width: 50%;
+      }
     }
+  }
+
+  .about-intro, .about-block-bottom-margin {
+    margin-bottom: 80px;
   }
 }
 

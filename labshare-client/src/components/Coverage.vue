@@ -139,7 +139,11 @@ $color-bkg-primary: #f7f6fd;
 .coverage {
   background: $color-bkg-primary;
   position: relative;
-  padding: 80px 0 80px 0;
+  padding: 80px 0 80px 0; 
+
+  @media (max-width: 991px) {
+      padding: 40px 15px 40px 15px;
+    }
 
   h3 {
   font-weight: normal;
@@ -147,10 +151,10 @@ $color-bkg-primary: #f7f6fd;
   letter-spacing: 0;
   color: #000;
   margin: 0 0 80px 0;
-  }
 
-  @media (max-width: 767px) {
-    padding: 44px 0;
+  @media (max-width: 991px) {
+      margin: 0 0 40px 0;
+    }
   }
 
   .container {
