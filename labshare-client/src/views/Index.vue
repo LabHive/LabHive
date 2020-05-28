@@ -46,61 +46,49 @@
     </div>
 
     <b-container class="container about">
-      <b-row>
-        <b-col class="text-center">
+      <b-row align-h="center" class="about-intro">
+        <b-col cols lg="6" md="12" class="text-center">
             <h3 data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.title")}}</h3>
+            <p>{{$t("landingpage.details.text")}}</p>
+        </b-col>
+      </b-row>
+
+      <b-row class="about-block-bottom-margin">
+        <b-col  cols lg="5" offset-lg="1" md="12">
+          <h5>{{$t("landingpage.details.diagnosticCenters.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.diagnosticCenters.title")}}</h3>
+          <p>{{$t("landingpage.details.diagnosticCenters.text")}}</p>
+          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.diagnosticCenters.button")}}</b-button>
+        </b-col>
+        <b-col  cols lg="3" offset-lg="1" md="12">
+            <img src="../assets/decoration-3-2.svg" alt="Illustration" width="90%" height="auto" />
+        </b-col>
+      </b-row>
+
+      <b-row class="about-block-bottom-margin">
+        <b-col  cols lg="3" offset-lg="2" md="12">
+            <img src="../assets/decoration-3-3.svg" alt="Illustration" width="90%" height="auto" />
+        </b-col>
+        <b-col  cols lg="5" offset-lg="1" md="12">
+          <h5>{{$t("landingpage.details.researchLabs.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.researchLabs.title")}}</h3>
+          <p>{{$t("landingpage.details.researchLabs.text")}}</p>
+          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.researchLabs.button")}}</b-button>
+        </b-col>
+      </b-row>
+
+      <b-row class="about-block">
+        <b-col  cols lg="5" offset-lg="1" md="12">
+          <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
+          <p>{{$t("landingpage.details.volunteers.text")}}</p>
+          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.volunteers.button")}}</b-button>
+        </b-col>
+        <b-col  cols lg="3" offset-lg="1" md="12">
+            <img src="../assets/decoration-3-1.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
       </b-row>
       
-      <b-row>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-1.svg"
-              alt="Illustration"
-              width="170"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.qVolunteer", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.qVolunteers")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-2.svg"
-              alt="Illustration"
-              width="164"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.dCenter", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.dCenter")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-3.svg"
-              alt="Illustration"
-              width="218"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.rLab", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.rLab")}}
-          </p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col class="text-center">
-          <b-button data-aos="fade" data-aos-duration="750" class="btn-cta" to="/search">{{$t("general.btn_search")}}</b-button>
-        </b-col>
-      </b-row>
     </b-container>
 
     <Coverage />
@@ -122,6 +110,10 @@ export default {
 $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
 
+p {
+    margin-bottom: 0;
+}
+
 h1 {
   font-weight: 500;
   font-size: 36px;
@@ -129,8 +121,21 @@ h1 {
   margin: 0 0 15px 0;
 }
 
-p {
-  margin: 12px 12px 44px 12px;
+h3 {
+  font-weight: normal;
+  font-size: 32px;
+  letter-spacing: 0;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+h5 {
+  font-weight: normal;
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: rgba(23, 120, 103, 0.75);
+  margin-bottom: 15px;
 }
 
 .has_hero {
@@ -139,7 +144,6 @@ p {
 
 .hero {
   background: $color-bkg-primary;
-  margin-bottom: 88px;
   padding: 80px 0 80px 0;
   position: relative;
 
@@ -153,15 +157,9 @@ p {
   }
 
   p {
-    margin: 0;
-
     @media (max-width: 991px) {
       text-align: center;
     }
-  }
-
-  figure {
-    margin-bottom: 0;
   }
 
   .partners {
@@ -169,7 +167,7 @@ p {
 
     figure {
       display: inline-block;
-      margin: 16px 0 16px 0;
+      margin-top: 15px
     }
 
     @media (max-width: 767px) {
@@ -198,7 +196,7 @@ p {
 }
 
 .about {
-  margin-bottom: 88px;
+  padding: 80px 0 80px 0;
   font-size: 15px;
   line-height: 1.2;
 
@@ -213,6 +211,14 @@ p {
     color: $color-green;
     margin: 0;
   }
+}
+
+.about-intro {
+  margin-bottom: 80px;
+}
+
+.about-block-bottom-margin {
+  margin-bottom: 140px;
 }
 
 .has-subtitle {

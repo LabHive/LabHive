@@ -365,7 +365,7 @@ h4 {
 }
 
 .btn-cta {
-  margin: 25px 0 0;
+  margin: 20px 0 0;
   color: #fff;
   padding: 15px 30px;
   background: $color-green;
@@ -630,18 +630,6 @@ h4 {
 
   #app {
     margin: 0;
-  }
-
-  h3 {
-    font-weight: 300;
-    font-size: 32px;
-    line-height: 1.81;
-    margin: 0 20% 64px 20%;
-
-    @media (max-width: 767px) {
-      font-size: 24px;
-      margin: 0 5% 44px 5%;
-    }
   }
 
   .clink {
