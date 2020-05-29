@@ -74,7 +74,7 @@
     <footer class="footer-custom">
       <b-container>
         <b-row align-h="between" align-v="center">
-          <b-col class="text-center" cols="auto" lg="auto" order="3" order-lg="2">&copy; LabHive 2020</b-col>
+          <b-col id="copyright" class="text-center" cols="auto" lg="auto" order="3" order-lg="2">&copy; LabHive 2020</b-col>
 
           <b-col class="text-center" cols="12" lg="auto" order="1" order-lg="2">
             <b-link to="/privacyPolicy" class="clink">{{ $t('layout.footer.privacyPolicy') }}</b-link>
@@ -460,14 +460,9 @@ h4 {
   }
 
   @media (max-width: 991px) {
-    .copyright,
     .logo {
       text-align: center;
       padding: 10px 0 0 0;
-    }
-
-    .copyright {
-      margin-bottom: 10px;
     }
   }
 }
@@ -577,26 +572,18 @@ h4 {
     top: 1px;
   }
 
-  a {
+  a, #copyright {
     color: #000;
-
     display: inline-block;
+    margin: 0 15px;
+
+    @media (max-width: 991px) {
+      margin: 0 10px;
+    }
 
     &:hover {
       color: $color-green;
     }
-  }
-
-  a + a {
-    margin-left: 30px;
-
-    @media (max-width: 991px) {
-      margin-left: 20px;
-    }
-  }
-
-  .fa-icon + .fa-icon {
-    margin-left: 15px;
   }
 
   @media (max-width: 991px) {
