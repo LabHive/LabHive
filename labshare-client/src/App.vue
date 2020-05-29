@@ -61,7 +61,7 @@
 
     <div class="content container" v-bind:class="{ has_hero: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <h3 class="staging-warning" style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3>
+        <!-- <h3 class="staging-warning" style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3> -->
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
@@ -73,50 +73,26 @@
     <!-- Footer -->
     <footer class="footer-custom">
       <b-container>
-        <b-row>
-          <b-col
-            sm="12"
-            md
-            lg
-            class="copyright align-self-center"
-            order="4"
-            order-lg="1"
-          >&copy; LabHive 2020</b-col>
-          <b-col
-            sm="12"
-            md="12"
-            lg="auto"
-            class="text-center align-self-center"
-            order="1"
-            order-lg="2"
-          >
+        <b-row align-h="between" align-v="center">
+          <b-col class="text-center" cols="auto" lg="auto" order="3" order-lg="2">&copy; LabHive 2020</b-col>
+
+          <b-col class="text-center" cols="12" lg="auto" order="1" order-lg="2">
             <b-link to="/privacyPolicy" class="clink">{{ $t('layout.footer.privacyPolicy') }}</b-link>
             <b-link to="/imprint" class="clink">{{ $t('layout.footer.imprint') }}</b-link>
+            <b-link href="mailto:info@labhive.de" class="clink">{{ $t('layout.footer.contact') }}</b-link>
             <b-link to="/press" class="clink">{{ $t('layout.footer.press') }}</b-link>
+            <b-link class="fa-icon social-icon" href="https://twitter.com/Lab_Hive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
+            <b-link class="fa-icon social-icon" href="https://github.com/LabHive/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
           </b-col>
-          <b-col
-            class="text-center align-self-center social-icons"
-            sm="12"
-            md="12"
-            lg="auto"
-            order="2"
-            order-lg="3"
-          >
-            <b-link class="fa-icon" href="https://twitter.com/Lab_Hive" target="_blank">
-              <font-awesome-icon :icon="['fab', 'twitter']" />
-            </b-link>
-            <b-link class="fa-icon" href="https://github.com/LabHive/LabHive" target="_blank">
-              <font-awesome-icon :icon="['fab', 'github']" />
-            </b-link>
-          </b-col>
-          <b-col sm="12" md="12" lg class="logo" order="3" order-lg="4">
+
+          <b-col id="footer-hackathon-logo" class="text-center" cols="auto" lg="auto" order="3" order-lg="3">
             <a href="https://wirvsvirushackathon.org/" target="_blank">
               <img
                 class="img-hover"
                 src="./assets/logo-wirvsvirus-projekt.png"
                 alt="Wir vs. Virus Projekt"
-                width="192"
-                height="66"
+                width="auto"
+                height="50"
               />
             </a>
           </b-col>
@@ -263,9 +239,9 @@ h4 {
   color: #484c5a;
 }
 
-.social-icons {
+.social-icon {
   @media (max-width: 992px) {
-    margin-top: 10px;
+    padding-top: 15px;
   }
 }
 
@@ -595,7 +571,7 @@ h4 {
 }
 
 .footer-custom {
-  padding: 8px 0;
+  padding: 15px 0;
 
   &:after {
     top: 1px;
@@ -604,22 +580,38 @@ h4 {
   a {
     color: #000;
 
+    display: inline-block;
+
     &:hover {
       color: $color-green;
     }
   }
 
   a + a {
-    margin-left: 40px;
+    margin-left: 30px;
 
-    @media (max-width: 767px) {
+    @media (max-width: 991px) {
       margin-left: 20px;
     }
   }
 
   .fa-icon + .fa-icon {
-    margin-left: 16px;
+    margin-left: 15px;
   }
+
+  @media (max-width: 991px) {
+    padding: 0 15px 0 15px;
+
+    #footer-hackathon-logo {
+      margin: 30px 0;
+
+      img {
+        height: 35px;
+      }
+    }
+
+  }
+  
 }
 
 .has_hero {
