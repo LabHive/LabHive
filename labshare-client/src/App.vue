@@ -61,7 +61,7 @@
 
     <div class="content container" v-bind:class="{ has_hero: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <!-- <h3 class="staging-warning" style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3> -->
+        <h3 class="staging-warning" style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3>
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
