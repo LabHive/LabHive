@@ -587,7 +587,7 @@ h4 {
   }
 
   @media (max-width: 991px) {
-    padding: 0 15px 0 15px;
+    padding: 40px 15px 0 15px;
 
     #footer-hackathon-logo {
       margin: 30px 0;
