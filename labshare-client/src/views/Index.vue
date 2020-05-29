@@ -73,7 +73,7 @@
           <h5>{{$t("landingpage.details.researchLabs.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.researchLabs.title")}}</h3>
           <p>{{$t("landingpage.details.researchLabs.text")}}</p>
-          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.researchLabs.button")}}</b-button>
+          <b-button class="btn-cta" to="/register">{{$t("landingpage.details.researchLabs.button")}}</b-button>
         </b-col>
       </b-row>
 
@@ -82,7 +82,7 @@
           <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
           <p>{{$t("landingpage.details.volunteers.text")}}</p>
-          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.volunteers.button")}}</b-button>
+          <b-button class="btn-cta" to="/register">{{$t("landingpage.details.volunteers.button")}}</b-button>
         </b-col>
         <b-col lg="3" offset-lg="1" md="12" order="1" order-lg="2">
             <img src="../assets/decoration-3-1.svg" alt="Illustration" width="90%" height="auto" />
