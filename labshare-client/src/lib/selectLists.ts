@@ -42,6 +42,7 @@ export let qualification = [
     { value: "bachelor", text: "Bachelor" },
     { value: "master", text: "Master" },
     { value: "doctorate", text: "Promotion" },
+    { value: "doctoratecompleted", text: "Promotionfinal" },
     { value: "postdoc", text: "Postdoc" },
     { value: "groupLeader", text: "Gruppenleiter:in" },
     { value: "other", text: "Andere" },
