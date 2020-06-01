@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import { qualification } from "@/../dist-browser/lib/selectLists"
 import Volunteer from '@/components/ProfileDetails/Volunteer'
 import DiagnosticLab from '@/components/ProfileDetails/DiagnosticLab'
 import ResearchLab from '@/components/ProfileDetails/ResearchLab'
@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      profile_raw: this.profileData
+      profile_raw: this.profileData,
+      list_qualification: qualification.map((x) => x.value)
     }
   },
   mounted() {
@@ -48,7 +49,16 @@ export default {
         p.offers.localized_advice = this.localizeFields(p.offers.advice, "advice")
       }
       if (p.details?.qualifications) {
-        p.details.localized_qualifications = this.localizeFields(p.details.qualifications, "qualifications")
+        const qualifications = []
+        for (let i of this.list_qualification) {
+          if (p.details.qualifications.indexOf(i) > -1) {
+            qualifications.push(i)
+          }
+        }
+        console.log(this.list_qualification)
+        console.log(qualifications)
+        p.details.qualifications_sorted = qualifications
+        p.details.localized_qualifications = this.localizeFields(p.details.qualifications_sorted, "qualifications", false)
       }
       if (p.details?.skills) {
         p.details.localized_skills = this.localizeFields(p.details.skills, "skills")
@@ -71,11 +81,14 @@ export default {
         );
       });
     },
-    localizeFields(arr, identifier) {
-      return arr.map((x) => {
+    localizeFields(arr, identifier, sort = true) {
+      const res = arr.map((x) => {
         return this.$t(`checkboxes.${identifier}.${x}`)
       })
-      .sort()
+      if (sort) {
+        res.sort()
+      }
+      return res
     }
   },
   components: {
