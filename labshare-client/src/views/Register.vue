@@ -3,7 +3,7 @@
 
     <template v-if="!registrationComplete">
       <h1 style="margin-bottom: 16px" data-aos="fade" data-aos-duration="750">{{$t("registration.title")}}</h1>
-      <p style="margin-bottom: 48px" data-aos="fade" data-aos-duration="750">{{ $t("registration.subtitle") }}</p>
+      <p style="margin-bottom: 48px" data-aos="fade" data-aos-duration="750" v-html="$t('registration.subtitle')"></p>
 
       <RegistrationProgress v-if="!registrationComplete" v-model="step" :role="role" data-aos="fade" data-aos-duration="750"></RegistrationProgress>
     </template>
