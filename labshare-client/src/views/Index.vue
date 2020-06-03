@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="banner">
+    <div class="hero">
       <b-container class="container">
-        <b-row data-aos="fade-up" data-aos-duration="1000">
-          <b-col cols lg="6" md="12" sm="12">
+        <b-row align-v="center" data-aos="fade-up" data-aos-duration="1000">
+          <b-col cols lg="5" md="12" sm="12" offset-lg="1">
               <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
             <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
               <b-button class="btn-cta" to="/register">{{$t("landingpage.top.btn_join")}}</b-button>
             </div>
           </b-col>
-          <b-col cols lg="6" md="12" sm="12">
+          <b-col cols lg="5" md="12" sm="12">
             <figure>
               <img
                 class="img-fluid"
@@ -46,61 +46,49 @@
     </div>
 
     <b-container class="container about">
-      <b-row>
-        <b-col class="text-center">
+      <b-row align-h="center" class="about-intro">
+        <b-col cols lg="6" md="12" class="text-center">
             <h3 data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.title")}}</h3>
+            <p data-aos="fade" data-aos-duration="750">{{$t("landingpage.details.text")}}</p>
+        </b-col>
+      </b-row>
+
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin" align-v="center">
+        <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
+          <h5>{{$t("landingpage.details.diagnosticCenters.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.diagnosticCenters.title")}}</h3>
+          <p>{{$t("landingpage.details.diagnosticCenters.text")}}</p>
+          <b-button class="btn-cta" to="/search">{{$t("landingpage.details.diagnosticCenters.button")}}</b-button>
+        </b-col>
+        <b-col lg="3" offset-lg="1" md="12" order="1" order-lg="2">
+            <img src="../assets/decoration-3-2.svg" alt="Illustration" width="90%" height="auto" />
+        </b-col>
+      </b-row>
+
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin" align-v="center">
+        <b-col lg="3" offset-lg="2" md="12">
+            <img src="../assets/decoration-3-3.svg" alt="Illustration" width="90%" height="auto" />
+        </b-col>
+        <b-col lg="5" offset-lg="1" md="12">
+          <h5>{{$t("landingpage.details.researchLabs.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.researchLabs.title")}}</h3>
+          <p>{{$t("landingpage.details.researchLabs.text")}}</p>
+          <b-button class="btn-cta" to="/register">{{$t("landingpage.details.researchLabs.button")}}</b-button>
+        </b-col>
+      </b-row>
+
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block" align-v="center">
+        <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
+          <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
+          <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
+          <p>{{$t("landingpage.details.volunteers.text")}}</p>
+          <b-button class="btn-cta" to="/register">{{$t("landingpage.details.volunteers.button")}}</b-button>
+        </b-col>
+        <b-col lg="3" offset-lg="1" md="12" order="1" order-lg="2">
+            <img src="../assets/decoration-3-1.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
       </b-row>
       
-      <b-row>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-1.svg"
-              alt="Illustration"
-              width="170"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.qVolunteer", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.qVolunteers")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-2.svg"
-              alt="Illustration"
-              width="164"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.dCenter", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.dCenter")}}
-          </p>
-        </b-col>
-        <b-col cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750" data-aos-delay="200">
-          <figure class="text-center">
-            <img
-              src="../assets/decoration-3-3.svg"
-              alt="Illustration"
-              width="218"
-              height="150"
-            />
-          </figure>
-          <h4 class="text-center">{{$tc("general.rLab", 2)}}</h4>
-          <p class="text-center">
-              {{$t("landingpage.details.desc.rLab")}}
-          </p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col class="text-center">
-          <b-button data-aos="fade" data-aos-duration="750" class="btn-cta" to="/search">{{$t("general.btn_search")}}</b-button>
-        </b-col>
-      </b-row>
     </b-container>
 
     <Coverage />
@@ -123,45 +111,41 @@ $color-green: #177867;
 $color-bkg-primary: #f7f6fd;
 
 p {
-  margin: 12px 12px 44px 12px;
+    margin-bottom: 0;
 }
 
-.has_banner {
+h1 {
+  font-weight: 500;
+  font-size: 36px;
+  letter-spacing: 0;
+  margin: 0 0 15px 0;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 32px;
+  letter-spacing: 0;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+
+h5 {
+  font-weight: normal;
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: rgba(23, 120, 103, 0.75);
+  margin-bottom: 15px;
+}
+
+.has_hero {
   background-color: #fff;
 }
 
-.banner {
+.hero {
   background: $color-bkg-primary;
-  margin-bottom: 88px;
-  padding: 70px 0 25px;
+  padding: 80px 0 80px 0;
   position: relative;
-
-  @media (max-width: 767px) {
-    margin-bottom: 44px;
-  }
-
-  &:before {
-    content: "";
-    background: #fff;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 40px;
-    position: absolute;
-    z-index: 3;
-  }
-
-  &:after {
-    content: "";
-    background: $color-bkg-primary;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 4;
-  }
 
   .container {
     position: relative;
@@ -169,30 +153,22 @@ p {
   }
 
   p {
-    margin: 10px 0 0;
-
     @media (max-width: 991px) {
       text-align: center;
     }
   }
 
-  figure {
-    margin-bottom: 0;
-  }
-
   .partners {
-    margin-top: 88px;
-    margin-bottom: 44px;
+    margin-top: 80px;
 
     figure {
       display: inline-block;
-      margin: 16px 0 16px 0;
+      margin-top: 20px;
     }
 
     @media (max-width: 767px) {
       font-size: 13px;
-      margin-top: 32px;
-      margin-bottom: 16px;
+      margin-top: 20px;
 
       img {
         height: 48px;
@@ -215,7 +191,7 @@ p {
 }
 
 .about {
-  margin-bottom: 88px;
+  padding: 80px 0 80px 0;
   font-size: 15px;
   line-height: 1.2;
 
@@ -232,33 +208,58 @@ p {
   }
 }
 
+.about-intro {
+  margin-bottom: 80px;
+}
+
+.about-block-bottom-margin {
+  margin-bottom: 140px;
+}
+
 .has-subtitle {
   margin: 0;
 }
 
 @media (max-width: 991px) {
-  .banner {
-    padding: 0px 0 25px;
+  .hero {
+
+    padding: 40px 15px 40px 15px;
 
     h2 {
       margin-top: 0;
     }
+
     figure {
-      margin-top: 16px;
+      margin-top: 15px;
     }
 
-    .btn-cta {
-      
+    .img-fluid {
+      display: block;
+      margin: 0 auto;
     }
+
 
     #hero-button-wrapper {
       text-align: center !important;
     }
   }
+
   .about {
-    .col-sm-12 + .col-sm-12 {
-      margin-top: 40px;
+    padding: 40px 15px 40px 15px;
+    text-align: center;
+
+    img {
+      width: 25%;
+      margin-bottom: 30px;
+
+      @media (max-width: 767px) {
+        width: 50%;
+      }
     }
+  }
+
+  .about-intro, .about-block-bottom-margin {
+    margin-bottom: 80px;
   }
 }
 

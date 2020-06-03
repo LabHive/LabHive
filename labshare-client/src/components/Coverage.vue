@@ -6,11 +6,6 @@
           <h3 data-aos="fade" data-aos-duration="750">{{ $t('landingpage.coverage.title') }}</h3>
         </b-col>
       </b-row>
-      <b-row align-h="center">
-        <b-col class="text-center title-subtitle" sm="12" lg="10" xl="8">
-          <p data-aos="fade" data-aos-duration="750">{{ $t('landingpage.coverage.subTitle') }}</p>
-        </b-col>
-      </b-row>
       <b-row>
         <b-col cols lg="6" md="6" sm="12" class="d-flex justify-content-center" data-aos="fade-up" data-aos-duration="750">
           <l-map
@@ -144,33 +139,22 @@ $color-bkg-primary: #f7f6fd;
 .coverage {
   background: $color-bkg-primary;
   position: relative;
-  padding: 88px 0;
+  padding: 80px 0 80px 0; 
 
-  @media (max-width: 767px) {
-    padding: 44px 0;
-  }
-  
-  &:before {
-    content: "";
-    background: #fff;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 40px;
-    position: absolute;
-    z-index: 3;
-  }
+  @media (max-width: 991px) {
+      padding: 40px 15px 40px 15px;
+    }
 
-  &:after {
-    content: "";
-    background: $color-bkg-primary;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 80px;
-    position: absolute;
-    border-radius: 50%;
-    z-index: 4;
+  h3 {
+  font-weight: normal;
+  font-size: 32px;
+  letter-spacing: 0;
+  color: #000;
+  margin: 0 0 80px 0;
+
+  @media (max-width: 991px) {
+      margin: 0 0 40px 0;
+    }
   }
 
   .container {
