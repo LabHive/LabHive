@@ -163,7 +163,7 @@ h5 {
 
     figure {
       display: inline-block;
-      margin-top: 15px
+      margin-top: 20px;
     }
 
     @media (max-width: 767px) {
@@ -230,13 +230,14 @@ h5 {
     }
 
     figure {
-      margin-top: 16px;
+      margin-top: 15px;
     }
 
-    .img {
+    .img-fluid {
       display: block;
       margin: 0 auto;
     }
+
 
     #hero-button-wrapper {
       text-align: center !important;
