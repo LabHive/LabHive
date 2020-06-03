@@ -102,7 +102,7 @@ export default {
       qualificationList: qualification,
       labSkillsList: labSkills,
       error: null,
-      errorMsg: ""
+      msg: ""
     }
   },
   methods: {
