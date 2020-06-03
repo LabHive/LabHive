@@ -46,7 +46,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("landingpage.details.desc.qVolunteers")}}
+                {{$t("registration.descriptions.qVolunteers")}}
             </p>
           </b-col>
 
@@ -64,7 +64,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$tc("landingpage.details.desc.dCenter", 2)}}
+                {{$tc("registration.descriptions.dCenter", 2)}}
             </p>
           </b-col>
 
@@ -82,7 +82,7 @@
               />
             </figure>
             <p class="text-center" style="padding: 0 15px">
-                {{$t("landingpage.details.desc.rLab")}}
+                {{$t("registration.descriptions.rLab")}}
             </p>
           </b-col>
 
