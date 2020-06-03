@@ -43,7 +43,6 @@ if (OPT.STAGING) {
 
 app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'deny')
-  res.setHeader('Referrer-Policy', 'no-referrer')
   next()
 })
 
