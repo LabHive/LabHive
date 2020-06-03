@@ -53,7 +53,7 @@
         </b-col>
       </b-row>
 
-      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin" align-v="center">
         <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
           <h5>{{$t("landingpage.details.diagnosticCenters.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.diagnosticCenters.title")}}</h3>
@@ -65,7 +65,7 @@
         </b-col>
       </b-row>
 
-      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block-bottom-margin" align-v="center">
         <b-col lg="3" offset-lg="2" md="12">
             <img src="../assets/decoration-3-3.svg" alt="Illustration" width="90%" height="auto" />
         </b-col>
@@ -77,7 +77,7 @@
         </b-col>
       </b-row>
 
-      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block">
+      <b-row data-aos="fade-up" data-aos-duration="750" class="about-block" align-v="center">
         <b-col lg="5" offset-lg="1" md="12" order="2" order-lg="1">
           <h5>{{$t("landingpage.details.volunteers.subtitle")}}</h5>
           <h3>{{$t("landingpage.details.volunteers.title")}}</h3>
@@ -168,8 +168,7 @@ h5 {
 
     @media (max-width: 767px) {
       font-size: 13px;
-      margin-top: 32px;
-      margin-bottom: 16px;
+      margin-top: 20px;
 
       img {
         height: 48px;
@@ -232,6 +231,11 @@ h5 {
 
     figure {
       margin-top: 16px;
+    }
+
+    .img {
+      display: block;
+      margin: 0 auto;
     }
 
     #hero-button-wrapper {
