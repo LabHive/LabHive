@@ -1,10 +1,16 @@
 // In this file you can configure migrate-mongo
+const fs = require("fs")
 
 const connectionBase = process.env.PRODUCTION ? 'mongodb' : 'localhost';
+let userPassword = "";
+if (fs.existsSync("secret/dbConfig.json")) {
+  const f = JSON.parse(fs.readFileSync("secret/dbConfig.json", { encoding: "utf8" }))
+  userPassword = f.username + ":" + f.password + "@"
+}
 
 const config = {
   mongodb: {
-    url: `mongodb://${connectionBase}:27017`,
+    url: `mongodb://${userPassword}${connectionBase}:27017`,
 
     databaseName: "labshare",
 
