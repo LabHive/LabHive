@@ -15,6 +15,9 @@ services:
     volumes:
       - labhive_mongodb_stagingDB:/data/db
       - labhive_mongodb_stagingConfig:/data/configdb
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: labhive
+    #   MONGO_INITDB_ROOT_PASSWORD: example
 
   mongo-express:
     image: mongo-express
