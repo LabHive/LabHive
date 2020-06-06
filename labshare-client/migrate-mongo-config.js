@@ -10,7 +10,7 @@ if (fs.existsSync("secret/dbConfig.json")) {
 
 const config = {
   mongodb: {
-    url: `mongodb://${userPassword}${connectionBase}:27017`,
+    url: `mongodb://${userPassword}${connectionBase}:27017/?authSource=admin`,
 
     databaseName: "labshare",
 
