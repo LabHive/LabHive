@@ -91,13 +91,14 @@ export default {
       mapOptions: {
         zoomSnap: 0.5,
         minZoom: 5.5,
+        maxZoom: 11,
         maxBounds: new latLngBounds(
           [47.100045, 5.430908],
           [55.412386, 15.424805]
         )
       },
-      iconSize: [32, 37],
-      iconAnchor: [16, 37],
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
       showMap: true,
       testsPerWeek: parseInt(this.$t("landingpage.coverage.testNumber")),
       markers: [],
