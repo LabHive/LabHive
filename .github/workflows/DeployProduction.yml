@@ -62,7 +62,7 @@ jobs:
             docker run --rm -v $(pwd):/src -v labhive_secret_production:/dst busybox cp -r /src/secret/. /dst/;
 
             if ! docker service ls | grep -q LabHiveProduction; then
-              docker stack deploy -c docker-compose.production.yml LabHiveProduction
+              docker stack deploy -c docker-compose.production.yml -c docker-compose.production.override.yml LabHiveProduction
               until [[ ! -z $(docker stack ps LabHiveProduction -q) ]]; do sleep 1; done
             else
               docker service update --image labhive/labhive:production LabHiveProduction_app
