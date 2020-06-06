@@ -10,9 +10,10 @@ import { scheduleCronjob } from './cronjob';
 
 
 const connectionBase = OPT.DOCKER ? 'mongodb' : 'localhost';
+const userPassword = CONF.DB_CONFIG != undefined ? `${CONF.DB_CONFIG.username}:${CONF.DB_CONFIG.password}@` : ""
 export let ready = false;
 
-mongoose.connect(`mongodb://${connectionBase}:27017/labshare`, { useNewUrlParser: true }).then(async () => {
+mongoose.connect(`mongodb://${userPassword}${connectionBase}:27017/labshare?authSource=admin`, { useNewUrlParser: true }).then(async () => {
     if (CONF.ADMIN_USERS) {
         for (let i of CONF.ADMIN_USERS) {
             let mail = i.contact.email

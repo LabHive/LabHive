@@ -164,6 +164,7 @@ class Configuration {
     MAIL_CONFIG: Mail.Options
     ADMIN_USERS?: IUserAdmin[]
     DISCORD_BOT_TOKEN: string
+    DB_CONFIG: {username: string, password: string}
 
     constructor() {
         this.HMAC_KEY = OPT.PRODUCTION ? readFileSync(FILE_PATH.hmacKey, { encoding: 'utf8' }) : "randomKey"
@@ -175,6 +176,14 @@ class Configuration {
             console.error("Create an admin user in secret/adminUsers.json")
         } else {
             this.ADMIN_USERS = JSON.parse(readFileSync(FILE_PATH.adminUsers, { encoding: "utf8" }))
+        }
+
+        if (!existsSync(FILE_PATH.dbConfig) && OPT.PRODUCTION) {
+            console.error("No DB Config found")
+            process.exit(1);
+        }
+        else {
+            this.DB_CONFIG = existsSync(FILE_PATH.dbConfig) ? JSON.parse(readFileSync(FILE_PATH.dbConfig, { encoding: 'utf8' })) : undefined
         }
     }
 }

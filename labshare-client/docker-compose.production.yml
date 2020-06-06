@@ -4,22 +4,15 @@ services:
   redis:
     image: redis
     restart: always
-    # ports:
-    #   - 6379:6379
     networks:
       - network
   
   mongodb:
     image: mongo
     restart: always
-    # ports:
-    #   - 27017:27017
     volumes:
       - labhive_mongodb_prodDB:/data/db
       - labhive_mongodb_prodConfig:/data/configdb
-    #environment:
-    #  MONGO_INITDB_ROOT_USERNAME: root
-    #  MONGO_INITDB_ROOT_PASSWORD: example
     networks:
       - network
   
