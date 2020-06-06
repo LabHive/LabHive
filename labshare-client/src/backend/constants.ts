@@ -4,7 +4,8 @@ export enum FILE_PATH {
     mailConfig = "secret/mailConfig.json",
     hmacKey = "secret/jsonwebtoken_hmacKey.txt",
     adminUsers = "secret/adminUsers.json",
-    discordBotToken = "secret/discordBotToken.txt"
+    discordBotToken = "secret/discordBotToken.txt",
+    dbConfig = "secret/dbConfig.json"
 }
 
 

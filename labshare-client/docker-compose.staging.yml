@@ -15,6 +15,9 @@ services:
       - mongodb_Config:/data/configdb
     networks:
       - network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: labhive
+      MONGO_INITDB_ROOT_PASSWORD: example
   
   app:
     image: labhive/labhive:${TAG:-staging}
