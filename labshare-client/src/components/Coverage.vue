@@ -344,7 +344,7 @@ $color-bkg-primary: #f7f6fd;
 
 .map-icon-counter {
   width: 32px;
-  height: 37px;
+  height: 32px;
   margin-right: 16px;
 }
 
