@@ -6,7 +6,7 @@
               <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
             <p>{{$t("landingpage.top.subTitle")}}</p>
             <div id="hero-button-wrapper">
-              <b-button class="btn-cta" to="/22-05-12-LabHive-Presskit.zip">{{$t("press.btn_download")}}</b-button>
+              <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("press.btn_download")}}</b-button>
             </div>
           </b-col>
           <b-col cols lg="5" md="12" sm="12">
