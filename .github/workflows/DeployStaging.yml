@@ -68,7 +68,7 @@ jobs:
     steps:
       - name: Notify Discord
         run: |
-          curl -X "POST" "${{ secrets.DISCORD_WEBHOOK_PR_DEPLOYMENT }}" \
+          curl -X "POST" "${{ secrets.DISCORD_WEBHOOK_RELEASE }}" \
             -H 'Content-Type: application/json' \
             -d $'{
           "username": "BizzyB",

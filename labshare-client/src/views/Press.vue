@@ -3,8 +3,8 @@
       <b-container class="container">
         <b-row align-v="center" data-aos="fade-up" data-aos-duration="1000">
           <b-col cols lg="5" md="12" sm="12" offset-lg="1">
-              <h1>{{ $t("landingpage.top.mainTitle") }}</h1>
-            <p>{{$t("landingpage.top.subTitle")}}</p>
+              <h1>{{ $t("press.title") }}</h1>
+            <p>{{$t("press.subtitle")}}</p>
             <div id="hero-button-wrapper">
               <b-button class="btn-cta" href="/22-05-12-LabHive-Presskit.zip">{{$t("press.btn_download")}}</b-button>
             </div>
