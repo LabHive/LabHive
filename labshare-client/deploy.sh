@@ -12,6 +12,11 @@ elif [[ -d "$HOME/LabHiveSecrets_${ENV}" ]]; then
     SECRETS="$HOME/LabHiveSecrets_${ENV}";
 fi
 
+if [[ ! -d "$(pwd)/secret" ]]; then
+    mkdir secret
+    cp -r $SECRETS/* ./secret/
+    SECRETS="$(pwd)/secret"
+fi
 
 docker volume create LabHive_${ENV}_secret;
 docker run --rm -v "$SECRETS":/src -v LabHive_${ENV}_secret:/dst busybox cp -r /src/. /dst/;
