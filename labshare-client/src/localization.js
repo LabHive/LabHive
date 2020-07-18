@@ -5,11 +5,12 @@ import Vue from 'vue'
 let locale = localStorage.getItem('locale')
 if (!locale) {
   locale = navigator.language || navigator.userLanguage
-
-  if (locale.toLowerCase().indexOf("de") > -1) {
+  locale = locale.toLowerCase()
+  if (locale.indexOf("de") > -1) {
     locale = "de"
-  }
-  else {
+  } else if (locale.indexOf("es") > -1) {
+    locale = "es"
+  } else {
     locale = "en"
   }
 }

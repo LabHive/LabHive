@@ -15,6 +15,9 @@ import { loadLanguageAsync } from '@/localization.js'
 const langs = {
   de: "Deutsch",
   en: "English",
+  es: "Spanish",
+  fr: "French",
+  sv: "Swedish",
   cn: "Identifier"
 };
 
