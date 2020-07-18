@@ -1,4 +1,5 @@
 import messages from './Localization/de.json'
+import enMessages from './Localization/en.json'
 import VueI18n from "vue-i18n";
 import Vue from 'vue'
 
@@ -15,7 +16,7 @@ if (!locale) {
   }
 }
 
-const loadedLanguages = ['de']
+const loadedLanguages = ['de', 'en']
 
 Vue.use(VueI18n);
 
@@ -24,7 +25,8 @@ export const i18n = new VueI18n({
   fallbackLocale: "en",
   silentFallbackWarn: true,
   messages: {
-    de: messages
+    de: messages,
+    en: enMessages
   }
 })
 
