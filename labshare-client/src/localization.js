@@ -1,20 +1,22 @@
 import messages from './Localization/de.json'
+import enMessages from './Localization/en.json'
 import VueI18n from "vue-i18n";
 import Vue from 'vue'
 
 let locale = localStorage.getItem('locale')
 if (!locale) {
   locale = navigator.language || navigator.userLanguage
-
-  if (locale.toLowerCase().indexOf("de") > -1) {
+  locale = locale.toLowerCase()
+  if (locale.indexOf("de") > -1) {
     locale = "de"
-  }
-  else {
+  } else if (locale.indexOf("es") > -1) {
+    locale = "es"
+  } else {
     locale = "en"
   }
 }
 
-const loadedLanguages = ['de']
+const loadedLanguages = ['de', 'en']
 
 Vue.use(VueI18n);
 
@@ -23,7 +25,8 @@ export const i18n = new VueI18n({
   fallbackLocale: "en",
   silentFallbackWarn: true,
   messages: {
-    de: messages
+    de: messages,
+    en: enMessages
   }
 })
 
