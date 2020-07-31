@@ -6,7 +6,10 @@ let locale = localStorage.getItem('locale')
 if (!locale) {
   locale = navigator.language || navigator.userLanguage
 
-  if (locale.toLowerCase().indexOf("de") > -1) {
+  if (document.location.href.indexOf('labhive.org') > -1) {
+    locale = "en"
+  }
+  else if (locale.toLowerCase().indexOf("de") > -1) {
     locale = "de"
   }
   else {
