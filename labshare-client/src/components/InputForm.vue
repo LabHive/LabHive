@@ -3,7 +3,7 @@
     :id="name"
     :state="state_form"
   >
-    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="state_field" trim :validated="true"></b-form-input>
+    <b-form-input :type="inType" :id="name" :placeholder="' '" v-model="model" :state="state_field" trim :validated="true" :class="{notEmpty: notEmpty}"></b-form-input>
     <label>{{ placeholder ? placeholder : $t(name) }}</label>
 
     <template v-slot:invalid-feedback><span :style="{opacity: invalid_opacity}">{{ invalid_feedback_text }}</span></template>
@@ -46,7 +46,8 @@ export default {
       invalid_feedback_text: "1",
       valid_feedback_text: "1",
       invalid_opacity: 1,
-      valid_opacity: 1
+      valid_opacity: 1,
+      notEmpty: false,
     }
   },
   computed: {
@@ -56,6 +57,7 @@ export default {
         return this.value
       },
       set(newValue) {
+        this.notEmpty = !!newValue;
         this.$emit("input", newValue);
       }
     }
@@ -192,7 +194,7 @@ export default {
   color: transparent;
 }
 
-.form-group input:not(:placeholder-shown) {
+.form-group input.notEmpty {
   padding-top: 20px;
   padding-bottom: 4px;
 
@@ -201,23 +203,7 @@ export default {
   }
 }
 
-.form-group input:not(:-ms-input-placeholder) {
-  padding-top: 20px;
-  padding-bottom: 4px;
-
-  &.is-invalid, &.is-valid {
-    padding-right: 34px;
-  }
-}
-
-.form-group input:not(:placeholder-shown) ~ label {
-  padding-top: 8px;
-  padding-bottom: 4px;
-  font-size: 12px;
-  color: #777;
-}
-
-.form-group input:not(:-ms-input-placeholder) ~ label {
+.form-group input.notEmpty ~ label {
   padding-top: 8px;
   padding-bottom: 4px;
   font-size: 12px;
