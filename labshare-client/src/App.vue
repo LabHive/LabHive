@@ -17,8 +17,14 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="mr-auto">
-            <b-nav-item :active="$route.name =='pageAboutLabhive'" to="/">{{ $t("layout.navbar.aboutLabhive") }}</b-nav-item>
-            <b-nav-item :active="$route.name =='pageAboutUs'" to="/ueber-uns">{{ $t("layout.navbar.aboutUs") }}</b-nav-item>
+            <b-nav-item
+              :active="$route.name =='pageAboutLabhive'"
+              to="/"
+            >{{ $t("layout.navbar.aboutLabhive") }}</b-nav-item>
+            <b-nav-item
+              :active="$route.name =='pageAboutUs'"
+              to="/ueber-uns"
+            >{{ $t("layout.navbar.aboutUs") }}</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -29,7 +35,10 @@
               to="/search"
             >{{ $t("general.btn_search") }}</b-nav-item>
             <template v-if="!$authenticated">
-              <b-nav-item :active="$route.name =='pageRegister'" to="/register">{{ $t("general.signUp") }}</b-nav-item>
+              <b-nav-item
+                :active="$route.name =='pageRegister'"
+                to="/register"
+              >{{ $t("general.signUp") }}</b-nav-item>
               <b-nav-item :active="$route.name =='pageLogin'" to="/login">{{ $t("general.login") }}</b-nav-item>
             </template>
 
@@ -61,45 +70,72 @@
 
     <div class="content container" v-bind:class="{ has_hero: $route.fullPath === '/' }">
       <div style="text-align: center" v-if="staging">
-        <h3 class="staging-warning" style="color: red; margin: 0; margin-top: 20px" v-html="$t('layout.staging')"></h3>
+        <h3
+          class="staging-warning"
+          style="color: red; margin: 0; margin-top: 20px"
+          v-html="$t('layout.staging')"
+        ></h3>
       </div>
       <div id="app">
         <keep-alive :include="/search.*/i">
           <router-view></router-view>
         </keep-alive>
       </div>
+      <footer class="footer-custom">
+        <b-container>
+          <b-row align-h="between" align-v="center">
+            <b-col
+              id="copyright"
+              class="text-center"
+              cols="auto"
+              lg="auto"
+              order="3"
+              order-lg="2"
+            >&copy; LabHive 2020</b-col>
+
+            <b-col class="text-center" cols="12" lg="auto" order="1" order-lg="2">
+              <b-link to="/privacyPolicy" class="clink">{{ $t('layout.footer.privacyPolicy') }}</b-link>
+              <b-link to="/imprint" class="clink">{{ $t('layout.footer.imprint') }}</b-link>
+              <b-link href="mailto:info@labhive.de" class="clink">{{ $t('layout.footer.contact') }}</b-link>
+              <b-link to="/press" class="clink">{{ $t('layout.footer.press') }}</b-link>
+              <b-link
+                class="fa-icon social-icon"
+                href="https://twitter.com/Lab_Hive"
+                target="_blank"
+              >
+                <font-awesome-icon :icon="['fab', 'twitter']" />
+              </b-link>
+              <b-link
+                class="fa-icon social-icon"
+                href="https://github.com/LabHive/LabHive"
+                target="_blank"
+              >
+                <font-awesome-icon :icon="['fab', 'github']" />
+              </b-link>
+            </b-col>
+
+            <b-col
+              id="footer-hackathon-logo"
+              class="text-center"
+              cols="auto"
+              lg="auto"
+              order="3"
+              order-lg="3"
+            >
+              <a href="https://wirvsvirushackathon.org/" target="_blank">
+                <img
+                  class="img-hover"
+                  src="./assets/logo-wirvsvirus-projekt.png"
+                  alt="Wir vs. Virus Projekt"
+                  width="auto"
+                  height="50"
+                />
+              </a>
+            </b-col>
+          </b-row>
+        </b-container>
+      </footer>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer-custom">
-      <b-container>
-        <b-row align-h="between" align-v="center">
-          <b-col id="copyright" class="text-center" cols="auto" lg="auto" order="3" order-lg="2">&copy; LabHive 2020</b-col>
-
-          <b-col class="text-center" cols="12" lg="auto" order="1" order-lg="2">
-            <b-link to="/privacyPolicy" class="clink">{{ $t('layout.footer.privacyPolicy') }}</b-link>
-            <b-link to="/imprint" class="clink">{{ $t('layout.footer.imprint') }}</b-link>
-            <b-link href="mailto:info@labhive.de" class="clink">{{ $t('layout.footer.contact') }}</b-link>
-            <b-link to="/press" class="clink">{{ $t('layout.footer.press') }}</b-link>
-            <b-link class="fa-icon social-icon" href="https://twitter.com/Lab_Hive" target="_blank"><font-awesome-icon :icon="['fab', 'twitter']" /></b-link>
-            <b-link class="fa-icon social-icon" href="https://github.com/LabHive/LabHive" target="_blank"><font-awesome-icon :icon="['fab', 'github']" /></b-link>
-          </b-col>
-
-          <b-col id="footer-hackathon-logo" class="text-center" cols="auto" lg="auto" order="3" order-lg="3">
-            <a href="https://wirvsvirushackathon.org/" target="_blank">
-              <img
-                class="img-hover"
-                src="./assets/logo-wirvsvirus-projekt.png"
-                alt="Wir vs. Virus Projekt"
-                width="auto"
-                height="50"
-              />
-            </a>
-          </b-col>
-        </b-row>
-      </b-container>
-    </footer>
-    <!-- Footer -->
   </div>
 </template>
 
@@ -111,11 +147,11 @@ export default {
   components: { LocaleChange },
   data() {
     return {
-      staging: process.env.STAGING
+      staging: process.env.STAGING,
     };
   },
   mounted() {
-    window.onscroll = function() {
+    window.onscroll = function () {
       const navbar = document.getElementById("navbar");
       let className = navbar.className.replace("sticky", "");
 
@@ -127,7 +163,7 @@ export default {
     };
   },
   computed: {
-    userName: function() {
+    userName: function () {
       if (this.$user.role) {
         if (this.$user.role === "volunteer") {
           return this.$user.contact.firstname;
@@ -139,15 +175,15 @@ export default {
       } else {
         return "User";
       }
-    }
+    },
   },
   methods: {
-    logout: function() {
+    logout: function () {
       this.$store.dispatch("logout").then(() => {
         this.$router.push("/login");
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -572,7 +608,8 @@ h4 {
     top: 1px;
   }
 
-  a, #copyright {
+  a,
+  #copyright {
     color: #000;
     display: inline-block;
     margin: 0 15px;
@@ -596,9 +633,7 @@ h4 {
         height: 35px;
       }
     }
-
   }
-  
 }
 
 .has_hero {
@@ -609,15 +644,6 @@ h4 {
 
   #app {
     margin: 0;
-  }
-
-  .clink {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .clink:hover {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
   }
 }
 
@@ -649,8 +675,7 @@ h4 {
 
 .staging-warning {
   @media (max-width: 767px) {
-        font-size: 20px;
+    font-size: 20px;
   }
 }
-
 </style>
