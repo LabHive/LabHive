@@ -324,7 +324,7 @@ $color-bkg-primary: #f7f6fd;
 #rki-cit {
   font-size: 12px;
   margin-right: auto;
-  margin-left: 6.5em;
+  margin-left: 5.5em;
 
   @media (max-width: 1200px) {
     margin-left: 4.3em;
