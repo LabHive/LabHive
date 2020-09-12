@@ -50,7 +50,7 @@
           </b-col>
           <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
             <figure>
-             <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img id="fwfinalist" class="img-hover" src="../assets/logo-fwfinalist2020.png" alt="Falling Walls Finalist 2020" width="auto" height="48" /> </a>
+             <a href="https://falling-walls.com/" target="_blank"> <img id="fwfinalist" class="img-hover" src="../assets/logo-fwfinalist2020.png" alt="Falling Walls Finalist 2020" width="auto" height="48" /> </a>
             </figure>
           </b-col>
         </b-row>
