@@ -87,9 +87,9 @@
             <b-col
               id="copyright"
               class="text-center"
-              cols="auto"
+              cols="12"
               lg="auto"
-              order="3"
+              order="4"
               order-lg="2"
             >&copy; LabHive 2020</b-col>
 
@@ -115,9 +115,9 @@
             </b-col>
 
             <b-col
-              id="footer-hackathon-logo"
+              id="footer-accolades"
               class="text-center"
-              cols="auto"
+              cols="12"
               lg="auto"
               order="3"
               order-lg="3"
@@ -129,6 +129,25 @@
                   alt="Wir vs. Virus Projekt"
                   width="auto"
                   height="50"
+                />
+              </a>
+              <a href="https://www.euvsvirus.org/" target="_blank">
+                <img
+                  class="img-hover"
+                  src="./assets/logo-euvsvirus.png"
+                  alt="EUvsVirus"
+                  width="auto"
+                  height="40"
+                />
+              </a>
+              <a href="https://falling-walls.com/" target="_blank">
+                <img
+                  class="img-hover"
+                  id="fwlogo"
+                  src="./assets/logo-fwfinalist2020.png"
+                  alt="Falling Walls Finalist 2020"
+                  width="auto"
+                  height="60"
                 />
               </a>
             </b-col>
@@ -614,10 +633,6 @@ h4 {
     display: inline-block;
     margin: 0 15px;
 
-    @media (max-width: 991px) {
-      margin: 0 10px;
-    }
-
     &:hover {
       color: $color-green;
     }
@@ -625,13 +640,23 @@ h4 {
 
   @media (max-width: 991px) {
     padding: 40px 15px 0 15px;
+    margin: 0 10px;
 
-    #footer-hackathon-logo {
-      margin: 30px 0;
+    #footer-accolades {
+      margin: 25px 0 15px 0;
 
       img {
-        height: 35px;
+        height: 30px;
+        margin: 10px 0;
       }
+
+      #fwlogo {
+        height: 50px;
+      }
+    }
+
+    #copyright {
+      margin: 0 0 10px 0;
     }
   }
 }

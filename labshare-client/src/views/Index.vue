@@ -42,18 +42,6 @@
             </figure>
           </b-col>
         </b-row>
-        <b-row align-h="center" class="partners partners-secondary align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
-            <figure>
-             <a href="https://www.euvsvirus.org/" target="_blank"> <img class="img-hover" src="../assets/logo-euvsvirus.png" alt="#EUvsVirus" width="auto" height="56" /> </a>
-            </figure>
-          </b-col>
-          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
-            <figure>
-             <a href="https://falling-walls.com/" target="_blank"> <img id="fwfinalist" class="img-hover" src="../assets/logo-fwfinalist2020.png" alt="Falling Walls Finalist 2020" width="auto" height="48" /> </a>
-            </figure>
-          </b-col>
-        </b-row>
       </b-container>
     </div>
 
@@ -197,36 +185,6 @@ h5 {
       #funded {
         margin-top: 20px;
       }
-    }
-  }
-}
-
-.partners.partners-secondary {
-  
-  figure {
-    margin: 0;
-  }
-
-  img {
-       height: 48px;
-    }
-
-   #fwfinalist {
-      height: 72px;
-    }
-
-  @media (max-width: 767px) {
-
-    figure {
-    margin-top: 0px;
-    }
-
-    img {
-       height: 28px;
-    }
-
-    #fwfinalist {
-      height: 48px;
     }
   }
 }
