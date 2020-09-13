@@ -35,7 +35,7 @@
              <a href="https://www.steiger-stiftung.de/ueber-die-stiftung" target="_blank"> <img id="collaboration" class="img-hover" src="../assets/logo-bjoern-steiger-stiftung-de.png" alt="Björn Steiger Stiftung" width="auto" height="48" /> </a>
             </figure>
           </b-col>
-          <b-col cols="6" lg="3" md="4" sm="6" class="text-center">
+          <b-col cols="6" lg="3" md="4" sm="6" class="text-center" id="funded">
               <p>{{$t("landingpage.top.sponsoredBy")}}</p>
             <figure>
              <a href="https://www.bmbf.de/" target="_blank"> <img class="img-hover" src="../assets/logo-bmbf.png" alt="Bundesministerium für Bildung und Forschung" width="auto" height="56" /> </a>
@@ -180,6 +180,10 @@ h5 {
 
       figure {
         margin: 8px 0 16px 0;
+      }
+
+      #funded {
+        margin-top: 20px;
       }
     }
   }
