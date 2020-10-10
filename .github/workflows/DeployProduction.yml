@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'labshare-client/**'
-      - '.github/**'
   
 
 jobs:
@@ -18,8 +15,8 @@ jobs:
         with:
           submodules: true
       - uses: actions/setup-node@v1
-      - run: cd labshare-client && npm install
-      - run: cd labshare-client && npm run build
+      - run: npm install
+      - run: npm run build
 
 
   docker:
@@ -38,8 +35,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: labhive/labhive
           tags: production
-          path: ./labshare-client
-          dockerfile: ./labshare-client/Dockerfile
+          path: ./
+          dockerfile: Dockerfile
 
   deploy:
     name: "Deploy"
@@ -53,7 +50,7 @@ jobs:
           username: ${{ secrets.PROD_USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            cd LabHive/labshare-client;
+            cd LabHive/;
             git reset --hard;
             git pull;
             git submodule update --init;

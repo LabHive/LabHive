@@ -5,7 +5,7 @@
     "tasks": [
         {
             "type": "typescript",
-            "tsconfig": "labshare-client/tsconfig.json",
+            "tsconfig": "tsconfig.json",
             "problemMatcher": [
                 "$tsc"
             ],
@@ -14,7 +14,7 @@
         },
         {
             "type": "typescript",
-            "tsconfig": "labshare-client/tsconfig.json",
+            "tsconfig": "tsconfig.json",
             "option": "watch",
             "runOptions": {
                 "runOn": "folderOpen",

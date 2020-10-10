@@ -5,9 +5,6 @@ on:
     branches:
       - dev
       - master
-    paths:
-      - 'labshare-client/**'
-      - '.github/**'
 
 jobs:
   build:
@@ -19,8 +16,8 @@ jobs:
         with:
           submodules: true
       - uses: actions/setup-node@v1
-      - run: cd labshare-client && npm install
-      - run: cd labshare-client && npm run build
+      - run: npm install
+      - run: npm run build
 
 
   sync:
@@ -57,7 +54,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            cd LabHive_${{ github.event.pull_request.head.ref }}/labshare-client;
+            cd LabHive_${{ github.event.pull_request.head.ref }};
             ./deploy.sh ${{ github.event.pull_request.head.ref }}
 
   notify:

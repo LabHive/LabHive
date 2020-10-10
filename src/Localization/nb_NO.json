@@ -1,0 +1,167 @@
+{
+    "profile": {
+        "request": {
+            "title": "Aktuelle Forespørsel"
+        },
+        "offer": {
+            "equipmentDescription": "Fler detaljert informasjon om enhetene/materialene som du kan tilby. Link til tilbydd gjenstand på produsents nettside, bestillingsnummer, beskrivelse, etc.",
+            "equipment": "Tilbydd @:general.equipment",
+            "adviceDescription": "Fler detaljert informasjon om arealene i hvilke du kan tilby hjelp.",
+            "advice": "Tilbydd @:general.advice",
+            "subTitle": "Hvis du kan tilby ressurser, du kan sette inn dem der. Du kan altid endre dette senere i profilen din. Klikk på \"Neste\" nedover om du har ingenting å dele i momenten.",
+            "title": "Aktuelle tilbud"
+        },
+        "updated": "Profil opdatert suksessfull",
+        "title": "Profil"
+    },
+    "revokeConsent": {
+        "title": "Oppheve tillatelse",
+        "loginRequired": "Vennligst logg in og åpen lenken igjen.",
+        "dataProcessing": "Sender min personlig data til registrert diagnostisk og forskning laboratorier.",
+        "mail": "Få ingen nyheter mer via e-post."
+    },
+    "login": {
+        "emptyField": "Vennligst fyll ut alle feltene og prøv igjen!",
+        "adminTitle": "Administrator-Log-In",
+        "title": "Log-In"
+    },
+    "forgotPassword": {
+        "pleaseEnterYourEmailMessage": "Vennligst angi din e-postadress.",
+        "successMessage": "Om e-postadressen er registrert, skal du få en e-post fra oss snart.",
+        "title": "Glemmet passord"
+    },
+    "searchDetails": {
+        "notAvailableAnymore_warning": "<p>Denne aksjonen ekskluderer personen fra søknadsresultater. Vi skal da sende dem en e-post som informerer dem at opsjonen har vart aktivert for profilen deres.</p> <p>Innom 3 dager kan de bekrefte eller bestride dette. Om ingen handling skjer, etter denne tiden, profilen vil ikke lengre være funnet i søknaden.</p><p>Tusen takk for hjelpen!</p><p>Vil du fortsette?</p>",
+        "notAvailableAnymore": "Ikke mer tilgjengelig",
+        "offers": {
+            "equipment": {
+                "title": "Tilbyr @:genera.equipment"
+            },
+            "advice": {
+                "title": "Tilbyr råd"
+            }
+        },
+        "lookingFor": {
+            "advice": {
+                "title": "råd behøves"
+            },
+            "skills": {
+                "title": "Kvalifiserte frivillige behøves"
+            },
+            "equipment": {
+                "title": "@:general.equipment behöves"
+            }
+        },
+        "contactDetails": {
+            "not_available": "Kontaktdetaljer er bare tilgjengelig til registrered diagnostisk eller laboratorium brukere.",
+            "title": "Kontaktdetaljer"
+        },
+        "other": {
+            "title": "Andre informasjon"
+        }
+    },
+    "resetPassword": {
+        "successMessage": "Passord oppdatert",
+        "title": "Tilbakestill passord"
+    },
+    "passwordStrength": {
+        "4Password": "Ditt passord er veldig sikkert",
+        "3Password": "Tilstrekkeligt sikkert, med mer tegn skal passordet dit bli ennå sikrere",
+        "2Password": "Vennligst også tilsett tall og spesialtegn",
+        "1Password": "For kort, vennligst også tilsett tall og spesialtegn",
+        "0Password": "for kort"
+    },
+    "changePassword": {
+        "currentPassword": "aktuelt @:general.password",
+        "successMessage": "Passord opdatert",
+        "title": "Endre @:general.password"
+    },
+    "admin": {
+        "title": "Brukerforvaltning"
+    },
+    "activation": {
+        "successMessage": "Aktivering lykket",
+        "title": "Aktiver konto"
+    },
+    "press": {
+        "btn_download": "Last ned Pressekit",
+        "subtitle": "Kort sammenfatning, pressefrigivelse og material",
+        "title": "Mer informasjon om LabHive"
+    },
+    "landingpage": {
+        "coverage": {
+            "title": "Testkapasitet og støtte",
+            "testsPerWeek": "Tester per uka i Tyskland",
+            "subTitle": "Stigende testkapasitet er nødvendig i kampen mot SARS-CoV-2, men mange steder mangler reagens, materialer, utstyr og personell. Vår platform fremmer utviklingen av et robust diagnostiskt nettverk og letter effektiv tilgang til ressurser for diagnostiske laboratorier. Utbre testen, slå viruset!",
+            "referenceRegistered": "Registrered på vår platform",
+            "update_date": "22 Juli 2020",
+            "testNumber": "531571",
+            "link": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Situationsberichte/2020-07-22-en.pdf?__blob=publicationFile",
+            "referenceRKI": "Daglig situasjonsrapport om COVID-18 fra RKI, {date}"
+        },
+        "details": {
+            "volunteers": {
+                "button": "Bli med nå",
+                "text": "Tilby dine ferdigheter til verifiserede laboratorier, enten som forsker eller teknisk assistent. Dette tillater diagnoskiske laboratorier å finne og kontaktere deg hvis nødvendigt.",
+                "title": "Kvalifiserede frivilliger",
+                "subtitle": "Hjelp til med dine ferdigheter"
+            },
+            "researchLabs": {
+                "button": "List tilgjengelige ressurser",
+                "text": "List tilgjengelige ressurser som enheter, materialer, og kunnskap i vår databenk. Diagnostiske laboratorier kan bruke søkverketøyet for å finne ressurser og kontaktere de tilbydde institusjonene.",
+                "title": "Forskningslaboratorier",
+                "subtitle": "Tilby tilgjengelige ressurser"
+            },
+            "diagnosticCenters": {
+                "button": "Søk etter ressurser",
+                "text": "Søk igjennom vår kurerede databenk for enheter, materialer, og kunnskap tilbydd av andre institutter eller tilby din/deres egene ressurser eller råd. Kvalifiserede frivilliger kan bli filtert via ferdigheter og kontaktert for å hjelpe med prøvning.",
+                "title": "Diagnostiske laboratorier",
+                "subtitle": "Søk etter kildetekster"
+            },
+            "text": "Stigende test kapasitet er avgjørende i kampen mot SARS.CoV-2, men mange steder mangler reagens, utstyr og personell. LabHive letter effisient tilgang til ressurser for diagnostiske laboratorier.",
+            "title": "Hvordan LabHive funker"
+        },
+        "top": {
+            "mainTitle": "Den digitale platformen for et robust diagnostiskt nettverk",
+            "subTitle": "Bli med for å finne og dele ressurser for fler SARS-CoV-2-tester",
+            "sponsoredBy": "Støttes av",
+            "selected": "Velgt for",
+            "collaboration": "I samarbeid med",
+            "btn_join": "Bli med nå"
+        }
+    },
+    "general": {
+        "btn_search": "Søk etter Ressurser",
+        "advice": "Tippsen/Hvordan å gjøre",
+        "invalidRequest": "Ugyldig forespørsel",
+        "other": "Andre",
+        "equipment": "Enheter/Materialer",
+        "skills": "Ferdigheter",
+        "attention": "Observer",
+        "back": "Tilbake",
+        "next": "Neste",
+        "cancel": "Avbryt",
+        "delete": "Slette",
+        "email": "E-post",
+        "emailAddress": "E-postadress",
+        "submit": "Sende",
+        "no": "Nei",
+        "yes": "Ja",
+        "login_verb": "Logge inn",
+        "login": "Logg-Innen",
+        "signUp": "Registrere",
+        "language": "Språk",
+        "password": "Passord",
+        "required": "Nødvendig",
+        "executedSuccessfully": "Kjørt suksessfult",
+        "savedSuccessfully": "Lagret suksessfult",
+        "save": "Lagre",
+        "noResults": "Ingen resultat er funnet",
+        "to_login": "Gå till Log-Innen",
+        "loading": "Vennligst vent...",
+        "volunteer": "Frivilliger | Frivilligere",
+        "rLab": "Forskningslaboratorium",
+        "qVolunteer": "Kvalifisered Frivillige",
+        "dCenter": "Diagnostiskt laboratorium | Diagnoskiske laboratorier"
+    }
+}
