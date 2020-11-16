@@ -1,7 +1,7 @@
 import express from "express";
 import { Validator as v } from "../../lib/validation";
 import { getModelForRole, getUserById, getUserOrAdmin, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
-import { UserCommon, UserVolunteer } from "../database/models";
+import { UserCommon, UserVolunteer, TestCapacity } from "../database/models";
 import { IUserCommon } from '../database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
@@ -214,6 +214,8 @@ class Profile {
         if (!model) {
             return utils.badRequest(res)
         }
+
+        TestCapacity.deleteMany({user: token.sub}).exec()
 
         model.deleteOne({ _id: token.sub }).exec().then((doc) => {
             if (!doc)

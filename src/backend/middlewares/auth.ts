@@ -17,7 +17,7 @@ export async function authMiddleware(req: express.Request, res: express.Response
     let decoded_token = utils.getUnverifiedDecodedJWT(req);
     let user = await getUserOrAdmin({ _id: decoded_token.sub }, true);
     if (!user) {
-        return next(new UnauthorizedError)
+        return next(new UnauthorizedError())
     }
     
     next();

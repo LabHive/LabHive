@@ -1,14 +1,3 @@
-## How to build
-See `labshare-client/README.md`.
-
-## Repo organization
-
-* `/API_MOCK` API Documentation is available
-* `/labshare-client` Heart of the application
-* `/labshare-client/src` Root folder of the VueJS Frontend
-* `/labshare-client/src/backend` Backend source code
-
-
 # LabHive
 Increasing test capacity is crucial in the fight against SARS-CoV-2, but many places lack reagents, equipment, and personnel.
 
@@ -31,3 +20,28 @@ What we are currently looking for are:
 Join us on our way to align efforts for more SARS-CoV-2 tests.
 
 _Spread the Test, Beat the Virus!_
+
+
+## Setup dev environment
+* **Requirements:**
+    * Docker
+    * NodeJS, npm
+
+1. Run `./SetupDevEnv.sh`
+1. Start the database
+    ```bash
+    docker-compose -f docker-compose-mongodb.yml up -d
+    ```
+1. Start the backend
+    ```bash
+    npm run backend
+    ```
+1. Start the frontend
+    ```bash
+    npm run serve
+    ```
+1. Following endpoints should be available now:
+    * Working application [http://localhost:8080](http://localhost:8080)
+    * Backend (RestAPI) [http://localhost:5000](http://localhost:5000)
+    * MongoDB [mongodb://localhost:27017](http://localhost:27017)
+    * Mongo Express [http://localhost:8081](http://localhost:8081)

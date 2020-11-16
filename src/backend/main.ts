@@ -11,6 +11,7 @@ import { changePassword } from './endpoints/changePassword'
 import { forgotPassword } from './endpoints/forgotPassword'
 import { language } from './endpoints/language'
 import { login } from './endpoints/login'
+import TestCapacity from './endpoints/TestCapacity'
 import Profile from './endpoints/Profile'
 import { registration } from './endpoints/registration'
 import { resetPassword } from './endpoints/resetPassword'
@@ -104,6 +105,9 @@ router.get("/profile", Profile.get)
     .post("/profile", Profile.post)
     .post("/profile/:id/notAvailableNotice", Profile.notAvailableNotice)
     .delete("/profile", Profile.delete)
+router.get("/testCapacity", TestCapacity.get)
+router.get("/testCapacity/query", TestCapacity.query)
+router.post("/testCapacity", TestCapacity.update)
 
 
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

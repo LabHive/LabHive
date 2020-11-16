@@ -6,17 +6,19 @@ import { registration_labResearch } from "./registration_labResearch";
 import { registration_admin } from "./registration_admin";
 import { password_forgotton } from "./password_forgotton";
 import { password_reset } from "./password_reset";
+import { testCapacity } from "./testCapacity";
 import { login } from "./login";
 import { UserRoles } from '../../lib/userRoles';
 
 
-export let schemas = {
+export const schemas = {
     registration_volunteer,
     registration_labDiag,
     registration_labResearch,
     registration_admin,
     password_forgotton,
     password_reset,
+    testCapacity,
     login
 }
 
@@ -25,7 +27,8 @@ let validator = new jsonschema.Validator()
 class JsonSchema {
     
     public validate(obj: any, schema: Schema) {
-        let result = validator.validate(obj, schema)
+        console.log(obj)
+        let result = validator.validate(obj, schema, {allowUnknownAttributes: false})
         if (!result.valid)
             console.log(result.toString())
         return result.valid

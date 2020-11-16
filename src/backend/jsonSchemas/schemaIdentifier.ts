@@ -9,7 +9,8 @@ export enum Schemas {
     registration_labDiag = "/registration_labDiag",
     registration_labResearch = "/registration_labResearch",
     registration_admin = "/registration_admin",
-    login = "/login"
+    login = "/login",
+    testCapcity = "/testCapacity"
 };
 
 export type SchemaIdenifier = keyof typeof Schemas

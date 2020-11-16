@@ -20,6 +20,7 @@
         "noImplicitThis": true
     },
     "include": [
-        "src/**/*", "migrate-mongo-config.js"
+        "src/**/*.ts",
+        "migrate-mongo-config.js"
     ]
 }
