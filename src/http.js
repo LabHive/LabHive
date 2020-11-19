@@ -26,7 +26,7 @@ function getToken() {
   catch {
     console.log("invalid token")
   }
-  
+
   localStorage.removeItem('authToken')
   return null;
 }

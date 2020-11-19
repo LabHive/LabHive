@@ -11,6 +11,7 @@ import Search from './views/Search'
 import Details from './views/Details'
 import UeberUns from './views/UeberUns'
 import Profile from './views/Profile'
+import Dashboard from './views/Dashboard'
 import ChangePassword from './views/ChangePassword'
 import Imprint from './views/Imprint'
 import PrivacyPolicy from './views/PrivacyPolicy'
@@ -47,15 +48,16 @@ const routes = [
   { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   { path: '/updateAvailability', component: UpdateAvailability },
-  
+
   { path: '/profile', component: Profile, meta: { auth: true } },
+  { path: '/dashboard', component: Dashboard, meta: { auth: true } },
   { path: '/revokeConsent', component: RevokeConsent, meta: { auth: true } },
   { path: '/admin', component: Admin, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
   { path: '/offer', component: Offer, meta: { auth: true } },
   { path: '/change-password', component: ChangePassword, meta: { auth: true } },
 ];
-const router = new VueRouter({ 
+const router = new VueRouter({
   routes: routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
