@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="map">
-      <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" >
+      <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" @zoom="zooms" >
         <MglNavigationControl position="top-right" />
         <MglGeojsonLayer
           v-if="geoJSON"
@@ -65,47 +65,7 @@ export default {
         show: true,
         coordinates: [11,51]
       },
-      totalCapacity: {
-        'id': "totalCapacity",
-        'type': 'circle',
-        'paint': {
-          "circle-radius": [
-            '/',
-            ['get','totalCapacity'],
-            250
-          ],
-          "circle-opacity": 0,
-          "circle-stroke-opacity": .5,
-          "circle-stroke-width": 1,
-          "circle-stroke-color": {
-            property: 'relativeCapacity',
-            stops: [
-                [.5, '#5EFAE7'],
-                [.9, '#FF7020']
-              ]
-            },
-        }
-      },
-      usedCapacity: {
-        'id': "usedCapacity",
-        'type': 'circle',
-        'paint': {
-          "circle-radius": [
-            '/',
-            ['get','usedCapacity'],
-            250
-          ],
-          "circle-opacity": .5,
-          "circle-color": {
-            property: 'relativeCapacity',
-            stops: [
-                [.5, '#5EFAE7'],
-                [.9, '#FF7020']
-              ]
-            },
-        }
-      },
-
+      circleSize: 250
     };
   },
 
@@ -142,7 +102,52 @@ export default {
       }
       console.log(geoJSON)
       return geoJSON
-    }
+    },
+
+    totalCapacity() {
+      return {
+        'id': "totalCapacity",
+        'type': 'circle',
+        'paint': {
+          "circle-radius": [
+            '/',
+            ['get','totalCapacity'],
+            this.circleSize
+          ],
+          "circle-opacity": 0,
+          "circle-stroke-opacity": .5,
+          "circle-stroke-width": 1,
+          "circle-stroke-color": {
+            property: 'relativeCapacity',
+            stops: [
+                [.5, '#5EFAE7'],
+                [.9, '#FF7020']
+              ]
+            },
+        }
+      }
+    },
+    usedCapacity() {
+      return {
+        'id': "usedCapacity",
+        'type': 'circle',
+        'paint': {
+          "circle-radius": [
+            '/',
+            ['get','usedCapacity'],
+            this.circleSize
+          ],
+          "circle-opacity": .5,
+          "circle-color": {
+            property: 'relativeCapacity',
+            stops: [
+                [.5, '#5EFAE7'],
+                [.9, '#FF7020']
+              ]
+            },
+        }
+      }
+    },
   },
 
 
@@ -160,6 +165,14 @@ export default {
         );
       });
     },
+
+    zooms(m) {
+      this.circleSize = 8000 / m.map.transform.scale
+      if (this.circleSize < 30) {
+        this.circleSize = 30;
+      }
+      console.log(m.map.transform.scale, this.circleSize)
+    }
   }
 };
 </script>
