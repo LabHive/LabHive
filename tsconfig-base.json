@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "es6",
+        "baseUrl": "./src",
+        "rootDir": "src",
+        "paths": {
+            "*": [
+                "*",
+                "../node_modules/*",
+                "./types/*",
+            ]
+        },
+
+        "strict": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "composite": true,
+
+        "outDir": "./dist/backend/"
+    },
+}

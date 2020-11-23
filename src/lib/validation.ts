@@ -1,8 +1,7 @@
-import { ValidationError } from '../backend/errors';
+import { ValidationError } from './errors';
 import { labSkills, equipment, advices, qualification } from "./selectLists";
-import './optional'
+import { Optional } from "./optional"
 import { UserRoles } from './userRoles';
-import { IUserCommon } from '../backend/database/schemas/IUserCommon';
 
 export class ValidationResult {
     valid: boolean;

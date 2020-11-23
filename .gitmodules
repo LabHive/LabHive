@@ -1,3 +1,3 @@
-[submodule "src/Localization"]
-	path = src/Localization
+[submodule "src/frontend/Localization"]
+	path = src/frontend/Localization
 	url = https://github.com/LabHive/Localization.git

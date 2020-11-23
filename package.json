@@ -4,10 +4,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "serve": "tsc -p tsconfig.browser.json && vue-cli-service serve",
-    "build": "tsc && tsc -p tsconfig.browser.json && vue-cli-service build",
+    "serve": "tsc -b src/lib/tsconfig.browser.json && vue-cli-service serve",
+    "build": "tsc -b && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "backend": "tsc && node dist-backend/backend/main.js",
+    "backend": "tsc -b && NODE_PATH=dist/backend node dist/backend/backend/rest_api/main.js",
     "migrations": "migrate-mongo"
   },
   "dependencies": {

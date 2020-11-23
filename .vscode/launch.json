@@ -4,7 +4,6 @@
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "node",
             "request": "launch",
@@ -12,12 +11,14 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/dist-backend/backend/main.js",
+            "program": "${workspaceFolder}/src/backend/rest_api/main.ts",
+            "preLaunchTask": "Compile TSC",
             "cwd": "${workspaceFolder}/",
             "outFiles": [
-                "${workspaceFolder}/dist-backend/**/*.js"
+                "${workspaceFolder}/dist/backend/**/*.js"
             ],
             "env": {
+                "NODE_PATH": "dist/backend/",
                 "BASE_URL": "http://localhost:8080",
                 "STAGING": "1",
             },
@@ -29,12 +30,13 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/dist-backend/backend/main.js",
+            "program": "${workspaceFolder}/src/backend/rest_api/main.ts",
             "cwd": "${workspaceFolder}/",
             "outFiles": [
-                "${workspaceFolder}/dist-backend/**/*.js"
+                "${workspaceFolder}/dist/backend/**/*.js"
             ],
             "env": {
+                "NODE_PATH": "dist/backend/",
                 "BASE_URL": "http://localhost:8080",
                 "STAGING": "1",
                 "DISABLE_DISCORD_BOT": "0",
@@ -47,15 +49,16 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/dist-backend/backend/main.js",
+            "program": "${workspaceFolder}/src/backend/rest_api/main.ts",
             "cwd": "${workspaceFolder}/",
             "env": {
+                "NODE_PATH": "dist/backend/",
                 "BASE_URL": "http://localhost:8080",
                 "STAGING": "1",
                 "ENABLE_MAIL": "1",
             },
             "outFiles": [
-                "${workspaceFolder}/dist-backend/**/*.js"
+                "${workspaceFolder}/dist/backend/**/*.js"
             ]
         }
     ]

@@ -1,6 +1,6 @@
-import { UserLabDiag, TestCapacity } from '../backend/database/models'
-import { ready } from '../backend/database/database'
-import { GlobalEvent } from '../backend/constants'
+import { UserLabDiag, TestCapacity } from '../backend/lib/database/models'
+import { ready } from '../backend/lib/database/database'
+import { GlobalEvent } from '../backend/lib/constants'
 import { exit } from 'process'
 
 

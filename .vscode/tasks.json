@@ -10,26 +10,20 @@
                 "$tsc"
             ],
             "label": "Compile TSC",
-            "group": "build"
-        },
-        {
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "option": "watch",
-            "runOptions": {
-                "runOn": "folderOpen",
-                "instanceLimit": 1
-            },
-            "problemMatcher": [
-                "$tsc-watch"
-            ],
             "group": "build",
-            "label": "Watch TSC"
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": true
+            },
         },
         {
             "type": "shell",
             "command": "${workspaceFolder}/node_modules/.bin/tsc",
-            "args": ["-w", "--outDir", "${workspaceFolder}/dist-backend"],
+            "args": ["-w"],
             "runOptions": {
                 "runOn": "folderOpen",
                 "instanceLimit": 1
@@ -38,7 +32,7 @@
                 "$tsc-watch"
             ],
             "group": "build",
-            "label": "Watch TSC - test",
+            "label": "Watch TSC",
             "presentation": {
                 "echo": true,
                 "reveal": "silent",
