@@ -27,13 +27,12 @@ module.exports = {
       return def
     })
 
-    // config
-    //   .plugin('html')
-    //   .tap((args) => {
-    //     console.log(args)
-    //     args[0].index = resolveEnv("STAGING") ? "noindex" : "index";
-    //     return args;
-    //   });
+    config
+      .plugin('html')
+      .tap((args) => {
+        args[0].index = resolveEnv("STAGING") ? "noindex" : "index";
+        return args;
+      });
   },
   configureWebpack(conf) {
     
