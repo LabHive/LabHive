@@ -2,43 +2,7 @@ import { readFileSync, existsSync } from 'fs'
 import { FILE_PATH } from '../../lib/constants'
 import { Options } from '../../lib/options'
 import { Optional } from 'lib/optional'
-
-class EnvVar<T> {
-    private _isSet: boolean = false
-    value: T
-
-    constructor(evar: Optional<string>, defaultValue: T) {
-        this.value = defaultValue
-
-        if (evar && typeof defaultValue === 'string') {
-            this._isSet = true
-            this.value = <T><unknown>evar
-        }
-        else if (evar && typeof defaultValue === 'boolean') {
-            this._isSet = true
-            this.value = <T><unknown>(evar === '1' || evar.toLowerCase() === 'true')
-        }
-        else if (evar && typeof defaultValue === 'number') {
-            this._isSet = true
-            try {
-                this.value = <T><unknown>parseInt(evar)
-            }
-            catch(err) {
-                console.error("environment variable is not a number!")
-                process.exit(1)
-            }
-        }
-    }
-
-    public get isSet(): boolean {
-        return this._isSet
-    }
-
-    public setIfNotSet(value: T) {
-        if (!this._isSet)
-            this.value = value
-    }
-}
+import { EnvVar } from "backend/lib/";
 
 class RestOptions extends Options {
     private _BASE_URL: EnvVar<string>
@@ -116,10 +80,6 @@ class RestOptions extends Options {
 
     public get SERVE_STATIC(): boolean {
         return this._SERVE_STATIC.value
-    }
-
-    public jsonify() {
-        return JSON.stringify(this, null, 4)
     }
 }
 
