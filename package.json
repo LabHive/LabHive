@@ -6,8 +6,9 @@
   "scripts": {
     "serve": "tsc -b src/lib/tsconfig.browser.json && vue-cli-service serve",
     "build": "tsc -b && vue-cli-service build",
+    "generateTestdata": "tsc -b && STAGING=1 NODE_PATH=dist/backend node dist/backend/backend/rest_api/tmp/sampleTestCapacityData.js",
     "lint": "vue-cli-service lint",
-    "backend": "tsc -b && NODE_PATH=dist/backend node dist/backend/backend/rest_api/main.js",
+    "backend": "tsc -b && STAGING=1 NODE_PATH=dist/backend node dist/backend/backend/rest_api/main.js",
     "migrations": "migrate-mongo"
   },
   "dependencies": {

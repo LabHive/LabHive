@@ -1,6 +1,5 @@
-import { UserLabDiag, TestCapacity } from '../backend/lib/database/models'
-import { ready } from '../backend/lib/database/database'
-import { GlobalEvent } from '../backend/lib/constants'
+import { UserLabDiag, TestCapacity } from 'backend/lib/database/models'
+import { connect } from 'backend/lib/database/database'
 import { exit } from 'process'
 
 
@@ -10,7 +9,12 @@ async function main() {
 
   const promises = []
   for (let userId of userIds) {
-    for (let i = 7; i >= 0; i--) {
+    const old = await TestCapacity.find({user: userId}).exec()
+    for (let o of old) {
+      await o.remove()
+    }
+
+    for (let i = 8; i >= 0; i--) {
       const date = new Date()
       date.setDate(date.getDate() - i)
       
@@ -33,10 +37,7 @@ async function main() {
   })
 }
 
-if (ready) {
+
+connect().then(() => {
   main()
-} else {
-  GlobalEvent.once('ready', () => {
-    main()
-  })
-}
+})
