@@ -8,11 +8,11 @@
       </p>
     </div>-->
     <div class="box">
-      <strong>Eigene Kapazität und Auslastung</strong>
+      <h4>Eigene Kapazität und Auslastung</h4>
       <hr>
       <span v-if="error">{{error}}</span>
       <div ref="svgContainer" class="svgContainer">
-        <svg v-if="style" :width="style.width" :height="style.height">
+        <svg v-if="style" :width="style.width" :height="style.height + 50">
           <g v-if="path">
             <path :d="path.totalCapacity" fill="#177867" opacity="1" stroke="none" />
             <path :d="path.usedCapacity" stroke="white" stroke-dasharray="4 2" fill="none" />
@@ -25,11 +25,12 @@
             <g class="yAxis"></g>
           </g>
           <g class="legend">
-            <rect width="10" height="10" :x="0" fill="#177867" y="0"/>
-            <text font-size="7pt" x="15" y="8">Gesamtkapazität</text>
+            <rect width="10" height="10" :x="0" fill="#177867" y="10"/>
+            <text font-size="15pt" x="19" y="22">Gesamtkapazität</text>
 
-            <circle r="5" fill="white" stroke="#177867" cx="5" cy="25" />
-            <text font-size="7pt" x="15" y="28">durchgeführte Tests</text>
+
+            <circle r="5" fill="white" stroke="#177867" cx="5" cy="47" />
+            <text font-size="15pt" x="19" y="54">Durchgeführte Tests</text>
 
           </g>
         </svg>
@@ -47,7 +48,7 @@ export default {
     //set measures and scales that can be initialized without actual data
     this.style = {
       width: this.$refs.svgContainer.clientWidth,
-      height: this.$refs.svgContainer.clientHeight,
+      height: this.$refs.svgContainer.clientHeight - 20,
       margin: {top: 20, right: 0, bottom: 80, left: 10}
     }
 
@@ -66,11 +67,12 @@ export default {
       xAxis.selectAll("text")
       .attr("y", 0)
       .attr("x", -7)
-      .attr("dy", ".35em")
+      .attr("dy", "13px")
       .attr("transform", "rotate(-70)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .style("font-size", "12px");
 
-      d3.select(".legend").attr("transform","translate("+this.style.margin.left+","+(this.style.height-40)+")")
+      d3.select(".legend").attr("transform","translate("+this.style.margin.left+","+(this.style.height - 40)+")")
 
 
     this.scale = {x:x, y:y}

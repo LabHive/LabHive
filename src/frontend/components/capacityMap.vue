@@ -187,9 +187,9 @@ h1 {
 }
 .map {
   width: 100%;
-  height: 400px;
+  height: 600px;
 }
 img.legend {
-  width: 70%;
+  height: 150px;
 }
 </style>

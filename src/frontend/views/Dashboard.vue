@@ -12,9 +12,15 @@
         {{ error }}
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
           <HistoryChart />
         </div>
+        <div class="col-1">
+        </div>
+      </div>
+      <div class="row" style="margin-top: 100px">
         <div class="col">
           <CapacityMap />
         </div>
