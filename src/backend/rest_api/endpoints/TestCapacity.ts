@@ -6,6 +6,7 @@ import JsonSchema, { schemas } from '../jsonSchemas/JsonSchema';
 import { OPT } from '../config/options';
 import utils from '../utils';
 import { Optional } from 'lib/optional'
+import { getFilterForPublicUsers } from 'backend/lib';
 
 interface UpdatePayload {
   totalCapacity: number,
@@ -102,11 +103,11 @@ class TestCapacityEndpoint {
       location: 1,
       organization: 1,
       slug: 1,
+      contact: 1,
       _id: 0,
       __t: 0
-    }, UserLabDiag, {
-      "consent.publicSearch": true  
-    }).select({_id: 0}).lean().exec()).filter(i => i.user != null)
+    }, UserLabDiag, getFilterForPublicUsers())
+      .select({_id: 0}).lean().exec()).filter(i => i.user != null)
 
     resp.send({
       success: true,
