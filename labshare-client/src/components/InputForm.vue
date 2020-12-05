@@ -53,11 +53,11 @@ export default {
   computed: {
     model: {
       get() {
-        this.validate(this.value)
         return this.value
       },
       set(newValue) {
         this.notEmpty = !!newValue;
+        this.validate(newValue)
         this.$emit("input", newValue);
       }
     }
@@ -120,6 +120,7 @@ export default {
     },
     setup() {
       if (this.model !== "" && this.model != undefined) {
+        this.notEmpty = true
         this.validate(this.model)
         return
       }
