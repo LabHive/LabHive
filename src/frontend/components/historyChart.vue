@@ -1,24 +1,22 @@
 <template>
   <div>
-    <!--<div v-if="tooltip.active" class="visTooltip">
-      <p>
-        Datum: {{tooltip.content.dateString}}<br>
-        Durchgeführte Tests: {{tooltip.content.usedCapacity}}<br>
-        Gesamtkapazität: {{tooltip.content.totalCapacity}}
-      </p>
-    </div>-->
     <div class="box">
       <h4>Eigene Kapazität und Auslastung</h4>
       <hr>
       <span v-if="error">{{error}}</span>
       <div ref="svgContainer" class="svgContainer">
-        <svg v-if="style" :width="style.width" :height="style.height + 50">
+        <svg v-if="style" :width="style.width" :height="style.height+50">
           <g v-if="path">
-            <path :d="path.totalCapacity" fill="#177867" opacity="1" stroke="none" />
-            <path :d="path.usedCapacity" stroke="white" stroke-dasharray="4 2" fill="none" />
+            <path :d="path.totalCapacity" fill="#177867" opacity=".4" stroke="none" />
+            <path :d="path.usedCapacity" stroke="white" fill="none" />
           </g>
           <g v-if="circles">
-            <circle v-for="(circle, i) in circles" :key="i" r="5" fill="white" stroke="#177867" @mouseover="toggleToolTip(true, $event, circle)" :cx="circle.x" :cy="circle.y" />
+            <circle v-for="(circle, i) in circles" :key="i" r="5" fill="white" stroke="#177867" @mouseover="toggleToolTip(circle)" @mouseout="toggleToolTip(false)" :cx="circle.x" :cy="circle.y" />
+          </g>
+          <g v-if="tooltip.active">
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">Kapazität: {{tooltip.content.totalCapacity}}</text>
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.used.y+2">Durchgeführt: {{tooltip.content.usedCapacity}}</text>
+            <line :y2="tooltip.total.y" :y1="style.height-style.margin.top-style.margin.bottom" :x1="tooltip.x" :x2="tooltip.x" stroke="black" stroke-dasharray="2 4"  />
           </g>
           <g class="axes">
             <g class="xAxis"></g>
@@ -26,12 +24,10 @@
           </g>
           <g class="legend">
             <rect width="10" height="10" :x="0" fill="#177867" y="10"/>
-            <text font-size="15pt" x="19" y="22">Gesamtkapazität</text>
+            <text font-size="10pt" fill="#282e40" x="16" y="19">Gesamtkapazität</text>
 
-
-            <circle r="5" fill="white" stroke="#177867" cx="5" cy="47" />
-            <text font-size="15pt" x="19" y="54">Durchgeführte Tests</text>
-
+            <circle r="5" fill="white" stroke="#177867" cx="5" cy="40" />
+            <text font-size="10pt"  fill="#282e40" x="16" y="43">Durchgeführte Tests</text>
           </g>
         </svg>
       </div>
@@ -56,7 +52,7 @@ export default {
     let y = d3.scaleLinear().range([this.style.height-this.style.margin.top-this.style.margin.bottom,this.style.margin.top])
     let x = d3.scaleUtc()
     .range([this.style.margin.left,this.style.width-this.style.margin.left-this.style.margin.right])
-    .domain([this.priorDate,this.today])
+    .domain([this.priorDate.setHours(0,0,0,0),this.today.setHours(0,0,0,0)])
 
     let xAxis = d3.select(".axes .xAxis")
       .attr("transform","translate(0,"+(this.style.height-this.style.margin.bottom-this.style.margin.top)+")")
@@ -84,7 +80,7 @@ export default {
 
   data: function() {
     return {
-      displayLastDays: 7, //How many days back do we want to display data?
+      displayLastDays: 8, //How many days back do we want to display data?
       today: new Date(),
       error: null,
       history: [], //all data storage not filtered by date
@@ -111,27 +107,23 @@ export default {
 
     circles() { //filter by this.config.displayLastDays
       if(!this.recentHistory) return null
-      let formatTime = d3.timeFormat("%d.%m.%Y");
       let circles = this.recentHistory.map(day => {
-        day.x = this.scale.x(day.date)
+        day.x = this.scale.x(day.date.setHours(0,0,0,0))
         day.y = this.scale.y(day.usedCapacity)
-        day.dateString = formatTime(day.date)
         return day
       })
-      console.log(circles )
       return circles
     },
 
     path() { //compute svg paths for area and line
       if(!this.recentHistory) return null
       let line = d3.line()
-        //.curve(d3.curveBasis)
-        .x(d => this.scale.x(d.date))
+        .x(d => this.scale.x(d.date.setHours(0,0,0,0)))
         .y(d => this.scale.y(d.value))
 
       let area = d3.area()
-        .curve(d3.curveBasis)
-        .x(d => this.scale.x(d.date))
+        //.curve(d3.curveBasis)
+        .x(d => this.scale.x(d.date.setHours(0,0,0,0)))
         .y0(() => this.scale.y(0))
         .y1(d => this.scale.y(d.value))
 
@@ -176,11 +168,17 @@ export default {
       return data
     },
 
-    toggleToolTip(show, event, circle) {
-      if(show) {
+    toggleToolTip(circle) {
+      if(circle) {
         this.tooltip.active = true
-        this.tooltip.content = circle
 
+        this.tooltip.x = this.scale.x(circle.date.setHours(0,0,0,0))
+        this.tooltip.total = {y: this.scale.y(circle.totalCapacity)}
+        this.tooltip.used = {y: this.scale.y(circle.usedCapacity)}
+        this.tooltip.position = ((this.style.width - this.tooltip.x) < 150) ? {anchor: "end", margin: -5} : {anchor: "start", margin: 5}
+
+
+        this.tooltip.content = circle
       } else {
         this.tooltip.active = false
       }
@@ -196,11 +194,7 @@ export default {
   padding: 20px;
 }
 
-.visTooltip {
-  position: absolute;
-}
-
 .svgContainer {
-  height: 400px;
+  height: 300px;
 }
 </style>

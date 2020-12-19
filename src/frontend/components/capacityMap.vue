@@ -100,7 +100,6 @@ export default {
           id: "labs"
         }
       }
-      console.log(geoJSON)
       return geoJSON
     },
 
