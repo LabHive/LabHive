@@ -1,28 +1,29 @@
 <template>
   <div>
     <div class="map">
-      <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" @zoom="zooms" >
+      <MglMap  v-if="geoJSON" :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" @zoom="zooms" >
         <MglNavigationControl position="top-right" />
         <MglGeojsonLayer
-          v-if="geoJSON"
           :sourceId="geoJSON.data.id"
           :source="geoJSON"
           layerId="totalCapacity"
           :layer="totalCapacity"
         />
         <MglGeojsonLayer
-          v-if="geoJSON"
           :sourceId="geoJSON.data.id"
           :source="geoJSON"
           layerId="usedCapacity"
           :layer="usedCapacity"
         />
-        <MglPopup :coordinates="popup.coordinates" anchor="top">
-          <div>
-
-          </div>
-          <span>Hello world!</span>
-        </MglPopup>
+        <MglMarker v-for="(feature, i) in geoJSON.data.features" :key="i" :coordinates="feature.geometry.coordinates" @click="click(i)">
+          <svg width="2" height="2" slot="marker"><circle r="2" cx="1" cy="1" fill="white" /></svg>
+          <MglPopup>
+              <div>
+                <p><strong>{{feature.properties.organization}}</strong></p>
+                <p>Kontakt: <a :href="'mailto:'+feature.properties.email">{{feature.properties.contact}}</a></p>
+              </div>
+          </MglPopup>
+        </MglMarker>
       </MglMap>
     </div>
     <img
@@ -38,7 +39,7 @@
 //import * as turf from 'turf'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Mapbox from "mapbox-gl";
-import { MglMap, MglPopup, MglNavigationControl, MglGeojsonLayer } from "vue-mapbox";
+import { MglMap, MglPopup, MglNavigationControl, MglMarker, MglGeojsonLayer } from "vue-mapbox";
 
 
 
@@ -47,6 +48,7 @@ export default {
     MglMap,
     MglNavigationControl,
     MglGeojsonLayer,
+    MglMarker,
     MglPopup
   },
 
@@ -63,7 +65,7 @@ export default {
       apiResponse: null,
       popup: {
         show: true,
-        coordinates: [11,51]
+        coordinates: [52,11]
       },
       circleSize: 250
     };
@@ -87,6 +89,9 @@ export default {
             totalCapacity: lab.totalCapacity,
             usedCapacity: lab.usedCapacity,
             relativeCapacity:  lab.usedCapacity / lab.totalCapacity,
+            organization: lab.user.organization,
+            contact: lab.user.contact.firstname  + " " + lab.user.contact.lastname,
+            email: lab.user.contact.email
 
           },
           geometry: lab.user.location
@@ -149,7 +154,6 @@ export default {
     },
   },
 
-
   methods: {
     getCapacity() {
       return new Promise((res, rej) => {
@@ -165,12 +169,17 @@ export default {
       });
     },
 
+    click() {
+      console.log()
+    },
+
+
     zooms(m) {
       this.circleSize = 8000 / m.map.transform.scale
       if (this.circleSize < 30) {
         this.circleSize = 30;
       }
-      console.log(m.map.transform.scale, this.circleSize)
+      //console.log(m.map.transform.scale, this.circleSize)
     }
   }
 };
