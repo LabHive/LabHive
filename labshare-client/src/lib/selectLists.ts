@@ -25,6 +25,7 @@ export let equipment = [
     { value: "pcrPlates", text: "PCR Platten" },
     { value: "rnaExtractionDevice", text: "RNA Extraction Device" },
     { value: "rnaExtractionKit", text: "RNA Extraction Kit" },
+    { value: "sequencingCapacity", text: "Virus sequencing capacity" }
 ]
 
 export let advices = [
@@ -33,6 +34,7 @@ export let advices = [
     { value: "qPCR", text: "Allgemein qPCR" },
     { value: "elisa", text: "ELISA" },
     { value: "protocolProduction", text: "Protokollerstellung" },
+    { value: "sequencingAdvice", text: "@:checkboxes.skills.sequencingAdvice" }
 ]
 
 export let qualification = [
@@ -47,4 +49,3 @@ export let qualification = [
     { value: "groupLeader", text: "Gruppenleiter:in" },
     { value: "other", text: "Andere" },
 ]
-
