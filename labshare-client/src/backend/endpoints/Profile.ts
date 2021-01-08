@@ -9,6 +9,7 @@ import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
 import { UserRoles } from '../../lib/userRoles';
 import { UnauthorizedError } from '../errors';
 import { sendNotAvailableNotice } from '../mail/mailer';
+import { OPT } from '../options';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {
@@ -57,7 +58,7 @@ class Profile {
             return utils.successResponse(res)
 
         user.availabilityTimer = new Date();
-        sendNotAvailableNotice(user.contact.email, utils.getBaseUrl(req), user.secretRandomId, user.language)
+        sendNotAvailableNotice(user.contact.email, OPT.BASE_URL, user.secretRandomId, user.language)
         user.save()
 
         utils.successResponse(res)

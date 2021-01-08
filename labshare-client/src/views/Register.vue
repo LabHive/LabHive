@@ -21,7 +21,7 @@
             width="227"
           />
         </figure>  
-        <p style="margin-top: 55px" v-html="this.$t('registration.confirmationMail', { mail: formData.contact ? formData.contact.email : $t('registration.yourMail') })"></p>
+        <p style="margin-top: 55px" v-html="this.$t('registration.confirmationMail', { mail: formData.contact ? this.$sanitize(formData.contact.email) : $t('registration.yourMail') })"></p>
         <p v-if="role != forms.VOLUNTEER">{{ $t("registration.labActivation") }}</p>
       </div>
     </template>
