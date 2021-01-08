@@ -4,7 +4,7 @@ import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND } from 'htt
 import { UserAdmin, UserCommon, ActivationToken } from "../database/models"
 import argon from 'argon2'
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import { CONF } from '../options'
+import { CONF, OPT } from '../options'
 import jsonwebtoken from "jsonwebtoken"
 import { registration_admin } from '../jsonSchemas/registration_admin'
 import { Validator } from 'jsonschema'
@@ -161,7 +161,7 @@ export class AdminEndpoint {
 
         let rDocs = docs.map((x) => { return x.toObject() })
 
-        let reqUrl = utils.getBaseUrl(req) + req.originalUrl;
+        let reqUrl = OPT.BASE_URL + req.originalUrl;
         let nextUrl = new URL(reqUrl)
         let nurl = null
         if (count - (page_int * 20 + 20) > 0) {
@@ -291,7 +291,7 @@ export class AdminEndpoint {
                 await token_doc.save()
             }
 
-            let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
+            let link = OPT.BASE_URL + "/#/activate?token=" + token
 
             await sendActivationMail(user.contact.email, link, user.language)
         }
