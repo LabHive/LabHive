@@ -1,6 +1,8 @@
 <template>
   <div class="list-view">
     <h1 class="mt-4">{{$t("admin.title")}}</h1>
+    <h2 class="mt-4" style="color: red">Do not share screenshots of anything, or other personal data of users!</h2>
+    <p>Click on a profile and use the random id named "slug" to reference certain profiles.</p>
     <div v-if="error" class="alert alert-danger" role="alert">{{ error }}</div>
 
     <div style="margin-top: 40px">
