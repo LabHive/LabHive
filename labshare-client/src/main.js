@@ -14,6 +14,7 @@ import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faUserAlt, faSearch, faCubes, faHandsHelping, faEnvelope, faPhone, faMapMarker, faVial, faGraduationCap, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Sanitize from '@/components/Sanitize.vue'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -28,6 +29,13 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuex);
 Vue.mixin(profile_load_mixin);
+
+Vue.prototype.$sanitize = function(html) {
+  const c = Vue.extend(Sanitize)
+  const instance = new c({propsData: {html: html}})
+  instance.$mount()
+  return instance.$el.outerHTML
+}
 
 new Vue({
   created () {
