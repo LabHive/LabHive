@@ -14,6 +14,7 @@
     "aos": "^3.0.0-beta.6",
     "argon2": "^0.26.2",
     "axios": "^0.19.2",
+    "base64url": "^3.0.1",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "bottleneck": "^2.19.5",
