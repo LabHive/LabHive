@@ -34,7 +34,7 @@ export let advices = [
     { value: "qPCR", text: "Allgemein qPCR" },
     { value: "elisa", text: "ELISA" },
     { value: "protocolProduction", text: "Protokollerstellung" },
-    { value: "sequencingAdvice", text: "@:checkboxes.skills.sequencingAdvice" }
+    { value: "sequencing", text: "Virussequenzierung" }
 ]
 
 export let qualification = [
