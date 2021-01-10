@@ -163,6 +163,10 @@ export function cleanUserObjForToken(token: Optional<Token>, user: IUserCommon) 
             delete user.website
         }
     }
+
+    if (token && token.role == UserRoles.LAB_RESEARCH && user.role == UserRoles.VOLUNTEER) {
+        delete user.contact
+    }
 }
 
 export function sensibleUserProjection(): { [key: string]: number } {
