@@ -43,7 +43,7 @@
             </b-row>
           </template>
           <template v-else>
-            <p class="card-text">{{ $t('searchDetails.contactDetails.not_available') }}</p>
+            <p class="card-text">{{ $t('searchDetails.contactDetails.not_available_rLab') }}</p>
             <div class="links" v-if="!$authenticated">
               <b-link class="btn btn-primary btn-sm" to="/register">{{ $t('general.signUp') }}</b-link>
               <b-link class="btn btn-primary btn-sm" to="/login">{{ $t('general.login') }}</b-link>
