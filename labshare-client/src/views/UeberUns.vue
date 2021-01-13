@@ -7,7 +7,7 @@
           <p v-html="$t('aboutUs.ourStoryText')"></p>
         </b-col>
       </b-row>
-      <b-row align-h="center">
+      <b-row align-h="center" align-v="center">
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Tobias.png"
@@ -117,7 +117,16 @@
           <p class="name">Frederic Schade</p>
           <p class="role">UX/UI, Frontend Development</p>
         </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member team-member-names" data-aos="fade-up" data-aos-duration="750">
+          <p class="heading">With support from</p>
+          <p class="supporter">Frederic Weichel</p>
+          <p class="supporter">Seth G</p>
+          <p class="supporter">Valentin Arkhipov</p>
+          <p class="supporter">Andrei Serban</p>
+        </b-col>
       </b-row>
+      <h1 data-aos="fade" data-aos-duration="750">Advisory Board</h1>
       <b-row align-h="center">
         <b-col class="claim">
           <p>Spread the test, beat the virus!</p>
@@ -179,12 +188,21 @@ export default {
       margin-bottom: 0;
     }
 
-    .name {
+    .name, .heading {
       font-size: 20px;
     }
 
     .role {
       font-size: 14px;
+    }
+
+    .heading {
+      margin-bottom: 25px;
+    }
+
+    .supporter{
+      font-size: 16px;
+      margin-bottom: 5px;
     }
   }
 
