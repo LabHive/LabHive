@@ -81,6 +81,8 @@
           <router-view></router-view>
         </keep-alive>
       </div>
+    </div>
+    <div class="container-fluid">
       <footer class="footer-custom">
         <b-container>
           <b-row align-h="between" align-v="center">
