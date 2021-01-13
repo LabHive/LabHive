@@ -126,10 +126,48 @@
           <p class="supporter">Andrei Serban</p>
         </b-col>
       </b-row>
+
       <h1 data-aos="fade" data-aos-duration="750">Advisory Board</h1>
-      <b-row align-h="center">
-        <b-col class="claim">
-          <p>Spread the test, beat the virus!</p>
+
+      <b-row align-h="center" align-v="center">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Joachim_von_Beesten.png"
+            alt="Joachim von Beesten"
+            class="avatar"
+          />
+          <p class="name">Joachim von Beesten</p>
+          <p class="role">Björn Steiger Stiftung, Managing Director</p>
+        </b-col>
+        
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Charles_Auffray.png"
+            alt="Prof. Dr. Charles Auffray"
+            class="avatar"
+          />
+          <p class="name">Prof. Dr. Charles Auffray</p>
+          <p class="role">EISBM, Founding Director</p>
+        </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Martin_Drees.png"
+            alt="Martin Drees"
+            class="avatar"
+          />
+          <p class="name">Martin Drees</p>
+          <p class="role">coliquio, Founder/CEO</p>
+        </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Corinna_Fehr.png"
+            alt="Corinna Fehr"
+            class="avatar"
+          />
+          <p class="name">Corinna Fehr</p>
+          <p class="role">Testtheworld</p>
         </b-col>
       </b-row>
     </b-container>
