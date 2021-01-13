@@ -77,16 +77,6 @@
           <p class="name">Kenneth Ruiz Eiro</p>
           <p class="role">Project Management, Legal</p>
         </b-col>
-        
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_FredericW.png"
-            alt="Frederic Weichel"
-            class="avatar"
-          />
-          <p class="name">Frederic Weichel</p>
-          <p class="role">Design, Communication</p>
-        </b-col>
 
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
@@ -116,36 +106,6 @@
           />
           <p class="name">Philipp Nieting</p>
           <p class="role">Software Development, IT-Security</p>
-        </b-col>
-
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_Seth.png"
-            alt="Seth G"
-            class="avatar"
-          />
-          <p class="name">Seth G</p>
-          <p class="role">Software Development</p>
-        </b-col>
-     
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_Valentin.png"
-            alt="Valentin Arkhipov"
-            class="avatar"
-          />
-          <p class="name">Valentin Arkhipov</p>
-          <p class="role">Software Development</p>
-        </b-col>
-        
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_Andrei.png"
-            alt="Andrei Serban"
-            class="avatar"
-          />
-          <p class="name">Andrei Serban</p>
-          <p class="role">Frontend Development</p>
         </b-col>
 
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
