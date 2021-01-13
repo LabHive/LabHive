@@ -127,7 +127,7 @@
         </b-col>
       </b-row>
 
-      <h1 data-aos="fade" data-aos-duration="750">Advisory Board</h1>
+      <h1 data-aos="fade" data-aos-duration="750" id="advisory-board-title">Advisory Board</h1>
 
       <b-row align-h="center" align-v="center">
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
@@ -203,6 +203,10 @@ export default {
       text-align: left;
       margin-bottom: 0;
     }
+  }
+
+  #advisory-board-title {
+    margin-top: 75px;
   }
 
   .team-member {
