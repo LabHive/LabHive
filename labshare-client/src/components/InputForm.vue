@@ -56,8 +56,6 @@ export default {
         return this.value
       },
       set(newValue) {
-        this.notEmpty = !!newValue;
-        this.validate(newValue)
         this.$emit("input", newValue);
       }
     }
@@ -141,6 +139,12 @@ export default {
   },
   mounted() {
     this.setup();
+  },
+  watch: {
+    model() {
+      this.notEmpty = !!this.model;
+      this.validate(this.model)
+    }
   }
 };
 </script>
