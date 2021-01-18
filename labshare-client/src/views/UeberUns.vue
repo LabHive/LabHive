@@ -119,7 +119,7 @@
         </b-col>
 
         <b-col sm="12" lg="6" xl="4" class="team-member team-member-names" data-aos="fade-up" data-aos-duration="750">
-          <p class="heading">With support from</p>
+          <p class="heading">{{ $t("aboutUs.supportersHeadline") }}</p>
           <p class="supporter">Frederic Weichel</p>
           <p class="supporter">Seth G</p>
           <p class="supporter">Valentin Arkhipov</p>
