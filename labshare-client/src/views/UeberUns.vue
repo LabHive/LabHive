@@ -7,7 +7,7 @@
           <p v-html="$t('aboutUs.ourStoryText')"></p>
         </b-col>
       </b-row>
-      <b-row align-h="center">
+      <b-row align-h="center" align-v="center">
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
             src="../assets/team-members/LabHive_Tobias.png"
@@ -77,16 +77,6 @@
           <p class="name">Kenneth Ruiz Eiro</p>
           <p class="role">Project Management, Legal</p>
         </b-col>
-        
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_FredericW.png"
-            alt="Frederic Weichel"
-            class="avatar"
-          />
-          <p class="name">Frederic Weichel</p>
-          <p class="role">Design, Communication</p>
-        </b-col>
 
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
@@ -120,36 +110,6 @@
 
         <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
           <img
-            src="../assets/team-members/LabHive_Seth.png"
-            alt="Seth G"
-            class="avatar"
-          />
-          <p class="name">Seth G</p>
-          <p class="role">Software Development</p>
-        </b-col>
-     
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_Valentin.png"
-            alt="Valentin Arkhipov"
-            class="avatar"
-          />
-          <p class="name">Valentin Arkhipov</p>
-          <p class="role">Software Development</p>
-        </b-col>
-        
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
-            src="../assets/team-members/LabHive_Andrei.png"
-            alt="Andrei Serban"
-            class="avatar"
-          />
-          <p class="name">Andrei Serban</p>
-          <p class="role">Frontend Development</p>
-        </b-col>
-
-        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
-          <img
             src="../assets/team-members/LabHive_FredericS.png"
             alt="Frederic Schade"
             class="avatar"
@@ -157,10 +117,57 @@
           <p class="name">Frederic Schade</p>
           <p class="role">UX/UI, Frontend Development</p>
         </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member team-member-names" data-aos="fade-up" data-aos-duration="750">
+          <p class="heading">{{ $t("aboutUs.supportersHeadline") }}</p>
+          <p class="supporter">Frederic Weichel</p>
+          <p class="supporter">Seth G</p>
+          <p class="supporter">Valentin Arkhipov</p>
+          <p class="supporter">Andrei Serban</p>
+        </b-col>
       </b-row>
-      <b-row align-h="center">
-        <b-col class="claim">
-          <p>Spread the test, beat the virus!</p>
+
+      <h1 data-aos="fade" data-aos-duration="750" id="advisory-board-title">Advisory Board</h1>
+
+      <b-row align-h="center" align-v="center">
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Joachim_von_Beesten.png"
+            alt="Joachim von Beesten"
+            class="avatar"
+          />
+          <p class="name">Joachim von Beesten</p>
+          <p class="role">Björn Steiger Stiftung, Managing Director</p>
+        </b-col>
+        
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Charles_Auffray.png"
+            alt="Prof. Dr. Charles Auffray"
+            class="avatar"
+          />
+          <p class="name">Prof. Dr. Charles Auffray</p>
+          <p class="role">EISBM, Founding Director</p>
+        </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Martin_Drees.png"
+            alt="Martin Drees"
+            class="avatar"
+          />
+          <p class="name">Martin Drees</p>
+          <p class="role">coliquio, Founder/CEO</p>
+        </b-col>
+
+        <b-col sm="12" lg="6" xl="4" class="team-member" data-aos="fade-up" data-aos-duration="750">
+          <img
+            src="../assets/team-members/LabHive_Advisory_Board_Corinna_Fehr.png"
+            alt="Corinna Fehr"
+            class="avatar"
+          />
+          <p class="name">Corinna Fehr</p>
+          <p class="role">Testtheworld</p>
         </b-col>
       </b-row>
     </b-container>
@@ -198,6 +205,10 @@ export default {
     }
   }
 
+  #advisory-board-title {
+    margin-top: 75px;
+  }
+
   .team-member {
     margin-bottom: 64px;
 
@@ -219,12 +230,21 @@ export default {
       margin-bottom: 0;
     }
 
-    .name {
+    .name, .heading {
       font-size: 20px;
     }
 
     .role {
       font-size: 14px;
+    }
+
+    .heading {
+      margin-bottom: 25px;
+    }
+
+    .supporter{
+      font-size: 16px;
+      margin-bottom: 5px;
     }
   }
 
