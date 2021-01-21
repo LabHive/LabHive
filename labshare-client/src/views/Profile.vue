@@ -38,7 +38,7 @@ export default {
       if (this.profile.role === 'volunteer') {
         return "VolunteerForm"
       }
-      else if (this.profile.role === 'lab_research') {
+      else if (this.profile.role === 'lab_research' || this.profile.role === 'supplier') {
         return "LabResearchForm"
       }
       else if (this.profile.role === 'lab_diag') {

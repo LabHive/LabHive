@@ -132,7 +132,8 @@ export default {
       forms: {
         VOLUNTEER: "volunteer",
         LAB: "lab_research",
-        DIAGNOSTIC_LAB: "lab_diag"
+        DIAGNOSTIC_LAB: "lab_diag",
+        SUPPLIER: "supplier"
       },
       error: null,
       registrationComplete: false,

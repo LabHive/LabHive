@@ -56,8 +56,11 @@ export class BotMsg {
         else if (user.role === UserRoles.LAB_DIAG) {
             sendMsg(`@everyone New diagnostic center just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
         }
-        else {
+        else if (user.role === UserRoles.LAB_RESEARCH) {
             sendMsg(`@everyone New research lab just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
+        }
+        else if (user.role === UserRoles.SUPPLIER) {
+            sendMsg(`@everyone New supplier just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
         }
     }
 }

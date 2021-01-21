@@ -27,7 +27,7 @@
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(4)" @click="setStep(4)">5) {{ $t("profile.offer.title") }}</b-button></b-col>
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(5)" @click="setStep(5)">6) {{ $t("registration.steps.consent.title") }}</b-button></b-col>
       </b-row>
-      <b-row v-else-if="role === 'lab_research'">
+      <b-row v-else-if="role === 'lab_research' || role === 'supplier'">
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(0)" v-b-modal.confirm>1) {{ $t("registration.usergroup") }}</b-button></b-col>
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(1)" @click="setStep(1)">2) {{ $t("registration.steps.loginInformation.title") }}</b-button></b-col>
         <b-col cols="auto"><b-button variant="primary" :class="classForStep(2)" @click="setStep(2)">3) {{ $t("registration.steps.contact.title") }}</b-button></b-col>
