@@ -93,7 +93,7 @@
             <h4>{{$tc("general.supplier", 2)}}</h4>
             <figure class="text-center">
               <img
-                src="../assets/decoration-3-3.svg"
+                src="../assets/supplier.svg"
                 alt="Illustration"
                 width="170"
                 height="150"
