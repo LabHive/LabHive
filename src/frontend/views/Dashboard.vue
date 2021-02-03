@@ -12,19 +12,14 @@
         {{ error }}
       </div>
       <div class="row">
-        <div class="col-1">
-        </div>
-        <div class="col-10">
+        <div class="col">
           <HistoryChart />
         </div>
-        <div class="col-1">
-        </div>
-      </div>
-      <div class="row" style="margin-top: 100px">
         <div class="col">
           <CapacityMap />
         </div>
       </div>
+
     </template>
   </div>
 </template>
@@ -61,10 +56,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+.staging-warning {
+  display: none
+}
+</style>
 
+<style scoped>
 h1 {
   margin-top: 4pt;
 }
-
 </style>

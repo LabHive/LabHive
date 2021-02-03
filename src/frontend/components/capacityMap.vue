@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div class="box">
+    <h4>Laborübersicht</h4>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-secondary" @click="getCapacity('pcr')">PCR</button>
+      <button type="button" class="btn btn-secondary" @click="getCapacity('antibody')">Antikörper</button>
+    </div>
     <div class="map">
       <MglMap  v-if="geoJSON" :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" @zoom="zooms" >
         <MglNavigationControl position="top-right" />
@@ -15,8 +20,8 @@
           layerId="usedCapacity"
           :layer="usedCapacity"
         />
-        <MglMarker v-for="(feature, i) in geoJSON.data.features" :key="i" :coordinates="feature.geometry.coordinates" @click="click(i)">
-          <svg width="2" height="2" slot="marker"><circle r="2" cx="1" cy="1" fill="white" /></svg>
+        <MglMarker v-for="(feature, i) in geoJSON.data.features" :key="i" :coordinates="feature.geometry.coordinates" >
+          <svg width="6" height="6" slot="marker"><circle r="3" cx="3" cy="3" fill="white" /></svg>
           <MglPopup>
               <div>
                 <p><strong>{{feature.properties.organization}}</strong></p>
@@ -72,7 +77,7 @@ export default {
   },
 
   created() {
-    this.getCapacity();
+    this.getCapacity("pcr");
     this.mapbox = Mapbox;
   },
 
@@ -155,9 +160,10 @@ export default {
   },
 
   methods: {
-    getCapacity() {
+    getCapacity(testType) {
+      testType = "query" //TODO: assuming two API endpoints ("testCapacity/pcr" and "testCapacity/antibody"), delete this line
       return new Promise((res, rej) => {
-        this.$http.get("testCapacity/query").then(
+        this.$http.get("testCapacity/"+testType).then(
           success => {
             this.apiResponse = success.body.data
           },
@@ -167,10 +173,6 @@ export default {
           }
         );
       });
-    },
-
-    click() {
-      console.log()
     },
 
 
@@ -184,20 +186,22 @@ export default {
   }
 };
 </script>
-<style>
-.staging-warning {
-  display: none
-}
-</style>
+
 <style scoped>
+.box {
+  background-color: rgba(255,255,255,1);
+  border-radius: 5px;
+  padding: 20px;
+}
+
 h1 {
   margin-bottom: 40px;
 }
 .map {
   width: 100%;
-  height: 600px;
+  height: 300px;
 }
 img.legend {
-  height: 150px;
+  height: 100px;
 }
 </style>
