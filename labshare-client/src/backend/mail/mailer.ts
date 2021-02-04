@@ -17,10 +17,12 @@ export function retryMails() {
     d.setDate(d.getDate() - 1);
 
     // try to deliver failed emails again
-    FailedMail.find({ updatedAt: { $gte: d } }).exec().then(docs => {
+    FailedMail.find({ createdAt: { $gte: d } }).exec().then(docs => {
         for (let i of docs) {
             sendMessage(i.toObject(), false).then(() => {
                 i.remove()
+            }).catch(() => {
+                i.updateOne({ updatedAt: new Date() }).exec()
             })
         }
     }).catch((err) => {
@@ -31,6 +33,7 @@ export function retryMails() {
 async function sendMessage(message: Mail.Options, storeFailed: boolean = true): Promise<any> {    
     if (OPT.ENABLE_MAIL) {
         return TRANSPORTER.sendMail(message).catch(async (err) => {
+            console.error(err)
             if (storeFailed) {
                 BotMsg.error(`Failed to send email...`)
                 let doc = new FailedMail(message)
