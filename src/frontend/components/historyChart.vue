@@ -15,7 +15,7 @@
             <path :d="path.usedCapacity" stroke="white" fill="none" />
           </g>
           <g v-if="circles">
-            <circle v-for="(circle, i) in circles" :key="i" r="5" fill="white" stroke="#177867" @mouseover="toggleToolTip(circle)" @mouseout="toggleToolTip(false)" :cx="circle.x" :cy="circle.y" />
+            <circle v-for="(circle, i) in circles" :key="i" r="3" fill="white" stroke="#177867" @mouseover="toggleToolTip(circle)" @mouseout="toggleToolTip(false)" :cx="circle.x" :cy="circle.y" />
           </g>
           <g v-if="tooltip.active">
             <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">Kapazität: {{tooltip.content.totalCapacity}}</text>
@@ -143,7 +143,10 @@ export default {
       if(binding.arg == "y") { //yeah.. thats just lazy.
         d3.select(el).call(d3[axisMethod](methodArg))//.ticks(d3.timeDay.every(1)).tickFormat(d3.timeFormat("%d-%b"));
       } else {
-        d3.select(el).call(d3[axisMethod](methodArg).ticks(d3.timeDay.every(1)).tickFormat(d3.timeFormat("%d-%b")))
+        d3.select(el).call(d3[axisMethod](methodArg)
+          .ticks(7)
+          .tickFormat(d3.timeFormat("%d-%b"))
+        )
       }
     }
   },

@@ -14,11 +14,12 @@ async function main() {
       await o.remove()
     }
 
-    for (let i = 8; i >= 0; i--) {
+    for (let i = 150; i >= 0; i--) {
       const date = new Date()
       date.setDate(date.getDate() - i)
-      
-      const totalCapacity = Math.floor(Math.random() * 2200) + 800
+
+      //const totalCapacity = Math.floor(Math.random() * 2200) + 800
+      const totalCapacity = Math.floor(Math.random() * 200) + ((200-i)*40) //growing steadily
 
       promises.push(new TestCapacity({
         user: userId,
