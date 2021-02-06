@@ -24,7 +24,7 @@ async function main() {
       promises.push(new TestCapacity({
         user: userId,
         totalCapacity: totalCapacity,
-        usedCapacity: Math.floor(Math.random() * totalCapacity),
+        usedCapacity: (totalCapacity * .6) + Math.floor(Math.random() * totalCapacity * .3),
         positiveRate: Math.random() * 15,
         sampleBackup: Math.floor(Math.random() * 5000),
         staging: i == 0,

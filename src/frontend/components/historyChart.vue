@@ -11,7 +11,7 @@
       <div ref="svgContainer" class="svgContainer">
         <svg v-if="style" :width="style.width" :height="style.height+50">
           <g v-if="path">
-            <path :d="path.totalCapacity" fill="#177867" opacity=".4" stroke="none" />
+            <path :d="path.totalCapacity" fill="#177867" opacity=".8" stroke="none" />
             <path :d="path.usedCapacity" stroke="white" fill="none" />
           </g>
           <g v-if="circles">
