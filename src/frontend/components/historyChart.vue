@@ -11,15 +11,15 @@
       <div ref="svgContainer" class="svgContainer">
         <svg v-if="style" :width="style.width" :height="style.height+50">
           <g v-if="path">
-            <path :d="path.totalCapacity" fill="#177867" opacity=".8" stroke="none" />
-            <path :d="path.usedCapacity" stroke="white" fill="none" />
+            <path :d="path.totalCapacity" fill="#177867" opacity=".4" stroke="none" />
+            <path :d="path.usedCapacity" fill="#177867" stroke="none"/>
           </g>
-          <g v-if="circles">
-            <circle v-for="(circle, i) in circles" :key="i" r="3" fill="white" stroke="#177867" @mouseover="toggleToolTip(circle)" @mouseout="toggleToolTip(false)" :cx="circle.x" :cy="circle.y" />
+          <g v-if="lines">
+            <line v-for="(line, i) in lines" :key="i" fill="none" opacity="0.1" stroke="black" @mouseover="toggleToolTip(line)" @mouseout="toggleToolTip(false)" stroke-width="3" :x1="line.x" :x2="line.x" :y1="line.y" :y2="style.height-style.margin.top-style.margin.bottom" />
           </g>
           <g v-if="tooltip.active">
-            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">Kapazität: {{tooltip.content.totalCapacity}}</text>
-            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.used.y+2">Durchgeführt: {{tooltip.content.usedCapacity}}</text>
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">Kapazität: {{Math.floor(tooltip.content.totalCapacity)}}</text>
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.used.y+2">Durchgeführt: {{Math.floor(tooltip.content.usedCapacity)}}</text>
             <line :y2="tooltip.total.y" :y1="style.height-style.margin.top-style.margin.bottom" :x1="tooltip.x" :x2="tooltip.x" stroke="black" stroke-dasharray="2 4"  />
           </g>
           <g class="axes">
@@ -27,10 +27,10 @@
             <g v-axis:y="scale" :transform="`translate(${style.margin.left},0)`"></g>
           </g>
           <g class="legend" :transform="`translate(${style.margin.left},0)`">
-            <rect width="10" height="10" :x="0" fill="#177867" y="10"/>
+            <rect width="10" height="10" :x="0" fill="#177867" opacity=".4" y="10"/>
             <text font-size="10pt" fill="#282e40" x="16" y="19">Gesamtkapazität</text>
 
-            <circle r="5" fill="white" stroke="#177867" cx="5" cy="35" />
+            <rect width="10" height="10" :x="0" fill="#177867" y="29"/>
             <text font-size="10pt"  fill="#282e40" x="16" y="38">Durchgeführte Tests</text>
           </g>
         </svg>
@@ -116,11 +116,21 @@ export default {
       return circles
     },
 
+    lines() { //filter by this.config.displayLastDays
+      if(!this.recentHistory) return null
+      let circles = this.recentHistory.map(day => {
+        day.x = this.scale.x(day.date.setHours(0,0,0,0))
+        day.y = this.scale.y(day.totalCapacity)
+        return day
+      })
+      return circles
+    },
+
     path() { //compute svg paths for area and line
       if(!this.recentHistory) return null
-      let line = d3.line()
+      /*let line = d3.line()
         .x(d => this.scale.x(d.date.setHours(0,0,0,0)))
-        .y(d => this.scale.y(d.value))
+        .y(d => this.scale.y(d.value))*/
 
       let area = d3.area()
         .x(d => this.scale.x(d.date.setHours(0,0,0,0)))
@@ -128,7 +138,7 @@ export default {
         .y1(d => this.scale.y(d.value))
 
       return {
-        usedCapacity: line(this.recentHistory.map(d=>{return{date: d.date, value: d.usedCapacity}})),
+        usedCapacity: area(this.recentHistory.map(d=>{return{date: d.date, value: d.usedCapacity}})),
         totalCapacity: area(this.recentHistory.map(d=>{return{date: d.date, value: d.totalCapacity}})),
       }
     },
