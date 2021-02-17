@@ -9,7 +9,7 @@ volumes:
 services:
   mongo:
     image: mongo
-    restart: always
+    restart: unless-stopped
     ports:
       - 27017:27017
     volumes:
@@ -21,13 +21,13 @@ services:
 
   mongo-express:
     image: mongo-express
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8081
 
   redis:
     image: redis
-    restart: always
+    restart: unless-stopped
     ports:
       - 6379:6379
 
