@@ -6,7 +6,7 @@
     <b-row>
       <b-col sm="*" md="5" lg="4">
         <InputForm
-          :name="role === 'volunteer' ? 'general.email' : 'registration.steps.loginInformation.textfieldPlaceholders.officialEmail'"
+          :name="mail"
           v-model="formData.contact.email"
           :valFunc="val.validEmail"
           inType="email"
@@ -33,6 +33,17 @@ export default {
   mixins: [registrationSection],
   components: {
     Password
+  },
+  computed: {
+    mail() {
+      if (this.role === 'volunteer') {
+        return 'general.email'
+      } else if (this.role === 'supplier') {
+        return 'registration.steps.loginInformation.textfieldPlaceholders.businessEmail'
+      } else {
+        return 'registration.steps.loginInformation.textfieldPlaceholders.officialEmail'
+      }
+    }
   }
 };
 </script>

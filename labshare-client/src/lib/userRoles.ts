@@ -18,5 +18,5 @@ export const UserMapIconPaths = {
   [UserRoles.VOLUNTEER]: 'map-icon-volunteer.png',
   [UserRoles.LAB_RESEARCH]: 'map-icon-research.png',
   [UserRoles.LAB_DIAG]: 'map-icon-diag.png',
-  [UserRoles.SUPPLIER]: 'map-icon-diag.png'
+  [UserRoles.SUPPLIER]: 'map-icon-supplier.png'
 };

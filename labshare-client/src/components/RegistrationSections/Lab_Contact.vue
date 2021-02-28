@@ -23,7 +23,7 @@
       <!-- LabName -->
       <b-col v-bind="large" order-md="4" order="2">
         <InputForm
-          :name="role == 'lab_diag' ? 'registration.steps.contact.textfieldPlaceholders.labName' : 'registration.steps.contact.textfieldPlaceholders.instituteName'"
+          :name="organization"
           v-model="formData.organization"
           :valFunc="val.validOrganization"
         ></InputForm>
@@ -55,7 +55,7 @@
       <!-- Website -->
       <b-col v-bind="large" order-md="8" order="3">
         <InputForm
-          :name="role == 'lab_diag' ? 'registration.steps.contact.textfieldPlaceholders.labWebsite' : 'registration.steps.contact.textfieldPlaceholders.instituteWebsite'"
+          :name="website"
           v-model="formData.website"
           :valFunc="val.validUrl"
           :required="false"
@@ -136,6 +136,24 @@ export default {
       }
     }
   },
+  computed: {
+    organization() {
+      if (this.role == 'lab_diag') {
+        return 'registration.steps.contact.textfieldPlaceholders.labName'
+      } else if (this.role == 'supplier') {
+        return 'registration.steps.contact.textfieldPlaceholders.business'
+      } else {
+        return 'registration.steps.contact.textfieldPlaceholders.instituteName'
+      }
+    },
+    website() {
+      if (this.role == 'lab_diag' || this.role == 'supplier') {
+        return 'registration.steps.contact.textfieldPlaceholders.labWebsite'
+      } else {
+        return 'registration.steps.contact.textfieldPlaceholders.instituteWebsite'
+      }
+    }
+  }
 };
 </script>
 
