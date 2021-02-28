@@ -15,6 +15,7 @@
             :options="mapOptions"
             style="height: 514px; width: 438px;"
           >
+          
             <l-marker v-for="marker in markers" :lat-lng="marker.position" :key="marker.id">
               <l-icon
                 :icon-url="`${publicPath}map-icons/${marker.iconPath}`"
