@@ -126,7 +126,7 @@ export class Validator {
     }
 
     static validRole(role?: string): ValidationResult {
-        let roles: string[] = [UserRoles.LAB_DIAG, UserRoles.LAB_RESEARCH, UserRoles.VOLUNTEER]
+        let roles: string[] = [UserRoles.LAB_DIAG, UserRoles.LAB_RESEARCH, UserRoles.VOLUNTEER, UserRoles.SUPPLIER]
 
         if (!role || roles.indexOf(role) == -1) {
             return new ValidationResultError("invalid_role", role)
@@ -187,7 +187,7 @@ export class Validator {
         results.push(Validator.validOrganization(object.organization))
         results.push(Validator.validUrl(object.website))
 
-        if (role === UserRoles.LAB_DIAG || role === UserRoles.LAB_RESEARCH) {
+        if (role === UserRoles.LAB_DIAG || role === UserRoles.LAB_RESEARCH || role === UserRoles.SUPPLIER) {
             results.push(Validator.validStreet(object.address?.street))
 
             if (object.lookingFor) {
