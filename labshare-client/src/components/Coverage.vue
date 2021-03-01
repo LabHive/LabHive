@@ -37,7 +37,14 @@
             </a>
           </b-row>
           <template v-if="markerCounts">
-            <b-row class="statRow last" align-v="center">
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png"><span class="number">{{ markerCounts.volunteer }}</span></b-col>
+              <b-col class="details" sm="12" md="12">{{ $tc('general.qVolunteer', 2) }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png"><span class="number">{{ markerCounts.lab_diag }}</span></b-col>
               <b-col class="details last" sm="12" md="12">{{ $tc('general.dCenter', 2) }}<sup>2</sup></b-col>
@@ -46,19 +53,12 @@
             <hr>
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png"><span class="number">{{ markerCounts.volunteer }}</span></b-col>
-              <b-col class="details" sm="12" md="12">{{ $tc('general.qVolunteer', 2) }}<sup>2</sup></b-col>
-              <b-col class="spacer"></b-col>
-            </b-row>
-            
-            <b-row class="statRow" align-v="center">
-              <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png"><span class="number">{{ markerCounts.lab_research }}</span></b-col>
               <b-col class="details" sm="12" md="12">{{ $tc('general.rLab', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
-            <b-row class="statRow" align-v="center">
+            <b-row class="statRow last" align-v="center">
               <b-col class="spacer"></b-col>
               <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-supplier.png"><span class="number">{{ markerCounts.supplier }}</span></b-col>
               <b-col class="details" sm="12" md="12">{{ $tc('general.supplier', 2) }}<sup>2</sup></b-col>
