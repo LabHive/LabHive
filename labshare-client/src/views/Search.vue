@@ -128,6 +128,7 @@ export default {
 
         switch (x.role) {
           case "lab_research":
+          case "supplier":
           case "lab_diag": {
             footer = `${x.organization}, ${x.address.street}`;
 

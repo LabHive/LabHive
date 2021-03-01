@@ -30,13 +30,10 @@
 
     <div key="step-one" v-if="step === 0 && !registrationComplete">
       <p class="step-info-sub" data-aos="fade" data-aos-duration="750">{{ $t("registration.prospectiveRole") }}</p>
-      <b-container fluid>
-        <b-row>
-          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
-            <b-button
-                  variant="primary"
-                  @click="loadForm(forms.VOLUNTEER)"
-                >{{$tc("general.qVolunteer", 2)}}</b-button>
+      <b-container fluid class="options-container">
+        <b-row align-h="center">
+          <b-col class="text-center option" cols lg="5" md="5" sm="12" data-aos="fade-up" data-aos-duration="750">
+            <h4>{{$tc("general.qVolunteer", 2)}}</h4>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-1.svg"
@@ -45,16 +42,17 @@
                 height="150"
               />
             </figure>
-            <p class="text-center" style="padding: 0 15px">
+            <p class="text-center">
                 {{$t("registration.descriptions.qVolunteers")}}
             </p>
-          </b-col>
-
-          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
-                  @click="loadForm(forms.DIAGNOSTIC_LAB)"
-                >{{$tc("general.dCenter", 2)}}</b-button>
+                  @click="loadForm(forms.VOLUNTEER)"
+                >{{$tc("general.select", 2)}}</b-button>
+          </b-col>
+
+          <b-col class="text-center option" cols lg="5" md="5" sm="12" offset-lg="2" offset-md="2" data-aos="fade-up" data-aos-duration="750">
+            <h4>{{$tc("general.dCenter", 2)}}</h4>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-2.svg"
@@ -63,16 +61,17 @@
                 height="150"
               />
             </figure>
-            <p class="text-center" style="padding: 0 15px">
+            <p class="text-center">
                 {{$tc("registration.descriptions.dCenter", 2)}}
             </p>
-          </b-col>
-
-          <b-col class="text-center" cols lg="4" md="4" sm="12" data-aos="fade-up" data-aos-duration="750">
             <b-button
                   variant="primary"
-                  @click="loadForm(forms.LAB)"
-                >{{$tc("general.rLab", 2)}}</b-button>
+                  @click="loadForm(forms.DIAGNOSTIC_LAB)"
+                >{{$tc("general.select", 2)}}</b-button>
+          </b-col>
+       
+          <b-col class="text-center option" cols lg="5" md="5" sm="12" data-aos="fade-up" data-aos-duration="750">
+            <h4>{{$tc("general.rLab", 2)}}</h4>
             <figure class="text-center">
               <img
                 src="../assets/decoration-3-3.svg"
@@ -81,9 +80,32 @@
                 height="150"
               />
             </figure>
-            <p class="text-center" style="padding: 0 15px">
+            <p class="text-center">
                 {{$t("registration.descriptions.rLab")}}
             </p>
+            <b-button
+                  variant="primary"
+                  @click="loadForm(forms.LAB)"
+                >{{$tc("general.select", 2)}}</b-button>
+          </b-col>
+
+          <b-col class="text-center option" cols lg="5" md="5" sm="12" offset-lg="2" offset-md="2" data-aos="fade-up" data-aos-duration="750">
+            <h4>{{$tc("general.supplier", 2)}}</h4>
+            <figure class="text-center">
+              <img
+                src="../assets/supplier.svg"
+                alt="Illustration"
+                width="170"
+                height="150"
+              />
+            </figure>
+            <p class="text-center">
+                {{$t("registration.descriptions.supplier")}}
+            </p>
+            <b-button
+                  variant="primary"
+                  @click="loadForm(forms.SUPPLIER)"
+                >{{$tc("general.select", 2)}}</b-button>
           </b-col>
 
         </b-row>
@@ -110,7 +132,8 @@ export default {
       forms: {
         VOLUNTEER: "volunteer",
         LAB: "lab_research",
-        DIAGNOSTIC_LAB: "lab_diag"
+        DIAGNOSTIC_LAB: "lab_diag",
+        SUPPLIER: "supplier"
       },
       error: null,
       registrationComplete: false,
@@ -215,6 +238,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+.option{
+  padding-bottom: 120px;
+
+  @media(max-width: 768px) {
+    padding-bottom: 60px;
+  }
+}
+
 .row.mt {
   margin-top: 0px;
 
