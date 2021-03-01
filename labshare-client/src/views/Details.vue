@@ -1,7 +1,7 @@
 <template>
   <div class="details-view">
     <Volunteer v-if="profile && profile.role === 'volunteer'" :profile="profile" />
-    <ResearchLab v-if="profile && profile.role === 'lab_research'" :profile="profile" />
+    <ResearchLab v-if="profile && (profile.role === 'lab_research' || profile.role === 'supplier')" :profile="profile" />
     <DiagnosticLab v-if="profile && profile.role === 'lab_diag'" :profile="profile" />
   </div>
 </template>

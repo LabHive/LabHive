@@ -39,6 +39,7 @@ export function schemaForRole(role: string): Optional<jsonschema.Schema> {
         case UserRoles.LAB_DIAG:
             return JSON.parse(JSON.stringify(schemas.registration_labDiag))
         case UserRoles.LAB_RESEARCH:
+        case UserRoles.SUPPLIER:
             return JSON.parse(JSON.stringify(schemas.registration_labResearch))
         case UserRoles.VOLUNTEER:
             return JSON.parse(JSON.stringify(schemas.registration_volunteer))

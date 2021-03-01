@@ -35,6 +35,7 @@ const routes = [
   { path: '/register', name: 'pageRegister', component: Register, meta: { redirectLoggedIn: '/'}, children: [
     {path: 'lab_diag/:id', name: 'register/lab_diag', component: LabDiagForm, meta: { redirectLoggedIn: '/'}},
     {path: 'lab_research/:id', name: 'register/lab_research', component: LabResearchForm, meta: { redirectLoggedIn: '/'}},
+    {path: 'supplier/:id', name: 'register/supplier', component: LabResearchForm, meta: { redirectLoggedIn: '/'}},
     {path: 'volunteer/:id', name: 'register/volunteer', component: VolunteerForm, meta: { redirectLoggedIn: '/'}}
   ]},
   { path: '/reset-password', component: ResetPassword },
