@@ -29,6 +29,7 @@ async function cronjob() {
         for (let i of users) {
             i.availabilityTimer = null;
             i.availability = false;
+            // FIXME: something is missing here
             //sendNotAvailableFinal(i.contact.email, OPT.BASE_URL, i.secretRandomId, i.language)
             i.save()
         }
@@ -38,5 +39,6 @@ async function cronjob() {
 
 export function scheduleCronjob() {
     setInterval(cronjob, 1000 * 60 * 10)
+    setInterval(retryMails, 1000 * 60 * 360)
     setTimeout(cronjob, 2000)
 }

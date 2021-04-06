@@ -10,5 +10,6 @@ export * from "./IUserCommon"
 export * from "./IUserLabDiag"
 export * from "./IUserLabResearch"
 export * from "./IUserVolunteer"
+export * from "./ITestCapacity"
 export * from "./IZipcodes"
 

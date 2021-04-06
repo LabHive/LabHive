@@ -7,7 +7,7 @@ import { ResetToken } from "../../lib/database/models";
 import utils from '../utils';
 import { sendPasswordResetMail } from '../mail';
 import { getLangID } from './language';
-import { OPT } from '../options';
+import { OPT } from '../config';
 
 interface IBody {
     email?: string

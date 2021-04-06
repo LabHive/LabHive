@@ -1,14 +1,6 @@
 import mongoose from "mongoose";
-import { IUserVolunteer, UserVolunteerSchema } from './schemas/IUserVolunteer';
-import { IUserLabDiag, UserLabDiagSchema } from './schemas/IUserLabDiag';
-import { IResetToken, ResetTokenSchema } from './schemas/IResetToken';
-import { IUserCommon, UserCommonSchema } from './schemas/IUserCommon';
-import { UserLabResearchSchema, IUserLabResearch, UserSupplierSchema } from './schemas/IUserLabResearch';
-import { UserRoles } from '../../lib/userRoles';
-import { FailedMailSchema, IFailedMail } from './schemas/IFailedMail';
-import { ActivationTokenSchema, IActivationToken } from './schemas/IActivationToken';
-import { UserAdminSchema, IUserAdmin } from './schemas/IUserAdmin';
-import { ZipcodeSchema, IZipcode } from './schemas/IZipcodes';
+import { UserRoles } from '../../../lib/userRoles';
+import { ActivationTokenSchema, FailedMailSchema, IActivationToken, IFailedMail, IResetToken, ITestCapacity, IUserAdmin, IUserCommon, IUserLabDiag, IUserLabResearch, IUserVolunteer, IZipcode, ResetTokenSchema, TestCapacitySchema, UserAdminSchema, UserCommonSchema, UserLabDiagSchema, UserLabResearchSchema, UserSupplierSchema, UserVolunteerSchema, ZipcodeSchema } from './schemas';
 
 
 export const UserAdmin = mongoose.model<IUserAdmin>('user_admin', UserAdminSchema);

@@ -4,7 +4,7 @@ import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, BAD_REQUEST, NOT_FOUND } from 'htt
 import { UserAdmin, UserCommon, ActivationToken } from "../../lib/database/models"
 import argon from 'argon2'
 import JsonSchema, { schemas } from "../jsonSchemas/JsonSchema";
-import { CONF, OPT } from '../options'
+import { CONF, OPT } from '../config'
 import jsonwebtoken from "jsonwebtoken"
 import { registration_admin } from '../jsonSchemas/registration_admin'
 import { Validator } from 'jsonschema'

@@ -8,6 +8,9 @@ let monChannel: TextChannel | null = null;
 let disabled = true;
 let channelId = "709130098099355708"
 
+let users = {
+    Kavakuo: ""
+}
 
 
 if (!OPT.DISABLE_DISCORD_BOT) {

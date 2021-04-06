@@ -1,11 +1,13 @@
 import express from "express";
-import { UserRoles } from '../../lib/userRoles';
-import { Validator } from '../../lib/validation';
-import { getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
-import { UserCommon } from "../database/models";
-import utils, { Token } from '../utils';
-import { IUserCommon } from '../database/schemas/IUserCommon';
-import { OPT } from '../options';
+import { UserRoles } from 'lib/userRoles';
+import { Validator } from 'lib/validation';
+import { getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from 'backend/lib/database/database';
+import { UserCommon } from "backend/lib/database/models";
+import utils from '../utils';
+import { JWT } from 'backend/lib/JWT'
+import { IUserCommon } from 'backend/lib/database/schemas';
+import { OPT } from '../config';
+import { Optional } from 'lib/optional'
 
 
 enum QueryTypes {

@@ -23,7 +23,7 @@
         {
             "type": "shell",
             "command": "${workspaceFolder}/node_modules/.bin/tsc",
-            "args": ["-w"],
+            "args": ["-b", "-w"],
             "runOptions": {
                 "runOn": "folderOpen",
                 "instanceLimit": 1

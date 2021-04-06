@@ -6,10 +6,10 @@ import { IUserCommon } from '../../lib/database/schemas/IUserCommon';
 import JsonSchema, { schemaForRole } from "../jsonSchemas/JsonSchema";
 import utils from '../utils';
 import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
-import { UserRoles } from '../../lib/userRoles';
-import { UnauthorizedError } from '../errors';
+import { UserRoles } from '../../../lib/userRoles';
+import { UnauthorizedError } from '../../../lib/errors';
 import { sendNotAvailableNotice } from '../mail/mailer';
-import { OPT } from '../options';
+import { OPT } from '../config';
 
 class Profile {
     public async get(req: express.Request, res: express.Response, next: express.NextFunction) {

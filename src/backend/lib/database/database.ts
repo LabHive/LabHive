@@ -5,8 +5,9 @@ import { CONF, OPT } from './config'
 import { GlobalEvent } from '../constants';
 import { JWT } from '../JWT'
 import { status } from "migrate-mongo"
-import { UserAdmin, UserLabDiag, UserLabResearch, UserVolunteer, UserCommon } from './models'
+import { UserAdmin, UserLabDiag, UserLabResearch, UserVolunteer, UserCommon, UserSupplier } from './models'
 import { Optional } from "lib/optional"
+import { UserSupplierSchema } from './schemas';
 
 
 const connectionBase = OPT.DOCKER ? 'mongodb' : 'localhost';
@@ -68,6 +69,8 @@ export function getModelForRole(role?: string): Optional<Model<IUserCommon>> {
       return UserLabResearch;
     case UserRoles.VOLUNTEER:
       return UserVolunteer;
+    case UserRoles.SUPPLIER:
+      return UserSupplier;
     default:
       return UserCommon;
   }
@@ -113,14 +116,16 @@ export async function getTestCoverage(): Promise<{
   const labDiags = users.filter((i) => i.__t == UserRoles.LAB_DIAG)
   const labResearches = users.filter((i) => i.__t == UserRoles.LAB_RESEARCH)
   const volunteers = users.filter((i) => i.__t == UserRoles.VOLUNTEER)
+  const suppliers = users.filter((i) => i.__t == UserRoles.SUPPLIER)
 
   return {
     markerCounts: {
       [UserRoles.LAB_DIAG]: labDiags.length,
       [UserRoles.LAB_RESEARCH]: labResearches.length,
-      [UserRoles.VOLUNTEER]: volunteers.length
+      [UserRoles.VOLUNTEER]: volunteers.length,
+      [UserRoles.SUPPLIER]: suppliers.length
     },
-    markers: [...labDiags, ...labResearches, ...volunteers].map(
+    markers: [...labDiags, ...labResearches, ...volunteers, ...suppliers].map(
       ({ role, location }) => ({
         role,
         latLong: {
@@ -154,10 +159,25 @@ export function cleanUserObjForToken(token: Optional<JWT>, user: IUserCommon) {
   // unauthorized or logged in as volunteer
   if (!token || (token && token.role === UserRoles.VOLUNTEER)) {
     delete user.contact
-
     if (user.role === UserRoles.VOLUNTEER) {
-      delete user.organization
-      delete user.website
+        delete user.organization
+        delete user.website
+    }
+  }
+
+  if (token && token.role == UserRoles.LAB_RESEARCH && user.role == UserRoles.VOLUNTEER) {
+    delete user.contact
+    if (user.role === UserRoles.VOLUNTEER) {
+        delete user.organization
+        delete user.website
+    }
+  }
+
+  if (token && token.role == UserRoles.SUPPLIER) {
+    delete user.contact
+    if (user.role === UserRoles.VOLUNTEER) {
+        delete user.organization
+        delete user.website
     }
   }
 }
