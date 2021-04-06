@@ -1,12 +1,11 @@
 import express from "express";
-import { UserRoles } from '../../../lib/userRoles';
-import { Validator } from '../../../lib/validation';
-import { getModelForRole, getUser, getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../../lib/database/database';
-import { UserCommon } from "../../lib/database/models";
-import utils from '../utils';
-import { JWT } from 'backend/lib/JWT'
-import { IUserCommon } from '../../lib/database/schemas/IUserCommon';
-import { Optional } from 'lib/optional'
+import { UserRoles } from '../../lib/userRoles';
+import { Validator } from '../../lib/validation';
+import { getFilterForPublicUsers, cleanUserObjForToken, sensibleUserProjection } from '../database/database';
+import { UserCommon } from "../database/models";
+import utils, { Token } from '../utils';
+import { IUserCommon } from '../database/schemas/IUserCommon';
+import { OPT } from '../options';
 
 
 enum QueryTypes {
@@ -277,7 +276,7 @@ export async function search(req: express.Request, res: express.Response, next: 
         results.push(a)
     }
 
-    let reqUrl = utils.getBaseUrl(req) + req.originalUrl;
+    let reqUrl = OPT.BASE_URL + req.originalUrl;
     let nextUrl = new URL(reqUrl)
     let nurl = null
     if (count - (page * 20 + 20) > 0) {

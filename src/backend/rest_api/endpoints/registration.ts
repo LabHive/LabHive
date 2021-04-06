@@ -94,7 +94,7 @@ export async function registration(req: express.Request, res: express.Response, 
             throw new Error("Saving document failed")
         
         let lang = getLangID(req)
-        let link = utils.getBaseUrl(req) + "/#/activate?token=" + token
+        let link = OPT.BASE_URL + "/#/activate?token=" + token
         sendActivationMail(user.contact.email, link, lang).catch((err) => {
             console.error("Failed to send activation mail", err)
         })

@@ -164,13 +164,6 @@ class Utils {
         
         return true
     }
-
-    public getBaseUrl(req: express.Request) {
-        if (OPT.BASE_URL) {
-            return OPT.BASE_URL
-        }
-        return req.protocol + '://' + req.get('host')
-    }
 }
 
 

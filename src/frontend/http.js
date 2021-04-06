@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import base64url from 'base64url'
 
 Vue.use(VueResource);
 
@@ -17,7 +18,7 @@ function getToken() {
 
   try {
     let token = localStorage.getItem('authToken')
-    let payload = JSON.parse(atob(token.split(".")[1]))
+    let payload = JSON.parse(base64url.decode(token.split(".")[1]))
     let date = Math.round(new Date().getTime() / 1000);
     if (token && date < payload.exp) {
       return token;

@@ -7,6 +7,7 @@ import { ResetToken } from "../../lib/database/models";
 import utils from '../utils';
 import { sendPasswordResetMail } from '../mail';
 import { getLangID } from './language';
+import { OPT } from '../options';
 
 interface IBody {
     email?: string
@@ -35,7 +36,7 @@ export async function forgotPassword(req: express.Request, res: express.Response
     
     try {
         await token_doc.save();
-        const link = utils.getBaseUrl(req) + "/#/reset-password?token=" + token;
+        const link = OPT.BASE_URL + "/#/reset-password?token=" + token;
         await sendPasswordResetMail(user!.contact.email, link, getLangID(req));
         return utils.successResponse(res);
     } catch {

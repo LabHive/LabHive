@@ -13,8 +13,9 @@
             :zoom="zoom"
             :center="center"
             :options="mapOptions"
-            style="height: 456px; width: 350px;"
+            style="height: 514px; width: 438px;"
           >
+          
             <l-marker v-for="marker in markers" :lat-lng="marker.position" :key="marker.id">
               <l-icon
                 :icon-url="`${publicPath}map-icons/${marker.iconPath}`"
@@ -26,7 +27,7 @@
           </l-map>
         </b-col>
         <b-col cols lg="6" md="6" sm="12" class="stats" data-aos="fade-up" data-aos-duration="750" data-aos-delay="100">
-          <b-row style="margin-bottom: 40px" align-v="center" align-h="center">
+          <b-row style="margin-bottom: 33px" align-v="center" align-h="center">
             <b-col class="totalStats" cols="auto">{{ $n(testsPerWeek) }}</b-col>
             <b-col class="totalDetails" lg="5" md="12">{{ $t('landingpage.coverage.testsPerWeek') }}<sup>1</sup></b-col>
             <a target= "_blank" 
@@ -38,24 +39,32 @@
           <template v-if="markerCounts">
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png">{{ markerCounts.volunteer }}</b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-volunteer.png"><span class="number">{{ markerCounts.volunteer }}</span></b-col>
               <b-col class="details" sm="12" md="12">{{ $tc('general.qVolunteer', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png">{{ markerCounts.lab_research }}</b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png"><span class="number">{{ markerCounts.lab_diag }}</span></b-col>
+              <b-col class="details last" sm="12" md="12">{{ $tc('general.dCenter', 2) }}<sup>2</sup></b-col>
+              <b-col class="spacer"></b-col>
+            </b-row>
+            <hr>
+            <b-row class="statRow" align-v="center">
+              <b-col class="spacer"></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-research.png"><span class="number">{{ markerCounts.lab_research }}</span></b-col>
               <b-col class="details" sm="12" md="12">{{ $tc('general.rLab', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
             <hr>
             <b-row class="statRow last" align-v="center">
               <b-col class="spacer"></b-col>
-              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-diag.png">{{ markerCounts.lab_diag }}</b-col>
-              <b-col class="details last" sm="12" md="12">{{ $tc('general.dCenter', 2) }}<sup>2</sup></b-col>
+              <b-col class="detailsCount" sm="12" md="12"><img class="map-icon-counter" src="/map-icons/map-icon-supplier.png"><span class="number">{{ markerCounts.supplier }}</span></b-col>
+              <b-col class="details" sm="12" md="12">{{ $tc('general.supplier', 2) }}<sup>2</sup></b-col>
               <b-col class="spacer"></b-col>
             </b-row>
+            
             <b-row>
               <b-col class="spacer"></b-col>
               <b-col cols="10" style="text-align: left; font-size: 12px"><p id="platform-cit"><sup>2</sup>{{ $t('landingpage.coverage.referenceRegistered') }}</p></b-col>
@@ -83,11 +92,11 @@ export default {
   },
   data() {
     return {
-      zoom: 5.5,
+      zoom: 5.7,
       center: latLng(51.1657, 10.4515),
-      url: "https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png",
+      url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
-        '<a href="https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       mapOptions: {
         zoomSnap: 0.5,
         minZoom: 5.5,
@@ -213,12 +222,16 @@ $color-bkg-primary: #f7f6fd;
 }
 
 .statRow {
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   text-align: center;
 
   &.last {
     margin-bottom: 15px;
   }
+}
+
+.number {
+  margin-top: 6px
 }
 
 .details {
@@ -232,10 +245,10 @@ $color-bkg-primary: #f7f6fd;
 .detailsCount {
   color: $color-green;
   font-family: Fira Sans;
-  font-size: 44px;
+  font-size: 33px;
   text-align: right;
   font-weight: normal;
-  line-height: 52px;
+  line-height: 41px;
   text-align: center;
 }
 
@@ -346,6 +359,7 @@ $color-bkg-primary: #f7f6fd;
   width: 32px;
   height: 32px;
   margin-right: 16px;
+  margin-bottom: 5px
 }
 
 $aos-distance: 32px;

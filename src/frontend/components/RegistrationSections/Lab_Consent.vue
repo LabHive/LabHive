@@ -15,7 +15,9 @@
 
     <b-row style="margin-top: 30px" v-if="!profileUpdate">
       <b-col sm="*" :md="5*2" :lg="4*2">
-        <div v-html="$t('registration.steps.consent.dataProcessingInformation')"></div>
+        <div v-html="$t('registration.steps.consent.dataProcessingInformation1')"></div>
+        <div v-if="role == 'lab_diag'" v-html="$t('registration.steps.consent.dataProcessingInformation2')"></div>
+        <div v-html="$t('registration.steps.consent.dataProcessingInformation3')"></div>
       </b-col>
     </b-row>
 

@@ -6,7 +6,7 @@ import { UnauthorizedError } from '../../../lib/errors';
 
 export async function authMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
     if (!req.headers.authorization) {
-        return next()
+        return next(new UnauthorizedError())
     }
 
     let auth = await utils.isValidJWT(req)

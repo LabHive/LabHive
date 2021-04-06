@@ -28,3 +28,23 @@ export const UserLabResearchSchema = new Schema({
 });
 
 UserLabResearchSchema.index({ location: '2dsphere' })
+
+export const UserSupplierSchema = new Schema({
+    offers: {
+        advice: [String],
+        equipment: [String],
+        equipmentDescription: {
+            type: String,
+            default: ""
+        },
+        adviceDescription: {
+            type: String,
+            default: ""
+        },
+    }
+}, {
+    timestamps: true
+});
+
+
+UserSupplierSchema.index({ location: '2dsphere' })

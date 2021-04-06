@@ -48,7 +48,7 @@
                 v-if="$user.role && $user.role.toLowerCase().indexOf('admin') == -1"
               >{{ $t("profile.title") }}</b-dropdown-item>
               <b-dropdown-item
-                v-if="$user.role == 'lab_diag' || $user.role == 'lab_research'"
+                v-if="$user.role == 'lab_diag' || $user.role == 'lab_research' || $user.role == 'supplier'"
                 to="/offer"
               >{{ $t("profile.offer.title") }}</b-dropdown-item>
               <b-dropdown-item
@@ -81,6 +81,8 @@
           <router-view></router-view>
         </keep-alive>
       </div>
+    </div>
+    <div class="container-fluid">
       <footer class="footer-custom">
         <b-container>
           <b-row align-h="between" align-v="center">

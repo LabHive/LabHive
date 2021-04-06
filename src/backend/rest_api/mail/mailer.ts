@@ -1,11 +1,49 @@
 import Mail from 'nodemailer/lib/mailer';
 import localization from './localization';
 import { LANG_TYPE } from "../../lib/constants";
+// TODO: use redis
 
+let TRANSPORTER: Mail
+
+if (OPT.ENABLE_MAIL) {
+    TRANSPORTER = nodemailer.createTransport(CONF.MAIL_CONFIG)
+}
+
+export function retryMails() {
+    var d = new Date();
+    d.setDate(d.getDate() - 1);
+
+    // try to deliver failed emails again
+    FailedMail.find({ createdAt: { $gte: d } }).exec().then(docs => {
+        for (let i of docs) {
+            sendMessage(i.toObject(), false).then(() => {
+                i.remove()
+            }).catch(() => {
+                i.updateOne({ updatedAt: new Date() }).exec()
+            })
+        }
+    }).catch((err) => {
+        console.error(err)
+    })
+}
 
 async function sendMessage(message: Mail.Options, storeFailed: boolean = true): Promise<any> {    
-    // TODO: use redis
-}
+    if (OPT.ENABLE_MAIL) {
+        return TRANSPORTER.sendMail(message).catch(async (err) => {
+            console.error(err)
+            if (storeFailed) {
+                BotMsg.error(`Failed to send email...`)
+                let doc = new FailedMail(message)
+                doc.save()
+            }
+            throw err
+        })
+    }
+    else {
+        console.log("Would send an email now!")
+        console.log(JSON.stringify(message, null, 4))
+    }
+
 
 
 

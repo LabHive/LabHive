@@ -42,3 +42,23 @@ function sendMsg(msg: string) {
 }
 
 
+export class BotMsg {
+    static error(msg: string) {
+        sendMsg(`${users.Kavakuo} ${msg}!`)
+    }
+
+    static newUser(user: IUserCommon) {
+        if (user.role === UserRoles.VOLUNTEER) {
+            sendMsg(`New volunteer just registered!`)
+        }
+        else if (user.role === UserRoles.LAB_DIAG) {
+            sendMsg(`@everyone New diagnostic center just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
+        }
+        else if (user.role === UserRoles.LAB_RESEARCH) {
+            sendMsg(`@everyone New research lab just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
+        }
+        else if (user.role === UserRoles.SUPPLIER) {
+            sendMsg(`@everyone New supplier just registered, let's verify it!\n\tSlugID: \`${user.slug}\``)
+        }
+    }
+}
