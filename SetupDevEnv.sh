@@ -9,6 +9,8 @@ trap 'err_report $LINENO' ERR
 
 cd "$(dirname "$0")"
 
+git submodule update --init
+
 if docker volume ls | grep -q labhive_mongodb_stagingDB; then
     docker volume rm labhive_mongodb_stagingDB
     docker volume rm labhive_mongodb_stagingConfig
