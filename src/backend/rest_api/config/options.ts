@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'fs'
 import { FILE_PATH } from '../../lib/constants'
-import { Options } from '../../lib/options'
+import { Options } from '../../lib/Options'
 import { Optional } from 'lib/optional'
 import { EnvVar } from "backend/lib/";
 
