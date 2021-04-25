@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
-    <span>Willkommen zurück, {{ profile.organization }}</span>
-    <h1 style="margin-bottom: 0">Hier ist ihre Übersicht</h1>
+    <span>{{$t("testcapacity.welcome")}} {{ profile.organization }}</span>
+    <h1 style="margin-bottom: 0">{{$t("testcapacity.overview")}}</h1>
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
         {{ $t("profile.updated") }}
