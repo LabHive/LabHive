@@ -1,9 +1,9 @@
 <template>
   <div class="box">
-    <h4>Laborübersicht</h4>
+    <h4>{{$t("testcapacity.capacityMap.title")}}</h4>
     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary" @click="getCapacity('pcr')">PCR</button>
-      <button type="button" class="btn btn-secondary" @click="getCapacity('antibody')">Antikörper</button>
+      <button type="button" class="btn btn-secondary" @click="getCapacity('pcr')">{{$t("testcapacity.capacityMap.pcr")}}</button>
+      <button type="button" class="btn btn-secondary" @click="getCapacity('antibody')">{{$t("testcapacity.capacityMap.antibody")}}</button>
     </div>
     <div class="map">
       <MglMap  v-if="geoJSON" :accessToken="accessToken" :mapStyle="mapStyle" :zoom="zoom" :center="center" @zoom="zooms" >

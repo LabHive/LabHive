@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="box">
-      <h4>Eigene Kapazität und Auslastung</h4>
+      <h4>{{$t("testcapacity.historyChart.title")}}</h4>
       <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary" @click="getHistory('pcr')">PCR</button>
-        <button type="button" class="btn btn-secondary" @click="getHistory('antibody')">Antikörper</button>
+        <button type="button" class="btn btn-secondary" @click="getHistory('pcr')">{{$t("testcapacity.historyChart.pcr")}}</button>
+        <button type="button" class="btn btn-secondary" @click="getHistory('antibody')">{{$t("testcapacity.historyChart.antibody")}}</button>
       </div>
       <hr>
       <span v-if="error">{{error}}</span>
@@ -18,8 +18,8 @@
             <line v-for="(line, i) in lines" :key="i" fill="none" opacity="0.1" stroke="black" @mouseover="toggleToolTip(line)" @mouseout="toggleToolTip(false)" stroke-width="3" :x1="line.x" :x2="line.x" :y1="line.y" :y2="style.height-style.margin.top-style.margin.bottom" />
           </g>
           <g v-if="tooltip.active">
-            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">Kapazität: {{Math.floor(tooltip.content.totalCapacity)}}</text>
-            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.used.y+2">Durchgeführt: {{Math.floor(tooltip.content.usedCapacity)}}</text>
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.total.y-2">{{$t("testcapacity.historyChart.capacity")}}: {{Math.floor(tooltip.content.totalCapacity)}}</text>
+            <text :x="tooltip.x + tooltip.position.margin" :text-anchor="tooltip.position.anchor"  fill="#282e40" :y="tooltip.used.y+2">{{$t("testcapacity.historyChart.usedCapacity")}}: {{Math.floor(tooltip.content.usedCapacity)}}</text>
             <line :y2="tooltip.total.y" :y1="style.height-style.margin.top-style.margin.bottom" :x1="tooltip.x" :x2="tooltip.x" stroke="black" stroke-dasharray="2 4"  />
           </g>
           <g class="axes">
@@ -28,23 +28,23 @@
           </g>
           <g class="legend" :transform="`translate(${style.margin.left},0)`">
             <rect width="10" height="10" :x="0" fill="#177867" opacity=".4" y="10"/>
-            <text font-size="10pt" fill="#282e40" x="16" y="19">Gesamtkapazität</text>
+            <text font-size="10pt" fill="#282e40" x="16" y="19">{{$t("testcapacity.historyChart.totalCapacity")}}</text>
 
             <rect width="10" height="10" :x="0" fill="#177867" y="29"/>
-            <text font-size="10pt"  fill="#282e40" x="16" y="38">Durchgeführte Tests</text>
+            <text font-size="10pt"  fill="#282e40" x="16" y="38">{{$t("testcapacity.historyChart.testAmount")}}</text>
           </g>
         </svg>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked @click="displayLastDays = 6">
         <label class="form-check-label" for="exampleRadios1">
-          Letzte Woche
+          {{$t("testcapacity.historyChart.lastWeek")}}
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"  @click="displayLastDays = history.length-1" :disabled="(history.length < 7  ) ? true : false">
         <label class="form-check-label" for="exampleRadios2">
-          gesamter Zeitraum
+          {{$t("testcapacity.historyChart.timespan")}}
         </label>
       </div>
     </div>
