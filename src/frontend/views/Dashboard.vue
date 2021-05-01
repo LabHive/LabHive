@@ -1,7 +1,9 @@
 <template>
   <div class="dashboard">
     <span>{{$t("testcapacity.welcome")}} {{ profile.organization }}</span>
+    
     <h1 style="margin-bottom: 0">{{$t("testcapacity.overview")}}</h1>
+    <span>{{ date }}</span>
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
         {{ $t("profile.updated") }}
@@ -43,7 +45,16 @@ export default {
     profile: function() {
       return this.$user;
     },
+    date: function() {
+      
+      let d = new Date(2010, 7, 5);
+      let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+      let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+      let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+      console.log(`${da}-${mo}-${ye}`);
 
+      return `${da}-${mo}-${ye}`;
+    },
   },
   methods: {
   },
