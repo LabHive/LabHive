@@ -2,7 +2,7 @@
   <div class="dashboard">
     <span>{{$t("testcapacity.welcome")}} {{ profile.organization }}</span>
     
-    <h1 style="margin-bottom: 0; text-align: left">{{$t("testcapacity.overview")}}</h1>
+    <h1  style="margin-bottom: 0; text-align: left">{{$t("testcapacity.overview")}}</h1>
     <span>{{ date }}</span>
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
@@ -18,6 +18,9 @@
           <HistoryChart />
         </div>
        <hr style="margin: 100px;">
+      <div class="container" style="width: 50%;">
+        <Advice />  <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
+      </div>
        <hr style="margin: 100px;">
         <div  class="container">
           <CapacityMap />
@@ -32,6 +35,7 @@
 <script>
 import HistoryChart from "./../components/historyChart";
 import CapacityMap from "./../components/capacityMap";
+import Advice from "./../components/Advice";  //hier den import einfügen und in Z.69 unter Components hinzufügen
 
 
 
@@ -64,7 +68,8 @@ export default {
 
   components: {
     HistoryChart,
-    CapacityMap
+    CapacityMap,
+    Advice  //Hier das Component einfügen
   }
 };
 </script>
