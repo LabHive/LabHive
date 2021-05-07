@@ -2,7 +2,7 @@
   <div class="dashboard">
     <span>{{$t("testcapacity.welcome")}} {{ profile.organization }}</span>
     
-    <h1 style="margin-bottom: 0">{{$t("testcapacity.overview")}}</h1>
+    <h1 style="margin-bottom: 0; text-align: left">{{$t("testcapacity.overview")}}</h1>
     <span>{{ date }}</span>
     <template v-if="updated">
       <div class="alert alert-success" role="alert">
@@ -13,14 +13,17 @@
       <div v-if="error" class="alert alert-danger" role="alert">
         {{ error }}
       </div>
-      <div class="row">
-        <div class="col">
+      <div class="col">
+        <div  class="container" style="width: 80%;" >
           <HistoryChart />
         </div>
-        <div class="col">
+       <hr style="margin: 100px;">
+       <hr style="margin: 100px;">
+        <div  class="container">
           <CapacityMap />
         </div>
       </div>
+      
 
     </template>
   </div>
@@ -47,7 +50,7 @@ export default {
     },
     date: function() {
       
-      let d = new Date(2010, 7, 5);
+      let d = new Date();
       let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
       let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
       let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
