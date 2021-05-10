@@ -26,6 +26,7 @@ import LabResearchForm from './components/RegistrationForms/LabResearchForm'
 import VolunteerForm from './components/RegistrationForms/VolunteerForm'
 import UpdateAvailability from './views/UpdateAvailability'
 import Press from './views/Press'
+import TestCapacity from './views/TestCapacity'
 
 Vue.use(VueRouter);
 
@@ -49,6 +50,7 @@ const routes = [
   { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   { path: '/updateAvailability', component: UpdateAvailability },
+  { path: '/test-capacity', component: TestCapacity },
 
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/dashboard', component: Dashboard, meta: { auth: true } },
