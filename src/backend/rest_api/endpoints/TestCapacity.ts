@@ -62,10 +62,9 @@ class TestCapacityEndpoint {
     })
   }
 
-
   public async get(req: express.Request, resp: express.Response, next: express.NextFunction) {
     const token = utils.getUnverifiedDecodedJWT(req)
-    
+
     const capacities = await TestCapacity
       .find({user: token.sub})
       .sort({createdAt: -1})
@@ -80,7 +79,6 @@ class TestCapacityEndpoint {
       }).lean().exec()
     resp.send({success: true, data: capacities})
   }
-
 
   public async query(req: express.Request, resp: express.Response, next: express.NextFunction) {
     const token = utils.getUnverifiedDecodedJWT(req)
@@ -113,6 +111,25 @@ class TestCapacityEndpoint {
       success: true,
       data: entries
     })
+  }
+
+  public async getTestCapacity(req: express.Request, resp: express.Response, next: express.NextFunction) {
+    const token = utils.getUnverifiedDecodedJWT(req)
+    const capacities = await TestCapacity
+    .find({user: token.sub}) //Filter user
+    .sort({createdAt: -1})   //Sort by date, newest first.
+    .select({
+      createdAt: 1,          //include creation date
+      totalCapacity: 1,      //include "Capacity"
+      usedCapacity: 1,       //include "Tests"
+      positiveRate: 1,       //include "Positive Rate"
+      sampleBackup: 1,       //include "Backlog"
+      _id: 0                 //exclude id
+    })
+    .lean() //Returns plain JavaScript object instead of MongooseDocuments 
+    .exec() //Execute all that above
+
+    resp.send({success: true, data: capacities})
   }
 }
 

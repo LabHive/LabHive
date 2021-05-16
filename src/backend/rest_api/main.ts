@@ -109,6 +109,7 @@ function main() {
       .delete("/profile", Profile.delete)
   router.get("/testCapacity", TestCapacity.get)
   router.get("/testCapacity/query", TestCapacity.query)
+  router.get("/testCapacity/getTestCapacity", TestCapacity.getTestCapacity)
   router.post("/testCapacity", TestCapacity.update)
 
 
