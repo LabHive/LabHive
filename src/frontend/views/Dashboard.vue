@@ -19,7 +19,20 @@
         </div>
        <hr style="margin: 100px;">
       <div class="container" style="width: 50%;">
+        <b-row align-h="center" align-v="center">
+          <b-col sm="12" lg="6" xl="4">
         <Advice />  <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
+        </b-col>
+        <b-col sm="12" lg="6" xl="4">
+        <Advice />  <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
+        </b-col>
+        <b-col sm="12" lg="6" xl="4">
+        <Advice />  <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
+        </b-col>
+        <b-col sm="12" lg="6" xl="4">
+        <Advice />  <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
+        </b-col>
+        </b-row>
       </div>
        <hr style="margin: 100px;">
         <div  class="container">
