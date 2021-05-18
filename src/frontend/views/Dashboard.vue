@@ -7,9 +7,8 @@
         <h1 style="margin-bottom: 0; text-align: left">
           {{ $t("testcapacity.overview") }}
         </h1>
-
+        <span>{{ date }}</span>
       </div>
-      <span>{{ date }}</span>
     </div>
 
     <template v-if="updated">
@@ -102,16 +101,20 @@ export default {
 
 <style scoped>
 .top {
-  padding-top: 10%;
-  padding-bottom: 10%;
+  position: static;
+  padding-bottom: 100pt;
+  padding-top: 50pt;
+  opacity: 1;
 }
 
 .background {
+  
   background-image: url("../assets/decoration-1.svg");
   background-repeat: no-repeat;
-  background-position: center,;
+  background-position: center;
+  padding-bottom: -70pt;
+  opacity: 0,5;
   
-
 }
 
 .bcol {
