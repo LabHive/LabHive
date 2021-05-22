@@ -49,7 +49,7 @@ jobs:
           push: true
           tags: labhive/labhive:staging
           context: ./labshare-client
-          build_args: enableDev=true,staging=true
+          build-args: enableDev=true,staging=true
           
   deploy:
     name: "Deploy"
