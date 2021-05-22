@@ -18,6 +18,8 @@ jobs:
         with:
           submodules: true
       - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
       - run: cd labshare-client && npm install
       - run: cd labshare-client && npm run build
 
