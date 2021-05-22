@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:14
 ARG enableDev=false
 ARG staging=false
 
