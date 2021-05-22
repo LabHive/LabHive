@@ -114,22 +114,41 @@ class TestCapacityEndpoint {
   }
 
   public async getTestCapacity(req: express.Request, resp: express.Response, next: express.NextFunction) {
+
+    let page = 0
+    try {
+        if (typeof req.query.page !== "string") throw new Error()
+        page = parseInt(req.query.page ?? '1') - 1
+    }
+    catch {
+        page = 0
+    }
+    page = Math.max(page, 0)
+
+
     const token = utils.getUnverifiedDecodedJWT(req)
-    const capacities = await TestCapacity
-    .find({user: token.sub}) //Filter user
-    .sort({createdAt: -1})   //Sort by date, newest first.
-    .select({
+
+    let count = await TestCapacity
+    .find({user: token.sub}).lean().countDocuments().exec()
+
+    let filters = {
       createdAt: 1,          //include creation date
       totalCapacity: 1,      //include "Capacity"
       usedCapacity: 1,       //include "Tests"
       positiveRate: 1,       //include "Positive Rate"
       sampleBackup: 1,       //include "Backlog"
       _id: 0                 //exclude id
-    })
+    }
+
+    const capacities = await TestCapacity
+    .find({user: token.sub}) //Filter user
+    .sort({createdAt: -1})   //Sort by date, newest first.
+    .select(filters) //Filter
     .lean() //Returns plain JavaScript object instead of MongooseDocuments 
+    .skip(20 * page).limit(20) //Pagination
     .exec() //Execute all that above
 
-    resp.send({success: true, data: capacities})
+    resp.send({success: true, data: capacities, totalResults: count})
   }
 }
 
