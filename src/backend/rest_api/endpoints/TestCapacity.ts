@@ -75,7 +75,7 @@ class TestCapacityEndpoint {
         usedCapacity: 1,
         positiveRate: 1,
         sampleBackup: 1,
-        _id: 0
+        _id: 1
       }).lean().exec()
     resp.send({success: true, data: capacities})
   }
