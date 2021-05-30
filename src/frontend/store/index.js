@@ -8,6 +8,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('authToken'),
     profile: {},
     fetcingProfile: false,
+    locale: localStorage.getItem('locale')
   },
   mutations: {
     auth_success(state, token) {

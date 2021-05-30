@@ -15,6 +15,8 @@ if (!locale) {
   else {
     locale = "en"
   }
+
+  localStorage.setItem('locale', locale)
 }
 
 const loadedLanguages = ['de']
