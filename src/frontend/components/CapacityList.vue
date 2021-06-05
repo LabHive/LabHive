@@ -1,15 +1,14 @@
 <template>
-    <div>
-        <div class="box">
-            <h4>Test for CapacityList</h4>
+    <div >
+        <div>
             <!-- Main Content -->
 
                        
             <div class="d-flex flex-row-reverse bd-highlight">     
                 <b-button v-b-toggle="'addEntryBox'" variant="primary">Add New Entry</b-button>
             </div>
-            <b-collapse style="background-color:#DBDBDB;" id="addEntryBox" class="mt-2">
-                <b-row cols="5">   
+            <b-collapse style="background-color:#DBDBDB;" id="addEntryBox" class="box" >
+                <b-row cols="5" >
                     <b-col>
                         <input type="date" class="form-control"> 
                     </b-col>
@@ -39,35 +38,35 @@
                 :key="index + item.createdAt + item.formattedDate + item.totalCapacity + item.usedCapacity + item.positiveRate + item.sampleBackup"
             >
                 <div>
-                    <b-row cols="7">  
-                        <b-col>
-                            <div class="">{{ item.createdAt }} </div>
+                    <b-row cols="7" class="box" >  
+                        <b-col class="row align-items-center">
+                            <div >{{ item.createdAt }} </div>
                         </b-col>
                         <b-col>
-                            <div class="">{{ item.totalCapacity }}</div>Capacity
+                            <div class="" id="numberDescription">{{ item.totalCapacity }}</div>Capacity
                         </b-col>
                         <b-col>
-                            <div class="">{{ item.usedCapacity }}</div>Tests
+                            <div class="" id="numberDescription">{{ item.usedCapacity }}</div>Tests
                         </b-col>
                         <b-col>
-                            <div class="">{{ item.sampleBackup }}</div>Backlog
+                            <div class="" id="numberDescription">{{ item.sampleBackup }}</div>Backlog
                         </b-col>
                         <b-col>
-                            <div class="">{{ item.positiveRate }}</div>Positive Rate
+                            <div class="" id="numberDescription">{{ item.positiveRate }}</div>Positive Rate
                         </b-col>
-                        <b-col offset-md="1">
-                            <b-button v-b-toggle="'editBox'+index" variant="primary">Edit</b-button>
+                        <b-col offset-md="1" class="d-flex flex-row-reverse">
+                            <b-button v-b-toggle="'editBox'+index" variant="primary">Edit<i class="bi bi-chevron-down"></i></b-button>
                         </b-col>
                     </b-row>
                 </div>
-                <b-collapse style="background-color:#DBDBDB;" :id="'editBox'+index" class="mt-2">
+                <b-collapse style="background-color:#DBDBDB; margin-top: 0; border-radius: 0px 0px 5px 5px;" :id="'editBox'+index" class="box" >
                     <b-row cols="5">   
                         <b-col>
                             <input type="date" class="form-control" :value="item.formattedDate"> 
                         </b-col>
                     </b-row>
-                    <b-row cols="5"> 
-                        <b-col>
+                    <b-row cols="5" style="padding-top: 10px; padding-bottom: 10px"> 
+                        <b-col  >
                             <input type="number" class="form-control" :value="item.totalCapacity">
                         </b-col>
                         <b-col>
@@ -79,16 +78,16 @@
                         <b-col>
                             <input type="number" class="form-control" :value="item.positiveRate">   
                         </b-col>
-                    </b-row>
-                    <b-row cols="10">
-                        <b-col md="1">
+                    </b-row >
+                    <b-row cols="10" >
+                        <b-col md="1" >
                             <b-button variant="primary">Save</b-button>
                         </b-col>
-                        <b-col md="1">
+                        <b-col md="1" >
                             <b-button v-b-toggle="'editBox'+index" variant="primary">Cancel</b-button>
                         </b-col>
                         <b-col md="1" offset-md="8">
-                            <b-button variant="danger">Delete</b-button>
+                            <b-button variant="danger" >Delete</b-button>
                         </b-col>
                     </b-row>
                 </b-collapse>
@@ -198,7 +197,15 @@ export default {
 
 <style scoped>
 .box {
-    padding: 0px;
+  background-color: rgba(255,255,255,1);
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+#numberDescription{
+    color: rgba(23, 120, 103, 1);
+    font-size: 19px;
 }
 
 path {
