@@ -1,6 +1,6 @@
 import express from 'express';
 import { UserRoles } from '../../../lib/userRoles';
-import { TestCapacity, UserLabDiag } from '../../lib/database/models';
+import { TestCapacity, UserCommon, UserLabDiag } from '../../lib/database/models';
 import { ITestCapacity } from '../../lib/database/schemas/ITestCapacity';
 import JsonSchema, { schemas } from '../jsonSchemas/JsonSchema';
 import { OPT } from '../config/options';
@@ -150,6 +150,25 @@ class TestCapacityEndpoint {
 
     resp.send({success: true, data: capacities, totalResults: count})
   }
+
+  public async getResources(req: express.Request, resp: express.Response, next: express.NextFunction) {
+
+    const token = utils.getUnverifiedDecodedJWT(req)
+
+    let filters = {
+      lookingFor: 1,
+      offers: 1,
+      _id: 1                 //exclude id
+    }
+    const capacities = await UserCommon
+    .find({_id: token.sub}) //Filter user
+    .select(filters) //Filter
+    .lean() //Returns plain JavaScript object instead of MongooseDocuments 
+    .exec() //Execute all that above
+
+    resp.send({success: true, data: capacities})
+  }
+
 }
 
 

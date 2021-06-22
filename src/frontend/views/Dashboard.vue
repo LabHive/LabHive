@@ -26,24 +26,7 @@
         </div>
         <hr style="margin: 100px" />
         <div class="container" style="width: 100%">
-          <b-row align-h="center" align-v="center">
-            <b-col class="bcol" sm="12" lg="6" xl="20">
-              <Advice />
-              <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
-            </b-col>
-            <b-col class="bcol" sm="12" lg="6" xl="20">
-              <Advice />
-              <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
-            </b-col>
-            <b-col class="bcol" sm="12" lg="6" xl="20">
-              <Advice />
-              <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
-            </b-col>
-            <b-col class="bcol" sm="12" lg="6" xl="20">
-              <Advice />
-              <!-- Aufruf der eigenen Box, Aufruf muss im script tag Z.35 importiert werden-->
-            </b-col>
-          </b-row>
+          <Advice />
         </div>
         <hr style="margin: 100px" />
         <div class="container">
@@ -58,6 +41,7 @@
 import HistoryChart from "./../components/historyChart";
 import CapacityMap from "./../components/capacityMap";
 import Advice from "./../components/Advice"; //hier den import einfügen und in Z.69 unter Components hinzufügen
+
 
 export default {
   name: "Dashboard",
