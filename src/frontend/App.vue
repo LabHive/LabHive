@@ -25,8 +25,14 @@
               :active="$route.name =='pageAboutUs'"
               to="/ueber-uns"
             >{{ $t("layout.navbar.aboutUs") }}</b-nav-item>
+            <b-nav-item
+              :active="$route.name =='pageTestCapacity'"
+              to="/test-capacity"
+            >{{ $t("layout.navbar.testCapacity") }}</b-nav-item>
           </b-navbar-nav>
+          
 
+          
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item
