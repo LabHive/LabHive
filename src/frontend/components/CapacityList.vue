@@ -29,7 +29,7 @@
                 </b-row>
 
                 <b-button style="margin: 10px;" variant="primary">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
-                <b-button style="margin: 10px;" v-b-toggle="'addEntryBox'" variant="primary">Close</b-button>
+                <b-button style="margin: 10px;" v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.historyChart.cancel")}}</b-button>
             </b-collapse>
 
             <div
@@ -83,10 +83,10 @@
                         <b-col md="1" >
                             <b-button variant="primary">{{$t("testcapacity.historyChart.save")}}</b-button>
                         </b-col>
-                        <b-col md="1" >
+                        <b-col md="0.9" offset-md="1" >
                             <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.historyChart.cancel")}}</b-button>
                         </b-col>
-                        <b-col md="1" offset-md="8">
+                        <b-col md="1" offset-md="7">
                             <b-button variant="danger" >{{$t("testcapacity.historyChart.delete")}}</b-button>
                         </b-col>
                     </b-row>
@@ -157,7 +157,7 @@ export default {
                 );
             });
         },
-
+   
       formatData(bodyData) {
         let list = [];
 
