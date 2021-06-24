@@ -158,7 +158,9 @@ class TestCapacityEndpoint {
     let filters = {
       lookingFor: 1,
       offers: 1,
-      _id: 1                 //exclude id
+      role: 1,
+      details: 1,
+      _id: 1                 
     }
     const capacities = await UserCommon
     .find({_id: token.sub}) //Filter user
