@@ -32,7 +32,7 @@
       </MglMap>
     </div>
     <img
-      src="../assets/legend.png"
+      src="../assets/legendDE.svg"
       alt="Kartenlegende"
       class="legend"
     />
