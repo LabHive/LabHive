@@ -199,7 +199,7 @@ h1 {
 }
 .map {
   width: 100%;
-  height: 300px;
+  height: 500px;
 }
 img.legend {
   height: 100px;
