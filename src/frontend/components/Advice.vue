@@ -30,7 +30,7 @@
 <style scoped>
 
 .box {
-  background-color: rgba(255,255,255,1);
+  background-color: rgba(255, 255, 255, 0.459);
   border-radius: 5px;
   padding: 20px;
 }
@@ -160,7 +160,7 @@ export default {
 <style scoped lang="scss">
 
 .resource-list {
-  padding: 16px 8px;
+  padding: 16px 60px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   background-color: white;
@@ -196,6 +196,9 @@ export default {
 .rl-header {
   font-style: normal;
   color: #177867;
+      left: -46px;
+    position: relative;
+
 }
 
 .rl-body {

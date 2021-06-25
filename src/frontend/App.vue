@@ -29,6 +29,10 @@
               :active="$route.name =='pageTestCapacity'"
               to="/test-capacity"
             >{{ $t("layout.navbar.testCapacity") }}</b-nav-item>
+            <b-nav-item
+              :active="$route.name =='pageDashboard'"
+              to="/dashboard"
+            >{{ $t("layout.navbar.dashboard") }}</b-nav-item>
           </b-navbar-nav>
           
 
