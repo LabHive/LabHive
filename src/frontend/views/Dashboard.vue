@@ -32,6 +32,9 @@
         <div class="container">
           <CapacityMap />
         </div>
+        <div class="container">
+          <TotalDataOverview />
+        </div>
       </div>
     </template>
   </div>
@@ -41,7 +44,7 @@
 import HistoryChart from "./../components/historyChart";
 import CapacityMap from "./../components/capacityMap";
 import Advice from "./../components/Advice"; //hier den import einfügen und in Z.69 unter Components hinzufügen
-
+import TotalDataOverview from "./../components/TotalDataOverview.vue";
 
 export default {
   name: "Dashboard",
@@ -72,6 +75,7 @@ export default {
     HistoryChart,
     CapacityMap,
     Advice, //Hier das Component einfügen
+    TotalDataOverview
   },
 };
 </script>
