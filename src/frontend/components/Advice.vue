@@ -8,20 +8,20 @@
             :key="item.header + item.content"
           >
             <div class="rl-header">
+              
               <font-awesome-icon :icon="item.faIcon" />
               {{ item.header }}
-              <b-button pill variant="primary">Update<i class="bi bi-chevron-down"></i></b-button>
+              <b-button pill  variant="primary" class="float-right" :to="item.link">Update</b-button>
             </div>
             <hr>
-            <div class="rl-body">
+            <b-row class="rl-body">
               <div class="rl-entry" v-for="item in item.content" :key="item">
                 {{ item }}
               </div>
-            </div>
+            </b-row>
           </div>
-
         </transition-group>
-        </div>
+  </div>
 </b-row>
 
 
@@ -112,6 +112,7 @@ export default {
                   const result = {
                     header: this.$t(`search.lookingFor${i}`),
                     faIcon: "search",
+                    link: "request",
                     content: x.lookingFor[i]
                       .map(y => {
                         return this.$t(`checkboxes.${i}.${y}`);
@@ -128,6 +129,7 @@ export default {
                   const result = {
                     header: this.$t(`search.offers${i}`),
                     faIcon: faIcons[i],
+                    link: "offer",
                     content: x.offers[i]
                       .map(y => {
                         return this.$t(`checkboxes.${i}.${y}`);
@@ -160,7 +162,7 @@ export default {
 <style scoped lang="scss">
 
 .resource-list {
-  padding: 16px 60px;
+  padding: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   background-color: white;
@@ -196,31 +198,27 @@ export default {
 .rl-header {
   font-style: normal;
   color: #177867;
-      left: -46px;
     position: relative;
 
 }
 
 .rl-body {
+  margin-left: 0px;
   font-size: 16px;
-  margin-top: 4px;
   hyphens: auto;
   display: flex;
+  width: 100%;
 }
 
 
 .rl-entry {
   color: #000000;
-  margin: 0px 10px;
+  margin: 4px 10px;
   background: #F0F3F3;
   border-radius: 5px;
   padding: 11.5px 10px;
-
+  margin-left: 15px;
   font-family: Fira Sans;
-  font-size: 15px;
-
-
-
 }
 
 $aos-distance: 32px;
