@@ -50,7 +50,7 @@ const routes = [
   { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   { path: '/updateAvailability', component: UpdateAvailability },
-  { path: '/test-capacity', component: TestCapacity },
+  { path: '/test-capacity', component: TestCapacity, meta: { auth: true }  },
 
   { path: '/profile', component: Profile, meta: { auth: true } },
   { path: '/dashboard', component: Dashboard, meta: { auth: true } },
