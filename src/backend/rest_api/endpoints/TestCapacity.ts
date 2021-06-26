@@ -171,6 +171,68 @@ class TestCapacityEndpoint {
     resp.send({success: true, data: capacities})
   }
 
+
+  public async getTotalData(req: express.Request, resp: express.Response, next: express.NextFunction) {
+    const weekago = new Date(); 
+    weekago.setHours(0,0,0,0);
+    weekago.setDate(weekago.getDate() - 6);
+
+    const capacities = await TestCapacity
+    .find({createdAt: {
+      $gte: weekago
+    }}) 
+    .select({usedCapacity: 1, createdAt: 1}) //Filter everything out but the role of the user
+    .lean() //Returns plain JavaScript object instead of MongooseDocuments 
+    .exec() //Execute all that above
+
+    var testAmount = 0;//The total amount of tests (usedCapacities)
+    for(let i = 0; i < capacities.length; i++){
+        testAmount += Math.floor(capacities[i].usedCapacity); //Just in case the value is a decimal number
+    }
+
+    const users = await UserCommon
+    .find() 
+    .select({role: 1}) //Filter everything out but the role of the user
+    .lean() //Returns plain JavaScript object instead of MongooseDocuments 
+    .exec() //Execute all that above
+    
+    var volunteers = 0;       //total amount of qualified volunteers
+    var researchLabs = 0;     //total amount of research laboratories
+    var diagnosticLabs = 0;   //total amount of diagnostic laboratories
+    var suppliers = 0;        //total amount of suppliers (irrelevant for TotalDataOverview)
+
+    //Increment the amount of the corresponding role
+    for(let i = 0; i < users.length; i++){
+      switch(users[i].role){
+        case UserRoles.LAB_DIAG:
+          diagnosticLabs++;
+          break;
+        case UserRoles.LAB_RESEARCH:
+          researchLabs++;
+          break;
+        case UserRoles.VOLUNTEER:
+          volunteers++;
+          break;
+        case UserRoles.SUPPLIER:
+          suppliers++;
+          break;
+        default:
+          break;
+      }
+    }
+
+    //Data to be returned
+    const results = {
+      totalTests: testAmount,
+      volunteers: volunteers,
+      researchLabs: researchLabs,
+      diagnosticLabs: diagnosticLabs,
+      suppliers: suppliers,
+    }
+
+    resp.send({success: true, data: results})
+  }
+
 }
 
 

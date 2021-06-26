@@ -111,6 +111,7 @@ function main() {
   router.get("/testCapacity/query", TestCapacity.query)
   router.get("/testCapacity/getTestCapacity", TestCapacity.getTestCapacity)
   router.get("/testCapacity/getResources", TestCapacity.getResources)
+  router.get("/testCapacity/totalData", TestCapacity.getTotalData)
   router.post("/testCapacity", TestCapacity.update)
 
 
