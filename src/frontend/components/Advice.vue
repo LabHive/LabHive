@@ -11,7 +11,7 @@
               
               <font-awesome-icon :icon="item.faIcon" />
               {{ item.header }}
-              <b-button pill  variant="primary" class="float-right" :to="item.link">Update</b-button>
+              <b-button pill class="float-right btn-cta" :to="item.link" style="padding: 5px 5px; margin: 0px; font-weight: revert;">Update</b-button>
             </div>
             <hr>
             <b-row class="rl-body">
@@ -51,7 +51,6 @@ path {
 
 
 <script>
-
 
 export default {
     mounted() {
