@@ -8,24 +8,16 @@
                 <b-button v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
             </div>
             <b-collapse style="background-color:#DBDBDB;" id="addEntryBox" class="box" >
-                <b-row cols="5" >
+                <b-row cols="5">
                     <b-col>
                         <input type="date" class="form-control"> 
                     </b-col>
                 </b-row>
-                <b-row cols="5"> 
-                    <b-col>
-                        <input type="number" class="form-control">
-                    </b-col>
-                    <b-col>
-                        <input type="number" class="form-control">  
-                    </b-col>
-                    <b-col>
-                        <input type="number" class="form-control">
-                    </b-col>
-                    <b-col>
-                        <input type="number" class="form-control">   
-                    </b-col>
+                <b-row >
+                    <input type="number" class="form-control numInput">
+                    <input type="number" class="form-control numInput">
+                    <input type="number" class="form-control numInput">
+                    <input type="number" class="form-control numInput">
                 </b-row>
 
                 <b-button style="margin: 10px;" variant="primary">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
@@ -65,19 +57,11 @@
                             <input type="date" class="form-control" :value="item.formattedDate"> 
                         </b-col>
                     </b-row>
-                    <b-row cols="5" style="padding-top: 10px; padding-bottom: 10px"> 
-                        <b-col  >
-                            <input type="number" class="form-control" :value="item.totalCapacity">
-                        </b-col>
-                        <b-col>
-                            <input type="number" class="form-control" :value="item.usedCapacity">  
-                        </b-col>
-                        <b-col>
-                            <input type="number" class="form-control" :value="item.sampleBackup">
-                        </b-col>
-                        <b-col>
-                            <input type="number" class="form-control" :value="item.positiveRate">   
-                        </b-col>
+                    <b-row  style="padding-top: 10px; padding-bottom: 10px"> 
+                            <input type="number" class="form-control  numInput" :value="item.totalCapacity">
+                            <input type="number" class="form-control numInput" :value="item.usedCapacity">  
+                            <input type="number" class="form-control numInput" :value="item.sampleBackup">
+                            <input type="number" class="form-control numInput" :value="item.positiveRate">
                     </b-row >
                     <b-row cols="10" >
                         <b-col md="1" >
@@ -214,5 +198,15 @@ path {
 
 .svgContainer {
     height: 300px;
+}
+
+input {
+    width: 200px;
+}
+
+.numInput{
+    width: 200px;
+    margin: 4px;
+    margin-left: 15px;
 }
 </style>
