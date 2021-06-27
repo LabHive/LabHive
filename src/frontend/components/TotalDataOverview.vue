@@ -7,16 +7,16 @@
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.totalTests}} {{$t("totalDataOverview.testPerWeek")}}  </span>
+                    <span class="data-value">{{totalData.totalTests}}   </span>{{$t("totalDataOverview.testPerWeek")}}
                 </div>              
             </div>
             <div class="data" v-b-hover="handleHover1">
                 <div v-if="isHovered1">
-                   dssdd {{$t("totalDataOverview.registeredON")}}       
+                    {{$t("totalDataOverview.registeredON")}}       
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.volunteers}} {{$t("totalDataOverview.qualifiedVolunteers")}}</span>
+                    <span class="data-value">{{totalData.volunteers}} </span>{{$t("totalDataOverview.qualifiedVolunteers")}}
                 </div>                
             </div>
 
@@ -26,7 +26,7 @@
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.researchLabs}} {{$t("totalDataOverview.researchLab")}}</span>
+                    <span class="data-value">{{totalData.researchLabs}} </span>{{$t("totalDataOverview.researchLab")}}
                 </div>                
             </div>
 
@@ -36,7 +36,7 @@
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.diagnosticLabs}} {{$t("totalDataOverview.digData")}}</span>
+                    <span class="data-value">{{totalData.diagnosticLabs}} </span>{{$t("totalDataOverview.digData")}}
                 </div>
             </div>
         </b-row>
