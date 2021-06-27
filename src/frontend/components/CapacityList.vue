@@ -13,7 +13,6 @@
                         <input id="new_date" type="date" class="form-control"> 
                     </b-col>
                 </b-row>
-<<<<<<< HEAD
                 <b-row cols="5"> 
                     <b-col>
                         <input id="new_totalCapacity" type="number" class="form-control" placeholder="Total Capacity">
@@ -27,13 +26,6 @@
                     <b-col>
                         <input id="new_positiveRate" type="number" class="form-control" placeholder="Positive Rate">   
                     </b-col>
-=======
-                <b-row >
-                    <input type="number" class="form-control numInput">
-                    <input type="number" class="form-control numInput">
-                    <input type="number" class="form-control numInput">
-                    <input type="number" class="form-control numInput">
->>>>>>> 69ac3fb91dc1ae2e7ec771d26a09d0282d768e3d
                 </b-row>
 
                 <b-button style="margin: 10px;" variant="primary" v-on:click="addEntry()">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
