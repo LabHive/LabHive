@@ -3,40 +3,40 @@
         <b-row>
             <div class="data" v-b-hover="handleHover">
                 <div v-if="isHovered">
-                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                {{$t("totalDataOverview.dailySituation")}} {{ currentDate }}       
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.totalTests}}</span>Tests per Week, Germany
-                </div>                
+                    <span class="data-value">{{totalData.totalTests}} {{$t("totalDataOverview.testPerWeek")}}  </span>
+                </div>              
             </div>
             <div class="data" v-b-hover="handleHover1">
                 <div v-if="isHovered1">
-                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                   dssdd {{$t("totalDataOverview.registeredON")}}       
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.volunteers}}</span>Qualified Volunteers
+                    <span class="data-value">{{totalData.volunteers}} {{$t("totalDataOverview.qualifiedVolunteers")}}</span>
                 </div>                
             </div>
 
             <div class="data" v-b-hover="handleHover2">
                 <div v-if="isHovered2">
-                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                    {{$t("totalDataOverview.registeredON")}}       
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.researchLabs}}</span>Research Laboratories
+                    <span class="data-value">{{totalData.researchLabs}} {{$t("totalDataOverview.researchLab")}}</span>
                 </div>                
             </div>
 
             <div class="data" v-b-hover="handleHover3">
                 <div v-if="isHovered3">
-                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                    {{$t("totalDataOverview.registeredON")}}       
                 </div>
                 <div v-else>
                     <b-icon-info-circle class="float-right"></b-icon-info-circle>
-                    <span class="data-value">{{totalData.diagnosticLabs}}</span>Diagnostic Laboratories
+                    <span class="data-value">{{totalData.diagnosticLabs}} {{$t("totalDataOverview.digData")}}</span>
                 </div>
             </div>
         </b-row>
@@ -47,6 +47,8 @@
 <script>
 
 export default {
+   
+
     mounted() {
         this.getTotalData();
     },
@@ -62,10 +64,16 @@ export default {
     },
 
     computed: {
+        currentDate(){
+        const current = new Date();
+        const date = `${current.getDate()}-${current.getMonth()}-${current.getFullYear()}`;
+        return date;
+    },
         
     },
 
     methods: {
+
         handleHover(hovered) {
             this.isHovered = hovered
         },
