@@ -31,11 +31,11 @@
         </MglMarker>
       </MglMap>
     </div>
-    <img
-      src="../assets/legendDE.svg"
-      alt="Kartenlegende"
-      class="legend"
-    />
+      <img
+        :src="getLegend"
+        alt="Kartenlegende"
+        class="legend"
+      />
   </div>
 </template>
 
@@ -62,6 +62,7 @@ export default {
 
   data: function() {
     return {
+
       mapStyle: "mapbox://styles/tobi-vierzwo/ck8yodl5v02h31iny9yyy7m47",
       accessToken: "pk.eyJ1IjoibGFiaGl2ZSIsImEiOiJja2hvdXM5bWUwcTJ5MnlrOGdsOWpqZnNqIn0._qbMM9Al-fuxyicEDWlwsg",
       map: null,
@@ -77,6 +78,7 @@ export default {
   },
 
   created() {
+
     this.getCapacity("pcr");
     this.mapbox = Mapbox;
   },
@@ -85,6 +87,16 @@ export default {
   },
 
   computed: {
+
+    getLegend(){
+      let locale= localStorage.getItem("locale");
+      if(locale == "de"){
+        return require("../assets/legendDE.svg");
+      }else{
+        return require("../assets/legendEN.svg");
+      }
+    },
+
     geoJSON() {
       if(!this.apiResponse) return null
       let labs = this.apiResponse.map(lab => {
