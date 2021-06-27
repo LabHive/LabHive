@@ -56,10 +56,10 @@ export default {
     data: function() {
       return {
         totalData: [], 
-        isHovered: Boolean,
-        isHovered1: Boolean,
-        isHovered2: Boolean,
-        isHovered3: Boolean,
+        isHovered: false,
+        isHovered1: false,
+        isHovered2: false,
+        isHovered3: false,
       }
     },
 
