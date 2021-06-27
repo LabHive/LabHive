@@ -61,9 +61,10 @@ export default {
     },
     date: function () {
       let d = new Date();
-      let ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
-      let mo = new Intl.DateTimeFormat("en", { month: "short" }).format(d);
-      let da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(d);
+      let locale = localStorage.getItem("locale");
+      let ye = new Intl.DateTimeFormat(locale, { year: "numeric" }).format(d);
+      let mo = new Intl.DateTimeFormat(locale, { month: "short" }).format(d);
+      let da = new Intl.DateTimeFormat(locale, { day: "2-digit" }).format(d);
       console.log(`${da}-${mo}-${ye}`);
 
       return `${da}-${mo}-${ye}`;
