@@ -1,20 +1,43 @@
 <template>
     <div>
         <b-row>
-            <div class="data">
-                <span class="data-value">{{totalData.totalTests}}</span>Tests per Week, Germany
+            <div class="data" v-b-hover="handleHover">
+                <div v-if="isHovered">
+                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                </div>
+                <div v-else>
+                    <b-icon-info-circle class="float-right"></b-icon-info-circle>
+                    <span class="data-value">{{totalData.totalTests}}</span>Tests per Week, Germany
+                </div>                
             </div>
-            
-            <div class="data">
-                <span class="data-value">{{totalData.volunteers}}</span>Qualified Volunteers
+            <div class="data" v-b-hover="handleHover1">
+                <div v-if="isHovered1">
+                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                </div>
+                <div v-else>
+                    <b-icon-info-circle class="float-right"></b-icon-info-circle>
+                    <span class="data-value">{{totalData.volunteers}}</span>Qualified Volunteers
+                </div>                
             </div>
 
-            <div class="data">
-                <span class="data-value">{{totalData.researchLabs}}</span>Research Laboratories 
+            <div class="data" v-b-hover="handleHover2">
+                <div v-if="isHovered2">
+                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                </div>
+                <div v-else>
+                    <b-icon-info-circle class="float-right"></b-icon-info-circle>
+                    <span class="data-value">{{totalData.researchLabs}}</span>Research Laboratories
+                </div>                
             </div>
 
-            <div class="data">
-                <span class="data-value">{{totalData.diagnosticLabs}}</span>Diagnostic Laboratories
+            <div class="data" v-b-hover="handleHover3">
+                <div v-if="isHovered3">
+                    Daily situation report about COVID-19 by the RKI,<br> December 2nd 2020       
+                </div>
+                <div v-else>
+                    <b-icon-info-circle class="float-right"></b-icon-info-circle>
+                    <span class="data-value">{{totalData.diagnosticLabs}}</span>Diagnostic Laboratories
+                </div>
             </div>
         </b-row>
     </div>
@@ -31,6 +54,10 @@ export default {
     data: function() {
       return {
         totalData: [], 
+        isHovered: Boolean,
+        isHovered1: Boolean,
+        isHovered2: Boolean,
+        isHovered3: Boolean,
       }
     },
 
@@ -39,6 +66,20 @@ export default {
     },
 
     methods: {
+        handleHover(hovered) {
+            this.isHovered = hovered
+        },
+        handleHover1(hovered) {
+            this.isHovered1 = hovered
+        },
+        handleHover2(hovered) {
+            this.isHovered2 = hovered
+        },
+        handleHover3(hovered) {
+            this.isHovered3 = hovered
+        },
+
+        
         getTotalData() {
             return new Promise((res, rej) => {
                 this.$http.get("testCapacity/totalData").then(
