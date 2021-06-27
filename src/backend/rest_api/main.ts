@@ -112,7 +112,9 @@ function main() {
   router.get("/testCapacity/getTestCapacity", TestCapacity.getTestCapacity)
   router.get("/testCapacity/getResources", TestCapacity.getResources)
   router.get("/testCapacity/totalData", TestCapacity.getTotalData)
-  router.post("/testCapacity", TestCapacity.update)
+  router.post("/testCapacity/update", TestCapacity.update)
+  router.post("/testCapacity/add", TestCapacity.add)
+  router.post("/testCapacity/delete", TestCapacity.delete)
 
 
   app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

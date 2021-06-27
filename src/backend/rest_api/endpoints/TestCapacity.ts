@@ -7,6 +7,10 @@ import { OPT } from '../config/options';
 import utils from '../utils';
 import { Optional } from 'lib/optional'
 import { getFilterForPublicUsers } from 'backend/lib';
+import { Mongoose } from 'mongoose';
+
+/*
+ * Unused Interface (only relevant for the old update function)
 
 interface UpdatePayload {
   totalCapacity: number,
@@ -15,8 +19,14 @@ interface UpdatePayload {
   sampleBackup: Optional<number>,
   createdAt: string
 }
+*/
+
 
 class TestCapacityEndpoint {
+  /*
+   * old update function
+   * It is uncertain if it worked as intended
+   * 
   public async update(req: express.Request, resp: express.Response, next: express.NextFunction) {
     const token = utils.getUnverifiedDecodedJWT(req)
     if (token.role !== UserRoles.LAB_DIAG) {
@@ -60,6 +70,111 @@ class TestCapacityEndpoint {
     }).catch(() => {
       return utils.internalError(resp);
     })
+  }
+ */
+
+  public async add(req: express.Request, resp: express.Response, next: express.NextFunction) {
+    const token = utils.getUnverifiedDecodedJWT(req)
+    if (token.role !== UserRoles.LAB_DIAG) {
+      return utils.badRequest(resp);
+    }
+  
+    const newEntry: ITestCapacity = req.body;
+    if (!JsonSchema.validate(newEntry, schemas.testCapacity)) {
+      return utils.badRequest(resp)
+    }
+
+    let begin = new Date(newEntry.createdAt);
+    begin.setHours(0,0,0,0);
+    let end = new Date(begin);
+    end.setDate(end.getDate() + 1);
+
+    //Try finding entries from the user in the database that were created within the same day, regardless of time
+    const capacity = await TestCapacity
+    .find({
+        createdAt: {
+          $gte: begin,
+          $lt: end
+        },
+        user: token.sub
+      })
+    .exec()
+
+    if(capacity.length > 0){
+      return utils.internalError(resp);
+
+    }
+    let toSave : ITestCapacity
+    toSave = new TestCapacity({
+      ...newEntry,
+      user: token.sub
+    })
+
+    toSave.save().then(() => {
+      return utils.successResponse(resp);
+    }).catch(() => {
+      return utils.internalError(resp);
+    })    
+  }
+
+  public async update(req: express.Request, resp: express.Response, next: express.NextFunction) {
+    const token = utils.getUnverifiedDecodedJWT(req)
+    if (token.role !== UserRoles.LAB_DIAG) {
+      return utils.badRequest(resp);
+    }
+
+    const entry: ITestCapacity = req.body.data;
+    if (!JsonSchema.validate(entry, schemas.testCapacity)) {
+      return utils.badRequest(resp);
+    }
+
+    let begin = new Date(entry.createdAt);
+    begin.setHours(0,0,0,0);
+    let end = new Date(begin);
+    end.setDate(end.getDate() + 1);
+
+    const capacity = await TestCapacity
+    .find({
+        createdAt: {
+          $gte: begin,
+          $lt: end
+        },
+        user: token.sub,
+        _id: {$ne: req.body._id}
+      })
+    .exec()
+
+    if(capacity.length > 0)
+      return utils.badRequest(resp);
+
+    TestCapacity.updateOne({
+      _id: req.body._id,
+      user: token.sub
+    }, {
+      ...entry
+    }, { timestamps: false }).then(() => {
+      return utils.successResponse(resp);
+    }).catch(() => {
+      return utils.internalError(resp);
+    });
+    
+  }
+
+  public async delete(req: express.Request, resp: express.Response, next: express.NextFunction) {
+    const token = utils.getUnverifiedDecodedJWT(req)
+    if (token.role !== UserRoles.LAB_DIAG) {
+      return utils.badRequest(resp);
+    }
+  
+    TestCapacity.deleteOne({
+      _id: req.body._id,
+      user: token.sub
+    }).then(() => {
+      return utils.successResponse(resp);
+    }).catch(() => {
+      return utils.internalError(resp);
+    });
+    
   }
 
   public async get(req: express.Request, resp: express.Response, next: express.NextFunction) {
@@ -137,7 +252,7 @@ class TestCapacityEndpoint {
       usedCapacity: 1,       //include "Tests"
       positiveRate: 1,       //include "Positive Rate"
       sampleBackup: 1,       //include "Backlog"
-      _id: 0                 //exclude id
+      _id: 1                 //include id
     }
 
     const capacities = await TestCapacity
