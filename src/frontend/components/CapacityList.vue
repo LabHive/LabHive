@@ -13,19 +13,11 @@
                         <input id="new_date" type="date" class="form-control"> 
                     </b-col>
                 </b-row>
-                <b-row cols="5"> 
-                    <b-col>
+                <b-row style="margin: 0px;">
                         <input id="new_totalCapacity" type="number" class="form-control" placeholder="Total Capacity">
-                    </b-col>
-                    <b-col>
                         <input id="new_usedCapacity" type="number" class="form-control" placeholder="Used Capacity">  
-                    </b-col>
-                    <b-col>
                         <input id="new_sampleBackup" type="number" class="form-control" placeholder="Backup Sample">
-                    </b-col>
-                    <b-col>
-                        <input id="new_positiveRate" type="number" class="form-control" placeholder="Positive Rate">   
-                    </b-col>
+                        <input id="new_positiveRate" type="number" class="form-control" placeholder="Positive Rate">
                 </b-row>
 
                 <b-button style="margin: 10px;" variant="primary" v-on:click="addEntry()">{{$t("testcapacity.capacityList.addNewEntry")}}</b-button>
@@ -38,12 +30,12 @@
                 :key="index + + item._id + item.createdAt + item.formattedDate + item.totalCapacity + item.usedCapacity + item.positiveRate + item.sampleBackup"
             >
                 <div>
-                    <b-row cols="7" class="box" >  
+                    <b-row class="box" >  
                         <b-col class="row align-items-center">
                             <div >{{ item.createdAt }} </div>
                         </b-col>
                         <b-col>
-                            
+
                             <div class="" id="numberDescription">{{ item.totalCapacity }}</div>{{$t("testcapacity.historyChart.capacity")}}
                         </b-col>
                         <b-col>
@@ -63,34 +55,24 @@
                 <b-collapse style="background-color:#DBDBDB; margin-top: 0; border-radius: 0px 0px 5px 5px;" :id="'editBox'+index" class="box" >
                     <b-row cols="5">   
                         <b-col>
-
+                            
                             <input :id="index+'_date'" type="date" class="form-control" :value="item.formattedDate"> 
                         </b-col>
                     </b-row>
-                    <b-row cols="5" style="padding-top: 10px; padding-bottom: 10px"> 
-                        <b-col  >
-                        
+                    <b-row style="margin: 0px;"> 
+
                             <input :id="index+'_totalCapacity'" type="number" class="form-control" :value="item.totalCapacity">
-                        </b-col>
-                        <b-col>
                             <input :id="index+'_usedCapacity'" type="number" class="form-control" :value="item.usedCapacity">  
-                        </b-col>
-                        <b-col>
                             <input :id="index+'_sampleBackup'" type="number" class="form-control" :value="item.sampleBackup">
-                        </b-col>
-                        <b-col>
-                            <input :id="index+'_positiveRate'" type="number" class="form-control" :value="item.positiveRate">   
-                        </b-col>
+                            <input :id="index+'_positiveRate'" type="number" class="form-control" :value="item.positiveRate">
                     </b-row >
-                    <b-row cols="10" >
-                        <b-col md="1" >
-                            <b-button v-on:click="updateEntry(index, item._id)" variant="primary">{{$t("testcapacity.capacityList.save")}}</b-button>
+                    <b-row >
+                        <b-col>
+                            <b-button style="margin: 10px;" v-on:click="updateEntry(index, item._id)" variant="primary">{{$t("testcapacity.capacityList.save")}}</b-button>
+                            <b-button style="margin: 10px;" v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.capacityList.cancel")}}</b-button>
                         </b-col>
-                        <b-col md="0.9" offset-md="1" >
-                            <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.capacityList.cancel")}}</b-button>
-                        </b-col>
-                        <b-col md="1" offset-md="7">
-                            <b-button v-on:click="deleteEntry(item._id)" variant="danger" >{{$t("testcapacity.capacityList.delete")}}</b-button>
+                        <b-col md="0" offset-md="6">
+                            <b-button style="margin: 10px;" v-on:click="deleteEntry(item._id)" variant="danger" >{{$t("testcapacity.capacityList.delete")}}</b-button>
                         </b-col>
                     </b-row>
                 </b-collapse>
