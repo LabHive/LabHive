@@ -21,14 +21,14 @@
         {{ error }}
       </div>
       <div class="col">
-        <div class="container" style="width: 80%">
+        <div class="container">
           <HistoryChart />
         </div>
-        <hr style="margin: 100px" />
-        <div class="container" style="width: 100%">
+        <hr style="margin: 50px" />
+        <div class="container">
           <Advice />
         </div>
-        <hr style="margin: 100px" />
+        <hr style="margin: 50px" />
         <div class="container">
           <CapacityMap />
         </div>
