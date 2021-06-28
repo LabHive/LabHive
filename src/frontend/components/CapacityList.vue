@@ -5,7 +5,7 @@
 
                        
             <div class="d-flex flex-row-reverse bd-highlight">     
-                <b-button v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
+                <b-button v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.capacityList.addNewEntry")}}</b-button>
             </div>
             <b-collapse style="background-color:#DBDBDB;" id="addEntryBox" class="box" >
                 <b-row cols="5">
@@ -28,8 +28,8 @@
                     </b-col>
                 </b-row>
 
-                <b-button style="margin: 10px;" variant="primary" v-on:click="addEntry()">{{$t("testcapacity.historyChart.addNewEntry")}}</b-button>
-                <b-button style="margin: 10px;" v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.historyChart.cancel")}}</b-button>
+                <b-button style="margin: 10px;" variant="primary" v-on:click="addEntry()">{{$t("testcapacity.capacityList.addNewEntry")}}</b-button>
+                <b-button style="margin: 10px;" v-b-toggle="'addEntryBox'" variant="primary">{{$t("testcapacity.capacityList.cancel")}}</b-button>
             </b-collapse>
 
             <div
@@ -43,30 +43,33 @@
                             <div >{{ item.createdAt }} </div>
                         </b-col>
                         <b-col>
+                            
                             <div class="" id="numberDescription">{{ item.totalCapacity }}</div>{{$t("testcapacity.historyChart.capacity")}}
                         </b-col>
                         <b-col>
-                            <div class="" id="numberDescription">{{ item.usedCapacity }}</div>{{$t("testcapacity.historyChart.tests")}}
+                            <div class="" id="numberDescription">{{ item.usedCapacity }}</div>{{$t("testcapacity.capacityList.tests")}}
                         </b-col>
                         <b-col>
-                            <div class="" id="numberDescription">{{ item.sampleBackup == null ? '0':item.sampleBackup}}</div>{{$t("testcapacity.historyChart.backlog")}}
+                            <div class="" id="numberDescription">{{ item.sampleBackup == null ? '0':item.sampleBackup}}</div>{{$t("testcapacity.capacityList.backlog")}}
                         </b-col>
                         <b-col>
-                            <div class="" id="numberDescription">{{ item.positiveRate == null ? '0': item.positiveRate }}</div>{{$t("testcapacity.historyChart.positiveRate")}}
+                            <div class="" id="numberDescription">{{ item.positiveRate == null ? '0': item.positiveRate }}</div>{{$t("testcapacity.capacityList.positiveRate")}}
                         </b-col>
                         <b-col offset-md="1" class="d-flex flex-row-reverse">
-                            <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.historyChart.editBox")}}<i class="bi bi-chevron-down"></i></b-button>
+                            <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.capacityList.editBox")}}<i class="bi bi-chevron-down"></i></b-button>
                         </b-col>
                     </b-row>
                 </div>
                 <b-collapse style="background-color:#DBDBDB; margin-top: 0; border-radius: 0px 0px 5px 5px;" :id="'editBox'+index" class="box" >
                     <b-row cols="5">   
                         <b-col>
+
                             <input :id="index+'_date'" type="date" class="form-control" :value="item.formattedDate"> 
                         </b-col>
                     </b-row>
                     <b-row cols="5" style="padding-top: 10px; padding-bottom: 10px"> 
                         <b-col  >
+                        
                             <input :id="index+'_totalCapacity'" type="number" class="form-control" :value="item.totalCapacity">
                         </b-col>
                         <b-col>
@@ -81,13 +84,13 @@
                     </b-row >
                     <b-row cols="10" >
                         <b-col md="1" >
-                            <b-button v-on:click="updateEntry(index, item._id)" variant="primary">{{$t("testcapacity.historyChart.save")}}</b-button>
+                            <b-button v-on:click="updateEntry(index, item._id)" variant="primary">{{$t("testcapacity.capacityList.save")}}</b-button>
                         </b-col>
                         <b-col md="0.9" offset-md="1" >
-                            <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.historyChart.cancel")}}</b-button>
+                            <b-button v-b-toggle="'editBox'+index" variant="primary">{{$t("testcapacity.capacityList.cancel")}}</b-button>
                         </b-col>
                         <b-col md="1" offset-md="7">
-                            <b-button v-on:click="deleteEntry(item._id)" variant="danger" >{{$t("testcapacity.historyChart.delete")}}</b-button>
+                            <b-button v-on:click="deleteEntry(item._id)" variant="danger" >{{$t("testcapacity.capacityList.delete")}}</b-button>
                         </b-col>
                     </b-row>
                 </b-collapse>
