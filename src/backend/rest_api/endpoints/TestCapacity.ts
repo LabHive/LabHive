@@ -5,6 +5,7 @@ import { ITestCapacity } from '../../lib/database/schemas/ITestCapacity';
 import JsonSchema, { schemas } from '../jsonSchemas/JsonSchema';
 import { OPT } from '../config/options';
 import utils from '../utils';
+import HttpStatusCodes from 'http-status-codes'
 import { Optional } from 'lib/optional'
 import { getFilterForPublicUsers } from 'backend/lib';
 import { Mongoose } from 'mongoose';
@@ -81,7 +82,7 @@ class TestCapacityEndpoint {
   
     const newEntry: ITestCapacity = req.body;
     if (!JsonSchema.validate(newEntry, schemas.testCapacity)) {
-      return utils.badRequest(resp)
+      return utils.badRequest(resp, "invalidData");
     }
 
     let begin = new Date(newEntry.createdAt);
@@ -101,7 +102,7 @@ class TestCapacityEndpoint {
     .exec()
 
     if(capacity.length > 0){
-      return utils.internalError(resp);
+      return utils.badRequest(resp, "dateExists");
 
     }
     let toSave : ITestCapacity
@@ -125,7 +126,7 @@ class TestCapacityEndpoint {
 
     const entry: ITestCapacity = req.body.data;
     if (!JsonSchema.validate(entry, schemas.testCapacity)) {
-      return utils.badRequest(resp);
+      return utils.badRequest(resp, "invalidData");
     }
 
     let begin = new Date(entry.createdAt);
@@ -144,9 +145,9 @@ class TestCapacityEndpoint {
       })
     .exec()
 
-    if(capacity.length > 0)
-      return utils.badRequest(resp);
-
+    if(capacity.length > 0){
+      return utils.badRequest(resp, "dateExists");
+    }
     TestCapacity.updateOne({
       _id: req.body._id,
       user: token.sub

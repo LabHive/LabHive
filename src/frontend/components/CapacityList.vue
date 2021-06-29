@@ -11,6 +11,7 @@
                 <b-row cols="5">
                     <b-col>
                         <input id="new_date" type="date" class="form-control"> 
+                        <p id="new_dateError" style="visibility: hidden;" class="date-error">{{$t("testcapacity.capacityList.dateExists")}}</p>
                     </b-col>
                 </b-row>
                 <b-row style="margin: 0px;">
@@ -57,6 +58,7 @@
                         <b-col>
                             
                             <input :id="index+'_date'" type="date" class="form-control" :value="item.formattedDate"> 
+                            <p :id="index+'_dateError'" style="visibility: hidden;" class="date-error">{{$t("testcapacity.capacityList.dateExists")}}</p>
                         </b-col>
                     </b-row>
                     <b-row style="margin: 0px;"> 
@@ -129,8 +131,6 @@ export default {
                         this.capacityList = success.body.data
                         this.totalResults = success.body.totalResults;
                         this.formattedList = this.formatData(success.body.data);
-                        //console.log(success.body.data); //Nur zum Testen ausgeben in der Console
-                        //console.log(success.body.totalResults);
                     },
                     error => {
                         rej(error);
@@ -176,11 +176,19 @@ export default {
                 this.$http.post("testCapacity/add", entry).then(
                     success => {
                         success;
+                        if(document.getElementById("new_dateError").style.visibility == "visible")
+                            document.getElementById("new_dateError").style.visibility = "hidden";
+                            document.getElementById("new_date").classList.remove("errorInput");
                         this.pageChanged();
                     },
                     error => {
                         rej(error);
                         this.error = "no data";
+                        let reason = error.body.errorDescription;
+                        if(reason == "dateExists"){
+                            document.getElementById("new_dateError").style.visibility = "visible";
+                            document.getElementById("new_date").classList.add("errorInput");
+                        }
                         console.log(error);
                     }
                 );
@@ -214,6 +222,11 @@ export default {
                     error => {
                         rej(error)
                         this.error = "no data"
+                        let reason = error.body.errorDescription;
+                        if(reason == "dateExists"){
+                            document.getElementById(index + "_dateError").style.visibility = "visible";
+                            document.getElementById(index + "_date").classList.add("errorInput");
+                        }
                         console.log(error);
                     }
                 );
@@ -286,5 +299,14 @@ input {
     width: 200px;
     margin: 4px;
     margin-left: 15px;
+}
+
+.date-error {
+    color: #FF0000;
+    font-size: 9px;
+}
+
+.errorInput {
+    border-color: #FF0000;
 }
 </style>

@@ -100,8 +100,6 @@ export default {
   background-image: url("../assets/decoration-1.svg");
   background-repeat: no-repeat;
   background-position: center;
-  padding-bottom: -70pt;
-  opacity: 0,5;
 }
 
 h1 {
