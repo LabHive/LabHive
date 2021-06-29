@@ -50,10 +50,10 @@ const routes = [
   { path: '/details/:id', name: 'details', component: Details, props: true },
   { path: '/activate', component: Activation },
   { path: '/updateAvailability', component: UpdateAvailability },
-  { path: '/test-capacity', component: TestCapacity, meta: { auth: true }  },
+  { path: '/test-capacity', name: 'pageTestCapacity', component: TestCapacity, meta: { auth: true }  },
 
   { path: '/profile', component: Profile, meta: { auth: true } },
-  { path: '/dashboard', component: Dashboard, meta: { auth: true } },
+  { path: '/dashboard', name: 'pageDashboard', component: Dashboard, meta: { auth: true } },
   { path: '/revokeConsent', component: RevokeConsent, meta: { auth: true } },
   { path: '/admin', component: Admin, meta: { auth: true } },
   { path: '/request', component: Request, meta: { auth: true } },
