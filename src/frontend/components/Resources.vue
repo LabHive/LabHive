@@ -26,30 +26,6 @@
 
 
 </template>
-
-<style scoped>
-
-.box {
-  background-color: rgba(255, 255, 255, 0.459);
-  border-radius: 5px;
-  padding: 20px;
-}
-
-.box-header {
-  font-style: normal;
-  color: #177867;
-}
-
-path {
-  transition: all 1s;
-}
-
-.svgContainer {
-  height: 300px;
-}
-</style>
-
-
 <script>
 
 export default {
@@ -159,6 +135,10 @@ export default {
   }
 </script><!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+path {
+  transition: all 1s;
+}
 
 .resource-list {
   padding: 10px;

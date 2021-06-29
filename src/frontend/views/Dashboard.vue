@@ -26,7 +26,7 @@
         </div>
         <hr style="margin: 50px" />
         <div class="container">
-          <Advice />
+          <Resources />
         </div>
         <hr style="margin: 50px" />
         <div class="container">
@@ -43,7 +43,7 @@
 <script>
 import HistoryChart from "./../components/historyChart";
 import CapacityMap from "./../components/capacityMap";
-import Advice from "./../components/Advice"; //hier den import einfügen und in Z.69 unter Components hinzufügen
+import Resources from "./../components/Resources"; //hier den import einfügen und in Z.69 unter Components hinzufügen
 import TotalDataOverview from "./../components/TotalDataOverview.vue";
 
 export default {
@@ -75,7 +75,7 @@ export default {
   components: {
     HistoryChart,
     CapacityMap,
-    Advice, //Hier das Component einfügen
+    Resources, //Hier das Component einfügen
     TotalDataOverview
   },
 };
@@ -97,18 +97,13 @@ export default {
 }
 
 .background {
-  
   background-image: url("../assets/decoration-1.svg");
   background-repeat: no-repeat;
   background-position: center;
   padding-bottom: -70pt;
   opacity: 0,5;
-  
 }
 
-.bcol {
-  margin-top: 20px;
-}
 h1 {
   margin-top: 4pt;
 }
